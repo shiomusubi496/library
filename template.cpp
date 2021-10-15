@@ -96,6 +96,7 @@ template<class T> class presser : public std::vector<T>{
   private:
     using size_type = size_t;
   public:
+    presser() = default;
     presser(const std::vector<T>& vec) : std::vector<T>(vec) {}
     void push(const std::vector<T>& vec){
         this->reserve(vec.size());
@@ -105,15 +106,16 @@ template<class T> class presser : public std::vector<T>{
         this->erase(std::unique(this->begin(), this->end()), this->end());
         return this->size();
     }
-    size_type get_index (T val) const {
+    size_type get_index (const T& val) const {
         return std::lower_bound(this->begin(), this->end(), val) - this->begin();
     }
-    std::vector<size_type> pressed (const std::vector<T>& vec) {
+    std::vector<size_type> pressed (const std::vector<T>& vec) const {
         std::vector<size_type> res(vec.size());
         rep(i, vec.size()) res[i] = this->get_index(vec[i]);
         return res;
     }
-    void press (std::vector<T>& vec) {
+    void press (std::vector<T>& vec) const {
+        static_assert(is_integral<T>::value);
         rep(i, vec.size()) vec[i] = this->get_index(vec[i]);
     }
 };
