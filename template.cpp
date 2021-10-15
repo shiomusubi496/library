@@ -115,7 +115,7 @@ template<class T> class presser : public std::vector<T>{
         return res;
     }
     void press (std::vector<T>& vec) const {
-        static_assert(is_integral<T>::value);
+        static_assert(std::is_integral<T>::value);
         rep(i, vec.size()) vec[i] = this->get_index(vec[i]);
     }
 };
