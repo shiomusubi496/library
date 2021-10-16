@@ -95,11 +95,10 @@ inline constexpr int popcnt(ull x) {
 template<class T> class presser : public std::vector<T> {
   private:
     using size_type = size_t;
+    using Base = std::vector<T>;
   public:
-    presser() = default;
-    presser(size_type n) : std::vector<T>(n) {}
-    presser(const std::initializer_list<T> il) : std::vector<T>(il) {}
-    presser(const std::vector<T>& vec) : std::vector<T>(vec) {}
+    using Base::Base;
+    presser(const std::vector<T>& vec) : Base(vec) {}
     void push(const std::vector<T>& vec) {
         size_type n = this->size();
         this->resize(n + vec.size());
