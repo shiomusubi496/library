@@ -97,6 +97,8 @@ template<class T> class presser : public std::vector<T> {
     using size_type = size_t;
   public:
     presser() = default;
+    presser(size_type n) : std::vector<T>(n) {}
+    presser(const std::initializer_list<T> il) : std::vector<T>(il) {}
     presser(const std::vector<T>& vec) : std::vector<T>(vec) {}
     void push(const std::vector<T>& vec) {
         size_type n = this->size();
