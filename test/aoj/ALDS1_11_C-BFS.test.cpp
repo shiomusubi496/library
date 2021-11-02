@@ -4,7 +4,7 @@ using namespace std;
 int main() {
     int N; cin >> N;
     Graph<int> G(N);
-    rep(i, N) {
+    rep (i, N) {
         int u; cin >> u;
         int k; cin >> k;
         rep(j, k) {
@@ -13,7 +13,7 @@ int main() {
         }
     }
     vector<int> dist = BFS(G);
-    rep(i, N) {
+    rep (i, N) {
         cout << i + 1 << ' ' << dist[i] << endl;
     }
 }
