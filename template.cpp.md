@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/Graph.cpp
+    title: graph/Graph.cpp
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.cpp
     title: graph/UnionFind.cpp
-  - icon: ':warning:'
-    path: graph/graph.cpp
-    title: graph/graph.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_B-GCD.test.cpp
@@ -125,7 +125,7 @@ data:
   isVerificationFile: false
   path: template.cpp
   requiredBy:
-  - graph/graph.cpp
+  - graph/Graph.cpp
   - graph/UnionFind.cpp
   timestamp: '2021-11-02 16:10:55+09:00'
   verificationStatus: LIBRARY_ALL_AC

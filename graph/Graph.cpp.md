@@ -11,7 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/graph.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"graph/Graph.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
     \n#define rep(i, n) for(int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int\
     \ i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing\
     \ ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
@@ -57,7 +57,7 @@ data:
     \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
     \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/graph.cpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ 4 \"graph/Graph.cpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
     \ to;\n    T cost;\n    std::size_t idx;\n    edge() = default;\n    edge(int\
     \ t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c)\
     \ {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f,\
@@ -88,15 +88,15 @@ data:
   dependsOn:
   - template.cpp
   isVerificationFile: false
-  path: graph/graph.cpp
+  path: graph/Graph.cpp
   requiredBy: []
-  timestamp: '2021-11-02 16:10:55+09:00'
+  timestamp: '2021-11-02 16:34:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/graph.cpp
+documentation_of: graph/Graph.cpp
 layout: document
 redirect_from:
-- /library/graph/graph.cpp
-- /library/graph/graph.cpp.html
-title: graph/graph.cpp
+- /library/graph/Graph.cpp
+- /library/graph/Graph.cpp.html
+title: graph/Graph.cpp
 ---

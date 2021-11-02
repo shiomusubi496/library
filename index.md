@@ -3,12 +3,12 @@ data:
   libraryCategories:
   - name: graph
     pages:
+    - icon: ':warning:'
+      path: graph/Graph.cpp
+      title: graph/Graph.cpp
     - icon: ':heavy_check_mark:'
       path: graph/UnionFind.cpp
       title: graph/UnionFind.cpp
-    - icon: ':warning:'
-      path: graph/graph.cpp
-      title: graph/graph.cpp
   - name: .
     pages:
     - icon: ':heavy_check_mark:'
