@@ -76,7 +76,7 @@ data:
     \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
     \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n\n"
+    \        edge_id++;\n    }\n};\n"
   code: "#pragma once\n\n#include \"../template.cpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    std::size_t idx;\n    edge() = default;\n\
     \    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
@@ -90,14 +90,14 @@ data:
     \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
     \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n\n"
+    \        edge_id++;\n    }\n};\n"
   dependsOn:
   - template.cpp
   isVerificationFile: false
   path: graph/Graph.cpp
   requiredBy:
   - graph/BreadthFirstSearch.cpp
-  timestamp: '2021-11-02 16:41:43+09:00'
+  timestamp: '2021-11-02 19:07:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_11_C-BFS.test.cpp

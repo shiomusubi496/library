@@ -16,7 +16,7 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/unionfind.md
+    _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
     links: []
   bundledCode: "#line 2 \"graph/UnionFind.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
@@ -78,9 +78,8 @@ data:
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
     \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        return par_vec[x] < 0;\n    }\n    int group_size() const\
-    \ {\n        return count_if(par_vec.begin(), par_vec.end(), [](int x) { return\
-    \ x < 0; });\n    }\n};\n\n/*\n@brief UnionFind\n@docs docs/unionfind.md\n*/\n"
+    \ x) const {\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
+    @docs docs/UnionFind.md\n*/\n"
   code: "#pragma once\n\n#include \"../template.cpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int _n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
@@ -94,15 +93,14 @@ data:
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
     \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        return par_vec[x] < 0;\n    }\n    int group_size() const\
-    \ {\n        return count_if(par_vec.begin(), par_vec.end(), [](int x) { return\
-    \ x < 0; });\n    }\n};\n\n/*\n@brief UnionFind\n@docs docs/unionfind.md\n*/"
+    \ x) const {\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
+    @docs docs/UnionFind.md\n*/"
   dependsOn:
   - template.cpp
   isVerificationFile: false
   path: graph/UnionFind.cpp
   requiredBy: []
-  timestamp: '2021-11-02 18:24:43+09:00'
+  timestamp: '2021-11-02 19:07:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
@@ -114,34 +112,3 @@ redirect_from:
 - /library/graph/UnionFind.cpp.html
 title: UnionFind
 ---
-## 概要
-
-集合を併合する操作や、ある要素が属する集合の代表元を問い合わせる操作を行える。
-
-### `bool merge(int x, int y)`
-
-要素 `x` の属する集合と要素 `y` の属する集合を併合する。もともと同じ集合に属していたなら `false` を、そうでないなら `true` を返す。
-
-### `int find(int x)`
-
-要素 `x` の属する集合の代表元を返す。
-
-### `bool same(int x, int y)`
-
-要素 `x` と要素 `y` が同じ集合に属するかを判定する。
-
-### `int size(int x)`
-
-要素 `x` の属する集合の要素数を返す。
-
-### `bool is_root(int x)`
-
-要素 `x` が属する集合の代表元が `x` であるかを返す。
-
-### `int group_size()`
-
-集合の数を返す。
-
-### `vector<vector<int>> groups()`
-
-「「集合に属する要素のリスト」のリスト」を返す。

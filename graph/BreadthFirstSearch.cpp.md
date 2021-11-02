@@ -77,12 +77,12 @@ data:
     \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
     \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n\n#line 5 \"graph/BreadthFirstSearch.cpp\"\n\n\
-    template<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T>\
-    \ dist(G.size(), -1);\n    dist[0] = 0;\n    std::queue<int> que;\n    que.push(0);\n\
-    \    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n\
-    \                dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
+    \        edge_id++;\n    }\n};\n#line 5 \"graph/BreadthFirstSearch.cpp\"\n\ntemplate<class\
+    \ T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T> dist(G.size(),\
+    \ -1);\n    dist[0] = 0;\n    std::queue<int> que;\n    que.push(0);\n    while\
+    \ (!que.empty()) {\n        int v = que.front();\n        que.pop();\n       \
+    \ for (const edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n     \
+    \           dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
     \            }\n        }\n    }\n    return dist;\n}\n"
   code: "#pragma once\n\n#include \"../template.cpp\"\n#include \"Graph.cpp\"\n\n\
     template<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T>\
@@ -97,7 +97,7 @@ data:
   isVerificationFile: false
   path: graph/BreadthFirstSearch.cpp
   requiredBy: []
-  timestamp: '2021-11-02 17:23:30+09:00'
+  timestamp: '2021-11-02 19:07:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_11_C-BFS.test.cpp
