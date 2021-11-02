@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.cpp
-    title: graph/UnionFind.cpp
+    title: UnionFind
   - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
@@ -79,8 +79,9 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        return par_vec[x]\
     \ < 0;\n    }\n    int group_size() const {\n        return count_if(par_vec.begin(),\
-    \ par_vec.end(), [](int x) { return x < 0; });\n    }\n};\n#line 4 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ par_vec.end(), [](int x) { return x < 0; });\n    }\n};\n\n/*\n@brief UnionFind\n\
+    @docs docs/unionfind.md\n*/\n#line 4 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
     \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
@@ -96,7 +97,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_A-UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 18:05:59+09:00'
+  timestamp: '2021-11-02 18:24:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_A-UnionFind.test.cpp

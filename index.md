@@ -11,7 +11,7 @@ data:
       title: graph/Graph.cpp
     - icon: ':heavy_check_mark:'
       path: graph/UnionFind.cpp
-      title: graph/UnionFind.cpp
+      title: UnionFind
   - name: .
     pages:
     - icon: ':heavy_check_mark:'
@@ -42,3 +42,4 @@ data:
       title: test/yosupo/unionfind.test.cpp
 layout: toppage
 ---
+shiomusubi496 の C++ 競プロライブラリ。

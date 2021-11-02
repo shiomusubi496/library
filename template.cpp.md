@@ -10,7 +10,7 @@ data:
     title: graph/Graph.cpp
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.cpp
-    title: graph/UnionFind.cpp
+    title: UnionFind
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
