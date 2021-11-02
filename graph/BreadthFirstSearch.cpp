@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../template.cpp"
 #include "Graph.cpp"
 

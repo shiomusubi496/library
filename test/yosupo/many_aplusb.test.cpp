@@ -1,11 +1,12 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb"
 #include "../../template.cpp"
+using namespace std;
 int main() {
     int T;
-    std::cin >> T;
+    cin >> T;
     while (T--) {
         ll a, b;
-        std::cin >> a >> b;
-        std::cout << a + b << std::endl;
+        cin >> a >> b;
+        cout << a + b << endl;
     }
 }
