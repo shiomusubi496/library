@@ -7,6 +7,7 @@ class UnionFind {
     int _n;
     std::vector<int> par_vec;
   public:
+    UnionFind() : UnionFind(0) {}
     UnionFind(int n) : _n(n), par_vec(n, -1) {}
     int find(int x) {
         return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);
@@ -37,5 +38,8 @@ class UnionFind {
     }
     bool is_root(int x) const {
         return par_vec[x] < 0;
+    }
+    int group_size() const {
+        return count_if(par_vec.begin(), par_vec.end(), [](int x) { return x < 0; });
     }
 };
