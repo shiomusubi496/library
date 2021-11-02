@@ -66,18 +66,20 @@ data:
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 2 \"graph/UnionFind.cpp\"\n\n#line 4 \"graph/UnionFind.cpp\"\n\nclass UnionFind\
     \ {\n  protected:\n    int _n;\n    std::vector<int> par_vec;\n  public:\n   \
-    \ UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n       \
-    \ return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    bool\
-    \ merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n        if\
-    \ (x == y) return false;\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n\
-    \        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return true;\n\
-    \    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n  \
-    \  }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(_n);\n        rep(i, _n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
-    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        return par_vec[x] < 0;\n    }\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
+    \ UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : _n(n), par_vec(n, -1)\
+    \ {}\n    int find(int x) {\n        return par_vec[x] < 0 ? x : par_vec[x] =\
+    \ find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
+    \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
+    \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
+    \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
+    \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
+    \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(_n);\n        rep(i, _n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(res.begin(), res.end(),\n                      [](const\
+    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
+    \    return res;\n    }\n    bool is_root(int x) const {\n        return par_vec[x]\
+    \ < 0;\n    }\n    int group_size() const {\n        return count_if(par_vec.begin(),\
+    \ par_vec.end(), [](int x) { return x < 0; });\n    }\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
     \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
@@ -94,7 +96,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 17:23:30+09:00'
+  timestamp: '2021-11-02 18:05:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp
