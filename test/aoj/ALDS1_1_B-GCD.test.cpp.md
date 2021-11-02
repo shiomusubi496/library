@@ -61,17 +61,17 @@ data:
     \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
     \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/ALDS1_1_B-GCD.test.cpp\"\nint main() {\n    int x, y; std::cin\
-    \ >> x >> y;\n    std::cout << gcd(x, y) << std::endl;\n}\n"
+    \ 3 \"test/aoj/ALDS1_1_B-GCD.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int x, y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B\"\n\
-    #include \"../../template.cpp\"\nint main() {\n    int x, y; std::cin >> x >>\
-    \ y;\n    std::cout << gcd(x, y) << std::endl;\n}\n"
+    #include \"../../template.cpp\"\nusing namespace std;\nint main() {\n    int x,\
+    \ y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
   dependsOn:
   - template.cpp
   isVerificationFile: true
   path: test/aoj/ALDS1_1_B-GCD.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 16:10:55+09:00'
+  timestamp: '2021-11-02 17:23:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_1_B-GCD.test.cpp

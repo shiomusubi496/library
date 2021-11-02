@@ -78,15 +78,15 @@ data:
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
     \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
     \ x) const {\n        return par_vec[x] < 0;\n    }\n};\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
-    \nint main() {\n    int N, Q;\n    std::cin >> N >> Q;\n    UnionFind UF(N);\n\
-    \    while (Q--) {\n        int t, u, v;\n        std::cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else std::cout << UF.same(u, v) <<\
-    \ std::endl;\n    }\n}\n"
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
+    \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
-    ../../template.cpp\"\n#include \"../../graph/UnionFind.cpp\"\nint main() {\n \
-    \   int N, Q;\n    std::cin >> N >> Q;\n    UnionFind UF(N);\n    while (Q--)\
-    \ {\n        int t, u, v;\n        std::cin >> t >> u >> v;\n        if (t ==\
-    \ 0) UF.merge(u, v);\n        else std::cout << UF.same(u, v) << std::endl;\n\
+    ../../template.cpp\"\n#include \"../../graph/UnionFind.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n\
+    \    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n      \
+    \  if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
   dependsOn:
   - template.cpp
@@ -94,7 +94,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 16:10:55+09:00'
+  timestamp: '2021-11-02 17:23:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp

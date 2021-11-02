@@ -21,26 +21,26 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
   bundledCode: "#line 1 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\
-    \n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for(int\
-    \ i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int i = (int)(n) - 1; i >=\
-    \ 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\nusing\
-    \ ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
-    \ ll>;\n\nconstexpr int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr ld EPS\
-    \ = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class\
-    \ U> inline constexpr bool chmin(T &a, const U &b) noexcept {\n    if (a > b)\
-    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate<class\
-    \ T, class U> inline constexpr bool chmax(T &a, const U &b) noexcept {\n    if\
-    \ (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\n\ninline constexpr ll gcd(ll a, ll b) noexcept {\n    while (b) {\n       \
-    \ const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return a;\n\
-    }\ninline constexpr ll lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) *\
-    \ b;\n}\n\ninline constexpr ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n\
-    \    while (b) {\n        if (b & 1) res *= a;\n        b >>= 1;\n        a *=\
-    \ a;\n    }\n    return res;\n}\ninline constexpr ll mod_pow(ll a, ll b, ll mod)\
-    \ noexcept {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b &\
-    \ 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n \
-    \   return res;\n}\n\ntemplate<class F> class rec_lambda {\n  private:\n    F\
-    \ f;\n  public:\n    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_))\
+    \n#line 2 \"graph/BreadthFirstSearch.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
+    \n#define rep(i, n) for(int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int\
+    \ i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing\
+    \ ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
+    using PLL = std::pair<ll, ll>;\n\nconstexpr int inf = 1e9;\nconstexpr ll INF =\
+    \ 1e18;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\
+    \ntemplate<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept\
+    \ {\n    if (a > b) {\n        a = b;\n        return true;\n    }\n    return\
+    \ false;\n}\ntemplate<class T, class U> inline constexpr bool chmax(T &a, const\
+    \ U &b) noexcept {\n    if (a < b) {\n        a = b;\n        return true;\n \
+    \   }\n    return false;\n}\n\ninline constexpr ll gcd(ll a, ll b) noexcept {\n\
+    \    while (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n\
+    \    }\n    return a;\n}\ninline constexpr ll lcm(ll a, ll b) noexcept {\n   \
+    \ return a / gcd(a, b) * b;\n}\n\ninline constexpr ll my_pow(ll a, ll b) noexcept\
+    \ {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n        b\
+    \ >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline constexpr ll mod_pow(ll\
+    \ a, ll b, ll mod) noexcept {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n\
+    \        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *= a) %=\
+    \ mod;\n    }\n    return res;\n}\n\ntemplate<class F> class rec_lambda {\n  private:\n\
+    \    F f;\n  public:\n    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_))\
     \ {}\n    template<class... Args> constexpr auto operator()(Args&&... args) const\
     \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
     \ T, class Arg> constexpr std::vector<T> make_vec(size_t n, Arg&& arg) {\n   \
@@ -81,7 +81,7 @@ data:
     \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
     \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n\n#line 3 \"graph/BreadthFirstSearch.cpp\"\n\n\
+    \        edge_id++;\n    }\n};\n\n#line 5 \"graph/BreadthFirstSearch.cpp\"\n\n\
     template<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T>\
     \ dist(G.size(), -1);\n    dist[0] = 0;\n    std::queue<int> que;\n    que.push(0);\n\
     \    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 17:09:28+09:00'
+  timestamp: '2021-11-02 17:23:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp
