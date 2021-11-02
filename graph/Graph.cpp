@@ -33,4 +33,3 @@ template<typename T = int> class Graph : public std::vector<std::vector<edge<T>>
         edge_id++;
     }
 };
-

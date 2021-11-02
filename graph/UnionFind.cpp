@@ -39,12 +39,9 @@ class UnionFind {
     bool is_root(int x) const {
         return par_vec[x] < 0;
     }
-    int group_size() const {
-        return count_if(par_vec.begin(), par_vec.end(), [](int x) { return x < 0; });
-    }
 };
 
 /*
 @brief UnionFind
-@docs docs/unionfind.md
+@docs docs/UnionFind.md
 */
