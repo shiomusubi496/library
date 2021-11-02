@@ -4,11 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/BreadthFirstSearch.cpp
+    title: graph/BreadthFirstSearch.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1_11_C-BFS.test.cpp
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/Graph.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
@@ -89,10 +95,12 @@ data:
   - template.cpp
   isVerificationFile: false
   path: graph/Graph.cpp
-  requiredBy: []
+  requiredBy:
+  - graph/BreadthFirstSearch.cpp
   timestamp: '2021-11-02 16:41:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/ALDS1_11_C-BFS.test.cpp
 documentation_of: graph/Graph.cpp
 layout: document
 redirect_from:

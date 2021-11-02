@@ -2,13 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
+    path: graph/BreadthFirstSearch.cpp
+    title: graph/BreadthFirstSearch.cpp
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
     title: graph/Graph.cpp
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.cpp
     title: graph/UnionFind.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1_11_C-BFS.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_B-GCD.test.cpp
     title: test/aoj/ALDS1_1_B-GCD.test.cpp
@@ -126,12 +132,14 @@ data:
   path: template.cpp
   requiredBy:
   - graph/Graph.cpp
+  - graph/BreadthFirstSearch.cpp
   - graph/UnionFind.cpp
   timestamp: '2021-11-02 16:10:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/unionfind.test.cpp

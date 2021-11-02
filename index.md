@@ -3,7 +3,10 @@ data:
   libraryCategories:
   - name: graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: graph/BreadthFirstSearch.cpp
+      title: graph/BreadthFirstSearch.cpp
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.cpp
       title: graph/Graph.cpp
     - icon: ':heavy_check_mark:'
@@ -17,6 +20,9 @@ data:
   verificationCategories:
   - name: test/aoj
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_11_C-BFS.test.cpp
+      title: test/aoj/ALDS1_11_C-BFS.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1_1_B-GCD.test.cpp
