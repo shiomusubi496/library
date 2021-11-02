@@ -6,6 +6,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/UnionFind.cpp
       title: graph/UnionFind.cpp
+    - icon: ':warning:'
+      path: graph/graph.cpp
+      title: graph/graph.cpp
   - name: .
     pages:
     - icon: ':heavy_check_mark:'

@@ -5,19 +5,13 @@ data:
     path: template.cpp
     title: template.cpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_A-UnionFind.test.cpp
-    title: test/aoj/DSL_1_A-UnionFind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/unionfind.test.cpp
-    title: test/yosupo/unionfind.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"graph/UnionFind.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"graph/graph.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
     \n#define rep(i, n) for(int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int\
     \ i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing\
     \ ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
@@ -63,48 +57,46 @@ data:
     \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
     \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/UnionFind.cpp\"\n\nclass UnionFind {\n  protected:\n    int _n;\n\
-    \    std::vector<int> par_vec;\n  public:\n    UnionFind(int n) : _n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
-    \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
-    \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
-    \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(_n);\n        rep(i, _n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(res.begin(), res.end(),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        return par_vec[x]\
-    \ < 0;\n    }\n};\n"
-  code: "#pragma once\n\n#include \"../template.cpp\"\n\nclass UnionFind {\n  protected:\n\
-    \    int _n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind(int n) :\
-    \ _n(n), par_vec(n, -1) {}\n    int find(int x) {\n        return par_vec[x] <\
-    \ 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int x, int y)\
-    \ {\n        x = find(x);\n        y = find(y);\n        if (x == y) return false;\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
-    \ par_vec[y];\n        par_vec[y] = x;\n        return true;\n    }\n    bool\
-    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
-    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(_n);\n        rep(i, _n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
-    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        return par_vec[x] < 0;\n    }\n};\n"
+    \ 4 \"graph/graph.cpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    std::size_t idx;\n    edge() = default;\n    edge(int\
+    \ t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c)\
+    \ {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f,\
+    \ int t, T c, size_t i): from(f), to(t), cost(c), idx(i) {}\n    operator int()\
+    \ { return to; }\n};\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\
+    \ntemplate<typename T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    std::size_t edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    void add_edge(int a, int b, T c, bool is_directed\
+    \ = false){\n        (*this)[a].emplace_back(a, b, c, edge_id);\n        if(!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
+    \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
+    \        edge_id++;\n    }\n};\n\n"
+  code: "#pragma once\n\n#include \"../template.cpp\"\n\ntemplate<class T = int> struct\
+    \ edge {\n    int from, to;\n    T cost;\n    std::size_t idx;\n    edge() = default;\n\
+    \    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
+    \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
+    \    edge(int f, int t, T c, size_t i): from(f), to(t), cost(c), idx(i) {}\n \
+    \   operator int() { return to; }\n};\n\ntemplate<typename T = int> using Edges\
+    \ = std::vector<edge<T>>;\n\ntemplate<typename T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    std::size_t edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    void add_edge(int a, int b, T c, bool is_directed\
+    \ = false){\n        (*this)[a].emplace_back(a, b, c, edge_id);\n        if(!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
+    \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
+    \        edge_id++;\n    }\n};\n\n"
   dependsOn:
   - template.cpp
   isVerificationFile: false
-  path: graph/UnionFind.cpp
+  path: graph/graph.cpp
   requiredBy: []
   timestamp: '2021-11-02 16:10:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL_1_A-UnionFind.test.cpp
-  - test/yosupo/unionfind.test.cpp
-documentation_of: graph/UnionFind.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/graph.cpp
 layout: document
 redirect_from:
-- /library/graph/UnionFind.cpp
-- /library/graph/UnionFind.cpp.html
-title: graph/UnionFind.cpp
+- /library/graph/graph.cpp
+- /library/graph/graph.cpp.html
+title: graph/graph.cpp
 ---
