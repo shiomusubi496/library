@@ -43,3 +43,8 @@ class UnionFind {
         return count_if(par_vec.begin(), par_vec.end(), [](int x) { return x < 0; });
     }
 };
+
+/*
+@brief UnionFind
+@docs docs/unionfind.md
+*/

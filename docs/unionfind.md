@@ -1,8 +1,3 @@
----
-title: UnionFind
-documentation_of: //graph/UnionFind.cpp
----
-
 ## 概要
 
 集合を併合する操作や、ある要素が属する集合の代表元を問い合わせる操作を行える。
