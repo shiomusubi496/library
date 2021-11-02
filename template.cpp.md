@@ -6,6 +6,9 @@ data:
     path: graph/BreadthFirstSearch.cpp
     title: graph/BreadthFirstSearch.cpp
   - icon: ':heavy_check_mark:'
+    path: graph/Dijkstra.cpp
+    title: Dijkstra
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
     title: graph/Graph.cpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_A-UnionFind.test.cpp
     title: test/aoj/DSL_1_A-UnionFind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_1_A-dijkstra.test.cpp
+    title: test/aoj/GRL_1_A-dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -132,6 +138,7 @@ data:
   path: template.cpp
   requiredBy:
   - graph/Graph.cpp
+  - graph/Dijkstra.cpp
   - graph/BreadthFirstSearch.cpp
   - graph/UnionFind.cpp
   timestamp: '2021-11-02 16:10:55+09:00'
@@ -140,6 +147,7 @@ data:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/aoj/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/GRL_1_A-dijkstra.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/unionfind.test.cpp

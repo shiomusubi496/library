@@ -7,6 +7,9 @@ data:
       path: graph/BreadthFirstSearch.cpp
       title: graph/BreadthFirstSearch.cpp
     - icon: ':heavy_check_mark:'
+      path: graph/Dijkstra.cpp
+      title: Dijkstra
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.cpp
       title: graph/Graph.cpp
     - icon: ':heavy_check_mark:'
@@ -29,6 +32,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_A-UnionFind.test.cpp
       title: test/aoj/DSL_1_A-UnionFind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_A-dijkstra.test.cpp
+      title: test/aoj/GRL_1_A-dijkstra.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'

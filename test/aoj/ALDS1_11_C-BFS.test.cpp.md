@@ -83,23 +83,23 @@ data:
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
     \        edge_id++;\n    }\n};\n#line 5 \"graph/BreadthFirstSearch.cpp\"\n\ntemplate<class\
     \ T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T> dist(G.size(),\
-    \ -1);\n    dist[0] = 0;\n    std::queue<int> que;\n    que.push(0);\n    while\
+    \ -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n    while\
     \ (!que.empty()) {\n        int v = que.front();\n        que.pop();\n       \
     \ for (const edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n     \
     \           dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
     \            }\n        }\n    }\n    return dist;\n}\n#line 3 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep(i, N) {\n        int u; cin >> u;\n        int k; cin >> k;\n       \
-    \ rep(j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v\
-    \ - 1 , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep(i, N)\
-    \ {\n        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    \    rep (i, N) {\n        int u; cin >> u;\n        int k; cin >> k;\n      \
+    \  rep(j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v\
+    \ - 1 , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i,\
+    \ N) {\n        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
     #include \"../../graph/BreadthFirstSearch.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep(i, N) {\n        int\
+    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n        int\
     \ u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n            int\
     \ v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n        }\n   \
-    \ }\n    vector<int> dist = BFS(G);\n    rep(i, N) {\n        cout << i + 1 <<\
-    \ ' ' << dist[i] << endl;\n    }\n}"
+    \ }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout << i + 1 <<\
+    \ ' ' << dist[i] << endl;\n    }\n}\n"
   dependsOn:
   - graph/BreadthFirstSearch.cpp
   - template.cpp
@@ -107,7 +107,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 19:07:47+09:00'
+  timestamp: '2021-11-02 20:31:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp
