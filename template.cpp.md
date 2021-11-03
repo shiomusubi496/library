@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/BreadthFirstSearch.cpp
-    title: graph/BreadthFirstSearch.cpp
+    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
   - icon: ':heavy_check_mark:'
     path: graph/Dijkstra.cpp
-    title: Dijkstra
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
-    title: graph/Graph.cpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.cpp
     title: UnionFind

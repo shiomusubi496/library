@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
-    title: graph/Graph.cpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Dijkstra.md
-    document_title: Dijkstra
+    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     links: []
   bundledCode: "#line 2 \"graph/Dijkstra.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
     \n#define rep(i, n) for(int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int\
@@ -66,29 +66,30 @@ data:
     \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 2 \"graph/Graph.cpp\"\n\n#line 4 \"graph/Graph.cpp\"\n\ntemplate<class T = int>\
-    \ struct edge {\n    int from, to;\n    T cost;\n    std::size_t idx;\n    edge()\
-    \ = default;\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
-    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
+    \ struct edge {\n    int from, to;\n    T cost;\n    size_t idx;\n    edge() =\
+    \ default;\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c)\
+    \ : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
     \ cost(c) {}\n    edge(int f, int t, T c, size_t i): from(f), to(t), cost(c),\
     \ idx(i) {}\n    operator int() { return to; }\n};\n\ntemplate<typename T = int>\
     \ using Edges = std::vector<edge<T>>;\n\ntemplate<typename T = int> class Graph\
-    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    std::size_t edge_id\
-    \ = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using\
-    \ Base::Base;\n    void add_edge(int a, int b, T c, bool is_directed = false){\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if(!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
-    \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n#line 5 \"graph/Dijkstra.cpp\"\n\ntemplate<class\
-    \ T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n    std::vector<T>\
-    \ dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
+    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    size_t edge_id = 0;\n    size_t add_edge(int\
+    \ a, int b, T c, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
+    \ b, c, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n\
+    \        return edge_id++;\n    }\n    size_t add_edge(int a, int b, bool is_directed\
+    \ = false){\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if(!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n*/\n#line 5 \"graph/Dijkstra.cpp\"\
+    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n\
+    \    std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
     \ int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;\n\
     \    que.emplace(0, s);\n    while (!que.empty()) {\n        T c = que.top().first;\n\
     \        int v = que.top().second;\n        que.pop();\n        if (dist[v] !=\
     \ c) continue;\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
     \ == -1 || dist[e.to] > c + e.cost) {\n                dist[e.to] = c + e.cost;\n\
     \                que.emplace(dist[e.to], e.to);\n            }\n        }\n  \
-    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra\n@docs docs/Dijkstra.md\n*/\n"
+    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\
+    \u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n"
   code: "#pragma once\n\n#include \"../template.cpp\"\n#include \"Graph.cpp\"\n\n\
     template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n  \
     \  std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
@@ -98,14 +99,15 @@ data:
     \ c) continue;\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
     \ == -1 || dist[e.to] > c + e.cost) {\n                dist[e.to] = c + e.cost;\n\
     \                que.emplace(dist[e.to], e.to);\n            }\n        }\n  \
-    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra\n@docs docs/Dijkstra.md\n*/"
+    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\
+    \u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/"
   dependsOn:
   - template.cpp
   - graph/Graph.cpp
   isVerificationFile: false
   path: graph/Dijkstra.cpp
   requiredBy: []
-  timestamp: '2021-11-02 20:31:05+09:00'
+  timestamp: '2021-11-03 11:03:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A-dijkstra.test.cpp
@@ -114,7 +116,7 @@ layout: document
 redirect_from:
 - /library/graph/Dijkstra.cpp
 - /library/graph/Dijkstra.cpp.html
-title: Dijkstra
+title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
 ---
 ## 概要
 

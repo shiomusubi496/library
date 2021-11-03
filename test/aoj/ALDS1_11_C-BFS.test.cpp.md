@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/BreadthFirstSearch.cpp
-    title: graph/BreadthFirstSearch.cpp
+    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
   - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
-    title: graph/Graph.cpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
@@ -68,26 +68,27 @@ data:
     \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 2 \"graph/Graph.cpp\"\n\n#line 4 \"graph/Graph.cpp\"\n\ntemplate<class T = int>\
-    \ struct edge {\n    int from, to;\n    T cost;\n    std::size_t idx;\n    edge()\
-    \ = default;\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
-    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
+    \ struct edge {\n    int from, to;\n    T cost;\n    size_t idx;\n    edge() =\
+    \ default;\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c)\
+    \ : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
     \ cost(c) {}\n    edge(int f, int t, T c, size_t i): from(f), to(t), cost(c),\
     \ idx(i) {}\n    operator int() { return to; }\n};\n\ntemplate<typename T = int>\
     \ using Edges = std::vector<edge<T>>;\n\ntemplate<typename T = int> class Graph\
-    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    std::size_t edge_id\
-    \ = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using\
-    \ Base::Base;\n    void add_edge(int a, int b, T c, bool is_directed = false){\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if(!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
-    \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n#line 5 \"graph/BreadthFirstSearch.cpp\"\n\ntemplate<class\
-    \ T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n    std::vector<T> dist(G.size(),\
-    \ -1);\n    dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n    while\
-    \ (!que.empty()) {\n        int v = que.front();\n        que.pop();\n       \
-    \ for (const edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n     \
-    \           dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n#line 3 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
+    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    size_t edge_id = 0;\n    size_t add_edge(int\
+    \ a, int b, T c, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
+    \ b, c, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n\
+    \        return edge_id++;\n    }\n    size_t add_edge(int a, int b, bool is_directed\
+    \ = false){\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if(!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n*/\n#line 5 \"graph/BreadthFirstSearch.cpp\"\
+    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n   \
+    \ std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n\
+    \    que.push(s);\n    while (!que.empty()) {\n        int v = que.front();\n\
+    \        que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
+    \ == -1) {\n                dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
+    \            }\n        }\n    }\n    return dist;\n}\n\n/*\n@brief BFS(\u5E45\
+    \u512A\u5148\u63A2\u7D22)\n@docs docs/BreadthFirstSearch.md\n*/\n#line 3 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
     \    rep (i, N) {\n        int u; cin >> u;\n        int k; cin >> k;\n      \
     \  rep(j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v\
@@ -107,7 +108,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 20:31:05+09:00'
+  timestamp: '2021-11-03 11:03:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp

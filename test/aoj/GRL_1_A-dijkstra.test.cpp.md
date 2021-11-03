@@ -3,10 +3,10 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: graph/Dijkstra.cpp
-    title: Dijkstra
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/Graph.cpp
-    title: graph/Graph.cpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: template.cpp
     title: template.cpp
@@ -69,31 +69,32 @@ data:
     \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 2 \"graph/Dijkstra.cpp\"\n\n#line 2 \"graph/Graph.cpp\"\n\n#line 4 \"graph/Graph.cpp\"\
     \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
-    \  std::size_t idx;\n    edge() = default;\n    edge(int t) : from(-1), to(t),\
-    \ cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int\
-    \ f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, size_t\
-    \ i): from(f), to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n\
-    };\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename\
+    \  size_t idx;\n    edge() = default;\n    edge(int t) : from(-1), to(t), cost(1)\
+    \ {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int\
+    \ t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, size_t i):\
+    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n};\n\n\
+    template<typename T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename\
     \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    std::size_t edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    void add_edge(int a, int b, T c, bool is_directed\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
+    \    size_t edge_id = 0;\n    size_t add_edge(int a, int b, T c, bool is_directed\
     \ = false){\n        (*this)[a].emplace_back(a, b, c, edge_id);\n        if(!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        edge_id++;\n    }\n    void\
-    \ add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    size_t add_edge(int a, int b, bool is_directed = false){\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if(!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n\
-    \        edge_id++;\n    }\n};\n#line 5 \"graph/Dijkstra.cpp\"\n\ntemplate<class\
-    \ T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n    std::vector<T>\
-    \ dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
-    \ int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;\n\
-    \    que.emplace(0, s);\n    while (!que.empty()) {\n        T c = que.top().first;\n\
-    \        int v = que.top().second;\n        que.pop();\n        if (dist[v] !=\
-    \ c) continue;\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
-    \ == -1 || dist[e.to] > c + e.cost) {\n                dist[e.to] = c + e.cost;\n\
-    \                que.emplace(dist[e.to], e.to);\n            }\n        }\n  \
-    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra\n@docs docs/Dijkstra.md\n*/\n\
-    #line 4 \"test/aoj/GRL_1_A-dijkstra.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (i, E)\
-    \ {\n        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
+    \        return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n\
+    */\n#line 5 \"graph/Dijkstra.cpp\"\n\ntemplate<class T> std::vector<T> Dijkstra(const\
+    \ Graph<T>& G, int s = 0) {\n    std::vector<T> dist(G.size(), -1);\n    dist[s]\
+    \ = 0;\n    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>,\
+    \ std::greater<std::pair<T, int>>> que;\n    que.emplace(0, s);\n    while (!que.empty())\
+    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
+    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
+    \ e : G[v]) {\n            if (dist[e.to] == -1 || dist[e.to] > c + e.cost) {\n\
+    \                dist[e.to] = c + e.cost;\n                que.emplace(dist[e.to],\
+    \ e.to);\n            }\n        }\n    }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\
+    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n#line 4 \"\
+    test/aoj/GRL_1_A-dijkstra.test.cpp\"\nusing namespace std;\nint main() {\n   \
+    \ int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (i, E) {\n \
+    \       int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
     \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
     \ < 0) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
@@ -110,7 +111,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_A-dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 20:31:05+09:00'
+  timestamp: '2021-11-03 11:03:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_A-dijkstra.test.cpp
