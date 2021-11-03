@@ -24,6 +24,6 @@ template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {
 }
 
 /*
-@brief Dijkstra
+@brief Dijkstra(ダイクストラ法)
 @docs docs/Dijkstra.md
 */
