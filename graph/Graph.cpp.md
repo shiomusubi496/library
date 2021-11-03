@@ -22,7 +22,7 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: doc/Graph.md
+    _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
     links: []
   bundledCode: "#line 2 \"graph/Graph.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
@@ -85,7 +85,7 @@ data:
     \        return edge_id++;\n    }\n    size_t add_edge(int a, int b, bool is_directed\
     \ = false){\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if(!is_directed)\
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n*/\n"
+    };\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n"
   code: "#pragma once\n\n#include \"../template.cpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    size_t idx;\n    edge() = default;\n\
     \    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
@@ -100,7 +100,7 @@ data:
     \        return edge_id++;\n    }\n    size_t add_edge(int a, int b, bool is_directed\
     \ = false){\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if(!is_directed)\
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n*/"
+    };\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/"
   dependsOn:
   - template.cpp
   isVerificationFile: false
@@ -108,7 +108,7 @@ data:
   requiredBy:
   - graph/Dijkstra.cpp
   - graph/BreadthFirstSearch.cpp
-  timestamp: '2021-11-03 11:03:29+09:00'
+  timestamp: '2021-11-03 11:15:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_11_C-BFS.test.cpp
@@ -120,3 +120,12 @@ redirect_from:
 - /library/graph/Graph.cpp.html
 title: Graph-template
 ---
+## 概要
+
+グラフの構造体。 `vector<vector<edge<T>>>` を継承している。
+
+- `Graph(int N)` :  
+頂点数 `N` のグラフを作成する。
+
+- `int add_edge(int a, int b, bool d = false)` :  
+頂点 `a` と頂点 `b` の間に辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。

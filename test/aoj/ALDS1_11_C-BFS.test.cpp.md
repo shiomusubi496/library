@@ -81,7 +81,7 @@ data:
     \        return edge_id++;\n    }\n    size_t add_edge(int a, int b, bool is_directed\
     \ = false){\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if(!is_directed)\
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\n/*\n@brief Graph-template\n@docs doc/Graph.md\n*/\n#line 5 \"graph/BreadthFirstSearch.cpp\"\
+    };\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/BreadthFirstSearch.cpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n   \
     \ std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::queue<int> que;\n\
     \    que.push(s);\n    while (!que.empty()) {\n        int v = que.front();\n\
@@ -108,7 +108,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 11:03:29+09:00'
+  timestamp: '2021-11-03 11:15:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp
