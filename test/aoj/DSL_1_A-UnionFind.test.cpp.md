@@ -19,8 +19,8 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A
   bundledCode: "#line 1 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\n#line 2 \"\
-    template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for(int i = 0;\
-    \ i < (int)(n); ++i)\n#define rrep(i, n) for(int i = (int)(n) - 1; i >= 0; --i)\n\
+    template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0;\
+    \ i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n\
     #define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned\
     \ long long;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\n\nconstexpr\
     \ int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr ld EPS = 1e-8;\nconstexpr\
@@ -40,9 +40,9 @@ data:
     \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
     \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
     \ constexpr auto operator()(Args&&... args) const {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(size_t\
+    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
     \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
-    \ Args> constexpr auto make_vec(size_t n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
+    \ Args> constexpr auto make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
     \               (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr\
     \ int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
@@ -51,38 +51,38 @@ data:
     \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
     \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
     \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
-    \ {\n  private:\n    using size_type = size_t;\n    using Base = std::vector<T>;\n\
-    \  public:\n    using Base::Base;\n    presser(const std::vector<T>& vec) : Base(vec)\
-    \ {}\n    void push(const std::vector<T>& vec) {\n        size_type n = this->size();\n\
-    \        this->resize(n + vec.size());\n        std::copy(vec.begin(), vec.end(),\
-    \ this->begin() + n);\n    }\n    size_type build() {\n        std::sort(this->begin(),\
-    \ this->end());\n        this->erase(std::unique(this->begin(), this->end()),\
-    \ this->end());\n        return this->size();\n    }\n    size_type get_index(const\
-    \ T& val) const {\n        return std::lower_bound(this->begin(), this->end(),\
-    \ val) - this->begin();\n    }\n    std::vector<size_type> pressed(const std::vector<T>&\
-    \ vec) const {\n        std::vector<size_type> res(vec.size());\n        rep(i,\
-    \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
-    \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int\
+    \ build() {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
+    \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
+    \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
+    \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
+    \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
+    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 2 \"graph/UnionFind.cpp\"\n\n#line 4 \"graph/UnionFind.cpp\"\n\nclass UnionFind\
     \ {\n  protected:\n    int _n;\n    std::vector<int> par_vec;\n  public:\n   \
     \ UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : _n(n), par_vec(n, -1)\
-    \ {}\n    int find(int x) {\n        return par_vec[x] < 0 ? x : par_vec[x] =\
-    \ find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
-    \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
-    \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
-    \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(_n);\n        rep(i, _n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(res.begin(), res.end(),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        return par_vec[x]\
-    \ < 0;\n    }\n};\n\n/*\n@brief UnionFind\n@docs docs/UnionFind.md\n*/\n#line\
-    \ 4 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n    while (Q--)\
-    \ {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) UF.merge(u,\
-    \ v);\n        else cout << UF.same(u, v) << endl;\n    }\n}\n"
+    \ {}\n    int find(int x) {\n        assert(0 <= x && x < _n);\n        return\
+    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int\
+    \ x, int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y)\
+    \ return false;\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n     \
+    \   par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return true;\n\
+    \    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n  \
+    \  }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(_n);\n        rep(i, _n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
+    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
+    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
+    \ x) const {\n        assert(0 <= x && x < _n);\n        return par_vec[x] < 0;\n\
+    \    }\n};\n\n/*\n@brief UnionFind\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
+    \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\
     \n#include \"../../template.cpp\"\n#include \"../../graph/UnionFind.cpp\"\nusing\
     \ namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
@@ -95,7 +95,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_A-UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-02 19:07:47+09:00'
+  timestamp: '2021-11-03 22:56:24+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_A-UnionFind.test.cpp

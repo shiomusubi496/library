@@ -42,7 +42,7 @@ data:
   attributes:
     links: []
   bundledCode: "#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i,\
-    \ n) for(int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int i = (int)(n)\
+    \ n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n)\
     \ - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long\
     \ long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing PLL =\
     \ std::pair<ll, ll>;\n\nconstexpr int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr\
@@ -63,9 +63,9 @@ data:
     \    F f;\n  public:\n    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_))\
     \ {}\n    template<class... Args> constexpr auto operator()(Args&&... args) const\
     \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
-    \ T, class Arg> constexpr std::vector<T> make_vec(size_t n, Arg&& arg) {\n   \
-    \ return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args> constexpr\
-    \ auto make_vec(size_t n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
+    \ T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args> constexpr auto\
+    \ make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
     \               (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr\
     \ int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
@@ -74,21 +74,20 @@ data:
     \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
     \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
     \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
-    \ {\n  private:\n    using size_type = size_t;\n    using Base = std::vector<T>;\n\
-    \  public:\n    using Base::Base;\n    presser(const std::vector<T>& vec) : Base(vec)\
-    \ {}\n    void push(const std::vector<T>& vec) {\n        size_type n = this->size();\n\
-    \        this->resize(n + vec.size());\n        std::copy(vec.begin(), vec.end(),\
-    \ this->begin() + n);\n    }\n    size_type build() {\n        std::sort(this->begin(),\
-    \ this->end());\n        this->erase(std::unique(this->begin(), this->end()),\
-    \ this->end());\n        return this->size();\n    }\n    size_type get_index(const\
-    \ T& val) const {\n        return std::lower_bound(this->begin(), this->end(),\
-    \ val) - this->begin();\n    }\n    std::vector<size_type> pressed(const std::vector<T>&\
-    \ vec) const {\n        std::vector<size_type> res(vec.size());\n        rep(i,\
-    \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
-    \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n"
-  code: "#pragma once\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for(int i =\
-    \ 0; i < (int)(n); ++i)\n#define rrep(i, n) for(int i = (int)(n) - 1; i >= 0;\
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int\
+    \ build() {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
+    \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
+    \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
+    \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
+    \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
+    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n"
+  code: "#pragma once\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i =\
+    \ 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0;\
     \ --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\nusing\
     \ ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
     \ ll>;\n\nconstexpr int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr ld EPS\
@@ -109,9 +108,9 @@ data:
     \ f;\n  public:\n    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_))\
     \ {}\n    template<class... Args> constexpr auto operator()(Args&&... args) const\
     \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
-    \ T, class Arg> constexpr std::vector<T> make_vec(size_t n, Arg&& arg) {\n   \
-    \ return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args> constexpr\
-    \ auto make_vec(size_t n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
+    \ T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args> constexpr auto\
+    \ make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
     \               (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr\
     \ int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
@@ -120,37 +119,36 @@ data:
     \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
     \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
     \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
-    \ {\n  private:\n    using size_type = size_t;\n    using Base = std::vector<T>;\n\
-    \  public:\n    using Base::Base;\n    presser(const std::vector<T>& vec) : Base(vec)\
-    \ {}\n    void push(const std::vector<T>& vec) {\n        size_type n = this->size();\n\
-    \        this->resize(n + vec.size());\n        std::copy(vec.begin(), vec.end(),\
-    \ this->begin() + n);\n    }\n    size_type build() {\n        std::sort(this->begin(),\
-    \ this->end());\n        this->erase(std::unique(this->begin(), this->end()),\
-    \ this->end());\n        return this->size();\n    }\n    size_type get_index(const\
-    \ T& val) const {\n        return std::lower_bound(this->begin(), this->end(),\
-    \ val) - this->begin();\n    }\n    std::vector<size_type> pressed(const std::vector<T>&\
-    \ vec) const {\n        std::vector<size_type> res(vec.size());\n        rep(i,\
-    \ vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n    }\n\
-    \    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n"
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int\
+    \ build() {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
+    \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
+    \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
+    \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
+    \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
+    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: template.cpp
   requiredBy:
-  - graph/Graph.cpp
-  - graph/Dijkstra.cpp
   - graph/BreadthFirstSearch.cpp
+  - graph/Dijkstra.cpp
+  - graph/Graph.cpp
   - graph/UnionFind.cpp
-  timestamp: '2021-11-02 16:10:55+09:00'
+  timestamp: '2021-11-03 22:56:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
-  - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/aoj/GRL_1_A-dijkstra.test.cpp
-  - test/yosupo/aplusb.test.cpp
-  - test/yosupo/many_aplusb.test.cpp
+  - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/yosupo/unionfind.test.cpp
+  - test/yosupo/many_aplusb.test.cpp
+  - test/yosupo/aplusb.test.cpp
 documentation_of: template.cpp
 layout: document
 redirect_from:
