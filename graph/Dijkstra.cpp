@@ -4,6 +4,7 @@
 #include "Graph.cpp"
 
 template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {
+    assert(0 <= s && s < G.size());
     std::vector<T> dist(G.size(), -1);
     dist[s] = 0;
     std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;

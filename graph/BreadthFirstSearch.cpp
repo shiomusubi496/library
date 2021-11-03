@@ -4,6 +4,7 @@
 #include "Graph.cpp"
 
 template<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {
+    assert(0 <= s && s < G.size());
     std::vector<T> dist(G.size(), -1);
     dist[s] = 0;
     std::queue<int> que;

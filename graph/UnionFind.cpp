@@ -10,6 +10,7 @@ class UnionFind {
     UnionFind() : UnionFind(0) {}
     UnionFind(int n) : _n(n), par_vec(n, -1) {}
     int find(int x) {
+        assert(0 <= x && x < _n);
         return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);
     }
     bool merge(int x, int y) {
@@ -37,6 +38,7 @@ class UnionFind {
         return res;
     }
     bool is_root(int x) const {
+        assert(0 <= x && x < _n);
         return par_vec[x] < 0;
     }
 };

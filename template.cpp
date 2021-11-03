@@ -2,8 +2,8 @@
 
 #include<bits/stdc++.h>
 
-#define rep(i, n) for(int i = 0; i < (int)(n); ++i)
-#define rrep(i, n) for(int i = (int)(n) - 1; i >= 0; --i)
+#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
+#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)
 #define all(v) (v).begin(), (v).end()
 
 using ll = long long;
@@ -73,10 +73,10 @@ template<class F> class rec_lambda {
     }
 };
 
-template<class T, class Arg> constexpr std::vector<T> make_vec(size_t n, Arg&& arg) {
+template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {
     return std::vector<T>(n, arg);
 }
-template<class T, class... Args> constexpr auto make_vec(size_t n, Args&&... args) {
+template<class T, class... Args> constexpr auto make_vec(int n, Args&&... args) {
     return std::vector<decltype(make_vec<T>(args...))>
                (n, make_vec<T>(std::forward<Args>(args)...));
 }
@@ -95,31 +95,30 @@ inline constexpr int popcnt(ull x) {
 
 template<class T> class presser : public std::vector<T> {
   private:
-    using size_type = size_t;
     using Base = std::vector<T>;
   public:
     using Base::Base;
     presser(const std::vector<T>& vec) : Base(vec) {}
     void push(const std::vector<T>& vec) {
-        size_type n = this->size();
+        int n = this->size();
         this->resize(n + vec.size());
         std::copy(vec.begin(), vec.end(), this->begin() + n);
     }
-    size_type build() {
+    int build() {
         std::sort(this->begin(), this->end());
         this->erase(std::unique(this->begin(), this->end()), this->end());
         return this->size();
     }
-    size_type get_index(const T& val) const {
-        return std::lower_bound(this->begin(), this->end(), val) - this->begin();
+    int get_index(const T& val) const {
+        return static_cast<int>(std::lower_bound(this->begin(), this->end(), val) - this->begin());
     }
-    std::vector<size_type> pressed(const std::vector<T>& vec) const {
-        std::vector<size_type> res(vec.size());
-        rep(i, vec.size()) res[i] = this->get_index(vec[i]);
+    std::vector<int> pressed(const std::vector<T>& vec) const {
+        std::vector<int> res(vec.size());
+        rep (i, vec.size()) res[i] = this->get_index(vec[i]);
         return res;
     }
     void press(std::vector<T>& vec) const {
         static_assert(std::is_integral<T>::value);
-        rep(i, vec.size()) vec[i] = this->get_index(vec[i]);
+        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);
     }
 };
