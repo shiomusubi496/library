@@ -8,10 +8,13 @@ data:
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/WarshallFloyd.md
     document_title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
@@ -82,14 +85,14 @@ data:
     @docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n\
     template<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){\n    int\
     \ N = G.size();\n    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i,\
-    \ N) {\n            rep (j, N) chmin(G[i][j], G[i][k], G[k][j]);\n        }\n\
+    \ N) {\n            rep (j, N) chmin(G[i][j], G[i][k] + G[k][j]);\n        }\n\
     \    }\n}\n\n/*\n@brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\
     \u30A4\u30C9\u6CD5)\n@docs docs/WarshallFloyd.md\n*/\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){\n  \
     \  int N = G.size();\n    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep\
-    \ (i, N) {\n            rep (j, N) chmin(G[i][j], G[i][k], G[k][j]);\n       \
-    \ }\n    }\n}\n\n/*\n@brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\
+    \ (i, N) {\n            rep (j, N) chmin(G[i][j], G[i][k] + G[k][j]);\n      \
+    \  }\n    }\n}\n\n/*\n@brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\
     \u30ED\u30A4\u30C9\u6CD5)\n@docs docs/WarshallFloyd.md\n*/\n"
   dependsOn:
   - template.hpp
@@ -97,9 +100,10 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2021-11-04 07:56:19+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-11-04 08:21:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
 documentation_of: graph/shortest-path/WarshallFloyd.hpp
 layout: document
 redirect_from:

@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -31,6 +31,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A-dijkstra.test.cpp
     title: test/aoj/GRL_1_A-dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -150,6 +153,7 @@ data:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
   - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/aoj/GRL_1_A-dijkstra.test.cpp
+  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp
