@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../template.cpp"
+#include "../template.hpp"
 
 class UnionFind {
   protected:

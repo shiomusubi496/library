@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
-#include "../../template.cpp"
-#include "../../graph/UnionFind.cpp"
+#include "../../template.hpp"
+#include "../../graph/UnionFind.hpp"
 using namespace std;
 int main() {
     int N, Q;

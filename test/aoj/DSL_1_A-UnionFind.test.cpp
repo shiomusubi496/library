@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#include "../../template.cpp"
-#include "../../graph/UnionFind.cpp"
+#include "../../template.hpp"
+#include "../../graph/UnionFind.hpp"
 using namespace std;
 int main() {
     int N, Q;

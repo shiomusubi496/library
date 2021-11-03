@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../template.cpp"
-#include "Graph.cpp"
+#include "../template.hpp"
+#include "Graph.hpp"
 
 template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {
     assert(0 <= s && s < G.size());

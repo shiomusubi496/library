@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A"
-#include "../../template.cpp"
-#include "../../graph/Dijkstra.cpp"
+#include "../../template.hpp"
+#include "../../graph/Dijkstra.hpp"
 using namespace std;
 int main() {
     int V, E, r; cin >> V >> E >> r;

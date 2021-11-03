@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B"
-#include "../../template.cpp"
+#include "../../template.hpp"
 using namespace std;
 int main() {
     int x, y; cin >> x >> y;
