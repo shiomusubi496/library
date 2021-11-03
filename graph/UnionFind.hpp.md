@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -13,13 +13,13 @@ data:
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
     links: []
-  bundledCode: "#line 2 \"graph/UnionFind.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"graph/UnionFind.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
     \n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for\
     \ (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\
     \nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
@@ -64,7 +64,7 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/UnionFind.cpp\"\n\nclass UnionFind {\n  protected:\n    int _n;\n\
+    \ 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n    int _n;\n\
     \    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0) {}\n\
     \    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n    \
     \    assert(0 <= x && x < _n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
@@ -80,7 +80,7 @@ data:
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
     @docs docs/UnionFind.md\n*/\n"
-  code: "#pragma once\n\n#include \"../template.cpp\"\n\nclass UnionFind {\n  protected:\n\
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int _n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
     \        assert(0 <= x && x < _n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
@@ -95,22 +95,22 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
-    @docs docs/UnionFind.md\n*/"
+    @docs docs/UnionFind.md\n*/\n"
   dependsOn:
-  - template.cpp
+  - template.hpp
   isVerificationFile: false
-  path: graph/UnionFind.cpp
+  path: graph/UnionFind.hpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-03 23:08:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
   - test/yosupo/unionfind.test.cpp
-documentation_of: graph/UnionFind.cpp
+documentation_of: graph/UnionFind.hpp
 layout: document
 redirect_from:
-- /library/graph/UnionFind.cpp
-- /library/graph/UnionFind.cpp.html
+- /library/graph/UnionFind.hpp
+- /library/graph/UnionFind.hpp.html
 title: UnionFind
 ---
 ## 概要

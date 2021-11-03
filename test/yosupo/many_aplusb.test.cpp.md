@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
   bundledCode: "#line 1 \"test/yosupo/many_aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
-    \n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
     \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
     \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
     using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
@@ -64,15 +64,15 @@ data:
     \    int T;\n    cin >> T;\n    while (T--) {\n        ll a, b;\n        cin >>\
     \ a >> b;\n        cout << a + b << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"../../template.cpp\"\nusing namespace std;\nint main() {\n    int T;\n   \
+    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int T;\n   \
     \ cin >> T;\n    while (T--) {\n        ll a, b;\n        cin >> a >> b;\n   \
     \     cout << a + b << endl;\n    }\n}\n"
   dependsOn:
-  - template.cpp
+  - template.hpp
   isVerificationFile: true
   path: test/yosupo/many_aplusb.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-03 23:01:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/many_aplusb.test.cpp

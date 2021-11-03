@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B
   bundledCode: "#line 1 \"test/aoj/ALDS1_1_B-GCD.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B\"\
-    \n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
     \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
     \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
     using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
@@ -63,14 +63,14 @@ data:
     \ 3 \"test/aoj/ALDS1_1_B-GCD.test.cpp\"\nusing namespace std;\nint main() {\n\
     \    int x, y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B\"\n\
-    #include \"../../template.cpp\"\nusing namespace std;\nint main() {\n    int x,\
+    #include \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int x,\
     \ y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
   dependsOn:
-  - template.cpp
+  - template.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1_1_B-GCD.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-03 23:01:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_1_B-GCD.test.cpp

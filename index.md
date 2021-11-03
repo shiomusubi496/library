@@ -4,22 +4,24 @@ data:
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: graph/BreadthFirstSearch.cpp
-      title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-    - icon: ':heavy_check_mark:'
-      path: graph/Dijkstra.cpp
-      title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':heavy_check_mark:'
-      path: graph/Graph.cpp
+      path: graph/Graph.hpp
       title: Graph-template
     - icon: ':heavy_check_mark:'
-      path: graph/UnionFind.cpp
+      path: graph/UnionFind.hpp
       title: UnionFind
+  - name: graph/shortest-path
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest-path/BreadthFirstSearch.hpp
+      title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest-path/Dijkstra.hpp
+      title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - name: .
     pages:
     - icon: ':heavy_check_mark:'
-      path: template.cpp
-      title: template.cpp
+      path: template.hpp
+      title: template.hpp
   verificationCategories:
   - name: test/aoj
     pages:

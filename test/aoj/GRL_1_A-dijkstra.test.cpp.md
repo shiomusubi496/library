@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Dijkstra.cpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.cpp
+    path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':heavy_check_mark:'
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
   bundledCode: "#line 1 \"test/aoj/GRL_1_A-dijkstra.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"template.cpp\"\n\
+    https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"template.hpp\"\n\
     \n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n\
     #define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(),\
     \ (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld\
@@ -66,24 +66,25 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/Dijkstra.cpp\"\n\n#line 2 \"graph/Graph.cpp\"\n\n#line 4 \"graph/Graph.cpp\"\
-    \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
-    \  int idx;\n    edge() = default;\n    edge(int t) : from(-1), to(t), cost(1)\
-    \ {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int\
-    \ t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f),\
-    \ to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n};\n\ntemplate<typename\
-    \ T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename T = int> class\
-    \ Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n    using Base\
-    \ = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n   \
-    \ int edge_id = 0;\n    int add_edge(int a, int b, T c, bool is_directed = false){\n\
-    \        assert(0 <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
-    \ a && a < this->size());\n        assert(0 <= b && b < this->size());\n     \
-    \   (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
-    \ a, 1, edge_id);\n        return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n\
-    @docs docs/Graph.md\n*/\n#line 5 \"graph/Dijkstra.cpp\"\n\ntemplate<class T> std::vector<T>\
+    \ 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\n\n#line\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() = default;\n    edge(int t) : from(-1),\
+    \ to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int\
+    \ f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, int\
+    \ i): from(f), to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n\
+    };\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
+    \    int edge_id = 0;\n    int add_edge(int a, int b, T c, bool is_directed =\
+    \ false){\n        assert(0 <= a && a < this->size());\n        assert(0 <= b\
+    \ && b < this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false){\n        assert(0 <= a && a < this->size());\n        assert(0 <= b\
+    \ && b < this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n\
+    */\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ Dijkstra(const Graph<T>& G, int s = 0) {\n    assert(0 <= s && s < G.size());\n\
     \    std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
     \ int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;\n\
@@ -100,20 +101,20 @@ data:
     \ r);\n    rep (i, V) {\n        if (dist[i] < 0) puts(\"INF\");\n        else\
     \ cout << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
-    \ \"../../template.cpp\"\n#include \"../../graph/Dijkstra.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n\
-    \    rep (i, E) {\n        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s,\
-    \ t, d, true);\n    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V)\
-    \ {\n        if (dist[i] < 0) puts(\"INF\");\n        else cout << dist[i] <<\
-    \ endl;\n    }\n}\n"
+    \ \"../../template.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\n\
+    using namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n   \
+    \ Graph<int> G(V);\n    rep (i, E) {\n        int s, t, d; cin >> s >> t >> d;\n\
+    \        G.add_edge(s, t, d, true);\n    }\n    vector<int> dist = Dijkstra(G,\
+    \ r);\n    rep (i, V) {\n        if (dist[i] < 0) puts(\"INF\");\n        else\
+    \ cout << dist[i] << endl;\n    }\n}\n"
   dependsOn:
-  - template.cpp
-  - graph/Dijkstra.cpp
-  - graph/Graph.cpp
+  - template.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/Graph.hpp
   isVerificationFile: true
   path: test/aoj/GRL_1_A-dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-04 07:15:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_A-dijkstra.test.cpp

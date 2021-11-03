@@ -3,17 +3,17 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: graph/BreadthFirstSearch.cpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
-    path: graph/Dijkstra.cpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.cpp
+    path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/UnionFind.cpp
+    path: graph/UnionFind.hpp
     title: UnionFind
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/BreadthFirstSearch.hpp
+    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
@@ -37,11 +37,11 @@ data:
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i,\
+  bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i,\
     \ n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n)\
     \ - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long\
     \ long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing PLL =\
@@ -133,13 +133,13 @@ data:
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: template.cpp
+  path: template.hpp
   requiredBy:
-  - graph/BreadthFirstSearch.cpp
-  - graph/Dijkstra.cpp
-  - graph/Graph.cpp
-  - graph/UnionFind.cpp
-  timestamp: '2021-11-03 22:56:24+09:00'
+  - graph/UnionFind.hpp
+  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/Graph.hpp
+  timestamp: '2021-11-03 23:01:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UnionFind.test.cpp
@@ -149,10 +149,10 @@ data:
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/aplusb.test.cpp
-documentation_of: template.cpp
+documentation_of: template.hpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /library/template.hpp
+- /library/template.hpp.html
+title: template.hpp
 ---

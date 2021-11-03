@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/yosupo/aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
     \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
     \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
     using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
@@ -62,15 +62,15 @@ data:
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 3 \"test/yosupo/aplusb.test.cpp\"\nusing namespace std;\nint main() {\n    int\
     \ a, b;\n    cin >> a >> b;\n    cout << a + b << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"../../template.cpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"../../template.hpp\"\
     \nusing namespace std;\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout\
     \ << a + b << endl;\n}\n"
   dependsOn:
-  - template.cpp
+  - template.hpp
   isVerificationFile: true
   path: test/yosupo/aplusb.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-03 23:01:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/aplusb.test.cpp

@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/UnionFind.cpp
+    path: graph/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
+    path: template.hpp
+    title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -19,7 +19,7 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A
   bundledCode: "#line 1 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\n#define PROBLEM \"\
     https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\n#line 2 \"\
-    template.cpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0;\
+    template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0;\
     \ i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n\
     #define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned\
     \ long long;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\n\nconstexpr\
@@ -63,7 +63,7 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/UnionFind.cpp\"\n\n#line 4 \"graph/UnionFind.cpp\"\n\nclass UnionFind\
+    \ 2 \"graph/UnionFind.hpp\"\n\n#line 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind\
     \ {\n  protected:\n    int _n;\n    std::vector<int> par_vec;\n  public:\n   \
     \ UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : _n(n), par_vec(n, -1)\
     \ {}\n    int find(int x) {\n        assert(0 <= x && x < _n);\n        return\
@@ -84,18 +84,18 @@ data:
     \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\
-    \n#include \"../../template.cpp\"\n#include \"../../graph/UnionFind.cpp\"\nusing\
+    \n#include \"../../template.hpp\"\n#include \"../../graph/UnionFind.hpp\"\nusing\
     \ namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
     \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
   dependsOn:
-  - template.cpp
-  - graph/UnionFind.cpp
+  - template.hpp
+  - graph/UnionFind.hpp
   isVerificationFile: true
   path: test/aoj/DSL_1_A-UnionFind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  timestamp: '2021-11-03 23:08:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_A-UnionFind.test.cpp

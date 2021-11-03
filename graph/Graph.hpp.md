@@ -2,24 +2,30 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.cpp
-    title: Graph-template
+    path: template.hpp
+    title: template.hpp
+  _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: template.cpp
-    title: template.cpp
-  _extendedRequiredBy: []
+    path: graph/shortest-path/BreadthFirstSearch.hpp
+    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1_11_C-BFS.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_A-dijkstra.test.cpp
     title: test/aoj/GRL_1_A-dijkstra.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
-    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+    _deprecated_at_docs: docs/Graph.md
+    document_title: Graph-template
     links: []
-  bundledCode: "#line 2 \"graph/Dijkstra.cpp\"\n\n#line 2 \"template.cpp\"\n\n#include<bits/stdc++.h>\n\
+  bundledCode: "#line 2 \"graph/Graph.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
     \n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for\
     \ (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\
     \nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
@@ -64,8 +70,26 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/Graph.cpp\"\n\n#line 4 \"graph/Graph.cpp\"\n\ntemplate<class T = int>\
-    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() = default;\n\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() = default;\n    edge(int t) : from(-1),\
+    \ to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int\
+    \ f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, int\
+    \ i): from(f), to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n\
+    };\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
+    \    int edge_id = 0;\n    int add_edge(int a, int b, T c, bool is_directed =\
+    \ false){\n        assert(0 <= a && a < this->size());\n        assert(0 <= b\
+    \ && b < this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false){\n        assert(0 <= a && a < this->size());\n        assert(0 <= b\
+    \ && b < this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n\
+    */\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T = int> struct\
+    \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() = default;\n\
     \    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
     \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
     \    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator\
@@ -81,48 +105,32 @@ data:
     \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n\
-    @docs docs/Graph.md\n*/\n#line 5 \"graph/Dijkstra.cpp\"\n\ntemplate<class T> std::vector<T>\
-    \ Dijkstra(const Graph<T>& G, int s = 0) {\n    assert(0 <= s && s < G.size());\n\
-    \    std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n    std::priority_queue<std::pair<T,\
-    \ int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;\n\
-    \    que.emplace(0, s);\n    while (!que.empty()) {\n        T c = que.top().first;\n\
-    \        int v = que.top().second;\n        que.pop();\n        if (dist[v] !=\
-    \ c) continue;\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
-    \ == -1 || dist[e.to] > c + e.cost) {\n                dist[e.to] = c + e.cost;\n\
-    \                que.emplace(dist[e.to], e.to);\n            }\n        }\n  \
-    \  }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\
-    \u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n"
-  code: "#pragma once\n\n#include \"../template.cpp\"\n#include \"Graph.cpp\"\n\n\
-    template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n  \
-    \  assert(0 <= s && s < G.size());\n    std::vector<T> dist(G.size(), -1);\n \
-    \   dist[s] = 0;\n    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T,\
-    \ int>>, std::greater<std::pair<T, int>>> que;\n    que.emplace(0, s);\n    while\
-    \ (!que.empty()) {\n        T c = que.top().first;\n        int v = que.top().second;\n\
-    \        que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (dist[e.to] == -1 || dist[e.to] > c + e.cost) {\n\
-    \                dist[e.to] = c + e.cost;\n                que.emplace(dist[e.to],\
-    \ e.to);\n            }\n        }\n    }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/"
+    @docs docs/Graph.md\n*/\n"
   dependsOn:
-  - template.cpp
-  - graph/Graph.cpp
+  - template.hpp
   isVerificationFile: false
-  path: graph/Dijkstra.cpp
-  requiredBy: []
-  timestamp: '2021-11-03 22:56:24+09:00'
+  path: graph/Graph.hpp
+  requiredBy:
+  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  timestamp: '2021-11-03 23:08:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/aoj/GRL_1_A-dijkstra.test.cpp
-documentation_of: graph/Dijkstra.cpp
+documentation_of: graph/Graph.hpp
 layout: document
 redirect_from:
-- /library/graph/Dijkstra.cpp
-- /library/graph/Dijkstra.cpp.html
-title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+- /library/graph/Graph.hpp
+- /library/graph/Graph.hpp.html
+title: Graph-template
 ---
 ## 概要
 
-重み付きグラフに対して単一始点最短経路問題を解くアルゴリズム。
+グラフの構造体。 `vector<vector<edge<T>>>` を継承している。
 
-- `vector<T> Dijkstra(Graph<T> G, int s = 0)` :  
-重み付きグラフ `G` において、各頂点の `s` からの距離を求める。$O(|E|\log|V|)$。
+- `Graph(int N)` :  
+頂点数 `N` のグラフを作成する。
+
+- `int add_edge(int a, int b, bool d = false)` :  
+頂点 `a` と頂点 `b` の間に辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。
