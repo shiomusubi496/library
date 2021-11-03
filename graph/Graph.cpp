@@ -36,5 +36,5 @@ template<typename T = int> class Graph : public std::vector<std::vector<edge<T>>
 
 /*
 @brief Graph-template
-@docs doc/Graph.md
+@docs docs/Graph.md
 */
