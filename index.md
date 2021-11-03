@@ -17,6 +17,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+    - icon: ':warning:'
+      path: graph/shortest-path/WarshallFloyd.hpp
+      title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
+        \u6CD5)"
   - name: .
     pages:
     - icon: ':heavy_check_mark:'

@@ -11,6 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':warning:'
+    path: graph/shortest-path/WarshallFloyd.hpp
+    title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
+      )"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
@@ -75,7 +79,7 @@ data:
     \ to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c) {}\n    edge(int\
     \ f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f, int t, T c, int\
     \ i): from(f), to(t), cost(c), idx(i) {}\n    operator int() { return to; }\n\
-    };\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<typename\
+    };\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\ntemplate<class\
     \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
     \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
     \    int edge_id = 0;\n    int add_edge(int a, int b, T c, bool is_directed =\
@@ -93,8 +97,8 @@ data:
     \    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
     \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
     \    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator\
-    \ int() { return to; }\n};\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\
-    \ntemplate<typename T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ int() { return to; }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
     \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
     \    using Base::Base;\n    int edge_id = 0;\n    int add_edge(int a, int b, T\
     \ c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
@@ -113,7 +117,8 @@ data:
   requiredBy:
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/Dijkstra.hpp
-  timestamp: '2021-11-03 23:08:47+09:00'
+  - graph/shortest-path/WarshallFloyd.hpp
+  timestamp: '2021-11-04 07:55:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_11_C-BFS.test.cpp

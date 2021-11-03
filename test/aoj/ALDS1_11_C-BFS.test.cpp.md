@@ -72,8 +72,8 @@ data:
     \ t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c)\
     \ {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f,\
     \ int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator int() {\
-    \ return to; }\n};\n\ntemplate<typename T = int> using Edges = std::vector<edge<T>>;\n\
-    \ntemplate<typename T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ return to; }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
     \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
     \    using Base::Base;\n    int edge_id = 0;\n    int add_edge(int a, int b, T\
     \ c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
@@ -112,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 07:15:01+09:00'
+  timestamp: '2021-11-04 07:55:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp

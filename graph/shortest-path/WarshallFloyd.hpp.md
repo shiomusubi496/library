@@ -8,18 +8,16 @@ data:
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A-dijkstra.test.cpp
-    title: test/aoj/GRL_1_A-dijkstra.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
-    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+    _deprecated_at_docs: docs/WarshallFloyd.md
+    document_title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
+      \u30C9\u6CD5)"
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 2 \"template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n);\
     \ ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v)\
     \ (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
@@ -81,48 +79,40 @@ data:
     \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n\
-    @docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class\
-    \ T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n    assert(0 <=\
-    \ s && s < G.size());\n    std::vector<T> dist(G.size(), -1);\n    dist[s] = 0;\n\
-    \    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T,\
-    \ int>>> que;\n    que.emplace(0, s);\n    while (!que.empty()) {\n        T c\
-    \ = que.top().first;\n        int v = que.top().second;\n        que.pop();\n\
-    \        if (dist[v] != c) continue;\n        for (const edge<T>& e : G[v]) {\n\
-    \            if (dist[e.to] == -1 || dist[e.to] > c + e.cost) {\n            \
-    \    dist[e.to] = c + e.cost;\n                que.emplace(dist[e.to], e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n"
+    @docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n\
+    template<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){\n    int\
+    \ N = G.size();\n    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i,\
+    \ N) {\n            rep (j, N) chmin(G[i][j], G[i][k], G[k][j]);\n        }\n\
+    \    }\n}\n\n/*\n@brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\
+    \u30A4\u30C9\u6CD5)\n@docs docs/WarshallFloyd.md\n*/\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {\n\
-    \    assert(0 <= s && s < G.size());\n    std::vector<T> dist(G.size(), -1);\n\
-    \    dist[s] = 0;\n    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T,\
-    \ int>>, std::greater<std::pair<T, int>>> que;\n    que.emplace(0, s);\n    while\
-    \ (!que.empty()) {\n        T c = que.top().first;\n        int v = que.top().second;\n\
-    \        que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (dist[e.to] == -1 || dist[e.to] > c + e.cost) {\n\
-    \                dist[e.to] = c + e.cost;\n                que.emplace(dist[e.to],\
-    \ e.to);\n            }\n        }\n    }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n"
+    \n\ntemplate<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){\n  \
+    \  int N = G.size();\n    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep\
+    \ (i, N) {\n            rep (j, N) chmin(G[i][j], G[i][k], G[k][j]);\n       \
+    \ }\n    }\n}\n\n/*\n@brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\
+    \u30ED\u30A4\u30C9\u6CD5)\n@docs docs/WarshallFloyd.md\n*/\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/shortest-path/Dijkstra.hpp
+  path: graph/shortest-path/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2021-11-04 07:55:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL_1_A-dijkstra.test.cpp
-documentation_of: graph/shortest-path/Dijkstra.hpp
+  timestamp: '2021-11-04 07:56:19+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/shortest-path/WarshallFloyd.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/Dijkstra.hpp
-- /library/graph/shortest-path/Dijkstra.hpp.html
-title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+- /library/graph/shortest-path/WarshallFloyd.hpp
+- /library/graph/shortest-path/WarshallFloyd.hpp.html
+title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
+  )"
 ---
 ## 概要
 
-重み付きグラフに対して単一始点最短経路問題を解くアルゴリズム。
+全ての頂点対に対する最短経路問題を解く。
 
-- `vector<T> Dijkstra(Graph<T> G, int s = 0)` :  
-重み付きグラフ `G` において、各頂点の `s` からの距離を求める。$O(|E|\log|V|)$。
+- `WarshallFloyd(std::vector<std::vector<T>>& D)` :  
+与えられた隣接行列に対し、`D[i][j]`=頂点`i`から頂点`j`までの最短コストとする。  
+`D[i][i]<0`となる`i`が存在する場合、負の閉路が存在する。  
+$O(|V|^3)$。
