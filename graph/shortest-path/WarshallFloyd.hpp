@@ -8,7 +8,7 @@ template<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){
     rep (i, N) G[i][i] = 0;
     rep (k, N) {
         rep (i, N) {
-            rep (j, N) chmin(G[i][j], G[i][k], G[k][j]);
+            rep (j, N) chmin(G[i][j], G[i][k] + G[k][j]);
         }
     }
 }
