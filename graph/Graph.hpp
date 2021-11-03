@@ -14,9 +14,9 @@ template<class T = int> struct edge {
     operator int() { return to; }
 };
 
-template<typename T = int> using Edges = std::vector<edge<T>>;
+template<class T = int> using Edges = std::vector<edge<T>>;
 
-template<typename T = int> class Graph : public std::vector<std::vector<edge<T>>> {
+template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
   private:
     using Base = std::vector<std::vector<edge<T>>>;
   public:
