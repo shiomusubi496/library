@@ -5,29 +5,31 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/Restore.hpp
+    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest-path.test.cpp
-    title: test/yosupo/shortest-path.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
-    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    links: []
-  bundledCode: "#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n);\
-    \ ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v)\
-    \ (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
+    links:
+    - https://judge.yosupo.jp/problem/shortest_path
+  bundledCode: "#line 1 \"test/yosupo/shortest-path.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n\
+    #define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(),\
+    \ (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld\
+    \ = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique\
+    \ = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
     \ T> constexpr T INF = std::numeric_limits<T>::max() / 2;\nconstexpr ll inf =\
     \ INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\
     \ntemplate<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept\
@@ -105,47 +107,59 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/*\n@brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n\
-    */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/*\n@brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n\
-    */\n"
+    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < G.size());\n    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;\n\
+    \    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
+    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
+    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
+    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
+    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/*\n@brief Dijkstra(\u30C0\u30A4\
+    \u30AF\u30B9\u30C8\u30E9\u6CD5)\n@docs docs/Dijkstra.md\n*/\n#line 2 \"graph/shortest-path/Restore.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
+    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
+    \  int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n    std::queue<int>\
+    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
+    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (bfr[e.to]\
+    \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
+    \                que.push(e.to);\n            }\n        }\n    }\n    return\
+    \ bfr;\n}\n\n/*\n@brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n@docs docs/Restore.md\n\
+    */\n#line 6 \"test/yosupo/shortest-path.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
+    \    rep (i, M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
+    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
+    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
+    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
+    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
+    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
+    \ << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
+    \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
+    \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
+    \    rep (i, M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
+    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
+    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
+    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
+    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
+    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
+    \ << endl;\n}\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/Restore.hpp
+  isVerificationFile: true
+  path: test/yosupo/shortest-path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 12:47:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL_1_A-Dijkstra.test.cpp
-  - test/yosupo/shortest-path.test.cpp
-documentation_of: graph/shortest-path/Dijkstra.hpp
+  timestamp: '2021-11-04 13:57:26+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/shortest-path.test.cpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/Dijkstra.hpp
-- /library/graph/shortest-path/Dijkstra.hpp.html
-title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+- /verify/test/yosupo/shortest-path.test.cpp
+- /verify/test/yosupo/shortest-path.test.cpp.html
+title: test/yosupo/shortest-path.test.cpp
 ---
-## 概要
-
-重み付きグラフに対して単一始点最短経路問題を解くアルゴリズム。
-
-- `vector<T> Dijkstra(Graph<T> G, int s = 0)` :  
-重み付きグラフ `G` において、各頂点の `s` からの距離を求める。$O(|E|\log|V|)$。
