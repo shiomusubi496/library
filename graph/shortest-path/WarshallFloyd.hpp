@@ -5,6 +5,7 @@
 
 template<class T> void WarshallFloyd(GMatrix<T>& G){
     int N = G.size();
+    rep (i, N) G[i][i] = 0;
     rep (k, N) {
         rep (i, N) {
             rep (j, N) {
