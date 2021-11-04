@@ -22,6 +22,21 @@ class PrimeFactor {
     }
 };
 
+class IsPrime {
+  protected:
+    ll MAX;
+    std::vector<bool> era;
+  public:
+    IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {
+        era[0] = era[1] = false;
+        for (ll i = 2; i <= MAX; ++i) {
+            if (!era[i]) continue;
+            for (ll j = i * 2; j <= MAX; j += i) era[j] = false;
+        }
+    }
+    bool is_prime(ll x) { return era[x]; }
+};
+
 /*
 @brief PrimeFactor(エラトステネスの篩)
 @docs docs/PrimeFactor.md
