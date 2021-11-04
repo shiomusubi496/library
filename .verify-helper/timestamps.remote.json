@@ -9,9 +9,9 @@
 "test/aoj/GRL_1_C-WarshallFloyd.test.cpp": "2021-11-04 12:47:55 +0900",
 "test/aoj/NTL_1_A-Prime.test.cpp": "2021-11-04 13:28:59 +0900",
 "test/aoj/NTL_1_B-Pow.test.cpp": "2021-11-04 13:28:59 +0900",
-"test/aoj/NTL_1_B-pow.test.cpp": "2021-11-04 13:08:56 +0900",
 "test/aoj/NTL_1_C-LCM.test.cpp": "2021-11-04 13:28:59 +0900",
 "test/yosupo/aplusb.test.cpp": "2021-11-04 12:47:55 +0900",
 "test/yosupo/many_aplusb.test.cpp": "2021-11-04 12:47:55 +0900",
+"test/yosupo/shortest-path.test.cpp": "2021-11-04 13:57:26 +0900",
 "test/yosupo/unionfind.test.cpp": "2021-11-04 12:47:55 +0900"
 }
