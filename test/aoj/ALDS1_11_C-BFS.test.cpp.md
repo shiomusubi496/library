@@ -25,27 +25,28 @@ data:
     \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
     \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
     using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
-    \ ll>;\n\nconstexpr int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr ld EPS\
-    \ = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class\
-    \ U> inline constexpr bool chmin(T &a, const U &b) noexcept {\n    if (a > b)\
-    \ {\n        a = b;\n        return true;\n    }\n    return false;\n}\ntemplate<class\
-    \ T, class U> inline constexpr bool chmax(T &a, const U &b) noexcept {\n    if\
-    \ (a < b) {\n        a = b;\n        return true;\n    }\n    return false;\n\
-    }\n\ninline constexpr ll gcd(ll a, ll b) noexcept {\n    while (b) {\n       \
-    \ const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return a;\n\
-    }\ninline constexpr ll lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) *\
-    \ b;\n}\n\ninline constexpr ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n\
-    \    while (b) {\n        if (b & 1) res *= a;\n        b >>= 1;\n        a *=\
-    \ a;\n    }\n    return res;\n}\ninline constexpr ll mod_pow(ll a, ll b, ll mod)\
-    \ noexcept {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b &\
-    \ 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n \
-    \   return res;\n}\n\ntemplate<class F> class rec_lambda {\n  private:\n    F\
-    \ f;\n  public:\n    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_))\
-    \ {}\n    template<class... Args> constexpr auto operator()(Args&&... args) const\
-    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
-    \ T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args> constexpr auto\
-    \ make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
+    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
+    \ / 2;\nconstexpr ll inf = INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI\
+    \ = 3.1415926535897932384626;\n\ntemplate<class T, class U> inline constexpr bool\
+    \ chmin(T &a, const U &b) noexcept {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate<class T, class U> inline\
+    \ constexpr bool chmax(T &a, const U &b) noexcept {\n    if (a < b) {\n      \
+    \  a = b;\n        return true;\n    }\n    return false;\n}\n\ninline constexpr\
+    \ ll gcd(ll a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n  \
+    \      a = b;\n        b = c % b;\n    }\n    return a;\n}\ninline constexpr ll\
+    \ lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) * b;\n}\n\ninline constexpr\
+    \ ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n       \
+    \ if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return res;\n\
+    }\ninline constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {\n    a %= mod;\n\
+    \    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n   \
+    \     b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
+    \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
+    \ constexpr auto operator()(Args&&... args) const {\n        return f(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
+    \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
+    \ Args> constexpr auto make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
     \               (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr\
     \ int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
@@ -66,53 +67,67 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() = default;\n    edge(int\
-    \ t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c)\
-    \ {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f,\
-    \ int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator int() {\
-    \ return to; }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    \ 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int>\
+    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
+    \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
+    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
+    \ cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i)\
+    \ {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int> using Edges\
+    \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
     \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
-    \    using Base::Base;\n    int edge_id = 0;\n    int add_edge(int a, int b, T\
-    \ c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
+    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    int edge_size() { return edge_id; }\n \
+    \   int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
+    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
+    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
+    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
     \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
-    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\n/*\n@brief Graph-template\n\
-    @docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int s = 0) {\n   \
-    \ assert(0 <= s && s < G.size());\n    std::vector<T> dist(G.size(), -1);\n  \
-    \  dist[s] = 0;\n    std::queue<int> que;\n    que.push(s);\n    while (!que.empty())\
-    \ {\n        int v = que.front();\n        que.pop();\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\n/*\n@brief BFS(\u5E45\u512A\u5148\u63A2\u7D22\
-    )\n@docs docs/BreadthFirstSearch.md\n*/\n#line 4 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
+    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
+    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
+    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
+    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
+    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
+    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
+    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
+    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
+    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
+    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
+    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\ntemplate<class T>\
+    \ std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n    assert(0 <= start\
+    \ && start < G.size());\n    std::vector<T> dist(G.size(), -1); dist[start] =\
+    \ 0;\n    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n\
+    \        int v = que.front(); que.pop();\n        for (const edge<T>& e : G[v])\
+    \ {\n            if (dist[e.to] == -1) {\n                dist[e.to] = dist[v]\
+    \ + e.cost;\n                que.push(e.to);\n            }\n        }\n    }\n\
+    \    return dist;\n}\n\n/*\n@brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n@docs\
+    \ docs/BreadthFirstSearch.md\n*/\n#line 5 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
     \    rep (i, N) {\n        int u; cin >> u;\n        int k; cin >> k;\n      \
     \  rep(j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v\
     \ - 1 , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i,\
     \ N) {\n        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
-    #include \"../../template.hpp\"\n#include \"../../graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (i, N) {\n        int u; cin >> u;\n        int k; cin >> k;\n      \
-    \  rep(j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v\
-    \ - 1 , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i,\
-    \ N) {\n        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    #include \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
+    \ \"../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace std;\n\
+    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n \
+    \       int u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n    \
+    \        int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n   \
+    \     }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
+    \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   dependsOn:
   - template.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/Graph.hpp
+  - graph/shortest-path/BreadthFirstSearch.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 07:55:16+09:00'
+  timestamp: '2021-11-04 11:39:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp

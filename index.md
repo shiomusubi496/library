@@ -12,6 +12,9 @@ data:
   - name: graph/shortest-path
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/shortest-path/BellmanFord.hpp
+      title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/BreadthFirstSearch.hpp
       title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
     - icon: ':heavy_check_mark:'
@@ -36,11 +39,14 @@ data:
       path: test/aoj/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1_1_B-GCD.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_1_A-UnionFind.test.cpp
-      title: test/aoj/DSL_1_A-UnionFind.test.cpp
+      path: test/aoj/DSL_1_A-UF.test.cpp
+      title: test/aoj/DSL_1_A-UF.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_1_A-dijkstra.test.cpp
-      title: test/aoj/GRL_1_A-dijkstra.test.cpp
+      path: test/aoj/GRL_1_A-Dijkstra.test.cpp
+      title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL_1_B-BellmanFord.test.cpp
+      title: test/aoj/GRL_1_B-BellmanFord.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp

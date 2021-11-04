@@ -14,21 +14,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A
-  bundledCode: "#line 1 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\n#line 2 \"\
-    template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0;\
-    \ i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n\
-    #define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned\
-    \ long long;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\n\nconstexpr\
-    \ int inf = 1e9;\nconstexpr ll INF = 1e18;\nconstexpr ld EPS = 1e-8;\nconstexpr\
-    \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> inline constexpr\
-    \ bool chmin(T &a, const U &b) noexcept {\n    if (a > b) {\n        a = b;\n\
-    \        return true;\n    }\n    return false;\n}\ntemplate<class T, class U>\
-    \ inline constexpr bool chmax(T &a, const U &b) noexcept {\n    if (a < b) {\n\
-    \        a = b;\n        return true;\n    }\n    return false;\n}\n\ninline constexpr\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
+  bundledCode: "#line 1 \"test/aoj/DSL_1_A-UF.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
+    \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
+    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
+    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
+    \ / 2;\nconstexpr ll inf = INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI\
+    \ = 3.1415926535897932384626;\n\ntemplate<class T, class U> inline constexpr bool\
+    \ chmin(T &a, const U &b) noexcept {\n    if (a > b) {\n        a = b;\n     \
+    \   return true;\n    }\n    return false;\n}\ntemplate<class T, class U> inline\
+    \ constexpr bool chmax(T &a, const U &b) noexcept {\n    if (a < b) {\n      \
+    \  a = b;\n        return true;\n    }\n    return false;\n}\n\ninline constexpr\
     \ ll gcd(ll a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n  \
     \      a = b;\n        b = c % b;\n    }\n    return a;\n}\ninline constexpr ll\
     \ lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) * b;\n}\n\ninline constexpr\
@@ -78,30 +79,30 @@ data:
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
     \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
     \ x) const {\n        assert(0 <= x && x < _n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/*\n@brief UnionFind\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/aoj/DSL_1_A-UnionFind.test.cpp\"\
+    \    }\n};\n\n/*\n@brief UnionFind\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/aoj/DSL_1_A-UF.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
     \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
     \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A\"\
-    \n#include \"../../template.hpp\"\n#include \"../../graph/UnionFind.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
-    \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\n#include\
+    \ \"../../template.hpp\"\n#include \"../../graph/UnionFind.hpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n\
+    \    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n      \
+    \  if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
     \    }\n}\n"
   dependsOn:
   - template.hpp
   - graph/UnionFind.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_1_A-UnionFind.test.cpp
+  path: test/aoj/DSL_1_A-UF.test.cpp
   requiredBy: []
-  timestamp: '2021-11-03 23:08:47+09:00'
+  timestamp: '2021-11-04 11:39:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_1_A-UnionFind.test.cpp
+documentation_of: test/aoj/DSL_1_A-UF.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_1_A-UnionFind.test.cpp
-- /verify/test/aoj/DSL_1_A-UnionFind.test.cpp.html
-title: test/aoj/DSL_1_A-UnionFind.test.cpp
+- /verify/test/aoj/DSL_1_A-UF.test.cpp
+- /verify/test/aoj/DSL_1_A-UF.test.cpp.html
+title: test/aoj/DSL_1_A-UF.test.cpp
 ---

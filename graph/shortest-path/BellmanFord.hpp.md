@@ -10,17 +10,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    path: test/aoj/GRL_1_B-BellmanFord.test.cpp
+    title: test/aoj/GRL_1_B-BellmanFord.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/WarshallFloyd.md
-    document_title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
-      \u30C9\u6CD5)"
+    _deprecated_at_docs: docs/BellmanFord.md
+    document_title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\
+      \u6CD5)"
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"graph/shortest-path/BellmanFord.hpp\"\n\n#line 2 \"template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n);\
     \ ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v)\
     \ (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
@@ -97,43 +97,56 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
-    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
-    \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
-    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/*\n\
-    @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-    )\n@docs docs/WarshallFloyd.md\n*/\n"
+    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\
+    \n\ntemplate<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
+    \ start = 0) {\n    assert(0 <= start && start <= V);\n    const int E = Ed.size();\n\
+    \    std::vector<T> dist(V, INF<T>); dist[start] = 0;\n    rep (i, V) {\n    \
+    \    bool changed = false;\n        for (const edge<T>& e : Ed) {\n          \
+    \  if (dist[e.from] != INF<T> && chmin(dist[e.to], dist[e.from] + e.cost)) changed\
+    \ = true;\n        }\n        if (!changed) return dist;\n    }\n    for (const\
+    \ edge<T>& e : Ed) {\n        if (dist[e.from] != INF<T> && dist[e.to] > dist[e.from]\
+    \ + e.cost) dist[e.to] = -INF<T>;\n    }\n    rep (i, V - 1) {\n        bool changed\
+    \ = false;\n        for (const edge<T>& e : Ed) {\n            if (dist[e.from]\
+    \ == -INF<T>){\n                dist[e.to] = -INF<T>;\n                changed\
+    \ = true;\n            }\n        }\n        if (!changed) break;\n    }\n   \
+    \ return dist;\n}\n\n/*\n@brief Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\
+    \u30FC\u30C9\u6CD5)\n@docs docs/BellmanFord.md\n*/\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
-    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
-    \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
-    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/*\n\
-    @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-    )\n@docs docs/WarshallFloyd.md\n*/\n"
+    \n\ntemplate<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
+    \ start = 0) {\n    assert(0 <= start && start <= V);\n    const int E = Ed.size();\n\
+    \    std::vector<T> dist(V, INF<T>); dist[start] = 0;\n    rep (i, V) {\n    \
+    \    bool changed = false;\n        for (const edge<T>& e : Ed) {\n          \
+    \  if (dist[e.from] != INF<T> && chmin(dist[e.to], dist[e.from] + e.cost)) changed\
+    \ = true;\n        }\n        if (!changed) return dist;\n    }\n    for (const\
+    \ edge<T>& e : Ed) {\n        if (dist[e.from] != INF<T> && dist[e.to] > dist[e.from]\
+    \ + e.cost) dist[e.to] = -INF<T>;\n    }\n    rep (i, V - 1) {\n        bool changed\
+    \ = false;\n        for (const edge<T>& e : Ed) {\n            if (dist[e.from]\
+    \ == -INF<T>){\n                dist[e.to] = -INF<T>;\n                changed\
+    \ = true;\n            }\n        }\n        if (!changed) break;\n    }\n   \
+    \ return dist;\n}\n\n/*\n@brief Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\
+    \u30FC\u30C9\u6CD5)\n@docs docs/BellmanFord.md\n*/\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/shortest-path/WarshallFloyd.hpp
+  path: graph/shortest-path/BellmanFord.hpp
   requiredBy: []
-  timestamp: '2021-11-04 11:58:16+09:00'
+  timestamp: '2021-11-04 11:48:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-documentation_of: graph/shortest-path/WarshallFloyd.hpp
+  - test/aoj/GRL_1_B-BellmanFord.test.cpp
+documentation_of: graph/shortest-path/BellmanFord.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/WarshallFloyd.hpp
-- /library/graph/shortest-path/WarshallFloyd.hpp.html
-title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-  )"
+- /library/graph/shortest-path/BellmanFord.hpp
+- /library/graph/shortest-path/BellmanFord.hpp.html
+title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
 ---
 ## 概要
 
-全ての頂点対に対する最短経路問題を解く。
+負辺のあるグラフに対して単一始点最短経路問題を解く。負閉路の検出もする。
 
-- `WarshallFloyd(std::vector<std::vector<T>>& D)` :  
-与えられた隣接行列に対し、`D[i][j]`=頂点`i`から頂点`j`までの最短コストとする。  
-`D[i][i]<0`となる`i`が存在する場合、負の閉路が存在する。  
-$O(|V|^3)$。
+- `vector<T> BellmanFord(int N, Edges<T> E, int s = 0)` :  
+辺のリスト `E` で表される頂点数 `N` のグラフに対して、各頂点の `s` からの距離を求める。  
+`INF` の場合 `s` から到達不可能、 `-INF` の場合 `s` から到達可能な負閉路から到達可能。  
+$O(|V| \times |E|)$。
