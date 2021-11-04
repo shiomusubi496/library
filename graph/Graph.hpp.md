@@ -105,8 +105,8 @@ data:
     template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
     \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  protected:\n\
     \    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n \
-    \ public:\n    using Base::Base;\n    int edge_size() { return edge_id; }\n  \
-    \  int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \ public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
     \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
     \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
     \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
@@ -126,7 +126,7 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n"
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
     \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
@@ -136,8 +136,8 @@ data:
     \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
     \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
     \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() { return edge_id; }\n \
-    \   int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
     \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
     \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
     \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
@@ -157,7 +157,7 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n"
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
@@ -168,7 +168,7 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
-  timestamp: '2021-11-04 12:47:55+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A-Dijkstra.test.cpp

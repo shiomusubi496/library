@@ -85,11 +85,11 @@ data:
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
     \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
     \ x) const {\n        assert(0 <= x && x < _n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/*\n@brief UnionFind\n@docs docs/UnionFind.md\n*/\n#line 4 \"test/aoj/DSL_1_A-UF.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    while (Q--) {\n        int t, u, v;\n        cin >> t >> u >> v;\n\
-    \        if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
+    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line\
+    \ 4 \"test/aoj/DSL_1_A-UF.test.cpp\"\nusing namespace std;\nint main() {\n   \
+    \ int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n    while (Q--) {\n   \
+    \     int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) UF.merge(u,\
+    \ v);\n        else cout << UF.same(u, v) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\n#include\
     \ \"../../template.hpp\"\n#include \"../../graph/UnionFind.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_1_A-UF.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 12:47:55+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_1_A-UF.test.cpp

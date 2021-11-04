@@ -81,8 +81,8 @@ data:
     \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
     \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
     \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() { return edge_id; }\n \
-    \   int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
     \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
     \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
     \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
@@ -102,15 +102,16 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/Restore.hpp\"\
-    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
-    \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
-    \ bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while (!que.empty())\
-    \ {\n        int v = que.front(); que.pop();\n        for (const edge<T>& e :\
-    \ G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
-    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
-    \     }\n        }\n    }\n    return bfr;\n}\n\n/*\n@brief Restore(\u7D4C\u8DEF\
-    \u5FA9\u5143)\n@docs docs/Restore.md\n*/\n"
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
+    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
+    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
+    \  int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n    std::queue<int>\
+    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
+    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (bfr[e.to]\
+    \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
+    \                que.push(e.to);\n            }\n        }\n    }\n    return\
+    \ bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
@@ -118,15 +119,15 @@ data:
     \ {\n        int v = que.front(); que.pop();\n        for (const edge<T>& e :\
     \ G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
     \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
-    \     }\n        }\n    }\n    return bfr;\n}\n\n/*\n@brief Restore(\u7D4C\u8DEF\
-    \u5FA9\u5143)\n@docs docs/Restore.md\n*/\n"
+    \     }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/Restore.hpp
   requiredBy: []
-  timestamp: '2021-11-04 13:57:26+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/shortest-path.test.cpp

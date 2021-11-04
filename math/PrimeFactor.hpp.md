@@ -81,8 +81,8 @@ data:
     \      era[0] = era[1] = false;\n        for (ll i = 2; i <= MAX; ++i) {\n   \
     \         if (!era[i]) continue;\n            for (ll j = i * 2; j <= MAX; j +=\
     \ i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) { return era[x];\
-    \ }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
-    \u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
+    \ }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
+    \u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass PrimeFactor {\n  protected:\n\
     \    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) :\
     \ MAX(_MAX), era(MAX + 1, -1) {\n        for (ll i = 2; i <= MAX; ++i) {\n   \
@@ -95,14 +95,14 @@ data:
     \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        for (ll i =\
     \ 2; i <= MAX; ++i) {\n            if (!era[i]) continue;\n            for (ll\
     \ j = i * 2; j <= MAX; j += i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
-    \ x) { return era[x]; }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
+    \ x) { return era[x]; }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
+    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2021-11-04 14:14:22+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeEra.test.cpp

@@ -83,11 +83,12 @@ data:
     \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        for (ll i =\
     \ 2; i <= MAX; ++i) {\n            if (!era[i]) continue;\n            for (ll\
     \ j = i * 2; j <= MAX; j += i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
-    \ x) { return era[x]; }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n*/\n#line 4 \"test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
-    \    int ans = 0;\n    rep (i, n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
-    \ ans++;\n    }\n    cout << ans << endl;\n}\n"
+    \ x) { return era[x]; }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
+    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"\
+    test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint main() {\n \
+    \   int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans = 0;\n    rep\
+    \ (i, n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n   \
+    \ }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../template.hpp\"\n#include \"../../math/PrimeFactor.hpp\"\nusing\
     \ namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
@@ -99,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 14:14:22+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_1_C-PrimeEra.test.cpp

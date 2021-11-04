@@ -82,8 +82,8 @@ data:
     \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
     \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
     \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() { return edge_id; }\n \
-    \   int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
     \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
     \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
     \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
@@ -103,27 +103,27 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/*\n@brief Graph-template\n@docs docs/Graph.md\n*/\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
-    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
-    \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
-    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/*\n\
-    @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-    )\n@docs docs/WarshallFloyd.md\n*/\n"
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
+    \ 5 \"graph/shortest-path/WarshallFloyd.hpp\"\n\ntemplate<class T> void WarshallFloyd(GMatrix<T>&\
+    \ G){\n    int N = G.size();\n    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n\
+    \        rep (i, N) {\n            rep (j, N) {\n                if (G[i][k] !=\
+    \ INF<T> && G[k][j] != INF<T>) chmin(G[i][j], G[i][k] + G[k][j]);\n          \
+    \  }\n        }\n    }\n}\n\n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\
+    \u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
     \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
     \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
-    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/*\n\
-    @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-    )\n@docs docs/WarshallFloyd.md\n*/\n"
+    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/**\n\
+    \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
+    \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2021-11-04 12:47:55+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_C-WarshallFloyd.test.cpp

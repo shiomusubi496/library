@@ -85,8 +85,8 @@ data:
     \            remove_if(res.begin(), res.end(),\n                      [](const\
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
-    @docs docs/UnionFind.md\n*/\n"
+    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
+    \ * @docs docs/UnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int _n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
@@ -101,14 +101,14 @@ data:
     \            remove_if(res.begin(), res.end(),\n                      [](const\
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/*\n@brief UnionFind\n\
-    @docs docs/UnionFind.md\n*/\n"
+    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
+    \ * @docs docs/UnionFind.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: graph/UnionFind.hpp
   requiredBy: []
-  timestamp: '2021-11-04 12:47:55+09:00'
+  timestamp: '2021-11-04 22:17:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UF.test.cpp
