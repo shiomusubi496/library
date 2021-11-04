@@ -24,6 +24,11 @@ data:
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
+  - name: math
+    pages:
+    - icon: ':warning:'
+      path: math/PrimeFactor.hpp
+      title: math/PrimeFactor.hpp
   - name: .
     pages:
     - icon: ':heavy_check_mark:'

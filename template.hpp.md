@@ -69,12 +69,18 @@ data:
     \ ll gcd(ll a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n  \
     \      a = b;\n        b = c % b;\n    }\n    return a;\n}\ninline constexpr ll\
     \ lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) * b;\n}\n\ninline constexpr\
-    \ ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n       \
-    \ if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return res;\n\
-    }\ninline constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {\n    a %= mod;\n\
-    \    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n   \
-    \     b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
+    \ bool is_prime(ll N) noexcept {\n    if (N <= 1) return false;\n    for (ll i\
+    \ = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n    return\
+    \ true;\n}\ninline std::vector<ll> prime_factor(ll N) noexcept {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline constexpr ll my_pow(ll\
+    \ a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res\
+    \ *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline\
+    \ constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {\n    a %= mod;\n    ll res\
+    \ = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>=\
+    \ 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ntemplate<class F>\
+    \ class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
     \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
     \ constexpr auto operator()(Args&&... args) const {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
@@ -115,12 +121,18 @@ data:
     \ ll gcd(ll a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n  \
     \      a = b;\n        b = c % b;\n    }\n    return a;\n}\ninline constexpr ll\
     \ lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) * b;\n}\n\ninline constexpr\
-    \ ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n       \
-    \ if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return res;\n\
-    }\ninline constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {\n    a %= mod;\n\
-    \    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n   \
-    \     b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
+    \ bool is_prime(ll N) noexcept {\n    if (N <= 1) return false;\n    for (ll i\
+    \ = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n    return\
+    \ true;\n}\ninline std::vector<ll> prime_factor(ll N) noexcept {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline constexpr ll my_pow(ll\
+    \ a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res\
+    \ *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline\
+    \ constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {\n    a %= mod;\n    ll res\
+    \ = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>=\
+    \ 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ntemplate<class F>\
+    \ class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
     \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
     \ constexpr auto operator()(Args&&... args) const {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
@@ -156,7 +168,7 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/Graph.hpp
-  timestamp: '2021-11-04 11:39:04+09:00'
+  timestamp: '2021-11-04 12:47:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL_1_A-Dijkstra.test.cpp
