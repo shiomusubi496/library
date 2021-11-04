@@ -19,7 +19,7 @@ template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
     return dist;
 }
 
-/*
-@brief Dijkstra(ダイクストラ法)
-@docs docs/Dijkstra.md
-*/
+/**
+ * @brief Dijkstra(ダイクストラ法)
+ * @docs docs/Dijkstra.md
+ */

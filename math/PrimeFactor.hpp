@@ -37,7 +37,7 @@ class IsPrime {
     bool is_prime(ll x) { return era[x]; }
 };
 
-/*
-@brief PrimeFactor(エラトステネスの篩)
-@docs docs/PrimeFactor.md
-*/
+/**
+ * @brief PrimeFactor(エラトステネスの篩)
+ * @docs docs/PrimeFactor.md
+ */

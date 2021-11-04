@@ -15,7 +15,7 @@ template<class T> void WarshallFloyd(GMatrix<T>& G){
     }
 }
 
-/*
-@brief Warshall-Floyd(ワーシャルフロイド法)
-@docs docs/WarshallFloyd.md
-*/
+/**
+ * @brief Warshall-Floyd(ワーシャルフロイド法)
+ * @docs docs/WarshallFloyd.md
+ */

@@ -19,7 +19,7 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
     return bfr;
 }
 
-/*
-@brief Restore(経路復元)
-@docs docs/Restore.md
-*/
+/**
+ * @brief Restore(経路復元)
+ * @docs docs/Restore.md
+ */

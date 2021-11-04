@@ -43,7 +43,7 @@ class UnionFind {
     }
 };
 
-/*
-@brief UnionFind
-@docs docs/UnionFind.md
-*/
+/**
+ * @brief UnionFind
+ * @docs docs/UnionFind.md
+ */

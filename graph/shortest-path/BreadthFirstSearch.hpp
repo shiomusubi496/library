@@ -19,7 +19,7 @@ template<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {
     return dist;
 }
 
-/*
-@brief BFS(幅優先探索)
-@docs docs/BreadthFirstSearch.md
-*/
+/**
+ * @brief BFS(幅優先探索)
+ * @docs docs/BreadthFirstSearch.md
+ */

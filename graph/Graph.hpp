@@ -23,7 +23,7 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
     using Base = std::vector<std::vector<edge<T>>>;
   public:
     using Base::Base;
-    int edge_size() { return edge_id; }
+    int edge_size() const { return edge_id; }
     int add_edge(int a, int b, T c, bool is_directed = false){
         assert(0 <= a && a < this->size());
         assert(0 <= b && b < this->size());
@@ -73,7 +73,7 @@ template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
     return Ed;
 }
 
-/*
-@brief Graph-template
-@docs docs/Graph.md
-*/
+/**
+ * @brief Graph-template
+ * @docs docs/Graph.md
+ */
