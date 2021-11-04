@@ -76,8 +76,13 @@ data:
     \        }\n    }\n    bool is_prime(ll x) { return era[x] == x; }\n    std::vector<ll>\
     \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
     \ era[x]) res.push_back(x);\n        reverse(res.begin(), res.end());\n      \
-    \  return res;\n    }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\
-    \u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
+    \  return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
+    \ era;\n  public:\n    IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {\n  \
+    \      era[0] = era[1] = false;\n        for (ll i = 2; i <= MAX; ++i) {\n   \
+    \         if (!era[i]) continue;\n            for (ll j = i * 2; j <= MAX; j +=\
+    \ i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) { return era[x];\
+    \ }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
+    \u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass PrimeFactor {\n  protected:\n\
     \    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) :\
     \ MAX(_MAX), era(MAX + 1, -1) {\n        for (ll i = 2; i <= MAX; ++i) {\n   \
@@ -85,15 +90,19 @@ data:
     \ += i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) { return era[x]\
     \ == x; }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n\
     \        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\n/*\n@brief PrimeFactor(\u30A8\
-    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n\
-    */\n"
+    \ res.end());\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
+    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll _MAX) : MAX(_MAX),\
+    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        for (ll i =\
+    \ 2; i <= MAX; ++i) {\n            if (!era[i]) continue;\n            for (ll\
+    \ j = i * 2; j <= MAX; j += i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
+    \ x) { return era[x]; }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
+    \u30C6\u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2021-11-04 13:14:04+09:00'
+  timestamp: '2021-11-04 14:14:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
@@ -111,3 +120,5 @@ title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
 - `PrimeFactor(ll N)` : `N`以下の値に対してエラトステネスの篩のテーブルを作成する。$O(N\log\log N)$。
 - `bool is_prime(ll x)` : `x`が素数かどうか判定する。$O(1)$。
 - `vector<ll> factor(ll x)` : `x`を素因数分解する。返る値は昇順。$O(\log N)$。
+
+素数判定のみしたい場合は`IsPrime`を使う。計算量は`PrimeFactor`と同様。
