@@ -21,3 +21,8 @@ class PrimeFactor {
         return res;
     }
 };
+
+/*
+@brief PrimeFactor(エラトステネスの篩)
+@docs docs/PrimeFactor.md
+*/
