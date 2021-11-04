@@ -29,3 +29,8 @@ template<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int star
     }
     return dist;
 }
+
+/*
+@brief Bellman-Ford(ベルマンフォード法)
+@docs docs/BellmanFord.md
+*/
