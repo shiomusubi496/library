@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../template.hpp"
 
 class PrimeFactor {
   protected:
