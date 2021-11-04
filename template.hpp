@@ -44,6 +44,25 @@ inline constexpr ll lcm(ll a, ll b) noexcept {
     return a / gcd(a, b) * b;
 }
 
+inline constexpr bool is_prime(ll N) noexcept {
+    if (N <= 1) return false;
+    for (ll i = 2; i * i <= N; ++i) {
+        if (N % i == 0) return false;
+    }
+    return true;
+}
+inline std::vector<ll> prime_factor(ll N) noexcept {
+    std::vector<ll> res;
+    for (ll i = 2; i * i <= N; ++i) {
+        while (N % i == 0) {
+            res.push_back(i);
+            N /= i;
+        }
+    }
+    if (N != 1) res.push_back(N);
+    return res;
+}
+
 inline constexpr ll my_pow(ll a, ll b) noexcept {
     ll res = 1;
     while (b) {
