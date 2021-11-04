@@ -3,12 +3,13 @@
 #include "../../template.hpp"
 #include "../Graph.hpp"
 
-template<class T> void WarshallFloyd(std::vector<std::vector<T>>& G){
+template<class T> void WarshallFloyd(GMatrix<T>& G){
     int N = G.size();
-    rep (i, N) G[i][i] = 0;
     rep (k, N) {
         rep (i, N) {
-            rep (j, N) chmin(G[i][j], G[i][k] + G[k][j]);
+            rep (j, N) {
+                if (G[i][k] != INF<T> && G[k][j] != INF<T>) chmin(G[i][j], G[i][k] + G[k][j]);
+            }
         }
     }
 }

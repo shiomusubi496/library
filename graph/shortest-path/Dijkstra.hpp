@@ -3,22 +3,17 @@
 #include "../../template.hpp"
 #include "../Graph.hpp"
 
-template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int s = 0) {
-    assert(0 <= s && s < G.size());
-    std::vector<T> dist(G.size(), -1);
-    dist[s] = 0;
-    std::priority_queue<std::pair<T, int>, std::vector<std::pair<T, int>>, std::greater<std::pair<T, int>>> que;
-    que.emplace(0, s);
+template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
+    assert(0 <= start && start < G.size());
+    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;
+    prique<std::pair<T, int>> que; que.emplace(0, start);
     while (!que.empty()) {
         T c = que.top().first;
         int v = que.top().second;
         que.pop();
         if (dist[v] != c) continue;
         for (const edge<T>& e : G[v]) {
-            if (dist[e.to] == -1 || dist[e.to] > c + e.cost) {
-                dist[e.to] = c + e.cost;
-                que.emplace(dist[e.to], e.to);
-            }
+            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);
         }
     }
     return dist;

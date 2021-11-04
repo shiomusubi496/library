@@ -10,9 +10,10 @@ using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 using PLL = std::pair<ll, ll>;
+template<class T> using prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
-constexpr int inf = 1e9;
-constexpr ll INF = 1e18;
+template<class T> constexpr T INF = std::numeric_limits<T>::max() / 2;
+constexpr ll inf = INF<ll>;
 constexpr ld EPS = 1e-8;
 constexpr ld PI = 3.1415926535897932384626;
 

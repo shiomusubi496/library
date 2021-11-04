@@ -6,7 +6,7 @@ template<class T = int> struct edge {
     int from, to;
     T cost;
     int idx;
-    edge() = default;
+    edge() : from(-1), to(-1) {}
     edge(int t) : from(-1), to(t), cost(1) {}
     edge(int t, T c) : from(-1), to(t), cost(c) {}
     edge(int f, int t, T c) : from(f), to(t), cost(c) {}
@@ -15,13 +15,15 @@ template<class T = int> struct edge {
 };
 
 template<class T = int> using Edges = std::vector<edge<T>>;
+template<class T = int> using GMatrix = std::vector<std::vector<T>>;
 
 template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
-  private:
+  protected:
+    int edge_id = 0;
     using Base = std::vector<std::vector<edge<T>>>;
   public:
     using Base::Base;
-    int edge_id = 0;
+    int edge_size() { return edge_id; }
     int add_edge(int a, int b, T c, bool is_directed = false){
         assert(0 <= a && a < this->size());
         assert(0 <= b && b < this->size());
@@ -37,6 +39,39 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
         return edge_id++;
     }
 };
+
+template<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {
+    const int N = G.size();
+    auto res = make_vec<T>(N, N, INF<T>);
+    rep (i, N) {
+        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;
+    }
+    rep (i, N) res[i][i] = 0;
+    return res;
+}
+
+template<class T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {
+    const int V = G.size();
+    const int E = G.edge_size();
+    Edges<T> Ed(E);
+    rep (i, V) {
+        for (const edge<T>& e : G[i]) Ed[e.idx] = e;
+    }
+    return Ed;
+}
+template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
+    const int V = G.size();
+    const int E = std::accumulate(G.begin(), G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size(); });
+    Edges<T> Ed(G.edge_size());
+    Ed.reserve(E);
+    rep (i, V) {
+        for (const edge<T>& e : G[i]) {
+            if (Ed[e.idx].to == -1) Ed[e.idx] = e;
+            else Ed.push_back(e);
+        }
+    }
+    return Ed;
+}
 
 /*
 @brief Graph-template
