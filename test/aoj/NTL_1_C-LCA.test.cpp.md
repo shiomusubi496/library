@@ -5,24 +5,22 @@ data:
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-    title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/PrimeFactor.md
-    document_title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
-      )"
-    links: []
-  bundledCode: "#line 2 \"math/PrimeFactor.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
-    \n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for\
-    \ (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
-    using PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
+  bundledCode: "#line 1 \"test/aoj/NTL_1_C-LCA.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
+    \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
+    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
+    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
     \ / 2;\nconstexpr ll inf = INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI\
     \ = 3.1415926535897932384626;\n\ntemplate<class T, class U> inline constexpr bool\
     \ chmin(T &a, const U &b) noexcept {\n    if (a > b) {\n        a = b;\n     \
@@ -69,45 +67,25 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor {\n  protected:\n    ll MAX;\n\
-    \    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) : MAX(_MAX), era(MAX\
-    \ + 1, -1) {\n        for (ll i = 2; i <= MAX; ++i) {\n            if (era[i]\
-    \ != -1) continue;\n            for (ll j = i; j <= MAX; j += i) era[j] = i;\n\
-    \        }\n    }\n    bool is_prime(ll x) { return era[x] == x; }\n    std::vector<ll>\
-    \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
-    \ era[x]) res.push_back(x);\n        reverse(res.begin(), res.end());\n      \
-    \  return res;\n    }\n};\n\n/*\n@brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\
-    \u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n*/\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass PrimeFactor {\n  protected:\n\
-    \    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) :\
-    \ MAX(_MAX), era(MAX + 1, -1) {\n        for (ll i = 2; i <= MAX; ++i) {\n   \
-    \         if (era[i] != -1) continue;\n            for (ll j = i; j <= MAX; j\
-    \ += i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) { return era[x]\
-    \ == x; }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n\
-    \        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\n/*\n@brief PrimeFactor(\u30A8\
-    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n@docs docs/PrimeFactor.md\n\
-    */\n"
+    \ 3 \"test/aoj/NTL_1_C-LCA.test.cpp\"\nusing namespace std;\nint main() {\n  \
+    \  int n; cin >> n;\n    int l = 1;\n    rep (i, n) {\n        int a; cin >> a;\n\
+    \        l = lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\n#include\
+    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int n; cin >>\
+    \ n;\n    int l = 1;\n    rep (i, n) {\n        int a; cin >> a;\n        l =\
+    \ lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
   dependsOn:
   - template.hpp
-  isVerificationFile: false
-  path: math/PrimeFactor.hpp
+  isVerificationFile: true
+  path: test/aoj/NTL_1_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 13:14:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-documentation_of: math/PrimeFactor.hpp
+  timestamp: '2021-11-04 13:08:56+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/NTL_1_C-LCA.test.cpp
 layout: document
 redirect_from:
-- /library/math/PrimeFactor.hpp
-- /library/math/PrimeFactor.hpp.html
-title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
+- /verify/test/aoj/NTL_1_C-LCA.test.cpp
+- /verify/test/aoj/NTL_1_C-LCA.test.cpp.html
+title: test/aoj/NTL_1_C-LCA.test.cpp
 ---
-## 概要
-
-エラトステネスの篩を使った$O(\log N)$の素因数分解。ただし、前処理は$O(N\log\log N)$となる。
-
-- `PrimeFactor(ll N)` : `N`以下の値に対してエラトステネスの篩のテーブルを作成する。$O(N\log\log N)$。
-- `bool is_prime(ll x)` : `x`が素数かどうか判定する。$O(1)$。
-- `vector<ll> factor(ll x)` : `x`を素因数分解する。返る値は昇順。$O(\log N)$。

@@ -21,6 +21,9 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
+  - icon: ':heavy_check_mark:'
+    path: math/PrimeFactor.hpp
+    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
@@ -28,6 +31,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_B-GCD.test.cpp
     title: test/aoj/ALDS1_1_B-GCD.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+    title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+    title: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL_1_A-UF.test.cpp
@@ -40,6 +49,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_1_A-prime.test.cpp
+    title: test/aoj/NTL_1_A-prime.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_1_B-pow.test.cpp
+    title: test/aoj/NTL_1_B-pow.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_1_C-LCA.test.cpp
+    title: test/aoj/NTL_1_C-LCA.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -162,6 +180,7 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
+  - math/PrimeFactor.hpp
   - graph/UnionFind.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/BellmanFord.hpp
@@ -171,11 +190,16 @@ data:
   timestamp: '2021-11-04 12:47:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+  - test/aoj/NTL_1_B-pow.test.cpp
   - test/aoj/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/aoj/DSL_1_A-UF.test.cpp
+  - test/aoj/NTL_1_C-LCA.test.cpp
+  - test/aoj/NTL_1_A-prime.test.cpp
   - test/aoj/GRL_1_B-BellmanFord.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp

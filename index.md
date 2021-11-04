@@ -26,9 +26,9 @@ data:
         \u6CD5)"
   - name: math
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
-      title: math/PrimeFactor.hpp
+      title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: .
     pages:
     - icon: ':heavy_check_mark:'
@@ -44,6 +44,12 @@ data:
       path: test/aoj/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1_1_B-GCD.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+      title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+      title: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL_1_A-UF.test.cpp
     - icon: ':heavy_check_mark:'
@@ -55,6 +61,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_A-prime.test.cpp
+      title: test/aoj/NTL_1_A-prime.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_B-pow.test.cpp
+      title: test/aoj/NTL_1_B-pow.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_C-LCA.test.cpp
+      title: test/aoj/NTL_1_C-LCA.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
