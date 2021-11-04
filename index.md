@@ -62,14 +62,14 @@ data:
       path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_A-prime.test.cpp
-      title: test/aoj/NTL_1_A-prime.test.cpp
+      path: test/aoj/NTL_1_A-Prime.test.cpp
+      title: test/aoj/NTL_1_A-Prime.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_B-pow.test.cpp
-      title: test/aoj/NTL_1_B-pow.test.cpp
+      path: test/aoj/NTL_1_B-Pow.test.cpp
+      title: test/aoj/NTL_1_B-Pow.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_C-LCA.test.cpp
-      title: test/aoj/NTL_1_C-LCA.test.cpp
+      path: test/aoj/NTL_1_C-LCM.test.cpp
+      title: test/aoj/NTL_1_C-LCM.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'

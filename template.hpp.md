@@ -50,14 +50,14 @@ data:
     path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_A-prime.test.cpp
-    title: test/aoj/NTL_1_A-prime.test.cpp
+    path: test/aoj/NTL_1_A-Prime.test.cpp
+    title: test/aoj/NTL_1_A-Prime.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_B-pow.test.cpp
-    title: test/aoj/NTL_1_B-pow.test.cpp
+    path: test/aoj/NTL_1_B-Pow.test.cpp
+    title: test/aoj/NTL_1_B-Pow.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_C-LCA.test.cpp
-    title: test/aoj/NTL_1_C-LCA.test.cpp
+    path: test/aoj/NTL_1_C-LCM.test.cpp
+    title: test/aoj/NTL_1_C-LCM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -191,15 +191,15 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
-  - test/aoj/NTL_1_B-pow.test.cpp
+  - test/aoj/NTL_1_C-LCM.test.cpp
   - test/aoj/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/NTL_1_A-Prime.test.cpp
+  - test/aoj/NTL_1_B-Pow.test.cpp
   - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/aoj/DSL_1_A-UF.test.cpp
-  - test/aoj/NTL_1_C-LCA.test.cpp
-  - test/aoj/NTL_1_A-prime.test.cpp
   - test/aoj/GRL_1_B-BellmanFord.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp

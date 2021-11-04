@@ -14,7 +14,7 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
-  bundledCode: "#line 1 \"test/aoj/NTL_1_A-prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\
+  bundledCode: "#line 1 \"test/aoj/NTL_1_A-Prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\
     \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
     \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
     \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
@@ -67,7 +67,7 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/NTL_1_A-prime.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \ 3 \"test/aoj/NTL_1_A-Prime.test.cpp\"\nusing namespace std;\nint main() {\n\
     \    int N; cin >> N;\n    cout << N << \":\";\n    for (const int& i : prime_factor(N))\
     \ cout << \" \" << i;\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\n#include\
@@ -77,15 +77,15 @@ data:
   dependsOn:
   - template.hpp
   isVerificationFile: true
-  path: test/aoj/NTL_1_A-prime.test.cpp
+  path: test/aoj/NTL_1_A-Prime.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 13:08:56+09:00'
+  timestamp: '2021-11-04 13:28:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL_1_A-prime.test.cpp
+documentation_of: test/aoj/NTL_1_A-Prime.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL_1_A-prime.test.cpp
-- /verify/test/aoj/NTL_1_A-prime.test.cpp.html
-title: test/aoj/NTL_1_A-prime.test.cpp
+- /verify/test/aoj/NTL_1_A-Prime.test.cpp
+- /verify/test/aoj/NTL_1_A-Prime.test.cpp.html
+title: test/aoj/NTL_1_A-Prime.test.cpp
 ---
