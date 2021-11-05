@@ -33,5 +33,5 @@ template<class T> class SparseTable {
 
 /**
  * @brief SparseTable
- * @doc docs/SparseTable.md
+ * @docs docs/SparseTable.md
  */
