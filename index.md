@@ -32,9 +32,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
+  - name: segment
+    pages:
+    - icon: ':x:'
+      path: segment/SparseTable.hpp
+      title: segment/SparseTable.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -84,6 +89,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest-path.test.cpp
       title: test/yosupo/shortest-path.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/staticrmq.test.cpp
+      title: test/yosupo/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp

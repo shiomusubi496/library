@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
+  - icon: ':x:'
+    path: segment/SparseTable.hpp
+    title: segment/SparseTable.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
@@ -70,12 +73,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest-path.test.cpp
     title: test/yosupo/shortest-path.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/staticrmq.test.cpp
+    title: test/yosupo/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i,\
@@ -186,6 +192,7 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
+  - segment/SparseTable.hpp
   - math/PrimeFactor.hpp
   - graph/UnionFind.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
@@ -195,7 +202,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-04 12:47:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/NTL_1_C-LCM.test.cpp
@@ -209,6 +216,7 @@ data:
   - test/aoj/DSL_1_A-UF.test.cpp
   - test/aoj/GRL_1_B-BellmanFord.test.cpp
   - test/yosupo/unionfind.test.cpp
+  - test/yosupo/staticrmq.test.cpp
   - test/yosupo/shortest-path.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/aplusb.test.cpp

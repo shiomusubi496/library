@@ -1,29 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/PrimeFactor.hpp
-    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/staticrmq.test.cpp
+    title: test/yosupo/staticrmq.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n);\
-    \ ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v)\
-    \ (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+    links: []
+  bundledCode: "#line 2 \"segment/SparseTable.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n\
+    #define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(),\
+    \ (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld\
+    \ = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique\
+    \ = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
     \ T> constexpr T INF = std::numeric_limits<T>::max() / 2;\nconstexpr ll inf =\
     \ INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\
     \ntemplate<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept\
@@ -71,42 +67,47 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/PrimeFactor.hpp\"\n\n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor\
-    \ {\n  protected:\n    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll\
-    \ _MAX) : MAX(_MAX), era(MAX + 1, -1) {\n        for (ll i = 2; i <= MAX; ++i)\
-    \ {\n            if (era[i] != -1) continue;\n            for (ll j = i; j <=\
-    \ MAX; j += i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) { return\
-    \ era[x] == x; }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll>\
-    \ res;\n        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
-    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll _MAX) : MAX(_MAX),\
-    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        for (ll i =\
-    \ 2; i <= MAX; ++i) {\n            if (!era[i]) continue;\n            for (ll\
-    \ j = i * 2; j <= MAX; j += i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
-    \ x) { return era[x]; }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"\
-    test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint main() {\n \
-    \   int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans = 0;\n    rep\
-    \ (i, n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n   \
-    \ }\n    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
-    #include \"../../template.hpp\"\n#include \"../../math/PrimeFactor.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
-    \    int ans = 0;\n    rep (i, n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
-    \ ans++;\n    }\n    cout << ans << endl;\n}\n"
+    \ 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable {\n  protected:\n\
+    \    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n  \
+    \  int h;\n    const F& op;\n    const G& e;\n    std::vector<int> logtable;\n\
+    \    std::vector<std::vector<T>> data;\n  public:\n    SparseTable(const std::vector<T>&\
+    \ v, const F& _op, const G& _e) : op(_op), e(_e) {\n        h = 1;\n        while\
+    \ ((1 << h) < (int)v.size()) ++h;\n        logtable.resize(1 << h, 0);\n     \
+    \   for (int i = 2; i < (1 << h); i++) logtable[i] = logtable[i >> 1] + 1;\n \
+    \       data.resize(h + 1, std::vector<T>(1 << h, e()));\n        rep (i, v.size())\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
+    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
+    \  assert(0 <= l && l <= r && r <= (1 << h));\n        if (l == r) return e();\n\
+    \        int d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1\
+    \ << d)]);\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class SparseTable\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
+    \    int h;\n    const F& op;\n    const G& e;\n    std::vector<int> logtable;\n\
+    \    std::vector<std::vector<T>> data;\n  public:\n    SparseTable(const std::vector<T>&\
+    \ v, const F& _op, const G& _e) : op(_op), e(_e) {\n        h = 1;\n        while\
+    \ ((1 << h) < (int)v.size()) ++h;\n        logtable.resize(1 << h, 0);\n     \
+    \   for (int i = 2; i < (1 << h); i++) logtable[i] = logtable[i >> 1] + 1;\n \
+    \       data.resize(h + 1, std::vector<T>(1 << h, e()));\n        rep (i, v.size())\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
+    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
+    \  assert(0 <= l && l <= r && r <= (1 << h));\n        if (l == r) return e();\n\
+    \        int d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1\
+    \ << d)]);\n    }\n};\n"
   dependsOn:
   - template.hpp
-  - math/PrimeFactor.hpp
-  isVerificationFile: true
-  path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  isVerificationFile: false
+  path: segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-04 22:17:23+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  timestamp: '2021-11-05 10:37:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/staticrmq.test.cpp
+documentation_of: segment/SparseTable.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-- /verify/test/aoj/ALDS1_1_C-PrimeEra.test.cpp.html
-title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+- /library/segment/SparseTable.hpp
+- /library/segment/SparseTable.hpp.html
+title: segment/SparseTable.hpp
 ---
