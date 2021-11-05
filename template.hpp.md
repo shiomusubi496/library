@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment/SparseTable.hpp
     title: segment/SparseTable.hpp
   _extendedVerifiedWith:
@@ -73,15 +73,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest-path.test.cpp
     title: test/yosupo/shortest-path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq.test.cpp
     title: test/yosupo/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i,\
@@ -202,7 +202,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-04 12:47:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/NTL_1_C-LCM.test.cpp
