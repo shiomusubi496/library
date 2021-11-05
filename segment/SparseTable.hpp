@@ -15,8 +15,8 @@ template<class T> class SparseTable {
     SparseTable(const std::vector<T>& v, const F& _op, const G& _e) : op(_op), e(_e) {
         h = 1;
         while ((1 << h) < (int)v.size()) ++h;
-        logtable.resize(1 << h, 0);
-        for (int i = 2; i < (1 << h); i++) logtable[i] = logtable[i >> 1] + 1;
+        logtable.resize((1 << h) + 1, 0);
+        for (int i = 2; i <= (1 << h); i++) logtable[i] = logtable[i >> 1] + 1;
         data.resize(h + 1, std::vector<T>(1 << h, e()));
         rep (i, v.size()) data[0][i] = v[i];
         rep (i, h) {
