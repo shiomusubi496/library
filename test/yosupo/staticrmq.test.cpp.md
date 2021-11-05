@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: segment/SparseTable.hpp
-    title: segment/SparseTable.hpp
+    title: SparseTable
   - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
@@ -71,38 +71,36 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable {\n  protected:\n\
-    \    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n  \
-    \  int h;\n    const F& op;\n    const G& e;\n    std::vector<int> logtable;\n\
-    \    std::vector<std::vector<T>> data;\n  public:\n    SparseTable(const std::vector<T>&\
-    \ v, const F& _op, const G& _e) : op(_op), e(_e) {\n        h = 1;\n        while\
-    \ ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1 << h) + 1, 0);\n\
-    \        for (int i = 2; i <= (1 << h); i++) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.resize(h + 1, std::vector<T>(1 << h, e()));\n        rep (i,\
-    \ v.size()) data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 <<\
-    \ h) - (1 << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j\
+    \    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int>\
+    \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
+    \ = default;\n    SparseTable(const std::vector<T>& v, const F& _op) : op(_op)\
+    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
+    \ << h) + 1, 0);\n        for (int i = 2; i <= (1 << h); i++) logtable[i] = logtable[i\
+    \ >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1 << h));\n        rep\
+    \ (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n            rep (j,\
+    \ (1 << h) - (1 << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j\
     \ + (1 << i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n\
-    \        assert(0 <= l && l <= r && r <= (1 << h));\n        if (l == r) return\
-    \ e();\n        int d = logtable[r - l];\n        return op(data[d][l], data[d][r\
-    \ - (1 << d)]);\n    }\n};\n#line 3 \"test/yosupo/staticrmq.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
+    \        assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r\
+    \ - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n\
+    /**\n * @brief SparseTable\n * @doc docs/SparseTable.md\n */\n#line 3 \"test/yosupo/staticrmq.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
     \ A(N);\n    for (auto&& i : A) cin >> i;\n    SparseTable<int> ST(A, [](int a,\
-    \ int b) -> int { return min(a, b); }, []() -> int { return INF<int>; });\n  \
-    \  vector<int> res;\n    rep (i, Q) {\n        int l, r; cin >> l >> r;\n    \
-    \    cout << ST.query(l, r) << endl;\n    }\n}\n"
+    \ int b) -> int { return min(a, b); });\n    vector<int> res;\n    rep (i, Q)\
+    \ {\n        int l, r; cin >> l >> r;\n        cout << ST.query(l, r) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../segment/SparseTable.hpp\"\nusing namespace std;\nint main() {\n    int N,\
     \ Q; cin >> N >> Q;\n    vector<int> A(N);\n    for (auto&& i : A) cin >> i;\n\
-    \    SparseTable<int> ST(A, [](int a, int b) -> int { return min(a, b); }, []()\
-    \ -> int { return INF<int>; });\n    vector<int> res;\n    rep (i, Q) {\n    \
-    \    int l, r; cin >> l >> r;\n        cout << ST.query(l, r) << endl;\n    }\n\
-    }\n"
+    \    SparseTable<int> ST(A, [](int a, int b) -> int { return min(a, b); });\n\
+    \    vector<int> res;\n    rep (i, Q) {\n        int l, r; cin >> l >> r;\n  \
+    \      cout << ST.query(l, r) << endl;\n    }\n}\n"
   dependsOn:
   - segment/SparseTable.hpp
   - template.hpp
   isVerificationFile: true
   path: test/yosupo/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2021-11-05 11:10:37+09:00'
+  timestamp: '2021-11-05 14:12:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.test.cpp

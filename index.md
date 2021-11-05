@@ -36,7 +36,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: segment/SparseTable.hpp
-      title: segment/SparseTable.hpp
+      title: SparseTable
   - name: .
     pages:
     - icon: ':heavy_check_mark:'

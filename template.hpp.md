@@ -29,7 +29,7 @@ data:
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
     path: segment/SparseTable.hpp
-    title: segment/SparseTable.hpp
+    title: SparseTable
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_11_C-BFS.test.cpp
