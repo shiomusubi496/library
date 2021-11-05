@@ -82,7 +82,7 @@ data:
     \ + (1 << i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n\
     \        assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r\
     \ - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n\
-    /**\n * @brief SparseTable\n * @doc docs/SparseTable.md\n */\n#line 3 \"test/yosupo/staticrmq.test.cpp\"\
+    /**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 3 \"test/yosupo/staticrmq.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
     \ A(N);\n    for (auto&& i : A) cin >> i;\n    SparseTable<int> ST(A, [](int a,\
     \ int b) -> int { return min(a, b); });\n    vector<int> res;\n    rep (i, Q)\
@@ -100,7 +100,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2021-11-05 14:12:13+09:00'
+  timestamp: '2021-11-05 14:36:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq.test.cpp

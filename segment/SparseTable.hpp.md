@@ -13,6 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
     links: []
   bundledCode: "#line 2 \"segment/SparseTable.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
@@ -80,7 +81,7 @@ data:
     \ + (1 << i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n\
     \        assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r\
     \ - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n\
-    /**\n * @brief SparseTable\n * @doc docs/SparseTable.md\n */\n"
+    /**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class SparseTable\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
@@ -93,14 +94,14 @@ data:
     \      data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
     \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
     \ && r <= (1 << h));\n        int d = logtable[r - l];\n        return op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @doc docs/SparseTable.md\n\
+    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
     \ */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-05 14:12:13+09:00'
+  timestamp: '2021-11-05 14:36:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq.test.cpp
@@ -111,3 +112,16 @@ redirect_from:
 - /library/segment/SparseTable.hpp.html
 title: SparseTable
 ---
+## 概要
+
+区間最小値/最大値などの区間に対するクエリを扱える。ただし、二項演算子 $\cdot$ は以下の条件を満たす必要がある。
+
+- 結合則 : 任意の $A, B, C$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
+- 冪等性 : 任意の $A$ に対して $A \cdot A = A$
+
+例えば、 `max, min, gcd, lcm` などがこの条件を満たす。
+
+以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
+
+- `SparseTable(vector<int> a, function<T(T, T)> op)` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
+- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。
