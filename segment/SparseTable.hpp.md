@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -113,8 +113,8 @@ data:
     \ 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable {\n  protected:\n\
     \    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int>\
     \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
-    \ = default;\n    SparseTable(const std::vector<T>& v, const F& _op) : op(_op)\
-    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
+    \ = default;\n    SparseTable(const std::vector<T>& v, const F& op) : op(op) {\n\
+    \        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
     \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
     \ 1;\n        data.resize(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
@@ -127,7 +127,7 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
     \    SparseTable() = default;\n    SparseTable(const std::vector<T>& v, const\
-    \ F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
     \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        reps (i, 1, 1 << h)\
     \ logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1\
     \ << h));\n        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n\
@@ -142,7 +142,7 @@ data:
   isVerificationFile: false
   path: segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
+  timestamp: '2021-11-07 08:27:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp
@@ -164,5 +164,5 @@ title: SparseTable
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
 
-- `SparseTable(vector<int> a, function<T(T, T)> op)` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
+- `SparseTable(vector<int> a, T op(T, T))` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
 - `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。

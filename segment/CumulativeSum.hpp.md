@@ -1,27 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+    title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
-  bundledCode: "#line 1 \"test/aoj/GRL_1_A-Dijkstra.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"template.hpp\"\n\
+    _deprecated_at_docs: docs/CumulativeSum.md
+    document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+    links: []
+  bundledCode: "#line 2 \"segment/CumulativeSum.hpp\"\n\n#line 2 \"template.hpp\"\n\
     \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -115,73 +110,59 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int>\
-    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
-    \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
-    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
-    \ cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i)\
-    \ {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int> using Edges\
-    \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
-    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
-    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
-    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
-    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
-    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
-    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
-    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
-    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
-    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
-    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 5 \"test/aoj/GRL_1_A-Dijkstra.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int>\
-    \ G(V);\n    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s,\
-    \ t, d, true);\n    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V)\
-    \ {\n        if (dist[i] == INF<int>) puts(\"INF\");\n        else cout << dist[i]\
-    \ << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
-    \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
-    \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
-    \   Graph<int> G(V);\n    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n\
-    \        G.add_edge(s, t, d, true);\n    }\n    vector<int> dist = Dijkstra(G,\
-    \ r);\n    rep (i, V) {\n        if (dist[i] == INF<int>) puts(\"INF\");\n   \
-    \     else cout << dist[i] << endl;\n    }\n}\n"
+    \ 4 \"segment/CumulativeSum.hpp\"\n\ntemplate<class T> class CumulativeSum {\n\
+    \  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
+    \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
+    \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
+    \  CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }),\
+    \ e([]() { return 0; }), inv([](int a) { return -a; }) {\n        init(v);\n \
+    \   }\n    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const\
+    \ F& inv) : op(op), e(e), inv(inv) {\n        init(v);\n    }\n    void init(const\
+    \ std::vector<T>& v) {\n        n = v.size();\n        data.resize(n + 1, e());\n\
+    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
+    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return op(data[r],\
+    \ inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C\
+    )\n * @docs docs/CumulativeSum.md\n */\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class CumulativeSum\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
+    \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
+    \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
+    \  CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }),\
+    \ e([]() { return 0; }), inv([](int a) { return -a; }) {\n        init(v);\n \
+    \   }\n    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const\
+    \ F& inv) : op(op), e(e), inv(inv) {\n        init(v);\n    }\n    void init(const\
+    \ std::vector<T>& v) {\n        n = v.size();\n        data.resize(n + 1, e());\n\
+    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
+    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return op(data[r],\
+    \ inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C\
+    )\n * @docs docs/CumulativeSum.md\n */\n"
   dependsOn:
   - template.hpp
-  - graph/Graph.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  isVerificationFile: true
-  path: test/aoj/GRL_1_A-Dijkstra.test.cpp
+  isVerificationFile: false
+  path: segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/GRL_1_A-Dijkstra.test.cpp
+  timestamp: '2021-11-07 08:27:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+documentation_of: segment/CumulativeSum.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL_1_A-Dijkstra.test.cpp
-- /verify/test/aoj/GRL_1_A-Dijkstra.test.cpp.html
-title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+- /library/segment/CumulativeSum.hpp
+- /library/segment/CumulativeSum.hpp.html
+title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
 ---
+## 概要
+
+区間和など区間に対するクエリを扱える。ただし、二項演算子 $\cdot$ は以下の条件を満たす必要がある。
+
+- 結合則 : 任意の $A, B, C$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
+- 単位元の存在 : ある $e$ が存在して、任意の $A$ に対して $A \cdot e = e \cdot A = A$ が成り立つ。
+- 逆元の存在 : 任意の $A$ に対して、 $A \cdot B = e$ となる $B$ が存在する
+
+例えば、足し算、掛け算、 bitwise xor などがこの条件を満たす。
+
+以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
+
+- `SparseTable(vector<int> a, T op(T, T), T e(), T inv(T))` : リスト `a` と二項演算 `op` 、単位元を返す `e` 、及び逆元を返す `inv` で初期化する。 $N=\mathrm{len}(a)$ として $O(N)$ 。
+- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。

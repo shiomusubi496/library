@@ -1,11 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
@@ -114,7 +117,7 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
     \    DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v, const F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ v, const F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
     \ ++h;\n        logtable.resize(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i]\
     \ = logtable[i >> 1] + 1;\n        data.resize(h, std::vector<T>(1 << h));\n \
     \       rep (i, v.size()) data[0][i] = v[i];\n        rep (i, 1, h) {\n      \
@@ -132,7 +135,7 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
     \    DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v, const F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ v, const F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
     \ ++h;\n        logtable.resize(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i]\
     \ = logtable[i >> 1] + 1;\n        data.resize(h, std::vector<T>(1 << h));\n \
     \       rep (i, v.size()) data[0][i] = v[i];\n        rep (i, 1, h) {\n      \
@@ -151,9 +154,10 @@ data:
   isVerificationFile: false
   path: segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-07 00:36:37+09:00'
+  timestamp: '2021-11-07 08:27:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: segment/DisjointSparseTable.hpp
 layout: document
@@ -172,5 +176,5 @@ title: DisjointSparseTable
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
 
-- `DisjointSparseTable(vector<int> a, function<T(T, T)> op)` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
+- `DisjointSparseTable(vector<int> a, T op(T, T))` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
 - `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。

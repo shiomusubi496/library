@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -116,7 +116,7 @@ data:
     \ T> class SparseTable {\n  protected:\n    using F = std::function<T(T, T)>;\n\
     \    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v, const F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ v, const F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
     \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        reps (i, 1, 1 << h)\
     \ logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1\
     \ << h));\n        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n\
@@ -142,7 +142,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
+  timestamp: '2021-11-07 08:27:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp
