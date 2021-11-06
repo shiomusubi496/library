@@ -4,7 +4,7 @@ using namespace std;
 int main() {
     int n; cin >> n;
     int ans = 0;
-    rep (i, n) {
+    rep (n) {
         int a; cin >> a;
         if (is_prime(a)) ans++;
     }

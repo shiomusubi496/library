@@ -3,17 +3,19 @@
 #include "../template.hpp"
 
 class PrimeFactor {
-  protected:
+ protected:
     ll MAX;
     std::vector<ll> era;
-  public:
+ public:
     PrimeFactor(ll _MAX) : MAX(_MAX), era(MAX + 1, -1) {
-        for (ll i = 2; i <= MAX; ++i) {
+        rep (i, 2, MAX + 1) {
             if (era[i] != -1) continue;
-            for (ll j = i; j <= MAX; j += i) era[j] = i;
+            rep (j, i, MAX + 1, i) era[j] = i;
         }
     }
-    bool is_prime(ll x) { return era[x] == x; }
+    bool is_prime(ll x) {
+        return era[x] == x;
+    }
     std::vector<ll> factorize(ll x) {
         std::vector<ll> res;
         for (; x > 1; x /= era[x]) res.push_back(x);
@@ -23,18 +25,20 @@ class PrimeFactor {
 };
 
 class IsPrime {
-  protected:
+ protected:
     ll MAX;
     std::vector<bool> era;
-  public:
+ public:
     IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {
         era[0] = era[1] = false;
-        for (ll i = 2; i <= MAX; ++i) {
+        rep (i, 2, MAX + 1) {
             if (!era[i]) continue;
-            for (ll j = i * 2; j <= MAX; j += i) era[j] = false;
+            rep (j, i * 2, MAX + 1, i) era[j] = false;
         }
     }
-    bool is_prime(ll x) { return era[x]; }
+    bool is_prime(ll x) {
+        return era[x];
+    }
 };
 
 /**

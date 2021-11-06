@@ -6,7 +6,7 @@ int main() {
     int N, Q;
     cin >> N >> Q;
     UnionFind UF(N);
-    while (Q--) {
+    rep (Q) {
         int t, u, v;
         cin >> t >> u >> v;
         if (t == 0) UF.merge(u, v);

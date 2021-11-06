@@ -6,7 +6,7 @@ int main() {
     int n; cin >> n;
     PrimeFactor PF(100000000);
     int ans = 0;
-    rep (i, n) {
+    rep (n) {
         int a; cin >> a;
         if (PF.is_prime(a)) ans++;
     }

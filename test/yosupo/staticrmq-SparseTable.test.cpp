@@ -1,4 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
+#include "../../template.hpp"
 #include "../../segment/SparseTable.hpp"
 using namespace std;
 int main() {
@@ -6,7 +7,7 @@ int main() {
     vector<int> A(N);
     for (auto&& i : A) cin >> i;
     SparseTable<int> ST(A, [](int a, int b) -> int { return min(a, b); });
-    rep (i, Q) {
+    rep (Q) {
         int l, r; cin >> l >> r;
         cout << ST.query(l, r) << endl;
     }

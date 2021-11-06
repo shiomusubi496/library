@@ -15,15 +15,16 @@ template<class T> class DisjointSparseTable {
         h = 1;
         while ((1 << h) < (int)v.size()) ++h;
         logtable.resize(1 << h, 0);
-        for (int i = 2; i < (1 << h); ++i) logtable[i] = logtable[i >> 1] + 1;
+        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;
         data.resize(h, std::vector<T>(1 << h));
-        rep (i, h) {
+        rep (i, v.size()) data[0][i] = v[i];
+        rep (i, 1, h) {
             int len = 1 << i;
-            for (int j = len; j < v.size(); j += (len << 1)) {
+            rep (j, len, v.size(), len << 1) {
                 data[i][j - 1] = v[j - 1];
-                for (int k = 1; k < len; ++k) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);
+                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);
                 data[i][j] = v[j];
-                for (int k = 1; k < len; ++k) {
+                rep (k, 1, len) {
                     if (j + k >= v.size()) break;
                     data[i][j + k] = op(data[i][j + k - 1], v[j + k]);
                 }

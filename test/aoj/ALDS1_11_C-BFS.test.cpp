@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int N; cin >> N;
     Graph<int> G(N);
-    rep (i, N) {
+    rep (N) {
         int u; cin >> u;
         int k; cin >> k;
         rep(j, k) {

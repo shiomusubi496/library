@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int V, E; cin >> V >> E;
     auto D = make_vec<ll>(V, V, INF<ll>);
-    rep (i, E) {
+    rep (E) {
         int s, t, d; cin >> s >> t >> d;
         D[s][t] = d;
     }

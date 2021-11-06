@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int V, E, r; cin >> V >> E >> r;
     Graph<int> G(V);
-    rep (i, E) {
+    rep (E) {
         int s, t, d; cin >> s >> t >> d;
         G.add_edge(s, t, d, true);
     }
