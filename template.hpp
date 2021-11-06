@@ -133,6 +133,36 @@ inline constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {
     return res;
 }
 
+PLL extGCD(ll a, ll b) noexcept {
+    if (b == 0) return PLL{1, 0};
+    PLL p = extGCD(b, a % b);
+    std::swap(p.first, p.second);
+    p.second -= p.first * (a / b);
+    if (p.first < 0) {
+        p.first += b;
+        p.second -= a;
+    }
+    return p;
+}
+ll mod_inv(ll a, ll mod) noexcept {
+    const PLL p = extGCD(a, mod);
+    assert(p.first * a + p.second * mod == 1);
+    return p.first;
+}
+PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {
+    const PLL p = extGCD(m1, m2);
+    const ll g = p.first * m1 + p.second * m2;
+    const ll l = m1 / g * m2;
+    assert((b2 - b1) % g == 0);
+    const ll x = (b2 - b1) / g * p.first % (m2 / g);
+    return {(x * m1 + b1 + l) % l, l};
+}
+PLL ChineseRemainders(const std::vector<ll>& b, const std::vector<ll>& m) noexcept {
+    PLL res{0, 1};
+    rep (i, b.size()) res = ChineseRemainder(res.first, res.second, b[i], m[i]);
+    return res;
+}
+
 template<class F> class rec_lambda {
   private:
     F f;
