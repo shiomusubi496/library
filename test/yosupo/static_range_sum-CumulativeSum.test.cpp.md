@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -117,7 +117,7 @@ data:
     \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
     \    F op;\n    G e;\n    H inv;\n    int n;\n    std::vector<T> data;\n  public:\n\
     \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) :\
-    \ op([](T a, T b) { return a + b; }), e([]() { return 0; }), inv([](int a) { return\
+    \ op([](T a, T b) { return a + b; }), e([]() { return 0; }), inv([](T a) { return\
     \ -a; }) {\n        init(v);\n    }\n    CumulativeSum(const std::vector<T>& v,\
     \ const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv) {\n        init(v);\n\
     \    }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n    \
@@ -139,8 +139,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-07 08:27:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-07 08:41:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
 layout: document
