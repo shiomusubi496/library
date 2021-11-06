@@ -12,7 +12,7 @@
 "test/aoj/NTL_1_C-LCM.test.cpp": "2021-11-04 13:28:59 +0900",
 "test/yosupo/aplusb.test.cpp": "2021-11-04 12:47:55 +0900",
 "test/yosupo/many_aplusb.test.cpp": "2021-11-04 12:47:55 +0900",
-"test/yosupo/shortest-path.test.cpp": "2021-11-04 22:17:23 +0900",
-"test/yosupo/staticrmq.test.cpp": "2021-11-05 14:36:12 +0900",
+"test/yosupo/shortest_path.test.cpp": "2021-11-06 18:55:11 +0900",
+"test/yosupo/staticrmq-SparseTable.test.cpp": "2021-11-06 18:55:11 +0900",
 "test/yosupo/unionfind.test.cpp": "2021-11-04 22:17:23 +0900"
 }
