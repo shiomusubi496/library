@@ -3,5 +3,5 @@
 using namespace std;
 int main() {
     int N; cin >> N;
-    cout << N << ":" << prime_factor(N) << endl;
+    cout << N << ": " << prime_factor(N) << endl;
 }
