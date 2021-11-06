@@ -1,13 +1,13 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include "../../template.hpp"
-#include "../../segment/DisjointSparseTable.hpp"
+#include "../../segment/CumulativeSum.hpp"
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;
     vector<ll> A(N); cin >> A;
-    DisjointSparseTable<ll> DST(A, [](ll a, ll b) { return a + b; });
+    CumulativeSum<ll> CS(A);
     rep (Q) {
         int l, r; cin >> l >> r;
-        cout << DST.query(l, r) << endl;
+        cout << CS.query(l, r) << endl;
     }
 }
