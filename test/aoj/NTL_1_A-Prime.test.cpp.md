@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
@@ -109,17 +109,17 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 3 \"test/aoj/NTL_1_A-Prime.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int N; cin >> N;\n    cout << N << \":\" << prime_factor(N) << endl;\n}\n"
+    \    int N; cin >> N;\n    cout << N << \": \" << prime_factor(N) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\n#include\
     \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int N; cin >>\
-    \ N;\n    cout << N << \":\" << prime_factor(N) << endl;\n}\n"
+    \ N;\n    cout << N << \": \" << prime_factor(N) << endl;\n}\n"
   dependsOn:
   - template.hpp
   isVerificationFile: true
   path: test/aoj/NTL_1_A-Prime.test.cpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-07 07:18:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_A-Prime.test.cpp
 layout: document

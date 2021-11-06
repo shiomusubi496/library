@@ -58,7 +58,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL_1_A-Prime.test.cpp
   - icon: ':heavy_check_mark:'
@@ -88,9 +88,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -294,7 +294,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-07 00:29:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/NTL_1_C-LCM.test.cpp
