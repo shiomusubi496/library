@@ -34,9 +34,9 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: segment
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment/DisjointSparseTable.hpp
-      title: segment/DisjointSparseTable.hpp
+      title: DisjointSparseTable
     - icon: ':heavy_check_mark:'
       path: segment/SparseTable.hpp
       title: SparseTable
@@ -72,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/NTL_1_A-Prime.test.cpp
       title: test/aoj/NTL_1_A-Prime.test.cpp
     - icon: ':heavy_check_mark:'
@@ -81,6 +81,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL_1_C-LCM.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_E-ExtGCD.test.cpp
+      title: test/aoj/NTL_1_E-ExtGCD.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'
@@ -92,7 +95,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     - icon: ':heavy_check_mark:'
