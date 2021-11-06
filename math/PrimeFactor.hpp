@@ -3,10 +3,10 @@
 #include "../template.hpp"
 
 class PrimeFactor {
- protected:
+  protected:
     ll MAX;
     std::vector<ll> era;
- public:
+  public:
     PrimeFactor(ll _MAX) : MAX(_MAX), era(MAX + 1, -1) {
         rep (i, 2, MAX + 1) {
             if (era[i] != -1) continue;
@@ -25,10 +25,10 @@ class PrimeFactor {
 };
 
 class IsPrime {
- protected:
+  protected:
     ll MAX;
     std::vector<bool> era;
- public:
+  public:
     IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {
         era[0] = era[1] = false;
         rep (i, 2, MAX + 1) {
