@@ -40,6 +40,33 @@ constexpr ll inf = INF<ll>;
 constexpr ld EPS = 1e-8;
 constexpr ld PI = 3.1415926535897932384626;
 
+template<class T, class U> std::ostream& operator<<(std::ostream& ost, const std::pair<T, U>& p) {
+    return ost << p.first << ' ' << p.second;
+}
+template<class T, class U> std::istream& operator<<(std::istream& ist, std::pair<T, U>& p) {
+    return ist >> p.first >> p.second;
+}
+
+template<class Container,
+        std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+auto operator<<(std::ostream& ost, const Container& cont)
+        -> decltype(cont.begin(), cont.end(), ost)
+{
+    for (auto itr = cont.begin(); itr != cont.end(); ++itr) {
+        if (itr != cont.begin()) ost << ' ';
+        ost << *itr;
+    }
+    return ost;
+}
+template<class Container,
+        std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+auto operator>>(std::istream& ist, Container& cont)
+        -> decltype(cont.begin(), cont.end(), ist)
+{
+    for (auto itr = cont.begin(); itr != cont.end(); ++itr) ist >> *itr;
+    return ist;
+}
+
 template<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept {
     if (a > b) {
         a = b;
