@@ -39,3 +39,8 @@ template<class T> class DisjointSparseTable {
         return op(data[d][l], data[d][r]);
     }
 };
+
+/**
+ * @brief DisjointSparseTable
+ * @docs docs/DisjointSparseTable.md
+ */
