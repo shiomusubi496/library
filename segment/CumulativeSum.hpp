@@ -14,7 +14,7 @@ template<class T> class CumulativeSum {
     std::vector<T> data;
   public:
     CumulativeSum() = default;
-    CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }), e([]() { return 0; }), inv([](int a) { return -a; }) {
+    CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }), e([]() { return 0; }), inv([](T a) { return -a; }) {
         init(v);
     }
     CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv) {
