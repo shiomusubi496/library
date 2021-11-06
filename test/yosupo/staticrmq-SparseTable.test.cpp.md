@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -17,13 +17,14 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
     links:
     - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"test/yosupo/staticrmq.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\
-    \n#line 2 \"segment/SparseTable.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
-    \n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for\
-    \ (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\
-    \nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
-    using PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
+  bundledCode: "#line 1 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/staticrmq\"\n#line 2 \"segment/SparseTable.hpp\"\
+    \n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for\
+    \ (int i = 0; i < (int)(n); ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1;\
+    \ i >= 0; --i)\n#define all(v) (v).begin(), (v).end()\n\nusing ll = long long;\n\
+    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
+    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\n\ntemplate<class T> constexpr T INF = std::numeric_limits<T>::max()\
     \ / 2;\nconstexpr ll inf = INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI\
     \ = 3.1415926535897932384626;\n\ntemplate<class T, class U> inline constexpr bool\
     \ chmin(T &a, const U &b) noexcept {\n    if (a > b) {\n        a = b;\n     \
@@ -75,38 +76,37 @@ data:
     \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
     \ = default;\n    SparseTable(const std::vector<T>& v, const F& _op) : op(_op)\
     \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
-    \ << h) + 1, 0);\n        for (int i = 2; i <= (1 << h); i++) logtable[i] = logtable[i\
+    \ << h) + 1, 0);\n        for (int i = 2; i <= (1 << h); ++i) logtable[i] = logtable[i\
     \ >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1 << h));\n        rep\
     \ (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n            rep (j,\
     \ (1 << h) - (1 << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j\
     \ + (1 << i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n\
     \        assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r\
     \ - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n\
-    /**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 3 \"test/yosupo/staticrmq.test.cpp\"\
+    /**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 3 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
     \ A(N);\n    for (auto&& i : A) cin >> i;\n    SparseTable<int> ST(A, [](int a,\
-    \ int b) -> int { return min(a, b); });\n    vector<int> res;\n    rep (i, Q)\
-    \ {\n        int l, r; cin >> l >> r;\n        cout << ST.query(l, r) << endl;\n\
-    \    }\n}\n"
+    \ int b) -> int { return min(a, b); });\n    rep (i, Q) {\n        int l, r; cin\
+    \ >> l >> r;\n        cout << ST.query(l, r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../segment/SparseTable.hpp\"\nusing namespace std;\nint main() {\n    int N,\
     \ Q; cin >> N >> Q;\n    vector<int> A(N);\n    for (auto&& i : A) cin >> i;\n\
     \    SparseTable<int> ST(A, [](int a, int b) -> int { return min(a, b); });\n\
-    \    vector<int> res;\n    rep (i, Q) {\n        int l, r; cin >> l >> r;\n  \
-    \      cout << ST.query(l, r) << endl;\n    }\n}\n"
+    \    rep (i, Q) {\n        int l, r; cin >> l >> r;\n        cout << ST.query(l,\
+    \ r) << endl;\n    }\n}\n"
   dependsOn:
   - segment/SparseTable.hpp
   - template.hpp
   isVerificationFile: true
-  path: test/yosupo/staticrmq.test.cpp
+  path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-05 14:36:12+09:00'
+  timestamp: '2021-11-06 18:55:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/staticrmq.test.cpp
+documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/staticrmq.test.cpp
-- /verify/test/yosupo/staticrmq.test.cpp.html
-title: test/yosupo/staticrmq.test.cpp
+- /verify/test/yosupo/staticrmq-SparseTable.test.cpp
+- /verify/test/yosupo/staticrmq-SparseTable.test.cpp.html
+title: test/yosupo/staticrmq-SparseTable.test.cpp
 ---

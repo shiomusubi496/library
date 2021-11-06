@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -23,7 +23,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/yosupo/shortest-path.test.cpp\"\n#define PROBLEM \"\
+  bundledCode: "#line 1 \"test/yosupo/shortest_path.test.cpp\"\n#define PROBLEM \"\
     https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"template.hpp\"\n\n\
     #include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n\
     #define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(),\
@@ -126,7 +126,7 @@ data:
     \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
     \                que.push(e.to);\n            }\n        }\n    }\n    return\
     \ bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
-    \ */\n#line 6 \"test/yosupo/shortest-path.test.cpp\"\nusing namespace std;\nint\
+    \ */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
     \    rep (i, M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
     \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
@@ -152,15 +152,15 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/Restore.hpp
   isVerificationFile: true
-  path: test/yosupo/shortest-path.test.cpp
+  path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-04 22:17:23+09:00'
+  timestamp: '2021-11-06 18:55:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/shortest-path.test.cpp
+documentation_of: test/yosupo/shortest_path.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/shortest-path.test.cpp
-- /verify/test/yosupo/shortest-path.test.cpp.html
-title: test/yosupo/shortest-path.test.cpp
+- /verify/test/yosupo/shortest_path.test.cpp
+- /verify/test/yosupo/shortest_path.test.cpp.html
+title: test/yosupo/shortest_path.test.cpp
 ---

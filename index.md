@@ -34,12 +34,15 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: segment
     pages:
+    - icon: ':x:'
+      path: segment/DisjointSparseTable.hpp
+      title: segment/DisjointSparseTable.hpp
     - icon: ':heavy_check_mark:'
       path: segment/SparseTable.hpp
       title: SparseTable
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -87,11 +90,14 @@ data:
       path: test/yosupo/many_aplusb.test.cpp
       title: test/yosupo/many_aplusb.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/shortest-path.test.cpp
-      title: test/yosupo/shortest-path.test.cpp
+      path: test/yosupo/shortest_path.test.cpp
+      title: test/yosupo/shortest_path.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+      title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/staticrmq.test.cpp
-      title: test/yosupo/staticrmq.test.cpp
+      path: test/yosupo/staticrmq-SparseTable.test.cpp
+      title: test/yosupo/staticrmq-SparseTable.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp

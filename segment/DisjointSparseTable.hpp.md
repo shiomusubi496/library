@@ -6,22 +6,20 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-SparseTable.test.cpp
-    title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SparseTable.md
-    document_title: SparseTable
     links: []
-  bundledCode: "#line 2 \"segment/SparseTable.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n); ++i)\n\
-    #define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v) (v).begin(),\
-    \ (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld\
-    \ = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique\
-    \ = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
+  bundledCode: "#line 2 \"segment/DisjointSparseTable.hpp\"\n\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#define rep(i, n) for (int i = 0; i < (int)(n);\
+    \ ++i)\n#define rrep(i, n) for (int i = (int)(n) - 1; i >= 0; --i)\n#define all(v)\
+    \ (v).begin(), (v).end()\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
+    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using\
+    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
     \ T> constexpr T INF = std::numeric_limits<T>::max() / 2;\nconstexpr ll inf =\
     \ INF<ll>;\nconstexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\
     \ntemplate<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept\
@@ -69,59 +67,53 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable {\n  protected:\n\
-    \    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int>\
-    \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
-    \ = default;\n    SparseTable(const std::vector<T>& v, const F& _op) : op(_op)\
-    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
-    \ << h) + 1, 0);\n        for (int i = 2; i <= (1 << h); ++i) logtable[i] = logtable[i\
-    \ >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1 << h));\n        rep\
-    \ (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n            rep (j,\
-    \ (1 << h) - (1 << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j\
-    \ + (1 << i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n\
-    \        assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r\
-    \ - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n\
-    /**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class SparseTable\
+    \ 4 \"segment/DisjointSparseTable.hpp\"\n\ntemplate<class T> class DisjointSparseTable\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
-    \    SparseTable() = default;\n    SparseTable(const std::vector<T>& v, const\
-    \ F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
-    \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        for (int i = 2; i <=\
-    \ (1 << h); ++i) logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h +\
-    \ 1, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i] = v[i];\n\
-    \        rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n          \
-    \      data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
-    \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= (1 << h));\n        int d = logtable[r - l];\n        return op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
-    \ */\n"
+    \    DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
+    \ v, const F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ ++h;\n        logtable.resize(1 << h, 0);\n        for (int i = 2; i < (1 <<\
+    \ h); ++i) logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h, std::vector<T>(1\
+    \ << h));\n        rep (i, h) {\n            int len = 1 << i;\n            for\
+    \ (int j = len; j < v.size(); j += (len << 1)) {\n                data[i][j -\
+    \ 1] = v[j - 1];\n                for (int k = 1; k < len; ++k) data[i][j - k\
+    \ - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                for (int k = 1; k < len; ++k) {\n                    if (j +\
+    \ k >= v.size()) break;\n                    data[i][j + k] = op(data[i][j + k\
+    \ - 1], v[j + k]);\n                }\n            }\n        }\n    }\n    T\
+    \ query(int l, int r) {\n        assert(0 <= l && l < r && r <= (1 << h));\n \
+    \       --r;\n        if (l == r) return data[0][l];\n        int d = logtable[l\
+    \ ^ r];\n        return op(data[d][l], data[d][r]);\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class DisjointSparseTable\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
+    \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
+    \    DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
+    \ v, const F& _op) : op(_op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ ++h;\n        logtable.resize(1 << h, 0);\n        for (int i = 2; i < (1 <<\
+    \ h); ++i) logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h, std::vector<T>(1\
+    \ << h));\n        rep (i, h) {\n            int len = 1 << i;\n            for\
+    \ (int j = len; j < v.size(); j += (len << 1)) {\n                data[i][j -\
+    \ 1] = v[j - 1];\n                for (int k = 1; k < len; ++k) data[i][j - k\
+    \ - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                for (int k = 1; k < len; ++k) {\n                    if (j +\
+    \ k >= v.size()) break;\n                    data[i][j + k] = op(data[i][j + k\
+    \ - 1], v[j + k]);\n                }\n            }\n        }\n    }\n    T\
+    \ query(int l, int r) {\n        assert(0 <= l && l < r && r <= (1 << h));\n \
+    \       --r;\n        if (l == r) return data[0][l];\n        int d = logtable[l\
+    \ ^ r];\n        return op(data[d][l], data[d][r]);\n    }\n};\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
-  path: segment/SparseTable.hpp
+  path: segment/DisjointSparseTable.hpp
   requiredBy: []
   timestamp: '2021-11-06 18:55:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-documentation_of: segment/SparseTable.hpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+documentation_of: segment/DisjointSparseTable.hpp
 layout: document
 redirect_from:
-- /library/segment/SparseTable.hpp
-- /library/segment/SparseTable.hpp.html
-title: SparseTable
+- /library/segment/DisjointSparseTable.hpp
+- /library/segment/DisjointSparseTable.hpp.html
+title: segment/DisjointSparseTable.hpp
 ---
-## 概要
-
-区間最小値/最大値などの区間に対するクエリを扱える。ただし、二項演算子 $\cdot$ は以下の条件を満たす必要がある。
-
-- 結合則 : 任意の $A, B, C$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 冪等性 : 任意の $A$ に対して $A \cdot A = A$
-
-例えば、 `max, min, gcd, lcm` などがこの条件を満たす。
-
-以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
-
-- `SparseTable(vector<int> a, function<T(T, T)> op)` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
-- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
@@ -35,8 +35,8 @@ data:
     path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest-path.test.cpp
-    title: test/yosupo/shortest-path.test.cpp
+    path: test/yosupo/shortest_path.test.cpp
+    title: test/yosupo/shortest_path.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -175,7 +175,7 @@ data:
   - test/aoj/ALDS1_11_C-BFS.test.cpp
   - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL_1_B-BellmanFord.test.cpp
-  - test/yosupo/shortest-path.test.cpp
+  - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document
 redirect_from:
