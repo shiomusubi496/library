@@ -30,6 +30,9 @@ data:
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
+      path: math/EulerPhi.hpp
+      title: math/EulerPhi.hpp
+    - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: segment
@@ -84,6 +87,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL_1_C-LCM.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL_1_D-Phi.test.cpp
+      title: test/aoj/NTL_1_D-Phi.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_E-ExtGCD.test.cpp
       title: test/aoj/NTL_1_E-ExtGCD.test.cpp

@@ -25,6 +25,9 @@ data:
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
   - icon: ':heavy_check_mark:'
+    path: math/EulerPhi.hpp
+    title: math/EulerPhi.hpp
+  - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
@@ -70,6 +73,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL_1_C-LCM.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL_1_E-ExtGCD.test.cpp
@@ -296,6 +302,7 @@ data:
   - segment/SparseTable.hpp
   - segment/DisjointSparseTable.hpp
   - math/PrimeFactor.hpp
+  - math/EulerPhi.hpp
   - graph/UnionFind.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/BellmanFord.hpp
@@ -315,6 +322,7 @@ data:
   - test/aoj/NTL_1_B-Pow.test.cpp
   - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  - test/aoj/NTL_1_D-Phi.test.cpp
   - test/aoj/ALDS1_1_B-GCD.test.cpp
   - test/aoj/DSL_1_A-UF.test.cpp
   - test/aoj/GRL_1_B-BellmanFord.test.cpp

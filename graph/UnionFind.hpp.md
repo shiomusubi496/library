@@ -112,44 +112,44 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n    int _n;\n\
-    \    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0) {}\n\
-    \    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n    \
-    \    assert(0 <= x && x < _n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
+    \ 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n    int n;\n \
+    \   std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0) {}\n\
+    \    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n     \
+    \   assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x] =\
+    \ find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
     \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
     \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
     \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
     \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(_n);\n        rep(i, _n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \ res(n);\n        rep(i, n) res[find(i)].push_back(i);\n        res.erase(\n\
     \            remove_if(res.begin(), res.end(),\n                      [](const\
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
+    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
     \ * @docs docs/UnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
-    \    int _n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
-    \ {}\n    UnionFind(int n) : _n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
-    \        assert(0 <= x && x < _n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
+    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
+    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
+    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
     \ = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
     \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
     \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
     \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
     \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
     \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(_n);\n        rep(i, _n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \ res(n);\n        rep(i, n) res[find(i)].push_back(i);\n        res.erase(\n\
     \            remove_if(res.begin(), res.end(),\n                      [](const\
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < _n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
+    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
     \ * @docs docs/UnionFind.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: graph/UnionFind.hpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
+  timestamp: '2021-11-07 09:36:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL_1_A-UF.test.cpp

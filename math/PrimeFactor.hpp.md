@@ -111,39 +111,39 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
     \ 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor {\n  protected:\n    ll MAX;\n\
-    \    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) : MAX(_MAX), era(MAX\
+    \    std::vector<ll> era;\n  public:\n    PrimeFactor(ll MAX) : MAX(MAX), era(MAX\
     \ + 1, -1) {\n        rep (i, 2, MAX + 1) {\n            if (era[i] != -1) continue;\n\
     \            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n    }\n    bool is_prime(ll\
     \ x) {\n        return era[x] == x;\n    }\n    std::vector<ll> factorize(ll x)\
     \ {\n        std::vector<ll> res;\n        for (; x > 1; x /= era[x]) res.push_back(x);\n\
     \        reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\n\
     class IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool> era;\n  public:\n\
-    \    IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {\n        era[0] = era[1]\
+    \    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0] = era[1]\
     \ = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n\
     \            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n  \
     \  bool is_prime(ll x) {\n        return era[x];\n    }\n};\n\n/**\n * @brief\
     \ PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs\
     \ docs/PrimeFactor.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass PrimeFactor {\n  protected:\n\
-    \    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll _MAX) :\
-    \ MAX(_MAX), era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n            if\
-    \ (era[i] != -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n \
-    \       }\n    }\n    bool is_prime(ll x) {\n        return era[x] == x;\n   \
-    \ }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n   \
-    \     for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
-    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll _MAX) : MAX(_MAX),\
-    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX\
-    \ + 1) {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX +\
-    \ 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n       \
-    \ return era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n"
+    \    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n            if (era[i] !=\
+    \ -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n \
+    \   }\n    bool is_prime(ll x) {\n        return era[x] == x;\n    }\n    std::vector<ll>\
+    \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
+    \ era[x]) res.push_back(x);\n        reverse(res.begin(), res.end());\n      \
+    \  return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
+    \ era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n    \
+    \    era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i])\
+    \ continue;\n            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n\
+    \    }\n    bool is_prime(ll x) {\n        return era[x];\n    }\n};\n\n/**\n\
+    \ * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
+    )\n * @docs docs/PrimeFactor.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
+  timestamp: '2021-11-07 09:36:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
