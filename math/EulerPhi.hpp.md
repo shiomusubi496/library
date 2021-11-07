@@ -13,6 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/EulerPhi.md
+    document_title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     links: []
   bundledCode: "#line 2 \"math/EulerPhi.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
     \n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
@@ -116,7 +118,8 @@ data:
     \        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n    \
     \        rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i\
     \ - 1);\n            }\n        }\n    }\n    ll phi(ll x) {\n        return data[x];\n\
-    \    }\n};\n"
+    \    }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
+    \u6570)\n * @docs docs/EulerPhi.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\nll euler_phi(ll n) {\n  \
     \  ll res = n;\n    for (ll i = 2; i * i <= n; ++i) {\n        if (n % i == 0)\
     \ {\n            res = res / i * (i - 1);\n            while (n % i == 0) n /=\
@@ -126,13 +129,14 @@ data:
     \ MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i]\
     \ != i) continue;\n            rep (j, i, MAX + 1, i) {\n                data[j]\
     \ = data[j] / i * (i - 1);\n            }\n        }\n    }\n    ll phi(ll x)\
-    \ {\n        return data[x];\n    }\n};\n"
+    \ {\n        return data[x];\n    }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\
+    \u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: math/EulerPhi.hpp
   requiredBy: []
-  timestamp: '2021-11-07 09:36:14+09:00'
+  timestamp: '2021-11-07 09:53:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/NTL_1_D-Phi.test.cpp
@@ -141,5 +145,15 @@ layout: document
 redirect_from:
 - /library/math/EulerPhi.hpp
 - /library/math/EulerPhi.hpp.html
-title: math/EulerPhi.hpp
+title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
 ---
+## 概要
+
+オイラーの $\phi$ 関数。読み方はトーシェント、ファイなど。
+
+- `ll euler_phi(ll N)` : $\phi(N)$ を返す。 $O(\sqrt N)$ 。
+
+また、エラトステネスの篩を応用して、多くのクエリに効率よく答えることもできる。
+
+- `EulerPhi(ll N)` : `N` 以下の $\phi$ 関数のテーブルを作る。 $O(N\log\log N)$ 。
+- `ll phi(ll x)` : $\phi(x)$ を返す。 $O(1)$ 。

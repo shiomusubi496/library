@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
-    title: math/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
@@ -120,9 +120,10 @@ data:
     \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
     \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
     \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
-    \    ll phi(ll x) {\n        return data[x];\n    }\n};\n#line 4 \"test/aoj/NTL_1_D-Phi.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N)\
-    \ << endl;\n}\n"
+    \    ll phi(ll x) {\n        return data[x];\n    }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
+    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n\
+    #line 4 \"test/aoj/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
     \ \"../../template.hpp\"\n#include \"../../math/EulerPhi.hpp\"\nusing namespace\
     \ std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n\
@@ -133,7 +134,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2021-11-07 09:36:14+09:00'
+  timestamp: '2021-11-07 09:53:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_D-Phi.test.cpp
