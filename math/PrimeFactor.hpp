@@ -7,7 +7,7 @@ class PrimeFactor {
     ll MAX;
     std::vector<ll> era;
   public:
-    PrimeFactor(ll _MAX) : MAX(_MAX), era(MAX + 1, -1) {
+    PrimeFactor(ll MAX) : MAX(MAX), era(MAX + 1, -1) {
         rep (i, 2, MAX + 1) {
             if (era[i] != -1) continue;
             rep (j, i, MAX + 1, i) era[j] = i;
@@ -29,7 +29,7 @@ class IsPrime {
     ll MAX;
     std::vector<bool> era;
   public:
-    IsPrime(ll _MAX) : MAX(_MAX), era(MAX + 1, true) {
+    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {
         era[0] = era[1] = false;
         rep (i, 2, MAX + 1) {
             if (!era[i]) continue;

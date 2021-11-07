@@ -4,13 +4,13 @@
 
 class UnionFind {
   protected:
-    int _n;
+    int n;
     std::vector<int> par_vec;
   public:
     UnionFind() : UnionFind(0) {}
-    UnionFind(int n) : _n(n), par_vec(n, -1) {}
+    UnionFind(int n) : n(n), par_vec(n, -1) {}
     int find(int x) {
-        assert(0 <= x && x < _n);
+        assert(0 <= x && x < n);
         return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);
     }
     bool merge(int x, int y) {
@@ -29,8 +29,8 @@ class UnionFind {
         return -par_vec[find(x)];
     }
     std::vector<std::vector<int>> groups() {
-        std::vector<std::vector<int>> res(_n);
-        rep(i, _n) res[find(i)].push_back(i);
+        std::vector<std::vector<int>> res(n);
+        rep(i, n) res[find(i)].push_back(i);
         res.erase(
             remove_if(res.begin(), res.end(),
                       [](const std::vector<int>& v) { return v.empty(); }),
@@ -38,7 +38,7 @@ class UnionFind {
         return res;
     }
     bool is_root(int x) const {
-        assert(0 <= x && x < _n);
+        assert(0 <= x && x < n);
         return par_vec[x] < 0;
     }
 };
