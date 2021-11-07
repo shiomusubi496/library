@@ -83,31 +83,31 @@ data:
     \ {\n    const PLL p = extGCD(a, mod);\n    assert(p.first * a + p.second * mod\
     \ == 1);\n    return p.first;\n}\nPLL ChineseRemainder(ll b1, ll m1, ll b2, ll\
     \ m2) noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first\
-    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    assert((b2 - b1) %\
-    \ g == 0);\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n    return {(x\
-    \ * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>& b,\
-    \ const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size())\
-    \ res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n    return res;\n\
-    }\n\ntemplate<class F> class rec_lambda {\n  private:\n    F f;\n  public:\n \
-    \   explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args> constexpr auto operator()(Args&&... args) const {\n        return f(*this,\
-    \ std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class T, class Arg> constexpr\
-    \ std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n\
-    }\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&... args)\
-    \ {\n    return std::vector<decltype(make_vec<T>(args...))>\n               (n,\
-    \ make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
-    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
-    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
-    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if((b2 - b1) % g !=\
+    \ 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n\
+    \    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>&\
+    \ b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size())\
+    \ {\n        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n    \
+    \    if (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
+    \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
+    \ constexpr auto operator()(Args&&... args) const {\n        return f(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
+    \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
+    \ Args> constexpr auto make_vec(int n, Args&&... args) {\n    return std::vector<decltype(make_vec<T>(args...))>\n\
+    \               (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline constexpr\
+    \ int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
+    #endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int\
+    \ build() {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_A-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-07 00:29:07+09:00'
+  timestamp: '2021-11-07 11:07:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_A-Dijkstra.test.cpp
