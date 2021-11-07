@@ -32,3 +32,8 @@ class EulerPhi {
         return data[x];
     }
 };
+
+/**
+ * @brief Euler's-Phi(オイラーのφ関数)
+ * @docs docs/EulerPhi.md
+ */
