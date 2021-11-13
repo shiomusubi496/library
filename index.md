@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/UnionFind.hpp
       title: UnionFind
   - name: graph/shortest-path
@@ -29,13 +29,13 @@ data:
         \u6CD5)"
   - name: math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -46,10 +46,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: segment/SparseTable.hpp
       title: SparseTable
   - name: .
@@ -82,19 +82,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_A.test.cpp
       title: test/aoj/DPL/DPL_5_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_B.test.cpp
       title: test/aoj/DPL/DPL_5_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_C.test.cpp
       title: test/aoj/DPL/DPL_5_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_D.test.cpp
       title: test/aoj/DPL/DPL_5_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_E.test.cpp
       title: test/aoj/DPL/DPL_5_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_F.test.cpp
       title: test/aoj/DPL/DPL_5_F.test.cpp
   - name: test/aoj/GRL
@@ -142,13 +142,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage

@@ -107,11 +107,11 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/NTL/NTL_1_C-LCM.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int n; cin >> n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n\
-    \        l = lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 3 \"test/aoj/NTL/NTL_1_C-LCM.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int n; cin >> n;\n    int l = 1;\n    rep (n) {\n        int\
+    \ a; cin >> a;\n        l = lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\n#include\
     \ \"../../../template.hpp\"\nusing namespace std;\nint main() {\n    int n; cin\
     \ >> n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n        l =\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:29:08+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL/NTL_1_C-LCM.test.cpp

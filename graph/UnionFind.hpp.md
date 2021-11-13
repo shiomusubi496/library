@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DLS/DSL_1_A-UF.test.cpp
     title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
@@ -110,13 +110,13 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n    int n;\n \
-    \   std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0) {}\n\
-    \    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n     \
-    \   assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x] =\
-    \ find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
+    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
+    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
+    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
+    \ = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
     \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
     \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
     \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
@@ -149,8 +149,8 @@ data:
   isVerificationFile: false
   path: graph/UnionFind.hpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-13 20:58:10+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
   - test/yosupo/unionfind.test.cpp

@@ -110,21 +110,22 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/EulerPhi.hpp\"\n\n#line 4 \"math/EulerPhi.hpp\"\n\nll euler_phi(ll\
-    \ n) {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i) {\n        if (n\
-    \ % i == 0) {\n            res = res / i * (i - 1);\n            while (n % i\
-    \ == 0) n /= i;\n        }\n    }\n    if (n != 1) res = res / n * (n - 1);\n\
-    \    return res;\n}\n\nclass EulerPhi {\n  protected:\n    ll MAX;\n    std::vector<ll>\
-    \ data;\n  public:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n    \
-    \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
-    \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
-    \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
-    \    ll phi(ll x) {\n        return data[x];\n    }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
-    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n\
-    #line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n}\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"math/EulerPhi.hpp\"\n\n#line 4 \"math/EulerPhi.hpp\"\n\n\
+    ll euler_phi(ll n) {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i) {\n\
+    \        if (n % i == 0) {\n            res = res / i * (i - 1);\n           \
+    \ while (n % i == 0) n /= i;\n        }\n    }\n    if (n != 1) res = res / n\
+    \ * (n - 1);\n    return res;\n}\n\nclass EulerPhi {\n  protected:\n    ll MAX;\n\
+    \    std::vector<ll> data;\n  public:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX\
+    \ + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1)\
+    \ {\n            if (data[i] != i) continue;\n            rep (j, i, MAX + 1,\
+    \ i) {\n                data[j] = data[j] / i * (i - 1);\n            }\n    \
+    \    }\n    }\n    ll phi(ll x) {\n        return data[x];\n    }\n};\n\n/**\n\
+    \ * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs\
+    \ docs/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N)\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
     \ \"../../../template.hpp\"\n#include \"../../../math/EulerPhi.hpp\"\nusing namespace\
     \ std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n\
@@ -135,7 +136,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:29:08+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp

@@ -107,12 +107,12 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n; cin >> n;\n    int ans = 0;\n    rep (n) {\n        int\
-    \ a; cin >> a;\n        if (is_prime(a)) ans++;\n    }\n    cout << ans << endl;\n\
-    }\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 3 \"test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n; cin >> n;\n    int ans = 0;\n    rep (n) {\n\
+    \        int a; cin >> a;\n        if (is_prime(a)) ans++;\n    }\n    cout <<\
+    \ ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../template.hpp\"\nusing namespace std;\nint main() {\n    int\
     \ n; cin >> n;\n    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n  \
@@ -122,7 +122,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:29:08+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp

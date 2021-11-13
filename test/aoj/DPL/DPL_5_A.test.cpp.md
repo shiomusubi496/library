@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -109,13 +109,13 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\n\
-    class StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
-    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
-    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
-    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
     \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
     \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
     \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
@@ -145,29 +145,30 @@ data:
     \       val -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n\
     \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val\
     \ *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
-    \ StaticModInt& other) {\n        (val *= other.inv()) %= mod;\n        return\
-    \ *this;\n    }\n    friend StaticModInt operator+(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt operator*(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt\
-    \ operator+() const {\n        return StaticModInt(*this);\n    }\n    StaticModInt\
-    \ operator-() const {\n        return StaticModInt(0) - *this;\n    }\n    StaticModInt\
-    \ pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n        while (a)\
-    \ {\n            if (a & 1) res *= v;\n            a >>= 1;\n            v *=\
-    \ v;\n        }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
-    \ std::istream& operator>>(std::istream& ist, StaticModInt& sm) {\n        return\
-    \ ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\ntemplate<ll mod> constexpr\
-    \ ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv998244353\
-    \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
-    \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
-    \ {\n  protected:\n    ll val;\n    static ll mod;\n  public:\n    DynamicModInt()\
-    \ : DynamicModInt(0) {}\n    template<class T, std::enable_if_t<std::is_integral<T>::value>*\
-    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
-    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
+    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
+    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
+    \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
+    \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr>\
+    \ DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val < 0) val\
+    \ += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
     \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
     \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
     \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
@@ -183,10 +184,10 @@ data:
     \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
     \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
     \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
-    \ DynamicModInt& other) {\n        (val *= other.inv()) %= mod;\n        return\
-    \ *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt& lhs,\
-    \ const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n   \
-    \ }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
     \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
     \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
     \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
@@ -213,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:49:01+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_A.test.cpp

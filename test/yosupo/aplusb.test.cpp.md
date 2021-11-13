@@ -106,10 +106,10 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/yosupo/aplusb.test.cpp\"\nusing namespace std;\nint main() {\n    int\
-    \ a, b;\n    cin >> a >> b;\n    cout << a + b << endl;\n}\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 3 \"test/yosupo/aplusb.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int a, b;\n    cin >> a >> b;\n    cout << a + b << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"../../template.hpp\"\
     \nusing namespace std;\nint main() {\n    int a, b;\n    cin >> a >> b;\n    cout\
     \ << a + b << endl;\n}\n"
@@ -118,7 +118,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/aplusb.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/aplusb.test.cpp

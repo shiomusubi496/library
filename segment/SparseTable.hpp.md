@@ -6,12 +6,12 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
@@ -108,21 +108,22 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable {\n  protected:\n\
-    \    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int>\
-    \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
-    \ = default;\n    SparseTable(const std::vector<T>& v, const F& op) : op(op) {\n\
-    \        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.resize(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
-    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
-    \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
-    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
-    \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 4 \"segment/SparseTable.hpp\"\n\ntemplate<class T> class SparseTable\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
+    \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
+    \    SparseTable() = default;\n    SparseTable(const std::vector<T>& v, const\
+    \ F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
+    \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        reps (i, 1, 1 << h)\
+    \ logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1\
+    \ << h));\n        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n\
+    \            rep (j, (1 << h) - (1 << i)) {\n                data[i + 1][j] =\
+    \ op(data[i][j], data[i][j + (1 << i)]);\n            }\n        }\n    }\n  \
+    \  T query(int l, int r) {\n        assert(0 <= l && l < r && r <= (1 << h));\n\
+    \        int d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1\
+    \ << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class SparseTable\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
@@ -142,8 +143,8 @@ data:
   isVerificationFile: false
   path: segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-13 20:58:10+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp
 documentation_of: segment/SparseTable.hpp

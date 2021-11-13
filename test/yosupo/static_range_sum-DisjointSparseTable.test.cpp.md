@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':question:'
@@ -110,9 +110,9 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"segment/DisjointSparseTable.hpp\"\n\n#line 4 \"segment/DisjointSparseTable.hpp\"\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"segment/DisjointSparseTable.hpp\"\n\n#line 4 \"segment/DisjointSparseTable.hpp\"\
     \n\ntemplate<class T> class DisjointSparseTable {\n  protected:\n    using F =\
     \ std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n\
     \    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable() =\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp

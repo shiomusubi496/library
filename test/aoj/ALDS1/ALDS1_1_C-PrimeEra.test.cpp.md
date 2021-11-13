@@ -110,26 +110,26 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/PrimeFactor.hpp\"\n\n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor\
-    \ {\n  protected:\n    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll\
-    \ MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n       \
-    \     if (era[i] != -1) continue;\n            rep (j, i, MAX + 1, i) era[j] =\
-    \ i;\n        }\n    }\n    bool is_prime(ll x) {\n        return era[x] == x;\n\
-    \    }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n\
-    \        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
-    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX),\
-    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX\
-    \ + 1) {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX +\
-    \ 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n       \
-    \ return era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"\
-    test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans = 0;\n\
-    \    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n\
-    \    }\n    cout << ans << endl;\n}\n"
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"math/PrimeFactor.hpp\"\n\n#line 4 \"math/PrimeFactor.hpp\"\
+    \n\nclass PrimeFactor {\n  protected:\n    ll MAX;\n    std::vector<ll> era;\n\
+    \  public:\n    PrimeFactor(ll MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep\
+    \ (i, 2, MAX + 1) {\n            if (era[i] != -1) continue;\n            rep\
+    \ (j, i, MAX + 1, i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) {\n\
+    \        return era[x] == x;\n    }\n    std::vector<ll> factorize(ll x) {\n \
+    \       std::vector<ll> res;\n        for (; x > 1; x /= era[x]) res.push_back(x);\n\
+    \        reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\n\
+    class IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool> era;\n  public:\n\
+    \    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0] = era[1]\
+    \ = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n\
+    \            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n  \
+    \  bool is_prime(ll x) {\n        return era[x];\n    }\n};\n\n/**\n * @brief\
+    \ PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs\
+    \ docs/PrimeFactor.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
+    \    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
+    \ ans++;\n    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
     \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
@@ -141,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:29:08+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

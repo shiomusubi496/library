@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_D
@@ -112,13 +112,13 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\n\
-    class StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
-    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
-    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
-    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
     \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
     \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
     \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
@@ -148,29 +148,30 @@ data:
     \       val -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n\
     \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val\
     \ *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
-    \ StaticModInt& other) {\n        (val *= other.inv()) %= mod;\n        return\
-    \ *this;\n    }\n    friend StaticModInt operator+(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt operator*(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt\
-    \ operator+() const {\n        return StaticModInt(*this);\n    }\n    StaticModInt\
-    \ operator-() const {\n        return StaticModInt(0) - *this;\n    }\n    StaticModInt\
-    \ pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n        while (a)\
-    \ {\n            if (a & 1) res *= v;\n            a >>= 1;\n            v *=\
-    \ v;\n        }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
-    \ std::istream& operator>>(std::istream& ist, StaticModInt& sm) {\n        return\
-    \ ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\ntemplate<ll mod> constexpr\
-    \ ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv998244353\
-    \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
-    \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
-    \ {\n  protected:\n    ll val;\n    static ll mod;\n  public:\n    DynamicModInt()\
-    \ : DynamicModInt(0) {}\n    template<class T, std::enable_if_t<std::is_integral<T>::value>*\
-    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
-    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
+    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
+    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
+    \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
+    \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr>\
+    \ DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val < 0) val\
+    \ += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
     \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
     \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
     \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
@@ -186,10 +187,10 @@ data:
     \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
     \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
     \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
-    \ DynamicModInt& other) {\n        (val *= other.inv()) %= mod;\n        return\
-    \ *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt& lhs,\
-    \ const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n   \
-    \ }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
     \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
     \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
     \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
@@ -204,7 +205,7 @@ data:
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
     \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
     \ void init(ll n) {\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
     \ <= n) factorial.push_back(factorial.back() * factorial.size());\n    }\n   \
@@ -214,30 +215,30 @@ data:
     \ static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n    \
     \    init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
     \    }\n    static T homo(ll n, ll r) {\n        return comb(n + r - 1, r);\n\
-    \    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial = std::vector<T>(1,\
-    \ 1);\n\ntemplate<class T, std::enable_if_t<is_ModInt<T>::value>* = nullptr> class\
-    \ ModCombinatorics : Combinatorics<T> {};\n\ntemplate<class T> class ModCombinatorics<T>\
-    \ : public Combinatorics<T> {\n  protected:\n    using Combinatorics<T>::factorial;\n\
-    \    static std::vector<T> factinv;\n  public:\n    static void init(ll n) {\n\
-    \        int b = factorial.size();\n        if (n < b) return;\n        Combinatorics<T>::init(n);\n\
-    \        factinv.resize(n + 1);\n        factinv[n] = factorial[n].inv();\n  \
-    \      rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
-    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n   \
-    \     return comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T>\
-    \ ModCombinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n\
-    \ * @docs docs/Combinatorics\n */\n#line 5 \"test/aoj/DPL/DPL_5_D.test.cpp\"\n\
-    using namespace std;\nusing mint = modint1000000007;\nusing comb = ModCombinatorics<mint>;\n\
-    int main() {\n    ll n, k; cin >> n >> k;\n    cout << comb::homo(k, n) << endl;\n\
-    }\n"
+    \    }\n};\n\ntemplate<class T> std::vector<T> IntCombinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\n  protected:\n\
+    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n  public:\n\
+    \    static void init(ll n) {\n        int b = factorial.size();\n        if (n\
+    \ < b) return;\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
+    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n        factinv.resize(n\
+    \ + 1);\n        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
+    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
+    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
+    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
+    \ + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T> std::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
+    \ */\n#line 5 \"test/aoj/DPL/DPL_5_D.test.cpp\"\nusing namespace std;\nusing mint\
+    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
+    \ n, k; cin >> n >> k;\n    cout << comb::homo(k, n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_D\"\n#include\
     \ \"../../../template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include \"\
     ../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = ModCombinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
+    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
     \    cout << comb::homo(k, n) << endl;\n}\n"
   dependsOn:
   - template.hpp
@@ -246,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_D.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 18:49:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-13 20:58:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_D.test.cpp
 layout: document

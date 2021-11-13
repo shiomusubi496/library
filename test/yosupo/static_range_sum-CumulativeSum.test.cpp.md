@@ -110,10 +110,10 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"segment/CumulativeSum.hpp\"\n\n#line 4 \"segment/CumulativeSum.hpp\"\n\n\
-    template<class T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T,\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 2 \"segment/CumulativeSum.hpp\"\n\n#line 4 \"segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
     \    F op;\n    G e;\n    H inv;\n    int n;\n    std::vector<T> data;\n  public:\n\
     \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) :\
@@ -139,7 +139,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp

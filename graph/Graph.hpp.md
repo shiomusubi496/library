@@ -135,14 +135,14 @@ data:
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
-    \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1), to(t), cost(c)\
-    \ {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n    edge(int f,\
-    \ int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator int() {\
-    \ return to; }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    \    }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge\
+    \ {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1)\
+    \ {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
+    \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
+    \    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator\
+    \ int() { return to; }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
     template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
     \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  protected:\n\
     \    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n \
@@ -209,7 +209,7 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 20:58:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
