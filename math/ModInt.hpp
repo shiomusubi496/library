@@ -70,12 +70,12 @@ template<ll mod> class StaticModInt : StaticModIntBase {
     }
     StaticModInt& operator+=(const StaticModInt& other) {
         val += other.val;
-        if (val > mod) val -= mod;
+        if (val >= mod) val -= mod;
         return *this;
     }
     StaticModInt& operator-=(const StaticModInt& other) {
         val -= other.val;
-        if (val < mod) val += mod;
+        if (val < 0) val += mod;
         return *this;
     }
     StaticModInt& operator*=(const StaticModInt& other) {
@@ -170,12 +170,12 @@ template<int id> class DynamicModInt : DynamicModIntBase {
     }
     DynamicModInt& operator+=(const DynamicModInt& other) {
         val += other.val;
-        if (val > mod) val -= mod;
+        if (val >= mod) val -= mod;
         return *this;
     }
     DynamicModInt& operator-=(const DynamicModInt& other) {
         val -= other.val;
-        if (val < mod) val += mod;
+        if (val < 0) val += mod;
         return *this;
     }
     DynamicModInt& operator*=(const DynamicModInt& other) {
