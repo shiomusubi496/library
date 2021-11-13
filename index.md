@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/UnionFind.hpp
       title: UnionFind
   - name: graph/shortest-path
@@ -46,15 +46,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: segment/SparseTable.hpp
       title: SparseTable
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -142,13 +142,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage
