@@ -71,3 +71,8 @@ template<class T> class ModCombinatorics<T> : public Combinatorics<T> {
 };
 
 template<class T> std::vector<T> ModCombinatorics<T>::factinv = std::vector<T>(1, 1);
+
+/**
+ * @brief Combinatorics
+ * @docs docs/Combinatorics
+ */

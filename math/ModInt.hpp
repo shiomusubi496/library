@@ -224,3 +224,8 @@ template<int id> class DynamicModInt : DynamicModIntBase {
 template<int id> ll DynamicModInt<id>::mod = 1000000007;
 
 using modint = DynamicModInt<-1>;
+
+/**
+ * @brief ModInt
+ * @docs docs/ModInt.md
+ */
