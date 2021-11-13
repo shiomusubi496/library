@@ -221,7 +221,7 @@ template<class T> class presser : public std::vector<T> {
         return res;
     }
     void press(std::vector<T>& vec) const {
-        static_assert(std::is_integral<T>::value);
+        static_assert(std::is_integral<T>::value, "cannot convert from int type");
         rep (i, vec.size()) vec[i] = this->get_index(vec[i]);
     }
 };

@@ -4,7 +4,7 @@
 #include "../../../math/Combinatorics.hpp"
 using namespace std;
 using mint = modint1000000007;
-using comb = ModCombinatorics<mint>;
+using comb = Combinatorics<mint>;
 int main() {
     ll n, k; cin >> n >> k;
     cout << comb::comb(n - 1, k - 1) << endl;

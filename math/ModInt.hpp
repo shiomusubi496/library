@@ -83,7 +83,7 @@ template<ll mod> class StaticModInt : StaticModIntBase {
         return *this;
     }
     StaticModInt& operator/=(const StaticModInt& other) {
-        (val *= other.inv()) %= mod;
+        (val *= other.inv().get()) %= mod;
         return *this;
     }
     friend StaticModInt operator+(const StaticModInt& lhs, const StaticModInt& rhs) {
@@ -183,7 +183,7 @@ template<int id> class DynamicModInt : DynamicModIntBase {
         return *this;
     }
     DynamicModInt& operator/=(const DynamicModInt& other) {
-        (val *= other.inv()) %= mod;
+        (val *= other.inv().get()) %= mod;
         return *this;
     }
     friend DynamicModInt operator+(const DynamicModInt& lhs, const DynamicModInt& rhs) {
