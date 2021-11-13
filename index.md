@@ -29,9 +29,15 @@ data:
         \u6CD5)"
   - name: math
     pages:
+    - icon: ':warning:'
+      path: math/Combinatorics.hpp
+      title: Combinatorics
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+    - icon: ':warning:'
+      path: math/ModInt.hpp
+      title: ModInt
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
