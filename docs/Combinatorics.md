@@ -2,8 +2,8 @@
 
 ${}_nC_r$ などを計算する。
 
-- `Combinatorics<T>` : mod を取らない場合に使う。
-- `ModCombinatorics<T>` : mod を取る場合に使う。
+- `IntCombinatorics<T>` : mod を取らない場合に使う。
+- `Combinatorics<T>` : mod を取る場合に使う。 `T` は modint にする。
 
 以下の計算ができる。
 
