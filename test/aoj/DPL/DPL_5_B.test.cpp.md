@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: math/Combinatorics.hpp
+    title: Combinatorics
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
@@ -8,39 +11,25 @@ data:
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/DPL/DPL_5_B.test.cpp
-    title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':x:'
-    path: test/aoj/DPL/DPL_5_C.test.cpp
-    title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
-    path: test/aoj/DPL/DPL_5_D.test.cpp
-    title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':x:'
-    path: test/aoj/DPL/DPL_5_E.test.cpp
-    title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':x:'
-    path: test/aoj/DPL/DPL_5_F.test.cpp
-    title: test/aoj/DPL/DPL_5_F.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/Combinatorics
-    document_title: Combinatorics
-    links: []
-  bundledCode: "#line 2 \"math/Combinatorics.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_B
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_B
+  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_B.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_B\"\
+    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -215,80 +204,56 @@ data:
     \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\
-    \n\ntemplate<class T> class Combinatorics {\n  protected:\n    static std::vector<T>\
-    \ factorial;\n  public:\n    static void init(ll n) {\n        factorial.reserve(n\
-    \ + 1);\n        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back()\
-    \ * factorial.size());\n    }\n    static T fact(ll x) {\n        init(x);\n \
-    \       return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n       \
-    \ if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
-    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
-    \ comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\n\ntemplate<class T, std::enable_if_t<is_ModInt<T>::value>*\
-    \ = nullptr> class ModCombinatorics : Combinatorics<T> {};\n\ntemplate<class T>\
-    \ class ModCombinatorics<T> : public Combinatorics<T> {\n  protected:\n    using\
-    \ Combinatorics<T>::factorial;\n    static std::vector<T> factinv;\n  public:\n\
-    \    static void init(ll n) {\n        int b = factorial.size();\n        if (n\
-    \ < b) return;\n        Combinatorics<T>::init(n);\n        factinv.resize(n +\
-    \ 1);\n        factinv[n] = factorial[n].inv();\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
-    \ + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> ModCombinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n#include \"ModInt.hpp\"\n\n\
-    template<class T> class Combinatorics {\n  protected:\n    static std::vector<T>\
-    \ factorial;\n  public:\n    static void init(ll n) {\n        factorial.reserve(n\
-    \ + 1);\n        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back()\
-    \ * factorial.size());\n    }\n    static T fact(ll x) {\n        init(x);\n \
-    \       return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n       \
-    \ if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
-    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
-    \ comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\n\ntemplate<class T, std::enable_if_t<is_ModInt<T>::value>*\
-    \ = nullptr> class ModCombinatorics : Combinatorics<T> {};\n\ntemplate<class T>\
-    \ class ModCombinatorics<T> : public Combinatorics<T> {\n  protected:\n    using\
-    \ Combinatorics<T>::factorial;\n    static std::vector<T> factinv;\n  public:\n\
-    \    static void init(ll n) {\n        int b = factorial.size();\n        if (n\
-    \ < b) return;\n        Combinatorics<T>::init(n);\n        factinv.resize(n +\
-    \ 1);\n        factinv[n] = factorial[n].inv();\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
-    \ + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> ModCombinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics\n\
-    \ */\n"
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
+    \ void init(ll n) {\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
+    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n    }\n   \
+    \ static T fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n\
+    \    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n \
+    \       init(n);\n        return factorial[n] / factorial[n - r];\n    }\n   \
+    \ static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n    \
+    \    init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
+    \    }\n    static T homo(ll n, ll r) {\n        return comb(n + r - 1, r);\n\
+    \    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial = std::vector<T>(1,\
+    \ 1);\n\ntemplate<class T, std::enable_if_t<is_ModInt<T>::value>* = nullptr> class\
+    \ ModCombinatorics : Combinatorics<T> {};\n\ntemplate<class T> class ModCombinatorics<T>\
+    \ : public Combinatorics<T> {\n  protected:\n    using Combinatorics<T>::factorial;\n\
+    \    static std::vector<T> factinv;\n  public:\n    static void init(ll n) {\n\
+    \        int b = factorial.size();\n        if (n < b) return;\n        Combinatorics<T>::init(n);\n\
+    \        factinv.resize(n + 1);\n        factinv[n] = factorial[n].inv();\n  \
+    \      rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
+    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
+    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
+    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
+    \ {\n        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n   \
+    \     return comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T>\
+    \ ModCombinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n\
+    \ * @docs docs/Combinatorics\n */\n#line 5 \"test/aoj/DPL/DPL_5_B.test.cpp\"\n\
+    using namespace std;\nusing mint = modint1000000007;\nusing comb = ModCombinatorics<mint>;\n\
+    int main() {\n    ll n, k; cin >> n >> k;\n    cout << comb::perm(k, n) << endl;\n\
+    }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_B\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include \"\
+    ../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
+    using comb = ModCombinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
+    \    cout << comb::perm(k, n) << endl;\n}\n"
   dependsOn:
   - template.hpp
   - math/ModInt.hpp
-  isVerificationFile: false
-  path: math/Combinatorics.hpp
+  - math/Combinatorics.hpp
+  isVerificationFile: true
+  path: test/aoj/DPL/DPL_5_B.test.cpp
   requiredBy: []
   timestamp: '2021-11-13 18:29:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
-documentation_of: math/Combinatorics.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/aoj/DPL/DPL_5_B.test.cpp
 layout: document
 redirect_from:
-- /library/math/Combinatorics.hpp
-- /library/math/Combinatorics.hpp.html
-title: Combinatorics
+- /verify/test/aoj/DPL/DPL_5_B.test.cpp
+- /verify/test/aoj/DPL/DPL_5_B.test.cpp.html
+title: test/aoj/DPL/DPL_5_B.test.cpp
 ---

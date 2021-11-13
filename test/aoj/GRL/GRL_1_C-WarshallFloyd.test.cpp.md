@@ -2,9 +2,13 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/UnionFind.hpp
-    title: UnionFind
+    path: graph/Graph.hpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/WarshallFloyd.hpp
+    title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
+      )"
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -14,19 +18,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
-  bundledCode: "#line 1 \"test/aoj/DSL_1_A-UF.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -111,45 +116,75 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/UnionFind.hpp\"\n\n#line 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind\
-    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind()\
-    \ : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int\
-    \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
-    \ par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n    \
-    \    x = find(x);\n        y = find(y);\n        if (x == y) return false;\n \
-    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
-    \        par_vec[y] = x;\n        return true;\n    }\n    bool same(int x, int\
-    \ y) {\n        return find(x) == find(y);\n    }\n    int size(int x) {\n   \
-    \     return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
-    \ {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(res.begin(), res.end(),\n         \
-    \             [](const std::vector<int>& v) { return v.empty(); }),\n        \
-    \    res.end());\n        return res;\n    }\n    bool is_root(int x) const {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\
-    \n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/aoj/DSL_1_A-UF.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\n#include\
-    \ \"../../template.hpp\"\n#include \"../../graph/UnionFind.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n\
-    \    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if\
-    \ (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n    }\n\
-    }\n"
+    \ 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int>\
+    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
+    \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
+    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
+    \ cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i)\
+    \ {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int> using Edges\
+    \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
+    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
+    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
+    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
+    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
+    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
+    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
+    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
+    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
+    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
+    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
+    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
+    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
+    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
+    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
+    \ 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
+    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
+    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
+    \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
+    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/**\n\
+    \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
+    \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    auto D\
+    \ = make_vec<ll>(V, V, INF<ll>);\n    rep (E) {\n        int s, t, d; cin >> s\
+    \ >> t >> d;\n        D[s][t] = d;\n    }\n    WarshallFloyd(D);\n    rep (i,\
+    \ V) {\n        if (D[i][i] < 0) {\n            puts(\"NEGATIVE CYCLE\");\n  \
+    \          return 0;\n        }\n    }\n    rep (i, V) {\n        rep (j, V) {\n\
+    \            if (D[i][j] == INF<ll>) cout << \"INF\";\n            else cout <<\
+    \ D[i][j];\n            cout << \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
+    ../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, INF<ll>);\n\
+    \    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n        D[s][t] = d;\n\
+    \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
+    \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
+    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == INF<ll>)\
+    \ cout << \"INF\";\n            else cout << D[i][j];\n            cout << \"\
+    \ \\n\"[j == V - 1];\n        }\n    }\n}\n"
   dependsOn:
   - template.hpp
-  - graph/UnionFind.hpp
+  - graph/Graph.hpp
+  - graph/shortest-path/WarshallFloyd.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_1_A-UF.test.cpp
+  path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_1_A-UF.test.cpp
+documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_1_A-UF.test.cpp
-- /verify/test/aoj/DSL_1_A-UF.test.cpp.html
-title: test/aoj/DSL_1_A-UF.test.cpp
+- /verify/test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+- /verify/test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp.html
+title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
 ---

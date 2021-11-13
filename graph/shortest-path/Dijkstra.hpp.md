@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
@@ -175,7 +175,7 @@ data:
   timestamp: '2021-11-13 15:34:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Dijkstra.hpp
 layout: document

@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D-Phi.test.cpp
-    title: test/aoj/NTL_1_D-Phi.test.cpp
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -139,7 +139,7 @@ data:
   timestamp: '2021-11-13 15:34:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D-Phi.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: math/EulerPhi.hpp
 layout: document
 redirect_from:

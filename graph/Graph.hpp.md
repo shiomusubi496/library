@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
@@ -23,17 +23,17 @@ data:
       )"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1_11_C-BFS.test.cpp
+    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_B-BellmanFord.test.cpp
-    title: test/aoj/GRL_1_B-BellmanFord.test.cpp
+    path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+    title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
@@ -212,10 +212,10 @@ data:
   timestamp: '2021-11-13 15:34:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document

@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/PrimeFactor.hpp
-    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
+    path: math/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -14,12 +14,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
+  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#line 2 \"template.hpp\"\n\
+    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -112,42 +112,36 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"math/PrimeFactor.hpp\"\n\n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor\
-    \ {\n  protected:\n    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll\
-    \ MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n       \
-    \     if (era[i] != -1) continue;\n            rep (j, i, MAX + 1, i) era[j] =\
-    \ i;\n        }\n    }\n    bool is_prime(ll x) {\n        return era[x] == x;\n\
-    \    }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n\
-    \        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(res.begin(),\
-    \ res.end());\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
-    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX),\
-    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX\
-    \ + 1) {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX +\
-    \ 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n       \
-    \ return era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"\
-    test/aoj/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint main() {\n \
-    \   int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans = 0;\n    rep\
-    \ (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n    }\n\
-    \    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
-    #include \"../../template.hpp\"\n#include \"../../math/PrimeFactor.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
-    \    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
-    \ ans++;\n    }\n    cout << ans << endl;\n}\n"
+    \ 2 \"math/EulerPhi.hpp\"\n\n#line 4 \"math/EulerPhi.hpp\"\n\nll euler_phi(ll\
+    \ n) {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i) {\n        if (n\
+    \ % i == 0) {\n            res = res / i * (i - 1);\n            while (n % i\
+    \ == 0) n /= i;\n        }\n    }\n    if (n != 1) res = res / n * (n - 1);\n\
+    \    return res;\n}\n\nclass EulerPhi {\n  protected:\n    ll MAX;\n    std::vector<ll>\
+    \ data;\n  public:\n    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n    \
+    \    rep (i, MAX + 1) data[i] = i;\n        rep (i, 2, MAX + 1) {\n          \
+    \  if (data[i] != i) continue;\n            rep (j, i, MAX + 1, i) {\n       \
+    \         data[j] = data[j] / i * (i - 1);\n            }\n        }\n    }\n\
+    \    ll phi(ll x) {\n        return data[x];\n    }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
+    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n\
+    #line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../math/EulerPhi.hpp\"\nusing namespace\
+    \ std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n\
+    }\n"
   dependsOn:
   - template.hpp
-  - math/PrimeFactor.hpp
+  - math/EulerPhi.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+  path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-- /verify/test/aoj/ALDS1_1_C-PrimeEra.test.cpp.html
-title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp
+- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp.html
+title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
 ---

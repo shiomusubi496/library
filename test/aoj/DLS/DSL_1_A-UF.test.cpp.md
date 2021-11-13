@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: graph/UnionFind.hpp
+    title: UnionFind
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -11,10 +14,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A
-  bundledCode: "#line 1 \"test/aoj/NTL_1_A-Prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
+  bundledCode: "#line 1 \"test/aoj/DLS/DSL_1_A-UF.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\
     \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
@@ -108,23 +111,45 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/NTL_1_A-Prime.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int N; cin >> N;\n    cout << N << \": \" << prime_factor(N) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A\"\n#include\
-    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int N; cin >>\
-    \ N;\n    cout << N << \": \" << prime_factor(N) << endl;\n}\n"
+    \ 2 \"graph/UnionFind.hpp\"\n\n#line 4 \"graph/UnionFind.hpp\"\n\nclass UnionFind\
+    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind()\
+    \ : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int\
+    \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
+    \ par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n    \
+    \    x = find(x);\n        y = find(y);\n        if (x == y) return false;\n \
+    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
+    \        par_vec[y] = x;\n        return true;\n    }\n    bool same(int x, int\
+    \ y) {\n        return find(x) == find(y);\n    }\n    int size(int x) {\n   \
+    \     return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
+    \ {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(res.begin(), res.end(),\n         \
+    \             [](const std::vector<int>& v) { return v.empty(); }),\n        \
+    \    res.end());\n        return res;\n    }\n    bool is_root(int x) const {\n\
+    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\
+    \n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/aoj/DLS/DSL_1_A-UF.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
+    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../graph/UnionFind.hpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
+    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
   dependsOn:
   - template.hpp
+  - graph/UnionFind.hpp
   isVerificationFile: true
-  path: test/aoj/NTL_1_A-Prime.test.cpp
+  path: test/aoj/DLS/DSL_1_A-UF.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL_1_A-Prime.test.cpp
+documentation_of: test/aoj/DLS/DSL_1_A-UF.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL_1_A-Prime.test.cpp
-- /verify/test/aoj/NTL_1_A-Prime.test.cpp.html
-title: test/aoj/NTL_1_A-Prime.test.cpp
+- /verify/test/aoj/DLS/DSL_1_A-UF.test.cpp
+- /verify/test/aoj/DLS/DSL_1_A-UF.test.cpp.html
+title: test/aoj/DLS/DSL_1_A-UF.test.cpp
 ---

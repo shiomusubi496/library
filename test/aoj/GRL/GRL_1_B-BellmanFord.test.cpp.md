@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/BellmanFord.hpp
+    title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -11,19 +17,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
-  bundledCode: "#line 1 \"test/aoj/NTL_1_C-LCM.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -108,25 +115,79 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/NTL_1_C-LCM.test.cpp\"\nusing namespace std;\nint main() {\n  \
-    \  int n; cin >> n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n\
-    \        l = lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\n#include\
-    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int n; cin >>\
-    \ n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n        l = lcm(l,\
-    \ a);\n    }\n    cout << l << endl;\n}\n"
+    \ 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int>\
+    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
+    \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
+    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
+    \ cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i)\
+    \ {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int> using Edges\
+    \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
+    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
+    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
+    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
+    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
+    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
+    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
+    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
+    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
+    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
+    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
+    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
+    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
+    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
+    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
+    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
+    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
+    \ 2 \"graph/shortest-path/BellmanFord.hpp\"\n\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\
+    \n\ntemplate<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
+    \ start = 0) {\n    assert(0 <= start && start <= V);\n    const int E = Ed.size();\n\
+    \    std::vector<T> dist(V, INF<T>); dist[start] = 0;\n    rep (i, V) {\n    \
+    \    bool changed = false;\n        for (const edge<T>& e : Ed) {\n          \
+    \  if (dist[e.from] != INF<T> && chmin(dist[e.to], dist[e.from] + e.cost)) changed\
+    \ = true;\n        }\n        if (!changed) return dist;\n    }\n    for (const\
+    \ edge<T>& e : Ed) {\n        if (dist[e.from] != INF<T> && dist[e.to] > dist[e.from]\
+    \ + e.cost) dist[e.to] = -INF<T>;\n    }\n    rep (i, V - 1) {\n        bool changed\
+    \ = false;\n        for (const edge<T>& e : Ed) {\n            if (dist[e.from]\
+    \ == -INF<T>){\n                dist[e.to] = -INF<T>;\n                changed\
+    \ = true;\n            }\n        }\n        if (!changed) break;\n    }\n   \
+    \ return dist;\n}\n\n/**\n * @brief Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\
+    \u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
+    \   Edges<int> Ed(E);\n    for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n\
+    \    auto dist = BellmanFord(V, Ed, r);\n    if (count(dist.begin(), dist.end(),\
+    \ -INF<int>)) {\n        puts(\"NEGATIVE CYCLE\");\n        return 0;\n    }\n\
+    \    rep (i, V) {\n        if (dist[i] == INF<int>) puts(\"INF\");\n        else\
+    \ cout << dist[i] << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
+    ../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n    for (auto&&\
+    \ e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V, Ed,\
+    \ r);\n    if (count(dist.begin(), dist.end(), -INF<int>)) {\n        puts(\"\
+    NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i]\
+    \ == INF<int>) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n}"
   dependsOn:
   - template.hpp
+  - graph/Graph.hpp
+  - graph/shortest-path/BellmanFord.hpp
   isVerificationFile: true
-  path: test/aoj/NTL_1_C-LCM.test.cpp
+  path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL_1_C-LCM.test.cpp
+documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL_1_C-LCM.test.cpp
-- /verify/test/aoj/NTL_1_C-LCM.test.cpp.html
-title: test/aoj/NTL_1_C-LCM.test.cpp
+- /verify/test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+- /verify/test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp.html
+title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
 ---

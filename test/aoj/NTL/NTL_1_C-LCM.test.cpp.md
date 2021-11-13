@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -11,19 +11,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_E
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_E
-  bundledCode: "#line 1 \"test/aoj/NTL_1_E-ExtGCD.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_E\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C
+  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_C-LCM.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\n#line 2 \"template.hpp\"\n\
+    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -108,27 +109,25 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/NTL_1_E-ExtGCD.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int a, b; cin >> a >> b;\n    PLL p = extGCD(a, b);\n    if (p.first - p.second\
-    \ < (p.second + a) - (p.first - b)) cout << p << endl;\n    else cout << p.first\
-    \ - b << ' ' << p.second + a << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_E\"\n#include\
-    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int a, b; cin\
-    \ >> a >> b;\n    PLL p = extGCD(a, b);\n    if (p.first - p.second < (p.second\
-    \ + a) - (p.first - b)) cout << p << endl;\n    else cout << p.first - b << '\
-    \ ' << p.second + a << endl;\n}\n"
+    \ 3 \"test/aoj/NTL/NTL_1_C-LCM.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int n; cin >> n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n\
+    \        l = lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_C\"\n#include\
+    \ \"../../../template.hpp\"\nusing namespace std;\nint main() {\n    int n; cin\
+    \ >> n;\n    int l = 1;\n    rep (n) {\n        int a; cin >> a;\n        l =\
+    \ lcm(l, a);\n    }\n    cout << l << endl;\n}\n"
   dependsOn:
   - template.hpp
   isVerificationFile: true
-  path: test/aoj/NTL_1_E-ExtGCD.test.cpp
+  path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL_1_E-ExtGCD.test.cpp
+documentation_of: test/aoj/NTL/NTL_1_C-LCM.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL_1_E-ExtGCD.test.cpp
-- /verify/test/aoj/NTL_1_E-ExtGCD.test.cpp.html
-title: test/aoj/NTL_1_E-ExtGCD.test.cpp
+- /verify/test/aoj/NTL/NTL_1_C-LCM.test.cpp
+- /verify/test/aoj/NTL/NTL_1_C-LCM.test.cpp.html
+title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
 ---

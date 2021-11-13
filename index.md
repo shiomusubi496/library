@@ -29,13 +29,13 @@ data:
         \u6CD5)"
   - name: math
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':warning:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -54,51 +54,77 @@ data:
       title: SparseTable
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
-  - name: test/aoj
+  - name: test/aoj/ALDS1
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_11_C-BFS.test.cpp
-      title: test/aoj/ALDS1_11_C-BFS.test.cpp
+      path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+      title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_1_B-GCD.test.cpp
-      title: test/aoj/ALDS1_1_B-GCD.test.cpp
+      path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+      title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-      title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+      path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
+      title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
-      title: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+      path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+      title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+  - name: test/aoj/DLS
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/DSL_1_A-UF.test.cpp
-      title: test/aoj/DSL_1_A-UF.test.cpp
+      path: test/aoj/DLS/DSL_1_A-UF.test.cpp
+      title: test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - name: test/aoj/DPL
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_1_A-Dijkstra.test.cpp
-      title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+      path: test/aoj/DPL/DPL_5_A.test.cpp
+      title: test/aoj/DPL/DPL_5_A.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL/DPL_5_B.test.cpp
+      title: test/aoj/DPL/DPL_5_B.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL/DPL_5_C.test.cpp
+      title: test/aoj/DPL/DPL_5_C.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL/DPL_5_D.test.cpp
+      title: test/aoj/DPL/DPL_5_D.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL/DPL_5_E.test.cpp
+      title: test/aoj/DPL/DPL_5_E.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DPL/DPL_5_F.test.cpp
+      title: test/aoj/DPL/DPL_5_F.test.cpp
+  - name: test/aoj/GRL
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_1_B-BellmanFord.test.cpp
-      title: test/aoj/GRL_1_B-BellmanFord.test.cpp
+      path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+      title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-      title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+      path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+      title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_A-Prime.test.cpp
-      title: test/aoj/NTL_1_A-Prime.test.cpp
+      path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+      title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - name: test/aoj/NTL
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_B-Pow.test.cpp
-      title: test/aoj/NTL_1_B-Pow.test.cpp
+      path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
+      title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_C-LCM.test.cpp
-      title: test/aoj/NTL_1_C-LCM.test.cpp
+      path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
+      title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_D-Phi.test.cpp
-      title: test/aoj/NTL_1_D-Phi.test.cpp
+      path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
+      title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/aoj/NTL_1_E-ExtGCD.test.cpp
-      title: test/aoj/NTL_1_E-ExtGCD.test.cpp
+      path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+      title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
+      title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'

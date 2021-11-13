@@ -1,13 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BreadthFirstSearch.hpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -17,19 +11,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B
+  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_B-Pow.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B\"\n#line 2 \"template.hpp\"\n\
+    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -114,73 +109,24 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int>\
-    \ struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
-    \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
-    \ c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t),\
-    \ cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i)\
-    \ {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int> using Edges\
-    \ = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
-    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
-    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
-    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
-    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
-    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
-    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
-    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
-    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
-    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
-    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\
-    \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1_11_C-BFS.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep(j,\
-    \ k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n\
-    \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
-    \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
-    #include \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
-    \ \"../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace std;\n\
-    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n    \
-    \    int u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n       \
-    \     int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n      \
-    \  }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout <<\
-    \ i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    \ 3 \"test/aoj/NTL/NTL_1_B-Pow.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int m, n; cin >> m >> n;\n    cout << mod_pow(m, n, 1000000007) << endl;\n\
+    }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B\"\n#include\
+    \ \"../../../template.hpp\"\nusing namespace std;\nint main() {\n    int m, n;\
+    \ cin >> m >> n;\n    cout << mod_pow(m, n, 1000000007) << endl;\n}\n"
   dependsOn:
   - template.hpp
-  - graph/Graph.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_11_C-BFS.test.cpp
+  path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_11_C-BFS.test.cpp
+documentation_of: test/aoj/NTL/NTL_1_B-Pow.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_11_C-BFS.test.cpp
-- /verify/test/aoj/ALDS1_11_C-BFS.test.cpp.html
-title: test/aoj/ALDS1_11_C-BFS.test.cpp
+- /verify/test/aoj/NTL/NTL_1_B-Pow.test.cpp
+- /verify/test/aoj/NTL/NTL_1_B-Pow.test.cpp.html
+title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
 ---

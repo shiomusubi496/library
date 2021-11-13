@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -167,7 +167,7 @@ data:
   timestamp: '2021-11-13 15:34:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
 documentation_of: graph/shortest-path/WarshallFloyd.hpp
 layout: document
 redirect_from:

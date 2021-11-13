@@ -1,17 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL/DPL_5_A.test.cpp
+    title: test/aoj/DPL/DPL_5_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_B.test.cpp
+    title: test/aoj/DPL/DPL_5_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_C.test.cpp
+    title: test/aoj/DPL/DPL_5_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_D.test.cpp
+    title: test/aoj/DPL/DPL_5_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_E.test.cpp
+    title: test/aoj/DPL/DPL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_F.test.cpp
+    title: test/aoj/DPL/DPL_5_F.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/ModInt.md
     document_title: ModInt
@@ -152,9 +170,9 @@ data:
     \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
     \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
-    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= *this;\n          \
-    \  res *= res;\n            a >>= 1;\n        }\n        return res;\n    }\n\
+    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
+    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
+    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
     \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
     \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
@@ -192,9 +210,9 @@ data:
     \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
     \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
     \ - *this;\n    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= *this;\n      \
-    \      res *= res;\n            a >>= 1;\n        }\n        return res;\n   \
-    \ }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
+    \ v = *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n\
+    \            a >>= 1;\n            v *= v;\n        }\n        return res;\n \
+    \   }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
     \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
@@ -242,9 +260,9 @@ data:
     \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
     \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
-    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= *this;\n          \
-    \  res *= res;\n            a >>= 1;\n        }\n        return res;\n    }\n\
+    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
+    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
+    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
     \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
     \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
@@ -282,9 +300,9 @@ data:
     \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
     \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
     \ - *this;\n    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= *this;\n      \
-    \      res *= res;\n            a >>= 1;\n        }\n        return res;\n   \
-    \ }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
+    \ v = *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n\
+    \            a >>= 1;\n            v *= v;\n        }\n        return res;\n \
+    \   }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
     \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
@@ -295,9 +313,15 @@ data:
   path: math/ModInt.hpp
   requiredBy:
   - math/Combinatorics.hpp
-  timestamp: '2021-11-13 16:35:43+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-11-13 18:29:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

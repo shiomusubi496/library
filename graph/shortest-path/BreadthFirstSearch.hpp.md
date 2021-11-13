@@ -4,14 +4,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1_11_C-BFS.test.cpp
+    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -170,7 +170,7 @@ data:
   timestamp: '2021-11-13 15:34:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
 documentation_of: graph/shortest-path/BreadthFirstSearch.hpp
 layout: document
 redirect_from:

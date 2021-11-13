@@ -24,13 +24,13 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':warning:'
+  - icon: ':x:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':warning:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -47,44 +47,62 @@ data:
     title: SparseTable
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1_11_C-BFS.test.cpp
+    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_1_B-GCD.test.cpp
-    title: test/aoj/ALDS1_1_B-GCD.test.cpp
+    path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+    title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-    title: test/aoj/ALDS1_1_C-PrimeEra.test.cpp
+    path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
+    title: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
-    title: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+    path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+    title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_A-UF.test.cpp
-    title: test/aoj/DSL_1_A-UF.test.cpp
+    path: test/aoj/DLS/DSL_1_A-UF.test.cpp
+    title: test/aoj/DLS/DSL_1_A-UF.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL_1_A-Dijkstra.test.cpp
+    path: test/aoj/DPL/DPL_5_A.test.cpp
+    title: test/aoj/DPL/DPL_5_A.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_B.test.cpp
+    title: test/aoj/DPL/DPL_5_B.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_C.test.cpp
+    title: test/aoj/DPL/DPL_5_C.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_D.test.cpp
+    title: test/aoj/DPL/DPL_5_D.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_E.test.cpp
+    title: test/aoj/DPL/DPL_5_E.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DPL/DPL_5_F.test.cpp
+    title: test/aoj/DPL/DPL_5_F.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_B-BellmanFord.test.cpp
-    title: test/aoj/GRL_1_B-BellmanFord.test.cpp
+    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL_1_C-WarshallFloyd.test.cpp
+    path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+    title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_A-Prime.test.cpp
-    title: test/aoj/NTL_1_A-Prime.test.cpp
+    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_B-Pow.test.cpp
-    title: test/aoj/NTL_1_B-Pow.test.cpp
+    path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
+    title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_C-LCM.test.cpp
-    title: test/aoj/NTL_1_C-LCM.test.cpp
+    path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
+    title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D-Phi.test.cpp
-    title: test/aoj/NTL_1_D-Phi.test.cpp
+    path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
+    title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_E-ExtGCD.test.cpp
-    title: test/aoj/NTL_1_E-ExtGCD.test.cpp
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
+    title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -109,9 +127,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -319,21 +337,27 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-13 15:34:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
-  - test/aoj/NTL_1_C-LCM.test.cpp
-  - test/aoj/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/NTL_1_E-ExtGCD.test.cpp
-  - test/aoj/NTL_1_A-Prime.test.cpp
-  - test/aoj/NTL_1_B-Pow.test.cpp
-  - test/aoj/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/ALDS1_1_C-PrimeEra.test.cpp
-  - test/aoj/NTL_1_D-Phi.test.cpp
-  - test/aoj/ALDS1_1_B-GCD.test.cpp
-  - test/aoj/DSL_1_A-UF.test.cpp
-  - test/aoj/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/aoj/NTL/NTL_1_C-LCM.test.cpp
+  - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
+  - test/aoj/NTL/NTL_1_A-Prime.test.cpp
+  - test/aoj/NTL/NTL_1_B-Pow.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp

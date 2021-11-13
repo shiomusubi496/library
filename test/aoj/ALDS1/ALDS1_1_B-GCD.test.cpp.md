@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -11,11 +11,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B
+  bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B\"\n#line 2 \"template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -109,25 +109,23 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value);\n\
     \        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n    }\n};\n#line\
-    \ 3 \"test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n; cin >> n;\n    int ans = 0;\n    rep (n) {\n        int a; cin\
-    \ >> a;\n        if (is_prime(a)) ans++;\n    }\n    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
-    #include \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int n;\
-    \ cin >> n;\n    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n     \
-    \   if (is_prime(a)) ans++;\n    }\n    cout << ans << endl;\n}\n"
+    \ 3 \"test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int x, y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_B\"\n\
+    #include \"../../../template.hpp\"\nusing namespace std;\nint main() {\n    int\
+    \ x, y; cin >> x >> y;\n    cout << gcd(x, y) << endl;\n}\n"
   dependsOn:
   - template.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+  path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 15:34:58+09:00'
+  timestamp: '2021-11-13 18:29:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+documentation_of: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
-- /verify/test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp.html
-title: test/aoj/ALDS1_1_C-PrimeSqrt.test.cpp
+- /verify/test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+- /verify/test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp.html
+title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
 ---
