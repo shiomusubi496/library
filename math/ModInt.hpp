@@ -1,8 +1,16 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../template.hpp"
 
-template<ll mod> class StaticModInt {
+class ModIntBase {};
+class StaticModIntBase : ModIntBase {};
+class DynamicModIntBase : ModIntBase {};
+
+template<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;
+template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;
+template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase, T>;
+
+template<ll mod> class StaticModInt : StaticModIntBase {
   protected:
     ll val;
     static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336, 250000002,
@@ -11,11 +19,11 @@ template<ll mod> class StaticModInt {
             598946612, 166374059, 855638017, 873463809, 443664157, 299473306};
   public:
     StaticModInt() : StaticModInt(0) {}
-    StaticModInt(ll v) : val(v) {
+    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr> StaticModInt(T v) : val(v) {
         val %= mod;
         if (val < 0) val += mod;
     }
-    operator ll() const { return val; }
+    ll get() const { return val; }
     static ll get_mod() { return mod; }
     static StaticModInt raw(ll v) {
         StaticModInt res;
@@ -78,25 +86,17 @@ template<ll mod> class StaticModInt {
         (val *= other.inv()) %= mod;
         return *this;
     }
-    StaticModInt operator+(const StaticModInt& other) const {
-        StaticModInt res = *this;
-        res += other;
-        return res;
+    friend StaticModInt operator+(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return StaticModInt(lhs) += rhs;
     }
-    StaticModInt operator-(const StaticModInt& other) const {
-        StaticModInt res = *this;
-        res -= other;
-        return res;
+    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return StaticModInt(lhs) -= rhs;
     }
-    StaticModInt operator*(const StaticModInt& other) const {
-        StaticModInt res = *this;
-        res *= other;
-        return res;
+    friend StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return StaticModInt(lhs) *= rhs;
     }
-    StaticModInt operator/(const StaticModInt& other) const {
-        StaticModInt res = *this;
-        res /= other;
-        return res;
+    friend StaticModInt operator/(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return StaticModInt(lhs) /= rhs;
     }
     StaticModInt operator+() const {
         return StaticModInt(*this);
@@ -113,24 +113,35 @@ template<ll mod> class StaticModInt {
         }
         return res;
     }
+    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm) {
+        return ost << sm.val;
+    }
+    friend std::istream& operator>>(std::istream& ist, StaticModInt& sm) {
+        return ist >> sm.val;
+    }
 };
+
+#if __cplusplus < 201703L
+template<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];
+template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];
+#endif
 
 using modint1000000007 = StaticModInt<1000000007>;
 using modint998244353  = StaticModInt<998244353>;
 
-template<int id> class DynamicModInt {
+template<int id> class DynamicModInt : DynamicModIntBase {
   protected:
     ll val;
     static ll mod;
   public:
     DynamicModInt() : DynamicModInt(0) {}
-    DynamicModInt(ll v) : val(v) {
+    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr> DynamicModInt(T v) : val(v) {
         val %= mod;
         if (val < 0) val += mod;
     }
-    operator ll() const { return val; }
+    ll get() const { return val; }
     static ll get_mod() { return mod; }
-    static ll set_mod(ll v) { mod = v; }
+    static void set_mod(ll v) { mod = v; }
     static DynamicModInt raw(ll v) {
         DynamicModInt res;
         res.val = v;
@@ -175,25 +186,17 @@ template<int id> class DynamicModInt {
         (val *= other.inv()) %= mod;
         return *this;
     }
-    DynamicModInt operator+(const DynamicModInt& other) const {
-        DynamicModInt res = *this;
-        res += other;
-        return res;
+    friend DynamicModInt operator+(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return DynamicModInt(lhs) += rhs;
     }
-    DynamicModInt operator-(const DynamicModInt& other) const {
-        DynamicModInt res = *this;
-        res -= other;
-        return res;
+    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return DynamicModInt(lhs) -= rhs;
     }
-    DynamicModInt operator*(const DynamicModInt& other) const {
-        DynamicModInt res = *this;
-        res *= other;
-        return res;
+    friend DynamicModInt operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return DynamicModInt(lhs) *= rhs;
     }
-    DynamicModInt operator/(const DynamicModInt& other) const {
-        DynamicModInt res = *this;
-        res /= other;
-        return res;
+    friend DynamicModInt operator/(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return DynamicModInt(lhs) /= rhs;
     }
     DynamicModInt operator+() const {
         return DynamicModInt(*this);
@@ -209,6 +212,12 @@ template<int id> class DynamicModInt {
             a >>= 1;
         }
         return res;
+    }
+    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt& sm) {
+        return ost << sm.val;
+    }
+    friend std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {
+        return ist >> sm.val;
     }
 };
 

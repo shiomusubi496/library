@@ -48,7 +48,7 @@ template<class T, class U> std::istream& operator<<(std::istream& ist, std::pair
 }
 
 template<class Container,
-        std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+        std::enable_if_t<!std::is_same<Container, std::string>::value>* = nullptr>
 auto operator<<(std::ostream& ost, const Container& cont)
         -> decltype(cont.begin(), cont.end(), ost)
 {
@@ -59,7 +59,7 @@ auto operator<<(std::ostream& ost, const Container& cont)
     return ost;
 }
 template<class Container,
-        std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+        std::enable_if_t<!std::is_same<Container, std::string>::value>* = nullptr>
 auto operator>>(std::istream& ist, Container& cont)
         -> decltype(cont.begin(), cont.end(), ist)
 {
