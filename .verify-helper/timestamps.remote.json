@@ -22,5 +22,8 @@
 "test/yosupo/many_aplusb.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/yosupo/shortest_path.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/yosupo/static_range_sum-CumulativeSum.test.cpp": "2021-11-13 20:58:10 +0900",
-"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp": "2021-11-13 20:58:10 +0900"
+"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp": "2021-11-13 20:58:10 +0900",
+"test/yosupo/staticrmq-DisjointSparseTable.test.cpp": "2021-11-13 20:58:10 +0900",
+"test/yosupo/staticrmq-SparseTable.test.cpp": "2021-11-13 20:58:10 +0900",
+"test/yosupo/unionfind.test.cpp": "2021-11-13 20:58:10 +0900"
 }
