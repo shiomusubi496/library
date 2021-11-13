@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B"
-#include "../../template.hpp"
-#include "../../graph/Graph.hpp"
-#include "../../graph/shortest-path/BellmanFord.hpp"
+#include "../../../template.hpp"
+#include "../../../graph/Graph.hpp"
+#include "../../../graph/shortest-path/BellmanFord.hpp"
 using namespace std;
 int main() {
     int V, E, r; cin >> V >> E >> r;

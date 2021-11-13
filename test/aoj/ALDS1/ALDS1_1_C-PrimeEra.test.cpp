@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C"
-#include "../../template.hpp"
-#include "../../math/PrimeFactor.hpp"
+#include "../../../template.hpp"
+#include "../../../math/PrimeFactor.hpp"
 using namespace std;
 int main() {
     int n; cin >> n;

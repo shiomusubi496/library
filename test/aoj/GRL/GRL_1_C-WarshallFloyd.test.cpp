@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C"
-#include "../../template.hpp"
-#include "../../graph/Graph.hpp"
-#include "../../graph/shortest-path/WarshallFloyd.hpp"
+#include "../../../template.hpp"
+#include "../../../graph/Graph.hpp"
+#include "../../../graph/shortest-path/WarshallFloyd.hpp"
 using namespace std;
 int main() {
     int V, E; cin >> V >> E;

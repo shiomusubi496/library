@@ -105,11 +105,11 @@ template<ll mod> class StaticModInt : StaticModIntBase {
         return StaticModInt(0) - *this;
     }
     StaticModInt pow(ll a) const {
-        StaticModInt res = 1;
+        StaticModInt v = *this, res = 1;
         while (a) {
-            if (a & 1) res *= *this;
-            res *= res;
+            if (a & 1) res *= v;
             a >>= 1;
+            v *= v;
         }
         return res;
     }
@@ -205,11 +205,11 @@ template<int id> class DynamicModInt : DynamicModIntBase {
         return DynamicModInt(0) - *this;
     }
     DynamicModInt pow(ll a) const {
-        DynamicModInt res = 1;
+        DynamicModInt v = *this, res = 1;
         while (a) {
-            if (a & 1) res *= *this;
-            res *= res;
+            if (a & 1) res *= v;
             a >>= 1;
+            v *= v;
         }
         return res;
     }
