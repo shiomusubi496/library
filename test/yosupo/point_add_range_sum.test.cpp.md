@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Restore.hpp
-    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
+    path: segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
@@ -20,12 +14,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
     links:
-    - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/yosupo/shortest_path.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    - https://judge.yosupo.jp/problem/point_add_range_sum
+  bundledCode: "#line 1 \"test/yosupo/point_add_range_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -118,91 +112,57 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int\
-    \ t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f),\
-    \ to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int>\
-    \ using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix =\
-    \ std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
-    \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
-    \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
-    \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
-    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
-    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
-    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
-    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
-    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
-    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
-    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
-    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
-    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line\
-    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
-    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
-    \  int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (bfr[e.to]\
-    \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
-    \                que.push(e.to);\n            }\n        }\n    }\n    return\
-    \ bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
-    \ */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
-    \    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
-    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
-    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
-    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
-    \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
-    \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
-    \    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
-    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
-    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
-    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
-    \ << endl;\n}\n"
+    \    }\n};\n#line 2 \"segment/BinaryIndexedTree.hpp\"\n\n#line 4 \"segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
+    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
+    \ n_) : BinaryIndexedTree(n_, [](T a, T b) { return a + b; }, []() { return 0;\
+    \ }, [](T a) { return -a; }) {}\n    BinaryIndexedTree(int n_, const F& op, const\
+    \ G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n    BinaryIndexedTree(int\
+    \ n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true)\
+    \ { init(n_); }\n    void init(int n_) {\n        n = 1;\n        while (n < n_)\
+    \ n <<= 1;\n        data.assign(n + 1, e());\n    }\n    void add(int k, T x)\
+    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = e();\n        while (k) {\n\
+    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
+    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
+    \ r);\n        assert(inv_exits);\n        return op(sum(r), inv(sum(l)));\n \
+    \   }\n    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void\
+    \ set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n    template<class\
+    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= n);\n\
+    \        assert(cond(e()));\n        if (l == n) return n;\n        T sm = e();\n\
+    \        ++l;\n        while (l <= n) {\n            if (!cond(op(sm, data[l])))\
+    \ {\n                int ln = l & -l;\n                while (ln >>= 1) {\n  \
+    \                  if (cond(op(sm, data[l - ln]))) sm = op(sm, data[l - ln]);\n\
+    \                    else l -= ln;\n                }\n                return\
+    \ l;\n            }\n            sm = op(sm, data[l]);\n            l += l & -l;\n\
+    \        }\n        return n;\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n#line 4 \"test/yosupo/point_add_range_sum.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    BinaryIndexedTree<ll>\
+    \ BIT(N);\n    rep (i, N) {\n        int a; cin >> a;\n        BIT.add(i, a);\n\
+    \    }\n    rep (Q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t\
+    \ == 0) BIT.add(a, b);\n        else cout << BIT.sum(a, b) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
+    #include \"../../template.hpp\"\n#include \"../../segment/BinaryIndexedTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    BinaryIndexedTree<ll>\
+    \ BIT(N);\n    rep (i, N) {\n        int a; cin >> a;\n        BIT.add(i, a);\n\
+    \    }\n    rep (Q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t\
+    \ == 0) BIT.add(a, b);\n        else cout << BIT.sum(a, b) << endl;\n    }\n}\n"
   dependsOn:
   - template.hpp
-  - graph/Graph.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/shortest-path/Restore.hpp
+  - segment/BinaryIndexedTree.hpp
   isVerificationFile: true
-  path: test/yosupo/shortest_path.test.cpp
+  path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 20:58:10+09:00'
+  timestamp: '2021-11-14 16:44:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/shortest_path.test.cpp
+documentation_of: test/yosupo/point_add_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/shortest_path.test.cpp
-- /verify/test/yosupo/shortest_path.test.cpp.html
-title: test/yosupo/shortest_path.test.cpp
+- /verify/test/yosupo/point_add_range_sum.test.cpp
+- /verify/test/yosupo/point_add_range_sum.test.cpp.html
+title: test/yosupo/point_add_range_sum.test.cpp
 ---

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
@@ -114,35 +114,33 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
     \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
     \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }),\
-    \ e([]() { return 0; }), inv([](T a) { return -a; }) {\n        init(v);\n   \
-    \ }\n    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const\
-    \ F& inv) : op(op), e(e), inv(inv) {\n        init(v);\n    }\n    void init(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        data.resize(n + 1, e());\n\
-    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
-    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return op(data[r],\
-    \ inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C\
-    )\n * @docs docs/CumulativeSum.md\n */\n"
+    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) { return\
+    \ a + b; }, []() { return 0; }, [](T a) { return -a; }) {}\n    CumulativeSum(const\
+    \ std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv)\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i],\
+    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
+    \ && r <= n);\n        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n *\
+    \ @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class CumulativeSum\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
     \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
     \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }),\
-    \ e([]() { return 0; }), inv([](T a) { return -a; }) {\n        init(v);\n   \
-    \ }\n    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const\
-    \ F& inv) : op(op), e(e), inv(inv) {\n        init(v);\n    }\n    void init(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        data.resize(n + 1, e());\n\
-    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
-    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return op(data[r],\
-    \ inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C\
-    )\n * @docs docs/CumulativeSum.md\n */\n"
+    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) { return\
+    \ a + b; }, []() { return 0; }, [](T a) { return -a; }) {}\n    CumulativeSum(const\
+    \ std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv)\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i],\
+    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
+    \ && r <= n);\n        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n *\
+    \ @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-14 16:44:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
 documentation_of: segment/CumulativeSum.hpp
@@ -160,7 +158,7 @@ title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
 - 単位元の存在 : ある $e$ が存在して、任意の $A$ に対して $A \cdot e = e \cdot A = A$ が成り立つ。
 - 逆元の存在 : 任意の $A$ に対して、 $A \cdot B = e$ となる $B$ が存在する
 
-例えば、足し算、掛け算、 bitwise xor などがこの条件を満たす。
+例えば、足し算や bitwise xor などがこの条件を満たす。
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
 

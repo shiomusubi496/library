@@ -37,6 +37,9 @@ data:
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
+    path: segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':x:'
     path: segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
@@ -61,6 +64,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DLS/DSL_1_A-UF.test.cpp
     title: test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+    title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
@@ -110,9 +116,12 @@ data:
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/point_add_range_sum.test.cpp
+    title: test/yosupo/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -127,9 +136,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -326,6 +335,7 @@ data:
   requiredBy:
   - segment/CumulativeSum.hpp
   - segment/SparseTable.hpp
+  - segment/BinaryIndexedTree.hpp
   - segment/DisjointSparseTable.hpp
   - math/ModInt.hpp
   - math/Combinatorics.hpp
@@ -339,12 +349,13 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
@@ -365,6 +376,7 @@ data:
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

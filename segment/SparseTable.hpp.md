@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -114,36 +114,36 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
     \    SparseTable() = default;\n    SparseTable(const std::vector<T>& v, const\
-    \ F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
-    \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        reps (i, 1, 1 << h)\
-    \ logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1\
-    \ << h));\n        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n\
-    \            rep (j, (1 << h) - (1 << i)) {\n                data[i + 1][j] =\
-    \ op(data[i][j], data[i][j + (1 << i)]);\n            }\n        }\n    }\n  \
-    \  T query(int l, int r) {\n        assert(0 <= l && l < r && r <= (1 << h));\n\
-    \        int d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1\
-    \ << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
-    \ */\n"
+    \ F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n   \
+    \     h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.assign((1\
+    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
+    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
+    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
+    \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
+    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
+    \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class SparseTable\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    int h;\n    F op;\n\
     \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n  public:\n\
     \    SparseTable() = default;\n    SparseTable(const std::vector<T>& v, const\
-    \ F& op) : op(op) {\n        h = 1;\n        while ((1 << h) < (int)v.size())\
-    \ ++h;\n        logtable.resize((1 << h) + 1, 0);\n        reps (i, 1, 1 << h)\
-    \ logtable[i] = logtable[i >> 1] + 1;\n        data.resize(h + 1, std::vector<T>(1\
-    \ << h));\n        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n\
-    \            rep (j, (1 << h) - (1 << i)) {\n                data[i + 1][j] =\
-    \ op(data[i][j], data[i][j + (1 << i)]);\n            }\n        }\n    }\n  \
-    \  T query(int l, int r) {\n        assert(0 <= l && l < r && r <= (1 << h));\n\
-    \        int d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1\
-    \ << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
-    \ */\n"
+    \ F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n   \
+    \     h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.assign((1\
+    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
+    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
+    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
+    \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
+    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
+    \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-13 20:58:10+09:00'
+  timestamp: '2021-11-14 16:44:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp

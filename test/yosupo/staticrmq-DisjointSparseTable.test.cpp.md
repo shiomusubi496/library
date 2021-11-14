@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -117,16 +117,17 @@ data:
     \ std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n\
     \    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable() =\
     \ default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) : op(op)\
-    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.resize(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.resize(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
-    \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
-    \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
-    \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
-    \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= v.size()) break;\n                    data[i][j\
-    \ + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n\
-    \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        h = 1;\n   \
+    \     while ((1 << h) < (int)v.size()) ++h;\n        logtable.assign(1 << h, 0);\n\
+    \        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h,\
+    \ std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i] = v[i];\n   \
+    \     rep (i, 1, h) {\n            int len = 1 << i;\n            rep (j, len,\
+    \ v.size(), len << 1) {\n                data[i][j - 1] = v[j - 1];\n        \
+    \        rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);\n\
+    \                data[i][j] = v[j];\n                rep (k, 1, len) {\n     \
+    \               if (j + k >= v.size()) break;\n                    data[i][j +\
+    \ k] = op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n \
+    \       }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
     \ && r <= (1 << h));\n        --r;\n        if (l == r) return data[0][l];\n \
     \       int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
     \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
@@ -147,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 20:58:10+09:00'
+  timestamp: '2021-11-14 16:44:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
