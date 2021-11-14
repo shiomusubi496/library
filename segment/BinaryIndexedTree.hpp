@@ -15,7 +15,7 @@ template<class T> class BinaryIndexedTree {
     std::vector<T> data;
   public:
     BinaryIndexedTree() = default;
-    BinaryIndexedTree(int n_) : BinaryIndexedTree(n_, [](T a, T b) { return a + b; }, []() { return 0; }, [](T a) { return -a; }) {}
+    BinaryIndexedTree(int n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a; }) {}
     BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }
     BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
     void init(int n_) {
