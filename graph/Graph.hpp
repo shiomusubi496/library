@@ -43,10 +43,10 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
 template<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {
     const int N = G.size();
     auto res = make_vec<T>(N, N, INF<T>);
+    rep (i, N) res[i][i] = 0;
     rep (i, N) {
         for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;
     }
-    rep (i, N) res[i][i] = 0;
     return res;
 }
 
