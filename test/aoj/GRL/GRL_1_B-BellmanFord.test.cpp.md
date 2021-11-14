@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -135,8 +135,8 @@ data:
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
     \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) {\n        for (const edge<T>&\
-    \ e : G[i]) res[i][e.to] = e.cost;\n    }\n    rep (i, N) res[i][i] = 0;\n   \
+    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N)\
+    \ {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n   \
     \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
     \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
     \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
@@ -182,7 +182,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2021-11-13 20:58:10+09:00'
+  timestamp: '2021-11-14 23:58:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

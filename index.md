@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
     - icon: ':heavy_check_mark:'
@@ -62,13 +62,13 @@ data:
       title: SparseTable
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
   - name: test/aoj/ALDS1
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
     - icon: ':heavy_check_mark:'
