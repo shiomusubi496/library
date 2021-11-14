@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
@@ -114,33 +114,35 @@ data:
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
     \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
     \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) { return\
-    \ a + b; }, []() { return 0; }, [](T a) { return -a; }) {}\n    CumulativeSum(const\
-    \ std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv)\
-    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
-    \        data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i],\
-    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
-    \ && r <= n);\n        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n *\
-    \ @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) -> T\
+    \ { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a; }) {}\n\
+    \    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const H&\
+    \ inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        n = v.size();\n        data.assign(n + 1, e());\n        rep (i,\
+    \ n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l, int r) {\n  \
+    \      assert(0 <= l && l <= r && r <= n);\n        return op(data[r], inv(data[l]));\n\
+    \    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T> class CumulativeSum\
     \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
     \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    int\
     \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) { return\
-    \ a + b; }, []() { return 0; }, [](T a) { return -a; }) {}\n    CumulativeSum(const\
-    \ std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv)\
-    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
-    \        data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i],\
-    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
-    \ && r <= n);\n        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n *\
-    \ @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+    \  CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) -> T\
+    \ { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a; }) {}\n\
+    \    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const H&\
+    \ inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        n = v.size();\n        data.assign(n + 1, e());\n        rep (i,\
+    \ n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l, int r) {\n  \
+    \      assert(0 <= l && l <= r && r <= n);\n        return op(data[r], inv(data[l]));\n\
+    \    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-11-14 16:44:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-14 17:00:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
 documentation_of: segment/CumulativeSum.hpp
