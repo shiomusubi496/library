@@ -11,12 +11,13 @@ template<class T> class SparseTable {
     std::vector<std::vector<T>> data;
   public:
     SparseTable() = default;
-    SparseTable(const std::vector<T>& v, const F& op) : op(op) {
+    SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
+    void init(const std::vector<T>& v) {
         h = 1;
         while ((1 << h) < (int)v.size()) ++h;
-        logtable.resize((1 << h) + 1, 0);
+        logtable.assign((1 << h) + 1, 0);
         reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;
-        data.resize(h + 1, std::vector<T>(1 << h));
+        data.assign(h + 1, std::vector<T>(1 << h));
         rep (i, v.size()) data[0][i] = v[i];
         rep (i, h) {
             rep (j, (1 << h) - (1 << i)) {

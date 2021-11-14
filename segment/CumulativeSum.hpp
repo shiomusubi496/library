@@ -14,15 +14,11 @@ template<class T> class CumulativeSum {
     std::vector<T> data;
   public:
     CumulativeSum() = default;
-    CumulativeSum(const std::vector<T>& v) : op([](T a, T b) { return a + b; }), e([]() { return 0; }), inv([](T a) { return -a; }) {
-        init(v);
-    }
-    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv) {
-        init(v);
-    }
+    CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T a, T b) { return a + b; }, []() { return 0; }, [](T a) { return -a; }) {}
+    CumulativeSum(const std::vector<T>& v, const F& op, const G& e, const F& inv) : op(op), e(e), inv(inv) { init(v); }
     void init(const std::vector<T>& v) {
         n = v.size();
-        data.resize(n + 1, e());
+        data.assign(n + 1, e());
         rep (i, n) data[i + 1] = op(data[i], v[i]);
     }
     T query(int l, int r) {

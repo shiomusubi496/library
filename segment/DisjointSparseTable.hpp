@@ -11,12 +11,13 @@ template<class T> class DisjointSparseTable {
     std::vector<std::vector<T>> data;
   public:
     DisjointSparseTable() = default;
-    DisjointSparseTable(const std::vector<T>& v, const F& op) : op(op) {
+    DisjointSparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
+    void init(const std::vector<T>& v) {
         h = 1;
         while ((1 << h) < (int)v.size()) ++h;
-        logtable.resize(1 << h, 0);
+        logtable.assign(1 << h, 0);
         rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;
-        data.resize(h, std::vector<T>(1 << h));
+        data.assign(h, std::vector<T>(1 << h));
         rep (i, v.size()) data[0][i] = v[i];
         rep (i, 1, h) {
             int len = 1 << i;
