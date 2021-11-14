@@ -1,5 +1,6 @@
 {
 "test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp": "2021-11-13 20:58:10 +0900",
+"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp": "2021-11-14 23:40:57 +0900",
 "test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp": "2021-11-13 20:58:10 +0900",
