@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/UnionFind.hpp
     title: UnionFind
+  - icon: ':heavy_check_mark:'
+    path: graph/connected/ConnectedComponents.hpp
+    title: graph/connected/ConnectedComponents.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
@@ -49,9 +52,15 @@ data:
     path: segment/SparseTable.hpp
     title: SparseTable
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
@@ -136,9 +145,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -342,6 +351,7 @@ data:
   - math/PrimeFactor.hpp
   - math/EulerPhi.hpp
   - graph/UnionFind.hpp
+  - graph/connected/ConnectedComponents.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Dijkstra.hpp
@@ -349,12 +359,14 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

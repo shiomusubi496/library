@@ -3,12 +3,17 @@ data:
   libraryCategories:
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
     - icon: ':heavy_check_mark:'
       path: graph/UnionFind.hpp
       title: UnionFind
+  - name: graph/connected
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/connected/ConnectedComponents.hpp
+      title: graph/connected/ConnectedComponents.hpp
   - name: graph/shortest-path
     pages:
     - icon: ':heavy_check_mark:'
@@ -57,15 +62,21 @@ data:
       title: SparseTable
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
   - name: test/aoj/ALDS1
     pages:
+    - icon: ':x:'
+      path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
+      title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+      title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp

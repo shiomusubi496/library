@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/connected/ConnectedComponents.hpp
+    title: graph/connected/ConnectedComponents.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
@@ -22,9 +25,15 @@ data:
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+    title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
@@ -37,9 +46,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -204,15 +213,18 @@ data:
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
+  - graph/connected/ConnectedComponents.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
   timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
