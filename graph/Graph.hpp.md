@@ -7,7 +7,11 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
-    title: graph/connected/ConnectedComponents.hpp
+    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
+  - icon: ':warning:'
+    path: graph/connected/StronglyConnectedComponents.hpp
+    title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
@@ -34,6 +38,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
@@ -214,6 +224,7 @@ data:
   path: graph/Graph.hpp
   requiredBy:
   - graph/connected/ConnectedComponents.hpp
+  - graph/connected/StronglyConnectedComponents.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Dijkstra.hpp
@@ -223,6 +234,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

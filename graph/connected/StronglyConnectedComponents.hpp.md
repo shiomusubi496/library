@@ -8,36 +8,25 @@ data:
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest_path.test.cpp
-    title: test/yosupo/shortest_path.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
-    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+    _deprecated_at_docs: docs/StronglyConnectedComponents.md
+    document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
+      \u89E3)"
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\n\n#line\
+    \ 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -154,48 +143,78 @@ data:
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
     \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T> Dijkstra(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < G.size());\n\
-    \    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;\n    prique<std::pair<T,\
-    \ int>> que; que.emplace(0, start);\n    while (!que.empty()) {\n        T c =\
-    \ que.top().first;\n        int v = que.top().second;\n        que.pop();\n  \
-    \      if (dist[v] != c) continue;\n        for (const edge<T>& e : G[v]) {\n\
-    \            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);\n\
-    \        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\
-    \u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n"
+    \ 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class T> class\
+    \ StronglyConnectedComponents {\n  protected:\n    int n, sz;\n    Graph<T> G;\n\
+    \    std::vector<int> ord;\n    std::vector<bool> seen;\n    std::vector<int>\
+    \ cmp;\n    void dfs(int v, int p) {\n        seen[e.to] = true;\n        ord.push_back(v);\n\
+    \        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            if (seen[e.to]) continue;\n            dfs(e.to, v);\n        }\n\
+    \    }\n    void dfs2(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n\
+    \            if (e.to == p) continue;\n            if (cmp[e.to] != -1) continue;\n\
+    \            cmp[e.to] = cmp[v];\n            dfs2(e.to, v);\n        }\n    }\n\
+    \  public:\n    StronglyConnectedComponents() = default;\n    StronglyConnectedComponents(const\
+    \ Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>& G_) {\n        G\
+    \ = G_;\n        n = G.size();\n        ord.reserve(n);\n        seen.assign(n,\
+    \ false);\n        rep (i, n) {\n            if (seen[i]) continue;\n        \
+    \    dfs(i, -1);\n        }\n        sz = 0;\n        cmp.assign(n, -1);\n   \
+    \     for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n  \
+    \          cmp[i] = sz++;\n            dfs2(i, -1);\n        }\n    }\n    int\
+    \ size() const { return sz; }\n    int operator[](int k) const { return cmp[k];\
+    \ }\n    std::vector<std::vector<int>> groups() const {\n        std::vector<std::vector<int>>\
+    \ res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n        return res;\n\
+    \    }\n    Graph<T> dag() const {\n        Graph<T> res(sz);\n        rep (i,\
+    \ n) {\n            for (const edge<T>& e : G[v]) {\n                if (cmp[i]\
+    \ != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n\
+    \        }\n        return G;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n"
+    \n\ntemplate<class T> class StronglyConnectedComponents {\n  protected:\n    int\
+    \ n, sz;\n    Graph<T> G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n\
+    \    std::vector<int> cmp;\n    void dfs(int v, int p) {\n        seen[e.to] =\
+    \ true;\n        ord.push_back(v);\n        for (const edge<T>& e : G[v]) {\n\
+    \            if (e.to == p) continue;\n            if (seen[e.to]) continue;\n\
+    \            dfs(e.to, v);\n        }\n    }\n    void dfs2(int v, int p) {\n\
+    \        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            if (cmp[e.to] != -1) continue;\n            cmp[e.to] = cmp[v];\n\
+    \            dfs2(e.to, v);\n        }\n    }\n  public:\n    StronglyConnectedComponents()\
+    \ = default;\n    StronglyConnectedComponents(const Graph<T>& G_) { init(G_);\
+    \ }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n\
+    \        ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n\
+    \            if (seen[i]) continue;\n            dfs(i, -1);\n        }\n    \
+    \    sz = 0;\n        cmp.assign(n, -1);\n        for (const int& i : ord) {\n\
+    \            if (cmp[i] != -1) continue;\n            cmp[i] = sz++;\n       \
+    \     dfs2(i, -1);\n        }\n    }\n    int size() const { return sz; }\n  \
+    \  int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
+    \ const {\n        Graph<T> res(sz);\n        rep (i, n) {\n            for (const\
+    \ edge<T>& e : G[v]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
+    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return G;\n   \
+    \ }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/shortest-path/Dijkstra.hpp
+  path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/yosupo/shortest_path.test.cpp
-documentation_of: graph/shortest-path/Dijkstra.hpp
+  timestamp: '2021-11-15 18:59:47+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/Dijkstra.hpp
-- /library/graph/shortest-path/Dijkstra.hpp.html
-title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+- /library/graph/connected/StronglyConnectedComponents.hpp
+- /library/graph/connected/StronglyConnectedComponents.hpp.html
+title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)"
 ---
 ## 概要
 
-負辺のない重み付きグラフに対して単一始点最短経路問題を解くアルゴリズム。負辺のある場合はワーシャルフロイド法やベルマンフォード法を使う。
+グラフの強連結成分分解をする。有向グラフで使われることを想定している。
 
-- `vector<T> Dijkstra(Graph<T> G, int s = 0)` :  
-重み付きグラフ `G` において、各頂点の `s` からの距離を求める。 $O(|E|\log|V|)$ 。
+- `StronglyConnectedComponennts(Graph<T> G)` : グラフ `G` で初期化する。 $N=G.size()$ として $O(N)$ 。
+- `int size()` : 強連結成分の個数を返す。 $O(1)$ 。
+- `int operator[](int k)` : 頂点 `k` の所属する強連結成分の番号を返す。 $O(1)$ 。
+- `vector<vector<int>> groups()` : 強連結成分のリストを返す。 $O(N)$ 。
+- `Graph<T> dag()` : 強連結成分を圧縮した後のグラフは DAG になることが知られているので、それを返す。 $O(N)$ 。

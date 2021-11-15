@@ -5,30 +5,23 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/Dijkstra.hpp
+    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest_path.test.cpp
-    title: test/yosupo/shortest_path.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
-    document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    links: []
-  bundledCode: "#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C
+  bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C\"\n#line 2 \"template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -154,16 +147,7 @@ data:
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
     \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T> Dijkstra(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < G.size());\n\
-    \    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;\n    prique<std::pair<T,\
-    \ int>> que; que.emplace(0, start);\n    while (!que.empty()) {\n        T c =\
-    \ que.top().first;\n        int v = que.top().second;\n        que.pop();\n  \
-    \      if (dist[v] != c) continue;\n        for (const edge<T>& e : G[v]) {\n\
-    \            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);\n\
-    \        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\
-    \u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+    \ 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
     \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
     \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
     \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
@@ -172,30 +156,34 @@ data:
     \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
     \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
     }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n"
+    \ docs/Dijkstra.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (N) {\n        int v, k; cin >> v >> k;\n        G[v].reserve(k);\n \
+    \       rep (k) {\n            int u, c; cin >> u >> c;\n            G.add_edge(v,\
+    \ u, c, true);\n        }\n    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n\
+    \        cout << i << ' ' << v[i] << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C\"\n\
+    #include \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n        int v,\
+    \ k; cin >> v >> k;\n        G[v].reserve(k);\n        rep (k) {\n           \
+    \ int u, c; cin >> u >> c;\n            G.add_edge(v, u, c, true);\n        }\n\
+    \    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n        cout << i << ' '\
+    \ << v[i] << endl;\n    }\n}\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  isVerificationFile: true
+  path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/yosupo/shortest_path.test.cpp
-documentation_of: graph/shortest-path/Dijkstra.hpp
+  timestamp: '2021-11-15 17:58:15+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/Dijkstra.hpp
-- /library/graph/shortest-path/Dijkstra.hpp.html
-title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
+- /verify/test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+- /verify/test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp.html
+title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
 ---
-## 概要
-
-負辺のない重み付きグラフに対して単一始点最短経路問題を解くアルゴリズム。負辺のある場合はワーシャルフロイド法やベルマンフォード法を使う。
-
-- `vector<T> Dijkstra(Graph<T> G, int s = 0)` :  
-重み付きグラフ `G` において、各頂点の `s` からの距離を求める。 $O(|E|\log|V|)$ 。

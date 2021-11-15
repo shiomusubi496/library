@@ -6,7 +6,7 @@ data:
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
-    title: graph/connected/ConnectedComponents.hpp
+    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
@@ -148,24 +148,26 @@ data:
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
     \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
     \ 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
-    \n\ntemplate<class T> class ConnectedComponents {\n  private:\n    int n, sz;\n\
-    \    Graph<T> G;\n    std::vector<int> id;\n    void dfs(int v, int p) {\n   \
-    \     for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            if (id[e.to] != -1) continue;\n            id[e.to] = id[v];\n  \
-    \          dfs(e.to, v);\n        }\n    }\n  public:\n    ConnectedComponents()\
+    \n\ntemplate<class T> class ConnectedComponents {\n  protected:\n    int n, sz;\n\
+    \    Graph<T> G;\n    std::vector<int> cmp;\n    void dfs(int v, int p) {\n  \
+    \      for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            if (cmp[e.to] != -1) continue;\n            cmp[e.to] = cmp[v];\n\
+    \            dfs(e.to, v);\n        }\n    }\n  public:\n    ConnectedComponents()\
     \ = default;\n    ConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void\
     \ init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n       \
-    \ id.assign(n, -1);\n        sz = 0;\n        rep (i, n) {\n            if (id[i]\
-    \ != -1) continue;\n            id[i] = sz++;\n            dfs(i, -1);\n     \
-    \   }\n    }\n    int size() const { return sz; }\n    int operator[](int k) const\
-    \ { return id[k]; }\n    std::vector<std::vector<int>> groups() const {\n    \
-    \    std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[id[i]].push_back(i);\n\
-    \        return res;\n    }\n};\n#line 5 \"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    Graph<int>\
-    \ G(n);\n    rep (m) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    ConnectedComponents<int> CC(G);\n    int q; cin >> q;\n    rep\
-    \ (q) {\n        int a, b; cin >> a >> b;\n        if (CC[a] == CC[b]) puts(\"\
-    yes\");\n        else puts(\"no\");\n    }\n}\n"
+    \ cmp.assign(n, -1);\n        sz = 0;\n        rep (i, n) {\n            if (cmp[i]\
+    \ != -1) continue;\n            cmp[i] = sz++;\n            dfs(i, -1);\n    \
+    \    }\n    }\n    int size() const { return sz; }\n    int operator[](int k)\
+    \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
+    \        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n};\n\n/**\n * @brief ConnectedComponents(\u9023\u7D50\
+    \u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n */\n#line 5\
+    \ \"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n    rep (m) {\n\
+    \        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    ConnectedComponents<int>\
+    \ CC(G);\n    int q; cin >> q;\n    rep (q) {\n        int a, b; cin >> a >> b;\n\
+    \        if (CC[a] == CC[b]) puts(\"yes\");\n        else puts(\"no\");\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_D\"\n\
     #include \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/connected/ConnectedComponents.hpp\"\nusing namespace std;\n\
@@ -181,7 +183,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 18:59:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp

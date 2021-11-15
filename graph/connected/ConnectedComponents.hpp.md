@@ -16,6 +16,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/ConnectedComponents.md
+    document_title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
     links: []
   bundledCode: "#line 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 2 \"\
     template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__\
@@ -144,39 +146,42 @@ data:
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
     \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
     \ 5 \"graph/connected/ConnectedComponents.hpp\"\n\ntemplate<class T> class ConnectedComponents\
-    \ {\n  private:\n    int n, sz;\n    Graph<T> G;\n    std::vector<int> id;\n \
-    \   void dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n      \
-    \      if (e.to == p) continue;\n            if (id[e.to] != -1) continue;\n \
-    \           id[e.to] = id[v];\n            dfs(e.to, v);\n        }\n    }\n \
-    \ public:\n    ConnectedComponents() = default;\n    ConnectedComponents(const\
+    \ {\n  protected:\n    int n, sz;\n    Graph<T> G;\n    std::vector<int> cmp;\n\
+    \    void dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n     \
+    \       if (e.to == p) continue;\n            if (cmp[e.to] != -1) continue;\n\
+    \            cmp[e.to] = cmp[v];\n            dfs(e.to, v);\n        }\n    }\n\
+    \  public:\n    ConnectedComponents() = default;\n    ConnectedComponents(const\
     \ Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>& G_) {\n        G\
-    \ = G_;\n        n = G.size();\n        id.assign(n, -1);\n        sz = 0;\n \
-    \       rep (i, n) {\n            if (id[i] != -1) continue;\n            id[i]\
+    \ = G_;\n        n = G.size();\n        cmp.assign(n, -1);\n        sz = 0;\n\
+    \        rep (i, n) {\n            if (cmp[i] != -1) continue;\n            cmp[i]\
     \ = sz++;\n            dfs(i, -1);\n        }\n    }\n    int size() const { return\
-    \ sz; }\n    int operator[](int k) const { return id[k]; }\n    std::vector<std::vector<int>>\
+    \ sz; }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[id[i]].push_back(i);\n        return res;\n    }\n};\n"
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n\n/**\n *\
+    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class ConnectedComponents {\n  private:\n    int n, sz;\n\
-    \    Graph<T> G;\n    std::vector<int> id;\n    void dfs(int v, int p) {\n   \
-    \     for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            if (id[e.to] != -1) continue;\n            id[e.to] = id[v];\n  \
-    \          dfs(e.to, v);\n        }\n    }\n  public:\n    ConnectedComponents()\
+    \n\ntemplate<class T> class ConnectedComponents {\n  protected:\n    int n, sz;\n\
+    \    Graph<T> G;\n    std::vector<int> cmp;\n    void dfs(int v, int p) {\n  \
+    \      for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            if (cmp[e.to] != -1) continue;\n            cmp[e.to] = cmp[v];\n\
+    \            dfs(e.to, v);\n        }\n    }\n  public:\n    ConnectedComponents()\
     \ = default;\n    ConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void\
     \ init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n       \
-    \ id.assign(n, -1);\n        sz = 0;\n        rep (i, n) {\n            if (id[i]\
-    \ != -1) continue;\n            id[i] = sz++;\n            dfs(i, -1);\n     \
-    \   }\n    }\n    int size() const { return sz; }\n    int operator[](int k) const\
-    \ { return id[k]; }\n    std::vector<std::vector<int>> groups() const {\n    \
-    \    std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[id[i]].push_back(i);\n\
-    \        return res;\n    }\n};\n"
+    \ cmp.assign(n, -1);\n        sz = 0;\n        rep (i, n) {\n            if (cmp[i]\
+    \ != -1) continue;\n            cmp[i] = sz++;\n            dfs(i, -1);\n    \
+    \    }\n    }\n    int size() const { return sz; }\n    int operator[](int k)\
+    \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
+    \        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n};\n\n/**\n * @brief ConnectedComponents(\u9023\u7D50\
+    \u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/connected/ConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 18:59:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
@@ -185,5 +190,13 @@ layout: document
 redirect_from:
 - /library/graph/connected/ConnectedComponents.hpp
 - /library/graph/connected/ConnectedComponents.hpp.html
-title: graph/connected/ConnectedComponents.hpp
+title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
 ---
+## 概要
+
+グラフの連結成分分解をする。無向グラフで使われることを想定している。
+
+- `ConnectedComponennts(Graph<T> G)` : グラフ `G` で初期化する。 $N=G.size()$ として $O(N)$ 。
+- `int size()` : 連結成分の個数を返す。 $O(1)$ 。
+- `int operator[](int k)` : 頂点 `k` の所属する連結成分の番号を返す。 $O(1)$ 。
+- `vector<vector<int>> groups()` : 連結成分のリストを返す。 $O(N)$ 。

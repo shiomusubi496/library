@@ -13,7 +13,11 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
-      title: graph/connected/ConnectedComponents.hpp
+      title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
+    - icon: ':warning:'
+      path: graph/connected/StronglyConnectedComponents.hpp
+      title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+        )"
   - name: graph/shortest-path
     pages:
     - icon: ':heavy_check_mark:'
@@ -77,6 +81,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+      title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+      title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
