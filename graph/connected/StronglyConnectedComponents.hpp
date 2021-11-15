@@ -1,0 +1,71 @@
+#pragma once
+
+#include "../../template.hpp"
+#include "../Graph.hpp"
+
+template<class T> class StronglyConnectedComponents {
+  protected:
+    int n, sz;
+    Graph<T> G;
+    std::vector<int> ord;
+    std::vector<bool> seen;
+    std::vector<int> cmp;
+    void dfs(int v, int p) {
+        seen[e.to] = true;
+        ord.push_back(v);
+        for (const edge<T>& e : G[v]) {
+            if (e.to == p) continue;
+            if (seen[e.to]) continue;
+            dfs(e.to, v);
+        }
+    }
+    void dfs2(int v, int p) {
+        for (const edge<T>& e : G[v]) {
+            if (e.to == p) continue;
+            if (cmp[e.to] != -1) continue;
+            cmp[e.to] = cmp[v];
+            dfs2(e.to, v);
+        }
+    }
+  public:
+    StronglyConnectedComponents() = default;
+    StronglyConnectedComponents(const Graph<T>& G_) { init(G_); }
+    void init(const Graph<T>& G_) {
+        G = G_;
+        n = G.size();
+        ord.reserve(n);
+        seen.assign(n, false);
+        rep (i, n) {
+            if (seen[i]) continue;
+            dfs(i, -1);
+        }
+        sz = 0;
+        cmp.assign(n, -1);
+        for (const int& i : ord) {
+            if (cmp[i] != -1) continue;
+            cmp[i] = sz++;
+            dfs2(i, -1);
+        }
+    }
+    int size() const { return sz; }
+    int operator[](int k) const { return cmp[k]; }
+    std::vector<std::vector<int>> groups() const {
+        std::vector<std::vector<int>> res(sz);
+        rep (i, n) res[cmp[i]].push_back(i);
+        return res;
+    }
+    Graph<T> dag() const {
+        Graph<T> res(sz);
+        rep (i, n) {
+            for (const edge<T>& e : G[v]) {
+                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
+            }
+        }
+        return G;
+    }
+};
+
+/**
+ * @brief StronglyConnectedComponents(強連結成分分解)
+ * @docs docs/StronglyConnectedComponents.md
+ */
