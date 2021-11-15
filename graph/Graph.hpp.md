@@ -1,16 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
+  - icon: ':heavy_check_mark:'
+    path: graph/other/TopologicalSort.hpp
+    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
@@ -53,12 +57,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -186,7 +196,10 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
     \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
@@ -217,12 +230,16 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
+  - graph/other/TopologicalSort.hpp
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
@@ -230,17 +247,19 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
-  timestamp: '2021-11-14 23:58:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-15 23:23:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document

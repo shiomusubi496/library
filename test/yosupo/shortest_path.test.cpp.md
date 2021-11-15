@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -149,34 +149,36 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
-    \ INF<T>); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line\
-    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
-    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
-    \  int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (bfr[e.to]\
-    \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
-    \                que.push(e.to);\n            }\n        }\n    }\n    return\
-    \ bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
-    \ */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
-    \    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
-    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
-    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
-    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
-    \ << endl;\n}\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < G.size());\n    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;\n\
+    \    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
+    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
+    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
+    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
+    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
+    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2\
+    \ \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
+    \ bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while (!que.empty())\
+    \ {\n        int v = que.front(); que.pop();\n        for (const edge<T>& e :\
+    \ G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
+    \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
+    \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
+    \ s);\n    vector<int> R = Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"\
+    -1\");\n        return 0;\n    }\n    vector<int> ans{t};\n    while (ans.back()\
+    \ != s) ans.push_back(R[ans.back()]);\n    reverse(ans.begin(), ans.end());\n\
+    \    cout << D[t] << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() -\
+    \ 1) cout << ans[i] << ' ' << ans[i + 1] << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
     \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
@@ -196,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 23:23:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp

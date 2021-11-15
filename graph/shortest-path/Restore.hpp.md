@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -144,16 +144,18 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
-    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
-    \  int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (bfr[e.to]\
-    \ == -2 && dist[e.to] == dist[v] + e.cost) {\n                bfr[e.to] = v;\n\
-    \                que.push(e.to);\n            }\n        }\n    }\n    return\
-    \ bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
-    \ */\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
+    \ bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while (!que.empty())\
+    \ {\n        int v = que.front(); que.pop();\n        for (const edge<T>& e :\
+    \ G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
@@ -169,7 +171,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/Restore.hpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 23:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/shortest_path.test.cpp

@@ -1,25 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
   - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
-  bundledCode: "#line 1 \"test/aoj/DLS/DSL_2_B-BIT.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#line 2 \"template.hpp\"\n\
-    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    _deprecated_at_docs: docs/TopologicalSort.md
+    document_title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
+      \u30C8)"
+    links: []
+  bundledCode: "#line 2 \"graph/other/TopologicalSort.hpp\"\n\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -112,57 +114,86 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"segment/BinaryIndexedTree.hpp\"\n\n#line 4 \"segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
-    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
-    \ n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T {\
-    \ return 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int n_,\
-    \ const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n  \
-    \  BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
-    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = 1;\n        while (n < n_) n <<= 1;\n        data.assign(n + 1, e());\n\
-    \    }\n    void add(int k, T x) {\n        ++k;\n        while (k <= n) {\n \
-    \           data[k] = op(data[k], x);\n            k += k & -k;\n        }\n \
-    \   }\n    T sum(int k) const {\n        assert(0 <= k && k <= n);\n        T\
-    \ res = e();\n        while (k) {\n            res = op(res, data[k]);\n     \
-    \       k -= k & -k;\n        }\n        return res;\n    }\n    T sum(int l,\
-    \ int r) const {\n        assert(l <= r);\n        assert(inv_exits);\n      \
-    \  return op(sum(r), inv(sum(l)));\n    }\n    T get(int k) const {\n        return\
-    \ sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n\
-    \    }\n    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
-    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
-    \        T sm = e();\n        ++l;\n        while (l <= n) {\n            if (!cond(op(sm,\
-    \ data[l]))) {\n                int ln = l & -l;\n                while (ln >>=\
-    \ 1) {\n                    if (cond(op(sm, data[l - ln]))) sm = op(sm, data[l\
-    \ - ln]);\n                    else l -= ln;\n                }\n            \
-    \    return l;\n            }\n            sm = op(sm, data[l]);\n           \
-    \ l += l & -l;\n        }\n        return n;\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
-    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n#line 4 \"test/aoj/DLS/DSL_2_B-BIT.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int>\
-    \ BIT(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
-    \ (t == 0) BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../segment/BinaryIndexedTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int>\
-    \ BIT(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
-    \ (t == 0) BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n\
-    \    }\n}\n"
+    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int\
+    \ t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f),\
+    \ to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c),\
+    \ idx(i) {}\n    operator int() { return to; }\n};\n\ntemplate<class T = int>\
+    \ using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix =\
+    \ std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
+    \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
+    \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
+    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
+    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
+    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
+    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
+    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
+    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
+    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
+    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N)\
+    \ {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n   \
+    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
+    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
+    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
+    \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
+    \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
+    \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
+    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
+    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
+    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
+    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
+    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
+    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
+    \ G_) {\n        G = G_;\n        n = G.size();\n        //ord.reserve(n);\n \
+    \       seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i])\
+    \ continue;\n            dfs(i);\n        }\n        std::reverse(ord.begin(),\
+    \ ord.end());\n    }\n    std::vector<int> get() const { return ord; }\n};\n\n\
+    /**\n * @brief TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
+    \u30C8)\n * @docs docs/TopologicalSort.md\n */\n"
+  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
+    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
+    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
+    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
+    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
+    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
+    \ G_) {\n        G = G_;\n        n = G.size();\n        //ord.reserve(n);\n \
+    \       seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i])\
+    \ continue;\n            dfs(i);\n        }\n        std::reverse(ord.begin(),\
+    \ ord.end());\n    }\n    std::vector<int> get() const { return ord; }\n};\n\n\
+    /**\n * @brief TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
+    \u30C8)\n * @docs docs/TopologicalSort.md\n */\n"
   dependsOn:
   - template.hpp
-  - segment/BinaryIndexedTree.hpp
-  isVerificationFile: true
-  path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  - graph/Graph.hpp
+  isVerificationFile: false
+  path: graph/other/TopologicalSort.hpp
   requiredBy: []
-  timestamp: '2021-11-14 17:00:54+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  timestamp: '2021-11-15 23:23:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+documentation_of: graph/other/TopologicalSort.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DLS/DSL_2_B-BIT.test.cpp
-- /verify/test/aoj/DLS/DSL_2_B-BIT.test.cpp.html
-title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+- /library/graph/other/TopologicalSort.hpp
+- /library/graph/other/TopologicalSort.hpp.html
+title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)"
 ---
+## 概要
+
+トポロジカルソートをする。 DAG に対して使われることを想定している。
+
+- `TopologicalSort(Graph<T> G)` : `G` のグラフに対してトポロジカルソートをする。 $O(N)$ 。
+- `vector<int> get()` : トポロジカルソートした後の頂点の並びを返す。 $O(N)$ 。

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
     - icon: ':heavy_check_mark:'
@@ -14,9 +14,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+        )"
+  - name: graph/other
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/other/TopologicalSort.hpp
+      title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
   - name: graph/shortest-path
     pages:
@@ -66,7 +72,7 @@ data:
       title: SparseTable
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -135,6 +141,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+    - icon: ':x:'
+      path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+      title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+      title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - name: test/aoj/NTL
     pages:
     - icon: ':heavy_check_mark:'

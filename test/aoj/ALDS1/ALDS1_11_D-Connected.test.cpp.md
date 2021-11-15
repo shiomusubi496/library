@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -146,20 +146,22 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
-    \n\ntemplate<class T> class ConnectedComponents {\n  protected:\n    int n, sz;\n\
-    \    Graph<T> G;\n    std::vector<int> cmp;\n    void dfs(int v, int p) {\n  \
-    \      for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            if (cmp[e.to] != -1) continue;\n            cmp[e.to] = cmp[v];\n\
-    \            dfs(e.to, v);\n        }\n    }\n  public:\n    ConnectedComponents()\
-    \ = default;\n    ConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void\
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/ConnectedComponents.hpp\"\
+    \n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\n\ntemplate<class T> class\
+    \ ConnectedComponents {\n  protected:\n    int n, sz;\n    Graph<T> G;\n    std::vector<int>\
+    \ cmp;\n    void dfs(int v) {\n        for (const edge<T>& e : G[v]) {\n     \
+    \       if (cmp[e.to] != -1) continue;\n            cmp[e.to] = cmp[v];\n    \
+    \        dfs(e.to);\n        }\n    }\n  public:\n    ConnectedComponents() =\
+    \ default;\n    ConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void\
     \ init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n       \
     \ cmp.assign(n, -1);\n        sz = 0;\n        rep (i, n) {\n            if (cmp[i]\
-    \ != -1) continue;\n            cmp[i] = sz++;\n            dfs(i, -1);\n    \
-    \    }\n    }\n    int size() const { return sz; }\n    int operator[](int k)\
-    \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
-    \        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \ != -1) continue;\n            cmp[i] = sz++;\n            dfs(i);\n        }\n\
+    \    }\n    int size() const { return sz; }\n    int operator[](int k) const {\
+    \ return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n     \
+    \   std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
     \        return res;\n    }\n};\n\n/**\n * @brief ConnectedComponents(\u9023\u7D50\
     \u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n */\n#line 5\
     \ \"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp\"\nusing namespace std;\nint\
@@ -183,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   requiredBy: []
-  timestamp: '2021-11-15 18:59:47+09:00'
+  timestamp: '2021-11-15 23:23:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp

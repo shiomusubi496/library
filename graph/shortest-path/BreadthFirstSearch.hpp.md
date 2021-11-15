@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -144,15 +144,18 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\ntemplate<class T> std::vector<T>\
-    \ BFS(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < G.size());\n\
-    \    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
-    \ == -1) {\n                dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\
-    \u512A\u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
+    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
+    \    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
+    \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
+    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
+    \  }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\
+    \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
     \    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
@@ -168,7 +171,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/BreadthFirstSearch.hpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 23:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

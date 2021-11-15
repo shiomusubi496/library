@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -143,14 +143,17 @@ data:
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
     \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1)\
     \ Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n    return\
-    \ Ed;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line\
-    \ 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n        int\
-    \ v, k; cin >> v >> k;\n        --v;\n        rep (k) {\n            int u; cin\
-    \ >> u;\n            G.add_edge(v, u - 1, true);\n        }\n    }\n    GMatrix<int>\
-    \ GM = ListToMatrix(G);\n    for (const auto& v : GM) {\n        rep (i, N) {\n\
-    \            if (v[i] == 1) cout << 1;\n            else cout << 0;\n        \
-    \    cout << \" \\n\"[i == N - 1];\n        }\n    }\n}\n"
+    \ Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n   \
+    \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
+    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
+    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (i, N) {\n        int v, k; cin >> v >> k;\n        --v;\n        rep\
+    \ (k) {\n            int u; cin >> u;\n            G.add_edge(v, u - 1, true);\n\
+    \        }\n    }\n    GMatrix<int> GM = ListToMatrix(G);\n    for (const auto&\
+    \ v : GM) {\n        rep (i, N) {\n            if (v[i] == 1) cout << 1;\n   \
+    \         else cout << 0;\n            cout << \" \\n\"[i == N - 1];\n       \
+    \ }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A\"\n\
     #include \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\nusing\
     \ namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n \
@@ -166,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   requiredBy: []
-  timestamp: '2021-11-14 23:58:54+09:00'
+  timestamp: '2021-11-15 23:23:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp

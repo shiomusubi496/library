@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -11,9 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
+  - icon: ':heavy_check_mark:'
+    path: graph/other/TopologicalSort.hpp
+    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
@@ -113,6 +117,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
@@ -155,9 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -360,6 +370,7 @@ data:
   - math/Combinatorics.hpp
   - math/PrimeFactor.hpp
   - math/EulerPhi.hpp
+  - graph/other/TopologicalSort.hpp
   - graph/UnionFind.hpp
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/StronglyConnectedComponents.hpp
@@ -370,7 +381,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
@@ -382,9 +393,11 @@ data:
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
