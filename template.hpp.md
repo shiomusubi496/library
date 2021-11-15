@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':heavy_check_mark:'
@@ -165,9 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -381,7 +381,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/Graph.hpp
   timestamp: '2021-11-13 20:58:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp

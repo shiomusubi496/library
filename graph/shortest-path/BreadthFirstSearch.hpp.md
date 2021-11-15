@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -124,12 +124,12 @@ data:
     \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
     \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
     \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
-    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ T c, bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
     \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
     \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
@@ -149,7 +149,7 @@ data:
     \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
     }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
+    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
     \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
     \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
@@ -158,7 +158,7 @@ data:
     \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < G.size());\n    std::vector<T> dist(G.size(),\
+    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
     \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
     \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/BreadthFirstSearch.hpp
   requiredBy: []
-  timestamp: '2021-11-15 23:23:56+09:00'
+  timestamp: '2021-11-15 23:41:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

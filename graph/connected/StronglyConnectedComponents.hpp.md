@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -125,12 +125,12 @@ data:
     \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
     \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
     \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
-    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ T c, bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
     \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
     \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
@@ -204,8 +204,8 @@ data:
   isVerificationFile: false
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-11-15 23:23:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-15 23:41:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -125,12 +125,12 @@ data:
     \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
     \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
     \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
-    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ T c, bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
     \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
     \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
@@ -149,14 +149,14 @@ data:
     \ const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
     \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
     }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
+    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    const int N = G.size();\n\
     \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
     \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
     \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/**\n\
     \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
     \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    int N = G.size();\n\
+    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G){\n    const int N = G.size();\n\
     \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
     \     rep (j, N) {\n                if (G[i][k] != INF<T> && G[k][j] != INF<T>)\
     \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/**\n\
@@ -168,7 +168,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2021-11-15 23:23:56+09:00'
+  timestamp: '2021-11-15 23:41:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

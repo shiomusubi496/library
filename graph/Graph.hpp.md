@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -177,20 +177,20 @@ data:
     \    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n \
     \ public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
     \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
-    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
-    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
-    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N)\
-    \ {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n   \
-    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
-    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
-    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
+    \ a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, INF<T>);\n    rep (i, N)\
+    \ res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e : G[i]) res[i][e.to]\
+    \ = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
+    \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
+    \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
     \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
     \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
@@ -211,20 +211,20 @@ data:
     \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
     \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
     \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < this->size());\n        assert(0 <= b && b < this->size());\n  \
-    \      (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b,\
-    \ a, c, edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int\
-    \ b, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, INF<T>);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N)\
-    \ {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n   \
-    \ return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T>\
-    \ Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] =\
-    \ e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
+    \ a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, INF<T>);\n    rep (i, N)\
+    \ res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e : G[i]) res[i][e.to]\
+    \ = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> ListToUndirectedEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
+    \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
+    \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
     \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
     \ G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size();\
     \ });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n\
@@ -247,8 +247,8 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
-  timestamp: '2021-11-15 23:23:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-11-15 23:41:33+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp

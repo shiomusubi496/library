@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -129,12 +129,12 @@ data:
     \ std::vector<std::vector<edge<T>>> {\n  protected:\n    int edge_id = 0;\n  \
     \  using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    using Base::Base;\n\
     \    int edge_size() const { return edge_id; }\n    int add_edge(int a, int b,\
-    \ T c, bool is_directed = false){\n        assert(0 <= a && a < this->size());\n\
-    \        assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ T c, bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
     \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false){\n        assert(0 <= a && a < this->size());\n  \
-    \      assert(0 <= b && b < this->size());\n        (*this)[a].emplace_back(a,\
+    \ bool is_directed = false){\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
     \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
     \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
     \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
@@ -155,8 +155,8 @@ data:
     }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
     \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
-    \ < G.size());\n    std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;\n\
-    \    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
+    \ < (int)G.size());\n    std::vector<T> dist(G.size(), INF<T>); dist[start] =\
+    \ 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
     \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
     \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
     \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
@@ -164,12 +164,12 @@ data:
     \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2\
     \ \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
-    \ dist, int start = 0) {\n    int N = G.size();\n    std::vector<int> bfr(N, -2);\
-    \ bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while (!que.empty())\
-    \ {\n        int v = que.front(); que.pop();\n        for (const edge<T>& e :\
-    \ G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
-    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
-    \     }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
+    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
+    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
+    \            }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
     \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
     \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
@@ -198,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-15 23:23:56+09:00'
+  timestamp: '2021-11-15 23:41:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp

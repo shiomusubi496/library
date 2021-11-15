@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -125,9 +125,9 @@ data:
     \ 1 << i;\n            rep (j, len, v.size(), len << 1) {\n                data[i][j\
     \ - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j\
     \ - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n           \
-    \     rep (k, 1, len) {\n                    if (j + k >= v.size()) break;\n \
-    \                   data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n     \
-    \           }\n            }\n        }\n    }\n    T query(int l, int r) {\n\
+    \     rep (k, 1, len) {\n                    if (j + k >= (int)v.size()) break;\n\
+    \                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n    \
+    \            }\n            }\n        }\n    }\n    T query(int l, int r) {\n\
     \        assert(0 <= l && l < r && r <= (1 << h));\n        --r;\n        if (l\
     \ == r) return data[0][l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
     \ data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
@@ -144,11 +144,11 @@ data:
     \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
     \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
     \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= v.size()) break;\n                    data[i][j\
-    \ + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n\
-    \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= (1 << h));\n        --r;\n        if (l == r) return data[0][l];\n \
-    \       int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
+    \ {\n                    if (j + k >= (int)v.size()) break;\n                \
+    \    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n \
+    \           }\n        }\n    }\n    T query(int l, int r) {\n        assert(0\
+    \ <= l && l < r && r <= (1 << h));\n        --r;\n        if (l == r) return data[0][l];\n\
+    \        int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
     \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
     \ */\n"
   dependsOn:
@@ -156,7 +156,7 @@ data:
   isVerificationFile: false
   path: segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-14 16:44:29+09:00'
+  timestamp: '2021-11-15 23:41:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
