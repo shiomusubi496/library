@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {
-    int N = G.size();
+    const int N = G.size();
     std::vector<int> bfr(N, -2); bfr[start] = -1;
     std::queue<int> que; que.push(start);
     while (!que.empty()) {

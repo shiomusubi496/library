@@ -5,7 +5,6 @@
 
 template<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
     assert(0 <= start && start <= V);
-    const int E = Ed.size();
     std::vector<T> dist(V, INF<T>); dist[start] = 0;
     rep (i, V) {
         bool changed = false;

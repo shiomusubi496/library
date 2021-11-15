@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
-    assert(0 <= start && start < G.size());
+    assert(0 <= start && start < (int)G.size());
     std::vector<T> dist(G.size(), INF<T>); dist[start] = 0;
     prique<std::pair<T, int>> que; que.emplace(0, start);
     while (!que.empty()) {

@@ -25,15 +25,15 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
     using Base::Base;
     int edge_size() const { return edge_id; }
     int add_edge(int a, int b, T c, bool is_directed = false){
-        assert(0 <= a && a < this->size());
-        assert(0 <= b && b < this->size());
+        assert(0 <= a && a < (int)this->size());
+        assert(0 <= b && b < (int)this->size());
         (*this)[a].emplace_back(a, b, c, edge_id);
         if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);
         return edge_id++;
     }
     int add_edge(int a, int b, bool is_directed = false){
-        assert(0 <= a && a < this->size());
-        assert(0 <= b && b < this->size());
+        assert(0 <= a && a < (int)this->size());
+        assert(0 <= b && b < (int)this->size());
         (*this)[a].emplace_back(a, b, 1, edge_id);
         if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);
         return edge_id++;

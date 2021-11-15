@@ -26,7 +26,7 @@ template<class T> class DisjointSparseTable {
                 rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);
                 data[i][j] = v[j];
                 rep (k, 1, len) {
-                    if (j + k >= v.size()) break;
+                    if (j + k >= (int)v.size()) break;
                     data[i][j + k] = op(data[i][j + k - 1], v[j + k]);
                 }
             }
