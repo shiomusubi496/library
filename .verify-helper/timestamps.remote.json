@@ -1,7 +1,9 @@
 {
 "test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp": "2021-11-14 23:58:54 +0900",
 "test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp": "2021-11-14 23:58:54 +0900",
-"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp": "2021-11-14 23:58:54 +0900",
+"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp": "2021-11-15 18:59:47 +0900",
+"test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp": "2021-11-15 17:58:15 +0900",
+"test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp": "2021-11-15 17:58:15 +0900",
 "test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp": "2021-11-13 20:58:10 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp": "2021-11-13 20:58:10 +0900",
