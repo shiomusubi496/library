@@ -73,6 +73,15 @@ template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
     return Ed;
 }
 
+template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
+    const int V = G.size();
+    Graph<T> RG(V);
+    for (const edge<T>& e : ListToUndirectedEdges(G)) {
+        RG.add_edge(e.to, e.from, e.cost, true);
+    }
+    return RG;
+}
+
 /**
  * @brief Graph-template
  * @docs docs/Graph.md

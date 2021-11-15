@@ -8,12 +8,11 @@ template<class T> class ConnectedComponents {
     int n, sz;
     Graph<T> G;
     std::vector<int> cmp;
-    void dfs(int v, int p) {
+    void dfs(int v) {
         for (const edge<T>& e : G[v]) {
-            if (e.to == p) continue;
             if (cmp[e.to] != -1) continue;
             cmp[e.to] = cmp[v];
-            dfs(e.to, v);
+            dfs(e.to);
         }
     }
   public:
@@ -27,7 +26,7 @@ template<class T> class ConnectedComponents {
         rep (i, n) {
             if (cmp[i] != -1) continue;
             cmp[i] = sz++;
-            dfs(i, -1);
+            dfs(i);
         }
     }
     int size() const { return sz; }

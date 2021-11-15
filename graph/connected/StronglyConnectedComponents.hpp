@@ -6,25 +6,23 @@
 template<class T> class StronglyConnectedComponents {
   protected:
     int n, sz;
-    Graph<T> G;
+    Graph<T> G, RG;
     std::vector<int> ord;
     std::vector<bool> seen;
     std::vector<int> cmp;
-    void dfs(int v, int p) {
-        seen[e.to] = true;
-        ord.push_back(v);
+    void dfs(int v) {
+        seen[v] = true;
         for (const edge<T>& e : G[v]) {
-            if (e.to == p) continue;
             if (seen[e.to]) continue;
-            dfs(e.to, v);
+            dfs(e.to);
         }
+        ord.push_back(v);
     }
-    void dfs2(int v, int p) {
-        for (const edge<T>& e : G[v]) {
-            if (e.to == p) continue;
+    void dfs2(int v) {
+        for (const edge<T>& e : RG[v]) {
             if (cmp[e.to] != -1) continue;
             cmp[e.to] = cmp[v];
-            dfs2(e.to, v);
+            dfs2(e.to);
         }
     }
   public:
@@ -37,14 +35,16 @@ template<class T> class StronglyConnectedComponents {
         seen.assign(n, false);
         rep (i, n) {
             if (seen[i]) continue;
-            dfs(i, -1);
+            dfs(i);
         }
+        std::reverse(ord.begin(), ord.end());
+        RG = ReverseGraph(G);
         sz = 0;
         cmp.assign(n, -1);
         for (const int& i : ord) {
             if (cmp[i] != -1) continue;
             cmp[i] = sz++;
-            dfs2(i, -1);
+            dfs2(i);
         }
     }
     int size() const { return sz; }
@@ -57,7 +57,7 @@ template<class T> class StronglyConnectedComponents {
     Graph<T> dag() const {
         Graph<T> res(sz);
         rep (i, n) {
-            for (const edge<T>& e : G[v]) {
+            for (const edge<T>& e : G[i]) {
                 if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
             }
         }
