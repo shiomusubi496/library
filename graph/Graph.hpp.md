@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy:
@@ -12,6 +12,9 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
+  - icon: ':heavy_check_mark:'
+    path: graph/mst/Prim.hpp
+    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
@@ -57,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
@@ -161,8 +167,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -196,15 +202,15 @@ data:
     \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
     \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
     template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(G.begin(), G.end(), 0,\
-    \ [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T>\
-    \ Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n        for (const\
-    \ edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n \
-    \           else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G)) {\n\
-    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
-    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
+    \ int V = G.size();\n    const int E = std::accumulate(all(G), 0, [](int a, const\
+    \ Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n\
+    \            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
+    \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
+    \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n"
   code: "#pragma once\n\n#include \"../template.hpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
     \ to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T\
@@ -231,15 +237,15 @@ data:
     \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
     \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
     template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(G.begin(), G.end(), 0,\
-    \ [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T>\
-    \ Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n        for (const\
-    \ edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n \
-    \           else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G)) {\n\
-    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
-    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
+    \ int V = G.size();\n    const int E = std::accumulate(all(G), 0, [](int a, const\
+    \ Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n\
+    \            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
+    \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
+    \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
@@ -253,7 +259,8 @@ data:
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/Dijkstra.hpp
-  timestamp: '2021-11-19 17:15:09+09:00'
+  - graph/mst/Prim.hpp
+  timestamp: '2021-11-19 19:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
@@ -261,6 +268,7 @@ data:
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -107,8 +107,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -146,8 +146,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 17:58:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-19 19:03:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp
 layout: document

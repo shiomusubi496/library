@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
@@ -27,6 +27,9 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
+  - icon: ':heavy_check_mark:'
+    path: graph/mst/Prim.hpp
+    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
@@ -118,6 +121,9 @@ data:
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,24 +156,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -258,8 +264,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -356,8 +362,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -388,8 +394,9 @@ data:
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/Dijkstra.hpp
-  timestamp: '2021-11-19 17:15:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/mst/Prim.hpp
+  timestamp: '2021-11-19 19:03:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
@@ -404,6 +411,7 @@ data:
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/NTL/NTL_1_A-Prime.test.cpp

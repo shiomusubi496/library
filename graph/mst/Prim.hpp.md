@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
@@ -10,44 +13,42 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/TopologicalSort.md
-    document_title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
-      \u30C8)"
+    _deprecated_at_docs: docs/Prime.hpp
+    document_title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
     links: []
-  bundledCode: "#line 2 \"graph/other/TopologicalSort.hpp\"\n\n#line 2 \"template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
-    \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
-    \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2) (__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
-    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\nusing ll = long long;\n\
-    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
-    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
-    \ std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n    static\
-    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if __cplusplus\
-    \ >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\
-    \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
-    \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
+  bundledCode: "#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
+    \n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \ for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_\
+    \ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i\
+    \ = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b);\
+    \ ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n\
+    #define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1) (__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a) - 1; i >= 0; --i)\n#define RREP3(i, a,\
+    \ b) for (ll i = (ll)(a) - 1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for\
+    \ (ll i = (ll)(a) - 1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2) (__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <=\
+    \ (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i +=\
+    \ (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2) (__VA_ARGS__)\n\
+    #define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b)\
+    \ for (ll i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i\
+    \ = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define rreps(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\n#define all(v) (v).begin(), (v).end()\n\
+    \n#if __cplusplus >= 201402L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n\
+    #endif\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if\
+    \ __cplusplus >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n\
+    #endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\n\
+    constexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
     \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
@@ -152,52 +153,58 @@ data:
     \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
     \    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G)) {\n\
     \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
-    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
-    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
-    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
-    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
-    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
-    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
-    \ G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n   \
-    \     seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i]) continue;\n\
-    \            dfs(i);\n        }\n        std::reverse(all(ord));\n    }\n    std::vector<int>\
-    \ get() const { return ord; }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
-    \ */\n"
+    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
+    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
+    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
+    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
+    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) return {-1, -1};\n\
+    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
+    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
+    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
+    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Prim.hpp\"\
+    \n\ntemplate<class T> T Prim(int N, Edges<T> Ed) {\n    std::sort(all(Ed), [](const\
+    \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
+    \ UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).first >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> Prim_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed), [](const\
+    \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
+    \ UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).first >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
+    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.hpp\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
-    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
-    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
-    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
-    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
-    \ G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n   \
-    \     seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i]) continue;\n\
-    \            dfs(i);\n        }\n        std::reverse(all(ord));\n    }\n    std::vector<int>\
-    \ get() const { return ord; }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
-    \ */\n"
+    \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
+    \ T Prim(int N, Edges<T> Ed) {\n    std::sort(all(Ed), [](const edge<T>& a, const\
+    \ edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind UF(N);\n  \
+    \  T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).first >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> Prim_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed), [](const\
+    \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
+    \ UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).first >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
+    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.hpp\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
+  - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: false
-  path: graph/other/TopologicalSort.hpp
+  path: graph/mst/Prim.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-19 20:54:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-documentation_of: graph/other/TopologicalSort.hpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+documentation_of: graph/mst/Prim.hpp
 layout: document
 redirect_from:
-- /library/graph/other/TopologicalSort.hpp
-- /library/graph/other/TopologicalSort.hpp.html
-title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)"
+- /library/graph/mst/Prim.hpp
+- /library/graph/mst/Prim.hpp.html
+title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
 ---
-## 概要
-
-トポロジカルソートをする。 DAG に対して使われることを想定している。
-
-- `TopologicalSort(Graph<T> G)` : `G` のグラフに対してトポロジカルソートをする。 $O(N)$ 。
-- `vector<int> get()` : トポロジカルソートした後の頂点の並びを返す。 $O(N)$ 。

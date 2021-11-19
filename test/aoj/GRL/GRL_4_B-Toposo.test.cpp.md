@@ -8,7 +8,7 @@ data:
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -111,8 +111,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -146,15 +146,15 @@ data:
     \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
     \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
     \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
-    \ G.end(), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n\
-    \    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n     \
-    \   for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
-    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
-    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/other/TopologicalSort.hpp\"\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(all(G),\
+    \ 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T>\
+    \ Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n        for (const\
+    \ edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n \
+    \           else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G)) {\n\
+    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
+    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/other/TopologicalSort.hpp\"\
     \n\n#line 5 \"graph/other/TopologicalSort.hpp\"\n\ntemplate<class T> class TopologicalSort\
     \ {\n  protected:\n    int n;\n    Graph<T> G;\n    std::vector<int> ord;\n  \
     \  std::vector<bool> seen;\n    void dfs(int v) {\n        seen[v] = true;\n \
@@ -162,15 +162,15 @@ data:
     \            dfs(e.to);\n        }\n        ord.push_back(v);\n    }\n  public:\n\
     \    TopologicalSort() = default;\n    TopologicalSort(const Graph<T>& G_) { init(G_);\
     \ }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n\
-    \        //ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n)\
-    \ {\n            if (seen[i]) continue;\n            dfs(i);\n        }\n    \
-    \    std::reverse(ord.begin(), ord.end());\n    }\n    std::vector<int> get()\
-    \ const { return ord; }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\u30ED\
-    \u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n */\n\
-    #line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n    rep (m) {\n     \
-    \   int a, b; cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n    for\
-    \ (const int& i : TopologicalSort<int>(G).get()) cout << i << endl;\n}\n"
+    \        ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n\
+    \            if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
+    \    }\n    std::vector<int> get() const { return ord; }\n};\n\n/**\n * @brief\
+    \ TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n *\
+    \ @docs docs/TopologicalSort.md\n */\n#line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    Graph<int>\
+    \ G(n);\n    rep (m) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
+    \ b, true);\n    }\n    for (const int& i : TopologicalSort<int>(G).get()) cout\
+    \ << i << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B\"\n#include\
     \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
     ../../../graph/other/TopologicalSort.hpp\"\nusing namespace std;\nint main() {\n\
@@ -184,7 +184,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 17:15:09+09:00'
+  timestamp: '2021-11-19 19:03:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_4_B-Toposo.test.cpp

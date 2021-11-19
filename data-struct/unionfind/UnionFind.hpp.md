@@ -1,20 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/mst/Prim.hpp
+    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DLS/DSL_1_A-UF.test.cpp
     title: test/aoj/DLS/DSL_1_A-UF.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
@@ -108,8 +114,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -128,11 +134,11 @@ data:
     \ bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int\
     \ size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
-    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
@@ -144,20 +150,22 @@ data:
     \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
     \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
-    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
-  requiredBy: []
-  timestamp: '2021-11-19 18:39:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - graph/mst/Prim.hpp
+  timestamp: '2021-11-19 19:03:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/yosupo/unionfind.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document

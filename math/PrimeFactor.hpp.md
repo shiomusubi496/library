@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -105,8 +105,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -120,8 +120,8 @@ data:
     \ -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n \
     \   }\n    bool is_prime(ll x) {\n        return era[x] == x;\n    }\n    std::vector<ll>\
     \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
-    \ era[x]) res.push_back(x);\n        reverse(res.begin(), res.end());\n      \
-    \  return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
+    \ era[x]) res.push_back(x);\n        reverse(all(res));\n        return res;\n\
+    \    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
     \ era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n    \
     \    era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i])\
     \ continue;\n            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n\
@@ -134,8 +134,8 @@ data:
     \ -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n \
     \   }\n    bool is_prime(ll x) {\n        return era[x] == x;\n    }\n    std::vector<ll>\
     \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
-    \ era[x]) res.push_back(x);\n        reverse(res.begin(), res.end());\n      \
-    \  return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
+    \ era[x]) res.push_back(x);\n        reverse(all(res));\n        return res;\n\
+    \    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
     \ era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n    \
     \    era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i])\
     \ continue;\n            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2021-11-19 17:15:09+09:00'
+  timestamp: '2021-11-19 19:03:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

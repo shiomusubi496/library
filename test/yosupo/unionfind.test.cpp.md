@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/unionfind
@@ -106,8 +106,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -126,15 +126,15 @@ data:
     \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
     \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
-    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
-    \ x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line\
-    \ 4 \"test/yosupo/unionfind.test.cpp\"\nusing namespace std;\nint main() {\n \
-    \   int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n    rep (Q) {\n     \
-    \   int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0) UF.merge(u,\
-    \ v);\n        else cout << UF.same(u, v) << endl;\n    }\n}\n"
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
+    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
+    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     ../../template.hpp\"\n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\
     using namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
@@ -147,8 +147,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 18:39:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-19 19:03:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp
 layout: document

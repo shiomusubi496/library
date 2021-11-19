@@ -6,18 +6,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
   - name: graph
@@ -34,6 +34,11 @@ data:
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
+  - name: graph/mst
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/mst/Prim.hpp
+      title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
     pages:
     - icon: ':heavy_check_mark:'
@@ -74,7 +79,7 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -144,6 +149,9 @@ data:
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+      title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
       title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     - icon: ':heavy_check_mark:'
@@ -180,19 +188,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage

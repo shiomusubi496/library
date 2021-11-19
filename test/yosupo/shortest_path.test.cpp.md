@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template.hpp
     title: template.hpp
   _extendedRequiredBy: []
@@ -113,8 +113,8 @@ data:
     \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
     \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
     \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(vec.begin(), vec.end(), this->begin() + n);\n    }\n    int build()\
-    \ {\n        std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -148,15 +148,15 @@ data:
     \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
     \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
     \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\ntemplate<class T> Edges<T> ListToDirectedEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(G.begin(),\
-    \ G.end(), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n\
-    \    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n     \
-    \   for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G))\
-    \ {\n        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n\
-    }\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(all(G),\
+    \ 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T>\
+    \ Ed(G.edge_size());\n    Ed.reserve(E);\n    rep (i, V) {\n        for (const\
+    \ edge<T>& e : G[i]) {\n            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n \
+    \           else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    Graph<T> RG(V);\n    for (const edge<T>& e : ListToUndirectedEdges(G)) {\n\
+    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
+    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
     \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
     \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
@@ -180,9 +180,9 @@ data:
     \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
     \ s);\n    vector<int> R = Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"\
     -1\");\n        return 0;\n    }\n    vector<int> ans{t};\n    while (ans.back()\
-    \ != s) ans.push_back(R[ans.back()]);\n    reverse(ans.begin(), ans.end());\n\
-    \    cout << D[t] << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() -\
-    \ 1) cout << ans[i] << ' ' << ans[i + 1] << endl;\n}\n"
+    \ != s) ans.push_back(R[ans.back()]);\n    reverse(all(ans));\n    cout << D[t]\
+    \ << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i]\
+    \ << ' ' << ans[i + 1] << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
     \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
@@ -191,9 +191,8 @@ data:
     \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
     \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
     \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(ans.begin(), ans.end());\n    cout << D[t] << ' ' << ans.size() -\
-    \ 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1]\
-    \ << endl;\n}\n"
+    \    reverse(all(ans));\n    cout << D[t] << ' ' << ans.size() - 1 << endl;\n\
+    \    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1] << endl;\n}\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
@@ -202,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 17:15:09+09:00'
+  timestamp: '2021-11-19 19:03:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp
