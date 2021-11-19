@@ -3,21 +3,21 @@ data:
   libraryCategories:
   - name: data-struct/segment
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
   - name: graph
@@ -106,10 +106,10 @@ data:
       title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - name: test/aoj/DLS
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DLS/DSL_1_A-UF.test.cpp
       title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
       title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - name: test/aoj/DPL
@@ -174,25 +174,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/many_aplusb.test.cpp
       title: test/yosupo/many_aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage

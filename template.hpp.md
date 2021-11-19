@@ -3,6 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/DisjointSparseTable.hpp
+    title: DisjointSparseTable
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SparseTable.hpp
+    title: SparseTable
+  - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -70,6 +85,12 @@ data:
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DLS/DSL_1_A-UF.test.cpp
+    title: test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+    title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -124,8 +145,26 @@ data:
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/point_add_range_sum.test.cpp
+    title: test/yosupo/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+    title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-SparseTable.test.cpp
+    title: test/yosupo/staticrmq-SparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind.test.cpp
+    title: test/yosupo/unionfind.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -331,6 +370,11 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/unionfind/UnionFind.hpp
   - math/Combinatorics.hpp
   - math/PrimeFactor.hpp
   - math/ModInt.hpp
@@ -353,6 +397,8 @@ data:
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DLS/DSL_1_A-UF.test.cpp
+  - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
@@ -372,8 +418,14 @@ data:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/aplusb.test.cpp
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:
