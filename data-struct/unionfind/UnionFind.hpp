@@ -13,14 +13,14 @@ class UnionFind {
         assert(0 <= x && x < n);
         return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);
     }
-    bool merge(int x, int y) {
+    std::pair<int, int> merge(int x, int y) {
         x = find(x);
         y = find(y);
-        if (x == y) return false;
+        if (x == y) return {-1, -1};
         if (par_vec[x] > par_vec[y]) std::swap(x, y);
         par_vec[x] += par_vec[y];
         par_vec[y] = x;
-        return true;
+        return {x, y};
     }
     bool same(int x, int y) {
         return find(x) == find(y);
