@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 #include "../../template.hpp"
-#include "../../segment/BinaryIndexedTree.hpp"
+#include "../../data-struct/segment/BinaryIndexedTree.hpp"
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;

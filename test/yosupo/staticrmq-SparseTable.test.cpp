@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 #include "../../template.hpp"
-#include "../../segment/SparseTable.hpp"
+#include "../../data-struct/segment/SparseTable.hpp"
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include "../../template.hpp"
-#include "../../segment/DisjointSparseTable.hpp"
+#include "../../data-struct/segment/DisjointSparseTable.hpp"
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;

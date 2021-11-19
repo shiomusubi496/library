@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
 #include "../../template.hpp"
-#include "../../segment/CumulativeSum.hpp"
+#include "../../data-struct/segment/CumulativeSum.hpp"
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;
