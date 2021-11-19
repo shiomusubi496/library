@@ -1,14 +1,30 @@
 ---
 data:
   libraryCategories:
+  - name: data-struct/segment
+    pages:
+    - icon: ':warning:'
+      path: data-struct/segment/BinaryIndexedTree.hpp
+      title: BinaryIndexedTree(FenwickTree, BIT)
+    - icon: ':warning:'
+      path: data-struct/segment/CumulativeSum.hpp
+      title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+    - icon: ':warning:'
+      path: data-struct/segment/DisjointSparseTable.hpp
+      title: DisjointSparseTable
+    - icon: ':warning:'
+      path: data-struct/segment/SparseTable.hpp
+      title: SparseTable
+  - name: data-struct/unionfind
+    pages:
+    - icon: ':warning:'
+      path: data-struct/unionfind/UnionFind.hpp
+      title: UnionFind
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
-    - icon: ':question:'
-      path: graph/UnionFind.hpp
-      title: UnionFind
   - name: graph/connected
     pages:
     - icon: ':heavy_check_mark:'
@@ -56,23 +72,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - name: segment
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: segment/BinaryIndexedTree.hpp
-      title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':heavy_check_mark:'
-      path: segment/CumulativeSum.hpp
-      title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':x:'
-      path: segment/DisjointSparseTable.hpp
-      title: DisjointSparseTable
-    - icon: ':x:'
-      path: segment/SparseTable.hpp
-      title: SparseTable
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -104,10 +106,10 @@ data:
       title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - name: test/aoj/DLS
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DLS/DSL_1_A-UF.test.cpp
       title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
       title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - name: test/aoj/DPL
@@ -172,13 +174,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/many_aplusb.test.cpp
       title: test/yosupo/many_aplusb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     - icon: ':x:'

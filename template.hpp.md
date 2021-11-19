@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
-    path: graph/UnionFind.hpp
-    title: UnionFind
   - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
@@ -47,18 +44,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
-    path: segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
-    path: segment/CumulativeSum.hpp
-    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':x:'
-    path: segment/DisjointSparseTable.hpp
-    title: DisjointSparseTable
-  - icon: ':x:'
-    path: segment/SparseTable.hpp
-    title: SparseTable
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
@@ -84,12 +69,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
@@ -145,29 +124,11 @@ data:
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.test.cpp
-    title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/staticrmq-SparseTable.test.cpp
-    title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/unionfind.test.cpp
-    title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -370,16 +331,11 @@ data:
   isVerificationFile: false
   path: template.hpp
   requiredBy:
-  - segment/DisjointSparseTable.hpp
-  - segment/SparseTable.hpp
-  - segment/CumulativeSum.hpp
-  - segment/BinaryIndexedTree.hpp
   - math/Combinatorics.hpp
   - math/PrimeFactor.hpp
   - math/ModInt.hpp
   - math/EulerPhi.hpp
   - graph/other/TopologicalSort.hpp
-  - graph/UnionFind.hpp
   - graph/Graph.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
@@ -389,7 +345,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/Dijkstra.hpp
   timestamp: '2021-11-19 17:15:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
@@ -397,8 +353,6 @@ data:
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DLS/DSL_1_A-UF.test.cpp
-  - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
@@ -418,14 +372,8 @@ data:
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/yosupo/shortest_path.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/aplusb.test.cpp
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: template.hpp
 layout: document
 redirect_from:
