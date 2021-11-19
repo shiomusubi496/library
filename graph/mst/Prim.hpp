@@ -26,5 +26,5 @@ template<class T> Edges<T> Prim_vec(int N, Edges<T> Ed) {
 
 /**
  * @brief Prim(プリム法)
- * @docs docs/Prime.hpp
+ * @docs docs/Prime.md
  */
