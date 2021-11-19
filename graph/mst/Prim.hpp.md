@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Prime.hpp
+    _deprecated_at_docs: docs/Prime.md
     document_title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
     links: []
   bundledCode: "#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
@@ -181,7 +181,7 @@ data:
     \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
     \ UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
     \ e.to).first >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.hpp\n */\n"
+    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
     \ T Prim(int N, Edges<T> Ed) {\n    std::sort(all(Ed), [](const edge<T>& a, const\
@@ -192,7 +192,7 @@ data:
     \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
     \ UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
     \ e.to).first >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.hpp\n */\n"
+    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
@@ -200,7 +200,7 @@ data:
   isVerificationFile: false
   path: graph/mst/Prim.hpp
   requiredBy: []
-  timestamp: '2021-11-19 20:54:37+09:00'
+  timestamp: '2021-11-20 08:25:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp

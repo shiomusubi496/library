@@ -181,7 +181,7 @@ data:
     \ edge<T>& a, const edge<T>& b) -> bool { return a.cost < b.cost; });\n    UnionFind\
     \ UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
     \ e.to).first >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.hpp\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\
+    \ Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prime.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Edges<int>\
     \ Ed(E);\n    for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n    cout <<\
     \ Prim(V, Ed) << endl;\n}\n"
@@ -198,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 20:54:37+09:00'
+  timestamp: '2021-11-20 08:25:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Prim.test.cpp
