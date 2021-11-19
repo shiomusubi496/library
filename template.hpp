@@ -29,14 +29,28 @@
 
 #define all(v) (v).begin(), (v).end()
 
+#if __cplusplus >= 201402L
+#define CONSTEXPR constexpr
+#else
+#define CONSTEXPR
+#endif
+
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 using PLL = std::pair<ll, ll>;
 template<class T> using prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
-template<class T> constexpr T INF = std::numeric_limits<T>::max() / 2;
-constexpr ll inf = INF<ll>;
+template<class T> class infinity {
+  public:
+    static constexpr T value = std::numeric_limits<T>::max() / 2;
+};
+
+#if __cplusplus >= 201402L
+template<class T> constexpr T INF = infinity<T>::value;
+#endif
+
+constexpr ll inf = infinity<ll>::value;
 constexpr ld EPS = 1e-8;
 constexpr ld PI = 3.1415926535897932384626;
 
@@ -48,7 +62,7 @@ template<class T, class U> std::istream& operator<<(std::istream& ist, std::pair
 }
 
 template<class Container,
-        std::enable_if_t<!std::is_same<Container, std::string>::value>* = nullptr>
+        typename std::enable_if<!std::is_same<Container, std::string>::value>::type* = nullptr>
 auto operator<<(std::ostream& ost, const Container& cont)
         -> decltype(cont.begin(), cont.end(), ost)
 {
@@ -59,7 +73,7 @@ auto operator<<(std::ostream& ost, const Container& cont)
     return ost;
 }
 template<class Container,
-        std::enable_if_t<!std::is_same<Container, std::string>::value>* = nullptr>
+        typename std::enable_if<!std::is_same<Container, std::string>::value>::type* = nullptr>
 auto operator>>(std::istream& ist, Container& cont)
         -> decltype(cont.begin(), cont.end(), ist)
 {
@@ -68,21 +82,13 @@ auto operator>>(std::istream& ist, Container& cont)
 }
 
 template<class T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept {
-    if (a > b) {
-        a = b;
-        return true;
-    }
-    return false;
+    return a > b ? a = b, true : false;
 }
 template<class T, class U> inline constexpr bool chmax(T &a, const U &b) noexcept {
-    if (a < b) {
-        a = b;
-        return true;
-    }
-    return false;
+    return a < b ? a = b, true : false;
 }
 
-inline constexpr ll gcd(ll a, ll b) noexcept {
+inline CONSTEXPR ll gcd(ll a, ll b) noexcept {
     while (b) {
         const ll c = a;
         a = b;
@@ -90,11 +96,11 @@ inline constexpr ll gcd(ll a, ll b) noexcept {
     }
     return a;
 }
-inline constexpr ll lcm(ll a, ll b) noexcept {
+inline CONSTEXPR ll lcm(ll a, ll b) noexcept {
     return a / gcd(a, b) * b;
 }
 
-inline constexpr bool is_prime(ll N) noexcept {
+inline CONSTEXPR bool is_prime(ll N) noexcept {
     if (N <= 1) return false;
     for (ll i = 2; i * i <= N; ++i) {
         if (N % i == 0) return false;
@@ -113,7 +119,7 @@ inline std::vector<ll> prime_factor(ll N) noexcept {
     return res;
 }
 
-inline constexpr ll my_pow(ll a, ll b) noexcept {
+inline CONSTEXPR ll my_pow(ll a, ll b) noexcept {
     ll res = 1;
     while (b) {
         if (b & 1) res *= a;
@@ -122,7 +128,7 @@ inline constexpr ll my_pow(ll a, ll b) noexcept {
     }
     return res;
 }
-inline constexpr ll mod_pow(ll a, ll b, ll mod) noexcept {
+inline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept {
     a %= mod;
     ll res = 1;
     while (b) {
@@ -171,7 +177,8 @@ template<class F> class rec_lambda {
     F f;
   public:
     explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}
-    template<class... Args> constexpr auto operator()(Args&&... args) const {
+    template<class... Args> constexpr auto operator()(Args&&... args) const
+            -> decltype(f(*this, std::forward<Args>(args)...)) {
         return f(*this, std::forward<Args>(args)...);
     }
 };
@@ -179,12 +186,13 @@ template<class F> class rec_lambda {
 template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {
     return std::vector<T>(n, arg);
 }
-template<class T, class... Args> constexpr auto make_vec(int n, Args&&... args) {
+template<class T, class... Args> constexpr auto make_vec(int n, Args&&... args)
+        -> std::vector<decltype(make_vec<T>(args...))> {
     return std::vector<decltype(make_vec<T>(args...))>
                (n, make_vec<T>(std::forward<Args>(args)...));
 }
 
-inline constexpr int popcnt(ull x) {
+inline CONSTEXPR int popcnt(ull x) {
 #if __cplusplus >= 202002L
     return std::popcount(x);
 #endif

@@ -19,7 +19,7 @@ template<ll mod> class StaticModInt : StaticModIntBase {
             598946612, 166374059, 855638017, 873463809, 443664157, 299473306};
   public:
     StaticModInt() : StaticModInt(0) {}
-    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr> StaticModInt(T v) : val(v) {
+    template<class T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T v) : val(v) {
         val %= mod;
         if (val < 0) val += mod;
     }
@@ -135,7 +135,7 @@ template<int id> class DynamicModInt : DynamicModIntBase {
     static ll mod;
   public:
     DynamicModInt() : DynamicModInt(0) {}
-    template<class T, std::enable_if_t<std::is_integral<T>::value>* = nullptr> DynamicModInt(T v) : val(v) {
+    template<class T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> DynamicModInt(T v) : val(v) {
         val %= mod;
         if (val < 0) val += mod;
     }

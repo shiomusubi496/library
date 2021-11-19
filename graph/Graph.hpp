@@ -42,7 +42,7 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
 
 template<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {
     const int N = G.size();
-    auto res = make_vec<T>(N, N, INF<T>);
+    auto res = make_vec<T>(N, N, infinity<T>::value);
     rep (i, N) res[i][i] = 0;
     rep (i, N) {
         for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;
@@ -61,7 +61,7 @@ template<class T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {
 }
 template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
     const int V = G.size();
-    const int E = std::accumulate(G.begin(), G.end(), 0, [](int a, const std::vector<edge<T>>& b) -> int { return a + b.size(); });
+    const int E = std::accumulate(G.begin(), G.end(), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });
     Edges<T> Ed(G.edge_size());
     Ed.reserve(E);
     rep (i, V) {
