@@ -6,18 +6,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
   - name: graph
@@ -79,7 +79,7 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template.hpp
       title: template.hpp
   verificationCategories:
@@ -94,6 +94,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+      title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
       title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
@@ -188,19 +191,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage
