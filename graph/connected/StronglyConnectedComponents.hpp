@@ -37,7 +37,7 @@ template<class T> class StronglyConnectedComponents {
             if (seen[i]) continue;
             dfs(i);
         }
-        std::reverse(ord.begin(), ord.end());
+        std::reverse(all(ord));
         RG = ReverseGraph(G);
         sz = 0;
         cmp.assign(n, -1);

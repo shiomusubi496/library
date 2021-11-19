@@ -19,7 +19,7 @@ class PrimeFactor {
     std::vector<ll> factorize(ll x) {
         std::vector<ll> res;
         for (; x > 1; x /= era[x]) res.push_back(x);
-        reverse(res.begin(), res.end());
+        reverse(all(res));
         return res;
     }
 };

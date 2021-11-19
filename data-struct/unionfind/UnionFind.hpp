@@ -32,9 +32,9 @@ class UnionFind {
         std::vector<std::vector<int>> res(n);
         rep(i, n) res[find(i)].push_back(i);
         res.erase(
-            remove_if(res.begin(), res.end(),
-                      [](const std::vector<int>& v) { return v.empty(); }),
-            res.end());
+            remove_if(all(res), [](const std::vector<int>& v) { return v.empty(); }),
+            res.end()
+        );
         return res;
     }
     bool is_root(int x) const {

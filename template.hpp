@@ -213,7 +213,7 @@ template<class T> class presser : public std::vector<T> {
     void push(const std::vector<T>& vec) {
         int n = this->size();
         this->resize(n + vec.size());
-        std::copy(vec.begin(), vec.end(), this->begin() + n);
+        std::copy(all(vec), this->begin() + n);
     }
     int build() {
         std::sort(this->begin(), this->end());

@@ -61,7 +61,7 @@ template<class T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {
 }
 template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
     const int V = G.size();
-    const int E = std::accumulate(G.begin(), G.end(), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });
+    const int E = std::accumulate(all(G), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });
     Edges<T> Ed(G.edge_size());
     Ed.reserve(E);
     rep (i, V) {

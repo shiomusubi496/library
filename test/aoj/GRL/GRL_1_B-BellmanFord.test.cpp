@@ -8,7 +8,7 @@ int main() {
     Edges<int> Ed(E);
     for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;
     auto dist = BellmanFord(V, Ed, r);
-    if (count(dist.begin(), dist.end(), -INF<int>)) {
+    if (count(all(dist), -INF<int>)) {
         puts("NEGATIVE CYCLE");
         return 0;
     }

@@ -19,7 +19,7 @@ int main() {
     }
     vector<int> ans{t};
     while (ans.back() != s) ans.push_back(R[ans.back()]);
-    reverse(ans.begin(), ans.end());
+    reverse(all(ans));
     cout << D[t] << ' ' << ans.size() - 1 << endl;
     rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1] << endl;
 }

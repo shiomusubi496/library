@@ -23,13 +23,13 @@ template<class T> class TopologicalSort {
     void init(const Graph<T>& G_) {
         G = G_;
         n = G.size();
-        //ord.reserve(n);
+        ord.reserve(n);
         seen.assign(n, false);
         rep (i, n) {
             if (seen[i]) continue;
             dfs(i);
         }
-        std::reverse(ord.begin(), ord.end());
+        std::reverse(all(ord));
     }
     std::vector<int> get() const { return ord; }
 };
