@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../template.hpp"
+#include "../../template.hpp"
 
 template<class T> class CumulativeSum {
   protected:
