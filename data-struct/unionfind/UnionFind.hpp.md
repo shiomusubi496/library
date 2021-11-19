@@ -121,40 +121,40 @@ data:
     \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind()\
     \ : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int\
     \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
-    \ par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n    \
-    \    x = find(x);\n        y = find(y);\n        if (x == y) return false;\n \
-    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
-    \        par_vec[y] = x;\n        return true;\n    }\n    bool same(int x, int\
-    \ y) {\n        return find(x) == find(y);\n    }\n    int size(int x) {\n   \
-    \     return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
-    \ {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(res.begin(), res.end(),\n         \
-    \             [](const std::vector<int>& v) { return v.empty(); }),\n        \
-    \    res.end());\n        return res;\n    }\n    bool is_root(int x) const {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\
-    \n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
+    \ par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
+    \ += par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n   \
+    \ bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int\
+    \ size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
+    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
+    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
+    \ x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
+    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
     \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    bool merge(int x, int y) {\n        x = find(x);\n\
-    \        y = find(y);\n        if (x == y) return false;\n        if (par_vec[x]\
-    \ > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return true;\n    }\n    bool same(int x, int y) {\n        return\
-    \ find(x) == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
-    \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep(i, n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(res.begin(), res.end(),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
-    \ * @docs docs/UnionFind.md\n */\n"
+    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) return {-1, -1};\n\
+    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
+    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
+    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
+    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
+    \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
+    \ }),\n            res.end());\n        return res;\n    }\n    bool is_root(int\
+    \ x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
+    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
   dependsOn:
   - template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy: []
-  timestamp: '2021-11-19 17:58:55+09:00'
+  timestamp: '2021-11-19 18:39:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DLS/DSL_1_A-UF.test.cpp
@@ -170,8 +170,8 @@ title: UnionFind
 
 集合を併合する操作や、ある要素が属する集合の代表元を問い合わせる操作を行える。
 
-- `bool merge(int x, int y)` :  
-要素 `x` の属する集合と要素 `y` の属する集合を併合する。もともと同じ集合に属していたなら `false` を、そうでないなら `true` を返す。ならし $O(\alpha(N))$ 。
+- `pair<int, int> merge(int x, int y)` :  
+要素 `x` の属する集合と要素 `y` の属する集合を併合する。併合後の根とそうでない方の pair を返す。ただし、もともと同じ集合に属する場合は {-1, -1} を返す。ならし $O(\alpha(N))$ 。
 
 - `int find(int x)` :  
 要素 `x` の属する集合の代表元を返す。ならし $O(\alpha(N))$ 。

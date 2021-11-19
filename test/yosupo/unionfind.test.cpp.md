@@ -119,12 +119,12 @@ data:
     \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
     \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
     \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    bool merge(int\
-    \ x, int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y)\
-    \ return false;\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n     \
-    \   par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return true;\n\
-    \    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n  \
-    \  }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
+    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
+    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
+    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(res.begin(),\
     \ res.end(),\n                      [](const std::vector<int>& v) { return v.empty();\
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 17:58:55+09:00'
+  timestamp: '2021-11-19 18:39:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp
