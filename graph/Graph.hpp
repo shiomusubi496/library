@@ -12,6 +12,12 @@ template<class T = int> struct edge {
     edge(int f, int t, T c) : from(f), to(t), cost(c) {}
     edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}
     operator int() { return to; }
+    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
+        return lhs.cost < rhs.cost;
+    }
+    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {
+        return lhs.cost > rhs.cost;
+    }
 };
 
 template<class T = int> using Edges = std::vector<edge<T>>;
