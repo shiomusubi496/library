@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
     document_title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\
       \u6CD5)"
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/BellmanFord.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"graph/shortest-path/BellmanFord.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -170,7 +170,7 @@ data:
     \     }\n        if (!changed) break;\n    }\n    return dist;\n}\n\n/**\n * @brief\
     \ Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs\
     \ docs/BellmanFord.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
     \ start = 0) {\n    assert(0 <= start && start <= V);\n    std::vector<T> dist(V,\
     \ infinity<T>::value); dist[start] = 0;\n    rep (i, V) {\n        bool changed\
@@ -186,12 +186,12 @@ data:
     \ Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs\
     \ docs/BellmanFord.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/BellmanFord.hpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

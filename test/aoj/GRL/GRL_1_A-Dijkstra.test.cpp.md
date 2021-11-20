@@ -7,9 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
   bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -173,21 +173,21 @@ data:
     \ == INF<int>) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n\
     }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
-    ../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
     \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E) {\n\
     \        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
     \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
     \ == INF<int>) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n\
     }\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/shortest-path/Dijkstra.hpp
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

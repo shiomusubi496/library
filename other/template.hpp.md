@@ -2,19 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: data-struct/segment/SegmentTree.hpp
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
@@ -65,6 +68,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
+  - icon: ':x:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
@@ -97,12 +103,6 @@ data:
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,6 +120,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_1_A-UF.test.cpp
+    title: test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
@@ -162,59 +171,59 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
-    \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
-    \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2) (__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
-    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\nusing ll = long long;\n\
-    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
-    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
-    \ std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n    static\
-    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if __cplusplus\
-    \ >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\
-    \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
-    \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
+  bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
+    \ __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \ for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_\
+    \ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i\
+    \ = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b);\
+    \ ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n\
+    #define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1) (__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a) - 1; i >= 0; --i)\n#define RREP3(i, a,\
+    \ b) for (ll i = (ll)(a) - 1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for\
+    \ (ll i = (ll)(a) - 1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2) (__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <=\
+    \ (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i +=\
+    \ (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2) (__VA_ARGS__)\n\
+    #define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b)\
+    \ for (ll i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i\
+    \ = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define rreps(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\n#define all(v) (v).begin(), (v).end()\n\
+    \n#if __cplusplus >= 201402L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n\
+    #endif\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if\
+    \ __cplusplus >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n\
+    #endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\n\
+    constexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
     \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
@@ -386,13 +395,15 @@ data:
     \    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: template.hpp
+  path: other/template.hpp
   requiredBy:
   - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/CumulativeSum.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/unionfind/UnionFind.hpp
+  - other/bitop.hpp
   - math/Combinatorics.hpp
   - math/PrimeFactor.hpp
   - math/ModInt.hpp
@@ -408,8 +419,8 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
@@ -417,8 +428,6 @@ data:
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DLS/DSL_1_A-UF.test.cpp
-  - test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
@@ -426,6 +435,9 @@ data:
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/NTL/NTL_1_A-Prime.test.cpp
@@ -450,10 +462,10 @@ data:
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-documentation_of: template.hpp
+documentation_of: other/template.hpp
 layout: document
 redirect_from:
-- /library/template.hpp
-- /library/template.hpp.html
-title: template.hpp
+- /library/other/template.hpp
+- /library/other/template.hpp.html
+title: other/template.hpp
 ---

@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
@@ -34,33 +34,34 @@ data:
     _deprecated_at_docs: docs/ModInt.md
     document_title: ModInt
     links: []
-  bundledCode: "#line 2 \"math/ModInt.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
-    \n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \ for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_\
-    \ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i\
-    \ = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b);\
-    \ ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n\
-    #define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1) (__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a) - 1; i >= 0; --i)\n#define RREP3(i, a,\
-    \ b) for (ll i = (ll)(a) - 1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for\
-    \ (ll i = (ll)(a) - 1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2) (__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <=\
-    \ (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i +=\
-    \ (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2) (__VA_ARGS__)\n\
-    #define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b)\
-    \ for (ll i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i\
-    \ = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define rreps(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\n#define all(v) (v).begin(), (v).end()\n\
-    \n#if __cplusplus >= 201402L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n\
-    #endif\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long\
-    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
-    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if\
-    \ __cplusplus >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n\
-    #endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\n\
-    constexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
+  bundledCode: "#line 2 \"math/ModInt.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
+    \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2) (__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
+    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\nusing ll = long long;\n\
+    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
+    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
+    \ std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n    static\
+    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if __cplusplus\
+    \ >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\
+    \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
+    \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
     \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
@@ -222,18 +223,18 @@ data:
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n\nclass ModIntBase {};\nclass\
-    \ StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase {};\n\
-    \ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\ntemplate<class\
-    \ T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\ntemplate<class\
-    \ T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll\
-    \ mod> class StaticModInt : StaticModIntBase {\n  protected:\n    ll val;\n  \
-    \  static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336, 250000002,\n\
-    \            400000003, 166666668, 142857144, 125000001, 111111112, 700000005};\n\
-    \    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118, 748683265,\n\
-    \            598946612, 166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class T, typename\
-    \ std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass ModIntBase {};\n\
+    class StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
+    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
+    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
+    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
     \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
     \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
     \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
@@ -314,12 +315,12 @@ data:
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   isVerificationFile: false
   path: math/ModInt.hpp
   requiredBy:
   - math/Combinatorics.hpp
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp

@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
     _deprecated_at_docs: docs/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -163,7 +163,7 @@ data:
     \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
     \            }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
     \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
     \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
@@ -173,12 +173,12 @@ data:
     \            }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
     \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/Restore.hpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/shortest_path.test.cpp

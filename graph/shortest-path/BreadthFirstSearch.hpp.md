@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
     document_title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
     links: []
   bundledCode: "#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\n#line 2\
-    \ \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
     \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
     #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
     \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
@@ -163,7 +163,7 @@ data:
     \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
     \  }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\
     \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
     \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
@@ -173,12 +173,12 @@ data:
     \  }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\
     \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/BreadthFirstSearch.hpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

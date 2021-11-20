@@ -10,9 +10,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -24,8 +24,8 @@ data:
     links:
     - https://judge.yosupo.jp/problem/shortest_path
   bundledCode: "#line 1 \"test/yosupo/shortest_path.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -187,24 +187,25 @@ data:
     \ << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i]\
     \ << ' ' << ans[i + 1] << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
-    \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
-    \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
-    \    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
-    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
-    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(all(ans));\n    cout << D[t] << ' ' << ans.size() - 1 << endl;\n\
-    \    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1] << endl;\n}\n"
+    \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
+    ../../graph/shortest-path/Dijkstra.hpp\"\n#include \"../../graph/shortest-path/Restore.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
+    \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
+    \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
+    \ s);\n    vector<int> R = Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"\
+    -1\");\n        return 0;\n    }\n    vector<int> ans{t};\n    while (ans.back()\
+    \ != s) ans.push_back(R[ans.back()]);\n    reverse(all(ans));\n    cout << D[t]\
+    \ << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i]\
+    \ << ' ' << ans[i + 1] << endl;\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/Restore.hpp
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp

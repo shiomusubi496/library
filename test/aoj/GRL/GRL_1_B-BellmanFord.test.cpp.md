@@ -7,9 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B
   bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -178,21 +178,21 @@ data:
     \ V) {\n        if (dist[i] == INF<int>) puts(\"INF\");\n        else cout <<\
     \ dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
-    ../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n    for (auto&&\
-    \ e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V, Ed,\
-    \ r);\n    if (count(all(dist), -INF<int>)) {\n        puts(\"NEGATIVE CYCLE\"\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint\
+    \ main() {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n    for\
+    \ (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V,\
+    \ Ed, r);\n    if (count(all(dist), -INF<int>)) {\n        puts(\"NEGATIVE CYCLE\"\
     );\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i] == INF<int>)\
     \ puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n}"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/shortest-path/BellmanFord.hpp
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

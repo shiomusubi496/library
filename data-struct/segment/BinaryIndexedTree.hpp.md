@@ -1,34 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':x:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
     links: []
   bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_\
-    \ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
-    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
-    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -117,8 +120,19 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
-    \ T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
+    \    }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 :\
+    \ 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
+    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
+    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
+    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
+    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
     \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
     \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
@@ -127,16 +141,16 @@ data:
     \ const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n  \
     \  BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
     \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = 1;\n        while (n < n_) n <<= 1;\n        data.assign(n + 1, e());\n\
-    \    }\n    void add(int k, T x) {\n        ++k;\n        while (k <= n) {\n \
-    \           data[k] = op(data[k], x);\n            k += k & -k;\n        }\n \
-    \   }\n    T sum(int k) const {\n        assert(0 <= k && k <= n);\n        T\
-    \ res = e();\n        while (k) {\n            res = op(res, data[k]);\n     \
-    \       k -= k & -k;\n        }\n        return res;\n    }\n    T sum(int l,\
-    \ int r) const {\n        assert(l <= r);\n        assert(inv_exits);\n      \
-    \  return op(sum(r), inv(sum(l)));\n    }\n    T get(int k) const {\n        return\
-    \ sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n\
-    \    }\n    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \     n = 1 << bitop::ceil_log2(n_);\n        data.assign(n + 1, e());\n    }\n\
+    \    void add(int k, T x) {\n        ++k;\n        while (k <= n) {\n        \
+    \    data[k] = op(data[k], x);\n            k += k & -k;\n        }\n    }\n \
+    \   T sum(int k) const {\n        assert(0 <= k && k <= n);\n        T res = e();\n\
+    \        while (k) {\n            res = op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    T sum(int l, int r) const\
+    \ {\n        assert(l <= r);\n        assert(inv_exits);\n        return op(sum(r),\
+    \ inv(sum(l)));\n    }\n    T get(int k) const {\n        return sum(k, k + 1);\n\
+    \    }\n    void set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
     \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
     \        T sm = e();\n        ++l;\n        while (l <= n) {\n            if (!cond(op(sm,\
     \ data[l]))) {\n                int ln = l & -l;\n                while (ln >>=\
@@ -145,43 +159,44 @@ data:
     \    return l;\n            }\n            sm = op(sm, data[l]);\n           \
     \ l += l & -l;\n        }\n        return n;\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
     \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n\ntemplate<class T> class\
-    \ BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T, T)>;\n \
-    \   using G = std::function<T()>;\n    using H = std::function<T(T)>;\n    F op;\n\
-    \    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T> data;\n\
-    \  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int n_)\
-    \ : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T { return\
-    \ 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int n_, const F&\
-    \ op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n    BinaryIndexedTree(int\
-    \ n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true)\
-    \ { init(n_); }\n    void init(int n_) {\n        n = 1;\n        while (n < n_)\
-    \ n <<= 1;\n        data.assign(n + 1, e());\n    }\n    void add(int k, T x)\
-    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = e();\n        while (k) {\n\
-    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
-    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
-    \ r);\n        assert(inv_exits);\n        return op(sum(r), inv(sum(l)));\n \
-    \   }\n    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void\
-    \ set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n    template<class\
-    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= n);\n\
-    \        assert(cond(e()));\n        if (l == n) return n;\n        T sm = e();\n\
-    \        ++l;\n        while (l <= n) {\n            if (!cond(op(sm, data[l])))\
-    \ {\n                int ln = l & -l;\n                while (ln >>= 1) {\n  \
-    \                  if (cond(op(sm, data[l - ln]))) sm = op(sm, data[l - ln]);\n\
-    \                    else l -= ln;\n                }\n                return\
-    \ l;\n            }\n            sm = op(sm, data[l]);\n            l += l & -l;\n\
-    \        }\n        return n;\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n\ntemplate<class T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
+    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
+    \ n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T {\
+    \ return 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int n_,\
+    \ const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n  \
+    \  BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
+    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
+    \     n = 1 << bitop::ceil_log2(n_);\n        data.assign(n + 1, e());\n    }\n\
+    \    void add(int k, T x) {\n        ++k;\n        while (k <= n) {\n        \
+    \    data[k] = op(data[k], x);\n            k += k & -k;\n        }\n    }\n \
+    \   T sum(int k) const {\n        assert(0 <= k && k <= n);\n        T res = e();\n\
+    \        while (k) {\n            res = op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    T sum(int l, int r) const\
+    \ {\n        assert(l <= r);\n        assert(inv_exits);\n        return op(sum(r),\
+    \ inv(sum(l)));\n    }\n    T get(int k) const {\n        return sum(k, k + 1);\n\
+    \    }\n    void set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
+    \        T sm = e();\n        ++l;\n        while (l <= n) {\n            if (!cond(op(sm,\
+    \ data[l]))) {\n                int ln = l & -l;\n                while (ln >>=\
+    \ 1) {\n                    if (cond(op(sm, data[l - ln]))) sm = op(sm, data[l\
+    \ - ln]);\n                    else l -= ln;\n                }\n            \
+    \    return l;\n            }\n            sm = op(sm, data[l]);\n           \
+    \ l += l & -l;\n        }\n        return n;\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
     \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
+  - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document

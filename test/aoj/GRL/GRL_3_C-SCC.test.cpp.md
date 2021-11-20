@@ -8,9 +8,9 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,8 +22,8 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
   bundledCode: "#line 1 \"test/aoj/GRL/GRL_3_C-SCC.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#line 2 \"template.hpp\"\n\
-    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -188,21 +188,21 @@ data:
     \ SCC(G);\n    int q; cin >> q;\n    rep (q) {\n        int a, b; cin >> a >>\
     \ b;\n        cout << (SCC[a] == SCC[b]) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
-    ../../../graph/connected/StronglyConnectedComponents.hpp\"\nusing namespace std;\n\
-    int main() {\n    int v, e; cin >> v >> e;\n    Graph<int> G(v);\n    rep (e)\
-    \ {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v, true);\n    }\n\
-    \    StronglyConnectedComponents<int> SCC(G);\n    int q; cin >> q;\n    rep (q)\
-    \ {\n        int a, b; cin >> a >> b;\n        cout << (SCC[a] == SCC[b]) << endl;\n\
-    \    }\n}\n"
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/connected/StronglyConnectedComponents.hpp\"\nusing namespace\
+    \ std;\nint main() {\n    int v, e; cin >> v >> e;\n    Graph<int> G(v);\n   \
+    \ rep (e) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v, true);\n\
+    \    }\n    StronglyConnectedComponents<int> SCC(G);\n    int q; cin >> q;\n \
+    \   rep (q) {\n        int a, b; cin >> a >> b;\n        cout << (SCC[a] == SCC[b])\
+    \ << endl;\n    }\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp

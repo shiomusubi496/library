@@ -3,21 +3,24 @@ data:
   libraryCategories:
   - name: data-struct/segment
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: data-struct/segment/SegmentTree.hpp
+      title: data-struct/segment/SegmentTree.hpp
+    - icon: ':x:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
   - name: graph
@@ -80,11 +83,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - name: .
+  - name: other
     pages:
-    - icon: ':heavy_check_mark:'
-      path: template.hpp
-      title: template.hpp
+    - icon: ':x:'
+      path: other/bitop.hpp
+      title: other/bitop.hpp
+    - icon: ':question:'
+      path: other/template.hpp
+      title: other/template.hpp
   verificationCategories:
   - name: test/aoj/ALDS1
     pages:
@@ -118,14 +124,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
-  - name: test/aoj/DLS
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/DLS/DSL_1_A-UF.test.cpp
-      title: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
-      title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
   - name: test/aoj/DPL
     pages:
     - icon: ':heavy_check_mark:'
@@ -146,6 +144,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_F.test.cpp
       title: test/aoj/DPL/DPL_5_F.test.cpp
+  - name: test/aoj/DSL
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_1_A-UF.test.cpp
+      title: test/aoj/DSL/DSL_1_A-UF.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+      title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+      title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - name: test/aoj/GRL
     pages:
     - icon: ':heavy_check_mark:'
@@ -194,25 +203,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/many_aplusb.test.cpp
       title: test/yosupo/many_aplusb.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
 layout: toppage

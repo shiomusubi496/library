@@ -7,9 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_D
   bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_D.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_D\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
     \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
@@ -240,18 +240,18 @@ data:
     \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
     \ n, k; cin >> n >> k;\n    cout << comb::homo(k, n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_D\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include \"\
-    ../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
+    \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
     using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
     \    cout << comb::homo(k, n) << endl;\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - math/ModInt.hpp
   - math/Combinatorics.hpp
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_D.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_D.test.cpp

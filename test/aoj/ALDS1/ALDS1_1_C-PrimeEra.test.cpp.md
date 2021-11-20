@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C
   bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -135,17 +135,17 @@ data:
     \   int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
     \ ans++;\n    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
-    #include \"../../../template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
     \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
     \    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
     \ ans++;\n    }\n    cout << ans << endl;\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - math/PrimeFactor.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

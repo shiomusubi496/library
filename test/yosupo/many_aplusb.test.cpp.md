@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -15,7 +15,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
   bundledCode: "#line 1 \"test/yosupo/many_aplusb.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
     \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
@@ -116,15 +116,15 @@ data:
     int main() {\n    int T;\n    cin >> T;\n    rep (T) {\n        ll a, b;\n   \
     \     cin >> a >> b;\n        cout << a + b << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"../../template.hpp\"\nusing namespace std;\nint main() {\n    int T;\n   \
-    \ cin >> T;\n    rep (T) {\n        ll a, b;\n        cin >> a >> b;\n       \
-    \ cout << a + b << endl;\n    }\n}\n"
+    \ \"../../other/template.hpp\"\nusing namespace std;\nint main() {\n    int T;\n\
+    \    cin >> T;\n    rep (T) {\n        ll a, b;\n        cin >> a >> b;\n    \
+    \    cout << a + b << endl;\n    }\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   isVerificationFile: true
   path: test/yosupo/many_aplusb.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/many_aplusb.test.cpp

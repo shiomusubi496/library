@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -31,8 +31,8 @@ data:
     _deprecated_at_docs: docs/Combinatorics.md
     document_title: Combinatorics
     links: []
-  bundledCode: "#line 2 \"math/Combinatorics.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+  bundledCode: "#line 2 \"math/Combinatorics.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -247,8 +247,8 @@ data:
     \ = std::vector<T>(1, 1);\ntemplate<class T> std::vector<T> Combinatorics<T>::factinv\
     \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
     \ */\n"
-  code: "#pragma once\n\n#include \"../template.hpp\"\n#include \"ModInt.hpp\"\n\n\
-    template<class T> class IntCombinatorics {\n  protected:\n    static std::vector<T>\
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
+    \n\ntemplate<class T> class IntCombinatorics {\n  protected:\n    static std::vector<T>\
     \ factorial;\n  public:\n    static void init(ll n) {\n        factorial.reserve(n\
     \ + 1);\n        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back()\
     \ * factorial.size());\n    }\n    static T fact(ll x) {\n        init(x);\n \
@@ -276,12 +276,12 @@ data:
     \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
     \ */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - math/ModInt.hpp
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_B.test.cpp

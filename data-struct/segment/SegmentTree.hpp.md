@@ -1,25 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':x:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
-  bundledCode: "#line 1 \"test/aoj/DLS/DSL_2_B-BIT.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#line 2 \"template.hpp\"\n\
-    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    links: []
+  bundledCode: "#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -116,58 +115,103 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 4 \"\
-    data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class T> class BinaryIndexedTree\
-    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
-    \    using H = std::function<T(T)>;\n    F op;\n    G e;\n    H inv;\n    bool\
-    \ inv_exits;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree()\
-    \ = default;\n    BinaryIndexedTree(int n_) : BinaryIndexedTree(n_, [](T a, T\
-    \ b) -> T { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a;\
-    \ }) {}\n    BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e),\
-    \ inv_exits(false) { init(n_); }\n    BinaryIndexedTree(int n_, const F& op, const\
-    \ G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }\n\
-    \    void init(int n_) {\n        n = 1;\n        while (n < n_) n <<= 1;\n  \
-    \      data.assign(n + 1, e());\n    }\n    void add(int k, T x) {\n        ++k;\n\
-    \        while (k <= n) {\n            data[k] = op(data[k], x);\n           \
-    \ k += k & -k;\n        }\n    }\n    T sum(int k) const {\n        assert(0 <=\
-    \ k && k <= n);\n        T res = e();\n        while (k) {\n            res =\
-    \ op(res, data[k]);\n            k -= k & -k;\n        }\n        return res;\n\
-    \    }\n    T sum(int l, int r) const {\n        assert(l <= r);\n        assert(inv_exits);\n\
-    \        return op(sum(r), inv(sum(l)));\n    }\n    T get(int k) const {\n  \
-    \      return sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k,\
-    \ op(x, inv(get(k))));\n    }\n    template<class C> int max_right(int l, const\
-    \ C& cond) {\n        assert(0 <= l && l <= n);\n        assert(cond(e()));\n\
-    \        if (l == n) return n;\n        T sm = e();\n        ++l;\n        while\
-    \ (l <= n) {\n            if (!cond(op(sm, data[l]))) {\n                int ln\
-    \ = l & -l;\n                while (ln >>= 1) {\n                    if (cond(op(sm,\
-    \ data[l - ln]))) sm = op(sm, data[l - ln]);\n                    else l -= ln;\n\
-    \                }\n                return l;\n            }\n            sm =\
-    \ op(sm, data[l]);\n            l += l & -l;\n        }\n        return n;\n \
-    \   }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n#line 4 \"test/aoj/DLS/DSL_2_B-BIT.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int> BIT(n);\n\
-    \    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0)\
-    \ BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n    }\n\
-    }\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int>\
-    \ BIT(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
-    \ (t == 0) BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n\
-    \    }\n}\n"
+    \    }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 :\
+    \ 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
+    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
+    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
+    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
+    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    F op;\n    G e;\n    int n;\n \
+    \   std::vector<T> data;\n  public:\n    SegmentTree() = default;\n    SegmentTree(const\
+    \ F& op, const G& e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const\
+    \ F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}\n    SegmentTree(const\
+    \ std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }\n  \
+    \  void init(const std::vector<T>& v) {\n        n = 1 << bitop::ceil_log2(v.size());\n\
+    \        data.assign(n << 1, e());\n        rep (i, v.size()) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
+    \ k && k < n);\n        k += n;\n        data[k] = upd(data[k]);\n        while\
+    \ (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return x; });\n    }\n    void\
+    \ apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
+    \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
+    \ 1) rsm = op(rsm, data[--r]);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
+    \        l += n;\n        T sm = e();\n        do {\n            while ((l & 1)\
+    \ != 0) l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    l <<= 1;\n                    if (cond(op(sm,\
+    \ data[l]))) sm = op(sm, data[l++]);\n                }\n                return\
+    \ l - n;\n            }\n            sm = op(sm, data[l++]);\n        } while\
+    \ ((l & -l) != l);\n        return n;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= n);\n        assert(cond(e()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = e();\n       \
+    \ do {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
+    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
+    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
+    \                }\n                return r - n;\n            }\n           \
+    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    F op;\n    G e;\n    int n;\n \
+    \   std::vector<T> data;\n  public:\n    SegmentTree() = default;\n    SegmentTree(const\
+    \ F& op, const G& e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const\
+    \ F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}\n    SegmentTree(const\
+    \ std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }\n  \
+    \  void init(const std::vector<T>& v) {\n        n = 1 << bitop::ceil_log2(v.size());\n\
+    \        data.assign(n << 1, e());\n        rep (i, v.size()) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
+    \ k && k < n);\n        k += n;\n        data[k] = upd(data[k]);\n        while\
+    \ (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return x; });\n    }\n    void\
+    \ apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
+    \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
+    \ 1) rsm = op(rsm, data[--r]);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
+    \        l += n;\n        T sm = e();\n        do {\n            while ((l & 1)\
+    \ != 0) l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    l <<= 1;\n                    if (cond(op(sm,\
+    \ data[l]))) sm = op(sm, data[l++]);\n                }\n                return\
+    \ l - n;\n            }\n            sm = op(sm, data[l++]);\n        } while\
+    \ ((l & -l) != l);\n        return n;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= n);\n        assert(cond(e()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = e();\n       \
+    \ do {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
+    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
+    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
+    \                }\n                return r - n;\n            }\n           \
+    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n"
   dependsOn:
-  - template.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  isVerificationFile: true
-  path: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  - other/template.hpp
+  - other/bitop.hpp
+  isVerificationFile: false
+  path: data-struct/segment/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DLS/DSL_2_B-BIT.test.cpp
-- /verify/test/aoj/DLS/DSL_2_B-BIT.test.cpp.html
-title: test/aoj/DLS/DSL_2_B-BIT.test.cpp
+- /library/data-struct/segment/SegmentTree.hpp
+- /library/data-struct/segment/SegmentTree.hpp.html
+title: data-struct/segment/SegmentTree.hpp
 ---

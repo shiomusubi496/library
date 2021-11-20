@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
@@ -19,25 +19,25 @@ data:
     path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DLS/DSL_1_A-UF.test.cpp
-    title: test/aoj/DLS/DSL_1_A-UF.test.cpp
+    path: test/aoj/DSL/DSL_1_A-UF.test.cpp
+    title: test/aoj/DSL/DSL_1_A-UF.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
     links: []
-  bundledCode: "#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -151,16 +151,16 @@ data:
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
     \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n\nclass UnionFind {\n  protected:\n\
-    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
-    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) return {-1, -1};\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
-    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
-    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
-    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFind\
+    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind()\
+    \ : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int\
+    \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
+    \ par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
+    \ += par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n   \
+    \ bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int\
+    \ size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
     \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
@@ -168,18 +168,18 @@ data:
     \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DLS/DSL_1_A-UF.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/yosupo/unionfind.test.cpp

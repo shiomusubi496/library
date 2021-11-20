@@ -1,22 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':x:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -114,28 +117,39 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class\
-    \ T> class SparseTable {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \    }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 :\
+    \ 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
+    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
+    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
+    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
+    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
+    \n\ntemplate<class T> class SparseTable {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
     \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
+    \ {\n        h = bitop::ceil_log2(v.size());\n        logtable.assign((1 << h)\
+    \ + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
+    \        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
     \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
     \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
     \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
     \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
     \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n\ntemplate<class T> class\
-    \ SparseTable {\n  protected:\n    using F = std::function<T(T, T)>;\n    int\
-    \ h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n\ntemplate<class T> class SparseTable {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
     \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        h = 1;\n        while ((1 << h) < (int)v.size()) ++h;\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
+    \ {\n        h = bitop::ceil_log2(v.size());\n        logtable.assign((1 << h)\
+    \ + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
+    \        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
     \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
     \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
@@ -143,12 +157,13 @@ data:
     \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
     \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
+  - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp

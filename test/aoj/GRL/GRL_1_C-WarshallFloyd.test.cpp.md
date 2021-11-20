@@ -8,9 +8,9 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -22,7 +22,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C
   bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -173,9 +173,9 @@ data:
     \            if (D[i][j] == INF<ll>) cout << \"INF\";\n            else cout <<\
     \ D[i][j];\n            cout << \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
-    ../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, INF<ll>);\n\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint\
+    \ main() {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, INF<ll>);\n\
     \    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n        D[s][t] = d;\n\
     \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
     \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
@@ -183,13 +183,13 @@ data:
     \ cout << \"INF\";\n            else cout << D[i][j];\n            cout << \"\
     \ \\n\"[j == V - 1];\n        }\n    }\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

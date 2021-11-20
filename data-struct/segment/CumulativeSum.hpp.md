@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 2 \"template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -127,26 +127,26 @@ data:
     \    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
     \        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
     \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n\ntemplate<class T> class\
-    \ CumulativeSum {\n  protected:\n    using F = std::function<T(T, T)>;\n    using\
-    \ G = std::function<T()>;\n    using H = std::function<T(T)>;\n    F op;\n   \
-    \ G e;\n    H inv;\n    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum()\
-    \ = default;\n    CumulativeSum(const std::vector<T>& v) : CumulativeSum(v, [](T\
-    \ a, T b) -> T { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return\
-    \ -a; }) {}\n    CumulativeSum(const std::vector<T>& v, const F& op, const G&\
-    \ e, const H& inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        data.assign(n + 1, e());\n\
-    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
-    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return op(data[r],\
-    \ inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C\
-    )\n * @docs docs/CumulativeSum.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
+    \ class CumulativeSum {\n  protected:\n    using F = std::function<T(T, T)>;\n\
+    \    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n    F\
+    \ op;\n    G e;\n    H inv;\n    int n;\n    std::vector<T> data;\n  public:\n\
+    \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) :\
+    \ CumulativeSum(v, [](T a, T b) -> T { return a + b; }, []() -> T { return 0;\
+    \ }, [](T a) -> T { return -a; }) {}\n    CumulativeSum(const std::vector<T>&\
+    \ v, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv) { init(v);\
+    \ }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n       \
+    \ data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n\
+    \    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
+    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
 documentation_of: data-struct/segment/CumulativeSum.hpp

@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -18,7 +18,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A
   bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -162,21 +162,21 @@ data:
     \         else cout << 0;\n            cout << \" \\n\"[i == N - 1];\n       \
     \ }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A\"\n\
-    #include \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n \
-    \   rep (i, N) {\n        int v, k; cin >> v >> k;\n        --v;\n        rep\
+    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (i, N) {\n        int v, k; cin >> v >> k;\n        --v;\n        rep\
     \ (k) {\n            int u; cin >> u;\n            G.add_edge(v, u - 1, true);\n\
     \        }\n    }\n    GMatrix<int> GM = ListToMatrix(G);\n    for (const auto&\
     \ v : GM) {\n        rep (i, N) {\n            if (v[i] == 1) cout << 1;\n   \
     \         else cout << 0;\n            cout << \" \\n\"[i == N - 1];\n       \
     \ }\n    }\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp

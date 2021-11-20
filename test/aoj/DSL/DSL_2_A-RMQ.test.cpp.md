@@ -1,32 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':x:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: data-struct/segment/SegmentTree.hpp
+  - icon: ':x:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A
-  bundledCode: "#line 1 \"test/aoj/DLS/DSL_1_A-UF.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\
-    \n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
+  bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -115,45 +119,79 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
-    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
-    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
-    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
-    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
-    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
-    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
-    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/aoj/DLS/DSL_1_A-UF.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A\"\n#include\
-    \ \"../../../template.hpp\"\n#include \"../../../data-struct/unionfind/UnionFind.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
+    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000)\
+    \ ? 32 : 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            +\
+    \ ((x & 0xFF00FF00FF00FF00) ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0)\
+    \ ?  4 : 0)\n            + ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            +\
+    \ ((x & 0xAAAAAAAAAAAAAAAA) ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr\
+    \ int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line\
+    \ 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class T> class SegmentTree\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
+    \    F op;\n    G e;\n    int n;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ = default;\n    SegmentTree(const F& op, const G& e) : SegmentTree(0, op, e)\
+    \ {}\n    SegmentTree(int n, const F& op, const G& e) : SegmentTree(std::vector<T>(n,\
+    \ e()), op, e) {}\n    SegmentTree(const std::vector<T>& v, const F& op, const\
+    \ G& e) : op(op), e(e) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        n = 1 << bitop::ceil_log2(v.size());\n        data.assign(n << 1, e());\n\
+    \        rep (i, v.size()) data[n + i] = v[i];\n        rrep (i, n, 1) data[i]\
+    \ = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class U> void update(int\
+    \ k, const U& upd) {\n        assert(0 <= k && k < n);\n        k += n;\n    \
+    \    data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = op(data[k << 1],\
+    \ data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T\
+    \ a) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
+    \ [&](T a) -> T { return op(a, x); });\n    }\n    T prod(int l, int r) {\n  \
+    \      assert(0 <= l && l <= r && r <= n);\n        l += n; r += n;\n        T\
+    \ lsm = e(), rsm = e();\n        while (l < r) {\n            if (l & 1) lsm =\
+    \ op(lsm, data[l++]);\n            if (r & 1) rsm = op(rsm, data[--r]);\n    \
+    \        l >>= 1; r >>= 1;\n        }\n        return op(lsm, rsm);\n    }\n \
+    \   T get(int k) { return data[k + n]; }\n    template<class C> int max_right(int\
+    \ l, const C& cond) {\n        assert(0 <= l && l <= n);\n        assert(cond(e()));\n\
+    \        if (l == n) return n;\n        l += n;\n        T sm = e();\n       \
+    \ do {\n            while ((l & 1) != 0) l >>= 1;\n            if (!cond(op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n    \
+    \            }\n                return l - n;\n            }\n            sm =\
+    \ op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return n;\n  \
+    \  }\n    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= n);\n        assert(cond(e()));\n        if (r == 0) return 0;\n\
+    \        r += n;\n        T sm = e();\n        do {\n            while ((r & 1)\
+    \ != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r - 1], sm))) {\n   \
+    \             while (r < n) {\n                    r <<= 1;\n                \
+    \    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n                }\n\
+    \                return r - n;\n            }\n            sm = op(data[--r],\
+    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n#line\
+    \ 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int n, q; cin >> n >> q;\n    SegmentTree<int> seg(n, [](int a, int b) ->\
+    \ int { return min(a, b); }, []() -> int { return (1u << 31) - 1; });\n    rep\
+    \ (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0) seg.set(a,\
+    \ b);\n        else cout << seg.prod(a, b + 1) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
+    \ seg(n, [](int a, int b) -> int { return min(a, b); }, []() -> int { return (1u\
+    \ << 31) - 1; });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n \
+    \       if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) <<\
+    \ endl;\n    }\n}\n"
   dependsOn:
-  - template.hpp
-  - data-struct/unionfind/UnionFind.hpp
+  - other/template.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/aoj/DLS/DSL_1_A-UF.test.cpp
+  path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-19 19:03:33+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-20 17:44:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DLS/DSL_1_A-UF.test.cpp
+documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DLS/DSL_1_A-UF.test.cpp
-- /verify/test/aoj/DLS/DSL_1_A-UF.test.cpp.html
-title: test/aoj/DLS/DSL_1_A-UF.test.cpp
+- /verify/test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+- /verify/test/aoj/DSL/DSL_2_A-RMQ.test.cpp.html
+title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
 ---

@@ -1,28 +1,48 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':x:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
-  - icon: ':question:'
-    path: other/template.hpp
-    title: other/template.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+    path: data-struct/segment/SegmentTree.hpp
+    title: data-struct/segment/SegmentTree.hpp
+  - icon: ':x:'
+    path: data-struct/segment/SparseTable.hpp
+    title: SparseTable
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/point_add_range_sum.test.cpp
+    title: test/yosupo/point_add_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/staticrmq-SparseTable.test.cpp
+    title: test/yosupo/staticrmq-SparseTable.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
-    links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"test/yosupo/staticrmq-DisjointSparseTable.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    links: []
+  bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -119,62 +139,51 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/DisjointSparseTable.hpp\"\n\n#line 2\
-    \ \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n\
-    #define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n  \
-    \  inline ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n\
-    \        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a\
-    \ >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1;\
-    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline constexpr\
-    \ int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 : 0)\n     \
-    \       + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
-    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
-    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
-    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
-    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\
-    \n\ntemplate<class T> class DisjointSparseTable {\n  protected:\n    using F =\
-    \ std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n\
-    \    std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n  \
-    \  DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        v_ = v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
-    \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
-    \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
-    \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
-    \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= (int)v.size()) break;\n                \
-    \    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n \
-    \           }\n        }\n    }\n    T query(int l, int r) {\n        assert(0\
-    \ <= l && l < r && r <= (1 << h));\n        --r;\n        if (l == r) return v_[l];\n\
-    \        int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
-    \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n#line 4 \"test/yosupo/staticrmq-DisjointSparseTable.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\n  \
-    \  cin >> A;\n    DisjointSparseTable<int> ST(A, [](int a, int b) -> int { return\
-    \ min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout\
-    \ << ST.query(l, r) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
-    ../../other/template.hpp\"\n#include \"../../data-struct/segment/DisjointSparseTable.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N);\n    cin >> A;\n    DisjointSparseTable<int> ST(A, [](int a, int b) ->\
-    \ int { return min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n\
-    \        cout << ST.query(l, r) << endl;\n    }\n}\n"
+    \    }\n};\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
+    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000)\
+    \ ? 32 : 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            +\
+    \ ((x & 0xFF00FF00FF00FF00) ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0)\
+    \ ?  4 : 0)\n            + ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            +\
+    \ ((x & 0xAAAAAAAAAAAAAAAA) ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr\
+    \ int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
+  code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace bitop {\n\n#define\
+    \ KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline\
+    \ ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n      \
+    \  ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a >> 1 |\
+    \ b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1; i < (1ull\
+    \ << (n)); i = bitop::next_combination((n), i))\n\n    inline constexpr int msb(ull\
+    \ x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 : 0)\n            + ((x\
+    \ & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00) ? \
+    \ 8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            + ((x\
+    \ & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA) ? \
+    \ 1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x) {\n\
+    \        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  isVerificationFile: false
+  path: other/bitop.hpp
+  requiredBy:
   - data-struct/segment/DisjointSparseTable.hpp
-  - other/bitop.hpp
-  isVerificationFile: true
-  path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  requiredBy: []
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+documentation_of: other/bitop.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-- /verify/test/yosupo/staticrmq-DisjointSparseTable.test.cpp.html
-title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+- /library/other/bitop.hpp
+- /library/other/bitop.hpp.html
+title: other/bitop.hpp
 ---

@@ -7,9 +7,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -21,7 +21,7 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
   bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n#line 2 \"template.hpp\"\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -172,21 +172,21 @@ data:
     \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
     \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
-    #include \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace std;\n\
-    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n    \
-    \    int u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n       \
-    \     int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n      \
-    \  }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout <<\
-    \ i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
+    \n#include \"../../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N)\
+    \ {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n\
+    \            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n\
+    \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
+    \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

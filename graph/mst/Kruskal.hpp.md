@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: template.hpp
-    title: template.hpp
+  - icon: ':question:'
+    path: other/template.hpp
+    title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -25,8 +25,8 @@ data:
     _deprecated_at_docs: docs/Kruskal.md
     document_title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
     links: []
-  bundledCode: "#line 2 \"graph/mst/Kruskal.hpp\"\n\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+  bundledCode: "#line 2 \"graph/mst/Kruskal.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -185,7 +185,7 @@ data:
     \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).first >= 0) res.push_back(e);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\
     \u6CD5)\n * @docs docs/Kruskal.md\n */\n"
-  code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
     \ T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
     \    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
@@ -196,13 +196,13 @@ data:
     \ res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)\n *\
     \ @docs docs/Kruskal.md\n */\n"
   dependsOn:
-  - template.hpp
+  - other/template.hpp
   - graph/Graph.hpp
   - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 17:44:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
