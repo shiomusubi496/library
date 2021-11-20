@@ -44,5 +44,5 @@ template<class T> Edges<T> Prim_vec(Graph<T> G) {
 
 /**
  * @brief Prim(プリム法)
- * @docs docs/Prime.md
+ * @docs docs/Prim.md
  */
