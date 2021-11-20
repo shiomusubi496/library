@@ -37,6 +37,9 @@ data:
   - name: graph/mst
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/mst/Kruskal.hpp
+      title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
+    - icon: ':heavy_check_mark:'
       path: graph/mst/Prim.hpp
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
@@ -95,6 +98,9 @@ data:
       path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+      title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
       title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     - icon: ':heavy_check_mark:'
@@ -151,6 +157,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+      title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
       title: test/aoj/GRL/GRL_2_A-Prim.test.cpp

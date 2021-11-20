@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Restore.hpp
-    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
+    path: graph/mst/Kruskal.hpp
+    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: template.hpp
     title: template.hpp
@@ -20,12 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A
     links:
-    - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/yosupo/shortest_path.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/shortest_path\"\n#line 2 \"template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_2_A-Kruskal.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A\"\n#line 2 \"template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -159,58 +159,54 @@ data:
     \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
     \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
     \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n\
-    #line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
-    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
-    \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
-    \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
-    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
-    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
-    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2\
-    \ \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
-    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
-    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
-    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
-    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return bfr;\n}\n\n/**\n * @brief Restore(\u7D4C\
-    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
-    \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
-    \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
-    \ s);\n    vector<int> R = Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"\
-    -1\");\n        return 0;\n    }\n    vector<int> ans{t};\n    while (ans.back()\
-    \ != s) ans.push_back(R[ans.back()]);\n    reverse(all(ans));\n    cout << D[t]\
-    \ << ' ' << ans.size() - 1 << endl;\n    rep (i, ans.size() - 1) cout << ans[i]\
-    \ << ' ' << ans[i + 1] << endl;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
-    \ \"../../template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/shortest-path/Dijkstra.hpp\"\
-    \n#include \"../../graph/shortest-path/Restore.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n    Graph<ll> G(N);\n\
-    \    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n    vector<int> R =\
-    \ Restore(G, D, s);\n    if (R[t] == -2) {\n        puts(\"-1\");\n        return\
-    \ 0;\n    }\n    vector<int> ans{t};\n    while (ans.back() != s) ans.push_back(R[ans.back()]);\n\
-    \    reverse(all(ans));\n    cout << D[t] << ' ' << ans.size() - 1 << endl;\n\
-    \    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1] << endl;\n}\n"
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/mst/Kruskal.hpp\"\n\n#line 2 \"\
+    data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
+    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
+    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
+    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
+    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
+    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
+    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\
+    \n\ntemplate<class T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n\
+    \    UnionFind UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n   \
+    \     if (UF.merge(e.from, e.to).first >= 0) res += e.cost;\n    }\n    return\
+    \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n  \
+    \  std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for (const\
+    \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).first >= 0) res.push_back(e);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\
+    \u6CD5)\n * @docs docs/Kruskal.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Kruskal.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Edges<int>\
+    \ Ed(E);\n    for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n    cout <<\
+    \ Kruskal(V, Ed) << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A\"\n#include\
+    \ \"../../../template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include \"\
+    ../../../graph/mst/Kruskal.hpp\"\nusing namespace std;\nint main() {\n    int\
+    \ V, E; cin >> V >> E;\n    Edges<int> Ed(E);\n    for (auto&& e : Ed) cin >>\
+    \ e.from >> e.to >> e.cost;\n    cout << Kruskal(V, Ed) << endl;\n}\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/shortest-path/Restore.hpp
+  - graph/mst/Kruskal.hpp
+  - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: true
-  path: test/yosupo/shortest_path.test.cpp
+  path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   requiredBy: []
   timestamp: '2021-11-20 09:21:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/shortest_path.test.cpp
+documentation_of: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/shortest_path.test.cpp
-- /verify/test/yosupo/shortest_path.test.cpp.html
-title: test/yosupo/shortest_path.test.cpp
+- /verify/test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+- /verify/test/aoj/GRL/GRL_2_A-Kruskal.test.cpp.html
+title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
 ---
