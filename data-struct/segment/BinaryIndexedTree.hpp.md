@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':question:'
@@ -9,15 +9,15 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -126,13 +126,15 @@ data:
     \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
     \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
     \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
-    \ constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 :\
-    \ 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
-    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
-    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
-    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
-    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
+    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
+    \ T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
     \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
     \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
@@ -193,8 +195,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-20 18:11:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp

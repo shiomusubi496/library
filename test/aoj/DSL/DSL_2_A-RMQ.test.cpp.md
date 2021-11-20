@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: data-struct/segment/SegmentTree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
@@ -125,52 +125,54 @@ data:
     \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
     \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
     \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000)\
-    \ ? 32 : 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            +\
-    \ ((x & 0xFF00FF00FF00FF00) ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0)\
-    \ ?  4 : 0)\n            + ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            +\
-    \ ((x & 0xAAAAAAAAAAAAAAAA) ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr\
-    \ int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line\
-    \ 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class T> class SegmentTree\
-    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T()>;\n\
-    \    F op;\n    G e;\n    int n;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
-    \ = default;\n    SegmentTree(const F& op, const G& e) : SegmentTree(0, op, e)\
-    \ {}\n    SegmentTree(int n, const F& op, const G& e) : SegmentTree(std::vector<T>(n,\
-    \ e()), op, e) {}\n    SegmentTree(const std::vector<T>& v, const F& op, const\
-    \ G& e) : op(op), e(e) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = 1 << bitop::ceil_log2(v.size());\n        data.assign(n << 1, e());\n\
-    \        rep (i, v.size()) data[n + i] = v[i];\n        rrep (i, n, 1) data[i]\
-    \ = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class U> void update(int\
-    \ k, const U& upd) {\n        assert(0 <= k && k < n);\n        k += n;\n    \
-    \    data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = op(data[k << 1],\
-    \ data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T\
-    \ a) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
-    \ [&](T a) -> T { return op(a, x); });\n    }\n    T prod(int l, int r) {\n  \
-    \      assert(0 <= l && l <= r && r <= n);\n        l += n; r += n;\n        T\
-    \ lsm = e(), rsm = e();\n        while (l < r) {\n            if (l & 1) lsm =\
-    \ op(lsm, data[l++]);\n            if (r & 1) rsm = op(rsm, data[--r]);\n    \
-    \        l >>= 1; r >>= 1;\n        }\n        return op(lsm, rsm);\n    }\n \
-    \   T get(int k) { return data[k + n]; }\n    template<class C> int max_right(int\
-    \ l, const C& cond) {\n        assert(0 <= l && l <= n);\n        assert(cond(e()));\n\
-    \        if (l == n) return n;\n        l += n;\n        T sm = e();\n       \
-    \ do {\n            while ((l & 1) != 0) l >>= 1;\n            if (!cond(op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n    \
-    \            }\n                return l - n;\n            }\n            sm =\
-    \ op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return n;\n  \
-    \  }\n    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
-    \ <= r && r <= n);\n        assert(cond(e()));\n        if (r == 0) return 0;\n\
-    \        r += n;\n        T sm = e();\n        do {\n            while ((r & 1)\
-    \ != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r - 1], sm))) {\n   \
-    \             while (r < n) {\n                    r <<= 1;\n                \
-    \    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n                }\n\
-    \                return r - n;\n            }\n            sm = op(data[--r],\
-    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n#line\
-    \ 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int n, q; cin >> n >> q;\n    SegmentTree<int> seg(n, [](int a, int b) ->\
-    \ int { return min(a, b); }, []() -> int { return (1u << 31) - 1; });\n    rep\
-    \ (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0) seg.set(a,\
-    \ b);\n        else cout << seg.prod(a, b + 1) << endl;\n    }\n}\n"
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    F op;\n    G e;\n    int n;\n \
+    \   std::vector<T> data;\n  public:\n    SegmentTree() = default;\n    SegmentTree(const\
+    \ F& op, const G& e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const\
+    \ F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}\n    SegmentTree(const\
+    \ std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }\n  \
+    \  void init(const std::vector<T>& v) {\n        n = 1 << bitop::ceil_log2(v.size());\n\
+    \        data.assign(n << 1, e());\n        rep (i, v.size()) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
+    \ k && k < n);\n        k += n;\n        data[k] = upd(data[k]);\n        while\
+    \ (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return x; });\n    }\n    void\
+    \ apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
+    \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
+    \ 1) rsm = op(rsm, data[--r]);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
+    \        l += n;\n        T sm = e();\n        do {\n            while ((l & 1)\
+    \ != 0) l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    l <<= 1;\n                    if (cond(op(sm,\
+    \ data[l]))) sm = op(sm, data[l++]);\n                }\n                return\
+    \ l - n;\n            }\n            sm = op(sm, data[l++]);\n        } while\
+    \ ((l & -l) != l);\n        return n;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= n);\n        assert(cond(e()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = e();\n       \
+    \ do {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
+    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
+    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
+    \                }\n                return r - n;\n            }\n           \
+    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int> seg(n, [](int\
+    \ a, int b) -> int { return min(a, b); }, []() -> int { return (1u << 31) - 1;\
+    \ });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t\
+    \ == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) << endl;\n   \
+    \ }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
@@ -185,8 +187,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-20 18:11:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
 layout: document

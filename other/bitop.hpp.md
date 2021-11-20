@@ -5,40 +5,40 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: data-struct/segment/SegmentTree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -144,24 +144,28 @@ data:
     \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
     \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
     \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline constexpr int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000)\
-    \ ? 32 : 0)\n            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            +\
-    \ ((x & 0xFF00FF00FF00FF00) ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0)\
-    \ ?  4 : 0)\n            + ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            +\
-    \ ((x & 0xAAAAAAAAAAAAAAAA) ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr\
-    \ int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace bitop {\n\n#define\
     \ KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline\
     \ ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n      \
     \  ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a >> 1 |\
     \ b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1; i < (1ull\
-    \ << (n)); i = bitop::next_combination((n), i))\n\n    inline constexpr int msb(ull\
-    \ x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 : 0)\n            + ((x\
-    \ & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00) ? \
-    \ 8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            + ((x\
-    \ & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA) ? \
-    \ 1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x) {\n\
-    \        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
+    \ << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR int msb(ull\
+    \ x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000) x &=\
+    \ 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res\
+    \ +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=\
+    \  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n\
+    \        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline\
+    \ CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n \
+    \   }\n}\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -171,8 +175,8 @@ data:
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
-  timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-20 18:11:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp

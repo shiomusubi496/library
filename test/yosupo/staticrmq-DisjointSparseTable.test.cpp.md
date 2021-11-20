@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':question:'
@@ -125,21 +125,23 @@ data:
     \  inline ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n\
     \        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a\
     \ >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1;\
-    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline constexpr\
-    \ int msb(ull x) {\n        return ((x & 0xFFFFFFFF00000000) ? 32 : 0)\n     \
-    \       + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)\n            + ((x & 0xFF00FF00FF00FF00)\
-    \ ?  8 : 0)\n            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)\n            +\
-    \ ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)\n            + ((x & 0xAAAAAAAAAAAAAAAA)\
-    \ ?  1 : 0) + (x ? 0 : -1);\n    }\n\n    inline constexpr int ceil_log2(ull x)\
-    \ {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\
-    \n\ntemplate<class T> class DisjointSparseTable {\n  protected:\n    using F =\
-    \ std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n\
-    \    std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n  \
-    \  DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        v_ = v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
+    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
+    \ T> class DisjointSparseTable {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<T>\
+    \ v_;\n    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable()\
+    \ = default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) :\
+    \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
+    \ v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1 << h,\
+    \ 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n      \
+    \  data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
     \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
     \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
     \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
@@ -168,7 +170,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 17:44:51+09:00'
+  timestamp: '2021-11-20 18:11:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
