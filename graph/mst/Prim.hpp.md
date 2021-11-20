@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Prime.md
+    _deprecated_at_docs: docs/Prim.md
     document_title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
     links: []
   bundledCode: "#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"template.hpp\"\n\n#include<bits/stdc++.h>\n\
@@ -190,7 +190,7 @@ data:
     \        seen[cre.to] = true;\n        for (const edge<T>& e : G[cre.to]) {\n\
     \            if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n\
-    \ * @docs docs/Prime.md\n */\n"
+    \ * @docs docs/Prim.md\n */\n"
   code: "#pragma once\n\n#include \"../../template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
     \ T Prim(Graph<T> G) {\n    const int N = G.size();\n    std::vector<bool> seen(N,\
@@ -207,7 +207,7 @@ data:
     \        seen[cre.to] = true;\n        for (const edge<T>& e : G[cre.to]) {\n\
     \            if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n\
-    \ * @docs docs/Prime.md\n */\n"
+    \ * @docs docs/Prim.md\n */\n"
   dependsOn:
   - template.hpp
   - graph/Graph.hpp
@@ -215,7 +215,7 @@ data:
   isVerificationFile: false
   path: graph/mst/Prim.hpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 09:45:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
@@ -227,3 +227,9 @@ redirect_from:
 - /library/graph/mst/Prim.hpp.html
 title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
 ---
+## 概要
+
+最小全域木を求める。コストが小さい辺を取って連結成分を広げていくイメージ。
+
+- `T Prim(Graph<T> G)` : グラフ `G` に対する最小全域木を求める。 $O(|E| \log |V|)$ 。
+- `Edges<T> Prim_vec(Graph<T> G)` : 最小全域木の辺の集合を返す。 $O(|E| \log |V|)$ 。

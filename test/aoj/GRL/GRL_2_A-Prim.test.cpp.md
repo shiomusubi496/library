@@ -190,7 +190,7 @@ data:
     \        seen[cre.to] = true;\n        for (const edge<T>& e : G[cre.to]) {\n\
     \            if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n\
-    \ * @docs docs/Prime.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\n\
+    \ * @docs docs/Prim.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\n\
     using namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Graph<int>\
     \ G(V);\n    rep (E) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
     \ b, c);\n    }\n    cout << Prim(G) << endl;\n}\n"
@@ -208,7 +208,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 09:21:59+09:00'
+  timestamp: '2021-11-20 09:45:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Prim.test.cpp
