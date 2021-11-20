@@ -45,6 +45,7 @@ template<class T> class SegmentTree {
         }
         return op(lsm, rsm);
     }
+    T all_prod() { return data[1]; }
     T get(int k) { return data[k + n]; }
     template<class C> int max_right(int l, const C& cond) {
         assert(0 <= l && l <= n);
@@ -86,7 +87,45 @@ template<class T> class SegmentTree {
     }
 };
 
+// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+template<class T> class RMiQ : public SegmentTree<T> {
+  protected:
+    using Base = SegmentTree<T>;
+  public:
+    template<class... Arg> RMiQ(Arg&&... args)
+        : Base(
+            std::forward<Arg>(args)...,
+            [](T a, T b) -> T { return std::min(a, b); },
+            []() -> T { return std::numeric_limits<T>::max(); }
+        ) {}
+};
+
+template<class T> class RMaQ : public SegmentTree<T> {
+  protected:
+    using Base = SegmentTree<T>;
+  public:
+    template<class... Arg> RMaQ(Arg&&... args)
+        : Base(
+            std::forward<Arg>(args)...,
+            [](T a, T b) -> T { return std::max(a, b); },
+            []() -> T { return std::numeric_limits<T>::min(); }
+        ) {}
+};
+
+// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+template<class T> class RSQ : public SegmentTree<T> {
+  protected:
+    using Base = SegmentTree<T>;
+  public:
+    template<class... Arg> RSQ(Arg&&... args)
+        : Base(
+            std::forward<Arg>(args)...,
+            [](T a, T b) -> T { return a + b; },
+            []() -> T { return 0; }
+        ) {}
+};
+
 /**
- * @brief
+ * @brief SegmentTree(セグメント木)
  * @docs docs/SegmentTree.md
  */
