@@ -209,4 +209,4 @@ title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
 - `vector<T> BellmanFord(int N, Edges<T> E, int s = 0)` :  
 辺のリスト `E` で表される頂点数 `N` のグラフに対して、各頂点の `s` からの距離を求める。  
 `INF` の場合 `s` から到達不可能、 `-INF` の場合 `s` から到達可能な負閉路から到達可能。  
-$O(|V| \times |E|)$ 。
+$O(V \times E)$ 。

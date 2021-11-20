@@ -191,7 +191,7 @@ title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6
 
 全ての頂点対に対する最短経路問題を解く。
 
-- `WarshallFloyd(std::vector<std::vector<T>>& D)` :  
+- `WarshallFloyd(GMatrix& D)` :  
 与えられた隣接行列に対し、 `D[i][j]` = 頂点 `i` から頂点 `j` までの最短コストとする。  
 `D[i][i]<0` となる `i` が存在する場合、負の閉路が存在する。  
-$O(|V|^3)$ 。
+$O(V^3)$ 。
