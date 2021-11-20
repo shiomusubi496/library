@@ -85,3 +85,8 @@ template<class T> class SegmentTree {
         return 0;
     }
 };
+
+/**
+ * @brief
+ * @docs docs/SegmentTree.md
+ */
