@@ -1,24 +1,28 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: data-struct/segment/SegmentTree.hpp
   - icon: ':question:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
+    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
     links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/yosupo/unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    - https://judge.yosupo.jp/problem/point_set_range_composite
+  bundledCode: "#line 1 \"test/yosupo/point_set_range_composite.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
     \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
@@ -115,45 +119,89 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
-    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
-    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
-    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
-    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
-    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
-    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
-    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    F op;\n    G e;\n    int n;\n \
+    \   std::vector<T> data;\n  public:\n    SegmentTree() = default;\n    SegmentTree(const\
+    \ F& op, const G& e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const\
+    \ F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}\n    SegmentTree(const\
+    \ std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }\n  \
+    \  void init(const std::vector<T>& v) {\n        n = 1 << bitop::ceil_log2(v.size());\n\
+    \        data.assign(n << 1, e());\n        rep (i, v.size()) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
+    \ k && k < n);\n        k += n;\n        data[k] = upd(data[k]);\n        while\
+    \ (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return x; });\n    }\n    void\
+    \ apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
+    \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
+    \ 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
+    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
+    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
+    \        l += n;\n        T sm = e();\n        do {\n            while ((l & 1)\
+    \ != 0) l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    l <<= 1;\n                    if (cond(op(sm,\
+    \ data[l]))) sm = op(sm, data[l++]);\n                }\n                return\
+    \ l - n;\n            }\n            sm = op(sm, data[l++]);\n        } while\
+    \ ((l & -l) != l);\n        return n;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= n);\n        assert(cond(e()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = e();\n       \
+    \ do {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
+    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
+    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
+    \                }\n                return r - n;\n            }\n           \
+    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n\n/**\n * @brief\n * @docs docs/SegmentTree.md\n */\n#line 4 \"test/yosupo/point_set_range_composite.test.cpp\"\
+    \nusing namespace std;\nconstexpr int mod = 998244353;\nint main() {\n    int\
+    \ N, Q; cin >> N >> Q;\n    vector<PLL> A(N); cin >> A;\n    SegmentTree<PLL>\
+    \ seg(\n        A,\n        [](const PLL& a, const PLL& b) -> PLL {\n        \
+    \    return {b.first * a.first % mod, (b.first * a.second + b.second) % mod};\n\
+    \        },\n        []() -> PLL {\n            return {1, 0};\n        }\n  \
+    \  );\n    rep (Q) {\n        int t, a, b, c; cin >> t >> a >> b >> c;\n     \
+    \   if (t == 0) seg.set(a, PLL{b, c});\n        else {\n            PLL p = seg.prod(a,\
+    \ b);\n            cout << (p.first * c + p.second) % mod << endl;\n        }\n\
     \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
-    ../../other/template.hpp\"\n#include \"../../data-struct/unionfind/UnionFind.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SegmentTree.hpp\"\
+    \nusing namespace std;\nconstexpr int mod = 998244353;\nint main() {\n    int\
+    \ N, Q; cin >> N >> Q;\n    vector<PLL> A(N); cin >> A;\n    SegmentTree<PLL>\
+    \ seg(\n        A,\n        [](const PLL& a, const PLL& b) -> PLL {\n        \
+    \    return {b.first * a.first % mod, (b.first * a.second + b.second) % mod};\n\
+    \        },\n        []() -> PLL {\n            return {1, 0};\n        }\n  \
+    \  );\n    rep (Q) {\n        int t, a, b, c; cin >> t >> a >> b >> c;\n     \
+    \   if (t == 0) seg.set(a, PLL{b, c});\n        else {\n            PLL p = seg.prod(a,\
+    \ b);\n            cout << (p.first * c + p.second) % mod << endl;\n        }\n\
     \    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/unionfind/UnionFind.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/yosupo/unionfind.test.cpp
+  path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
   timestamp: '2021-11-20 19:36:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/unionfind.test.cpp
+documentation_of: test/yosupo/point_set_range_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/unionfind.test.cpp
-- /verify/test/yosupo/unionfind.test.cpp.html
-title: test/yosupo/unionfind.test.cpp
+- /verify/test/yosupo/point_set_range_composite.test.cpp
+- /verify/test/yosupo/point_set_range_composite.test.cpp.html
+title: test/yosupo/point_set_range_composite.test.cpp
 ---

@@ -8,7 +8,7 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -51,7 +51,7 @@ data:
     \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
     \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
-    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
+    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
     \ Container,\n        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
     \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    \
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 17:44:51+09:00'
+  timestamp: '2021-11-20 19:36:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

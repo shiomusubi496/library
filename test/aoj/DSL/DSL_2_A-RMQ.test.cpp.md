@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: data-struct/segment/SegmentTree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -50,7 +50,7 @@ data:
     \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
     \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
-    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
+    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
     \ Container,\n        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
     \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    \
@@ -150,7 +150,7 @@ data:
     \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
     \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
     \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
-    \ 1) rsm = op(rsm, data[--r]);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \ 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n   \
     \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
     \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
     \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:06:40+09:00'
+  timestamp: '2021-11-20 19:36:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
@@ -66,7 +66,7 @@ data:
     \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
     \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
-    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
+    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
     \ Container,\n        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
     \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    \
@@ -174,8 +174,8 @@ data:
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-20 19:36:49+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp

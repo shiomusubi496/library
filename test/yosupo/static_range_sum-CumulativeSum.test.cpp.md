@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -47,7 +47,7 @@ data:
     \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
     \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
-    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator<<(std::istream&\
+    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
     \ Container,\n        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
     \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    \
@@ -143,8 +143,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 17:44:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-20 19:36:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
 layout: document
