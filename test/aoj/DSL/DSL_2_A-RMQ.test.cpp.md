@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: data-struct/segment/SegmentTree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -167,12 +167,12 @@ data:
     \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
     \                }\n                return r - n;\n            }\n           \
     \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int> seg(n, [](int\
-    \ a, int b) -> int { return min(a, b); }, []() -> int { return (1u << 31) - 1;\
-    \ });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t\
-    \ == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) << endl;\n   \
-    \ }\n}\n"
+    \    }\n};\n\n/**\n * @brief\n * @docs docs/SegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
+    \ seg(n, [](int a, int b) -> int { return min(a, b); }, []() -> int { return (1u\
+    \ << 31) - 1; });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n \
+    \       if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) <<\
+    \ endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 18:11:03+09:00'
+  timestamp: '2021-11-20 19:06:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp

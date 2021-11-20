@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -141,18 +141,17 @@ data:
     \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
     \ v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1 << h,\
     \ 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n      \
-    \  data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
-    \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
-    \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
-    \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
-    \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= (int)v.size()) break;\n                \
-    \    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n \
-    \           }\n        }\n    }\n    T query(int l, int r) {\n        assert(0\
-    \ <= l && l < r && r <= (1 << h));\n        --r;\n        if (l == r) return v_[l];\n\
-    \        int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
-    \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n"
+    \  data.assign(h, std::vector<T>(1 << h));\n        rep (i, 0, h) {\n        \
+    \    int len = 1 << i;\n            rep (j, len, v.size(), len << 1) {\n     \
+    \           data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
+    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                rep (k, 1, len) {\n                    if (j + k >= (int)v.size())\
+    \ break;\n                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n\
+    \                }\n            }\n        }\n    }\n    T query(int l, int r)\
+    \ {\n        assert(0 <= l && l < r && r <= (1 << h));\n        --r;\n       \
+    \ if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n        return\
+    \ op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n\ntemplate<class T> class DisjointSparseTable {\n  protected:\n    using F =\
     \ std::function<T(T, T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n\
@@ -161,26 +160,25 @@ data:
     \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
     \ {\n        v_ = v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1\
     \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
-    \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
-    \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
-    \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
-    \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= (int)v.size()) break;\n                \
-    \    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n \
-    \           }\n        }\n    }\n    T query(int l, int r) {\n        assert(0\
-    \ <= l && l < r && r <= (1 << h));\n        --r;\n        if (l == r) return v_[l];\n\
-    \        int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
-    \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n"
+    \        data.assign(h, std::vector<T>(1 << h));\n        rep (i, 0, h) {\n  \
+    \          int len = 1 << i;\n            rep (j, len, v.size(), len << 1) {\n\
+    \                data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
+    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                rep (k, 1, len) {\n                    if (j + k >= (int)v.size())\
+    \ break;\n                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n\
+    \                }\n            }\n        }\n    }\n    T query(int l, int r)\
+    \ {\n        assert(0 <= l && l < r && r <= (1 << h));\n        --r;\n       \
+    \ if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n        return\
+    \ op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-20 18:11:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-11-20 18:35:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
@@ -193,7 +191,7 @@ title: DisjointSparseTable
 ---
 ## 概要
 
-区間最小値などの区間に対するクエリを扱える。ただし、二項演算子 $\cdot$ は以下の条件を満たす必要がある。
+数列 `a` に対して、区間最小値などの区間に対するクエリを扱える。ただし、二項演算子 $\cdot$ は以下の条件を満たす必要がある。
 
 - 結合則 : 任意の $A, B, C$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
 
@@ -201,5 +199,5 @@ title: DisjointSparseTable
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
 
-- `DisjointSparseTable(vector<int> a, T op(T, T))` : リスト `a` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
+- `DisjointSparseTable(vector<int> v, T op(T, T))` : 数列 `v` と二項演算 `op` で初期化する。 $N=\mathrm{len}(a)$ として $O(N \log N)$ 。
 - `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。

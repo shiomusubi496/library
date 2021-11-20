@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -141,22 +141,21 @@ data:
     \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
     \ v;\n        h = bitop::ceil_log2(v.size());\n        logtable.assign(1 << h,\
     \ 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n      \
-    \  data.assign(h, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
-    \ = v[i];\n        rep (i, 1, h) {\n            int len = 1 << i;\n          \
-    \  rep (j, len, v.size(), len << 1) {\n                data[i][j - 1] = v[j -\
-    \ 1];\n                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j\
-    \ - k]);\n                data[i][j] = v[j];\n                rep (k, 1, len)\
-    \ {\n                    if (j + k >= (int)v.size()) break;\n                \
-    \    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n \
-    \           }\n        }\n    }\n    T query(int l, int r) {\n        assert(0\
-    \ <= l && l < r && r <= (1 << h));\n        --r;\n        if (l == r) return v_[l];\n\
-    \        int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n\
-    \    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n#line 4 \"test/yosupo/staticrmq-DisjointSparseTable.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\n  \
-    \  cin >> A;\n    DisjointSparseTable<int> ST(A, [](int a, int b) -> int { return\
-    \ min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout\
-    \ << ST.query(l, r) << endl;\n    }\n}\n"
+    \  data.assign(h, std::vector<T>(1 << h));\n        rep (i, 0, h) {\n        \
+    \    int len = 1 << i;\n            rep (j, len, v.size(), len << 1) {\n     \
+    \           data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
+    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                rep (k, 1, len) {\n                    if (j + k >= (int)v.size())\
+    \ break;\n                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n\
+    \                }\n            }\n        }\n    }\n    T query(int l, int r)\
+    \ {\n        assert(0 <= l && l < r && r <= (1 << h));\n        --r;\n       \
+    \ if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n        return\
+    \ op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n#line 4 \"test/yosupo/staticrmq-DisjointSparseTable.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
+    \ A(N);\n    cin >> A;\n    DisjointSparseTable<int> ST(A, [](int a, int b) ->\
+    \ int { return min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n\
+    \        cout << ST.query(l, r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../data-struct/segment/DisjointSparseTable.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
@@ -170,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 18:11:03+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-20 18:35:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 layout: document

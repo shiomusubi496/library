@@ -9,7 +9,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
     - icon: ':heavy_check_mark:'
@@ -85,10 +85,10 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -215,7 +215,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     - icon: ':heavy_check_mark:'

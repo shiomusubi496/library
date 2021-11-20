@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -209,7 +209,7 @@ title: BinaryIndexedTree(FenwickTree, BIT)
 ---
 ## 概要
 
-一点加算区間和クエリを高速に扱えるデータ構造。必要なところのみ見るため、セグ木より高速。二項演算 $\cdot$ は以下の条件を満たす必要がある。
+数列 `a` に対して、一点加算区間和クエリを高速に扱えるデータ構造。必要なところのみ見るため、セグ木より高速。二項演算 $\cdot$ は以下の条件を満たす必要がある。
 
 - 結合則 : 任意の $A, B, C$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
 - 単位元の存在 : ある $e$ が存在して、任意の $A$ に対して $A \cdot e = e \cdot A = A$
