@@ -16,16 +16,17 @@ namespace bitop {
 
 #define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))
 
-    inline constexpr int msb(ull x) {
-        return ((x & 0xFFFFFFFF00000000) ? 32 : 0)
-            + ((x & 0xFFFF0000FFFF0000) ? 16 : 0)
-            + ((x & 0xFF00FF00FF00FF00) ?  8 : 0)
-            + ((x & 0xF0F0F0F0F0F0F0F0) ?  4 : 0)
-            + ((x & 0xCCCCCCCCCCCCCCCC) ?  2 : 0)
-            + ((x & 0xAAAAAAAAAAAAAAAA) ?  1 : 0) + (x ? 0 : -1);
+    inline CONSTEXPR int msb(ull x) {
+        int res = x ? 0 : -1;
+        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;
+        if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;
+        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;
+        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;
+        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;
+        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);
     }
 
-    inline constexpr int ceil_log2(ull x) {
+    inline CONSTEXPR int ceil_log2(ull x) {
         return x ? msb(x - 1) + 1 : 0;
     }
 }
