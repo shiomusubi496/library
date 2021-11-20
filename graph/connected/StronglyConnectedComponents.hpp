@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../Graph.hpp"
 
 template<class T> class StronglyConnectedComponents {

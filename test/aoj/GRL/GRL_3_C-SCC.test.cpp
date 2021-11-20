@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 #include "../../../graph/connected/StronglyConnectedComponents.hpp"
 using namespace std;

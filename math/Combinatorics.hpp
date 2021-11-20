@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../template.hpp"
+#include "../other/template.hpp"
 #include "ModInt.hpp"
 
 template<class T> class IntCombinatorics {

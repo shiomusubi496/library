@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
+#include "../../other/bitop.hpp"
 
 template<class T> class SparseTable {
   protected:
@@ -13,8 +14,7 @@ template<class T> class SparseTable {
     SparseTable() = default;
     SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
     void init(const std::vector<T>& v) {
-        h = 1;
-        while ((1 << h) < (int)v.size()) ++h;
+        h = bitop::ceil_log2(v.size());
         logtable.assign((1 << h) + 1, 0);
         reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;
         data.assign(h + 1, std::vector<T>(1 << h));

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../template.hpp"
+#include "../other/template.hpp"
 
 template<class T = int> struct edge {
     int from, to;

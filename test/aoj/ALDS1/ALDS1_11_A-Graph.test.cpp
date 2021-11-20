@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 using namespace std;
 int main() {

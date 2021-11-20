@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../Graph.hpp"
 
 template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {

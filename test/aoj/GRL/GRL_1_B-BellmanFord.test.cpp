@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 #include "../../../graph/shortest-path/BellmanFord.hpp"
 using namespace std;

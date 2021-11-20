@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../template.hpp"
+#include "../other/template.hpp"
 
 ll euler_phi(ll n) {
     ll res = n;

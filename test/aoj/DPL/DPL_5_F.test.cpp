@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../math/ModInt.hpp"
 #include "../../../math/Combinatorics.hpp"
 using namespace std;

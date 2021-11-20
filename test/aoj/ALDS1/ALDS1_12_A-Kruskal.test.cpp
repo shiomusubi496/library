@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 #include "../../../graph/mst/Kruskal.hpp"
 using namespace std;

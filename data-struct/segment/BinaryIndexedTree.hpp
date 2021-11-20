@@ -1,6 +1,7 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
+#include "../../other/bitop.hpp"
 
 template<class T> class BinaryIndexedTree {
   protected:
@@ -19,8 +20,7 @@ template<class T> class BinaryIndexedTree {
     BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }
     BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
     void init(int n_) {
-        n = 1;
-        while (n < n_) n <<= 1;
+        n = 1 << bitop::ceil_log2(n_);
         data.assign(n + 1, e());
     }
     void add(int k, T x) {

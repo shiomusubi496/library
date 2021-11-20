@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../data-struct/segment/BinaryIndexedTree.hpp"
 using namespace std;
 int main() {

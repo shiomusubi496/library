@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 #include "../../../graph/other/TopologicalSort.hpp"
 using namespace std;

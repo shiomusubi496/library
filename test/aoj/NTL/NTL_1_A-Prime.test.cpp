@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_A"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 using namespace std;
 int main() {
     int N; cin >> N;

@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../../data-struct/segment/SparseTable.hpp"
 using namespace std;
 int main() {

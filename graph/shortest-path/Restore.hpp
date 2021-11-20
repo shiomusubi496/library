@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../Graph.hpp"
 
 template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {

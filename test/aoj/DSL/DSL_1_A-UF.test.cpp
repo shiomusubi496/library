@@ -1,5 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_A"
-#include "../../../template.hpp"
+#include "../../../other/template.hpp"
 #include "../../../data-struct/unionfind/UnionFind.hpp"
 using namespace std;
 int main() {

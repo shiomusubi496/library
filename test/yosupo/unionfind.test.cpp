@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../../data-struct/unionfind/UnionFind.hpp"
 using namespace std;
 int main() {

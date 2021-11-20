@@ -1,5 +1,5 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../../data-struct/segment/DisjointSparseTable.hpp"
 using namespace std;
 int main() {

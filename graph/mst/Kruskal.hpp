@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../template.hpp"
+#include "../../other/template.hpp"
 #include "../Graph.hpp"
 #include "../../data-struct/unionfind/UnionFind.hpp"
 
