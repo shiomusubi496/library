@@ -3,11 +3,11 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
-    title: data-struct/segment/SegmentTree.hpp
-  - icon: ':question:'
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -151,35 +151,49 @@ data:
     \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
     \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
     \ 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n   \
-    \     return op(lsm, rsm);\n    }\n    T get(int k) { return data[k + n]; }\n\
-    \    template<class C> int max_right(int l, const C& cond) {\n        assert(0\
-    \ <= l && l <= n);\n        assert(cond(e()));\n        if (l == n) return n;\n\
-    \        l += n;\n        T sm = e();\n        do {\n            while ((l & 1)\
-    \ != 0) l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while\
-    \ (l < n) {\n                    l <<= 1;\n                    if (cond(op(sm,\
-    \ data[l]))) sm = op(sm, data[l++]);\n                }\n                return\
-    \ l - n;\n            }\n            sm = op(sm, data[l++]);\n        } while\
-    \ ((l & -l) != l);\n        return n;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) {\n        assert(0 <= r && r <= n);\n        assert(cond(e()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = e();\n       \
-    \ do {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
-    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
-    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
-    \                }\n                return r - n;\n            }\n           \
-    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n\n/**\n * @brief\n * @docs docs/SegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
-    \ seg(n, [](int a, int b) -> int { return min(a, b); }, []() -> int { return (1u\
-    \ << 31) - 1; });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n \
-    \       if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) <<\
-    \ endl;\n    }\n}\n"
+    \     return op(lsm, rsm);\n    }\n    T all_prod() { return data[1]; }\n    T\
+    \ get(int k) { return data[k + n]; }\n    template<class C> int max_right(int\
+    \ l, const C& cond) {\n        assert(0 <= l && l <= n);\n        assert(cond(e()));\n\
+    \        if (l == n) return n;\n        l += n;\n        T sm = e();\n       \
+    \ do {\n            while ((l & 1) != 0) l >>= 1;\n            if (!cond(op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n    \
+    \            }\n                return l - n;\n            }\n            sm =\
+    \ op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return n;\n  \
+    \  }\n    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= n);\n        assert(cond(e()));\n        if (r == 0) return 0;\n\
+    \        r += n;\n        T sm = e();\n        do {\n            while ((r & 1)\
+    \ != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r - 1], sm))) {\n   \
+    \             while (r < n) {\n                    r <<= 1;\n                \
+    \    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n                }\n\
+    \                return r - n;\n            }\n            sm = op(data[--r],\
+    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified\
+    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T> class RMiQ : public\
+    \ SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n  public:\n\
+    \    template<class... Arg> RMiQ(Arg&&... args)\n        : Base(\n           \
+    \ std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return std::min(a,\
+    \ b); },\n            []() -> T { return std::numeric_limits<T>::max(); }\n  \
+    \      ) {}\n};\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n\
+    \    using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
+    \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
+    \  [](T a, T b) -> T { return std::max(a, b); },\n            []() -> T { return\
+    \ std::numeric_limits<T>::min(); }\n        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
+    template<class T> class RSQ : public SegmentTree<T> {\n  protected:\n    using\
+    \ Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RSQ(Arg&&... args)\n\
+    \        : Base(\n            std::forward<Arg>(args)...,\n            [](T a,\
+    \ T b) -> T { return a + b; },\n            []() -> T { return 0; }\n        )\
+    \ {}\n};\n\n/**\n * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
+    \ * @docs docs/SegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RMiQ<int>\
+    \ seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
+    \ (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    SegmentTree<int>\
-    \ seg(n, [](int a, int b) -> int { return min(a, b); }, []() -> int { return (1u\
-    \ << 31) - 1; });\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n \
-    \       if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) <<\
-    \ endl;\n    }\n}\n"
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RMiQ<int>\
+    \ seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
+    \ (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) << endl;\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -187,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-20 20:29:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp

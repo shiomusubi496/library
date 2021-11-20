@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -11,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B
-  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_B-Pow.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B\"\n#line 2 \"other/template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
+  bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_B-RSQ.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -113,24 +119,95 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 3 \"test/aoj/NTL/NTL_1_B-Pow.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int m, n; cin >> m >> n;\n    cout << mod_pow(m, n, 1000000007)\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_B\"\n#include\
-    \ \"../../../other/template.hpp\"\nusing namespace std;\nint main() {\n    int\
-    \ m, n; cin >> m >> n;\n    cout << mod_pow(m, n, 1000000007) << endl;\n}\n"
+    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T()>;\n    F op;\n    G e;\n    int n;\n \
+    \   std::vector<T> data;\n  public:\n    SegmentTree() = default;\n    SegmentTree(const\
+    \ F& op, const G& e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const\
+    \ F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}\n    SegmentTree(const\
+    \ std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }\n  \
+    \  void init(const std::vector<T>& v) {\n        n = 1 << bitop::ceil_log2(v.size());\n\
+    \        data.assign(n << 1, e());\n        rep (i, v.size()) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
+    \ k && k < n);\n        k += n;\n        data[k] = upd(data[k]);\n        while\
+    \ (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return x; });\n    }\n    void\
+    \ apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        l += n; r += n;\n        T lsm = e(), rsm = e();\n        while (l <\
+    \ r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if (r &\
+    \ 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n   \
+    \     return op(lsm, rsm);\n    }\n    T all_prod() { return data[1]; }\n    T\
+    \ get(int k) { return data[k + n]; }\n    template<class C> int max_right(int\
+    \ l, const C& cond) {\n        assert(0 <= l && l <= n);\n        assert(cond(e()));\n\
+    \        if (l == n) return n;\n        l += n;\n        T sm = e();\n       \
+    \ do {\n            while ((l & 1) != 0) l >>= 1;\n            if (!cond(op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n    \
+    \            }\n                return l - n;\n            }\n            sm =\
+    \ op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return n;\n  \
+    \  }\n    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= n);\n        assert(cond(e()));\n        if (r == 0) return 0;\n\
+    \        r += n;\n        T sm = e();\n        do {\n            while ((r & 1)\
+    \ != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r - 1], sm))) {\n   \
+    \             while (r < n) {\n                    r <<= 1;\n                \
+    \    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n                }\n\
+    \                return r - n;\n            }\n            sm = op(data[--r],\
+    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified\
+    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T> class RMiQ : public\
+    \ SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n  public:\n\
+    \    template<class... Arg> RMiQ(Arg&&... args)\n        : Base(\n           \
+    \ std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return std::min(a,\
+    \ b); },\n            []() -> T { return std::numeric_limits<T>::max(); }\n  \
+    \      ) {}\n};\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n\
+    \    using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
+    \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
+    \  [](T a, T b) -> T { return std::max(a, b); },\n            []() -> T { return\
+    \ std::numeric_limits<T>::min(); }\n        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
+    template<class T> class RSQ : public SegmentTree<T> {\n  protected:\n    using\
+    \ Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RSQ(Arg&&... args)\n\
+    \        : Base(\n            std::forward<Arg>(args)...,\n            [](T a,\
+    \ T b) -> T { return a + b; },\n            []() -> T { return 0; }\n        )\
+    \ {}\n};\n\n/**\n * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
+    \ * @docs docs/SegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_B-RSQ.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RSQ<int>\
+    \ seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
+    \ (t == 0) seg.apply(a - 1, b);\n        else cout << seg.prod(a - 1, b) << endl;\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RSQ<int>\
+    \ seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
+    \ (t == 0) seg.apply(a - 1, b);\n        else cout << seg.prod(a - 1, b) << endl;\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
+  path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-20 20:29:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/NTL/NTL_1_B-Pow.test.cpp
+documentation_of: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL/NTL_1_B-Pow.test.cpp
-- /verify/test/aoj/NTL/NTL_1_B-Pow.test.cpp.html
-title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
+- /verify/test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+- /verify/test/aoj/DSL/DSL_2_B-RSQ.test.cpp.html
+title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
 ---
