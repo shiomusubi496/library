@@ -57,7 +57,7 @@ constexpr ld PI = 3.1415926535897932384626;
 template<class T, class U> std::ostream& operator<<(std::ostream& ost, const std::pair<T, U>& p) {
     return ost << p.first << ' ' << p.second;
 }
-template<class T, class U> std::istream& operator<<(std::istream& ist, std::pair<T, U>& p) {
+template<class T, class U> std::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {
     return ist >> p.first >> p.second;
 }
 

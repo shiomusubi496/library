@@ -40,7 +40,7 @@ template<class T> class SegmentTree {
         T lsm = e(), rsm = e();
         while (l < r) {
             if (l & 1) lsm = op(lsm, data[l++]);
-            if (r & 1) rsm = op(rsm, data[--r]);
+            if (r & 1) rsm = op(data[--r], rsm);
             l >>= 1; r >>= 1;
         }
         return op(lsm, rsm);
