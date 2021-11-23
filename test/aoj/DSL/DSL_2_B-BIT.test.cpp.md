@@ -136,31 +136,23 @@ data:
     \   }\n}\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
     \ T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
-    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n, origin_size;\n\
-    \    std::vector<T> data;\n  public:\n    BinaryIndexedTree() = default;\n   \
-    \ BinaryIndexedTree(int n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return\
-    \ a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int\
-    \ n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n\
-    \    BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
+    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
+    \ n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T {\
+    \ return 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int n_,\
+    \ const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n  \
+    \  BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
     \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     origin_size = n_;\n        n = 1 << bitop::ceil_log2(n_);\n        data.assign(n\
-    \ + 1, e());\n    }\n    void add(int k, T x) {\n        ++k;\n        while (k\
-    \ <= n) {\n            data[k] = op(data[k], x);\n            k += k & -k;\n \
-    \       }\n    }\n    T sum(int k) const {\n        assert(0 <= k && k <= origin_size);\n\
-    \        T res = e();\n        while (k) {\n            res = op(res, data[k]);\n\
-    \            k -= k & -k;\n        }\n        return res;\n    }\n    T sum(int\
-    \ l, int r) const {\n        assert(l <= r);\n        assert(inv_exits);\n   \
-    \     return op(sum(r), inv(sum(l)));\n    }\n    T get(int k) const {\n     \
-    \   return sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, op(x,\
-    \ inv(get(k))));\n    }\n    template<class C> int max_right(int l, const C& cond)\
-    \ {\n        assert(0 <= l && l <= origin_size);\n        assert(cond(e()));\n\
-    \        if (l == n) return n;\n        T sm = e();\n        ++l;\n        while\
-    \ (l <= n) {\n            if (!cond(op(sm, data[l]))) {\n                int ln\
-    \ = l & -l;\n                while (ln >>= 1) {\n                    if (cond(op(sm,\
-    \ data[l - ln]))) sm = op(sm, data[l - ln]);\n                    else l -= ln;\n\
-    \                }\n                return l;\n            }\n            sm =\
-    \ op(sm, data[l]);\n            l += l & -l;\n        }\n        return n;\n \
-    \   }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \     n = n_;\n        data.assign(n + 1, e());\n    }\n    void add(int k, T\
+    \ x) {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = e();\n        while (k) {\n\
+    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
+    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
+    \ r);\n        assert(inv_exits);\n        return op(sum(r), inv(sum(l)));\n \
+    \   }\n    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void\
+    \ set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n};\n\n/**\n *\
+    \ @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-BIT.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int> BIT(n);\n\
     \    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0)\
@@ -179,7 +171,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 16:31:07+09:00'
+  timestamp: '2021-11-23 17:19:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-BIT.test.cpp

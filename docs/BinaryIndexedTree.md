@@ -10,7 +10,6 @@ min/max などが扱える。
 - `BinaryIndexedTree(int n, T op(T, T), T e())` : サイズ `n` の BIT を作成する。 $O(n)$ 。
 - `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $O(\log n)$ 。
 - `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $O(\log n)$ 。
-- `int max_right(int l, bool f(T))` : BIT 上で二分探索をする。詳しくはセグ木を参照。 $O(\log n)$ 。
 
 また、以下の条件を満たすと、さらに多くのことができる。
 

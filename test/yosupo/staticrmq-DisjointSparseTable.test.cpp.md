@@ -141,8 +141,8 @@ data:
     \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
     \ {\n        v_ = v;\n        origin_size = v.size();\n        h = bitop::ceil_log2(v.size());\n\
     \        logtable.assign(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i] =\
-    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(1 << h));\n   \
-    \     rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len,\
+    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(v.size()));\n \
+    \       rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len,\
     \ v.size(), len << 1) {\n                data[i][j - 1] = v[j - 1];\n        \
     \        rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);\n\
     \                data[i][j] = v[j];\n                rep (k, 1, len) {\n     \
@@ -170,7 +170,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 16:31:07+09:00'
+  timestamp: '2021-11-23 17:19:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
