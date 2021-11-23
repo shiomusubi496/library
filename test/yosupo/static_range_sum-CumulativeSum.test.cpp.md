@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -118,20 +118,21 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 4 \"data-struct/segment/CumulativeSum.hpp\"\
     \n\ntemplate<class T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
-    \    F op;\n    G e;\n    H inv;\n    int n;\n    std::vector<T> data;\n  public:\n\
-    \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) :\
-    \ CumulativeSum(v, [](T a, T b) -> T { return a + b; }, []() -> T { return 0;\
-    \ }, [](T a) -> T { return -a; }) {}\n    CumulativeSum(const std::vector<T>&\
-    \ v, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv) { init(v);\
-    \ }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n       \
-    \ data.assign(n + 1, e());\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n\
-    \    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        return op(data[r], inv(data[l]));\n    }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
-    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l,\
-    \ r; cin >> l >> r;\n        cout << CS.query(l, r) << endl;\n    }\n}\n"
+    \ T)>;\n    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n\
+    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n\
+    \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v   , [](T\
+    \ a, T b) -> T { return a + b; },\n                        T(0), [](T a) -> T\
+    \ { return -a; }) {}\n    CumulativeSum(const std::vector<T>& v, const F& op,\
+    \ const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const\
+    \ std::vector<T>& v) {\n        n = v.size();\n        data.assign(n + 1, e);\n\
+    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
+    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return inv(data[r],\
+    \ data[l]);\n    }\n    std::vector<T> get_data() { return data; }\n};\n\n/**\n\
+    \ * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> A(N); cin >>\
+    \ A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l, r; cin >> l\
+    \ >> r;\n        cout << CS.query(l, r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/segment/CumulativeSum.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
@@ -143,8 +144,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-23 19:12:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
 layout: document

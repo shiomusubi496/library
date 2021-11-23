@@ -4,10 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -119,40 +116,27 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define\
-    \ KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline\
-    \ ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n      \
-    \  ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a >> 1 |\
-    \ b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1; i < (1ull\
-    \ << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR int msb(ull\
-    \ x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000) x &=\
-    \ 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
-    \ res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res\
-    \ +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=\
-    \  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n\
-    \        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline\
-    \ CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n \
-    \   }\n}\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
-    \ T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T()>;\n    using H = std::function<T(T)>;\n\
-    \    F op;\n    G e;\n    H inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
-    \ n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T {\
-    \ return 0; }, [](T a) -> T { return -a; }) {}\n    BinaryIndexedTree(int n_,\
-    \ const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }\n  \
-    \  BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op),\
-    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = n_;\n        data.assign(n + 1, e());\n    }\n    void add(int k, T\
-    \ x) {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = e();\n        while (k) {\n\
-    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
-    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
-    \ r);\n        assert(inv_exits);\n        return op(sum(r), inv(sum(l)));\n \
-    \   }\n    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void\
-    \ set(int k, T x) {\n        add(k, op(x, inv(get(k))));\n    }\n};\n\n/**\n *\
-    \ @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 4 \"\
+    data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class T> class BinaryIndexedTree\
+    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T(T,\
+    \ T)>;\n    F op;\n    T e;\n    G inv;\n    bool inv_exits;\n    int n;\n   \
+    \ std::vector<T> data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
+    \ n_)\n        : BinaryIndexedTree(n_  , [](const T& a, const T& b) -> T { return\
+    \ a + b; },\n                            T(0), [](const T& a, const T& b) -> T\
+    \ { return a - b; }) {}\n    BinaryIndexedTree(const F& op, const T& e) : BinaryIndexedTree(0,\
+    \ op, e) {}\n    BinaryIndexedTree(int n_, const F& op, const T& e) : op(op),\
+    \ e(e), inv_exits(false) { init(n_); }\n    BinaryIndexedTree(int n_, const F&\
+    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_);\
+    \ }\n    void init(int n_) {\n        n = n_;\n        data.assign(n + 1, e);\n\
+    \    }\n    void add(int k, T x) {\n        ++k;\n        while (k <= n) {\n \
+    \           data[k] = op(data[k], x);\n            k += k & -k;\n        }\n \
+    \   }\n    T sum(int k) const {\n        assert(0 <= k && k <= n);\n        T\
+    \ res = e;\n        while (k) {\n            res = op(res, data[k]);\n       \
+    \     k -= k & -k;\n        }\n        return res;\n    }\n    T sum(int l, int\
+    \ r) const {\n        assert(l <= r);\n        assert(inv_exits);\n        return\
+    \ inv(sum(r), sum(l));\n    }\n    T get(int k) const {\n        return sum(k,\
+    \ k + 1);\n    }\n    void set(int k, T x) {\n        add(k, inv(x, get(k)));\n\
+    \    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-BIT.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int> BIT(n);\n\
     \    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0)\
@@ -167,11 +151,10 @@ data:
   dependsOn:
   - other/template.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
-  - other/bitop.hpp
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 17:19:12+09:00'
+  timestamp: '2021-11-23 19:12:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-BIT.test.cpp

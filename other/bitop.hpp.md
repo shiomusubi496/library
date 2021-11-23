@@ -1,36 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.test.cpp
-    title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -180,15 +171,12 @@ data:
   - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
   timestamp: '2021-11-20 19:36:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
