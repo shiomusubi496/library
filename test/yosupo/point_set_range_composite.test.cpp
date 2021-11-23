@@ -11,9 +11,7 @@ int main() {
         [](const PLL& a, const PLL& b) -> PLL {
             return {b.first * a.first % mod, (b.first * a.second + b.second) % mod};
         },
-        []() -> PLL {
-            return {1, 0};
-        }
+        PLL{1, 0}
     );
     rep (Q) {
         int t, a, b, c; cin >> t >> a >> b >> c;

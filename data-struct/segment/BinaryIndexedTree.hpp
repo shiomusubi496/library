@@ -1,27 +1,28 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 
 template<class T> class BinaryIndexedTree {
   protected:
     using F = std::function<T(T, T)>;
-    using G = std::function<T()>;
-    using H = std::function<T(T)>;
+    using G = std::function<T(T, T)>;
     F op;
-    G e;
-    H inv;
+    T e;
+    G inv;
     bool inv_exits;
     int n;
     std::vector<T> data;
   public:
     BinaryIndexedTree() = default;
-    BinaryIndexedTree(int n_) : BinaryIndexedTree(n_, [](T a, T b) -> T { return a + b; }, []() -> T { return 0; }, [](T a) -> T { return -a; }) {}
-    BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }
-    BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
+    BinaryIndexedTree(int n_)
+        : BinaryIndexedTree(n_  , [](const T& a, const T& b) -> T { return a + b; },
+                            T(0), [](const T& a, const T& b) -> T { return a - b; }) {}
+    BinaryIndexedTree(const F& op, const T& e) : BinaryIndexedTree(0, op, e) {}
+    BinaryIndexedTree(int n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }
+    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
     void init(int n_) {
         n = n_;
-        data.assign(n + 1, e());
+        data.assign(n + 1, e);
     }
     void add(int k, T x) {
         ++k;
@@ -32,7 +33,7 @@ template<class T> class BinaryIndexedTree {
     }
     T sum(int k) const {
         assert(0 <= k && k <= n);
-        T res = e();
+        T res = e;
         while (k) {
             res = op(res, data[k]);
             k -= k & -k;
@@ -42,13 +43,13 @@ template<class T> class BinaryIndexedTree {
     T sum(int l, int r) const {
         assert(l <= r);
         assert(inv_exits);
-        return op(sum(r), inv(sum(l)));
+        return inv(sum(r), sum(l));
     }
     T get(int k) const {
         return sum(k, k + 1);
     }
     void set(int k, T x) {
-        add(k, op(x, inv(get(k))));
+        add(k, inv(x, get(k)));
     }
 };
 
