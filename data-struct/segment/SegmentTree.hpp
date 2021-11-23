@@ -108,7 +108,7 @@ template<class T> class RMaQ : public SegmentTree<T> {
         : Base(
             std::forward<Arg>(args)...,
             [](T a, T b) -> T { return std::max(a, b); },
-            return std::numeric_limits<T>::min()
+            std::numeric_limits<T>::min()
         ) {}
 };
 
