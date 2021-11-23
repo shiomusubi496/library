@@ -12,7 +12,7 @@ template<class T> class BinaryIndexedTree {
     G e;
     H inv;
     bool inv_exits;
-    int n;
+    int n, origin_size;
     std::vector<T> data;
   public:
     BinaryIndexedTree() = default;
@@ -20,6 +20,7 @@ template<class T> class BinaryIndexedTree {
     BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }
     BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
     void init(int n_) {
+        origin_size = n_;
         n = 1 << bitop::ceil_log2(n_);
         data.assign(n + 1, e());
     }
@@ -31,7 +32,7 @@ template<class T> class BinaryIndexedTree {
         }
     }
     T sum(int k) const {
-        assert(0 <= k && k <= n);
+        assert(0 <= k && k <= origin_size);
         T res = e();
         while (k) {
             res = op(res, data[k]);
@@ -51,7 +52,7 @@ template<class T> class BinaryIndexedTree {
         add(k, op(x, inv(get(k))));
     }
     template<class C> int max_right(int l, const C& cond) {
-        assert(0 <= l && l <= n);
+        assert(0 <= l && l <= origin_size);
         assert(cond(e()));
         if (l == n) return n;
         T sm = e();

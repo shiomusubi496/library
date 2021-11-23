@@ -6,7 +6,7 @@
 template<class T> class DisjointSparseTable {
   protected:
     using F = std::function<T(T, T)>;
-    int h;
+    int h, origin_size;
     F op;
     std::vector<int> logtable;
     std::vector<T> v_;
@@ -16,6 +16,7 @@ template<class T> class DisjointSparseTable {
     DisjointSparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
     void init(const std::vector<T>& v) {
         v_ = v;
+        origin_size = v.size();
         h = bitop::ceil_log2(v.size());
         logtable.assign(1 << h, 0);
         rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;
@@ -34,7 +35,7 @@ template<class T> class DisjointSparseTable {
         }
     }
     T query(int l, int r) {
-        assert(0 <= l && l < r && r <= (1 << h));
+        assert(0 <= l && l < r && r <= origin_size);
         --r;
         if (l == r) return v_[l];
         int d = logtable[l ^ r];

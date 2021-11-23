@@ -9,7 +9,7 @@ template<class T> class SegmentTree {
     using G = std::function<T()>;
     F op;
     G e;
-    int n;
+    int n, origin_size;
     std::vector<T> data;
   public:
     SegmentTree() = default;
@@ -17,13 +17,14 @@ template<class T> class SegmentTree {
     SegmentTree(int n, const F& op, const G& e) : SegmentTree(std::vector<T>(n, e()), op, e) {}
     SegmentTree(const std::vector<T>& v, const F& op, const G& e) : op(op), e(e) { init(v); }
     void init(const std::vector<T>& v) {
+        origin_size = v.size();
         n = 1 << bitop::ceil_log2(v.size());
         data.assign(n << 1, e());
         rep (i, v.size()) data[n + i] = v[i];
         rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);
     }
     template<class U> void update(int k, const U& upd) {
-        assert(0 <= k && k < n);
+        assert(0 <= k && k < origin_size);
         k += n;
         data[k] = upd(data[k]);
         while (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);
@@ -35,7 +36,7 @@ template<class T> class SegmentTree {
         update(k, [&](T a) -> T { return op(a, x); });
     }
     T prod(int l, int r) {
-        assert(0 <= l && l <= r && r <= n);
+        assert(0 <= l && l <= r && r <= origin_size);
         l += n; r += n;
         T lsm = e(), rsm = e();
         while (l < r) {
@@ -48,7 +49,7 @@ template<class T> class SegmentTree {
     T all_prod() { return data[1]; }
     T get(int k) { return data[k + n]; }
     template<class C> int max_right(int l, const C& cond) {
-        assert(0 <= l && l <= n);
+        assert(0 <= l && l <= origin_size);
         assert(cond(e()));
         if (l == n) return n;
         l += n;
@@ -67,7 +68,7 @@ template<class T> class SegmentTree {
         return n;
     }
     template<class C> int min_left(int r, const C& cond) {
-        assert(0 <= r && r <= n);
+        assert(0 <= r && r <= origin_size);
         assert(cond(e()));
         if (r == 0) return 0;
         r += n;

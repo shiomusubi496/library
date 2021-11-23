@@ -6,14 +6,15 @@
 template<class T> class SparseTable {
   protected:
     using F = std::function<T(T, T)>;
-    int h;
     F op;
+    int h, origin_size;
     std::vector<int> logtable;
     std::vector<std::vector<T>> data;
   public:
     SparseTable() = default;
     SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
     void init(const std::vector<T>& v) {
+        origin_size = v.size();
         h = bitop::ceil_log2(v.size());
         logtable.assign((1 << h) + 1, 0);
         reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;
@@ -26,7 +27,7 @@ template<class T> class SparseTable {
         }
     }
     T query(int l, int r) {
-        assert(0 <= l && l < r && r <= (1 << h));
+        assert(0 <= l && l < r && r <= origin_size);
         int d = logtable[r - l];
         return op(data[d][l], data[d][r - (1 << d)]);
     }
