@@ -132,39 +132,40 @@ data:
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
     \ 0;\n    }\n}\n#line 5 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class\
     \ T> class SparseTable {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \    F op;\n    int h, origin_size;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
     \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        h = bitop::ceil_log2(v.size());\n        logtable.assign((1 << h)\
-    \ + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
-    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
-    \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
-    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
-    \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
+    \ {\n        origin_size = v.size();\n        h = bitop::ceil_log2(v.size());\n\
+    \        logtable.assign((1 << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i]\
+    \ = logtable[i >> 1] + 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n\
+    \        rep (i, v.size()) data[0][i] = v[i];\n        rep (i, h) {\n        \
+    \    rep (j, (1 << h) - (1 << i)) {\n                data[i + 1][j] = op(data[i][j],\
+    \ data[i][j + (1 << i)]);\n            }\n        }\n    }\n    T query(int l,\
+    \ int r) {\n        assert(0 <= l && l < r && r <= origin_size);\n        int\
+    \ d = logtable[r - l];\n        return op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n\ntemplate<class T> class SparseTable {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    int h;\n    F op;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        h = bitop::ceil_log2(v.size());\n        logtable.assign((1 << h)\
-    \ + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size())\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
-    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
-    \  assert(0 <= l && l < r && r <= (1 << h));\n        int d = logtable[r - l];\n\
-    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
-    \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
+    \ T)>;\n    F op;\n    int h, origin_size;\n    std::vector<int> logtable;\n \
+    \   std::vector<std::vector<T>> data;\n  public:\n    SparseTable() = default;\n\
+    \    SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }\n\
+    \    void init(const std::vector<T>& v) {\n        origin_size = v.size();\n \
+    \       h = bitop::ceil_log2(v.size());\n        logtable.assign((1 << h) + 1,\
+    \ 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n     \
+    \   data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, v.size()) data[0][i]\
+    \ = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n\
+    \                data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n   \
+    \         }\n        }\n    }\n    T query(int l, int r) {\n        assert(0 <=\
+    \ l && l < r && r <= origin_size);\n        int d = logtable[r - l];\n       \
+    \ return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n\
+    \ * @docs docs/SparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-23 16:31:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp
