@@ -6,13 +6,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -85,10 +85,10 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -149,13 +149,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
       title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
       title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
       title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - name: test/aoj/GRL
@@ -209,13 +209,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_add_range_sum.test.cpp
       title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/shortest_path.test.cpp
       title: test/yosupo/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     - icon: ':heavy_check_mark:'

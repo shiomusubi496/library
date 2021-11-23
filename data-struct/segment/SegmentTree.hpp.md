@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -180,7 +180,7 @@ data:
     };\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n \
     \   using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
     \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
-    \  [](T a, T b) -> T { return std::max(a, b); },\n            return std::numeric_limits<T>::min()\n\
+    \  [](T a, T b) -> T { return std::max(a, b); },\n            std::numeric_limits<T>::min()\n\
     \        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
     \ T> class RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
     \  public:\n    template<class... Arg> RSQ(Arg&&... args)\n        : Base(\n \
@@ -231,7 +231,7 @@ data:
     };\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n \
     \   using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
     \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
-    \  [](T a, T b) -> T { return std::max(a, b); },\n            return std::numeric_limits<T>::min()\n\
+    \  [](T a, T b) -> T { return std::max(a, b); },\n            std::numeric_limits<T>::min()\n\
     \        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
     \ T> class RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
     \  public:\n    template<class... Arg> RSQ(Arg&&... args)\n        : Base(\n \
@@ -244,8 +244,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-11-23 19:12:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-23 19:27:04+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp

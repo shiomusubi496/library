@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
@@ -176,7 +176,7 @@ data:
     };\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n \
     \   using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
     \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
-    \  [](T a, T b) -> T { return std::max(a, b); },\n            return std::numeric_limits<T>::min()\n\
+    \  [](T a, T b) -> T { return std::max(a, b); },\n            std::numeric_limits<T>::min()\n\
     \        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
     \ T> class RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
     \  public:\n    template<class... Arg> RSQ(Arg&&... args)\n        : Base(\n \
@@ -200,8 +200,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 19:12:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-23 19:27:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
 layout: document

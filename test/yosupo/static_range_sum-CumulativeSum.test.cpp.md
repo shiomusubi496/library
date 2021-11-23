@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -120,15 +120,15 @@ data:
     \n\ntemplate<class T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n\
     \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n\
-    \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v   , [](T\
-    \ a, T b) -> T { return a + b; },\n                        T(0), [](T a) -> T\
-    \ { return -a; }) {}\n    CumulativeSum(const std::vector<T>& v, const F& op,\
-    \ const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        data.assign(n + 1, e);\n\
-    \        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l,\
-    \ int r) {\n        assert(0 <= l && l <= r && r <= n);\n        return inv(data[r],\
-    \ data[l]);\n    }\n    std::vector<T> get_data() { return data; }\n};\n\n/**\n\
-    \ * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
+    \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
+    \ T { return a - b; }) {}\n    CumulativeSum(const std::vector<T>& v, const F&\
+    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        n = v.size();\n        data.assign(n\
+    \ + 1, e);\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T\
+    \ query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n       \
+    \ return inv(data[r], data[l]);\n    }\n    std::vector<T> get_data() { return\
+    \ data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
     \ */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> A(N); cin >>\
     \ A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l, r; cin >> l\
@@ -144,8 +144,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 19:12:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-23 19:27:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
 layout: document
