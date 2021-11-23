@@ -20,7 +20,7 @@ template<class T> class DisjointSparseTable {
         h = bitop::ceil_log2(v.size());
         logtable.assign(1 << h, 0);
         rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;
-        data.assign(h, std::vector<T>(1 << h));
+        data.assign(h, std::vector<T>(v.size()));
         rep (i, 0, h) {
             int len = 1 << i;
             rep (j, len, v.size(), len << 1) {

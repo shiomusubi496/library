@@ -12,7 +12,7 @@ template<class T> class BinaryIndexedTree {
     G e;
     H inv;
     bool inv_exits;
-    int n, origin_size;
+    int n;
     std::vector<T> data;
   public:
     BinaryIndexedTree() = default;
@@ -20,8 +20,7 @@ template<class T> class BinaryIndexedTree {
     BinaryIndexedTree(int n_, const F& op, const G& e) : op(op), e(e), inv_exits(false) { init(n_); }
     BinaryIndexedTree(int n_, const F& op, const G& e, const H& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
     void init(int n_) {
-        origin_size = n_;
-        n = 1 << bitop::ceil_log2(n_);
+        n = n_;
         data.assign(n + 1, e());
     }
     void add(int k, T x) {
@@ -32,7 +31,7 @@ template<class T> class BinaryIndexedTree {
         }
     }
     T sum(int k) const {
-        assert(0 <= k && k <= origin_size);
+        assert(0 <= k && k <= n);
         T res = e();
         while (k) {
             res = op(res, data[k]);
@@ -50,26 +49,6 @@ template<class T> class BinaryIndexedTree {
     }
     void set(int k, T x) {
         add(k, op(x, inv(get(k))));
-    }
-    template<class C> int max_right(int l, const C& cond) {
-        assert(0 <= l && l <= origin_size);
-        assert(cond(e()));
-        if (l == n) return n;
-        T sm = e();
-        ++l;
-        while (l <= n) {
-            if (!cond(op(sm, data[l]))) {
-                int ln = l & -l;
-                while (ln >>= 1) {
-                    if (cond(op(sm, data[l - ln]))) sm = op(sm, data[l - ln]);
-                    else l -= ln;
-                }
-                return l;
-            }
-            sm = op(sm, data[l]);
-            l += l & -l;
-        }
-        return n;
     }
 };
 
