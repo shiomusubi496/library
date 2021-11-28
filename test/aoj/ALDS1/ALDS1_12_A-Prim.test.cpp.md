@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -170,7 +170,7 @@ data:
     \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
     \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
     \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
     \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
@@ -210,7 +210,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-28 13:51:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

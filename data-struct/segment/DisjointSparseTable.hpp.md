@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -135,51 +135,49 @@ data:
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
     \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
     \ T> class DisjointSparseTable {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    int h, origin_size;\n    F op;\n    std::vector<int> logtable;\n \
-    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n   \
-    \ DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        v_ = v;\n        origin_size = v.size();\n        h = bitop::ceil_log2(v.size());\n\
-    \        logtable.assign(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i] =\
-    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(v.size()));\n \
-    \       rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len,\
-    \ v.size(), len << 1) {\n                data[i][j - 1] = v[j - 1];\n        \
-    \        rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);\n\
-    \                data[i][j] = v[j];\n                rep (k, 1, len) {\n     \
-    \               if (j + k >= (int)v.size()) break;\n                    data[i][j\
-    \ + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n\
-    \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= origin_size);\n        --r;\n        if (l == r) return v_[l];\n   \
-    \     int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n \
-    \   }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
+    \ T)>;\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
+    \ v_;\n    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable()\
+    \ = default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) :\
+    \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
+    \ v;\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign(1\
+    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
+    \        data.assign(h, std::vector<T>(ori));\n        rep (i, 0, h) {\n     \
+    \       int len = 1 << i;\n            rep (j, len, ori, len << 1) {\n       \
+    \         data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
+    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
+    \                rep (k, 1, len) {\n                    if (j + k >= ori) break;\n\
+    \                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n    \
+    \            }\n            }\n        }\n    }\n    T query(int l, int r) {\n\
+    \        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l ==\
+    \ r) return v_[l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
+    \ data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n\ntemplate<class T> class DisjointSparseTable {\n  protected:\n    using F =\
-    \ std::function<T(T, T)>;\n    int h, origin_size;\n    F op;\n    std::vector<int>\
-    \ logtable;\n    std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n \
-    \ public:\n    DisjointSparseTable() = default;\n    DisjointSparseTable(const\
-    \ std::vector<T>& v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        v_ = v;\n        origin_size = v.size();\n        h = bitop::ceil_log2(v.size());\n\
+    \ std::function<T(T, T)>;\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n\
+    \    std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n  \
+    \  DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
+    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
+    \ {\n        v_ = v;\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
     \        logtable.assign(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i] =\
-    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(v.size()));\n \
-    \       rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len,\
-    \ v.size(), len << 1) {\n                data[i][j - 1] = v[j - 1];\n        \
-    \        rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);\n\
-    \                data[i][j] = v[j];\n                rep (k, 1, len) {\n     \
-    \               if (j + k >= (int)v.size()) break;\n                    data[i][j\
-    \ + k] = op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n\
-    \        }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= origin_size);\n        --r;\n        if (l == r) return v_[l];\n   \
-    \     int d = logtable[l ^ r];\n        return op(data[d][l], data[d][r]);\n \
-    \   }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n"
+    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(ori));\n      \
+    \  rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len, ori,\
+    \ len << 1) {\n                data[i][j - 1] = v[j - 1];\n                rep\
+    \ (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);\n       \
+    \         data[i][j] = v[j];\n                rep (k, 1, len) {\n            \
+    \        if (j + k >= ori) break;\n                    data[i][j + k] = op(data[i][j\
+    \ + k - 1], v[j + k]);\n                }\n            }\n        }\n    }\n \
+    \   T query(int l, int r) {\n        assert(0 <= l && l < r && r <= ori);\n  \
+    \      --r;\n        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n\
+    \        return op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-23 17:19:12+09:00'
+  timestamp: '2021-11-28 13:51:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp

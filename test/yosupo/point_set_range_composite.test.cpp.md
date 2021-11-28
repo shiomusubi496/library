@@ -4,10 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -119,97 +122,190 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
-    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
-    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    F op;\n    T e;\n    int n, origin_size;\n    std::vector<T> data;\n\
-    \  public:\n    SegmentTree() = default;\n    SegmentTree(const F& op, const T&\
-    \ e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const F& op, const T&\
-    \ e) : SegmentTree(std::vector<T>(n, e), op, e) {}\n    SegmentTree(const std::vector<T>&\
-    \ v, const F& op, const T& e) : op(op), e(e) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        origin_size = v.size();\n        n = 1 << bitop::ceil_log2(v.size());\n\
-    \        data.assign(n << 1, e);\n        rep (i, v.size()) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
-    \    template<class U> void update(int k, const U& upd) {\n        assert(0 <=\
-    \ k && k < origin_size);\n        k += n;\n        data[k] = upd(data[k]);\n \
-    \       while (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n\
-    \    void set(int k, T x) {\n        update(k, [&](T a) -> T { return x; });\n\
-    \    }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return\
-    \ op(a, x); });\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l\
-    \ <= r && r <= origin_size);\n        l += n; r += n;\n        T lsm = e, rsm\
-    \ = e;\n        while (l < r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return op(lsm, rsm);\n    }\n    T all_prod() { return\
-    \ data[1]; }\n    T get(int k) { return data[k + n]; }\n    template<class C>\
-    \ int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= origin_size);\n\
-    \        assert(cond(e));\n        if (l == n) return n;\n        l += n;\n  \
-    \      T sm = e;\n        do {\n            while ((l & 1) != 0) l >>= 1;\n  \
-    \          if (!cond(op(sm, data[l]))) {\n                while (l < n) {\n  \
-    \                  l <<= 1;\n                    if (cond(op(sm, data[l]))) sm\
-    \ = op(sm, data[l++]);\n                }\n                return l - n;\n   \
-    \         }\n            sm = op(sm, data[l++]);\n        } while ((l & -l) !=\
-    \ l);\n        return n;\n    }\n    template<class C> int min_left(int r, const\
-    \ C& cond) {\n        assert(0 <= r && r <= origin_size);\n        assert(cond(e));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = e;\n        do\
-    \ {\n            while ((r & 1) != 0 && r > 1) r >>= 1;\n            if (!cond(op(data[r\
-    \ - 1], sm))) {\n                while (r < n) {\n                    r <<= 1;\n\
-    \                    if (cond(op(data[r - 1], sm))) sm = op(data[--r], sm);\n\
-    \                }\n                return r - n;\n            }\n           \
-    \ sm = op(data[--r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class\
-    \ T> class RMiQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
-    \  public:\n    template<class... Arg> RMiQ(Arg&&... args)\n        : Base(\n\
+    \    }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n#if __cplusplus\
+    \ >= 201703L\n        if constexpr (mod == 1000000007) {\n            if (val\
+    \ <= 10) return inv1000000007[val];\n        }\n        else if constexpr (mod\
+    \ == 998244353) {\n            if (val <= 10) return inv998244353[val];\n    \
+    \    }\n#else\n        if (mod == 1000000007) {\n            if (val <= 10) return\
+    \ inv1000000007[val];\n        }\n        else if (mod == 998244353) {\n     \
+    \       if (val <= 10) return inv998244353[val];\n        }\n#endif\n        return\
+    \ mod_inv(val, mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n\
+    \        if (val == mod) val = 0;\n        return *this;\n    }\n    StaticModInt\
+    \ operator++(int) {\n        StaticModInt res = *this;\n        ++ *this;\n  \
+    \      return res;\n    }\n    StaticModInt& operator--() {\n        if (val ==\
+    \ 0) val = mod;\n        --val;\n        return *this;\n    }\n    StaticModInt\
+    \ operator--(int) {\n        StaticModInt res = *this;\n        -- *this;\n  \
+    \      return res;\n    }\n    StaticModInt& operator+=(const StaticModInt& other)\
+    \ {\n        val += other.val;\n        if (val >= mod) val -= mod;\n        return\
+    \ *this;\n    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n \
+    \       val -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
+    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
+    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
+    \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
+    \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
+    \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
+    \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
+    \   DynamicModInt& operator++() {\n        ++val;\n        if (val == mod) val\
+    \ = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int) {\n  \
+    \      DynamicModInt res = *this;\n        ++ *this;\n        return res;\n  \
+    \  }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n  \
+    \      --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
+    \ - *this;\n    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt\
+    \ v = *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n\
+    \            a >>= 1;\n            v *= v;\n        }\n        return res;\n \
+    \   }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
+    \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
+    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
+    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
+    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
+    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
+    \ T> class SegmentTree {\n  protected:\n    using F = std::function<T(T, T)>;\n\
+    \    F op;\n    T e;\n    int n, ori;\n    std::vector<T> data;\n  public:\n \
+    \   SegmentTree() = default;\n    SegmentTree(const F& op, const T& e) : SegmentTree(0,\
+    \ op, e) {}\n    SegmentTree(int n, const F& op, const T& e) : SegmentTree(std::vector<T>(n,\
+    \ e), op, e) {}\n    SegmentTree(const std::vector<T>& v, const F& op, const T&\
+    \ e) : op(op), e(e) { init(v); }\n    void init(const std::vector<T>& v) {\n \
+    \       ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
+    \ << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1)\
+    \ data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd>\
+    \ void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n \
+    \       k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
+    \ = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n \
+    \       update(k, [&](T a) -> T { return x; });\n    }\n    void apply(int k,\
+    \ T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n    }\n    T\
+    \ prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n      \
+    \  l += n; r += n;\n        T lsm = e, rsm = e;\n        while (l < r) {\n   \
+    \         if (l & 1) lsm = op(lsm, data[l++]);\n            if (r & 1) rsm = op(data[--r],\
+    \ rsm);\n            l >>= 1; r >>= 1;\n        }\n        return op(lsm, rsm);\n\
+    \    }\n    T all_prod() { return data[1]; }\n    T get(int k) { return data[k\
+    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) {\n\
+    \        assert(0 <= l && l <= ori);\n        assert(cond(e));\n        if (l\
+    \ == ori) return ori;\n        l += n;\n        T sm = e;\n        do {\n    \
+    \        while ((l & 1) == 0) l >>= 1;\n            if (!cond(op(sm, data[l])))\
+    \ {\n                while (l < n) {\n                    l <<= 1;\n         \
+    \           if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n             \
+    \   }\n                return l - n;\n            }\n            sm = op(sm, data[l++]);\n\
+    \        } while ((l & -l) != l);\n        return ori;\n    }\n    template<class\
+    \ Cond> int min_left(int r, const Cond& cond) {\n        assert(0 <= r && r <=\
+    \ ori);\n        assert(cond(e));\n        if (r == 0) return 0;\n        r +=\
+    \ n;\n        T sm = e;\n        do {\n            --r;\n            while ((r\
+    \ & 1) && r > 1) r >>= 1;\n            if (!cond(op(data[r], sm))) {\n       \
+    \         while (r < n) {\n                    r = r << 1 ^ 1;\n             \
+    \       if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n                }\n\
+    \                return r + 1 - n;\n            }\n            sm = op(data[r],\
+    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified\
+    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T> class RMiQ : public\
+    \ SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n  public:\n\
+    \    template<class... Arg> RMiQ(Arg&&... args)\n        : Base(\n           \
+    \ std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return std::min(a,\
+    \ b); },\n            std::numeric_limits<T>::max()\n        ) {}\n};\n\ntemplate<class\
+    \ T> class RMaQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
+    \  public:\n    template<class... Arg> RMaQ(Arg&&... args)\n        : Base(\n\
     \            std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return\
-    \ std::min(a, b); },\n            std::numeric_limits<T>::max()\n        ) {}\n\
-    };\n\ntemplate<class T> class RMaQ : public SegmentTree<T> {\n  protected:\n \
-    \   using Base = SegmentTree<T>;\n  public:\n    template<class... Arg> RMaQ(Arg&&...\
-    \ args)\n        : Base(\n            std::forward<Arg>(args)...,\n          \
-    \  [](T a, T b) -> T { return std::max(a, b); },\n            std::numeric_limits<T>::min()\n\
-    \        ) {}\n};\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
-    \ T> class RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
+    \ std::max(a, b); },\n            std::numeric_limits<T>::min()\n        ) {}\n\
+    };\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class T> class\
+    \ RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
     \  public:\n    template<class... Arg> RSQ(Arg&&... args)\n        : Base(\n \
     \           std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return\
     \ a + b; },\n            T(0)\n        ) {}\n};\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n */\n#line 4 \"\
-    test/yosupo/point_set_range_composite.test.cpp\"\nusing namespace std;\nconstexpr\
-    \ int mod = 998244353;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PLL>\
-    \ A(N); cin >> A;\n    SegmentTree<PLL> seg(\n        A,\n        [](const PLL&\
-    \ a, const PLL& b) -> PLL {\n            return {b.first * a.first % mod, (b.first\
-    \ * a.second + b.second) % mod};\n        },\n        PLL{1, 0}\n    );\n    rep\
-    \ (Q) {\n        int t, a, b, c; cin >> t >> a >> b >> c;\n        if (t == 0)\
-    \ seg.set(a, PLL{b, c});\n        else {\n            PLL p = seg.prod(a, b);\n\
-    \            cout << (p.first * c + p.second) % mod << endl;\n        }\n    }\n\
-    }\n"
+    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n */\n#line 5 \"\
+    test/yosupo/point_set_range_composite.test.cpp\"\nusing namespace std;\nusing\
+    \ mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main() {\n    int\
+    \ N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    SegmentTree<PMM>\
+    \ seg(\n        A,\n        [](const PMM& a, const PMM& b) -> PMM {\n        \
+    \    return {b.first * a.first, b.first * a.second + b.second};\n        },\n\
+    \        PMM{1, 0}\n    );\n    rep (Q) {\n        int t, a, b, c; cin >> t >>\
+    \ a >> b >> c;\n        if (t == 0) seg.set(a, PMM{b, c});\n        else {\n \
+    \           PMM p = seg.prod(a, b);\n            cout << p.first * c + p.second\
+    \ << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SegmentTree.hpp\"\
-    \nusing namespace std;\nconstexpr int mod = 998244353;\nint main() {\n    int\
-    \ N, Q; cin >> N >> Q;\n    vector<PLL> A(N); cin >> A;\n    SegmentTree<PLL>\
-    \ seg(\n        A,\n        [](const PLL& a, const PLL& b) -> PLL {\n        \
-    \    return {b.first * a.first % mod, (b.first * a.second + b.second) % mod};\n\
-    \        },\n        PLL{1, 0}\n    );\n    rep (Q) {\n        int t, a, b, c;\
-    \ cin >> t >> a >> b >> c;\n        if (t == 0) seg.set(a, PLL{b, c});\n     \
-    \   else {\n            PLL p = seg.prod(a, b);\n            cout << (p.first\
-    \ * c + p.second) % mod << endl;\n        }\n    }\n}\n"
+    \n#include \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n\
+    #include \"../../data-struct/segment/SegmentTree.hpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main() {\n \
+    \   int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    SegmentTree<PMM>\
+    \ seg(\n        A,\n        [](const PMM& a, const PMM& b) -> PMM {\n        \
+    \    return {b.first * a.first, b.first * a.second + b.second};\n        },\n\
+    \        PMM{1, 0}\n    );\n    rep (Q) {\n        int t, a, b, c; cin >> t >>\
+    \ a >> b >> c;\n        if (t == 0) seg.set(a, PMM{b, c});\n        else {\n \
+    \           PMM p = seg.prod(a, b);\n            cout << p.first * c + p.second\
+    \ << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - math/ModInt.hpp
   - data-struct/segment/SegmentTree.hpp
   - other/bitop.hpp
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-11-23 19:27:04+09:00'
+  timestamp: '2021-11-28 13:51:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp

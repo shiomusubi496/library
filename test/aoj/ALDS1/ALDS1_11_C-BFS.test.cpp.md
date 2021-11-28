@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -167,15 +167,15 @@ data:
     \    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n *\
     \ @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep(j,\
-    \ k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n\
-    \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
-    \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep\
+    \ (j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1\
+    \ , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n\
+    \        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N)\
-    \ {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep(j, k) {\n\
+    \ {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep (j, k) {\n\
     \            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n\
     \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
     \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
@@ -186,7 +186,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-28 13:51:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

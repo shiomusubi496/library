@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -125,7 +125,7 @@ data:
     \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
     \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
     \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep(i, n)\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
     \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
@@ -147,7 +147,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
+  timestamp: '2021-11-28 13:51:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/unionfind.test.cpp

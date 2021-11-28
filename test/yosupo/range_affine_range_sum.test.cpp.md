@@ -1,35 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
+  - icon: ':x:'
+    path: data-struct/segment/LazySegmentTree.hpp
+    title: data-struct/segment/LazySegmentTree.hpp
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
+  - icon: ':question:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F
-  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_F.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/range_affine_range_sum
+  bundledCode: "#line 1 \"test/yosupo/range_affine_range_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -208,56 +212,157 @@ data:
     \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
-    \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
-    \ void init(ll n) {\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
-    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n    }\n   \
-    \ static T fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n\
-    \    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n \
-    \       init(n);\n        return factorial[n] / factorial[n - r];\n    }\n   \
-    \ static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n    \
-    \    init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
-    \    }\n    static T homo(ll n, ll r) {\n        return comb(n + r - 1, r);\n\
-    \    }\n};\n\ntemplate<class T> std::vector<T> IntCombinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\n  protected:\n\
-    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n  public:\n\
-    \    static void init(ll n) {\n        int b = factorial.size();\n        if (n\
-    \ < b) return;\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
-    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n        factinv.resize(n\
-    \ + 1);\n        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
-    \ + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T> std::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
-    \ */\n#line 5 \"test/aoj/DPL/DPL_5_F.test.cpp\"\nusing namespace std;\nusing mint\
-    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
-    \ n, k; cin >> n >> k;\n    cout << comb::comb(n - 1, k - 1) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
-    \    cout << comb::comb(n - 1, k - 1) << endl;\n}\n"
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 4 \"test/yosupo/range_affine_range_sum.test.cpp\"\
+    \n#define protected public\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
+    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
+    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
+    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
+    \ T, class U> class LazySegmentTree {\n  protected:\n    using F = std::function<T(T,\
+    \ T)>;\n    using G = std::function<T(U, T)>;\n    using H = std::function<U(U,\
+    \ U)>;\n    F op;\n    T e;\n    G mapping;\n    H composition;\n    U id;\n \
+    \   int h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    void\
+    \ all_apply(int k, const U& x) {\n        data[k] = mapping(x, data[k]);\n   \
+    \     if (k < n) lazy[k] = composition(x, lazy[k]);\n    }\n    void eval(int\
+    \ k) {\n        all_apply(k << 1, lazy[k]);\n        all_apply(k << 1 ^ 1, lazy[k]);\n\
+    \        lazy[k] = id;\n    }\n    void dataup(int k) {\n        data[k] = op(data[k\
+    \ << 1], data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() = default;\n\
+    \    LazySegmentTree(const F& op, const T& e, const G& mapping, const H& composition,\
+    \ const U& id)\n        : LazySegmentTree(0, op, e, mapping, composition, id)\
+    \ {}\n    LazySegmentTree(int n_, const F& op, const T& e, const G& mapping, const\
+    \ H& composition, const U& id)\n        : LazySegmentTree(std::vector<T>(n_, e),\
+    \ op, e, mapping, composition, id) {}\n    LazySegmentTree(const std::vector<T>&\
+    \ v, const F& op, const T& e, const G& mapping, const H& composition, const U&\
+    \ id)\n        : op(op), e(e), mapping(mapping), composition(composition), id(id)\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data.assign(n\
+    \ << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1)\
+    \ dataup(i);\n        lazy.assign(n << 1, id);\n    }\n    T prod(int l, int r)\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return\
+    \ e;\n\n        l += n; r += n;\n        rreps (i, h) {\n            bool seen\
+    \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
+    \            if (((r >> i) << i) != r) eval(r - 1 >> i), seen = true;\n      \
+    \      if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n        while\
+    \ (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if\
+    \ (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n\
+    \        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0 <=\
+    \ k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >> i);\n\
+    \        return data[k];\n    }\n    T all_prod() { return data[1]; }\n    template<class\
+    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
+    \n        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k] = upd(data[k]);\n\
+    \        reps (i, h) dataup(k >> i);\n    }\n    void set(int k, T x) {\n    \
+    \    update(k, [&](T a) -> T { return x; });\n    }\n    void apply(int k, U x)\
+    \ {\n        update(k, [&](T a) -> T { return mapping(x, a); });\n    }\n    void\
+    \ apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        if (l == r) return;\n\n        l += n; r += n;\n        int lst = h +\
+    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
+    \ i), lst = i;\n            if (((r >> i) << i) != r) eval(r - 1 >> i), lst =\
+    \ i;\n            if (lst != i) break;\n        }\n\n        for (int l2 = l,\
+    \ r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n            if (l2 & 1) all_apply(l2++,\
+    \ x);\n            if (r2 & 1) all_apply(--r2, x);\n        }\n        \n    \
+    \    rep (i, lst, h + 1) {\n            dataup(l >> i);\n            dataup(r\
+    \ - 1 >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
+    \ C& cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(e));\n\
+    \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
+    \            if (((l >> i) << i) != l) eval(l >> i);\n            else break;\n\
+    \        }\n\n        T sm = e;\n        do {\n            while ((l & 1) == 0)\
+    \ l >>= 1;\n            if (!cond(op(sm, data[l]))) {\n                while (l\
+    \ < n) {\n                    eval(l);\n                    l <<= 1;\n       \
+    \             if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n           \
+    \     }\n                return l - n;\n            }\n            sm = op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= ori);\n        assert(cond(e));\n        if (r == 0) return 0;\n\
+    \n        r += n;\n        rreps (i, n) {\n            if (((r >> i) << i) !=\
+    \ r) eval(r - 1 >> i);\n            else break;\n        }\n\n        T sm = e;\n\
+    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(op(data[r], sm))) {\n                while (r < n) {\n\
+    \                    eval(r);\n                    r = r << 1 ^ 1;\n         \
+    \           if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n             \
+    \   }\n                return r + 1 - n;\n            }\n            sm = op(data[r],\
+    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class\
+    \ T, class U> class MultiLazySegmentTree {\n  protected:\n    struct E {\n   \
+    \     T val;\n        int len;\n        E() = default;\n        E(T v, int l)\
+    \ : val(v), len(l) {}\n        friend std::ostream& operator<<(std::ostream& ost,\
+    \ const E& e) { return ost << e.val << '*' << e.len; }\n    };\n    using F =\
+    \ std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using H\
+    \ = std::function<U(U, U)>;\n    using I = std::function<U(U, int)>;\n    LazySegmentTree<E,\
+    \ U> seg;\n    std::vector<E> Tvec_to_Evec(const std::vector<T>& v) {\n      \
+    \  std::vector<E> res(v.size());\n        rep (i, v.size()) res[i] = E{v[i], 1};\n\
+    \        return res;\n    }\n  public:\n    MultiLazySegmentTree() = default;\n\
+    \    MultiLazySegmentTree(const F& op, const T& e, const G& mapping, const H&\
+    \ composition, const U& id, const I& mul)\n        : seg(\n            [&](E a,\
+    \ E b) -> E { return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n       \
+    \     [&](U a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; },\
+    \ composition, id\n        ) {}\n    MultiLazySegmentTree(int n_, const F& op,\
+    \ const T& e, const G& mapping, const H& composition, const U& id, const I& mul)\n\
+    \        : seg(\n            std::vector<E>(n_, E{e, 1}), [&](E a, E b) -> E {\
+    \ return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n            [&](U a,\
+    \ E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition,\
+    \ id\n        ) {}\n    MultiLazySegmentTree(const std::vector<T>& v, const F&\
+    \ op, const T& e, const G& mapping, const H& composition, const U& id, const I&\
+    \ mul)\n        : seg(\n            Tvec_to_Evec(v), [&](E a, E b) -> E { return\
+    \ E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n            [&](U a, E b) ->\
+    \ E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition, id\n   \
+    \     ) {}\n    void init(const std::vector<T>& v) { seg.init(v); }\n    T prod(int\
+    \ l, int r) { return seg.prod(l, r).val; }\n    T get(int k) { return seg.get(k).val;\
+    \ }\n    T all_prod() { return seg.all_prod().val; }\n    template<class Upd>\
+    \ void update(int k, const Upd& upd) { seg.update(k, [&](E a) -> E { return E{upd(a.val),\
+    \ a.len}; }); }\n    void set(int k, T x) { seg.set(k, E{x, 1}); }\n    void apply(int\
+    \ k, U x) { seg.apply(k, x); }\n    void apply(int l, int r, U x) { seg.apply(l,\
+    \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
+    \ seg.max_right(l, cond); }\n    template<class C> int min_left(int r, const C&\
+    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * \n */\n#line 6 \"test/yosupo/range_affine_range_sum.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
+    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
+    \ >> A;\n    MultiLazySegmentTree<mint, PMM> seg(\n        A,\n        [](mint\
+    \ a, mint b) -> mint { return a + b; },\n        mint{0},\n        [](PMM a, mint\
+    \ b) -> mint { return a.first * b + a.second; },\n        [](PMM a, PMM b) ->\
+    \ PMM { return PMM{a.first * b.first, a.first * b.second + a.second}; },\n   \
+    \     PMM{1, 0},\n        [](PMM a, int b) -> PMM { return PMM{a.first, a.second\
+    \ * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0)\
+    \ {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n            seg.apply(l,\
+    \ r, PMM{b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
+    \ r;\n            cout << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n\
+    #define protected public\n#include \"../../data-struct/segment/LazySegmentTree.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
+    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
+    \ >> A;\n    MultiLazySegmentTree<mint, PMM> seg(\n        A,\n        [](mint\
+    \ a, mint b) -> mint { return a + b; },\n        mint{0},\n        [](PMM a, mint\
+    \ b) -> mint { return a.first * b + a.second; },\n        [](PMM a, PMM b) ->\
+    \ PMM { return PMM{a.first * b.first, a.first * b.second + a.second}; },\n   \
+    \     PMM{1, 0},\n        [](PMM a, int b) -> PMM { return PMM{a.first, a.second\
+    \ * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0)\
+    \ {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n            seg.apply(l,\
+    \ r, PMM{b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
+    \ r;\n            cout << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - math/ModInt.hpp
-  - math/Combinatorics.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/aoj/DPL/DPL_5_F.test.cpp
+  path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-20 19:36:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-11-28 13:51:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DPL/DPL_5_F.test.cpp
+documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL/DPL_5_F.test.cpp
-- /verify/test/aoj/DPL/DPL_5_F.test.cpp.html
-title: test/aoj/DPL/DPL_5_F.test.cpp
+- /verify/test/yosupo/range_affine_range_sum.test.cpp
+- /verify/test/yosupo/range_affine_range_sum.test.cpp.html
+title: test/yosupo/range_affine_range_sum.test.cpp
 ---
