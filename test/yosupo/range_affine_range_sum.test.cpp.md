@@ -212,8 +212,7 @@ data:
     \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 4 \"test/yosupo/range_affine_range_sum.test.cpp\"\
-    \n#define protected public\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
     \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
@@ -324,32 +323,33 @@ data:
     \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
     \ seg.max_right(l, cond); }\n    template<class C> int min_left(int r, const C&\
     \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n */\n#line 6 \"test/yosupo/range_affine_range_sum.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
-    \ >> A;\n    MultiLazySegmentTree<mint, PMM> seg(\n        A,\n        [](mint\
-    \ a, mint b) -> mint { return a + b; },\n        mint{0},\n        [](PMM a, mint\
-    \ b) -> mint { return a.first * b + a.second; },\n        [](PMM a, PMM b) ->\
-    \ PMM { return PMM{a.first * b.first, a.first * b.second + a.second}; },\n   \
-    \     PMM{1, 0},\n        [](PMM a, int b) -> PMM { return PMM{a.first, a.second\
-    \ * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0)\
-    \ {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n            seg.apply(l,\
-    \ r, PMM{b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
-    \ r;\n            cout << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \ */\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    MultiLazySegmentTree<mint,\
+    \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
+    \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
+    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
+    \ * b.second + a.second}; },\n        PMM{1, 0},\n        [](PMM a, int b) ->\
+    \ PMM { return PMM{a.first, a.second * b}; }\n    );\n    rep (Q) {\n        int\
+    \ t; cin >> t;\n        if (t == 0) {\n            int l, r, b, c; cin >> l >>\
+    \ r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n        }\n        else\
+    \ {\n            int l, r; cin >> l >> r;\n            cout << seg.prod(l, r)\
+    \ << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n\
-    #define protected public\n#include \"../../data-struct/segment/LazySegmentTree.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
-    \ >> A;\n    MultiLazySegmentTree<mint, PMM> seg(\n        A,\n        [](mint\
-    \ a, mint b) -> mint { return a + b; },\n        mint{0},\n        [](PMM a, mint\
-    \ b) -> mint { return a.first * b + a.second; },\n        [](PMM a, PMM b) ->\
-    \ PMM { return PMM{a.first * b.first, a.first * b.second + a.second}; },\n   \
-    \     PMM{1, 0},\n        [](PMM a, int b) -> PMM { return PMM{a.first, a.second\
-    \ * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0)\
-    \ {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n            seg.apply(l,\
-    \ r, PMM{b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
-    \ r;\n            cout << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
+    #include \"../../data-struct/segment/LazySegmentTree.hpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main() {\n \
+    \   int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    MultiLazySegmentTree<mint,\
+    \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
+    \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
+    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
+    \ * b.second + a.second}; },\n        PMM{1, 0},\n        [](PMM a, int b) ->\
+    \ PMM { return PMM{a.first, a.second * b}; }\n    );\n    rep (Q) {\n        int\
+    \ t; cin >> t;\n        if (t == 0) {\n            int l, r, b, c; cin >> l >>\
+    \ r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n        }\n        else\
+    \ {\n            int l, r; cin >> l >> r;\n            cout << seg.prod(l, r)\
+    \ << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - math/ModInt.hpp
@@ -358,7 +358,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-28 14:17:06+09:00'
+  timestamp: '2021-11-28 15:05:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

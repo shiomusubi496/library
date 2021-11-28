@@ -194,4 +194,4 @@ title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6
 - `WarshallFloyd(GMatrix& D)` :  
 与えられた隣接行列に対し、 `D[i][j]` = 頂点 `i` から頂点 `j` までの最短コストとする。  
 `D[i][i]<0` となる `i` が存在する場合、負の閉路が存在する。  
-$O(V^3)$ 。
+$\Theta(V^3)$ 。

@@ -353,11 +353,11 @@ title: ModInt
 
 以下のメンバを持つ。
 
-- `ll get()` : modint の持つ値を返す。 $O(1)$ 。
-- `ll get_mod()` : 現在の mod を返す。 $O(1)$ 。
-- `void set_mod(ll m)` : (`DynamicModInt` のみ) mod を `m` にセットする。 $O(1)$ 。
-- `modint inv()` : 逆数を返す。 $O(\log mod)$ 。
-- `modint pow(ll x)` : `x` 乗を返す。 $O(\log x)$ 。
+- `ll get()` : modint の持つ値を返す。 $\Theta(1)$ 。
+- `ll get_mod()` : 現在の mod を返す。 $\Theta(1)$ 。
+- `void set_mod(ll m)` : (`DynamicModInt` のみ) mod を `m` にセットする。 $\Theta(1)$ 。
+- `modint inv()` : 逆数を返す。 $\Theta(\log mod)$ 。
+- `modint pow(ll x)` : `x` 乗を返す。 $\Theta(\log x)$ 。
 
 ### 演算
 
@@ -386,4 +386,4 @@ cin >> modint
 cout << modint
 ```
 
-割り算は $O(\log mod)$ 、それ以外は $O(1)$ 。
+割り算は $\Theta(\log mod)$ 、それ以外は $\Theta(1)$ 。
