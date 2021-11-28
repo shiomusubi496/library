@@ -1,21 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
+      )"
     links: []
   bundledCode: "#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\n\n#line 2 \"\
     other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
@@ -152,27 +154,28 @@ data:
     \ {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return\
     \ e;\n\n        l += n; r += n;\n        rreps (i, h) {\n            bool seen\
     \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
-    \            if (((r >> i) << i) != r) eval(r - 1 >> i), seen = true;\n      \
-    \      if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n        while\
-    \ (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if\
-    \ (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n\
-    \        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0 <=\
-    \ k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >> i);\n\
-    \        return data[k];\n    }\n    T all_prod() { return data[1]; }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \n        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k] = upd(data[k]);\n\
-    \        reps (i, h) dataup(k >> i);\n    }\n    void set(int k, T x) {\n    \
-    \    update(k, [&](T a) -> T { return x; });\n    }\n    void apply(int k, U x)\
-    \ {\n        update(k, [&](T a) -> T { return mapping(x, a); });\n    }\n    void\
-    \ apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        if (l == r) return;\n\n        l += n; r += n;\n        int lst = h +\
-    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
-    \ i), lst = i;\n            if (((r >> i) << i) != r) eval(r - 1 >> i), lst =\
-    \ i;\n            if (lst != i) break;\n        }\n\n        for (int l2 = l,\
-    \ r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n            if (l2 & 1) all_apply(l2++,\
-    \ x);\n            if (r2 & 1) all_apply(--r2, x);\n        }\n        \n    \
-    \    rep (i, lst, h + 1) {\n            dataup(l >> i);\n            dataup(r\
-    \ - 1 >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
+    \            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n    \
+    \        if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n       \
+    \ while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n       \
+    \     if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n  \
+    \      }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0\
+    \ <= k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >>\
+    \ i);\n        return data[k];\n    }\n    T all_prod() { return data[1]; }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
+    \       data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n    }\n\
+    \    void set(int k, T x) {\n        update(k, [&](T a) -> T { return x; });\n\
+    \    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T { return\
+    \ mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n        assert(0\
+    \ <= l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n;\
+    \ r += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
+    \ >> i) << i) != l) eval(l >> i), lst = i;\n            if (((r >> i) << i) !=\
+    \ r) eval((r - 1) >> i), lst = i;\n            if (lst != i) break;\n        }\n\
+    \n        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n         \
+    \   if (l2 & 1) all_apply(l2++, x);\n            if (r2 & 1) all_apply(--r2, x);\n\
+    \        }\n        \n        rep (i, lst, h + 1) {\n            if (((l >> i)\
+    \ << i) != l) dataup(l >> i);\n            if (((r >> i) << i) != r) dataup((r\
+    \ - 1) >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
     \ C& cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(e));\n\
     \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
     \            if (((l >> i) << i) != l) eval(l >> i);\n            else break;\n\
@@ -185,19 +188,19 @@ data:
     \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
     \ <= r && r <= ori);\n        assert(cond(e));\n        if (r == 0) return 0;\n\
     \n        r += n;\n        rreps (i, n) {\n            if (((r >> i) << i) !=\
-    \ r) eval(r - 1 >> i);\n            else break;\n        }\n\n        T sm = e;\n\
-    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    eval(r);\n                    r = r << 1 ^ 1;\n         \
-    \           if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n             \
-    \   }\n                return r + 1 - n;\n            }\n            sm = op(data[r],\
-    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class\
-    \ T, class U> class MultiLazySegmentTree {\n  protected:\n    struct E {\n   \
-    \     T val;\n        int len;\n        E() = default;\n        E(T v, int l)\
-    \ : val(v), len(l) {}\n        friend std::ostream& operator<<(std::ostream& ost,\
-    \ const E& e) { return ost << e.val << '*' << e.len; }\n    };\n    using F =\
-    \ std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using H\
-    \ = std::function<U(U, U)>;\n    using I = std::function<U(U, int)>;\n    LazySegmentTree<E,\
+    \ r) eval((r - 1) >> i);\n            else break;\n        }\n\n        T sm =\
+    \ e;\n        do {\n            --r;\n            while ((r & 1) && r > 1) r >>=\
+    \ 1;\n            if (!cond(op(data[r], sm))) {\n                while (r < n)\
+    \ {\n                    eval(r);\n                    r = r << 1 ^ 1;\n     \
+    \               if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n         \
+    \       }\n                return r + 1 - n;\n            }\n            sm =\
+    \ op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\
+    };\n\ntemplate<class T, class U> class MultiLazySegmentTree {\n  protected:\n\
+    \    struct E {\n        T val;\n        int len;\n        E() = default;\n  \
+    \      E(T v, int l) : val(v), len(l) {}\n        friend std::ostream& operator<<(std::ostream&\
+    \ ost, const E& e) { return ost << e.val << '*' << e.len; }\n    };\n    using\
+    \ F = std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using\
+    \ H = std::function<U(U, U)>;\n    using I = std::function<U(U, int)>;\n    LazySegmentTree<E,\
     \ U> seg;\n    std::vector<E> Tvec_to_Evec(const std::vector<T>& v) {\n      \
     \  std::vector<E> res(v.size());\n        rep (i, v.size()) res[i] = E{v[i], 1};\n\
     \        return res;\n    }\n  public:\n    MultiLazySegmentTree() = default;\n\
@@ -223,7 +226,8 @@ data:
     \ k, U x) { seg.apply(k, x); }\n    void apply(int l, int r, U x) { seg.apply(l,\
     \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
     \ seg.max_right(l, cond); }\n    template<class C> int min_left(int r, const C&\
-    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * \n */\n"
+    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n\ntemplate<class T, class U> class LazySegmentTree {\n  protected:\n    using\
     \ F = std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using\
@@ -248,27 +252,28 @@ data:
     \ {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return\
     \ e;\n\n        l += n; r += n;\n        rreps (i, h) {\n            bool seen\
     \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
-    \            if (((r >> i) << i) != r) eval(r - 1 >> i), seen = true;\n      \
-    \      if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n        while\
-    \ (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if\
-    \ (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n\
-    \        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0 <=\
-    \ k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >> i);\n\
-    \        return data[k];\n    }\n    T all_prod() { return data[1]; }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \n        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k] = upd(data[k]);\n\
-    \        reps (i, h) dataup(k >> i);\n    }\n    void set(int k, T x) {\n    \
-    \    update(k, [&](T a) -> T { return x; });\n    }\n    void apply(int k, U x)\
-    \ {\n        update(k, [&](T a) -> T { return mapping(x, a); });\n    }\n    void\
-    \ apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        if (l == r) return;\n\n        l += n; r += n;\n        int lst = h +\
-    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
-    \ i), lst = i;\n            if (((r >> i) << i) != r) eval(r - 1 >> i), lst =\
-    \ i;\n            if (lst != i) break;\n        }\n\n        for (int l2 = l,\
-    \ r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n            if (l2 & 1) all_apply(l2++,\
-    \ x);\n            if (r2 & 1) all_apply(--r2, x);\n        }\n        \n    \
-    \    rep (i, lst, h + 1) {\n            dataup(l >> i);\n            dataup(r\
-    \ - 1 >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
+    \            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n    \
+    \        if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n       \
+    \ while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n       \
+    \     if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n  \
+    \      }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0\
+    \ <= k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >>\
+    \ i);\n        return data[k];\n    }\n    T all_prod() { return data[1]; }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
+    \       data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n    }\n\
+    \    void set(int k, T x) {\n        update(k, [&](T a) -> T { return x; });\n\
+    \    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T { return\
+    \ mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n        assert(0\
+    \ <= l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n;\
+    \ r += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
+    \ >> i) << i) != l) eval(l >> i), lst = i;\n            if (((r >> i) << i) !=\
+    \ r) eval((r - 1) >> i), lst = i;\n            if (lst != i) break;\n        }\n\
+    \n        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n         \
+    \   if (l2 & 1) all_apply(l2++, x);\n            if (r2 & 1) all_apply(--r2, x);\n\
+    \        }\n        \n        rep (i, lst, h + 1) {\n            if (((l >> i)\
+    \ << i) != l) dataup(l >> i);\n            if (((r >> i) << i) != r) dataup((r\
+    \ - 1) >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
     \ C& cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(e));\n\
     \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
     \            if (((l >> i) << i) != l) eval(l >> i);\n            else break;\n\
@@ -281,19 +286,19 @@ data:
     \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
     \ <= r && r <= ori);\n        assert(cond(e));\n        if (r == 0) return 0;\n\
     \n        r += n;\n        rreps (i, n) {\n            if (((r >> i) << i) !=\
-    \ r) eval(r - 1 >> i);\n            else break;\n        }\n\n        T sm = e;\n\
-    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    eval(r);\n                    r = r << 1 ^ 1;\n         \
-    \           if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n             \
-    \   }\n                return r + 1 - n;\n            }\n            sm = op(data[r],\
-    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class\
-    \ T, class U> class MultiLazySegmentTree {\n  protected:\n    struct E {\n   \
-    \     T val;\n        int len;\n        E() = default;\n        E(T v, int l)\
-    \ : val(v), len(l) {}\n        friend std::ostream& operator<<(std::ostream& ost,\
-    \ const E& e) { return ost << e.val << '*' << e.len; }\n    };\n    using F =\
-    \ std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using H\
-    \ = std::function<U(U, U)>;\n    using I = std::function<U(U, int)>;\n    LazySegmentTree<E,\
+    \ r) eval((r - 1) >> i);\n            else break;\n        }\n\n        T sm =\
+    \ e;\n        do {\n            --r;\n            while ((r & 1) && r > 1) r >>=\
+    \ 1;\n            if (!cond(op(data[r], sm))) {\n                while (r < n)\
+    \ {\n                    eval(r);\n                    r = r << 1 ^ 1;\n     \
+    \               if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n         \
+    \       }\n                return r + 1 - n;\n            }\n            sm =\
+    \ op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n\
+    };\n\ntemplate<class T, class U> class MultiLazySegmentTree {\n  protected:\n\
+    \    struct E {\n        T val;\n        int len;\n        E() = default;\n  \
+    \      E(T v, int l) : val(v), len(l) {}\n        friend std::ostream& operator<<(std::ostream&\
+    \ ost, const E& e) { return ost << e.val << '*' << e.len; }\n    };\n    using\
+    \ F = std::function<T(T, T)>;\n    using G = std::function<T(U, T)>;\n    using\
+    \ H = std::function<U(U, U)>;\n    using I = std::function<U(U, int)>;\n    LazySegmentTree<E,\
     \ U> seg;\n    std::vector<E> Tvec_to_Evec(const std::vector<T>& v) {\n      \
     \  std::vector<E> res(v.size());\n        rep (i, v.size()) res[i] = E{v[i], 1};\n\
     \        return res;\n    }\n  public:\n    MultiLazySegmentTree() = default;\n\
@@ -319,15 +324,16 @@ data:
     \ k, U x) { seg.apply(k, x); }\n    void apply(int l, int r, U x) { seg.apply(l,\
     \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
     \ seg.max_right(l, cond); }\n    template<class C> int min_left(int r, const C&\
-    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * \n */\n"
+    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-11-28 13:51:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-11-28 14:17:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: data-struct/segment/LazySegmentTree.hpp
@@ -335,5 +341,5 @@ layout: document
 redirect_from:
 - /library/data-struct/segment/LazySegmentTree.hpp
 - /library/data-struct/segment/LazySegmentTree.hpp.html
-title: data-struct/segment/LazySegmentTree.hpp
+title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 ---
