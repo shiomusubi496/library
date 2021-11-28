@@ -7,7 +7,7 @@
 
 を満たす構造の列 `a` を扱うデータ構造。例えば、 `max, min, gcd, lcm` などがこの条件を満たす。
 
-以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $O(f(n))$ の時、以下の計算量は全て $O(f(n))$ 倍になる。
+以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $\Theta(f(n))$ の時、以下の計算量は全て $\Theta(f(n))$ 倍になる。
 
-- `SparseTable(vector<int> v, T op(T, T))` : リスト `v` と二項演算 `op` で初期化する。 $N=\mathrm{len}(v)$ として $O(N \log N)$ 。
-- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $O(1)$ 。
+- `SparseTable(vector<int> v, T op(T, T))` : リスト `v` と二項演算 `op` で初期化する。 $N=\mathrm{len}(v)$ として $\Theta(N \log N)$ 。
+- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。
