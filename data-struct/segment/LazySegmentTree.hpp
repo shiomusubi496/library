@@ -214,4 +214,5 @@ template<class T, class U> class MultiLazySegmentTree {
 
 /**
  * @brief LazySegmentTree(遅延セグメント木)
+ * @docs docs/LazySegmentTree.md
  */

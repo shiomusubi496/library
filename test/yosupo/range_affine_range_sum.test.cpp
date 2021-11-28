@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 #include "../../other/template.hpp"
 #include "../../math/ModInt.hpp"
-#define protected public
 #include "../../data-struct/segment/LazySegmentTree.hpp"
 using namespace std;
 using mint = modint998244353;
