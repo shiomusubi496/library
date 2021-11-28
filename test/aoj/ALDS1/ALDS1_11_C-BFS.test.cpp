@@ -9,7 +9,7 @@ int main() {
     rep (N) {
         int u; cin >> u;
         int k; cin >> k;
-        rep(j, k) {
+        rep (j, k) {
             int v; cin >> v;
             G.add_edge(u - 1 , v - 1 , true);
         }

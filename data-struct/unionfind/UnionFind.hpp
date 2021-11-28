@@ -30,7 +30,7 @@ class UnionFind {
     }
     std::vector<std::vector<int>> groups() {
         std::vector<std::vector<int>> res(n);
-        rep(i, n) res[find(i)].push_back(i);
+        rep (i, n) res[find(i)].push_back(i);
         res.erase(
             remove_if(all(res), [](const std::vector<int>& v) { return v.empty(); }),
             res.end()
