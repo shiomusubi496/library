@@ -53,7 +53,7 @@ template<class T, class U> class LazySegmentTree {
         rreps (i, h) {
             bool seen = false;
             if (((l >> i) << i) != l) eval(l >> i), seen = true;
-            if (((r >> i) << i) != r) eval(r - 1 >> i), seen = true;
+            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;
             if (!seen) break;
         }
 
@@ -95,7 +95,7 @@ template<class T, class U> class LazySegmentTree {
         int lst = h + 1;
         rreps (i, h) {
             if (((l >> i) << i) != l) eval(l >> i), lst = i;
-            if (((r >> i) << i) != r) eval(r - 1 >> i), lst = i;
+            if (((r >> i) << i) != r) eval((r - 1) >> i), lst = i;
             if (lst != i) break;
         }
 
@@ -105,8 +105,8 @@ template<class T, class U> class LazySegmentTree {
         }
         
         rep (i, lst, h + 1) {
-            dataup(l >> i);
-            dataup(r - 1 >> i);
+            if (((l >> i) << i) != l) dataup(l >> i);
+            if (((r >> i) << i) != r) dataup((r - 1) >> i);
         }
     }
     template<class C> int max_right(int l, const C& cond) {
@@ -142,7 +142,7 @@ template<class T, class U> class LazySegmentTree {
 
         r += n;
         rreps (i, n) {
-            if (((r >> i) << i) != r) eval(r - 1 >> i);
+            if (((r >> i) << i) != r) eval((r - 1) >> i);
             else break;
         }
 
@@ -213,5 +213,5 @@ template<class T, class U> class MultiLazySegmentTree {
 };
 
 /**
- * 
+ * @brief LazySegmentTree(遅延セグメント木)
  */
