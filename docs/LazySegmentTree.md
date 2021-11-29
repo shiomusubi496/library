@@ -38,3 +38,10 @@
 厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
+
+また、分配則が成り立たないが、任意の $f \in U$ と $n \in \mathbb{N}$ に対して、 $\overbrace{f \circ f \circ \cdots \circ f}^{n \text{個}}$ が効率よく計算できるときは `MultiLazySegmentTree` を使う。
+
+- コンストラクタ
+  - `MultiLazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U id, U mul(U, int))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` 、恒等写像 `id` 、 $\overbrace{f \circ f \circ \cdots \circ f}^{n \text{個}}$  を計算する `mul` で長さ $0$ に初期化する。
+  - `MultiLazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 長さ `n` で初期化する。初期値は `e` 。
+  - `MultiLazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 列 `v` で初期化する。

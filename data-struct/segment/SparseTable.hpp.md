@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
@@ -43,10 +43,12 @@ data:
     using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
     \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
     \ std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n    static\
-    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n};\n\n#if __cplusplus\
-    \ >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\
-    \nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr\
-    \ ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
+    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n    static constexpr\
+    \ T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr T max =\
+    \ std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    };\n\n#if __cplusplus >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n\
+    #endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\n\
+    constexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
     \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
     \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
     \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
@@ -83,15 +85,15 @@ data:
     \ {\n    const PLL p = extGCD(a, mod);\n    assert(p.first * a + p.second * mod\
     \ == 1);\n    return p.first;\n}\nPLL ChineseRemainder(ll b1, ll m1, ll b2, ll\
     \ m2) noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first\
-    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if((b2 - b1) % g !=\
-    \ 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n\
-    \    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>&\
-    \ b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size())\
-    \ {\n        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n    \
-    \    if (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ F> class rec_lambda {\n  private:\n    F f;\n  public:\n    explicit constexpr\
-    \ rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\
-    \ constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
+    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g\
+    \ != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 /\
+    \ g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
+    \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
+    \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
+    \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
+    }\n\ntemplate<class F> class rec_lambda {\n  private:\n    F f;\n  public:\n \
+    \   explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
     \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
@@ -164,8 +166,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-11-28 13:51:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-11-29 17:30:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp

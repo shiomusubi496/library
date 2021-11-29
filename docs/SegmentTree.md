@@ -31,3 +31,9 @@
 厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
+
+また、次の $3$ つのセグメント木が `SegmentTree` を継承して作られている。
+
+- `RSQ` : `Range Sum Query` 用のセグ木。
+- `RMiQ` : `Range Minimum Query` 用のセグ木。
+- `RMaQ` : `Range Maximum Query` 用のセグ木。
