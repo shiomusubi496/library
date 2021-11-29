@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G
@@ -291,15 +291,15 @@ data:
     \ U b) -> U { return std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
     \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeSumQuery<int,\
-    \ int> seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    int main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeSumQuery<ll,\
+    \ ll> seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            seg.apply(l - 1, r,\
     \ x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n     \
     \       cout << seg.prod(l - 1, r) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeSumQuery<int,\
-    \ int> seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeSumQuery<ll,\
+    \ ll> seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            seg.apply(l - 1, r,\
     \ x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n     \
     \       cout << seg.prod(l - 1, r) << endl;\n        }\n    }\n}\n"
@@ -310,8 +310,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 20:19:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-11-29 20:41:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
 layout: document
