@@ -490,7 +490,7 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 - 写像は閉じている : 任意の $f, g \in U$ に対して、 $f \circ g \in U$
 - 分配則 : 任意の $A, B \in T$ と $f \in U$ に対して、 $f(A \cdot B) = f(A) \cdot f(B)$
 
-分配則が成り立たないが、任意の $f \in U$ に対して、任意の $x_1, x_2, \ldots, x_k \in T$ に対して、 $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g$ が存在し、かつ効率よく計算できるときは `MultiLazySegmentTree` を参照。
+分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g \in U$ が存在し、かつ効率よく計算できるときは、 `MultiLazySegmentTree` を参照。
 
 - コンストラクタ
   - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` で長さ $0$ に初期化する。
@@ -518,7 +518,7 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
 
-分配則が成り立たないが、任意の $f \in U$ に対して、任意の $x_1, x_2, \ldots, x_k \in T$ に対して、 $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g_{f, k}$ が存在し、かつ効率よく計算できるときは `MultiLazySegmentTree` を使う。
+分配則が成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g_{f, k} \in U$ が存在し、かつ効率よく計算できるときは、 `MultiLazySegmentTree` を使う。
 
 - コンストラクタ
   - `MultiLazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U mul(U, int))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` 、 $g_{f, k}$  を計算する `mul` で長さ $0$ に初期化する。
@@ -526,3 +526,12 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - `MultiLazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。
 
 また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` を継承して作られている。
+
+- `RangeUpdateQueryRangeSumQuery` : 区間代入クエリと区間和クエリを扱える。
+- `RangeUpdateQueryRangeMinimumQuery` : 区間代入クエリと区間最小値クエリを扱える。
+- `RangeUpdateQueryRangeMaximumQuery` : 区間代入クエリと区間最大値クエリを扱える。
+- `RangeAddQueryRangeSumQuery` : 区間加算クエリと区間和クエリを扱える。
+- `RangeAddQueryRangeMinimumQuery` : 区間加算クエリと区間最小値クエリを扱える。
+- `RangeAddQueryRangeMaximumQuery` : 区間加算クエリと区間最大値クエリを扱える。
+- `RangeChminQueryRangeMinimumQuery` : 区間chminクエリと区間最小値クエリを扱える。
+- `RangeChmaxQueryRangeMaximumQuery` : 区間chmaxクエリと区間最大値クエリを扱える。
