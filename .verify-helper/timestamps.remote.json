@@ -20,6 +20,7 @@
 "test/aoj/DSL/DSL_2_B-BIT.test.cpp": "2021-11-29 17:30:36 +0900",
 "test/aoj/DSL/DSL_2_B-RSQ.test.cpp": "2021-11-29 20:19:51 +0900",
 "test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp": "2021-11-29 20:19:51 +0900",
+"test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp": "2021-11-29 20:41:17 +0900",
 "test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp": "2021-11-29 20:19:51 +0900",
 "test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp": "2021-11-29 20:19:51 +0900",
 "test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp": "2021-11-29 20:19:51 +0900",
