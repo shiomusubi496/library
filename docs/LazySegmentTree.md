@@ -7,16 +7,15 @@
 
 を満たす構造の列と、 $T$ から $T$ への写像の集合 $U$ のうち、以下を満たすものを扱える。
 
-- 恒等写像の存在 : ある $id \in U$ が存在して、任意の $A \in T$ に対して $id(A) = A$
 - 写像は閉じている : 任意の $f, g \in U$ に対して、 $f \circ g \in U$
 - 分配則 : 任意の $A, B \in T$ と $f \in U$ に対して、 $f(A \cdot B) = f(A) \cdot f(B)$
 
-分配則が成り立たないが、任意の $f \in U$ と $n \in \mathbb{N}$ に対して、 $\overbrace{f \circ f \circ \cdots \circ f}^{n \text{個}}$ が効率よく計算できるときは `MultiLazySegmentTree` を参照。
+分配則が成り立たないが、任意の $f \in U$ に対して、任意の $x_1, x_2, \ldots, x_k \in T$ に対して、 $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g$ が存在し、かつ効率よく計算できるときは `MultiLazySegmentTree` を参照。
 
 - コンストラクタ
-  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` 、恒等写像 `id` で長さ $0$ に初期化する。
-  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 長さ `n` で初期化する。初期値は `e` 。
-  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 列 `v` で初期化する。
+  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` で長さ $0$ に初期化する。
+  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。
+  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。
   - `void init(vector<T> v)` : 列 `v` で初期化する。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
@@ -39,9 +38,11 @@
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
 
-また、分配則が成り立たないが、任意の $f \in U$ と $n \in \mathbb{N}$ に対して、 $\overbrace{f \circ f \circ \cdots \circ f}^{n \text{個}}$ が効率よく計算できるときは `MultiLazySegmentTree` を使う。
+分配則が成り立たないが、任意の $f \in U$ に対して、任意の $x_1, x_2, \ldots, x_k \in T$ に対して、 $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g_{f, k}$ が存在し、かつ効率よく計算できるときは `MultiLazySegmentTree` を使う。
 
 - コンストラクタ
-  - `MultiLazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U id, U mul(U, int))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` 、恒等写像 `id` 、 $\overbrace{f \circ f \circ \cdots \circ f}^{n \text{個}}$  を計算する `mul` で長さ $0$ に初期化する。
-  - `MultiLazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 長さ `n` で初期化する。初期値は `e` 。
-  - `MultiLazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U), U id)` : 列 `v` で初期化する。
+  - `MultiLazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U mul(U, int))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` 、 $g_{f, k}$  を計算する `mul` で長さ $0$ に初期化する。
+  - `MultiLazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。
+  - `MultiLazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。
+
+また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` を継承して作られている。

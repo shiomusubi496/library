@@ -29,7 +29,7 @@ template<class T> class SegmentTree {
         while (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);
     }
     void set(int k, T x) {
-        update(k, [&](T a) -> T { return x; });
+        update(k, [&](T) -> T { return x; });
     }
     void apply(int k, T x) {
         update(k, [&](T a) -> T { return op(a, x); });
@@ -89,38 +89,38 @@ template<class T> class SegmentTree {
 };
 
 // verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-template<class T> class RMiQ : public SegmentTree<T> {
+template<class T, T max_value = infinity<T>::max> class RangeMinimumQuery : public SegmentTree<T> {
   protected:
     using Base = SegmentTree<T>;
   public:
-    template<class... Arg> RMiQ(Arg&&... args)
+    template<class... Args> RangeMinimumQuery(Args&&... args)
         : Base(
-            std::forward<Arg>(args)...,
+            std::forward<Args>(args)...,
             [](T a, T b) -> T { return std::min(a, b); },
-            std::numeric_limits<T>::max()
+            max_value
         ) {}
 };
 
-template<class T> class RMaQ : public SegmentTree<T> {
+template<class T, T min_value = infinity<T>::min> class RangeMaximumQuery : public SegmentTree<T> {
   protected:
     using Base = SegmentTree<T>;
   public:
-    template<class... Arg> RMaQ(Arg&&... args)
+    template<class... Args> RangeMaximumQuery(Args&&... args)
         : Base(
-            std::forward<Arg>(args)...,
+            std::forward<Args>(args)...,
             [](T a, T b) -> T { return std::max(a, b); },
-            std::numeric_limits<T>::min()
+            min_value
         ) {}
 };
 
 // verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-template<class T> class RSQ : public SegmentTree<T> {
+template<class T> class RangeSumQuery : public SegmentTree<T> {
   protected:
     using Base = SegmentTree<T>;
   public:
-    template<class... Arg> RSQ(Arg&&... args)
+    template<class... Args> RangeSumQuery(Args&&... args)
         : Base(
-            std::forward<Arg>(args)...,
+            std::forward<Args>(args)...,
             [](T a, T b) -> T { return a + b; },
             T(0)
         ) {}

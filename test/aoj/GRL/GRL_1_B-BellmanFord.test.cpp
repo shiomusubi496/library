@@ -8,12 +8,12 @@ int main() {
     Edges<int> Ed(E);
     for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;
     auto dist = BellmanFord(V, Ed, r);
-    if (count(all(dist), -INF<int>)) {
+    if (count(all(dist), -infinity<int>::value)) {
         puts("NEGATIVE CYCLE");
         return 0;
     }
     rep (i, V) {
-        if (dist[i] == INF<int>) puts("INF");
+        if (dist[i] == infinity<int>::value) puts("INF");
         else cout << dist[i] << endl;
     }
 }

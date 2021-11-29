@@ -5,7 +5,7 @@
 using namespace std;
 int main() {
     int V, E; cin >> V >> E;
-    auto D = make_vec<ll>(V, V, INF<ll>);
+    auto D = make_vec<ll>(V, V, infinity<ll>::value);
     rep (E) {
         int s, t, d; cin >> s >> t >> d;
         D[s][t] = d;
@@ -19,7 +19,7 @@ int main() {
     }
     rep (i, V) {
         rep (j, V) {
-            if (D[i][j] == INF<ll>) cout << "INF";
+            if (D[i][j] == infinity<ll>::value) cout << "INF";
             else cout << D[i][j];
             cout << " \n"[j == V - 1];
         }
