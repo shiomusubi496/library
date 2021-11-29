@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -175,18 +175,19 @@ data:
     \u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
     \   Edges<int> Ed(E);\n    for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n\
-    \    auto dist = BellmanFord(V, Ed, r);\n    if (count(all(dist), -INF<int>))\
+    \    auto dist = BellmanFord(V, Ed, r);\n    if (count(all(dist), -infinity<int>::value))\
     \ {\n        puts(\"NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i,\
-    \ V) {\n        if (dist[i] == INF<int>) puts(\"INF\");\n        else cout <<\
-    \ dist[i] << endl;\n    }\n}\n"
+    \ V) {\n        if (dist[i] == infinity<int>::value) puts(\"INF\");\n        else\
+    \ cout << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint\
     \ main() {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n    for\
     \ (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V,\
-    \ Ed, r);\n    if (count(all(dist), -INF<int>)) {\n        puts(\"NEGATIVE CYCLE\"\
-    );\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i] == INF<int>)\
-    \ puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n}"
+    \ Ed, r);\n    if (count(all(dist), -infinity<int>::value)) {\n        puts(\"\
+    NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i]\
+    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
+    \    }\n}"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -194,7 +195,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-11-29 20:19:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

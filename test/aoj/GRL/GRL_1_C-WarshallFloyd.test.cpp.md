@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -168,20 +168,21 @@ data:
     \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
     \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    auto D\
-    \ = make_vec<ll>(V, V, INF<ll>);\n    rep (E) {\n        int s, t, d; cin >> s\
-    \ >> t >> d;\n        D[s][t] = d;\n    }\n    WarshallFloyd(D);\n    rep (i,\
-    \ V) {\n        if (D[i][i] < 0) {\n            puts(\"NEGATIVE CYCLE\");\n  \
-    \          return 0;\n        }\n    }\n    rep (i, V) {\n        rep (j, V) {\n\
-    \            if (D[i][j] == INF<ll>) cout << \"INF\";\n            else cout <<\
-    \ D[i][j];\n            cout << \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
+    \ = make_vec<ll>(V, V, infinity<ll>::value);\n    rep (E) {\n        int s, t,\
+    \ d; cin >> s >> t >> d;\n        D[s][t] = d;\n    }\n    WarshallFloyd(D);\n\
+    \    rep (i, V) {\n        if (D[i][i] < 0) {\n            puts(\"NEGATIVE CYCLE\"\
+    );\n            return 0;\n        }\n    }\n    rep (i, V) {\n        rep (j,\
+    \ V) {\n            if (D[i][j] == infinity<ll>::value) cout << \"INF\";\n   \
+    \         else cout << D[i][j];\n            cout << \" \\n\"[j == V - 1];\n \
+    \       }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, INF<ll>);\n\
+    \ main() {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, infinity<ll>::value);\n\
     \    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n        D[s][t] = d;\n\
     \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
     \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
-    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == INF<ll>)\
+    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == infinity<ll>::value)\
     \ cout << \"INF\";\n            else cout << D[i][j];\n            cout << \"\
     \ \\n\"[j == V - 1];\n        }\n    }\n}\n"
   dependsOn:
@@ -191,7 +192,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-11-29 20:19:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

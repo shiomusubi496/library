@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -231,39 +231,42 @@ data:
     \ 0;\n    }\n}\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
     \ T, class U> class LazySegmentTree {\n  protected:\n    using F = std::function<T(T,\
     \ T)>;\n    using G = std::function<T(U, T)>;\n    using H = std::function<U(U,\
-    \ U)>;\n    F op;\n    T e;\n    G mapping;\n    H composition;\n    U id;\n \
-    \   int h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    void\
-    \ all_apply(int k, const U& x) {\n        data[k] = mapping(x, data[k]);\n   \
-    \     if (k < n) lazy[k] = composition(x, lazy[k]);\n    }\n    void eval(int\
-    \ k) {\n        all_apply(k << 1, lazy[k]);\n        all_apply(k << 1 ^ 1, lazy[k]);\n\
-    \        lazy[k] = id;\n    }\n    void dataup(int k) {\n        data[k] = op(data[k\
-    \ << 1], data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() = default;\n\
-    \    LazySegmentTree(const F& op, const T& e, const G& mapping, const H& composition,\
-    \ const U& id)\n        : LazySegmentTree(0, op, e, mapping, composition, id)\
-    \ {}\n    LazySegmentTree(int n_, const F& op, const T& e, const G& mapping, const\
-    \ H& composition, const U& id)\n        : LazySegmentTree(std::vector<T>(n_, e),\
-    \ op, e, mapping, composition, id) {}\n    LazySegmentTree(const std::vector<T>&\
-    \ v, const F& op, const T& e, const G& mapping, const H& composition, const U&\
-    \ id)\n        : op(op), e(e), mapping(mapping), composition(composition), id(id)\
-    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data.assign(n\
-    \ << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1)\
-    \ dataup(i);\n        lazy.assign(n << 1, id);\n    }\n    T prod(int l, int r)\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return\
-    \ e;\n\n        l += n; r += n;\n        rreps (i, h) {\n            bool seen\
-    \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
-    \            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n    \
-    \        if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n       \
-    \ while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n       \
-    \     if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n  \
-    \      }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0\
+    \ U)>;\n    F op;\n    T e;\n    G mapping;\n    H composition;\n    int h, n,\
+    \ ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
+    \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = mapping(x,\
+    \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
+    \      lazy[k] = composition(x, lazy[k]);\n            }\n            else {\n\
+    \                lazy[k] = x;\n                lazyflag[k] = true;\n         \
+    \   }\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n\
+    \            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
+    \            lazyflag[k] = false;\n        }\n    }\n    void dataup(int k) {\n\
+    \        data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n  public:\n   \
+    \ LazySegmentTree() = default;\n    LazySegmentTree(const F& op, const T& e, const\
+    \ G& mapping, const H& composition)\n        : LazySegmentTree(0, op, e, mapping,\
+    \ composition) {}\n    LazySegmentTree(int n_, const F& op, const T& e, const\
+    \ G& mapping, const H& composition)\n        : LazySegmentTree(std::vector<T>(n_,\
+    \ e), op, e, mapping, composition) {}\n    LazySegmentTree(const std::vector<T>&\
+    \ v, const F& op, const T& e, const G& mapping, const H& composition)\n      \
+    \  : op(op), e(e), mapping(mapping), composition(composition) { init(v); }\n \
+    \   void init(const std::vector<T>& v) {\n        ori = v.size();\n        h =\
+    \ bitop::ceil_log2(ori);\n        n = 1 << h;\n        data.assign(n << 1, e);\n\
+    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) dataup(i);\n\
+    \        lazy.resize(n << 1); lazyflag.assign(n << 1, false);\n    }\n    T prod(int\
+    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
+    \ r) return e;\n\n        l += n; r += n;\n        rreps (i, h) {\n          \
+    \  bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen\
+    \ = true;\n            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n\
+    \            if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n   \
+    \     while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n   \
+    \         if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n\
+    \        }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0\
     \ <= k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >>\
     \ i);\n        return data[k];\n    }\n    T all_prod() { return data[1]; }\n\
     \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
     \       data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n    }\n\
-    \    void set(int k, T x) {\n        update(k, [&](T a) -> T { return x; });\n\
-    \    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T { return\
+    \    void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n \
+    \   }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T { return\
     \ mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n        assert(0\
     \ <= l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n;\
     \ r += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
@@ -303,28 +306,82 @@ data:
     \  std::vector<E> res(v.size());\n        rep (i, v.size()) res[i] = E{v[i], 1};\n\
     \        return res;\n    }\n  public:\n    MultiLazySegmentTree() = default;\n\
     \    MultiLazySegmentTree(const F& op, const T& e, const G& mapping, const H&\
-    \ composition, const U& id, const I& mul)\n        : seg(\n            [&](E a,\
-    \ E b) -> E { return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n       \
-    \     [&](U a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; },\
-    \ composition, id\n        ) {}\n    MultiLazySegmentTree(int n_, const F& op,\
-    \ const T& e, const G& mapping, const H& composition, const U& id, const I& mul)\n\
-    \        : seg(\n            std::vector<E>(n_, E{e, 1}), [&](E a, E b) -> E {\
-    \ return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n            [&](U a,\
-    \ E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition,\
-    \ id\n        ) {}\n    MultiLazySegmentTree(const std::vector<T>& v, const F&\
-    \ op, const T& e, const G& mapping, const H& composition, const U& id, const I&\
-    \ mul)\n        : seg(\n            Tvec_to_Evec(v), [&](E a, E b) -> E { return\
-    \ E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n            [&](U a, E b) ->\
-    \ E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition, id\n   \
-    \     ) {}\n    void init(const std::vector<T>& v) { seg.init(v); }\n    T prod(int\
-    \ l, int r) { return seg.prod(l, r).val; }\n    T get(int k) { return seg.get(k).val;\
-    \ }\n    T all_prod() { return seg.all_prod().val; }\n    template<class Upd>\
-    \ void update(int k, const Upd& upd) { seg.update(k, [&](E a) -> E { return E{upd(a.val),\
-    \ a.len}; }); }\n    void set(int k, T x) { seg.set(k, E{x, 1}); }\n    void apply(int\
-    \ k, U x) { seg.apply(k, x); }\n    void apply(int l, int r, U x) { seg.apply(l,\
-    \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
-    \ seg.max_right(l, cond); }\n    template<class C> int min_left(int r, const C&\
-    \ cond) { return seg.min_left(r, cond); }\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \ composition, const I& mul)\n        : MultiLazySegmentTree(0, op, e, mapping,\
+    \ composition, mul) {}\n    MultiLazySegmentTree(int n_, const F& op, const T&\
+    \ e, const G& mapping, const H& composition, const I& mul)\n        : seg(\n \
+    \           std::vector<E>(n_, E{e, 1}), [=](E a, E b) -> E { return E{op(a.val,\
+    \ b.val), a.len + b.len}; }, E{e, 0},\n            [=](U a, E b) -> E { return\
+    \ E{mapping(mul(a, b.len), b.val), b.len}; }, composition\n        ) {}\n    MultiLazySegmentTree(const\
+    \ std::vector<T>& v, const F& op, const T& e, const G& mapping, const H& composition,\
+    \ const I& mul)\n        : seg(\n            Tvec_to_Evec(v), [=](E a, E b) ->\
+    \ E { return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},\n            [=](U\
+    \ a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition\n\
+    \        ) {}\n    void init(const std::vector<T>& v) { seg.init(Tvec_to_Evec(v));\
+    \ }\n    T prod(int l, int r) { return seg.prod(l, r).val; }\n    T get(int k)\
+    \ { return seg.get(k).val; }\n    T all_prod() { return seg.all_prod().val; }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](E\
+    \ a) -> E { return E{upd(a.val), a.len}; }); }\n    void set(int k, T x) { seg.set(k,\
+    \ E{x, 1}); }\n    void apply(int k, U x) { seg.apply(k, x); }\n    void apply(int\
+    \ l, int r, U x) { seg.apply(l, r, x); }\n    template<class C> int max_right(int\
+    \ l, const C& cond) { return seg.max_right(l, [&](E a) -> bool { return cond(a.val);\
+    \ }); }\n    template<class C> int min_left(int r, const C& cond) { return seg.min_left(r,\
+    \ [&](E a) -> bool { return cond(a.val); }); }\n};\n\n//verified with test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\n\
+    template<class T, class U, T max_value = infinity<T>::max> class RangeUpdateQueryRangeMinimumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
+    \          [](U a, T) -> T { return a; },\n            [](U a, U) -> U { return\
+    \ a; }\n        ) {}\n};\n\ntemplate<class T, class U, T min_value = infinity<T>::min>\
+    \ class RangeUpdateQueryRangeMaximumQuery : public LazySegmentTree<T, U> {\n \
+    \ protected:\n    using Base = LazySegmentTree<T, U>;\n  public:\n    template<class...\
+    \ Args> RangeUpdateQueryRangeMaximumQuery(Args&&... args)\n        : Base(\n \
+    \           std::forward<Args>(args)...,\n            [](T a, T b) -> T { return\
+    \ std::max(a, b); },\n            min_value,\n            [](U a, T) -> T { return\
+    \ a; },\n            [](U a, U) -> U { return a; }\n        ) {}\n};\n\n//verified\
+    \ with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\ntemplate<class T, class U> class\
+    \ RangeUpdateQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {\n  protected:\n\
+    \    using Base = MultiLazySegmentTree<T, U>;\n  public:\n    template<class...\
+    \ Args> RangeUpdateQueryRangeSumQuery(Args&&... args)\n        : Base(\n     \
+    \       std::forward<Args>(args)...,\n            [](T a, T b) -> T { return a\
+    \ + b; },\n            T(0),\n            [](U a, T) -> T { return a; },\n   \
+    \         [](U a, U) -> U { return a; },\n            [](U a, int b) -> U { return\
+    \ a * b; }\n        ) {}\n};\n\n//verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\n\
+    template<class T, class U, T max_value = infinity<T>::max> class RangeAddQueryRangeMinimumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeAddQueryRangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
+    \          [](U a, T b) -> T { return a + b; },\n            [](U a, U b) -> U\
+    \ { return a + b; }\n        ) {}\n};\n\ntemplate<class T, class U, T min_value\
+    \ = infinity<T>::min> class RangeAddQueryRangeMaximumQuery : public LazySegmentTree<T,\
+    \ U> {\n  protected:\n    using Base = LazySegmentTree<T, U>;\n  public:\n   \
+    \ template<class... Args> RangeAddQueryRangeMaximumQuery(Args&&... args)\n   \
+    \     : Base(\n            std::forward<Args>(args)...,\n            [](T a, T\
+    \ b) -> T { return std::max(a, b); },\n            min_value,\n            [](U\
+    \ a, T b) -> T { return a + b; },\n            [](U a, U b) -> U { return a +\
+    \ b; }\n        ) {}\n};\n\n//verified with test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp\n\
+    template<class T, class U> class RangeAddQueryRangeSumQuery : public MultiLazySegmentTree<T,\
+    \ U> {\n  protected:\n    using Base = MultiLazySegmentTree<T, U>;\n  public:\n\
+    \    template<class... Args> RangeAddQueryRangeSumQuery(Args&&... args)\n    \
+    \    : Base(\n            std::forward<Args>(args)...,\n            [](T a, T\
+    \ b) -> T { return a + b; },\n            T(0),\n            [](U a, T b) -> T\
+    \ { return a + b; },\n            [](U a, U b) -> U { return a + b; },\n     \
+    \       [](U a, int b) -> U { return a * b; }\n        ) {}\n};\n\ntemplate<class\
+    \ T, class U, T max_value = infinity<T>::max> class RangeChminQueryRangeMinimumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChminQueryRangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
+    \          [](U a, T b) -> T { return std::min(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
+    \ class U, T min_value = infinity<T>::min> class RangeChmaxQueryRangeMaximumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChmaxQueryRangeMaximumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::max(a, b); },\n            min_value,\n  \
+    \          [](U a, T b) -> T { return std::max(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief LazySegmentTree(\u9045\
     \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
     \ */\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\nusing namespace\
     \ std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main()\
@@ -332,12 +389,12 @@ data:
     \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
     \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
     \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
-    \ * b.second + a.second}; },\n        PMM{1, 0},\n        [](PMM a, int b) ->\
-    \ PMM { return PMM{a.first, a.second * b}; }\n    );\n    rep (Q) {\n        int\
-    \ t; cin >> t;\n        if (t == 0) {\n            int l, r, b, c; cin >> l >>\
-    \ r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n        }\n        else\
-    \ {\n            int l, r; cin >> l >> r;\n            cout << seg.prod(l, r)\
-    \ << endl;\n        }\n    }\n}\n"
+    \ * b.second + a.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
+    \ a.second * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if\
+    \ (t == 0) {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n         \
+    \   seg.apply(l, r, PMM{b, c});\n        }\n        else {\n            int l,\
+    \ r; cin >> l >> r;\n            cout << seg.prod(l, r) << endl;\n        }\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n\
     #include \"../../data-struct/segment/LazySegmentTree.hpp\"\nusing namespace std;\n\
@@ -346,12 +403,12 @@ data:
     \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
     \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
     \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
-    \ * b.second + a.second}; },\n        PMM{1, 0},\n        [](PMM a, int b) ->\
-    \ PMM { return PMM{a.first, a.second * b}; }\n    );\n    rep (Q) {\n        int\
-    \ t; cin >> t;\n        if (t == 0) {\n            int l, r, b, c; cin >> l >>\
-    \ r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n        }\n        else\
-    \ {\n            int l, r; cin >> l >> r;\n            cout << seg.prod(l, r)\
-    \ << endl;\n        }\n    }\n}\n"
+    \ * b.second + a.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
+    \ a.second * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if\
+    \ (t == 0) {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n         \
+    \   seg.apply(l, r, PMM{b, c});\n        }\n        else {\n            int l,\
+    \ r; cin >> l >> r;\n            cout << seg.prod(l, r) << endl;\n        }\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - math/ModInt.hpp
@@ -360,7 +417,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-11-29 20:19:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

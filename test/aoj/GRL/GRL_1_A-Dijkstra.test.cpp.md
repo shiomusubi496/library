@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
@@ -172,16 +172,16 @@ data:
     \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E) {\n\
     \        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
     \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
-    \ == INF<int>) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n\
-    }\n"
+    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
     \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E) {\n\
     \        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
     \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
-    \ == INF<int>) puts(\"INF\");\n        else cout << dist[i] << endl;\n    }\n\
-    }\n"
+    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -189,7 +189,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-11-29 20:19:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

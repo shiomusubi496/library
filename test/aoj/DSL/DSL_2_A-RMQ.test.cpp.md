@@ -147,11 +147,11 @@ data:
     \ void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n \
     \       k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
     \ = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n \
-    \       update(k, [&](T a) -> T { return x; });\n    }\n    void apply(int k,\
-    \ T x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n    }\n    T\
-    \ prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n      \
-    \  l += n; r += n;\n        T lsm = e, rsm = e;\n        while (l < r) {\n   \
-    \         if (l & 1) lsm = op(lsm, data[l++]);\n            if (r & 1) rsm = op(data[--r],\
+    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
+    \ x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n    }\n    T prod(int\
+    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n;\
+    \ r += n;\n        T lsm = e, rsm = e;\n        while (l < r) {\n            if\
+    \ (l & 1) lsm = op(lsm, data[l++]);\n            if (r & 1) rsm = op(data[--r],\
     \ rsm);\n            l >>= 1; r >>= 1;\n        }\n        return op(lsm, rsm);\n\
     \    }\n    T all_prod() { return data[1]; }\n    T get(int k) { return data[k\
     \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) {\n\
@@ -170,31 +170,33 @@ data:
     \       if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n                }\n\
     \                return r + 1 - n;\n            }\n            sm = op(data[r],\
     \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified\
-    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T> class RMiQ : public\
-    \ SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n  public:\n\
-    \    template<class... Arg> RMiQ(Arg&&... args)\n        : Base(\n           \
-    \ std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return std::min(a,\
-    \ b); },\n            std::numeric_limits<T>::max()\n        ) {}\n};\n\ntemplate<class\
-    \ T> class RMaQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
-    \  public:\n    template<class... Arg> RMaQ(Arg&&... args)\n        : Base(\n\
-    \            std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return\
-    \ std::max(a, b); },\n            std::numeric_limits<T>::min()\n        ) {}\n\
+    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ class RangeMinimumQuery : public SegmentTree<T> {\n  protected:\n    using Base\
+    \ = SegmentTree<T>;\n  public:\n    template<class... Args> RangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value\n   \
+    \     ) {}\n};\n\ntemplate<class T, T min_value = infinity<T>::min> class RangeMaximumQuery\
+    \ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
+    \  public:\n    template<class... Args> RangeMaximumQuery(Args&&... args)\n  \
+    \      : Base(\n            std::forward<Args>(args)...,\n            [](T a,\
+    \ T b) -> T { return std::max(a, b); },\n            min_value\n        ) {}\n\
     };\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class T> class\
-    \ RSQ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
-    \  public:\n    template<class... Arg> RSQ(Arg&&... args)\n        : Base(\n \
-    \           std::forward<Arg>(args)...,\n            [](T a, T b) -> T { return\
-    \ a + b; },\n            T(0)\n        ) {}\n};\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n */\n#line 4 \"\
-    test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\nint main() {\n    int\
-    \ n, q; cin >> n >> q;\n    RMiQ<int> seg(n);\n    rep (q) {\n        int t, a,\
-    \ b; cin >> t >> a >> b;\n        if (t == 0) seg.set(a, b);\n        else cout\
-    \ << seg.prod(a, b + 1) << endl;\n    }\n}\n"
+    \ RangeSumQuery : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
+    \  public:\n    template<class... Args> RangeSumQuery(Args&&... args)\n      \
+    \  : Base(\n            std::forward<Args>(args)...,\n            [](T a, T b)\
+    \ -> T { return a + b; },\n            T(0)\n        ) {}\n};\n\n/**\n * @brief\
+    \ SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ */\n#line 4 \"test/aoj/DSL/DSL_2_A-RMQ.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n, q; cin >> n >> q;\n    RangeMinimumQuery<int, (1ull <<\
+    \ 31) - 1> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n\
+    \        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) <<\
+    \ endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RMiQ<int>\
-    \ seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
-    \ (t == 0) seg.set(a, b);\n        else cout << seg.prod(a, b + 1) << endl;\n\
-    \    }\n}\n"
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeMinimumQuery<int,\
+    \ (1ull << 31) - 1> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a\
+    \ >> b;\n        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a,\
+    \ b + 1) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -202,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-11-29 20:19:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
