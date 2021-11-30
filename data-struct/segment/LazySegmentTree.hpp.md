@@ -292,6 +292,20 @@ data:
     \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
     \          [](U a, T b) -> T { return std::min(a, b); },\n            [](U a,\
     \ U b) -> U { return std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
+    \ class U, T min_value = infinity<T>::min> class RangeChminQueryRangeMaximumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChminQueryRangeMaximumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::max(a, b); },\n            min_value,\n  \
+    \          [](U a, T b) -> T { return std::min(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
+    \ class U, T max_value = infinity<T>::max> class RangeChmaxQueryRangeMinimumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChmaxQueryRangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
+    \          [](U a, T b) -> T { return std::max(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::max(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
     \ class U, T min_value = infinity<T>::min> class RangeChmaxQueryRangeMaximumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
     \ U>;\n  public:\n    template<class... Args> RangeChmaxQueryRangeMaximumQuery(Args&&...\
@@ -448,6 +462,20 @@ data:
     \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
     \          [](U a, T b) -> T { return std::min(a, b); },\n            [](U a,\
     \ U b) -> U { return std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
+    \ class U, T min_value = infinity<T>::min> class RangeChminQueryRangeMaximumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChminQueryRangeMaximumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::max(a, b); },\n            min_value,\n  \
+    \          [](U a, T b) -> T { return std::min(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
+    \ class U, T max_value = infinity<T>::max> class RangeChmaxQueryRangeMinimumQuery\
+    \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
+    \ U>;\n  public:\n    template<class... Args> RangeChmaxQueryRangeMinimumQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
+    \          [](U a, T b) -> T { return std::max(a, b); },\n            [](U a,\
+    \ U b) -> U { return std::max(a, b); }\n        ) {}\n};\n\ntemplate<class T,\
     \ class U, T min_value = infinity<T>::min> class RangeChmaxQueryRangeMaximumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
     \ U>;\n  public:\n    template<class... Args> RangeChmaxQueryRangeMaximumQuery(Args&&...\
@@ -463,7 +491,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-11-30 19:53:45+09:00'
+  timestamp: '2021-12-01 07:53:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
