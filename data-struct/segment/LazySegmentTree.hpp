@@ -20,7 +20,7 @@ template<class T, class U> class LazySegmentTree {
         data[k] = mapping(x, data[k]);
         if (k < n) {
             if (lazyflag[k]) {
-                lazy[k] = composition(x, lazy[k]);
+                lazy[k] = composition(lazy[k], x);
             }
             else {
                 lazy[k] = x;

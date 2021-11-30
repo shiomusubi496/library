@@ -13,7 +13,7 @@ int main() {
         [](mint a, mint b) -> mint { return a + b; },
         mint{0},
         [](PMM a, mint b) -> mint { return a.first * b + a.second; },
-        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first * b.second + a.second}; },
+        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.second * b.first + b.second}; },
         [](PMM a, int b) -> PMM { return PMM{a.first, a.second * b}; }
     );
     rep (Q) {
