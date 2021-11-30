@@ -235,7 +235,7 @@ data:
     \ ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
     \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = mapping(x,\
     \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
-    \      lazy[k] = composition(x, lazy[k]);\n            }\n            else {\n\
+    \      lazy[k] = composition(lazy[k], x);\n            }\n            else {\n\
     \                lazy[k] = x;\n                lazyflag[k] = true;\n         \
     \   }\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n\
     \            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
@@ -331,21 +331,21 @@ data:
     \ U>;\n  public:\n    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&...\
     \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
     \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
-    \          [](U a, T) -> T { return a; },\n            [](U a, U) -> U { return\
+    \          [](U a, T) -> T { return a; },\n            [](U, U a) -> U { return\
     \ a; }\n        ) {}\n};\n\ntemplate<class T, class U, T min_value = infinity<T>::min>\
     \ class RangeUpdateQueryRangeMaximumQuery : public LazySegmentTree<T, U> {\n \
     \ protected:\n    using Base = LazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeMaximumQuery(Args&&... args)\n        : Base(\n \
     \           std::forward<Args>(args)...,\n            [](T a, T b) -> T { return\
     \ std::max(a, b); },\n            min_value,\n            [](U a, T) -> T { return\
-    \ a; },\n            [](U a, U) -> U { return a; }\n        ) {}\n};\n\n//verified\
+    \ a; },\n            [](U, U a) -> U { return a; }\n        ) {}\n};\n\n//verified\
     \ with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\ntemplate<class T, class U> class\
     \ RangeUpdateQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {\n  protected:\n\
     \    using Base = MultiLazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeSumQuery(Args&&... args)\n        : Base(\n     \
     \       std::forward<Args>(args)...,\n            [](T a, T b) -> T { return a\
     \ + b; },\n            T(0),\n            [](U a, T) -> T { return a; },\n   \
-    \         [](U a, U) -> U { return a; },\n            [](U a, int b) -> U { return\
+    \         [](U, U a) -> U { return a; },\n            [](U a, int b) -> U { return\
     \ a * b; }\n        ) {}\n};\n\n//verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\n\
     template<class T, class U, T max_value = infinity<T>::max> class RangeAddQueryRangeMinimumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
@@ -388,8 +388,8 @@ data:
     \ {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    MultiLazySegmentTree<mint,\
     \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
     \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
-    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
-    \ * b.second + a.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
+    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.second\
+    \ * b.first + b.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
     \ a.second * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if\
     \ (t == 0) {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n         \
     \   seg.apply(l, r, PMM{b, c});\n        }\n        else {\n            int l,\
@@ -402,8 +402,8 @@ data:
     \   int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    MultiLazySegmentTree<mint,\
     \ PMM> seg(\n        A,\n        [](mint a, mint b) -> mint { return a + b; },\n\
     \        mint{0},\n        [](PMM a, mint b) -> mint { return a.first * b + a.second;\
-    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.first\
-    \ * b.second + a.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
+    \ },\n        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.second\
+    \ * b.first + b.second}; },\n        [](PMM a, int b) -> PMM { return PMM{a.first,\
     \ a.second * b}; }\n    );\n    rep (Q) {\n        int t; cin >> t;\n        if\
     \ (t == 0) {\n            int l, r, b, c; cin >> l >> r >> b >> c;\n         \
     \   seg.apply(l, r, PMM{b, c});\n        }\n        else {\n            int l,\
@@ -417,7 +417,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 20:19:51+09:00'
+  timestamp: '2021-11-30 19:53:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

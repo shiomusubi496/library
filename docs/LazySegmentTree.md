@@ -13,10 +13,10 @@
 分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g \in U$ が存在し、かつ効率よく計算できるときは、 `MultiLazySegmentTree` を参照。
 
 - コンストラクタ
-  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` で長さ $0$ に初期化する。
-  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。
-  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。
-  - `void init(vector<T> v)` : 列 `v` で初期化する。
+  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `f(x)` を計算する `mp(f, x)` 、写像の合成 $b \circ a$ を返す `cmp(a, b)` で長さ $0$ に初期化する。 $\Theta(N)$ 。
+  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
+  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。 $\Theta(N)$ 。
+  - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
   - `T get(int k)` : `a[k]` を返す。 $\Theta(\log N)$ 。

@@ -152,7 +152,7 @@ data:
     \ ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
     \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = mapping(x,\
     \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
-    \      lazy[k] = composition(x, lazy[k]);\n            }\n            else {\n\
+    \      lazy[k] = composition(lazy[k], x);\n            }\n            else {\n\
     \                lazy[k] = x;\n                lazyflag[k] = true;\n         \
     \   }\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n\
     \            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
@@ -248,21 +248,21 @@ data:
     \ U>;\n  public:\n    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&...\
     \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
     \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
-    \          [](U a, T) -> T { return a; },\n            [](U a, U) -> U { return\
+    \          [](U a, T) -> T { return a; },\n            [](U, U a) -> U { return\
     \ a; }\n        ) {}\n};\n\ntemplate<class T, class U, T min_value = infinity<T>::min>\
     \ class RangeUpdateQueryRangeMaximumQuery : public LazySegmentTree<T, U> {\n \
     \ protected:\n    using Base = LazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeMaximumQuery(Args&&... args)\n        : Base(\n \
     \           std::forward<Args>(args)...,\n            [](T a, T b) -> T { return\
     \ std::max(a, b); },\n            min_value,\n            [](U a, T) -> T { return\
-    \ a; },\n            [](U a, U) -> U { return a; }\n        ) {}\n};\n\n//verified\
+    \ a; },\n            [](U, U a) -> U { return a; }\n        ) {}\n};\n\n//verified\
     \ with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\ntemplate<class T, class U> class\
     \ RangeUpdateQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {\n  protected:\n\
     \    using Base = MultiLazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeSumQuery(Args&&... args)\n        : Base(\n     \
     \       std::forward<Args>(args)...,\n            [](T a, T b) -> T { return a\
     \ + b; },\n            T(0),\n            [](U a, T) -> T { return a; },\n   \
-    \         [](U a, U) -> U { return a; },\n            [](U a, int b) -> U { return\
+    \         [](U, U a) -> U { return a; },\n            [](U a, int b) -> U { return\
     \ a * b; }\n        ) {}\n};\n\n//verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\n\
     template<class T, class U, T max_value = infinity<T>::max> class RangeAddQueryRangeMinimumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
@@ -308,7 +308,7 @@ data:
     \    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
     \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = mapping(x,\
     \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
-    \      lazy[k] = composition(x, lazy[k]);\n            }\n            else {\n\
+    \      lazy[k] = composition(lazy[k], x);\n            }\n            else {\n\
     \                lazy[k] = x;\n                lazyflag[k] = true;\n         \
     \   }\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n\
     \            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
@@ -404,21 +404,21 @@ data:
     \ U>;\n  public:\n    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&...\
     \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
     \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value,\n  \
-    \          [](U a, T) -> T { return a; },\n            [](U a, U) -> U { return\
+    \          [](U a, T) -> T { return a; },\n            [](U, U a) -> U { return\
     \ a; }\n        ) {}\n};\n\ntemplate<class T, class U, T min_value = infinity<T>::min>\
     \ class RangeUpdateQueryRangeMaximumQuery : public LazySegmentTree<T, U> {\n \
     \ protected:\n    using Base = LazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeMaximumQuery(Args&&... args)\n        : Base(\n \
     \           std::forward<Args>(args)...,\n            [](T a, T b) -> T { return\
     \ std::max(a, b); },\n            min_value,\n            [](U a, T) -> T { return\
-    \ a; },\n            [](U a, U) -> U { return a; }\n        ) {}\n};\n\n//verified\
+    \ a; },\n            [](U, U a) -> U { return a; }\n        ) {}\n};\n\n//verified\
     \ with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\ntemplate<class T, class U> class\
     \ RangeUpdateQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {\n  protected:\n\
     \    using Base = MultiLazySegmentTree<T, U>;\n  public:\n    template<class...\
     \ Args> RangeUpdateQueryRangeSumQuery(Args&&... args)\n        : Base(\n     \
     \       std::forward<Args>(args)...,\n            [](T a, T b) -> T { return a\
     \ + b; },\n            T(0),\n            [](U a, T) -> T { return a; },\n   \
-    \         [](U a, U) -> U { return a; },\n            [](U a, int b) -> U { return\
+    \         [](U, U a) -> U { return a; },\n            [](U a, int b) -> U { return\
     \ a * b; }\n        ) {}\n};\n\n//verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\n\
     template<class T, class U, T max_value = infinity<T>::max> class RangeAddQueryRangeMinimumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
@@ -463,7 +463,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-11-29 20:19:51+09:00'
+  timestamp: '2021-11-30 19:53:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
@@ -493,10 +493,10 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ なる $g \in U$ が存在し、かつ効率よく計算できるときは、 `MultiLazySegmentTree` を参照。
 
 - コンストラクタ
-  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `U(T)` を計算する `mp` 、写像の合成 `cmp` で長さ $0$ に初期化する。
-  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。
-  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。
-  - `void init(vector<T> v)` : 列 `v` で初期化する。
+  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 二項演算 `op` 、単位元 `e` 、 `f(x)` を計算する `mp(f, x)` 、写像の合成 $b \circ a$ を返す `cmp(a, b)` で長さ $0$ に初期化する。 $\Theta(N)$ 。
+  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
+  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。 $\Theta(N)$ 。
+  - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
   - `T get(int k)` : `a[k]` を返す。 $\Theta(\log N)$ 。
