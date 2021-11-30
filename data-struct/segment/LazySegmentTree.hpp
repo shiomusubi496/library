@@ -230,7 +230,7 @@ template<class T, class U, T max_value = infinity<T>::max> class RangeUpdateQuer
             [](T a, T b) -> T { return std::min(a, b); },
             max_value,
             [](U a, T) -> T { return a; },
-            [](U a, U) -> U { return a; }
+            [](U, U a) -> U { return a; }
         ) {}
 };
 
@@ -244,7 +244,7 @@ template<class T, class U, T min_value = infinity<T>::min> class RangeUpdateQuer
             [](T a, T b) -> T { return std::max(a, b); },
             min_value,
             [](U a, T) -> T { return a; },
-            [](U a, U) -> U { return a; }
+            [](U, U a) -> U { return a; }
         ) {}
 };
 
@@ -259,7 +259,7 @@ template<class T, class U> class RangeUpdateQueryRangeSumQuery : public MultiLaz
             [](T a, T b) -> T { return a + b; },
             T(0),
             [](U a, T) -> T { return a; },
-            [](U a, U) -> U { return a; },
+            [](U, U a) -> U { return a; },
             [](U a, int b) -> U { return a * b; }
         ) {}
 };
