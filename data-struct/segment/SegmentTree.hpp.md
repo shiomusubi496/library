@@ -270,7 +270,7 @@ title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 - 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
 - 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
 
-を満たす構造の列 `a` を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
+を満たす構造の列を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
 
 - コンストラクタ
   - `SegmentTree<T>(T op(T, T), T e)` : 二項演算 `op` と単位元 `e` で長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
