@@ -562,4 +562,6 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 - `RangeAddQueryRangeMinimumQuery` : 区間加算クエリと区間最小値クエリを扱える。
 - `RangeAddQueryRangeMaximumQuery` : 区間加算クエリと区間最大値クエリを扱える。
 - `RangeChminQueryRangeMinimumQuery` : 区間chminクエリと区間最小値クエリを扱える。
+- `RangeChminQueryRangeMaximumQuery` : 区間chminクエリと区間最大値クエリを扱える。
+- `RangeChmaxQueryRangeMinimumQuery` : 区間chmaxクエリと区間最小値クエリを扱える。
 - `RangeChmaxQueryRangeMaximumQuery` : 区間chmaxクエリと区間最大値クエリを扱える。
