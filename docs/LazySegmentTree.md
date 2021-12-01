@@ -54,4 +54,6 @@
 - `RangeAddQueryRangeMinimumQuery` : 区間加算クエリと区間最小値クエリを扱える。
 - `RangeAddQueryRangeMaximumQuery` : 区間加算クエリと区間最大値クエリを扱える。
 - `RangeChminQueryRangeMinimumQuery` : 区間chminクエリと区間最小値クエリを扱える。
+- `RangeChminQueryRangeMaximumQuery` : 区間chminクエリと区間最大値クエリを扱える。
+- `RangeChmaxQueryRangeMinimumQuery` : 区間chmaxクエリと区間最小値クエリを扱える。
 - `RangeChmaxQueryRangeMaximumQuery` : 区間chmaxクエリと区間最大値クエリを扱える。
