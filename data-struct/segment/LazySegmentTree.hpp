@@ -3,11 +3,9 @@
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
 
-template<class T, class U> class LazySegmentTree {
+template<class T, class U, class F = std::function<T(T, T)>, class G = std::function<T(U, T)>, class H = std::function<U(U, U)>>
+class LazySegmentTree {
   protected:
-    using F = std::function<T(T, T)>;
-    using G = std::function<T(U, T)>;
-    using H = std::function<U(U, U)>;
     F op;
     T e;
     G mapping;

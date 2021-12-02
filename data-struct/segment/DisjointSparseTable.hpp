@@ -3,9 +3,8 @@
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
 
-template<class T> class DisjointSparseTable {
+template<class T, class F = std::function<T(T, T)>> class DisjointSparseTable {
   protected:
-    using F = std::function<T(T, T)>;
     F op;
     int h, ori;
     std::vector<int> logtable;

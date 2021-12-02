@@ -13,11 +13,11 @@
 
 また、以下の条件を満たすと、さらに多くのことができる。
 
-- 逆元の存在 : 任意の $A \in T$ に対して、ある $B \in T$ が存在して、 $A \cdot B = e$
+- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
 
 足し算や bitwise xor などはこれを満たす。
 
-- `BinaryIndexedTree(int n, T op(T, T), T e, T inv(T))` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
+- `BinaryIndexedTree(int n, T op(T, T), T e, T inv(T, T))` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
 - `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
 - `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
 - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。

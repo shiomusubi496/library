@@ -3,9 +3,8 @@
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
 
-template<class T> class SparseTable {
+template<class T, class F = std::function<T(T, T)>> class SparseTable {
   protected:
-    using F = std::function<T(T, T)>;
     F op;
     int h, ori;
     std::vector<int> logtable;

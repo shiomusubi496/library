@@ -2,10 +2,8 @@
 
 #include "../../other/template.hpp"
 
-template<class T> class CumulativeSum {
+template<class T, class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class CumulativeSum {
   protected:
-    using F = std::function<T(T, T)>;
-    using G = std::function<T(T, T)>;
     F op;
     T e;
     G inv;

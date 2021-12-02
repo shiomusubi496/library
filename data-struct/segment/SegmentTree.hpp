@@ -3,9 +3,8 @@
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
 
-template<class T> class SegmentTree {
+template<class T, class F = std::function<T(T, T)>> class SegmentTree {
   protected:
-    using F = std::function<T(T, T)>;
     F op;
     T e;
     int n, ori;
