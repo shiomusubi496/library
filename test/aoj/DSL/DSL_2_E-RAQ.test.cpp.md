@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E
   bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_E-RAQ.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#line 2 \"other/template.hpp\"\
+    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -192,16 +192,16 @@ data:
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_E-RAQ.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll> RAQ(std::vector<ll>(n,\
     \ 0));\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n     \
-    \       int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l, r + 1, x);\n\
+    \       int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l - 1, r, x);\n\
     \        }\n        else {\n            int k; cin >> k;\n            cout <<\
-    \ RAQ.get(k) << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
+    \ RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll>\
     \ RAQ(std::vector<ll>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n     \
-    \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l,\
-    \ r + 1, x);\n        }\n        else {\n            int k; cin >> k;\n      \
-    \      cout << RAQ.get(k) << endl;\n        }\n    }\n}"
+    \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l\
+    \ - 1, r, x);\n        }\n        else {\n            int k; cin >> k;\n     \
+    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -209,8 +209,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 17:45:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-02 17:58:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 layout: document
