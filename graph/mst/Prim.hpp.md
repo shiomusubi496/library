@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -221,8 +221,8 @@ data:
   timestamp: '2021-11-29 17:30:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
 documentation_of: graph/mst/Prim.hpp
 layout: document
 redirect_from:

@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -135,47 +135,47 @@ data:
     \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
     \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class T> class SegmentTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    F op;\n    T e;\n    int n, ori;\n    std::vector<T> data;\n  public:\n\
-    \    SegmentTree() = default;\n    SegmentTree(const F& op, const T& e) : SegmentTree(0,\
-    \ op, e) {}\n    SegmentTree(int n, const F& op, const T& e) : SegmentTree(std::vector<T>(n,\
-    \ e), op, e) {}\n    SegmentTree(const std::vector<T>& v, const F& op, const T&\
-    \ e) : op(op), e(e) { init(v); }\n    void init(const std::vector<T>& v) {\n \
-    \       ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
-    \ << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1)\
-    \ data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd>\
-    \ void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n \
-    \       k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
-    \ = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n \
-    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
-    \ x) {\n        update(k, [&](T a) -> T { return op(a, x); });\n    }\n    T prod(int\
-    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n;\
-    \ r += n;\n        T lsm = e, rsm = e;\n        while (l < r) {\n            if\
-    \ (l & 1) lsm = op(lsm, data[l++]);\n            if (r & 1) rsm = op(data[--r],\
-    \ rsm);\n            l >>= 1; r >>= 1;\n        }\n        return op(lsm, rsm);\n\
-    \    }\n    T all_prod() { return data[1]; }\n    T get(int k) { return data[k\
-    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) {\n\
-    \        assert(0 <= l && l <= ori);\n        assert(cond(e));\n        if (l\
-    \ == ori) return ori;\n        l += n;\n        T sm = e;\n        do {\n    \
-    \        while ((l & 1) == 0) l >>= 1;\n            if (!cond(op(sm, data[l])))\
-    \ {\n                while (l < n) {\n                    l <<= 1;\n         \
-    \           if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n             \
-    \   }\n                return l - n;\n            }\n            sm = op(sm, data[l++]);\n\
-    \        } while ((l & -l) != l);\n        return ori;\n    }\n    template<class\
-    \ Cond> int min_left(int r, const Cond& cond) {\n        assert(0 <= r && r <=\
-    \ ori);\n        assert(cond(e));\n        if (r == 0) return 0;\n        r +=\
-    \ n;\n        T sm = e;\n        do {\n            --r;\n            while ((r\
-    \ & 1) && r > 1) r >>= 1;\n            if (!cond(op(data[r], sm))) {\n       \
-    \         while (r < n) {\n                    r = r << 1 ^ 1;\n             \
-    \       if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n                }\n\
-    \                return r + 1 - n;\n            }\n            sm = op(data[r],\
-    \ sm);\n        } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified\
-    \ with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ class RangeMinimumQuery : public SegmentTree<T> {\n  protected:\n    using Base\
-    \ = SegmentTree<T>;\n  public:\n    template<class... Args> RangeMinimumQuery(Args&&...\
-    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
-    \   [](T a, T b) -> T { return std::min(a, b); },\n            max_value\n   \
-    \     ) {}\n};\n\ntemplate<class T, T min_value = infinity<T>::min> class RangeMaximumQuery\
+    \n\ntemplate<class T, class F = std::function<T(T, T)>> class SegmentTree {\n\
+    \  protected:\n    F op;\n    T e;\n    int n, ori;\n    std::vector<T> data;\n\
+    \  public:\n    SegmentTree() = default;\n    SegmentTree(const F& op, const T&\
+    \ e) : SegmentTree(0, op, e) {}\n    SegmentTree(int n, const F& op, const T&\
+    \ e) : SegmentTree(std::vector<T>(n, e), op, e) {}\n    SegmentTree(const std::vector<T>&\
+    \ v, const F& op, const T& e) : op(op), e(e) { init(v); }\n    void init(const\
+    \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n \
+    \       rrep (i, n, 1) data[i] = op(data[i << 1], data[i << 1 ^ 1]);\n    }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void\
+    \ set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n  \
+    \  void apply(int k, T x) {\n        update(k, [&](T a) -> T { return op(a, x);\
+    \ });\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r\
+    \ <= ori);\n        l += n; r += n;\n        T lsm = e, rsm = e;\n        while\
+    \ (l < r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n            if\
+    \ (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n        }\n\
+    \        return op(lsm, rsm);\n    }\n    T all_prod() { return data[1]; }\n \
+    \   T get(int k) { return data[k + n]; }\n    template<class Cond> int max_right(int\
+    \ l, const Cond& cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(e));\n\
+    \        if (l == ori) return ori;\n        l += n;\n        T sm = e;\n     \
+    \   do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);\n    \
+    \            }\n                return l - n;\n            }\n            sm =\
+    \ op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n\
+    \    }\n    template<class Cond> int min_left(int r, const Cond& cond) {\n   \
+    \     assert(0 <= r && r <= ori);\n        assert(cond(e));\n        if (r ==\
+    \ 0) return 0;\n        r += n;\n        T sm = e;\n        do {\n           \
+    \ --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if (!cond(op(data[r],\
+    \ sm))) {\n                while (r < n) {\n                    r = r << 1 ^ 1;\n\
+    \                    if (cond(op(data[r], sm))) sm = op(data[r--], sm);\n    \
+    \            }\n                return r + 1 - n;\n            }\n           \
+    \ sm = op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> class RangeMinimumQuery : public SegmentTree<T>\
+    \ {\n  protected:\n    using Base = SegmentTree<T>;\n  public:\n    template<class...\
+    \ Args> RangeMinimumQuery(Args&&... args)\n        : Base(\n            std::forward<Args>(args)...,\n\
+    \            [](T a, T b) -> T { return std::min(a, b); },\n            max_value\n\
+    \        ) {}\n};\n\ntemplate<class T, T min_value = infinity<T>::min> class RangeMaximumQuery\
     \ : public SegmentTree<T> {\n  protected:\n    using Base = SegmentTree<T>;\n\
     \  public:\n    template<class... Args> RangeMaximumQuery(Args&&... args)\n  \
     \      : Base(\n            std::forward<Args>(args)...,\n            [](T a,\
@@ -204,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 20:19:51+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp

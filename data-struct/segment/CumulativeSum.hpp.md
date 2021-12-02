@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -117,39 +117,37 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 4 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class\
-    \ T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n    int\
-    \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
-    \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
-    \ T { return a - b; }) {}\n    CumulativeSum(const std::vector<T>& v, const F&\
-    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        n = v.size();\n        data.assign(n\
-    \ + 1, e);\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T\
-    \ query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n       \
-    \ return inv(data[r], data[l]);\n    }\n    std::vector<T> get_data() { return\
-    \ data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
-    \ class CumulativeSum {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n    int\
-    \ n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n  \
-    \  CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
-    \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
-    \ T { return a - b; }) {}\n    CumulativeSum(const std::vector<T>& v, const F&\
-    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        n = v.size();\n        data.assign(n\
-    \ + 1, e);\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T\
-    \ query(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n       \
-    \ return inv(data[r], data[l]);\n    }\n    std::vector<T> get_data() { return\
-    \ data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
-    \ */\n"
+    \ T, class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class\
+    \ CumulativeSum {\n  protected:\n    F op;\n    T e;\n    G inv;\n    int n;\n\
+    \    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n    CumulativeSum(const\
+    \ std::vector<T>& v)\n        : CumulativeSum(v, [](T a, T b) -> T { return a\
+    \ + b; },\n                        T(0), [](T a, T b) -> T { return a - b; })\
+    \ {}\n    CumulativeSum(const std::vector<T>& v, const F& op, const T& e, const\
+    \ G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        n = v.size();\n        data.assign(n + 1, e);\n        rep (i,\
+    \ n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l, int r) {\n  \
+    \      assert(0 <= l && l <= r && r <= n);\n        return inv(data[r], data[l]);\n\
+    \    }\n    std::vector<T> get_data() { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
+    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class CumulativeSum\
+    \ {\n  protected:\n    F op;\n    T e;\n    G inv;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v)\n        : CumulativeSum(v, [](T a, T b) -> T { return a + b; },\n      \
+    \                  T(0), [](T a, T b) -> T { return a - b; }) {}\n    CumulativeSum(const\
+    \ std::vector<T>& v, const F& op, const T& e, const G& inv) : op(op), e(e), inv(inv)\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, e);\n        rep (i, n) data[i + 1] = op(data[i],\
+    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
+    \ && r <= n);\n        return inv(data[r], data[l]);\n    }\n    std::vector<T>\
+    \ get_data() { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\
+    \u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
@@ -162,15 +160,18 @@ title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
 ---
 ## 概要
 
-群 $(T, \cdot : T \times T \to T)$ 、つまり
+モノイド $(T, \cdot : T \times T \to T)$ 、つまり
 
 - 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$ が成り立つ。
-- 逆元の存在 : 任意の $A \in T$ に対して、ある $B \in T$ が存在して、 $A \cdot B = e$
+- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
+
+を満たす構造のうち、
+
+- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
 
 を満たす構造の列を扱えるデータ構造。例えば、足し算や bitwise xor などがこの条件を満たす。
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $\Theta(f(n))$ の時、以下の計算量は全て $\Theta(f(n))$ 倍になる。
 
-- `SparseTable(vector<int> a, T op(T, T), T e, T inv(T))` : リスト `a` と二項演算 `op` 、単位元 `e` 、及び逆元を返す `inv` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
+- `SparseTable(vector<int> a, T op(T, T), T e, T inv(T, T))` : リスト `a` と二項演算 `op` 、単位元 `e` 、 $a \cdot c = b$ なる $c$ を返す `inv(a, b)` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
 - `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。

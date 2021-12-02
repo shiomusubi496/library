@@ -12,6 +12,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
+    - icon: ':question:'
+      path: data-struct/segment/DualSegmentTree.hpp
+      title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -88,10 +91,10 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -161,6 +164,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
       title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+      title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+    - icon: ':x:'
+      path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+      title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp

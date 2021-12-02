@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -119,8 +119,8 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 4 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class T> class CumulativeSum {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n\
+    \n\ntemplate<class T, class F = std::function<T(T, T)>, class G = std::function<T(T,\
+    \ T)>> class CumulativeSum {\n  protected:\n    F op;\n    T e;\n    G inv;\n\
     \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n\
     \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
     \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
@@ -146,7 +146,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp

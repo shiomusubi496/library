@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []

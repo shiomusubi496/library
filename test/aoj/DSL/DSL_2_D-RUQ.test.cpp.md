@@ -1,13 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/other/TopologicalSort.hpp
-    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
-      )"
+  - icon: ':question:'
+    path: data-struct/segment/DualSegmentTree.hpp
+    title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':question:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -18,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B\"\n#line 2 \"other/template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
+  bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -122,80 +121,101 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int\
-    \ t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f),\
-    \ to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
-    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
-    \ a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(all(G), 0, [](int a, const\
-    \ Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n\
-    \            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
-    \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
-    \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/other/TopologicalSort.hpp\"\n\n\
-    #line 5 \"graph/other/TopologicalSort.hpp\"\n\ntemplate<class T> class TopologicalSort\
-    \ {\n  protected:\n    int n;\n    Graph<T> G;\n    std::vector<int> ord;\n  \
-    \  std::vector<bool> seen;\n    void dfs(int v) {\n        seen[v] = true;\n \
-    \       for (const edge<T>& e : G[v]) {\n            if (seen[e.to]) continue;\n\
-    \            dfs(e.to);\n        }\n        ord.push_back(v);\n    }\n  public:\n\
-    \    TopologicalSort() = default;\n    TopologicalSort(const Graph<T>& G_) { init(G_);\
-    \ }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n\
-    \        ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n\
-    \            if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
-    \    }\n    std::vector<int> get() const { return ord; }\n};\n\n/**\n * @brief\
-    \ TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n *\
-    \ @docs docs/TopologicalSort.md\n */\n#line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    Graph<int>\
-    \ G(n);\n    rep (m) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
-    \ b, true);\n    }\n    for (const int& i : TopologicalSort<int>(G).get()) cout\
-    \ << i << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/other/TopologicalSort.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n    rep (m) {\n     \
-    \   int a, b; cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n    for\
-    \ (const int& i : TopologicalSort<int>(G).get()) cout << i << endl;\n}\n"
+    \    }\n};\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\n\n#line 2 \"\
+    other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define\
+    \ KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline\
+    \ ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n      \
+    \  ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a >> 1 |\
+    \ b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1; i < (1ull\
+    \ << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR int msb(ull\
+    \ x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000) x &=\
+    \ 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res\
+    \ +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=\
+    \  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n\
+    \        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline\
+    \ CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n \
+    \   }\n}\n#line 5 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
+    \ T, class U, class F = std::function<T(U, T)>, class G = std::function<U(U, U)>>\
+    \ class DualSegmentTree {\n  protected:\n    F mapping;\n    G composition;\n\
+    \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
+    \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
+    \    if (lazyflag[k]) {\n                lazy[k] = composition(lazy[k], x);\n\
+    \            }\n            else {\n                lazy[k] = x;\n           \
+    \     lazyflag[k] = true;\n            }\n        }\n        else if (k < n +\
+    \ ori) {\n            data[k - n] = mapping(x, data[k - n]);\n        }\n    }\n\
+    \    void eval(int k) {\n        if (lazyflag[k]) {\n            all_apply(k <<\
+    \ 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k]\
+    \ = false;\n        }\n    }\n  public:\n    DualSegmentTree() = default;\n  \
+    \  DualSegmentTree(const F& mapping, const G& composition)\n        : DualSegmentTree(0,\
+    \ mapping, composition) {}\n    DualSegmentTree(int n_, const F& mapping, const\
+    \ G& composition)\n        : DualSegmentTree(std::vector<T>(n_), mapping, composition)\
+    \ {}\n    DualSegmentTree(const std::vector<T>& v, const F& mapping, const G&\
+    \ composition)\n        : mapping(mapping), composition(composition) { init(v);\
+    \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
+    \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
+    \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
+    \ k) {\n        assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i,\
+    \ h) eval(k >> i);\n        return data[k - n];\n    }\n    template<class Upd>\
+    \ void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n\
+    \        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k - n] = upd(data[k\
+    \ - n]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T) -> T { return\
+    \ x; });\n    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T\
+    \ { return mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n  \
+    \      assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n    \
+    \    rreps (i, h) {\n            bool seen = false;\n            if (((l >> i)\
+    \ << i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r)\
+    \ eval((r - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\
+    \n        while (l != r) {\n            if (l & 1) all_apply(l++, x);\n      \
+    \      if (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n\
+    \    }\n};\n\ntemplate<class T> class RangeUpdateQuery : public DualSegmentTree<T,\
+    \ T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n  public:\n   \
+    \ template<class... Args> RangeUpdateQuery(Args&&... args)\n        : Base(\n\
+    \            std::forward<Args>(args)...,\n            [](T a, T) -> T { return\
+    \ a; },\n            [](T, T a) -> T { return a; }\n        ) {}\n};\n\ntemplate<class\
+    \ T> class RangeAddQuery : public DualSegmentTree<T, T> {\n  protected:\n    using\
+    \ Base = DualSegmentTree<T, T>;\n  public:\n    template<class... Args> RangeAddQuery(Args&&...\
+    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
+    \   [](T a, T b) -> T { return a + b; },\n            [](T a, T b) -> T { return\
+    \ a + b; }\n        ) {}\n};\n\ntemplate<class T> class RangeChminQuery : public\
+    \ DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n\
+    \  public:\n    template<class... Args> RangeChminQuery(Args&&... args)\n    \
+    \    : Base(\n            std::forward<Args>(args)...,\n            [](T a, T\
+    \ b) -> T { return std::min(a, b); },\n            [](T a, T b) -> T { return\
+    \ std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T> class RangeChmaxQuery\
+    \ : public DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T,\
+    \ T>;\n  public:\n    template<class... Args> RangeChmaxQuery(Args&&... args)\n\
+    \        : Base(\n            std::forward<Args>(args)...,\n            [](T a,\
+    \ T b) -> T { return std::max(a, b); },\n            [](T a, T b) -> T { return\
+    \ std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief DualSegmentTree(\u53CC\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \ */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int> RSQ(std::vector<int>(n,\
+    \ (1ull << 31) - 1));\n    rep (q) {\n        int t; cin >> t;\n        if (t\
+    \ == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RSQ.apply(l,\
+    \ r + 1, x);\n        }\n        else {\n            int k; cin >> k;\n      \
+    \      cout << RSQ.get(k) << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
+    \ RSQ(std::vector<int>(n, (1ull << 31) - 1));\n    rep (q) {\n        int t; cin\
+    \ >> t;\n        if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n\
+    \            RSQ.apply(l, r + 1, x);\n        }\n        else {\n            int\
+    \ k; cin >> k;\n            cout << RSQ.get(k) << endl;\n        }\n    }\n}"
   dependsOn:
   - other/template.hpp
-  - graph/Graph.hpp
-  - graph/other/TopologicalSort.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-- /verify/test/aoj/GRL/GRL_4_B-Toposo.test.cpp.html
-title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+- /verify/test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+- /verify/test/aoj/DSL/DSL_2_D-RUQ.test.cpp.html
+title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 ---

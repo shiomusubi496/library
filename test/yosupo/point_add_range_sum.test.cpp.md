@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -119,10 +119,10 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 4 \"\
-    data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class T> class BinaryIndexedTree\
-    \ {\n  protected:\n    using F = std::function<T(T, T)>;\n    using G = std::function<T(T,\
-    \ T)>;\n    F op;\n    T e;\n    G inv;\n    bool inv_exits;\n    int n;\n   \
-    \ std::vector<T> data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
+    data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class T, class F = std::function<T(T,\
+    \ T)>, class G = std::function<T(T, T)>> class BinaryIndexedTree {\n  protected:\n\
+    \    F op;\n    T e;\n    G inv;\n    bool inv_exits;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    BinaryIndexedTree() = default;\n    BinaryIndexedTree(int\
     \ n_)\n        : BinaryIndexedTree(n_  , [](const T& a, const T& b) -> T { return\
     \ a + b; },\n                            T(0), [](const T& a, const T& b) -> T\
     \ { return a - b; }) {}\n    BinaryIndexedTree(const F& op, const T& e) : BinaryIndexedTree(0,\
@@ -156,7 +156,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_add_range_sum.test.cpp

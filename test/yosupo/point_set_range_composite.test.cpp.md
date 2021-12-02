@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -229,10 +229,10 @@ data:
     \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
     \ 0;\n    }\n}\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
-    \ T> class SegmentTree {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    F op;\n    T e;\n    int n, ori;\n    std::vector<T> data;\n  public:\n \
-    \   SegmentTree() = default;\n    SegmentTree(const F& op, const T& e) : SegmentTree(0,\
-    \ op, e) {}\n    SegmentTree(int n, const F& op, const T& e) : SegmentTree(std::vector<T>(n,\
+    \ T, class F = std::function<T(T, T)>> class SegmentTree {\n  protected:\n   \
+    \ F op;\n    T e;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ = default;\n    SegmentTree(const F& op, const T& e) : SegmentTree(0, op, e)\
+    \ {}\n    SegmentTree(int n, const F& op, const T& e) : SegmentTree(std::vector<T>(n,\
     \ e), op, e) {}\n    SegmentTree(const std::vector<T>& v, const F& op, const T&\
     \ e) : op(op), e(e) { init(v); }\n    void init(const std::vector<T>& v) {\n \
     \       ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 20:19:51+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp

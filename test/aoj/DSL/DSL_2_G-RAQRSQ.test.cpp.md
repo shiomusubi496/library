@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -136,53 +136,52 @@ data:
     \        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline\
     \ CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 : 0;\n \
     \   }\n}\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
-    \ T, class U> class LazySegmentTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T(U, T)>;\n    using H = std::function<U(U,\
-    \ U)>;\n    F op;\n    T e;\n    G mapping;\n    H composition;\n    int h, n,\
-    \ ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = mapping(x,\
-    \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
-    \      lazy[k] = composition(lazy[k], x);\n            }\n            else {\n\
-    \                lazy[k] = x;\n                lazyflag[k] = true;\n         \
-    \   }\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n\
-    \            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
-    \            lazyflag[k] = false;\n        }\n    }\n    void dataup(int k) {\n\
-    \        data[k] = op(data[k << 1], data[k << 1 ^ 1]);\n    }\n  public:\n   \
-    \ LazySegmentTree() = default;\n    LazySegmentTree(const F& op, const T& e, const\
-    \ G& mapping, const H& composition)\n        : LazySegmentTree(0, op, e, mapping,\
-    \ composition) {}\n    LazySegmentTree(int n_, const F& op, const T& e, const\
-    \ G& mapping, const H& composition)\n        : LazySegmentTree(std::vector<T>(n_,\
-    \ e), op, e, mapping, composition) {}\n    LazySegmentTree(const std::vector<T>&\
-    \ v, const F& op, const T& e, const G& mapping, const H& composition)\n      \
-    \  : op(op), e(e), mapping(mapping), composition(composition) { init(v); }\n \
-    \   void init(const std::vector<T>& v) {\n        ori = v.size();\n        h =\
-    \ bitop::ceil_log2(ori);\n        n = 1 << h;\n        data.assign(n << 1, e);\n\
-    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) dataup(i);\n\
-    \        lazy.resize(n << 1); lazyflag.assign(n << 1, false);\n    }\n    T prod(int\
-    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
-    \ r) return e;\n\n        l += n; r += n;\n        rreps (i, h) {\n          \
-    \  bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen\
-    \ = true;\n            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n\
-    \            if (!seen) break;\n        }\n\n        T lsm = e, rsm = e;\n   \
-    \     while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n   \
-    \         if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n\
-    \        }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n        assert(0\
-    \ <= k && k < ori);\n        \n        k += n;\n        rreps (i, h) eval(k >>\
-    \ i);\n        return data[k];\n    }\n    T all_prod() { return data[1]; }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
-    \       data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n    }\n\
-    \    void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n \
-    \   }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T { return\
-    \ mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n        assert(0\
-    \ <= l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n;\
-    \ r += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
-    \ >> i) << i) != l) eval(l >> i), lst = i;\n            if (((r >> i) << i) !=\
-    \ r) eval((r - 1) >> i), lst = i;\n            if (lst != i) break;\n        }\n\
-    \n        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n         \
-    \   if (l2 & 1) all_apply(l2++, x);\n            if (r2 & 1) all_apply(--r2, x);\n\
-    \        }\n        \n        rep (i, lst, h + 1) {\n            if (((l >> i)\
-    \ << i) != l) dataup(l >> i);\n            if (((r >> i) << i) != r) dataup((r\
+    \ T, class U, class F = std::function<T(T, T)>, class G = std::function<T(U, T)>,\
+    \ class H = std::function<U(U, U)>>\nclass LazySegmentTree {\n  protected:\n \
+    \   F op;\n    T e;\n    G mapping;\n    H composition;\n    int h, n, ori;\n\
+    \    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n\
+    \    void all_apply(int k, const U& x) {\n        data[k] = mapping(x, data[k]);\n\
+    \        if (k < n) {\n            if (lazyflag[k]) {\n                lazy[k]\
+    \ = composition(lazy[k], x);\n            }\n            else {\n            \
+    \    lazy[k] = x;\n                lazyflag[k] = true;\n            }\n      \
+    \  }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n            all_apply(k\
+    \ << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k]\
+    \ = false;\n        }\n    }\n    void dataup(int k) {\n        data[k] = op(data[k\
+    \ << 1], data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() = default;\n\
+    \    LazySegmentTree(const F& op, const T& e, const G& mapping, const H& composition)\n\
+    \        : LazySegmentTree(0, op, e, mapping, composition) {}\n    LazySegmentTree(int\
+    \ n_, const F& op, const T& e, const G& mapping, const H& composition)\n     \
+    \   : LazySegmentTree(std::vector<T>(n_, e), op, e, mapping, composition) {}\n\
+    \    LazySegmentTree(const std::vector<T>& v, const F& op, const T& e, const G&\
+    \ mapping, const H& composition)\n        : op(op), e(e), mapping(mapping), composition(composition)\
+    \ { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data.assign(n\
+    \ << 1, e);\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1)\
+    \ dataup(i);\n        lazy.resize(n << 1); lazyflag.assign(n << 1, false);\n \
+    \   }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        if (l == r) return e;\n\n        l += n; r += n;\n        rreps (i, h)\
+    \ {\n            bool seen = false;\n            if (((l >> i) << i) != l) eval(l\
+    \ >> i), seen = true;\n            if (((r >> i) << i) != r) eval((r - 1) >> i),\
+    \ seen = true;\n            if (!seen) break;\n        }\n\n        T lsm = e,\
+    \ rsm = e;\n        while (l != r) {\n            if (l & 1) lsm = op(lsm, data[l++]);\n\
+    \            if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>=\
+    \ 1;\n        }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n   \
+    \     assert(0 <= k && k < ori);\n        \n        k += n;\n        rreps (i,\
+    \ h) eval(k >> i);\n        return data[k];\n    }\n    T all_prod() { return\
+    \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
+    \ >> i);\n        data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n\
+    \    }\n    void set(int k, T x) {\n        update(k, [&](T) -> T { return x;\
+    \ });\n    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T {\
+    \ return mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n    \
+    \    assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return;\n\n  \
+    \      l += n; r += n;\n        int lst = h + 1;\n        rreps (i, h) {\n   \
+    \         if (((l >> i) << i) != l) eval(l >> i), lst = i;\n            if (((r\
+    \ >> i) << i) != r) eval((r - 1) >> i), lst = i;\n            if (lst != i) break;\n\
+    \        }\n\n        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {\n\
+    \            if (l2 & 1) all_apply(l2++, x);\n            if (r2 & 1) all_apply(--r2,\
+    \ x);\n        }\n        \n        rep (i, lst, h + 1) {\n            if (((l\
+    \ >> i) << i) != l) dataup(l >> i);\n            if (((r >> i) << i) != r) dataup((r\
     \ - 1) >> i);\n        }\n    }\n    template<class C> int max_right(int l, const\
     \ C& cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(e));\n\
     \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
@@ -324,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-01 07:53:17+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp

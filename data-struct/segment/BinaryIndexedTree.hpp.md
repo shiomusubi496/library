@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -120,29 +120,8 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 4 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
-    \ T> class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n\
-    \    bool inv_exits;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree()\
-    \ = default;\n    BinaryIndexedTree(int n_)\n        : BinaryIndexedTree(n_  ,\
-    \ [](const T& a, const T& b) -> T { return a + b; },\n                       \
-    \     T(0), [](const T& a, const T& b) -> T { return a - b; }) {}\n    BinaryIndexedTree(const\
-    \ F& op, const T& e) : BinaryIndexedTree(0, op, e) {}\n    BinaryIndexedTree(int\
-    \ n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }\n\
-    \    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op),\
-    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = n_;\n        data.assign(n + 1, e);\n    }\n    void add(int k, T x)\
-    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = e;\n        while (k) {\n\
-    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
-    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
-    \ r);\n        assert(inv_exits);\n        return inv(sum(r), sum(l));\n    }\n\
-    \    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void set(int\
-    \ k, T x) {\n        add(k, inv(x, get(k)));\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
-    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
-    \ class BinaryIndexedTree {\n  protected:\n    using F = std::function<T(T, T)>;\n\
-    \    using G = std::function<T(T, T)>;\n    F op;\n    T e;\n    G inv;\n    bool\
+    \ T, class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class\
+    \ BinaryIndexedTree {\n  protected:\n    F op;\n    T e;\n    G inv;\n    bool\
     \ inv_exits;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree()\
     \ = default;\n    BinaryIndexedTree(int n_)\n        : BinaryIndexedTree(n_  ,\
     \ [](const T& a, const T& b) -> T { return a + b; },\n                       \
@@ -161,16 +140,37 @@ data:
     \    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void set(int\
     \ k, T x) {\n        add(k, inv(x, get(k)));\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
     \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class BinaryIndexedTree\
+    \ {\n  protected:\n    F op;\n    T e;\n    G inv;\n    bool inv_exits;\n    int\
+    \ n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree() = default;\n\
+    \    BinaryIndexedTree(int n_)\n        : BinaryIndexedTree(n_  , [](const T&\
+    \ a, const T& b) -> T { return a + b; },\n                            T(0), [](const\
+    \ T& a, const T& b) -> T { return a - b; }) {}\n    BinaryIndexedTree(const F&\
+    \ op, const T& e) : BinaryIndexedTree(0, op, e) {}\n    BinaryIndexedTree(int\
+    \ n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }\n\
+    \    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op),\
+    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
+    \     n = n_;\n        data.assign(n + 1, e);\n    }\n    void add(int k, T x)\
+    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = e;\n        while (k) {\n\
+    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
+    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
+    \ r);\n        assert(inv_exits);\n        return inv(sum(r), sum(l));\n    }\n\
+    \    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void set(int\
+    \ k, T x) {\n        add(k, inv(x, get(k)));\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document
 redirect_from:
@@ -193,11 +193,11 @@ title: BinaryIndexedTree(FenwickTree, BIT)
 
 また、以下の条件を満たすと、さらに多くのことができる。
 
-- 逆元の存在 : 任意の $A \in T$ に対して、ある $B \in T$ が存在して、 $A \cdot B = e$
+- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
 
 足し算や bitwise xor などはこれを満たす。
 
-- `BinaryIndexedTree(int n, T op(T, T), T e, T inv(T))` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
+- `BinaryIndexedTree(int n, T op(T, T), T e, T inv(T, T))` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
 - `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
 - `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
 - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。

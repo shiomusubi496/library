@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -135,23 +135,24 @@ data:
     \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
     \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class T> class SparseTable {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v, const F& op) : op(op) { init(v); }\n    void init(const std::vector<T>& v)\
-    \ {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
-    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
-    \  assert(0 <= l && l < r && r <= ori);\n        int d = logtable[r - l];\n  \
-    \      return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
-    \ SparseTable\n * @docs docs/SparseTable.md\n */\n#line 4 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N);\n    cin >> A;\n    SparseTable<int> ST(A, [](int a, int b) -> int { return\
-    \ min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout\
-    \ << ST.query(l, r) << endl;\n    }\n}\n"
+    \n\ntemplate<class T, class F = std::function<T(T, T)>> class SparseTable {\n\
+    \  protected:\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n  \
+    \  std::vector<std::vector<T>> data;\n  public:\n    SparseTable() = default;\n\
+    \    SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }\n\
+    \    void init(const std::vector<T>& v) {\n        ori = v.size();\n        h\
+    \ = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n      \
+    \  reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n \
+    \       }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
+    \ && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
+    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
+    \ */\n#line 4 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\n  \
+    \  cin >> A;\n    SparseTable<int> ST(A, [](int a, int b) -> int { return min(a,\
+    \ b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout << ST.query(l,\
+    \ r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../data-struct/segment/SparseTable.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
@@ -165,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp

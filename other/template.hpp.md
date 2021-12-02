@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
+  - icon: ':question:'
+    path: data-struct/segment/DualSegmentTree.hpp
+    title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -71,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   _extendedVerifiedWith:
@@ -135,6 +138,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+    title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - icon: ':x:'
+    path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+    title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
@@ -216,9 +225,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -425,79 +434,82 @@ data:
   isVerificationFile: false
   path: other/template.hpp
   requiredBy:
-  - data-struct/segment/DisjointSparseTable.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/unionfind/UnionFind.hpp
   - other/bitop.hpp
-  - math/Combinatorics.hpp
-  - math/PrimeFactor.hpp
-  - math/ModInt.hpp
-  - math/EulerPhi.hpp
   - graph/other/TopologicalSort.hpp
-  - graph/Graph.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/BellmanFord.hpp
-  - graph/shortest-path/Restore.hpp
-  - graph/shortest-path/Dijkstra.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
+  - graph/connected/ConnectedComponents.hpp
+  - graph/connected/StronglyConnectedComponents.hpp
+  - graph/Graph.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/shortest-path/WarshallFloyd.hpp
+  - graph/shortest-path/Restore.hpp
+  - graph/shortest-path/BellmanFord.hpp
+  - math/EulerPhi.hpp
+  - math/PrimeFactor.hpp
+  - math/ModInt.hpp
+  - math/Combinatorics.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/unionfind/UnionFind.hpp
   timestamp: '2021-11-29 17:30:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - test/aoj/NTL/NTL_1_B-Pow.test.cpp
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/aplusb.test.cpp
+  - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/many_aplusb.test.cpp
+  - test/yosupo/unionfind.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
-  - test/yosupo/shortest_path.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/aplusb.test.cpp
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/unionfind.test.cpp
-  - test/yosupo/many_aplusb.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
+  - test/aoj/NTL/NTL_1_B-Pow.test.cpp
+  - test/aoj/NTL/NTL_1_C-LCM.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/aoj/NTL/NTL_1_A-Prime.test.cpp
 documentation_of: other/template.hpp
 layout: document
 redirect_from:

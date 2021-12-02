@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []

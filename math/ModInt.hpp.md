@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -331,14 +331,14 @@ data:
   timestamp: '2021-11-29 17:30:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

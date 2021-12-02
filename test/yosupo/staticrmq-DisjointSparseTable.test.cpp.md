@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -136,8 +136,8 @@ data:
     \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
     \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
-    \ T> class DisjointSparseTable {\n  protected:\n    using F = std::function<T(T,\
-    \ T)>;\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
+    \ T, class F = std::function<T(T, T)>> class DisjointSparseTable {\n  protected:\n\
+    \    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
     \ v_;\n    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable()\
     \ = default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) :\
     \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-02 16:51:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
