@@ -190,18 +190,18 @@ data:
     \ std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief DualSegmentTree(\u53CC\
     \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_E-RAQ.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<int> RAQ(std::vector<int>(n,\
+    \ main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll> RAQ(std::vector<ll>(n,\
     \ 0));\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n     \
     \       int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l - 1, r, x);\n\
     \        }\n        else {\n            int k; cin >> k;\n            cout <<\
     \ RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<int>\
-    \ RAQ(std::vector<int>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n    \
-    \    if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n           \
-    \ RAQ.apply(l - 1, r, x);\n        }\n        else {\n            int k; cin >>\
-    \ k;\n            cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}"
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll>\
+    \ RAQ(std::vector<ll>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n     \
+    \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l\
+    \ - 1, r, x);\n        }\n        else {\n            int k; cin >> k;\n     \
+    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -209,7 +209,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-02 17:19:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
