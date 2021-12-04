@@ -149,9 +149,9 @@ data:
     \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
     \                rep (k, 1, len) {\n                    if (j + k >= ori) break;\n\
     \                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n    \
-    \            }\n            }\n        }\n    }\n    T query(int l, int r) {\n\
-    \        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l ==\
-    \ r) return v_[l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
+    \            }\n            }\n        }\n    }\n    T query(int l, int r) const\
+    \ {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l\
+    \ == r) return v_[l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
     \ data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
@@ -169,17 +169,17 @@ data:
     \         data[i][j] = v[j];\n                rep (k, 1, len) {\n            \
     \        if (j + k >= ori) break;\n                    data[i][j + k] = op(data[i][j\
     \ + k - 1], v[j + k]);\n                }\n            }\n        }\n    }\n \
-    \   T query(int l, int r) {\n        assert(0 <= l && l < r && r <= ori);\n  \
-    \      --r;\n        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n\
-    \        return op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
-    \ * @docs docs/DisjointSparseTable.md\n */\n"
+    \   T query(int l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n\
+    \        --r;\n        if (l == r) return v_[l];\n        int d = logtable[l ^\
+    \ r];\n        return op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief\
+    \ DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

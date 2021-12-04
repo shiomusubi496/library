@@ -260,7 +260,7 @@ data:
     \            if (r & 1) rsm = op(data[--r], rsm);\n            l >>= 1; r >>=\
     \ 1;\n        }\n        return op(lsm, rsm);\n    }\n    T get(int k) {\n   \
     \     assert(0 <= k && k < ori);\n        \n        k += n;\n        rreps (i,\
-    \ h) eval(k >> i);\n        return data[k];\n    }\n    T all_prod() { return\
+    \ h) eval(k >> i);\n        return data[k];\n    }\n    T all_prod() const { return\
     \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
     \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
     \ >> i);\n        data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n\
@@ -317,15 +317,16 @@ data:
     \ a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition\n\
     \        ) {}\n    void init(const std::vector<T>& v) { seg.init(Tvec_to_Evec(v));\
     \ }\n    T prod(int l, int r) { return seg.prod(l, r).val; }\n    T get(int k)\
-    \ { return seg.get(k).val; }\n    T all_prod() { return seg.all_prod().val; }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](E\
-    \ a) -> E { return E{upd(a.val), a.len}; }); }\n    void set(int k, T x) { seg.set(k,\
-    \ E{x, 1}); }\n    void apply(int k, U x) { seg.apply(k, x); }\n    void apply(int\
-    \ l, int r, U x) { seg.apply(l, r, x); }\n    template<class C> int max_right(int\
-    \ l, const C& cond) { return seg.max_right(l, [&](E a) -> bool { return cond(a.val);\
-    \ }); }\n    template<class C> int min_left(int r, const C& cond) { return seg.min_left(r,\
-    \ [&](E a) -> bool { return cond(a.val); }); }\n};\n\n//verified with test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\n\
-    template<class T, class U, T max_value = infinity<T>::max> class RangeUpdateQueryRangeMinimumQuery\
+    \ { return seg.get(k).val; }\n    T all_prod() const { return seg.all_prod().val;\
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) { seg.update(k,\
+    \ [&](E a) -> E { return E{upd(a.val), a.len}; }); }\n    void set(int k, T x)\
+    \ { seg.set(k, E{x, 1}); }\n    void apply(int k, U x) { seg.apply(k, x); }\n\
+    \    void apply(int l, int r, U x) { seg.apply(l, r, x); }\n    template<class\
+    \ C> int max_right(int l, const C& cond) { return seg.max_right(l, [&](E a) ->\
+    \ bool { return cond(a.val); }); }\n    template<class C> int min_left(int r,\
+    \ const C& cond) { return seg.min_left(r, [&](E a) -> bool { return cond(a.val);\
+    \ }); }\n};\n\n//verified with test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\ntemplate<class\
+    \ T, class U, T max_value = infinity<T>::max> class RangeUpdateQueryRangeMinimumQuery\
     \ : public LazySegmentTree<T, U> {\n  protected:\n    using Base = LazySegmentTree<T,\
     \ U>;\n  public:\n    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&...\
     \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
@@ -430,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

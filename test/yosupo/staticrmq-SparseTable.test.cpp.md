@@ -145,8 +145,8 @@ data:
     \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
     \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
     \   data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n \
-    \       }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
+    \       }\n    }\n    T query(int l, int r) const {\n        assert(0 <= l &&\
+    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
     \ */\n#line 4 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\n  \
@@ -166,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp

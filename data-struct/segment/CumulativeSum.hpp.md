@@ -125,10 +125,11 @@ data:
     \ {}\n    CumulativeSum(const std::vector<T>& v, const F& op, const T& e, const\
     \ G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void init(const std::vector<T>&\
     \ v) {\n        n = v.size();\n        data.assign(n + 1, e);\n        rep (i,\
-    \ n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l, int r) {\n  \
-    \      assert(0 <= l && l <= r && r <= n);\n        return inv(data[r], data[l]);\n\
-    \    }\n    std::vector<T> get_data() { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
-    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+    \ n) data[i + 1] = op(data[i], v[i]);\n    }\n    T query(int l, int r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        return inv(data[r],\
+    \ data[l]);\n    }\n    std::vector<T> get_data() const { return data; }\n};\n\
+    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class CumulativeSum\
     \ {\n  protected:\n    F op;\n    T e;\n    G inv;\n    int n;\n    std::vector<T>\
@@ -138,16 +139,16 @@ data:
     \ std::vector<T>& v, const F& op, const T& e, const G& inv) : op(op), e(e), inv(inv)\
     \ { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
     \        data.assign(n + 1, e);\n        rep (i, n) data[i + 1] = op(data[i],\
-    \ v[i]);\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l <= r\
-    \ && r <= n);\n        return inv(data[r], data[l]);\n    }\n    std::vector<T>\
-    \ get_data() { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\
-    \u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+    \ v[i]);\n    }\n    T query(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= n);\n        return inv(data[r], data[l]);\n    }\n    std::vector<T>\
+    \ get_data() const { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\
+    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp

@@ -142,9 +142,9 @@ data:
     \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
     \ << i)) {\n                data[i + 1][j] = op(data[i][j], data[i][j + (1 <<\
-    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) {\n      \
-    \  assert(0 <= l && l < r && r <= ori);\n        int d = logtable[r - l];\n  \
-    \      return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
+    \ i)]);\n            }\n        }\n    }\n    T query(int l, int r) const {\n\
+    \        assert(0 <= l && l < r && r <= ori);\n        int d = logtable[r - l];\n\
+    \        return op(data[d][l], data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief\
     \ SparseTable\n * @docs docs/SparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n\ntemplate<class T, class F = std::function<T(T, T)>> class SparseTable {\n\
@@ -157,8 +157,8 @@ data:
     \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
     \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
     \   data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n \
-    \       }\n    }\n    T query(int l, int r) {\n        assert(0 <= l && l < r\
-    \ && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
+    \       }\n    }\n    T query(int l, int r) const {\n        assert(0 <= l &&\
+    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
     \ */\n"
   dependsOn:
@@ -167,7 +167,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/staticrmq-SparseTable.test.cpp

@@ -201,7 +201,7 @@ data:
     \ RAQ(std::vector<ll>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n     \
     \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l\
     \ - 1, r, x);\n        }\n        else {\n            int k; cin >> k;\n     \
-    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}"
+    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -209,7 +209,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 17:58:40+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp

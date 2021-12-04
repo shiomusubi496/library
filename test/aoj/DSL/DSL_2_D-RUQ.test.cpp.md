@@ -201,7 +201,7 @@ data:
     \ RSQ(std::vector<int>(n, (1ull << 31) - 1));\n    rep (q) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n\
     \            RSQ.apply(l, r + 1, x);\n        }\n        else {\n            int\
-    \ k; cin >> k;\n            cout << RSQ.get(k) << endl;\n        }\n    }\n}"
+    \ k; cin >> k;\n            cout << RSQ.get(k) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -209,7 +209,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-02 16:51:10+09:00'
+  timestamp: '2021-12-04 09:50:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
