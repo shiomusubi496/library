@@ -175,16 +175,20 @@ PLL ChineseRemainders(const std::vector<ll>& b, const std::vector<ll>& m) noexce
     return res;
 }
 
-template<class F> class rec_lambda {
+template<class F> class RecLambda {
   private:
     F f;
   public:
-    explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}
+    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}
     template<class... Args> constexpr auto operator()(Args&&... args) const
             -> decltype(f(*this, std::forward<Args>(args)...)) {
         return f(*this, std::forward<Args>(args)...);
     }
 };
+
+template<class F> inline constexpr RecLambda<F> rec_lambda(F&& f) {
+    return RecLambda<F>(std::forward<F>(f));
+}
 
 template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {
     return std::vector<T>(n, arg);
