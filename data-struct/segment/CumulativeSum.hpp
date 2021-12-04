@@ -20,11 +20,11 @@ template<class T, class F = std::function<T(T, T)>, class G = std::function<T(T,
         data.assign(n + 1, e);
         rep (i, n) data[i + 1] = op(data[i], v[i]);
     }
-    T query(int l, int r) {
+    T query(int l, int r) const {
         assert(0 <= l && l <= r && r <= n);
         return inv(data[r], data[l]);
     }
-    std::vector<T> get_data() { return data; }
+    std::vector<T> get_data() const { return data; }
 };
 
 /**

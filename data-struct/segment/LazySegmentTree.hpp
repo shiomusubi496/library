@@ -80,7 +80,7 @@ class LazySegmentTree {
         rreps (i, h) eval(k >> i);
         return data[k];
     }
-    T all_prod() { return data[1]; }
+    T all_prod() const { return data[1]; }
     template<class Upd> void update(int k, const Upd& upd) {
         assert(0 <= k && k < ori);
 
@@ -208,7 +208,7 @@ template<class T, class U> class MultiLazySegmentTree {
     void init(const std::vector<T>& v) { seg.init(Tvec_to_Evec(v)); }
     T prod(int l, int r) { return seg.prod(l, r).val; }
     T get(int k) { return seg.get(k).val; }
-    T all_prod() { return seg.all_prod().val; }
+    T all_prod() const { return seg.all_prod().val; }
     template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](E a) -> E { return E{upd(a.val), a.len}; }); }
     void set(int k, T x) { seg.set(k, E{x, 1}); }
     void apply(int k, U x) { seg.apply(k, x); }

@@ -25,7 +25,7 @@ template<class T, class F = std::function<T(T, T)>> class SparseTable {
             }
         }
     }
-    T query(int l, int r) {
+    T query(int l, int r) const {
         assert(0 <= l && l < r && r <= ori);
         int d = logtable[r - l];
         return op(data[d][l], data[d][r - (1 << d)]);

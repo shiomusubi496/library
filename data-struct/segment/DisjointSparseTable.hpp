@@ -33,7 +33,7 @@ template<class T, class F = std::function<T(T, T)>> class DisjointSparseTable {
             }
         }
     }
-    T query(int l, int r) {
+    T query(int l, int r) const {
         assert(0 <= l && l < r && r <= ori);
         --r;
         if (l == r) return v_[l];

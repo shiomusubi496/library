@@ -33,7 +33,7 @@ template<class T, class F = std::function<T(T, T)>> class SegmentTree {
     void apply(int k, T x) {
         update(k, [&](T a) -> T { return op(a, x); });
     }
-    T prod(int l, int r) {
+    T prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= ori);
         l += n; r += n;
         T lsm = e, rsm = e;
@@ -44,9 +44,9 @@ template<class T, class F = std::function<T(T, T)>> class SegmentTree {
         }
         return op(lsm, rsm);
     }
-    T all_prod() { return data[1]; }
-    T get(int k) { return data[k + n]; }
-    template<class Cond> int max_right(int l, const Cond& cond) {
+    T all_prod() const { return data[1]; }
+    T get(int k) const { return data[k + n]; }
+    template<class Cond> int max_right(int l, const Cond& cond) const {
         assert(0 <= l && l <= ori);
         assert(cond(e));
         if (l == ori) return ori;
@@ -65,7 +65,7 @@ template<class T, class F = std::function<T(T, T)>> class SegmentTree {
         } while ((l & -l) != l);
         return ori;
     }
-    template<class Cond> int min_left(int r, const Cond& cond) {
+    template<class Cond> int min_left(int r, const Cond& cond) const {
         assert(0 <= r && r <= ori);
         assert(cond(e));
         if (r == 0) return 0;
