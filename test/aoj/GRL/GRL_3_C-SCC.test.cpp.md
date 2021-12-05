@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -94,27 +94,28 @@ data:
     \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
     \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
     \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
-    }\n\ntemplate<class F> class rec_lambda {\n  private:\n    F f;\n  public:\n \
-    \   explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    }\n\ntemplate<class F> class RecLambda {\n  private:\n    F f;\n  public:\n  \
+    \  explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
-    \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
-    \ Args> constexpr auto make_vec(int n, Args&&... args)\n        -> std::vector<decltype(make_vec<T>(args...))>\
-    \ {\n    return std::vector<decltype(make_vec<T>(args...))>\n               (n,\
-    \ make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
-    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
-    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
-    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
-    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
+    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
+    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
+    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n \
+    \       std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -204,7 +205,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   requiredBy: []
-  timestamp: '2021-11-29 17:30:36+09:00'
+  timestamp: '2021-12-04 18:59:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp

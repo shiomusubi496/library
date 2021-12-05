@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   _extendedVerifiedWith:
@@ -45,24 +45,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -137,27 +137,28 @@ data:
     \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
     \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
     \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
-    }\n\ntemplate<class F> class rec_lambda {\n  private:\n    F f;\n  public:\n \
-    \   explicit constexpr rec_lambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    }\n\ntemplate<class F> class RecLambda {\n  private:\n    F f;\n  public:\n  \
+    \  explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class T, class Arg> constexpr std::vector<T> make_vec(int\
-    \ n, Arg&& arg) {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class...\
-    \ Args> constexpr auto make_vec(int n, Args&&... args)\n        -> std::vector<decltype(make_vec<T>(args...))>\
-    \ {\n    return std::vector<decltype(make_vec<T>(args...))>\n               (n,\
-    \ make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
-    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
-    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
-    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
-    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
+    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
+    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
+    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
+    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
+    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
+    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
+    \        std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n \
+    \       std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -202,8 +203,8 @@ data:
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
-  timestamp: '2021-11-29 17:30:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-04 18:59:34+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
