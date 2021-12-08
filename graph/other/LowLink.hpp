@@ -45,4 +45,5 @@ template<class T> class LowLink {
 
 /**
  * @brief Lowlink(関節点・橋検出)
+ * @docs docs/LowLink.md
  */
