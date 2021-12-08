@@ -5,8 +5,8 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BreadthFirstSearch.hpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+    path: graph/other/LowLink.hpp
+    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -17,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n#line 2 \"other/template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -159,43 +159,50 @@ data:
     \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
     \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
     \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\ntemplate<class T>\
-    \ std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n    assert(0 <= start\
-    \ && start < (int)G.size());\n    std::vector<T> dist(G.size(), -1); dist[start]\
-    \ = 0;\n    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n\
-    \        int v = que.front(); que.pop();\n        for (const edge<T>& e : G[v])\
-    \ {\n            if (dist[e.to] == -1) {\n                dist[e.to] = dist[v]\
-    \ + e.cost;\n                que.push(e.to);\n            }\n        }\n    }\n\
-    \    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n *\
-    \ @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep\
-    \ (j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1\
-    \ , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n\
-    \        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N)\
-    \ {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep (j, k) {\n\
-    \            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n\
-    \        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout\
-    \ << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"\
+    graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n  protected:\n\
+    \    int n, cnt;\n    Graph<T> G;\n    std::vector<int> ord, low;\n    std::vector<int>\
+    \ aps;\n    Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v]\
+    \ = cnt++;\n        int deg = 0;\n        bool is_ap = false;\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n            if (ord[e.to]\
+    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
+    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
+    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
+    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
+    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
+    \    }\n  public:\n    LowLink() = default;\n    LowLink(const Graph<T>& G_) {\
+    \ init(G_); }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n\
+    \ = G.size();\n        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt =\
+    \ 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n      \
+    \  }\n    }\n    std::vector<int> articulation_points() const { return aps; }\n\
+    \    Edges<T> bridges() const { return brd; }\n};\n\n/**\n * @brief Lowlink(\u95A2\
+    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n */\n#line 5 \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Graph<int>\
+    \ G(V);\n    rep (E) {\n        int s, t; cin >> s >> t;\n        G.add_edge(s,\
+    \ t);\n    }\n    LowLink<int> LL(G);\n    auto v = LL.articulation_points();\n\
+    \    sort(v.begin(), v.end());\n    for (const auto& i : v) cout << i << endl;\n\
+    }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/other/LowLink.hpp\"\nusing namespace std;\nint main() {\n \
+    \   int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n        int\
+    \ s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int> LL(G);\n\
+    \    auto v = LL.articulation_points();\n    sort(v.begin(), v.end());\n    for\
+    \ (const auto& i : v) cout << i << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/other/LowLink.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+  path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2021-12-04 18:59:34+09:00'
+  timestamp: '2021-12-08 22:38:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+documentation_of: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-- /verify/test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp.html
-title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+- /verify/test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+- /verify/test/aoj/GRL/GRL_3_A-LowLink.test.cpp.html
+title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
 ---

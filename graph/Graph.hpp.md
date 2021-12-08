@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -19,6 +19,9 @@ data:
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/LowLink.hpp
+    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
+  - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
@@ -28,10 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -76,17 +79,23 @@ data:
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+    title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+    title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -273,6 +282,7 @@ data:
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
+  - graph/other/LowLink.hpp
   - graph/other/TopologicalSort.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
@@ -284,7 +294,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/BellmanFord.hpp
   timestamp: '2021-12-04 18:59:34+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/shortest_path.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
@@ -294,9 +304,11 @@ data:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
