@@ -19,6 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     links: []
   bundledCode: "#line 2 \"graph/other/LowLink.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
@@ -175,7 +176,8 @@ data:
     \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
     \ dfs(i, -1);\n        }\n    }\n    std::vector<int> articulation_points() const\
     \ { return aps; }\n    Edges<T> bridges() const { return brd; }\n};\n\n/**\n *\
-    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n */\n"
+    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class LowLink\
     \ {\n  protected:\n    int n, cnt;\n    Graph<T> G;\n    std::vector<int> ord,\
     \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
@@ -192,14 +194,15 @@ data:
     \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
     \ dfs(i, -1);\n        }\n    }\n    std::vector<int> articulation_points() const\
     \ { return aps; }\n    Edges<T> bridges() const { return brd; }\n};\n\n/**\n *\
-    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n */\n"
+    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n\
+    \ */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
   isVerificationFile: false
   path: graph/other/LowLink.hpp
   requiredBy: []
-  timestamp: '2021-12-08 22:38:42+09:00'
+  timestamp: '2021-12-08 22:59:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
@@ -211,3 +214,10 @@ redirect_from:
 - /library/graph/other/LowLink.hpp.html
 title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
 ---
+## 概要
+
+グラフに対して、その頂点や辺を取り除いたとき、非連結になるようなものを求めることができる。
+
+- `LowLink(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
+- `vector<int> article_points()` : その頂点を取り除いたとき、非連結になる頂点(関節点と呼ばれる)を返す。 $\Theta(V)$ 。
+- `Edges<T> bridges()` : その辺を取り除いたとき、非連結になる辺(橋と呼ばれる)を返す。 $\Theta(E)$ 。

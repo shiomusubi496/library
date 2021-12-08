@@ -176,12 +176,12 @@ data:
     \ 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n      \
     \  }\n    }\n    std::vector<int> articulation_points() const { return aps; }\n\
     \    Edges<T> bridges() const { return brd; }\n};\n\n/**\n * @brief Lowlink(\u95A2\
-    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n */\n#line 5 \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Graph<int>\
-    \ G(V);\n    rep (E) {\n        int s, t; cin >> s >> t;\n        G.add_edge(s,\
-    \ t);\n    }\n    LowLink<int> LL(G);\n    auto v = LL.articulation_points();\n\
-    \    sort(v.begin(), v.end());\n    for (const auto& i : v) cout << i << endl;\n\
-    }\n"
+    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 5\
+    \ \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n     \
+    \   int s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int>\
+    \ LL(G);\n    auto v = LL.articulation_points();\n    sort(v.begin(), v.end());\n\
+    \    for (const auto& i : v) cout << i << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/other/LowLink.hpp\"\nusing namespace std;\nint main() {\n \
@@ -196,7 +196,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2021-12-08 22:38:42+09:00'
+  timestamp: '2021-12-08 22:59:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
