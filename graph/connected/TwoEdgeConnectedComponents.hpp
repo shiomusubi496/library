@@ -45,3 +45,8 @@ template<class T> class TwoEdgeConnectedComponents : protected LowLink<T> {
         return res;
     }
 };
+
+/**
+ * @brief TwoEdgeConnectedComponents(二辺連結成分分解)
+ * @docs docs/TwoEdgeConnectedComponents.md
+ */
