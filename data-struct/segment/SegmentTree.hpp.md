@@ -274,7 +274,7 @@ title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 を満たす構造の列を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
 
 - コンストラクタ
-  - `SegmentTree<T>(T op(T, T), T e)` : 二項演算 `op` と単位元 `e` で長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
+  - `SegmentTree<T>(T op(T, T), T e)` : $a \cdot b$ を返す `op(a, b)` と単位元 `e` で長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
   - `SegmentTree<T>(int n, T op(T, T), T e)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(N)$ 。
   - `SegmentTree<T>(vector<T> v, T op(T, T), T e)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
   - `void init(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
