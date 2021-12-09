@@ -12,9 +12,12 @@ template<class T> class LowLink {
     void dfs(int v, int p) {
         low[v] = ord[v] = cnt++;
         int deg = 0;
-        bool is_ap = false;
+        bool is_ap = false, mul = false;
         for (const edge<T>& e : G[v]) {
-            if (e.to == p) continue;
+            if (e.to == p && !mul) {
+                mul = true;
+                continue;
+            }
             if (ord[e.to] != -1) chmin(low[v], ord[e.to]);
             else {
                 dfs(e.to, v);

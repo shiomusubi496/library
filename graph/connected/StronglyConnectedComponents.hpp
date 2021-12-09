@@ -31,7 +31,7 @@ template<class T> class StronglyConnectedComponents {
     void init(const Graph<T>& G_) {
         G = G_;
         n = G.size();
-        ord.reserve(n);
+        ord.clear(); ord.reserve(n);
         seen.assign(n, false);
         rep (i, n) {
             if (seen[i]) continue;
