@@ -19,6 +19,9 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/TwoEdgeConnectedComponents.md
+    document_title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\
+      \u5206\u89E3)"
     links: []
   bundledCode: "#line 2 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\n#line\
     \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -193,7 +196,9 @@ data:
     \ (i, this->n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T>\
     \ tree() const {\n        Graph<T> res(sz);\n        for (const edge<T>& e : this->brd)\
     \ {\n            res.add_edge(cmp[e.from], cmp[e.to], e.cost);\n        }\n  \
-    \      return res;\n    }\n};\n"
+    \      return res;\n    }\n};\n\n/**\n * @brief TwoEdgeConnectedComponents(\u4E8C\
+    \u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/TwoEdgeConnectedComponents.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../other/LowLink.hpp\"\n\ntemplate<class T> class TwoEdgeConnectedComponents\
     \ : protected LowLink<T> {\n  protected:\n    int sz;\n    std::vector<int> cmp;\n\
@@ -211,7 +216,9 @@ data:
     \ (i, this->n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T>\
     \ tree() const {\n        Graph<T> res(sz);\n        for (const edge<T>& e : this->brd)\
     \ {\n            res.add_edge(cmp[e.from], cmp[e.to], e.cost);\n        }\n  \
-    \      return res;\n    }\n};\n"
+    \      return res;\n    }\n};\n\n/**\n * @brief TwoEdgeConnectedComponents(\u4E8C\
+    \u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/TwoEdgeConnectedComponents.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -219,7 +226,7 @@ data:
   isVerificationFile: false
   path: graph/connected/TwoEdgeConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-12-09 12:12:41+09:00'
+  timestamp: '2021-12-09 12:42:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
@@ -228,5 +235,15 @@ layout: document
 redirect_from:
 - /library/graph/connected/TwoEdgeConnectedComponents.hpp
 - /library/graph/connected/TwoEdgeConnectedComponents.hpp.html
-title: graph/connected/TwoEdgeConnectedComponents.hpp
+title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
+  )"
 ---
+## 概要
+
+二辺(あるいは二重辺)連結成分にグラフを分解する。二辺連結成分とは、任意の $1$ 辺を取り除いても連結である、つまり橋のない連結成分のこと。 `LowLink` を継承している。
+
+- `TwoEdgeConnectedComponents(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
+- `int size()` : 二辺連結成分の個数を返す。 $\Theta(1)$ 。
+- `int operator[](int k)` : 頂点 `k` の属する二辺連結成分の番号を返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups()` : 二辺連結成分のリストを返す。 $\Theta(V)$ 。
+- `Graph<T> tree()` : 二辺連結成分を縮約した後のグラフは森になる(元のグラフが連結な場合は木になる)ことが知られているので、それを返す。 $\Theta(V + E)$ 。

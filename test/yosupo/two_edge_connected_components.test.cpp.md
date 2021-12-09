@@ -6,7 +6,8 @@ data:
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
-    title: graph/connected/TwoEdgeConnectedComponents.hpp
+    title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
   - icon: ':heavy_check_mark:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -198,12 +199,14 @@ data:
     \ (i, this->n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T>\
     \ tree() const {\n        Graph<T> res(sz);\n        for (const edge<T>& e : this->brd)\
     \ {\n            res.add_edge(cmp[e.from], cmp[e.to], e.cost);\n        }\n  \
-    \      return res;\n    }\n};\n#line 5 \"test/yosupo/two_edge_connected_components.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int>\
-    \ G(N);\n    rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n \
-    \   cout << tecc.size() << endl;\n    for (const auto& v : tecc) {\n        cout\
-    \ << v.size() << ' ' << v << endl;\n    }\n}\n"
+    \      return res;\n    }\n};\n\n/**\n * @brief TwoEdgeConnectedComponents(\u4E8C\
+    \u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/TwoEdgeConnectedComponents.md\n\
+    \ */\n#line 5 \"test/yosupo/two_edge_connected_components.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int> G(N);\n   \
+    \ rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n   \
+    \ }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n    cout <<\
+    \ tecc.size() << endl;\n    for (const auto& v : tecc) {\n        cout << v.size()\
+    \ << ' ' << v << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n\
     #include \"../../graph/connected/TwoEdgeConnectedComponents.hpp\"\nusing namespace\
@@ -220,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-12-09 12:12:41+09:00'
+  timestamp: '2021-12-09 12:42:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp

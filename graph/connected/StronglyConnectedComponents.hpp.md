@@ -229,8 +229,8 @@ title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)"
 
 グラフの強連結成分分解をする。有向グラフで使われることを想定している。
 
-- `StronglyConnectedComponennts(Graph<T> G)` : グラフ `G` で初期化する。 $N=G.size()$ として $\Theta(N)$ 。
+- `StronglyConnectedComponennts(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
 - `int size()` : 強連結成分の個数を返す。 $\Theta(1)$ 。
 - `int operator[](int k)` : 頂点 `k` の所属する強連結成分の番号を返す。 $\Theta(1)$ 。
 - `vector<vector<int>> groups()` : 強連結成分のリストを返す。 $\Theta(N)$ 。
-- `Graph<T> dag()` : 強連結成分を圧縮した後のグラフは DAG になることが知られているので、それを返す。 $\Theta(N)$ 。
+- `Graph<T> dag()` : 強連結成分を縮約した後のグラフは DAG になることが知られているので、それを返す。 $\Theta(V + E)$ 。

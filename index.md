@@ -45,7 +45,8 @@ data:
         )"
     - icon: ':heavy_check_mark:'
       path: graph/connected/TwoEdgeConnectedComponents.hpp
-      title: graph/connected/TwoEdgeConnectedComponents.hpp
+      title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
+        \u89E3)"
   - name: graph/mst
     pages:
     - icon: ':heavy_check_mark:'
