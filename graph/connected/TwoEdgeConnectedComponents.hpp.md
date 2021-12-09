@@ -11,26 +11,25 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/two_edge_connected_components.test.cpp
+    title: test/yosupo/two_edge_connected_components.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    links: []
+  bundledCode: "#line 2 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -177,33 +176,57 @@ data:
     \        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i,\
     \ -1);\n        }\n    }\n    std::vector<int> articulation_points() const { return\
     \ aps; }\n    Edges<T> bridges() const { return brd; }\n};\n\n/**\n * @brief Lowlink(\u95A2\
-    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 5\
-    \ \"test/aoj/GRL/GRL_3_A-LowLink.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n     \
-    \   int s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int>\
-    \ LL(G);\n    auto v = LL.articulation_points();\n    sort(v.begin(), v.end());\n\
-    \    for (const auto& i : v) cout << i << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/other/LowLink.hpp\"\nusing namespace std;\nint main() {\n \
-    \   int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n        int\
-    \ s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int> LL(G);\n\
-    \    auto v = LL.articulation_points();\n    sort(v.begin(), v.end());\n    for\
-    \ (const auto& i : v) cout << i << endl;\n}\n"
+    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 6\
+    \ \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\ntemplate<class T> class\
+    \ TwoEdgeConnectedComponents : protected LowLink<T> {\n  protected:\n    int sz;\n\
+    \    std::vector<int> cmp;\n    void dcmp(int v) {\n        for (const edge<T>&\
+    \ e : this->G[v]) {\n            if (cmp[e.to] != -1) continue;\n            if\
+    \ (this->ord[v] < this->low[e.to] || this->ord[e.to] < this->low[v]) continue;\n\
+    \            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n        }\n    }\n\
+    \  public:\n    TwoEdgeConnectedComponents() = default;\n    TwoEdgeConnectedComponents(const\
+    \ Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>& G_) {\n        LowLink<T>::init(G_);\n\
+    \        sz = 0;\n        cmp.assign(this->n, -1);\n        rep (i, this->n) {\n\
+    \            if (cmp[i] == -1) {\n                cmp[i] = sz++;\n           \
+    \     dcmp(i);\n            }\n        }\n    }\n    int size() const { return\
+    \ sz; }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, this->n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T>\
+    \ tree() const {\n        Graph<T> res(sz);\n        for (const edge<T>& e : this->brd)\
+    \ {\n            res.add_edge(cmp[e.from], cmp[e.to], e.cost);\n        }\n  \
+    \      return res;\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n#include \"../other/LowLink.hpp\"\n\ntemplate<class T> class TwoEdgeConnectedComponents\
+    \ : protected LowLink<T> {\n  protected:\n    int sz;\n    std::vector<int> cmp;\n\
+    \    void dcmp(int v) {\n        for (const edge<T>& e : this->G[v]) {\n     \
+    \       if (cmp[e.to] != -1) continue;\n            if (this->ord[v] < this->low[e.to]\
+    \ || this->ord[e.to] < this->low[v]) continue;\n            cmp[e.to] = cmp[v];\n\
+    \            dcmp(e.to);\n        }\n    }\n  public:\n    TwoEdgeConnectedComponents()\
+    \ = default;\n    TwoEdgeConnectedComponents(const Graph<T>& G_) { init(G_); }\n\
+    \    void init(const Graph<T>& G_) {\n        LowLink<T>::init(G_);\n        sz\
+    \ = 0;\n        cmp.assign(this->n, -1);\n        rep (i, this->n) {\n       \
+    \     if (cmp[i] == -1) {\n                cmp[i] = sz++;\n                dcmp(i);\n\
+    \            }\n        }\n    }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, this->n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T>\
+    \ tree() const {\n        Graph<T> res(sz);\n        for (const edge<T>& e : this->brd)\
+    \ {\n            res.add_edge(cmp[e.from], cmp[e.to], e.cost);\n        }\n  \
+    \      return res;\n    }\n};\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   - graph/other/LowLink.hpp
-  isVerificationFile: true
-  path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  isVerificationFile: false
+  path: graph/connected/TwoEdgeConnectedComponents.hpp
   requiredBy: []
   timestamp: '2021-12-09 12:12:41+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/two_edge_connected_components.test.cpp
+documentation_of: graph/connected/TwoEdgeConnectedComponents.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-- /verify/test/aoj/GRL/GRL_3_A-LowLink.test.cpp.html
-title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+- /library/graph/connected/TwoEdgeConnectedComponents.hpp
+- /library/graph/connected/TwoEdgeConnectedComponents.hpp.html
+title: graph/connected/TwoEdgeConnectedComponents.hpp
 ---

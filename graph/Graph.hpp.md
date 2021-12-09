@@ -13,6 +13,9 @@ data:
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   - icon: ':heavy_check_mark:'
+    path: graph/connected/TwoEdgeConnectedComponents.hpp
+    title: graph/connected/TwoEdgeConnectedComponents.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -93,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/two_edge_connected_components.test.cpp
+    title: test/yosupo/two_edge_connected_components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -288,6 +294,7 @@ data:
   - graph/mst/Prim.hpp
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/StronglyConnectedComponents.hpp
+  - graph/connected/TwoEdgeConnectedComponents.hpp
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/WarshallFloyd.hpp
@@ -296,6 +303,7 @@ data:
   timestamp: '2021-12-04 18:59:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

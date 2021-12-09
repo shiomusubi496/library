@@ -43,6 +43,9 @@ data:
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
+    - icon: ':heavy_check_mark:'
+      path: graph/connected/TwoEdgeConnectedComponents.hpp
+      title: graph/connected/TwoEdgeConnectedComponents.hpp
   - name: graph/mst
     pages:
     - icon: ':heavy_check_mark:'
@@ -263,6 +266,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/two_edge_connected_components.test.cpp
+      title: test/yosupo/two_edge_connected_components.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp

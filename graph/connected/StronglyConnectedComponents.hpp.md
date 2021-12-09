@@ -168,9 +168,9 @@ data:
     \ != -1) continue;\n            cmp[e.to] = cmp[v];\n            dfs2(e.to);\n\
     \        }\n    }\n  public:\n    StronglyConnectedComponents() = default;\n \
     \   StronglyConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void init(const\
-    \ Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n\
-    \        seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i])\
-    \ continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
+    \ Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n        ord.clear();\
+    \ ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n    \
+    \        if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
     \        RG = ReverseGraph(G);\n        sz = 0;\n        cmp.assign(n, -1);\n\
     \        for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n\
     \            cmp[i] = sz++;\n            dfs2(i);\n        }\n    }\n    int size()\
@@ -193,9 +193,9 @@ data:
     \ != -1) continue;\n            cmp[e.to] = cmp[v];\n            dfs2(e.to);\n\
     \        }\n    }\n  public:\n    StronglyConnectedComponents() = default;\n \
     \   StronglyConnectedComponents(const Graph<T>& G_) { init(G_); }\n    void init(const\
-    \ Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n\
-    \        seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i])\
-    \ continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
+    \ Graph<T>& G_) {\n        G = G_;\n        n = G.size();\n        ord.clear();\
+    \ ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n    \
+    \        if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
     \        RG = ReverseGraph(G);\n        sz = 0;\n        cmp.assign(n, -1);\n\
     \        for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n\
     \            cmp[i] = sz++;\n            dfs2(i);\n        }\n    }\n    int size()\
@@ -214,7 +214,7 @@ data:
   isVerificationFile: false
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-12-04 18:59:34+09:00'
+  timestamp: '2021-12-09 12:12:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp

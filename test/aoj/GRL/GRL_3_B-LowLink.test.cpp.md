@@ -163,19 +163,20 @@ data:
     graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n  protected:\n\
     \    int n, cnt;\n    Graph<T> G;\n    std::vector<int> ord, low;\n    std::vector<int>\
     \ aps;\n    Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v]\
-    \ = cnt++;\n        int deg = 0;\n        bool is_ap = false;\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n            if (ord[e.to]\
-    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
-    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
-    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
-    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
-    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
-    \    }\n  public:\n    LowLink() = default;\n    LowLink(const Graph<T>& G_) {\
-    \ init(G_); }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n\
-    \ = G.size();\n        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt =\
-    \ 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n      \
-    \  }\n    }\n    std::vector<int> articulation_points() const { return aps; }\n\
-    \    Edges<T> bridges() const { return brd; }\n};\n\n/**\n * @brief Lowlink(\u95A2\
+    \ = cnt++;\n        int deg = 0;\n        bool is_ap = false, mul = false;\n \
+    \       for (const edge<T>& e : G[v]) {\n            if (e.to == p && !mul) {\n\
+    \                mul = true;\n                continue;\n            }\n     \
+    \       if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n            else {\n \
+    \               dfs(e.to, v);\n                chmin(low[v], low[e.to]);\n   \
+    \             if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n            \
+    \    if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n     \
+    \       }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n        if\
+    \ (is_ap) aps.push_back(v);\n    }\n  public:\n    LowLink() = default;\n    LowLink(const\
+    \ Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>& G_) {\n        G\
+    \ = G_;\n        n = G.size();\n        ord.assign(n, -1); low.assign(n, n + 1);\n\
+    \        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i,\
+    \ -1);\n        }\n    }\n    std::vector<int> articulation_points() const { return\
+    \ aps; }\n    Edges<T> bridges() const { return brd; }\n};\n\n/**\n * @brief Lowlink(\u95A2\
     \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 5\
     \ \"test/aoj/GRL/GRL_3_B-LowLink.test.cpp\"\nusing namespace std;\nint main()\
     \ {\n    int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n     \
@@ -202,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2021-12-08 22:59:35+09:00'
+  timestamp: '2021-12-09 12:12:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_B-LowLink.test.cpp

@@ -171,13 +171,13 @@ data:
     \            cmp[e.to] = cmp[v];\n            dfs2(e.to);\n        }\n    }\n\
     \  public:\n    StronglyConnectedComponents() = default;\n    StronglyConnectedComponents(const\
     \ Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>& G_) {\n        G\
-    \ = G_;\n        n = G.size();\n        ord.reserve(n);\n        seen.assign(n,\
-    \ false);\n        rep (i, n) {\n            if (seen[i]) continue;\n        \
-    \    dfs(i);\n        }\n        std::reverse(all(ord));\n        RG = ReverseGraph(G);\n\
-    \        sz = 0;\n        cmp.assign(n, -1);\n        for (const int& i : ord)\
-    \ {\n            if (cmp[i] != -1) continue;\n            cmp[i] = sz++;\n   \
-    \         dfs2(i);\n        }\n    }\n    int size() const { return sz; }\n  \
-    \  int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ = G_;\n        n = G.size();\n        ord.clear(); ord.reserve(n);\n       \
+    \ seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i]) continue;\n\
+    \            dfs(i);\n        }\n        std::reverse(all(ord));\n        RG =\
+    \ ReverseGraph(G);\n        sz = 0;\n        cmp.assign(n, -1);\n        for (const\
+    \ int& i : ord) {\n            if (cmp[i] != -1) continue;\n            cmp[i]\
+    \ = sz++;\n            dfs2(i);\n        }\n    }\n    int size() const { return\
+    \ sz; }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
     \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
     \ const {\n        Graph<T> res(sz);\n        rep (i, n) {\n            for (const\
@@ -205,7 +205,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   requiredBy: []
-  timestamp: '2021-12-04 18:59:34+09:00'
+  timestamp: '2021-12-09 12:12:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp

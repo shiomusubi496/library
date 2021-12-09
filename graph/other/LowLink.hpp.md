@@ -7,7 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/connected/TwoEdgeConnectedComponents.hpp
+    title: graph/connected/TwoEdgeConnectedComponents.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
@@ -15,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/two_edge_connected_components.test.cpp
+    title: test/yosupo/two_edge_connected_components.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -164,8 +170,9 @@ data:
     \ T> class LowLink {\n  protected:\n    int n, cnt;\n    Graph<T> G;\n    std::vector<int>\
     \ ord, low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v,\
     \ int p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool\
-    \ is_ap = false;\n        for (const edge<T>& e : G[v]) {\n            if (e.to\
-    \ == p) continue;\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n\
+    \ is_ap = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n     \
+    \       if (e.to == p && !mul) {\n                mul = true;\n              \
+    \  continue;\n            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n\
     \            else {\n                dfs(e.to, v);\n                chmin(low[v],\
     \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
     \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
@@ -182,9 +189,10 @@ data:
     \ {\n  protected:\n    int n, cnt;\n    Graph<T> G;\n    std::vector<int> ord,\
     \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
     \ p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap\
-    \ = false;\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p)\
-    \ continue;\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n    \
-    \        else {\n                dfs(e.to, v);\n                chmin(low[v],\
+    \ = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n           \
+    \ if (e.to == p && !mul) {\n                mul = true;\n                continue;\n\
+    \            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n \
+    \           else {\n                dfs(e.to, v);\n                chmin(low[v],\
     \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
     \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
     \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
@@ -201,10 +209,12 @@ data:
   - other/template.hpp
   isVerificationFile: false
   path: graph/other/LowLink.hpp
-  requiredBy: []
-  timestamp: '2021-12-08 22:59:35+09:00'
+  requiredBy:
+  - graph/connected/TwoEdgeConnectedComponents.hpp
+  timestamp: '2021-12-09 12:12:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/two_edge_connected_components.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
 documentation_of: graph/other/LowLink.hpp
