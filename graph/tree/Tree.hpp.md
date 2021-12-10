@@ -1,31 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/CumulativeSum.hpp
-    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/tree/TreeDiameter.hpp
+    title: graph/tree/TreeDiameter.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree_diameter.test.cpp
+    title: test/yosupo/tree_diameter.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    links: []
+  bundledCode: "#line 2 \"graph/tree/Tree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\n\n\
+    #line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
     \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
     \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
@@ -122,41 +127,87 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 4 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class T, class F = std::function<T(T, T)>, class G = std::function<T(T,\
-    \ T)>> class CumulativeSum {\n  protected:\n    F op;\n    T e;\n    G inv;\n\
-    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n\
-    \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
-    \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
-    \ T { return a - b; }) {}\n    CumulativeSum(const std::vector<T>& v, const F&\
-    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        n = v.size();\n        data.assign(n\
-    \ + 1, e);\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T\
-    \ query(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n \
-    \       return inv(data[r], data[l]);\n    }\n    std::vector<T> get_data() const\
-    \ { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n *\
-    \ @docs docs/CumulativeSum.md\n */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l,\
-    \ r; cin >> l >> r;\n        cout << CS.query(l, r) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ \"../../other/template.hpp\"\n#include \"../../data-struct/segment/CumulativeSum.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l,\
-    \ r; cin >> l >> r;\n        cout << CS.query(l, r) << endl;\n    }\n}\n"
+    \    }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge\
+    \ {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1)\
+    \ {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
+    \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
+    \    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  protected:\n    int edge_id\
+    \ = 0;\n  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false) {\n       \
+    \ assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
+    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]=e;\n\
+    \            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    Graph<T> RG(V);\n    for (const edge<T>& e : DirectedListToEdges(G)) {\n\
+    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
+    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 4 \"graph/tree/Tree.hpp\"\
+    \n\ntemplate<class T> class Tree : public Graph<T> {\n  private:\n    using Base\
+    \ = Graph<T>;\n  protected:\n    void dfs_build(int v, int p) {\n        par[v]\
+    \ = p;\n        for (const edge<T>& e : (*this)[v]) {\n            if (e.to !=\
+    \ p) dfs_build(e.to, v);\n        }\n    }\n  public:\n    int root;\n    std::vector<int>\
+    \ par;\n    using Base::Base;\n    Tree(const Base& G) : Base(G) {}\n    Tree(Base&&\
+    \ G) : Base(std::move(G)) {}\n    void build(int r = 0) {\n        assert(this->edge_size()\
+    \ + 1 == (int)this->size());\n        assert(0 <= r && r < (int)this->size());\n\
+    \        par.resize(this->size());\n        dfs_build(r, -1);\n        root =\
+    \ r;\n    }\n    Graph<T> child() const {\n        Graph<T> res(this->size());\n\
+    \        rep (i, this->size()) {\n            if (i == root) res[i].reserve(this->size());\n\
+    \            else res[i].reserve(this->size() - 1);\n            for (const edge<T>&\
+    \ e : (*this)[i]) {\n                if (e.to != par[i]) res.add_edge(i, e.to,\
+    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree\
+    \ : public Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n\
+    \    void dfs_build(int v, int p) {\n        par[v] = p;\n        for (const edge<T>&\
+    \ e : (*this)[v]) {\n            if (e.to != p) dfs_build(e.to, v);\n        }\n\
+    \    }\n  public:\n    int root;\n    std::vector<int> par;\n    using Base::Base;\n\
+    \    Tree(const Base& G) : Base(G) {}\n    Tree(Base&& G) : Base(std::move(G))\
+    \ {}\n    void build(int r = 0) {\n        assert(this->edge_size() + 1 == (int)this->size());\n\
+    \        assert(0 <= r && r < (int)this->size());\n        par.resize(this->size());\n\
+    \        dfs_build(r, -1);\n        root = r;\n    }\n    Graph<T> child() const\
+    \ {\n        Graph<T> res(this->size());\n        rep (i, this->size()) {\n  \
+    \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
+    \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
+    \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
+    \   }\n        return res;\n    }\n};\n"
   dependsOn:
+  - graph/Graph.hpp
   - other/template.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  isVerificationFile: true
-  path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  isVerificationFile: false
+  path: graph/tree/Tree.hpp
+  requiredBy:
+  - graph/tree/TreeDiameter.hpp
+  timestamp: '2021-12-10 22:59:43+09:00'
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yosupo/tree_diameter.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+documentation_of: graph/tree/Tree.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/static_range_sum-CumulativeSum.test.cpp
-- /verify/test/yosupo/static_range_sum-CumulativeSum.test.cpp.html
-title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
+- /library/graph/tree/Tree.hpp
+- /library/graph/tree/Tree.hpp.html
+title: graph/tree/Tree.hpp
 ---

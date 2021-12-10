@@ -35,16 +35,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
+  - icon: ':question:'
+    path: graph/tree/Tree.hpp
+    title: graph/tree/Tree.hpp
+  - icon: ':question:'
+    path: graph/tree/TreeDiameter.hpp
+    title: graph/tree/TreeDiameter.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
@@ -94,9 +100,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree_diameter.test.cpp
+    title: test/yosupo/tree_diameter.test.cpp
   - icon: ':x:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
@@ -216,77 +228,78 @@ data:
     \ {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int t, T c) : from(-1),\
     \ to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f), to(t), cost(c) {}\n\
     \    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}\n    operator\
-    \ int() { return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
-    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  protected:\n\
-    \    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n \
-    \ public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
-    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  protected:\n    int edge_id\
+    \ = 0;\n  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
+    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false) {\n       \
+    \ assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
     \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
     \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
-    \ a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
     \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
     \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
     \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
     \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
     \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(all(G), 0, [](int a, const\
-    \ Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n\
-    \            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
-    \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
-    \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n"
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]=e;\n\
+    \            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    Graph<T> RG(V);\n    for (const edge<T>& e : DirectedListToEdges(G)) {\n\
+    \        RG.add_edge(e.to, e.from, e.cost, true);\n    }\n    return RG;\n}\n\n\
+    /**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T =\
     \ int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int\
     \ t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f),\
     \ to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() { return to; }\n    friend bool operator<(const\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
     \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
     \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
     \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
     \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
     \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  protected:\n    int edge_id = 0;\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    using Base::Base;\n    int edge_size() const { return edge_id;\
-    \ }\n    int add_edge(int a, int b, T c, bool is_directed = false){\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false){\n        assert(0 <=\
-    \ a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(all(G), 0, [](int a, const\
-    \ Edges<T>& b) -> int { return a + b.size(); });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n\
-    \            if (Ed[e.idx].to == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const\
-    \ edge<T>& e : ListToUndirectedEdges(G)) {\n        RG.add_edge(e.to, e.from,\
-    \ e.cost, true);\n    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n"
+    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  protected:\n\
+    \    int edge_id = 0;\n  public:\n    using Base::Base;\n    int edge_size() const\
+    \ { return edge_id; }\n    int add_edge(int a, int b, T c, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
+    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
+    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
+    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
+    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
+    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx]=e;\n            else Ed.push_back(e);\n        }\n    }\n \
+    \   return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>&\
+    \ e : DirectedListToEdges(G)) {\n        RG.add_edge(e.to, e.from, e.cost, true);\n\
+    \    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -299,15 +312,18 @@ data:
   - graph/connected/ConnectedComponents.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
+  - graph/tree/TreeDiameter.hpp
+  - graph/tree/Tree.hpp
   - graph/shortest-path/Dijkstra.hpp
   - graph/shortest-path/BreadthFirstSearch.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/BellmanFord.hpp
-  timestamp: '2021-12-10 19:07:57+09:00'
+  timestamp: '2021-12-10 22:59:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
+  - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
@@ -316,6 +332,7 @@ data:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

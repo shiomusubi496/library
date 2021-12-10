@@ -9,7 +9,7 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -184,7 +184,7 @@ data:
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
   timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp

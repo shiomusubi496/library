@@ -2,29 +2,31 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
-  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Prim.hpp
-    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+  - icon: ':question:'
+    path: graph/shortest-path/Restore.hpp
+    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
+  - icon: ':question:'
+    path: graph/tree/Tree.hpp
+    title: graph/tree/Tree.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree_diameter.test.cpp
+    title: test/yosupo/tree_diameter.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A
-  bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A\"\n#line 2 \"other/template.hpp\"\
+    links: []
+  bundledCode: "#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -166,64 +168,81 @@ data:
     \ {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>&\
     \ e : DirectedListToEdges(G)) {\n        RG.add_edge(e.to, e.from, e.cost, true);\n\
     \    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
-    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
-    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) return {-1, -1};\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
-    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
-    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
-    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
-    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
-    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
-    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
-    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Prim.hpp\"\
-    \n\ntemplate<class T> T Prim(Graph<T> G) {\n    const int N = G.size();\n    std::vector<bool>\
-    \ seen(N, false); seen[0] = true;\n    prique<edge<T>> que;\n    for (const edge<T>&\
-    \ e : G[0]) que.emplace(e);\n    T res = 0;\n    while (!que.empty()) {\n    \
-    \    const edge<T> cre = que.top(); que.pop();\n        if (seen[cre.to]) continue;\n\
-    \        res += cre.cost;\n        seen[cre.to] = true;\n        for (const edge<T>&\
-    \ e : G[cre.to]) {\n            if (seen[e.to]) continue;\n            que.emplace(e);\n\
-    \        }\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(Graph<T>\
-    \ G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false); seen[0]\
-    \ = true;\n    prique<edge<T>> que;\n    for (const edge<T>& e : G[0]) que.emplace(e);\n\
-    \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\
-    \ que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
-    \        seen[cre.to] = true;\n        for (const edge<T>& e : G[cre.to]) {\n\
-    \            if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n\
-    \ * @docs docs/Prim.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n\
-    \    rep (i, n) {\n        rep (j, n) {\n            int a; cin >> a;\n      \
-    \      if (a != -1) {\n                G.add_edge(i, j, a, true);\n          \
-    \  }\n        }\n    }\n    cout << Prim(G) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../graph/mst/Prim.hpp\"\nusing namespace std;\nint main() {\n\
-    \    int n; cin >> n;\n    Graph<int> G(n);\n    rep (i, n) {\n        rep (j,\
-    \ n) {\n            int a; cin >> a;\n            if (a != -1) {\n           \
-    \     G.add_edge(i, j, a, true);\n            }\n        }\n    }\n    cout <<\
-    \ Prim(G) << endl;\n}\n"
+    \ */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
+    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
+    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
+    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
+    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
+    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
+    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
+    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
+    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
+    \               res.emplace_back(e.to, e.from, e.cost, e.idx);\n             \
+    \   t = e.to;\n                flg = true;\n                break;\n         \
+    \   }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n \
+    \   return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
+    \ docs/Restore.md\n */\n#line 2 \"graph/tree/Tree.hpp\"\n\n#line 4 \"graph/tree/Tree.hpp\"\
+    \n\ntemplate<class T> class Tree : public Graph<T> {\n  private:\n    using Base\
+    \ = Graph<T>;\n  protected:\n    void dfs_build(int v, int p) {\n        par[v]\
+    \ = p;\n        for (const edge<T>& e : (*this)[v]) {\n            if (e.to !=\
+    \ p) dfs_build(e.to, v);\n        }\n    }\n  public:\n    int root;\n    std::vector<int>\
+    \ par;\n    using Base::Base;\n    Tree(const Base& G) : Base(G) {}\n    Tree(Base&&\
+    \ G) : Base(std::move(G)) {}\n    void build(int r = 0) {\n        assert(this->edge_size()\
+    \ + 1 == (int)this->size());\n        assert(0 <= r && r < (int)this->size());\n\
+    \        par.resize(this->size());\n        dfs_build(r, -1);\n        root =\
+    \ r;\n    }\n    Graph<T> child() const {\n        Graph<T> res(this->size());\n\
+    \        rep (i, this->size()) {\n            if (i == root) res[i].reserve(this->size());\n\
+    \            else res[i].reserve(this->size() - 1);\n            for (const edge<T>&\
+    \ e : (*this)[i]) {\n                if (e.to != par[i]) res.add_edge(i, e.to,\
+    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n#line\
+    \ 7 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class T> class TreeDiameter {\n\
+    \  protected:\n    Tree<T> G;\n    int s, t;\n    std::vector<T> dist;\n    void\
+    \ dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n            if\
+    \ (e.to == p) continue;\n            dist[e.to] = dist[v] + e.cost;\n        \
+    \    dfs(e.to, v);\n        }\n    }\n  public:\n    TreeDiameter() = default;\n\
+    \    TreeDiameter(const Tree<T>& G_) { init(G_); }\n    void init(const Tree<T>&\
+    \ G_) {\n        G = G_;\n        dist.resize(G.size()); dist[0] = 0;\n      \
+    \  dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n    \
+    \    dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
+    \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
+    \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
+    \ t);\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n#include \"../shortest-path/Restore.hpp\"\n#include \"Tree.hpp\"\n\ntemplate<class\
+    \ T> class TreeDiameter {\n  protected:\n    Tree<T> G;\n    int s, t;\n    std::vector<T>\
+    \ dist;\n    void dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n\
+    \            if (e.to == p) continue;\n            dist[e.to] = dist[v] + e.cost;\n\
+    \            dfs(e.to, v);\n        }\n    }\n  public:\n    TreeDiameter() =\
+    \ default;\n    TreeDiameter(const Tree<T>& G_) { init(G_); }\n    void init(const\
+    \ Tree<T>& G_) {\n        G = G_;\n        dist.resize(G.size()); dist[0] = 0;\n\
+    \        dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n\
+    \        dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
+    \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
+    \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
+    \ t);\n    }\n};\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
-  - graph/mst/Prim.hpp
-  - data-struct/unionfind/UnionFind.hpp
-  isVerificationFile: true
-  path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - graph/shortest-path/Restore.hpp
+  - graph/tree/Tree.hpp
+  isVerificationFile: false
+  path: graph/tree/TreeDiameter.hpp
   requiredBy: []
   timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/yosupo/tree_diameter.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+documentation_of: graph/tree/TreeDiameter.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-- /verify/test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp.html
-title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+- /library/graph/tree/TreeDiameter.hpp
+- /library/graph/tree/TreeDiameter.hpp.html
+title: graph/tree/TreeDiameter.hpp
 ---
