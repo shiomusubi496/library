@@ -12,14 +12,11 @@ int main() {
         G.add_edge(a, b, c, true);
     }
     vector<ll> D = Dijkstra(G, s);
-    vector<int> R = Restore(G, D, s);
-    if (R[t] == -2) {
+    if (D[t] == infinity<ll>::value) {
         puts("-1");
         return 0;
     }
-    vector<int> ans{t};
-    while (ans.back() != s) ans.push_back(R[ans.back()]);
-    reverse(all(ans));
-    cout << D[t] << ' ' << ans.size() - 1 << endl;
-    rep (i, ans.size() - 1) cout << ans[i] << ' ' << ans[i + 1] << endl;
+    Edges<ll> R = RestorePath(G, D, s, t);
+    cout << D[t] << ' ' << R.size() << endl;
+    for (const edge<ll>& e : R) cout << e.from << ' ' << e.to << endl;
 }

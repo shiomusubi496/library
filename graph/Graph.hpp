@@ -11,7 +11,7 @@ template<class T = int> struct edge {
     edge(int t, T c) : from(-1), to(t), cost(c) {}
     edge(int f, int t, T c) : from(f), to(t), cost(c) {}
     edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}
-    operator int() { return to; }
+    operator int() const { return to; }
     friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
         return lhs.cost < rhs.cost;
     }
@@ -24,20 +24,21 @@ template<class T = int> using Edges = std::vector<edge<T>>;
 template<class T = int> using GMatrix = std::vector<std::vector<T>>;
 
 template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
+  private:
+    using Base = std::vector<std::vector<edge<T>>>;
   protected:
     int edge_id = 0;
-    using Base = std::vector<std::vector<edge<T>>>;
   public:
     using Base::Base;
     int edge_size() const { return edge_id; }
-    int add_edge(int a, int b, T c, bool is_directed = false){
+    int add_edge(int a, int b, T c, bool is_directed = false) {
         assert(0 <= a && a < (int)this->size());
         assert(0 <= b && b < (int)this->size());
         (*this)[a].emplace_back(a, b, c, edge_id);
         if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);
         return edge_id++;
     }
-    int add_edge(int a, int b, bool is_directed = false){
+    int add_edge(int a, int b, bool is_directed = false) {
         assert(0 <= a && a < (int)this->size());
         assert(0 <= b && b < (int)this->size());
         (*this)[a].emplace_back(a, b, 1, edge_id);
@@ -56,7 +57,7 @@ template<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {
     return res;
 }
 
-template<class T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {
+template<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {
     const int V = G.size();
     const int E = G.edge_size();
     Edges<T> Ed(E);
@@ -65,14 +66,17 @@ template<class T> Edges<T> ListToUndirectedEdges(const Graph<T>& G) {
     }
     return Ed;
 }
-template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
+
+template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
     const int V = G.size();
-    const int E = std::accumulate(all(G), 0, [](int a, const Edges<T>& b) -> int { return a + b.size(); });
-    Edges<T> Ed(G.edge_size());
-    Ed.reserve(E);
+    const int E = std::accumulate(
+        all(G), 0,
+        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size(); }
+    );
+    Edges<T> Ed(G.edge_size()); Ed.reserve(E);
     rep (i, V) {
         for (const edge<T>& e : G[i]) {
-            if (Ed[e.idx].to == -1) Ed[e.idx] = e;
+            if (Ed[e.idx] == -1) Ed[e.idx]=e;
             else Ed.push_back(e);
         }
     }
@@ -82,7 +86,7 @@ template<class T> Edges<T> ListToDirectedEdges(const Graph<T>& G) {
 template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     const int V = G.size();
     Graph<T> RG(V);
-    for (const edge<T>& e : ListToUndirectedEdges(G)) {
+    for (const edge<T>& e : DirectedListToEdges(G)) {
         RG.add_edge(e.to, e.from, e.cost, true);
     }
     return RG;

@@ -31,7 +31,8 @@ template<class T> class TopologicalSort {
         }
         std::reverse(all(ord));
     }
-    std::vector<int> get() const { return ord; }
+    const std::vector<int>& get() const& { return ord; }
+    std::vector<int> get() && { return std::move(ord); }
 };
 
 /**

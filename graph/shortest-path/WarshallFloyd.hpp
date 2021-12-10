@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../Graph.hpp"
 
-template<class T> void WarshallFloyd(GMatrix<T>& G){
+template<class T> void WarshallFloyd(GMatrix<T>& G) {
     const int N = G.size();
     rep (i, N) G[i][i] = 0;
     rep (k, N) {

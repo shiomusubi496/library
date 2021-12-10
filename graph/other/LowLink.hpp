@@ -42,8 +42,10 @@ template<class T> class LowLink {
             if (ord[i] == -1) dfs(i, -1);
         }
     }
-    std::vector<int> articulation_points() const { return aps; }
-    Edges<T> bridges() const { return brd; }
+    const std::vector<int>& articulation_points() const& { return aps; }
+    std::vector<int> articulation_points() && { return std::move(aps); }
+    const Edges<T>& bridges() const& { return brd; }
+    Edges<T> bridges() && { return std::move(brd); }
 };
 
 /**

@@ -19,6 +19,27 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
     return bfr;
 }
 
+template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {
+    const auto RG = ReverseGraph(G);
+    std::vector<bool> seen(G.size(), false); seen[t] = true;
+    Edges<T> res;
+    while (s != t) {
+        bool flg = false;
+        for (const edge<T>& e : RG[t]) {
+            if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {
+                seen[e.to] = true;
+                res.emplace_back(e.to, e.from, e.cost, e.idx);
+                t = e.to;
+                flg = true;
+                break;
+            }
+        }
+        assert(flg);
+    }
+    std::reverse(all(res));
+    return res;
+}
+
 /**
  * @brief Restore(経路復元)
  * @docs docs/Restore.md

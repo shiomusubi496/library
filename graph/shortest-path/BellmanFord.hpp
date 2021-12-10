@@ -19,7 +19,7 @@ template<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int star
     rep (i, V - 1) {
         bool changed = false;
         for (const edge<T>& e : Ed) {
-            if (dist[e.from] == -infinity<T>::value){
+            if (dist[e.from] == -infinity<T>::value) {
                 dist[e.to] = -infinity<T>::value;
                 changed = true;
             }
