@@ -49,6 +49,13 @@ template<class T> class infinity {
     static constexpr T min = std::numeric_limits<T>::min();
 };
 
+#if __cplusplus <= 201402L
+template<class T> constexpr T infinity<T>::value;
+template<class T> constexpr T infinity<T>::mvalue;
+template<class T> constexpr T infinity<T>::max;
+template<class T> constexpr T infinity<T>::min;
+#endif
+
 #if __cplusplus >= 201402L
 template<class T> constexpr T INF = infinity<T>::value;
 #endif
