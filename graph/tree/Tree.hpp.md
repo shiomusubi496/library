@@ -22,6 +22,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/Tree.md
+    document_title: Tree-template
     links: []
   bundledCode: "#line 2 \"graph/tree/Tree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\n\n\
     #line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
@@ -177,7 +179,8 @@ data:
     \        rep (i, this->size()) {\n            if (i == root) res[i].reserve(this->size());\n\
     \            else res[i].reserve(this->size() - 1);\n            for (const edge<T>&\
     \ e : (*this)[i]) {\n                if (e.to != par[i]) res.add_edge(i, e.to,\
-    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n"
+    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n\n\
+    /**\n * @brief Tree-template\n * @docs docs/Tree.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree\
     \ : public Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n\
     \    void dfs_build(int v, int p) {\n        par[v] = p;\n        for (const edge<T>&\
@@ -191,7 +194,8 @@ data:
     \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
     \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
     \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
-    \   }\n        return res;\n    }\n};\n"
+    \   }\n        return res;\n    }\n};\n\n/**\n * @brief Tree-template\n * @docs\
+    \ docs/Tree.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -199,7 +203,7 @@ data:
   path: graph/tree/Tree.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2021-12-10 22:59:43+09:00'
+  timestamp: '2021-12-11 11:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree_diameter.test.cpp
@@ -209,5 +213,12 @@ layout: document
 redirect_from:
 - /library/graph/tree/Tree.hpp
 - /library/graph/tree/Tree.hpp.html
-title: graph/tree/Tree.hpp
+title: Tree-template
 ---
+## 概要
+
+木の構造体。 `Graph` を継承している。
+
+- `Tree(int N)` : 頂点数 `N` のグラフを作成する。
+- `void build(int root = 0)` : 頂点 `root` を根とする根付き木を構築する。 `root` は根に、 `par[v]` は `v` の親になる。
+- `Graph<T> child()` : 根付き木を返す。

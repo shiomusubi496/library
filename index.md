@@ -86,7 +86,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/tree/Tree.hpp
-      title: graph/tree/Tree.hpp
+      title: Tree-template
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"

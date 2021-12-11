@@ -9,7 +9,7 @@ data:
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/Tree.hpp
-    title: graph/tree/Tree.hpp
+    title: Tree-template
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -200,16 +200,16 @@ data:
     \        rep (i, this->size()) {\n            if (i == root) res[i].reserve(this->size());\n\
     \            else res[i].reserve(this->size() - 1);\n            for (const edge<T>&\
     \ e : (*this)[i]) {\n                if (e.to != par[i]) res.add_edge(i, e.to,\
-    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n#line\
-    \ 7 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class T> class TreeDiameter {\n\
-    \  protected:\n    Tree<T> G;\n    int s, t;\n    std::vector<T> dist;\n    void\
-    \ dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n            if\
-    \ (e.to == p) continue;\n            dist[e.to] = dist[v] + e.cost;\n        \
-    \    dfs(e.to, v);\n        }\n    }\n  public:\n    TreeDiameter() = default;\n\
-    \    TreeDiameter(const Tree<T>& G_) { init(G_); }\n    void init(const Tree<T>&\
-    \ G_) {\n        G = G_;\n        dist.resize(G.size()); dist[0] = 0;\n      \
-    \  dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n    \
-    \    dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n\n\
+    /**\n * @brief Tree-template\n * @docs docs/Tree.md\n */\n#line 7 \"graph/tree/TreeDiameter.hpp\"\
+    \n\ntemplate<class T> class TreeDiameter {\n  protected:\n    Tree<T> G;\n   \
+    \ int s, t;\n    std::vector<T> dist;\n    void dfs(int v, int p) {\n        for\
+    \ (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n        \
+    \    dist[e.to] = dist[v] + e.cost;\n            dfs(e.to, v);\n        }\n  \
+    \  }\n  public:\n    TreeDiameter() = default;\n    TreeDiameter(const Tree<T>&\
+    \ G_) { init(G_); }\n    void init(const Tree<T>& G_) {\n        G = G_;\n   \
+    \     dist.resize(G.size()); dist[0] = 0;\n        dfs(0, -1);\n        s = std::max_element(all(dist))\
+    \ - dist.begin();\n        dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
     \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
     \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
     \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
@@ -238,7 +238,7 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeDiameter.hpp
   requiredBy: []
-  timestamp: '2021-12-11 11:11:58+09:00'
+  timestamp: '2021-12-11 11:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree_diameter.test.cpp
