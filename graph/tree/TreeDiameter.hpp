@@ -39,3 +39,8 @@ template<class T> class TreeDiameter {
         return RestorePath(G, dist, s, t);
     }
 };
+
+/**
+ * @brief TreeDiameter(木の直径)
+ * @docs docs/TreeDiameter.md
+ */
