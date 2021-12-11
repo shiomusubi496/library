@@ -37,3 +37,8 @@ template<class T> class Tree : public Graph<T> {
         return res;
     }
 };
+
+/**
+ * @brief Tree-template
+ * @docs docs/Tree.md
+ */
