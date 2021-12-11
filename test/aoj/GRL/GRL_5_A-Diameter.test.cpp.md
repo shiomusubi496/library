@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/Tree.hpp
     title: graph/tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
-    title: graph/tree/TreeDiameter.hpp
-  - icon: ':question:'
+    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -212,11 +212,12 @@ data:
     \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
     \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
     \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
-    \ t);\n    }\n};\n#line 6 \"test/aoj/GRL/GRL_5_A-Diameter.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N; cin >> N;\n    Tree<int> G(N);\n    rep (N -\
-    \ 1) {\n        int a, b, c;\n        cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c);\n    }\n    TreeDiameter<int> TD(G);\n    cout << TD.diameter() << endl;\n\
-    }\n"
+    \ t);\n    }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n *\
+    \ @docs docs/TreeDiameter.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_A-Diameter.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Tree<int> G(N);\n\
+    \    rep (N - 1) {\n        int a, b, c;\n        cin >> a >> b >> c;\n      \
+    \  G.add_edge(a, b, c);\n    }\n    TreeDiameter<int> TD(G);\n    cout << TD.diameter()\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/tree/Tree.hpp\"\n#include \"../../../graph/tree/TreeDiameter.hpp\"\
@@ -233,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
+  timestamp: '2021-12-11 11:11:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_A-Diameter.test.cpp

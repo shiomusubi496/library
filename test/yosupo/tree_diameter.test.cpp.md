@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/Tree.hpp
     title: graph/tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
-    title: graph/tree/TreeDiameter.hpp
-  - icon: ':question:'
+    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -212,12 +212,13 @@ data:
     \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
     \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
     \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
-    \ t);\n    }\n};\n#line 6 \"test/yosupo/tree_diameter.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N; cin >> N;\n    Tree<ll> G(N);\n    rep (N - 1)\
-    \ {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a, b, c, false);\n\
-    \    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n    cout <<\
-    \ TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n    for\
-    \ (const edge<ll>& e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
+    \ t);\n    }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n *\
+    \ @docs docs/TreeDiameter.md\n */\n#line 6 \"test/yosupo/tree_diameter.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Tree<ll> G(N);\n\
+    \    rep (N - 1) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
+    \ b, c, false);\n    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n\
+    \    cout << TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n\
+    \    for (const edge<ll>& e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
     ../../graph/tree/Tree.hpp\"\n#include \"../../graph/tree/TreeDiameter.hpp\"\n\
@@ -235,8 +236,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-11 11:11:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree_diameter.test.cpp
 layout: document

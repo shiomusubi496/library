@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/Tree.hpp
     title: graph/tree/Tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -18,13 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/TreeDiameter.md
+    document_title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
     links: []
   bundledCode: "#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -211,7 +213,8 @@ data:
     \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
     \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
     \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
-    \ t);\n    }\n};\n"
+    \ t);\n    }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n *\
+    \ @docs docs/TreeDiameter.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../shortest-path/Restore.hpp\"\n#include \"Tree.hpp\"\n\ntemplate<class\
     \ T> class TreeDiameter {\n  protected:\n    Tree<T> G;\n    int s, t;\n    std::vector<T>\
@@ -225,7 +228,8 @@ data:
     \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
     \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
     \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
-    \ t);\n    }\n};\n"
+    \ t);\n    }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n *\
+    \ @docs docs/TreeDiameter.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -234,8 +238,8 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeDiameter.hpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-12-11 11:11:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree_diameter.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
@@ -244,5 +248,13 @@ layout: document
 redirect_from:
 - /library/graph/tree/TreeDiameter.hpp
 - /library/graph/tree/TreeDiameter.hpp.html
-title: graph/tree/TreeDiameter.hpp
+title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
 ---
+## 概要
+
+木の直径を計算するクラス。最短経路問題を $2$ 回解けば良いことで知られている。
+
+- `TreeDiameter(Tree<T> T)` : 木 `T` で初期化する。
+- `T diameter()` : 直径の重みの総和を返す。
+- `pair<int, int> get_pair()` : 直径の両端を返す。
+- `Edges<T> get_path()` : 直径の辺のリストを返す。
