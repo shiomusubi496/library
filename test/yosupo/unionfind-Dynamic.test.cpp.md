@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DisjointSparseTable.hpp
-    title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
+    path: data-struct/unionfind/DynamicUnionFind.hpp
+    title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -17,20 +14,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind
     links:
-    - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/unionfind
+  bundledCode: "#line 1 \"test/yosupo/unionfind-Dynamic.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/unionfind\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -125,63 +122,46 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/DisjointSparseTable.hpp\"\n\n#line 2\
-    \ \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n\
-    #define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n  \
-    \  inline ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n\
-    \        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a\
-    \ >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1;\
-    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
-    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
-    \ T, class F = std::function<T(T, T)>> class DisjointSparseTable {\n  protected:\n\
-    \    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
-    \ v_;\n    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable()\
-    \ = default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) :\
-    \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
-    \ v;\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(ori));\n        rep (i, 0, h) {\n     \
-    \       int len = 1 << i;\n            rep (j, len, ori, len << 1) {\n       \
-    \         data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
-    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
-    \                rep (k, 1, len) {\n                    if (j + k >= ori) break;\n\
-    \                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n    \
-    \            }\n            }\n        }\n    }\n    T query(int l, int r) const\
-    \ {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l\
-    \ == r) return v_[l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
-    \ data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n#line 4 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    DisjointSparseTable<ll> DST(A, [](ll a, ll b) { return\
-    \ a + b; });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout <<\
-    \ DST.query(l, r) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ \"../../other/template.hpp\"\n#include \"../../data-struct/segment/DisjointSparseTable.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    DisjointSparseTable<ll> DST(A, [](ll a, ll b) { return\
-    \ a + b; });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout <<\
-    \ DST.query(l, r) << endl;\n    }\n}\n"
+    \    }\n};\n#line 2 \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\n#line 4\
+    \ \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\nclass DynamicUnionFind {\n\
+    \  protected:\n    std::map<ll, ll> st;\n  public:\n    DynamicUnionFind() = default;\n\
+    \    ll find(ll x) {\n        auto itr = st.find(x);\n        return itr == st.end()\
+    \ || itr->second < 0 ? x : itr->second = find(itr->second);\n    }\n    std::pair<ll,\
+    \ ll> merge(ll x, ll y) {\n        x = find(x);\n        y = find(y);\n      \
+    \  if (x == y) return {x, -1};\n        auto itrx = st.find(x), itry = st.find(y);\n\
+    \        if (itrx == st.end()) itrx = st.insert({x, -1}).first;\n        if (itry\
+    \ == st.end()) itry = st.insert({y, -1}).first;\n        if (itrx->second > itry->second)\
+    \ std::swap(itrx, itry), std::swap(x, y);\n        itrx->second += itry->second;\n\
+    \        itry->second = x;\n        return {x, y};\n    }\n    bool same(ll x,\
+    \ ll y) {\n        return find(x) == find(y);\n    }\n    int size(ll x) {\n \
+    \       x = find(x);\n        auto itr = st.find(x);\n        if (itr == st.end())\
+    \ return 1;\n        else return -itr->second;\n    }\n    bool is_root(ll x)\
+    \ {\n        auto itr = st.find(x);\n        if (itr == st.end() || itr->second\
+    \ < 0) return true;\n        return false; \n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\
+    \u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n */\n#line 4 \"test/yosupo/unionfind-Dynamic.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    DynamicUnionFind\
+    \ UF;\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n    \
+    \    if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
+    ../../other/template.hpp\"\n#include \"../../data-struct/unionfind/DynamicUnionFind.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    DynamicUnionFind\
+    \ UF;\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n    \
+    \    if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - other/bitop.hpp
+  - data-struct/unionfind/DynamicUnionFind.hpp
   isVerificationFile: true
-  path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  path: test/yosupo/unionfind-Dynamic.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
+  timestamp: '2021-12-12 22:45:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+documentation_of: test/yosupo/unionfind-Dynamic.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-- /verify/test/yosupo/static_range_sum-DisjointSparseTable.test.cpp.html
-title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+- /verify/test/yosupo/unionfind-Dynamic.test.cpp
+- /verify/test/yosupo/unionfind-Dynamic.test.cpp.html
+title: test/yosupo/unionfind-Dynamic.test.cpp
 ---

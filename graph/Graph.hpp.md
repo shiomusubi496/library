@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -16,7 +16,7 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -82,7 +82,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -104,6 +104,9 @@ data:
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/persistent_unionfind-Undo.test.cpp
+    title: test/yosupo/persistent_unionfind-Undo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -112,9 +115,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -320,11 +323,12 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/BellmanFord.hpp
   timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp

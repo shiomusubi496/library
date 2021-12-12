@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Kruskal.md
     document_title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -173,7 +173,7 @@ data:
     \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
     \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
     \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
     \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
     \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
     \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
@@ -208,8 +208,8 @@ data:
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-12 22:45:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp

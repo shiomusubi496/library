@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/UnionFind.md
     document_title: UnionFind
@@ -147,7 +147,7 @@ data:
     \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
     \ par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x,\
     \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
-    \ {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
+    \ {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
     \ += par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n   \
     \ bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int\
     \ size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
@@ -163,7 +163,7 @@ data:
     \ x) {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x :\
     \ par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x,\
     \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
-    \ {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
+    \ {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x]\
     \ += par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n   \
     \ bool same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int\
     \ size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
@@ -180,8 +180,8 @@ data:
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-12 22:45:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/unionfind.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
@@ -200,20 +200,10 @@ title: UnionFind
 
 集合を併合する操作や、ある要素が属する集合の代表元を問い合わせる操作を行える。
 
-- `pair<int, int> merge(int x, int y)` :  
-要素 `x` の属する集合と要素 `y` の属する集合を併合する。併合後の根とそうでない方の pair を返す。ただし、もともと同じ集合に属する場合は {-1, -1} を返す。ならし $\Theta(\alpha(N))$ 。
-
-- `int find(int x)` :  
-要素 `x` の属する集合の代表元を返す。ならし $\Theta(\alpha(N))$ 。
-
-- `bool same(int x, int y)`  
-要素 `x` と要素 `y` が同じ集合に属するかを判定する。ならし $\Theta(\alpha(N))$ 。
-
-- `int size(int x)`  
-要素 `x` の属する集合の要素数を返す。ならし $\Theta(\alpha(N))$ 。
-
-- `bool is_root(int x)`  
-要素 `x` が属する集合の代表元が `x` であるかを返す。 $\Theta(1)$ 。
-
-- `vector<vector<int>> groups()`  
-「「集合に属する要素のリスト」のリスト」を返す。ならし $\Theta(N\alpha(N))$ 。
+- `UnionFind(int N)` : サイズ `N` の UnionFind を作成する。 $\Theta(N)$ 。
+- `pair<int, int> merge(int x, int y)` : 要素 `x` の属する集合と要素 `y` の属する集合を併合する。併合後の根とそうでない方の pair を返す。ただし、もともと同じ集合に属する場合は根と -1 の pair を返す。ならし $\Theta(\alpha(N))$ 。
+- `int find(int x)` : 要素 `x` の属する集合の代表元を返す。ならし $\Theta(\alpha(N))$ 。
+- `bool same(int x, int y)` : 要素 `x` と要素 `y` が同じ集合に属するかを判定する。ならし $\Theta(\alpha(N))$ 。
+- `int size(int x)` : 要素 `x` の属する集合の要素数を返す。ならし $\Theta(\alpha(N))$ 。
+- `bool is_root(int x)` : 要素 `x` が属する集合の代表元が `x` であるかを返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。ならし $\Theta(N\alpha(N))$ 。

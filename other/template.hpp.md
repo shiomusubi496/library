@@ -24,9 +24,15 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/DynamicUnionFind.hpp
+    title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/UnionFindUndo.hpp
+    title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -40,7 +46,7 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -100,7 +106,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -178,7 +184,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - icon: ':heavy_check_mark:'
@@ -221,6 +227,9 @@ data:
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/persistent_unionfind-Undo.test.cpp
+    title: test/yosupo/persistent_unionfind-Undo.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -251,11 +260,14 @@ data:
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind-Dynamic.test.cpp
+    title: test/yosupo/unionfind-Dynamic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -498,19 +510,23 @@ data:
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/unionfind/UnionFind.hpp
+  - data-struct/unionfind/DynamicUnionFind.hpp
+  - data-struct/unionfind/UnionFindUndo.hpp
   timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/unionfind-Dynamic.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/many_aplusb.test.cpp
   - test/yosupo/unionfind.test.cpp

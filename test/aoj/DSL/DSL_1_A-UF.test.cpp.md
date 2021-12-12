@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -127,7 +127,7 @@ data:
     \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
     \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
     \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {-1, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
     \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
     \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
     \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
@@ -153,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_1_A-UF.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
+  timestamp: '2021-12-12 22:45:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_1_A-UF.test.cpp

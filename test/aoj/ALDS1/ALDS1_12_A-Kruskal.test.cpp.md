@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A
@@ -172,7 +172,7 @@ data:
     \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
     \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
     \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) return {-1, -1};\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) return {x, -1};\n\
     \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
     \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
     \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
@@ -210,8 +210,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-12 22:45:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
 layout: document

@@ -1,34 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DisjointSparseTable.hpp
-    title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/persistent_unionfind-Undo.test.cpp
+    title: test/yosupo/persistent_unionfind-Undo.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
-    links:
-    - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    _deprecated_at_docs: docs/UnionFindUndo.md
+    document_title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
+    links: []
+  bundledCode: "#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\n#line 2 \"\
+    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
     \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
     \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
@@ -125,63 +120,77 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/DisjointSparseTable.hpp\"\n\n#line 2\
-    \ \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n\
-    #define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n  \
-    \  inline ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n\
-    \        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a\
-    \ >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1;\
-    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
-    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
-    \ T, class F = std::function<T(T, T)>> class DisjointSparseTable {\n  protected:\n\
-    \    F op;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
-    \ v_;\n    std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable()\
-    \ = default;\n    DisjointSparseTable(const std::vector<T>& v, const F& op) :\
-    \ op(op) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ =\
-    \ v;\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(ori));\n        rep (i, 0, h) {\n     \
-    \       int len = 1 << i;\n            rep (j, len, ori, len << 1) {\n       \
-    \         data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
-    \ - k - 1] = op(v[j - k - 1], data[i][j - k]);\n                data[i][j] = v[j];\n\
-    \                rep (k, 1, len) {\n                    if (j + k >= ori) break;\n\
-    \                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);\n    \
-    \            }\n            }\n        }\n    }\n    T query(int l, int r) const\
-    \ {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l\
-    \ == r) return v_[l];\n        int d = logtable[l ^ r];\n        return op(data[d][l],\
-    \ data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n#line 4 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    DisjointSparseTable<ll> DST(A, [](ll a, ll b) { return\
-    \ a + b; });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout <<\
-    \ DST.query(l, r) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\n#include\
-    \ \"../../other/template.hpp\"\n#include \"../../data-struct/segment/DisjointSparseTable.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    DisjointSparseTable<ll> DST(A, [](ll a, ll b) { return\
-    \ a + b; });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout <<\
-    \ DST.query(l, r) << endl;\n    }\n}\n"
+    \    }\n};\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
+    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
+    \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
+    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
+    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
+    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
+    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
+    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
+    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
+    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const {\n \
+    \       return find(x) == find(y);\n    }\n    int size(int x) const {\n     \
+    \   return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
+    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(all(res), [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end()\n        );\n        return\
+    \ res;\n    }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n\
+    \        return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
+    \ = hist.top().second; hist.pop();\n        par_vec[hist.top().first] = hist.top().second;\
+    \ hist.pop();\n    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n\
+    \    }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n\
+    };\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFindUndo\
+    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
+    \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
+    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
+    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
+    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
+    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
+    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
+    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
+    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const {\n \
+    \       return find(x) == find(y);\n    }\n    int size(int x) const {\n     \
+    \   return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
+    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(all(res), [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end()\n        );\n        return\
+    \ res;\n    }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n\
+    \        return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
+    \ = hist.top().second; hist.pop();\n        par_vec[hist.top().first] = hist.top().second;\
+    \ hist.pop();\n    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n\
+    \    }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n\
+    };\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - other/bitop.hpp
-  isVerificationFile: true
-  path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  isVerificationFile: false
+  path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  timestamp: '2021-12-12 22:45:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/persistent_unionfind-Undo.test.cpp
+documentation_of: data-struct/unionfind/UnionFindUndo.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-- /verify/test/yosupo/static_range_sum-DisjointSparseTable.test.cpp.html
-title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+- /library/data-struct/unionfind/UnionFindUndo.hpp
+- /library/data-struct/unionfind/UnionFindUndo.hpp.html
+title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
 ---
+## 概要
+
+経路圧縮をしない場合、 merge 一回で変化する配列の値はたかだか $2$ つであるため、これを保存しておくことで undo 可能にした UnionFind 。
+
+- `UnionFind(int N)` : サイズ `N` の UnionFind を作成する。 $\Theta(N)$ 。
+- `pair<int, int> merge(int x, int y)` : 要素 `x` の属する集合と要素 `y` の属する集合を併合する。併合後の根とそうでない方の pair を返す。ただし、もともと同じ集合に属する場合は根と -1 の pair を返す。ならし $\Theta(\log N)$ 。
+- `int find(int x)` : 要素 `x` の属する集合の代表元を返す。ならし $\Theta(\log N)$ 。
+- `bool same(int x, int y)` : 要素 `x` と要素 `y` が同じ集合に属するかを判定する。ならし $\Theta(\log N)$ 。
+- `int size(int x)` : 要素 `x` の属する集合の要素数を返す。ならし $\Theta(\log N)$ 。
+- `bool is_root(int x)` : 要素 `x` が属する集合の代表元が `x` であるかを返す。 $\Theta(1)$ 。
+- `vector<vector<int>> groups()` : 「「集合に属する要素のリスト」のリスト」を返す。ならし $\Theta(N\log N)$ 。
+- `void undo()` : 直前の `unite` 操作を取り消す。 $\Theta(1)$ 。
+- `void snapshot()` : 現在の状態を保存する。これ以前に `undo` することはできなくなるので注意。全体の合計での計算量は `merge` した回数に比例。
+- `void rollback()` : 最初の状態、または最後に `snapshot` をした状態に戻す。計算量は `snapshot` と同様。
