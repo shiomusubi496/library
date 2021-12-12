@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -37,7 +37,7 @@ data:
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -55,7 +55,7 @@ data:
         \u89E3)"
   - name: graph/mst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/Kruskal.hpp
       title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
     - icon: ':heavy_check_mark:'
@@ -115,7 +115,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -130,7 +130,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
       title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
       title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     - icon: ':heavy_check_mark:'
@@ -214,7 +214,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
       title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     - icon: ':heavy_check_mark:'

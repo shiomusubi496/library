@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A
@@ -185,10 +185,10 @@ data:
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\
     \n\ntemplate<class T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n\
     \    UnionFind UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n   \
-    \     if (UF.merge(e.from, e.to).first >= 0) res += e.cost;\n    }\n    return\
+    \     if (UF.merge(e.from, e.to).second >= 0) res += e.cost;\n    }\n    return\
     \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n  \
     \  std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for (const\
-    \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).first >= 0) res.push_back(e);\n\
+    \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\
     \u6CD5)\n * @docs docs/Kruskal.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Kruskal.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Edges<int>\
@@ -207,8 +207,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2021-12-12 22:45:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-12 23:46:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
 layout: document
