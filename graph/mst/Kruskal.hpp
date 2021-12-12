@@ -9,7 +9,7 @@ template<class T> T Kruskal(int N, Edges<T> Ed) {
     UnionFind UF(N);
     T res = 0;
     for (const edge<T>& e : Ed) {
-        if (UF.merge(e.from, e.to).first >= 0) res += e.cost;
+        if (UF.merge(e.from, e.to).second >= 0) res += e.cost;
     }
     return res;
 }
@@ -19,7 +19,7 @@ template<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {
     UnionFind UF(N);
     Edges<T> res;
     for (const edge<T>& e : Ed) {
-        if (UF.merge(e.from, e.to).first >= 0) res.push_back(e);
+        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);
     }
     return res;
 }
