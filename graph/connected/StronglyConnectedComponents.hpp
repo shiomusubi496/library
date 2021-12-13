@@ -61,7 +61,7 @@ template<class T> class StronglyConnectedComponents {
                 if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
             }
         }
-        return G;
+        return res;
     }
 };
 
