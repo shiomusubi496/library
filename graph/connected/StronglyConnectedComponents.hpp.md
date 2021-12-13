@@ -183,8 +183,8 @@ data:
     \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
     \ const {\n        Graph<T> res(sz);\n        rep (i, n) {\n            for (const\
     \ edge<T>& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
-    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return G;\n   \
-    \ }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
+    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
+    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
     \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class StronglyConnectedComponents {\n  protected:\n    int\
@@ -208,7 +208,7 @@ data:
     \    }\n    Graph<T> dag() const {\n        Graph<T> res(sz);\n        rep (i,\
     \ n) {\n            for (const edge<T>& e : G[i]) {\n                if (cmp[i]\
     \ != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n\
-    \        }\n        return G;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
+    \        }\n        return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
     \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
     \ */\n"
   dependsOn:
@@ -217,7 +217,7 @@ data:
   isVerificationFile: false
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
+  timestamp: '2021-12-13 16:59:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
