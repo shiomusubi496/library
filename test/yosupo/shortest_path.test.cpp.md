@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shortest_path
@@ -130,76 +130,80 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int t) : from(-1), to(t), cost(1) {}\n    edge(int\
-    \ t, T c) : from(-1), to(t), cost(c) {}\n    edge(int f, int t, T c) : from(f),\
-    \ to(t), cost(c) {}\n    edge(int f, int t, T c, int i): from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  protected:\n\
-    \    int edge_id = 0;\n  public:\n    using Base::Base;\n    int edge_size() const\
-    \ { return edge_id; }\n    int add_edge(int a, int b, T c, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
-    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
-    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
-    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx]=e;\n            else Ed.push_back(e);\n        }\n    }\n \
-    \   return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    Graph<T> RG(V);\n    for (const edge<T>&\
-    \ e : DirectedListToEdges(G)) {\n        RG.add_edge(e.to, e.from, e.cost, true);\n\
-    \    }\n    return RG;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
-    \ infinity<T>::value); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
-    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
-    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line\
-    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
-    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
-    \  const int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n\
-    \    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n     \
-    \   int v = que.front(); que.pop();\n        for (const edge<T>& e : G[v]) {\n\
-    \            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {\n      \
-    \          bfr[e.to] = v;\n                que.push(e.to);\n            }\n  \
-    \      }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const\
-    \ Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n    const auto RG\
-    \ = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false); seen[t] = true;\n\
-    \    Edges<T> res;\n    while (s != t) {\n        bool flg = false;\n        for\
-    \ (const edge<T>& e : RG[t]) {\n            if (!seen[e.to] && dist[e.to] + e.cost\
-    \ == dist[t]) {\n                seen[e.to] = true;\n                res.emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n                t = e.to;\n                flg = true;\n\
-    \                break;\n            }\n        }\n        assert(flg);\n    }\n\
-    \    std::reverse(all(res));\n    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\
-    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
-    \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
-    \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
-    \ s);\n    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n       \
-    \ return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    cout << D[t]\
-    \ << ' ' << R.size() << endl;\n    for (const edge<ll>& e : R) cout << e.from\
-    \ << ' ' << e.to << endl;\n}\n"
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1): from(f),\
+    \ to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend\
+    \ bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
+    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
+    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
+    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
+    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  protected:\n    int edge_id = 0;\n  public:\n    using Base::Base;\n    int\
+    \ edge_size() const { return edge_id; }\n    int add_edge(int a, int b, const\
+    \ T& c, bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
+    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
+    \ bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
+    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
+    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
+    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
+    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
+    \ = make_vec<T>(N, N, infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n  \
+    \  rep (i, N) {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n\
+    \    }\n    return res;\n}\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
+    \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
+    \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n\
+    \        all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int {\
+    \ return a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n\
+    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
+    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
+    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
+    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
+    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
+    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
+    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
+    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
+    \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
+    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
+    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
+    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
+    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
+    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2\
+    \ \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
+    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
+    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
+    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
+    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
+    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
+    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
+    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
+    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
+    \               res.push_back(e); std::swap(res.back().from, res.back().to);\n\
+    \                t = e.to;\n                flg = true;\n                break;\n\
+    \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
+    \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
+    \ docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n\
+    \    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n\
+    \        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n\
+    \    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n        return\
+    \ 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    cout << D[t] << '\
+    \ ' << R.size() << endl;\n    for (const edge<ll>& e : R) cout << e.from << '\
+    \ ' << e.to << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
     ../../graph/shortest-path/Dijkstra.hpp\"\n#include \"../../graph/shortest-path/Restore.hpp\"\
@@ -218,8 +222,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 22:59:43+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-14 16:36:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp
 layout: document

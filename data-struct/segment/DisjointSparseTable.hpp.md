@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -186,8 +186,8 @@ data:
   timestamp: '2021-12-10 19:07:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: data-struct/segment/DisjointSparseTable.hpp
 layout: document
 redirect_from:

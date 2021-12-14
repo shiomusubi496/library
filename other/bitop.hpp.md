@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -201,27 +201,27 @@ data:
   isVerificationFile: false
   path: other/bitop.hpp
   requiredBy:
-  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/DualSegmentTree.hpp
   timestamp: '2021-12-10 19:07:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: other/bitop.hpp
 layout: document
 redirect_from:
