@@ -7,10 +7,7 @@ template<class T = int> struct edge {
     T cost;
     int idx;
     edge() : from(-1), to(-1) {}
-    edge(int t) : from(-1), to(t), cost(1) {}
-    edge(int t, T c) : from(-1), to(t), cost(c) {}
-    edge(int f, int t, T c) : from(f), to(t), cost(c) {}
-    edge(int f, int t, T c, int i): from(f), to(t), cost(c), idx(i) {}
+    edge(int f, int t, const T& c = 1, int i = -1): from(f), to(t), cost(c), idx(i) {}
     operator int() const { return to; }
     friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
         return lhs.cost < rhs.cost;
@@ -31,7 +28,7 @@ template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
   public:
     using Base::Base;
     int edge_size() const { return edge_id; }
-    int add_edge(int a, int b, T c, bool is_directed = false) {
+    int add_edge(int a, int b, const T& c, bool is_directed = false) {
         assert(0 <= a && a < (int)this->size());
         assert(0 <= b && b < (int)this->size());
         (*this)[a].emplace_back(a, b, c, edge_id);
@@ -76,20 +73,32 @@ template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
     Edges<T> Ed(G.edge_size()); Ed.reserve(E);
     rep (i, V) {
         for (const edge<T>& e : G[i]) {
-            if (Ed[e.idx] == -1) Ed[e.idx]=e;
+            if (Ed[e.idx] == -1) Ed[e.idx] = e;
             else Ed.push_back(e);
         }
     }
     return Ed;
 }
 
+template<class T> std::vector<std::pair<edge<T>, bool>> ListToEdgeses(const Graph<T>& G) {
+    std::vector<std::pair<edge<T>, bool>> res(G.edge_size());
+    rep (i, V) {
+        for (const edge<T>& e : G[i]) {
+            if (res[e.idx].first == -1) res[e.idx].first = e;
+            else res[e.idx].second = true;
+        }
+    }
+    return res;
+}
+
 template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     const int V = G.size();
-    Graph<T> RG(V);
-    for (const edge<T>& e : DirectedListToEdges(G)) {
-        RG.add_edge(e.to, e.from, e.cost, true);
+    Graph<T> res(V);
+    for (const auto& p : ListToEdgeses(G)) {
+        res.add_edge(p.first.from, p.first.to, p.first.cost, true);
+        if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);
     }
-    return RG;
+    return res;
 }
 
 /**
