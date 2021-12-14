@@ -2,137 +2,27 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: other/template.hpp
-    title: other/template.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/ConnectedComponents.hpp
-    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/StronglyConnectedComponents.hpp
-    title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/TwoEdgeConnectedComponents.hpp
-    title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Kruskal.hpp
-    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Prim.hpp
-    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+    path: graph/Graph.hpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: graph/other/GraphCycle.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/TopologicalSort.hpp
-    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BellmanFord.hpp
-    title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BreadthFirstSearch.hpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Restore.hpp
-    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/WarshallFloyd.hpp
-    title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-      )"
-  - icon: ':warning:'
-    path: graph/tree/Tree.hpp
-    title: Tree-template
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/TreeDiameter.hpp
-    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-    title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/cycle_detection.test.cpp
-    title: test/yosupo/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/persistent_unionfind-Undo.test.cpp
-    title: test/yosupo/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest_path.test.cpp
-    title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree_diameter.test.cpp
-    title: test/yosupo/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/two_edge_connected_components.test.cpp
-    title: test/yosupo/two_edge_connected_components.test.cpp
+    path: other/template.hpp
+    title: other/template.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Graph.md
-    document_title: Graph-template
-    links: []
-  bundledCode: "#line 2 \"graph/Graph.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/cycle_detection
+    links:
+    - https://judge.yosupo.jp/problem/cycle_detection
+  bundledCode: "#line 1 \"test/yosupo/cycle_detection.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/cycle_detection\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -235,51 +125,8 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge\
-    \ {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1)\
-    \ {}\n    edge(int f, int t, const T& c = 1, int i = -1): from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  protected:\n\
-    \    int edge_id = 0;\n  public:\n    using Base::Base;\n    int edge_size() const\
-    \ { return edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed\
-    \ = false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
-    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
-    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
-    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
-    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
-    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
-    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T =\
-    \ int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1): from(f),\
     \ to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend\
     \ bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
@@ -320,63 +167,49 @@ data:
     \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
     \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n"
+    \ */\n#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 5 \"graph/other/GraphCycle.hpp\"\
+    \n\ntemplate<class T> class GraphCycle {\n  protected:\n    const Graph<T>& G;\n\
+    \    std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
+    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
+    \        visited[v] = seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n\
+    \            int d = dfs(e.to, v);\n            if (d != -1) {\n             \
+    \   if (d == -2) return -2;\n                cycle.push_back(e);\n           \
+    \     if (d == v) return -2;\n                return d;\n            }\n     \
+    \   }\n        seen[v] = false;\n        return -1;\n    }\n    void init() {\n\
+    \        const int N = G.size();\n        visited.assign(N, false);\n        seen.assign(N,\
+    \ false);\n        rep (i, N) {\n            if (dfs(i, -1) == -2) {\n       \
+    \         std::reverse(all(cycle));\n                break;\n            }\n \
+    \       }\n    }\n  public:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
+    \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
+    \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
+    \ }\n};\n#line 5 \"test/yosupo/cycle_detection.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N, M; cin >> N >> M;\n    Graph<int> G(N);\n    rep (M)\
+    \ {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n\
+    \    GraphCycle<int> GC(G);\n    if (!GC.has_cycle()) puts(\"-1\");\n    else\
+    \ {\n        auto v = GC.get_cycle();\n        cout << v.size() << endl;\n   \
+    \     for (const auto& e : GC.get_cycle()) cout << e.idx << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
+    ../../graph/other/GraphCycle.hpp\"\nusing namespace std;\nint main() {\n    int\
+    \ N, M; cin >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int a, b;\
+    \ cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n    GraphCycle<int>\
+    \ GC(G);\n    if (!GC.has_cycle()) puts(\"-1\");\n    else {\n        auto v =\
+    \ GC.get_cycle();\n        cout << v.size() << endl;\n        for (const auto&\
+    \ e : GC.get_cycle()) cout << e.idx << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  isVerificationFile: false
-  path: graph/Graph.hpp
-  requiredBy:
-  - graph/mst/Kruskal.hpp
-  - graph/mst/Prim.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/tree/TreeDiameter.hpp
-  - graph/tree/Tree.hpp
-  - graph/shortest-path/BellmanFord.hpp
-  - graph/shortest-path/Restore.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/other/LowLink.hpp
-  - graph/other/TopologicalSort.hpp
+  - graph/Graph.hpp
   - graph/other/GraphCycle.hpp
-  timestamp: '2021-12-14 17:59:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/yosupo/cycle_detection.test.cpp
-  - test/yosupo/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/two_edge_connected_components.test.cpp
-  - test/yosupo/shortest_path.test.cpp
-  - test/yosupo/tree_diameter.test.cpp
-documentation_of: graph/Graph.hpp
+  isVerificationFile: true
+  path: test/yosupo/cycle_detection.test.cpp
+  requiredBy: []
+  timestamp: '2021-12-14 19:00:29+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/cycle_detection.test.cpp
 layout: document
 redirect_from:
-- /library/graph/Graph.hpp
-- /library/graph/Graph.hpp.html
-title: Graph-template
+- /verify/test/yosupo/cycle_detection.test.cpp
+- /verify/test/yosupo/cycle_detection.test.cpp.html
+title: test/yosupo/cycle_detection.test.cpp
 ---
-## 概要
-
-グラフの構造体。 `vector<vector<edge<T>>>` を継承している。
-
-- `Graph(int N)` : 頂点数 `N` のグラフを作成する。
-- `int add_edge(int a, int b, bool d = false)` : 頂点 `a` と頂点 `b` の間に辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。

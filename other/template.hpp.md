@@ -53,6 +53,9 @@ data:
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/GraphCycle.hpp
+    title: graph/other/GraphCycle.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
@@ -200,6 +203,9 @@ data:
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
+    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   - icon: ':heavy_check_mark:'
@@ -223,6 +229,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/cycle_detection.test.cpp
+    title: test/yosupo/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
@@ -507,6 +516,7 @@ data:
   - graph/shortest-path/Dijkstra.hpp
   - graph/other/LowLink.hpp
   - graph/other/TopologicalSort.hpp
+  - graph/other/GraphCycle.hpp
   - math/EulerPhi.hpp
   - math/PrimeFactor.hpp
   - math/ModInt.hpp
@@ -551,12 +561,14 @@ data:
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/many_aplusb.test.cpp
+  - test/yosupo/cycle_detection.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
