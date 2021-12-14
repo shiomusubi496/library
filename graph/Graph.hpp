@@ -96,8 +96,8 @@ template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     const int V = G.size();
     Graph<T> res(V);
     for (const auto& p : ListToEdgeses(G)) {
-        res.add_edge(p.first.from, p.first.to, p.first.cost, true);
-        if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);
+        res.add_edge(p.first.to, p.first.from, p.first.cost, true);
+        if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);
     }
     return res;
 }

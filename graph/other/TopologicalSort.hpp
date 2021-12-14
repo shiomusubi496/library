@@ -28,7 +28,7 @@ template<class T> class TopologicalSort {
         std::reverse(all(ord));
     }
   public:
-    TopologicalSort(const Graph<T>& G_) { init(); }
+    TopologicalSort(const Graph<T>& G) : G(G) { init(); }
     const std::vector<int>& get() const& { return ord; }
     std::vector<int> get() && { return std::move(ord); }
 };

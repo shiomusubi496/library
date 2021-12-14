@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 #include "../../data-struct/unionfind/UnionFind.hpp"
 
-template<class T> T Kruskal(int N, const Edges<T>& Ed) {
+template<class T> T Kruskal(int N, Edges<T> Ed) {
     std::sort(all(Ed));
     UnionFind UF(N);
     T res = 0;
@@ -14,7 +14,7 @@ template<class T> T Kruskal(int N, const Edges<T>& Ed) {
     return res;
 }
 
-template<class T> Edges<T> Kruskal_vec(int N, const Edges<T>& Ed) {
+template<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {
     std::sort(all(Ed));
     UnionFind UF(N);
     Edges<T> res;
