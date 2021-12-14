@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Kruskal.md
     document_title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -168,8 +168,8 @@ data:
     \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
     \ */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
     \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
@@ -187,24 +187,24 @@ data:
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
     \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\
-    \n\ntemplate<class T> T Kruskal(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n\
+    \n\ntemplate<class T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n\
     \    UnionFind UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n   \
     \     if (UF.merge(e.from, e.to).second >= 0) res += e.cost;\n    }\n    return\
-    \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, const Edges<T>& Ed)\
-    \ {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for\
-    \ (const edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n\
+    \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n  \
+    \  std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for (const\
+    \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\
     \u6CD5)\n * @docs docs/Kruskal.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
-    \ T Kruskal(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n    UnionFind\
-    \ UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
+    \    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
     \ e.to).second >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> Kruskal_vec(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n\
-    \    UnionFind UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n\
-    \        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n    }\n  \
-    \  return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5\
-    )\n * @docs docs/Kruskal.md\n */\n"
+    \ T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n   \
+    \ UnionFind UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n   \
+    \     if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n    }\n    return\
+    \ res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)\n *\
+    \ @docs docs/Kruskal.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -212,8 +212,8 @@ data:
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
   requiredBy: []
-  timestamp: '2021-12-14 17:17:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-14 17:59:41+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp

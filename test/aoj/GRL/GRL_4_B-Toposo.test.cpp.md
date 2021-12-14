@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_B
@@ -165,8 +165,8 @@ data:
     \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
     \ */\n#line 2 \"graph/other/TopologicalSort.hpp\"\n\n#line 5 \"graph/other/TopologicalSort.hpp\"\
     \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    const\
@@ -176,10 +176,10 @@ data:
     \        ord.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
     \        ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n\
     \            if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
-    \    }\n  public:\n    TopologicalSort(const Graph<T>& G_) { init(); }\n    const\
-    \ std::vector<int>& get() const& { return ord; }\n    std::vector<int> get() &&\
-    \ { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
+    \    }\n  public:\n    TopologicalSort(const Graph<T>& G) : G(G) { init(); }\n\
+    \    const std::vector<int>& get() const& { return ord; }\n    std::vector<int>\
+    \ get() && { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\
+    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
     \ */\n#line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n    rep (m)\
     \ {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n\
@@ -197,8 +197,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 17:17:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:59:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
 layout: document

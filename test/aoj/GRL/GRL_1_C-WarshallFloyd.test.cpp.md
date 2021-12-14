@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -165,8 +165,8 @@ data:
     \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
     \ */\n#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
     \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
@@ -200,7 +200,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 17:17:44+09:00'
+  timestamp: '2021-12-14 17:59:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

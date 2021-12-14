@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -168,8 +168,8 @@ data:
     \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
     \ */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
@@ -221,7 +221,7 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeDiameter.hpp
   requiredBy: []
-  timestamp: '2021-12-14 17:17:44+09:00'
+  timestamp: '2021-12-14 17:59:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
