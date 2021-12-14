@@ -65,7 +65,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
-      title: graph/other/GraphCycle.hpp
+      title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"

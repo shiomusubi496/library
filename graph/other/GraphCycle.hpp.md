@@ -19,6 +19,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/GraphCycle.md
+    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     links: []
   bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -180,7 +182,8 @@ data:
     \                break;\n            }\n        }\n    }\n  public:\n    GraphCycle(const\
     \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
     \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n"
+    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
+    \u691C\u51FA)\n * @docs docs/GraphCycle.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class GraphCycle {\n  protected:\n    const Graph<T>& G;\n\
     \    std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
@@ -196,14 +199,15 @@ data:
     \       }\n    }\n  public:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
     \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
     \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n"
+    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/GraphCycle.md\n\
+    \ */"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/other/GraphCycle.hpp
   requiredBy: []
-  timestamp: '2021-12-14 19:00:29+09:00'
+  timestamp: '2021-12-14 19:20:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
@@ -213,5 +217,12 @@ layout: document
 redirect_from:
 - /library/graph/other/GraphCycle.hpp
 - /library/graph/other/GraphCycle.hpp.html
-title: graph/other/GraphCycle.hpp
+title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
 ---
+## 概要
+
+有向グラフに対して閉路を検出する。
+
+- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
+- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
+- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(|p|)$ 。

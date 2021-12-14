@@ -6,7 +6,7 @@ data:
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
-    title: graph/other/GraphCycle.hpp
+    title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -182,7 +182,8 @@ data:
     \       }\n    }\n  public:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
     \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
     \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n#line 5 \"test/yosupo/cycle_detection.test.cpp\"\nusing namespace std;\n\
+    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/GraphCycle.md\n\
+    \ */\n#line 5 \"test/yosupo/cycle_detection.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int N, M; cin >> N >> M;\n    Graph<int> G(N);\n    rep (M)\
     \ {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b, true);\n    }\n\
     \    GraphCycle<int> GC(G);\n    if (!GC.has_cycle()) puts(\"-1\");\n    else\
@@ -203,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 19:00:29+09:00'
+  timestamp: '2021-12-14 19:20:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/cycle_detection.test.cpp
