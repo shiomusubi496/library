@@ -28,7 +28,7 @@ template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& 
         for (const edge<T>& e : RG[t]) {
             if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {
                 seen[e.to] = true;
-                res.emplace_back(e.to, e.from, e.cost, e.idx);
+                res.push_back(e); std::swap(res.back().from, res.back().to);
                 t = e.to;
                 flg = true;
                 break;
