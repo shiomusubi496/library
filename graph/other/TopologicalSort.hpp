@@ -6,7 +6,7 @@
 template<class T> class TopologicalSort {
   protected:
     int n;
-    Graph<T> G;
+    const Graph<T>& G;
     std::vector<int> ord;
     std::vector<bool> seen;
     void dfs(int v) {
@@ -17,11 +17,7 @@ template<class T> class TopologicalSort {
         }
         ord.push_back(v);
     }
-  public:
-    TopologicalSort() = default;
-    TopologicalSort(const Graph<T>& G_) { init(G_); }
-    void init(const Graph<T>& G_) {
-        G = G_;
+    void init() {
         n = G.size();
         ord.reserve(n);
         seen.assign(n, false);
@@ -31,6 +27,8 @@ template<class T> class TopologicalSort {
         }
         std::reverse(all(ord));
     }
+  public:
+    TopologicalSort(const Graph<T>& G_) { init(); }
     const std::vector<int>& get() const& { return ord; }
     std::vector<int> get() && { return std::move(ord); }
 };

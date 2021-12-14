@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 #include "../../data-struct/unionfind/UnionFind.hpp"
 
-template<class T> T Prim(Graph<T> G) {
+template<class T> T Prim(const Graph<T>& G) {
     const int N = G.size();
     std::vector<bool> seen(N, false); seen[0] = true;
     prique<edge<T>> que;
@@ -23,7 +23,7 @@ template<class T> T Prim(Graph<T> G) {
     return res;
 }
 
-template<class T> Edges<T> Prim_vec(Graph<T> G) {
+template<class T> Edges<T> Prim_vec(const Graph<T>& G) {
     const int N = G.size();
     std::vector<bool> seen(N, false); seen[0] = true;
     prique<edge<T>> que;

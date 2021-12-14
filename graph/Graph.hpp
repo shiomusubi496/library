@@ -81,6 +81,7 @@ template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
 }
 
 template<class T> std::vector<std::pair<edge<T>, bool>> ListToEdgeses(const Graph<T>& G) {
+    int V = G.size();
     std::vector<std::pair<edge<T>, bool>> res(G.edge_size());
     rep (i, V) {
         for (const edge<T>& e : G[i]) {

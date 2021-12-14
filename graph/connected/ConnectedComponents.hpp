@@ -6,7 +6,7 @@
 template<class T> class ConnectedComponents {
   protected:
     int n, sz;
-    Graph<T> G;
+    const Graph<T>& G;
     std::vector<int> cmp;
     void dfs(int v) {
         for (const edge<T>& e : G[v]) {
@@ -15,11 +15,7 @@ template<class T> class ConnectedComponents {
             dfs(e.to);
         }
     }
-  public:
-    ConnectedComponents() = default;
-    ConnectedComponents(const Graph<T>& G_) { init(G_); }
-    void init(const Graph<T>& G_) {
-        G = G_;
+    void init() {
         n = G.size();
         cmp.assign(n, -1);
         sz = 0;
@@ -29,6 +25,8 @@ template<class T> class ConnectedComponents {
             dfs(i);
         }
     }
+  public:
+    ConnectedComponents(const Graph<T>& G) : G(G) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }
     std::vector<std::vector<int>> groups() const {

@@ -6,7 +6,8 @@
 template<class T> class StronglyConnectedComponents {
   protected:
     int n, sz;
-    Graph<T> G, RG;
+    const Graph<T>& G;
+    Graph<T> RG;
     std::vector<int> ord;
     std::vector<bool> seen;
     std::vector<int> cmp;
@@ -25,11 +26,7 @@ template<class T> class StronglyConnectedComponents {
             dfs2(e.to);
         }
     }
-  public:
-    StronglyConnectedComponents() = default;
-    StronglyConnectedComponents(const Graph<T>& G_) { init(G_); }
-    void init(const Graph<T>& G_) {
-        G = G_;
+    void init() {
         n = G.size();
         ord.clear(); ord.reserve(n);
         seen.assign(n, false);
@@ -47,6 +44,8 @@ template<class T> class StronglyConnectedComponents {
             dfs2(i);
         }
     }
+  public:
+    StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }
     std::vector<std::vector<int>> groups() const {

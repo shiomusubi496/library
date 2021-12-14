@@ -5,7 +5,7 @@
 template<class T> class LowLink {
   protected:
     int n, cnt;
-    Graph<T> G;
+    const Graph<T>& G;
     std::vector<int> ord, low;
     std::vector<int> aps;
     Edges<T> brd;
@@ -30,11 +30,7 @@ template<class T> class LowLink {
         if (p == -1 && deg > 1) is_ap = true;
         if (is_ap) aps.push_back(v);
     }
-  public:
-    LowLink() = default;
-    LowLink(const Graph<T>& G_) { init(G_); }
-    void init(const Graph<T>& G_) {
-        G = G_;
+    void init() {
         n = G.size();
         ord.assign(n, -1); low.assign(n, n + 1);
         cnt = 0;
@@ -42,6 +38,8 @@ template<class T> class LowLink {
             if (ord[i] == -1) dfs(i, -1);
         }
     }
+  public:
+    LowLink(const Graph<T>& G) : G(G) { init(); }
     const std::vector<int>& articulation_points() const& { return aps; }
     std::vector<int> articulation_points() && { return std::move(aps); }
     const Edges<T>& bridges() const& { return brd; }

@@ -16,11 +16,7 @@ template<class T> class TwoEdgeConnectedComponents : protected LowLink<T> {
             dcmp(e.to);
         }
     }
-  public:
-    TwoEdgeConnectedComponents() = default;
-    TwoEdgeConnectedComponents(const Graph<T>& G_) { init(G_); }
-    void init(const Graph<T>& G_) {
-        LowLink<T>::init(G_);
+    void init() {
         sz = 0;
         cmp.assign(this->n, -1);
         rep (i, this->n) {
@@ -30,6 +26,8 @@ template<class T> class TwoEdgeConnectedComponents : protected LowLink<T> {
             }
         }
     }
+  public:
+    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }
     std::vector<std::vector<int>> groups() const {

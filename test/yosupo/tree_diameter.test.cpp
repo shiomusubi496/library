@@ -1,15 +1,14 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/tree_diameter"
 #include "../../other/template.hpp"
 #include "../../graph/Graph.hpp"
-#include "../../graph/tree/Tree.hpp"
 #include "../../graph/tree/TreeDiameter.hpp"
 using namespace std;
 int main() {
     int N; cin >> N;
-    Tree<ll> G(N);
+    Graph<ll> G(N);
     rep (N - 1) {
-        int a, b, c; cin >> a >> b >> c;
-        G.add_edge(a, b, c, false);
+        int a, b; ll c; cin >> a >> b >> c;
+        G.add_edge(a, b, c);
     }
     TreeDiameter<ll> TD(G);
     auto v = TD.get_path();
