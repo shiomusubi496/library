@@ -41,3 +41,8 @@ template<class T> class GraphCycle {
     const Edges<T>& get_cycle() const& { return cycle; }
     Edges<T> get_cycle() && { return std::move(cycle); }
 };
+
+/**
+ * @brief GraphCycle(閉路検出)
+ * @docs docs/GraphCycle.md
+ */
