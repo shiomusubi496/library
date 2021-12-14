@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_B
@@ -158,30 +158,30 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
-    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
-    \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
-    \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
-    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
-    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
-    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 5\
-    \ \"test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n        int v,\
-    \ k; cin >> v >> k;\n        G[v].reserve(k);\n        rep (k) {\n           \
-    \ int u, c; cin >> u >> c;\n            G.add_edge(v, u, c, true);\n        }\n\
-    \    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n        cout << i << ' '\
-    \ << v[i] << endl;\n    }\n}\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
+    \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
+    \ infinity<T>::value); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
+    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
+    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
+    \        for (const edge<T>& e : G[v]) {\n            if (chmin(dist[e.to], c\
+    \ + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
+    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
+    \ docs/Dijkstra.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (N) {\n        int v, k; cin >> v >> k;\n        G[v].reserve(k);\n \
+    \       rep (k) {\n            int u, c; cin >> u >> c;\n            G.add_edge(v,\
+    \ u, c, true);\n        }\n    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n\
+    \        cout << i << ' ' << v[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_B\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\n\
@@ -197,8 +197,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
 layout: document

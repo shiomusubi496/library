@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
@@ -158,49 +158,49 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
-    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
-    \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
-    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
-    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
-    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
-    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
-    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
-    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const {\n \
-    \       return find(x) == find(y);\n    }\n    int size(int x) const {\n     \
-    \   return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
-    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res), [](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n            res.end()\n        );\n        return\
-    \ res;\n    }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n\
-    \        return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
-    \ = hist.top().second; hist.pop();\n        par_vec[hist.top().first] = hist.top().second;\
-    \ hist.pop();\n    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n\
-    \    }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n\
-    };\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n\
-    \ */\n#line 5 \"test/yosupo/persistent_unionfind-Undo.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL> G(Q + 1);\n\
-    \    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t,\
-    \ k, u, v; cin >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k + 1, i +\
-    \ 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n   \
-    \ }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n  \
-    \      Graph<PLL>& G;\n        vector<vector<array<int, 3>>> A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      for (const auto& a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n        \
-    \    for (const auto& e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n\
-    \                this->operator()(e.to);\n                UFU.undo();\n      \
-    \      }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q)\
-    \ {\n        if (ans[i] != -1) cout << ans[i] << endl;\n    }\n}\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\
+    \n\nclass UnionFindUndo {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
+    \    std::stack<std::pair<int, int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0)\
+    \ {}\n    UnionFindUndo(int n) : n(n), par_vec(n, -1) {}\n    int find(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x\
+    \ : find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
+    \        x = find(x);\n        y = find(y);\n        hist.emplace(x, par_vec[x]);\n\
+    \        hist.emplace(y, par_vec[y]);\n        if (x == y) return {x, -1};\n \
+    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
+    \        par_vec[y] = x;\n        return {x, y};\n    }\n    bool same(int x,\
+    \ int y) const {\n        return find(x) == find(y);\n    }\n    int size(int\
+    \ x) const {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(n);\n        rep\
+    \ (i, n) res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n    void\
+    \ undo() {\n        par_vec[hist.top().first] = hist.top().second; hist.pop();\n\
+    \        par_vec[hist.top().first] = hist.top().second; hist.pop();\n    }\n \
+    \   void snapshot() {\n        while (!hist.empty()) hist.pop();\n    }\n    void\
+    \ rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief\
+    \ UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n */\n\
+    #line 5 \"test/yosupo/persistent_unionfind-Undo.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL> G(Q + 1);\n    vector<vector<array<int,\
+    \ 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t, k, u, v; cin >> t >> k >> u\
+    \ >> v;\n        if (t == 0) G.add_edge(k + 1, i + 1, PLL{u, v}, true);\n    \
+    \    else A[k + 1].push_back({(int)i, u, v});\n    }\n    vector<int> ans(Q, -1);\n\
+    \    UnionFindUndo UFU(N);\n    struct {\n        Graph<PLL>& G;\n        vector<vector<array<int,\
+    \ 3>>> A;\n        vector<int>& ans;\n        UnionFindUndo& UFU;\n        void\
+    \ operator()(int v) {\n            for (const auto& a : A[v]) ans[a[0]] = UFU.same(a[1],\
+    \ a[2]);\n            for (const auto& e : G[v]) {\n                UFU.merge(e.cost.first,\
+    \ e.cost.second);\n                this->operator()(e.to);\n                UFU.undo();\n\
+    \            }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep\
+    \ (i, Q) {\n        if (ans[i] != -1) cout << ans[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
     #include \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
     \ \"../../data-struct/unionfind/UnionFindUndo.hpp\"\nusing namespace std;\nint\
@@ -222,8 +222,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/persistent_unionfind-Undo.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind-Undo.test.cpp
 layout: document

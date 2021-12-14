@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -166,37 +166,17 @@ data:
     \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 4 \"graph/other/LowLink.hpp\"\
-    \n\ntemplate<class T> class LowLink {\n  protected:\n    int n, cnt;\n    Graph<T>\
-    \ G;\n    std::vector<int> ord, low;\n    std::vector<int> aps;\n    Edges<T>\
-    \ brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n     \
-    \   int deg = 0;\n        bool is_ap = false, mul = false;\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (e.to == p && !mul) {\n               \
-    \ mul = true;\n                continue;\n            }\n            if (ord[e.to]\
-    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
-    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
-    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
-    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
-    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
-    \    }\n  public:\n    LowLink() = default;\n    LowLink(const Graph<T>& G_) {\
-    \ init(G_); }\n    void init(const Graph<T>& G_) {\n        G = G_;\n        n\
-    \ = G.size();\n        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt =\
-    \ 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n      \
-    \  }\n    }\n    const std::vector<int>& articulation_points() const& { return\
-    \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
-    \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
-    \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
-    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n"
-  code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class LowLink\
-    \ {\n  protected:\n    int n, cnt;\n    Graph<T> G;\n    std::vector<int> ord,\
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n\
+    \  protected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord,\
     \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
     \ p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap\
     \ = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n           \
@@ -206,15 +186,35 @@ data:
     \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
     \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
     \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
-    \     if (is_ap) aps.push_back(v);\n    }\n  public:\n    LowLink() = default;\n\
-    \    LowLink(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
-    \ G_) {\n        G = G_;\n        n = G.size();\n        ord.assign(n, -1); low.assign(n,\
-    \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
-    \ dfs(i, -1);\n        }\n    }\n    const std::vector<int>& articulation_points()\
-    \ const& { return aps; }\n    std::vector<int> articulation_points() && { return\
-    \ std::move(aps); }\n    const Edges<T>& bridges() const& { return brd; }\n  \
-    \  Edges<T> bridges() && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\
-    \u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n"
+    \     if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
+    \        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt = 0;\n        rep\
+    \ (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n  public:\n\
+    \    LowLink(const Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>&\
+    \ articulation_points() const& { return aps; }\n    std::vector<int> articulation_points()\
+    \ && { return std::move(aps); }\n    const Edges<T>& bridges() const& { return\
+    \ brd; }\n    Edges<T> bridges() && { return std::move(brd); }\n};\n\n/**\n *\
+    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class LowLink\
+    \ {\n  protected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
+    \ ord, low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v,\
+    \ int p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool\
+    \ is_ap = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n     \
+    \       if (e.to == p && !mul) {\n                mul = true;\n              \
+    \  continue;\n            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n\
+    \            else {\n                dfs(e.to, v);\n                chmin(low[v],\
+    \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
+    \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
+    \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
+    \     if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
+    \        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt = 0;\n        rep\
+    \ (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n  public:\n\
+    \    LowLink(const Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>&\
+    \ articulation_points() const& { return aps; }\n    std::vector<int> articulation_points()\
+    \ && { return std::move(aps); }\n    const Edges<T>& bridges() const& { return\
+    \ brd; }\n    Edges<T> bridges() && { return std::move(brd); }\n};\n\n/**\n *\
+    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n\
+    \ */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -222,8 +222,8 @@ data:
   path: graph/other/LowLink.hpp
   requiredBy:
   - graph/connected/TwoEdgeConnectedComponents.hpp
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp

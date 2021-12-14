@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C
@@ -158,24 +158,24 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\ntemplate<class T>\
-    \ std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n    assert(0 <= start\
-    \ && start < (int)G.size());\n    std::vector<T> dist(G.size(), -1); dist[start]\
-    \ = 0;\n    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n\
-    \        int v = que.front(); que.pop();\n        for (const edge<T>& e : G[v])\
-    \ {\n            if (dist[e.to] == -1) {\n                dist[e.to] = dist[v]\
-    \ + e.cost;\n                que.push(e.to);\n            }\n        }\n    }\n\
-    \    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n *\
-    \ @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
+    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
+    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
+    \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
+    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
+    \  }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\
+    \u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
     \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep\
     \ (j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1\
@@ -196,8 +196,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
 layout: document

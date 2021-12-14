@@ -1,16 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':x:'
-    path: graph/tree/Tree.hpp
-    title: Tree-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':question:'
@@ -18,9 +15,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -164,30 +161,16 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/Tree.hpp\"\
-    \n\n#line 4 \"graph/tree/Tree.hpp\"\n\ntemplate<class T> class Tree : public Graph<T>\
-    \ {\n  private:\n    using Base = Graph<T>;\n  protected:\n    void dfs_build(int\
-    \ v, int p) {\n        par[v] = p;\n        for (const edge<T>& e : (*this)[v])\
-    \ {\n            if (e.to != p) dfs_build(e.to, v);\n        }\n    }\n  public:\n\
-    \    int root;\n    std::vector<int> par;\n    using Base::Base;\n    Tree(const\
-    \ Base& G) : Base(G) {}\n    Tree(Base&& G) : Base(std::move(G)) {}\n    void\
-    \ build(int r = 0) {\n        assert(this->edge_size() + 1 == (int)this->size());\n\
-    \        assert(0 <= r && r < (int)this->size());\n        par.resize(this->size());\n\
-    \        dfs_build(r, -1);\n        root = r;\n    }\n    Graph<T> child() const\
-    \ {\n        Graph<T> res(this->size());\n        rep (i, this->size()) {\n  \
-    \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
-    \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
-    \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
-    \   }\n        return res;\n    }\n};\n\n/**\n * @brief Tree-template\n * @docs\
-    \ docs/Tree.md\n */\n#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line 2 \"graph/shortest-path/Restore.hpp\"\
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line 2 \"graph/shortest-path/Restore.hpp\"\
     \n\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
     \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
     \  const int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n\
@@ -205,44 +188,41 @@ data:
     \            flg = true;\n                break;\n            }\n        }\n \
     \       assert(flg);\n    }\n    std::reverse(all(res));\n    return res;\n}\n\
     \n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
-    \ */\n#line 7 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class T> class TreeDiameter\
-    \ {\n  protected:\n    Tree<T> G;\n    int s, t;\n    std::vector<T> dist;\n \
-    \   void dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n      \
-    \      if (e.to == p) continue;\n            dist[e.to] = dist[v] + e.cost;\n\
-    \            dfs(e.to, v);\n        }\n    }\n  public:\n    TreeDiameter() =\
-    \ default;\n    TreeDiameter(const Tree<T>& G_) { init(G_); }\n    void init(const\
-    \ Tree<T>& G_) {\n        G = G_;\n        dist.resize(G.size()); dist[0] = 0;\n\
-    \        dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n\
-    \        dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
-    \ - dist.begin();\n    }\n    T diameter() const {\n        return dist[t];\n\
-    \    }\n    std::pair<int, int> get_pair() const {\n        return {s, t};\n \
-    \   }\n    Edges<T> get_path() const {\n        return RestorePath(G, dist, s,\
-    \ t);\n    }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n *\
-    \ @docs docs/TreeDiameter.md\n */\n#line 6 \"test/yosupo/tree_diameter.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Tree<ll> G(N);\n\
-    \    rep (N - 1) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, false);\n    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n\
-    \    cout << TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n\
+    \ */\n#line 6 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class T> class TreeDiameter\
+    \ {\n  protected:\n    const Graph<T>& G;\n    int s, t;\n    std::vector<T> dist;\n\
+    \    void dfs(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n     \
+    \       if (e.to == p) continue;\n            dist[e.to] = dist[v] + e.cost;\n\
+    \            dfs(e.to, v);\n        }\n    }\n    void init() {\n        dist.resize(G.size());\
+    \ dist[0] = 0;\n        dfs(0, -1);\n        s = std::max_element(all(dist)) -\
+    \ dist.begin();\n        dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ - dist.begin();\n    }\n  public:\n    TreeDiameter(const Graph<T>& G) : G(G)\
+    \ { init(); }\n    T diameter() const { return dist[t]; }\n    std::pair<int,\
+    \ int> get_pair() const { return {s, t}; }\n    Edges<T> get_path() const { return\
+    \ RestorePath(G, dist, s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\
+    \u76F4\u5F84)\n * @docs docs/TreeDiameter.md\n */\n#line 5 \"test/yosupo/tree_diameter.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<ll> G(N);\n\
+    \    rep (N - 1) {\n        int a, b; ll c; cin >> a >> b >> c;\n        G.add_edge(a,\
+    \ b, c);\n    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n  \
+    \  cout << TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n\
     \    for (const edge<ll>& e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
-    ../../graph/tree/Tree.hpp\"\n#include \"../../graph/tree/TreeDiameter.hpp\"\n\
-    using namespace std;\nint main() {\n    int N; cin >> N;\n    Tree<ll> G(N);\n\
-    \    rep (N - 1) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c, false);\n    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n\
-    \    cout << TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n\
-    \    for (const edge<ll>& e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
+    ../../graph/tree/TreeDiameter.hpp\"\nusing namespace std;\nint main() {\n    int\
+    \ N; cin >> N;\n    Graph<ll> G(N);\n    rep (N - 1) {\n        int a, b; ll c;\
+    \ cin >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n    TreeDiameter<ll>\
+    \ TD(G);\n    auto v = TD.get_path();\n    cout << TD.diameter() << ' ' << v.size()\
+    \ + 1 << endl;\n    cout << v[0].from;\n    for (const edge<ll>& e : v) cout <<\
+    \ ' ' << e.to;\n    cout << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
-  - graph/tree/Tree.hpp
   - graph/tree/TreeDiameter.hpp
   - graph/shortest-path/Restore.hpp
   isVerificationFile: true
   path: test/yosupo/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:36:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree_diameter.test.cpp
 layout: document

@@ -1,26 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/tree/TreeDiameter.hpp
-    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree_diameter.test.cpp
-    title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/Tree.md
     document_title: Tree-template
@@ -162,29 +153,30 @@ data:
     \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 4 \"graph/tree/Tree.hpp\"\
-    \n\ntemplate<class T> class Tree : public Graph<T> {\n  private:\n    using Base\
-    \ = Graph<T>;\n  protected:\n    void dfs_build(int v, int p) {\n        par[v]\
-    \ = p;\n        for (const edge<T>& e : (*this)[v]) {\n            if (e.to !=\
-    \ p) dfs_build(e.to, v);\n        }\n    }\n  public:\n    int root;\n    std::vector<int>\
-    \ par;\n    using Base::Base;\n    Tree(const Base& G) : Base(G) {}\n    Tree(Base&&\
-    \ G) : Base(std::move(G)) {}\n    void build(int r = 0) {\n        assert(this->edge_size()\
-    \ + 1 == (int)this->size());\n        assert(0 <= r && r < (int)this->size());\n\
-    \        par.resize(this->size());\n        dfs_build(r, -1);\n        root =\
-    \ r;\n    }\n    Graph<T> child() const {\n        Graph<T> res(this->size());\n\
-    \        rep (i, this->size()) {\n            if (i == root) res[i].reserve(this->size());\n\
-    \            else res[i].reserve(this->size() - 1);\n            for (const edge<T>&\
-    \ e : (*this)[i]) {\n                if (e.to != par[i]) res.add_edge(i, e.to,\
-    \ e.cost, true);\n            }\n        }\n        return res;\n    }\n};\n\n\
-    /**\n * @brief Tree-template\n * @docs docs/Tree.md\n */\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 4 \"graph/tree/Tree.hpp\"\n\ntemplate<class T> class Tree : public\
+    \ Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n    void dfs_build(int\
+    \ v, int p) {\n        par[v] = p;\n        for (const edge<T>& e : (*this)[v])\
+    \ {\n            if (e.to != p) dfs_build(e.to, v);\n        }\n    }\n  public:\n\
+    \    int root;\n    std::vector<int> par;\n    using Base::Base;\n    Tree(const\
+    \ Base& G) : Base(G) {}\n    Tree(Base&& G) : Base(std::move(G)) {}\n    void\
+    \ build(int r = 0) {\n        assert(this->edge_size() + 1 == (int)this->size());\n\
+    \        assert(0 <= r && r < (int)this->size());\n        par.resize(this->size());\n\
+    \        dfs_build(r, -1);\n        root = r;\n    }\n    Graph<T> child() const\
+    \ {\n        Graph<T> res(this->size());\n        rep (i, this->size()) {\n  \
+    \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
+    \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
+    \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
+    \   }\n        return res;\n    }\n};\n\n/**\n * @brief Tree-template\n * @docs\
+    \ docs/Tree.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree\
     \ : public Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n\
     \    void dfs_build(int v, int p) {\n        par[v] = p;\n        for (const edge<T>&\
@@ -205,13 +197,10 @@ data:
   - other/template.hpp
   isVerificationFile: false
   path: graph/tree/Tree.hpp
-  requiredBy:
-  - graph/tree/TreeDiameter.hpp
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/yosupo/tree_diameter.test.cpp
+  requiredBy: []
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/tree/Tree.hpp
 layout: document
 redirect_from:

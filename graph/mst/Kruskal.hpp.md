@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
@@ -162,49 +162,49 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
-    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
-    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) return {x, -1};\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
-    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
-    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
-    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
+    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
+    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
+    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
+    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
+    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
+    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
     \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
     \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\
-    \n\ntemplate<class T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n\
+    \n\ntemplate<class T> T Kruskal(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n\
     \    UnionFind UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n   \
     \     if (UF.merge(e.from, e.to).second >= 0) res += e.cost;\n    }\n    return\
-    \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n  \
-    \  std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for (const\
-    \ edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n\
+    \ res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int N, const Edges<T>& Ed)\
+    \ {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T> res;\n    for\
+    \ (const edge<T>& e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n\
     \    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\
     \u6CD5)\n * @docs docs/Kruskal.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
-    \ T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
-    \    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
+    \ T Kruskal(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n    UnionFind\
+    \ UF(N);\n    T res = 0;\n    for (const edge<T>& e : Ed) {\n        if (UF.merge(e.from,\
     \ e.to).second >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n   \
-    \ UnionFind UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n   \
-    \     if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n    }\n    return\
-    \ res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)\n *\
-    \ @docs docs/Kruskal.md\n */\n"
+    \ T> Edges<T> Kruskal_vec(int N, const Edges<T>& Ed) {\n    std::sort(all(Ed));\n\
+    \    UnionFind UF(N);\n    Edges<T> res;\n    for (const edge<T>& e : Ed) {\n\
+    \        if (UF.merge(e.from, e.to).second >= 0) res.push_back(e);\n    }\n  \
+    \  return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5\
+    )\n * @docs docs/Kruskal.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -212,7 +212,7 @@ data:
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
+  timestamp: '2021-12-14 17:17:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp

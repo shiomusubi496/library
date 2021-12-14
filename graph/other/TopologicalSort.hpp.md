@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
@@ -157,38 +157,36 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
-    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
-    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
-    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
-    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
-    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
-    \ G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n   \
-    \     seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i]) continue;\n\
-    \            dfs(i);\n        }\n        std::reverse(all(ord));\n    }\n    const\
-    \ std::vector<int>& get() const& { return ord; }\n    std::vector<int> get() &&\
-    \ { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\
-    \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
-    \ */\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 5 \"graph/other/TopologicalSort.hpp\"\n\ntemplate<class T> class TopologicalSort\
+    \ {\n  protected:\n    int n;\n    const Graph<T>& G;\n    std::vector<int> ord;\n\
+    \    std::vector<bool> seen;\n    void dfs(int v) {\n        seen[v] = true;\n\
+    \        for (const edge<T>& e : G[v]) {\n            if (seen[e.to]) continue;\n\
+    \            dfs(e.to);\n        }\n        ord.push_back(v);\n    }\n    void\
+    \ init() {\n        n = G.size();\n        ord.reserve(n);\n        seen.assign(n,\
+    \ false);\n        rep (i, n) {\n            if (seen[i]) continue;\n        \
+    \    dfs(i);\n        }\n        std::reverse(all(ord));\n    }\n  public:\n \
+    \   TopologicalSort(const Graph<T>& G_) { init(); }\n    const std::vector<int>&\
+    \ get() const& { return ord; }\n    std::vector<int> get() && { return std::move(ord);\
+    \ }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    Graph<T>\
-    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
-    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
-    \   ord.push_back(v);\n    }\n  public:\n    TopologicalSort() = default;\n  \
-    \  TopologicalSort(const Graph<T>& G_) { init(G_); }\n    void init(const Graph<T>&\
-    \ G_) {\n        G = G_;\n        n = G.size();\n        ord.reserve(n);\n   \
-    \     seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i]) continue;\n\
-    \            dfs(i);\n        }\n        std::reverse(all(ord));\n    }\n    const\
+    \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    const\
+    \ Graph<T>& G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void\
+    \ dfs(int v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v])\
+    \ {\n            if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n\
+    \        ord.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
+    \        ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n\
+    \            if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
+    \    }\n  public:\n    TopologicalSort(const Graph<T>& G_) { init(); }\n    const\
     \ std::vector<int>& get() const& { return ord; }\n    std::vector<int> get() &&\
     \ { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\u30DD\
     \u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
@@ -199,7 +197,7 @@ data:
   isVerificationFile: false
   path: graph/other/TopologicalSort.hpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
+  timestamp: '2021-12-14 17:17:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -13,9 +13,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C
@@ -159,30 +159,30 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\n\ntemplate<class T> void\
-    \ WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n    rep (i, N)\
-    \ G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n            rep (j, N)\
-    \ {\n                if (G[i][k] != infinity<T>::value && G[k][j] != infinity<T>::value)\
-    \ chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n        }\n    }\n}\n\n/**\n\
-    \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
-    \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    auto D\
-    \ = make_vec<ll>(V, V, infinity<ll>::value);\n    rep (E) {\n        int s, t,\
-    \ d; cin >> s >> t >> d;\n        D[s][t] = d;\n    }\n    WarshallFloyd(D);\n\
-    \    rep (i, V) {\n        if (D[i][i] < 0) {\n            puts(\"NEGATIVE CYCLE\"\
-    );\n            return 0;\n        }\n    }\n    rep (i, V) {\n        rep (j,\
-    \ V) {\n            if (D[i][j] == infinity<ll>::value) cout << \"INF\";\n   \
-    \         else cout << D[i][j];\n            cout << \" \\n\"[j == V - 1];\n \
-    \       }\n    }\n}\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
+    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
+    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
+    \     rep (j, N) {\n                if (G[i][k] != infinity<T>::value && G[k][j]\
+    \ != infinity<T>::value) chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n \
+    \       }\n    }\n}\n\n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\
+    \u30D5\u30ED\u30A4\u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n#line 5\
+    \ \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E; cin >> V >> E;\n    auto D = make_vec<ll>(V, V, infinity<ll>::value);\n\
+    \    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n        D[s][t] = d;\n\
+    \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
+    \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
+    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == infinity<ll>::value)\
+    \ cout << \"INF\";\n            else cout << D[i][j];\n            cout << \"\
+    \ \\n\"[j == V - 1];\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint\
@@ -200,8 +200,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
 layout: document

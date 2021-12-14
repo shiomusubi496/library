@@ -6,12 +6,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/UnionFindUndo.md
     document_title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
@@ -170,7 +170,7 @@ data:
   path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
   timestamp: '2021-12-12 22:45:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/persistent_unionfind-Undo.test.cpp
 documentation_of: data-struct/unionfind/UnionFindUndo.hpp

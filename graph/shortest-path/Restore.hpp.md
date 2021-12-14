@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - icon: ':x:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -165,32 +165,33 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\
-    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
-    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
-    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
-    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
-    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
-    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
-    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
-    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
-    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
-    \               res.push_back(e); std::swap(res.back().from, res.back().to);\n\
-    \                t = e.to;\n                flg = true;\n                break;\n\
-    \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
+    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
+    \  const int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n\
+    \    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n     \
+    \   int v = que.front(); que.pop();\n        for (const edge<T>& e : G[v]) {\n\
+    \            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {\n      \
+    \          bfr[e.to] = v;\n                que.push(e.to);\n            }\n  \
+    \      }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const\
+    \ Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n    const auto RG\
+    \ = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false); seen[t] = true;\n\
+    \    Edges<T> res;\n    while (s != t) {\n        bool flg = false;\n        for\
+    \ (const edge<T>& e : RG[t]) {\n            if (!seen[e.to] && dist[e.to] + e.cost\
+    \ == dist[t]) {\n                seen[e.to] = true;\n                res.push_back(e);\
+    \ std::swap(res.back().from, res.back().to);\n                t = e.to;\n    \
+    \            flg = true;\n                break;\n            }\n        }\n \
+    \       assert(flg);\n    }\n    std::reverse(all(res));\n    return res;\n}\n\
+    \n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
@@ -216,8 +217,8 @@ data:
   path: graph/shortest-path/Restore.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2021-12-14 16:36:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp

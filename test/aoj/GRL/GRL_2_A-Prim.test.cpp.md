@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A
@@ -161,49 +161,51 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/mst/Prim.hpp\"\n\
-    \n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
-    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
-    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
-    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
+    \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
+    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
+    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
+    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
+    \        x = find(x);\n        y = find(y);\n        if (x == y) return {x, -1};\n\
+    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
+    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
+    \ same(int x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int\
+    \ x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
     \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
     \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
     \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
     \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
     \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
     /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Prim.hpp\"\
-    \n\ntemplate<class T> T Prim(Graph<T> G) {\n    const int N = G.size();\n    std::vector<bool>\
-    \ seen(N, false); seen[0] = true;\n    prique<edge<T>> que;\n    for (const edge<T>&\
-    \ e : G[0]) que.emplace(e);\n    T res = 0;\n    while (!que.empty()) {\n    \
-    \    const edge<T> cre = que.top(); que.pop();\n        if (seen[cre.to]) continue;\n\
-    \        res += cre.cost;\n        seen[cre.to] = true;\n        for (const edge<T>&\
-    \ e : G[cre.to]) {\n            if (seen[e.to]) continue;\n            que.emplace(e);\n\
-    \        }\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(Graph<T>\
-    \ G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false); seen[0]\
-    \ = true;\n    prique<edge<T>> que;\n    for (const edge<T>& e : G[0]) que.emplace(e);\n\
-    \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\
-    \ que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
-    \        seen[cre.to] = true;\n        for (const edge<T>& e : G[cre.to]) {\n\
-    \            if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n\
-    \ * @docs docs/Prim.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    Graph<int>\
-    \ G(V);\n    rep (E) {\n        int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c);\n    }\n    cout << Prim(G) << endl;\n}\n"
+    \n\ntemplate<class T> T Prim(const Graph<T>& G) {\n    const int N = G.size();\n\
+    \    std::vector<bool> seen(N, false); seen[0] = true;\n    prique<edge<T>> que;\n\
+    \    for (const edge<T>& e : G[0]) que.emplace(e);\n    T res = 0;\n    while\
+    \ (!que.empty()) {\n        const edge<T> cre = que.top(); que.pop();\n      \
+    \  if (seen[cre.to]) continue;\n        res += cre.cost;\n        seen[cre.to]\
+    \ = true;\n        for (const edge<T>& e : G[cre.to]) {\n            if (seen[e.to])\
+    \ continue;\n            que.emplace(e);\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Edges<T> Prim_vec(const Graph<T>& G) {\n    const int N\
+    \ = G.size();\n    std::vector<bool> seen(N, false); seen[0] = true;\n    prique<edge<T>>\
+    \ que;\n    for (const edge<T>& e : G[0]) que.emplace(e);\n    Edges<T> res;\n\
+    \    while (!que.empty()) {\n        const edge<T> cre = que.top(); que.pop();\n\
+    \        if (seen[cre.to]) continue;\n        res.emplace(cre);\n        seen[cre.to]\
+    \ = true;\n        for (const edge<T>& e : G[cre.to]) {\n            if (seen[e.to])\
+    \ continue;\n            que.emplace(e);\n        }\n    }\n    return res;\n\
+    }\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/Prim.md\n */\n\
+    #line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n     \
+    \   int a, b, c; cin >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n  \
+    \  cout << Prim(G) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/mst/Prim.hpp\"\nusing namespace std;\nint main() {\n    int\
@@ -218,8 +220,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Prim.test.cpp
 layout: document

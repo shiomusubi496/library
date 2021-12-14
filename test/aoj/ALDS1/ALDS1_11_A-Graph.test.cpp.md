@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A
@@ -155,22 +155,22 @@ data:
     \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
     \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
     \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    std::vector<std::pair<edge<T>, bool>>\
-    \ res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n         \
-    \   else res[e.idx].second = true;\n        }\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G)) {\n        res.add_edge(p.first.from,\
-    \ p.first.to, p.first.cost, true);\n        if (p.second) res.add_edge(p.first.to,\
-    \ p.first.from, p.first.cost, true);\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ Graph-template\n * @docs docs/Graph.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (i, N) {\n        int v, k; cin >> v >> k;\n        --v;\n        rep\
-    \ (k) {\n            int u; cin >> u;\n            G.add_edge(v, u - 1, true);\n\
-    \        }\n    }\n    GMatrix<int> GM = ListToMatrix(G);\n    for (const auto&\
-    \ v : GM) {\n        rep (i, N) {\n            if (v[i] == 1) cout << 1;\n   \
-    \         else cout << 0;\n            cout << \" \\n\"[i == N - 1];\n       \
-    \ }\n    }\n}\n"
+    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
+    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
+    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
+    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
+    \ {\n        res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n   \
+    \     if (p.second) res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n \
+    \       int v, k; cin >> v >> k;\n        --v;\n        rep (k) {\n          \
+    \  int u; cin >> u;\n            G.add_edge(v, u - 1, true);\n        }\n    }\n\
+    \    GMatrix<int> GM = ListToMatrix(G);\n    for (const auto& v : GM) {\n    \
+    \    rep (i, N) {\n            if (v[i] == 1) cout << 1;\n            else cout\
+    \ << 0;\n            cout << \" \\n\"[i == N - 1];\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_A\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
@@ -186,8 +186,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 16:23:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-14 17:17:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
 layout: document
