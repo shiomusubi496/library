@@ -8,6 +8,7 @@ template<class T> class StronglyConnectedComponents {
     int n, sz;
     const Graph<T>& G;
     Graph<T> RG;
+    Graph<T> DG;
     std::vector<int> ord;
     std::vector<bool> seen;
     std::vector<int> cmp;
@@ -43,6 +44,12 @@ template<class T> class StronglyConnectedComponents {
             cmp[i] = sz++;
             dfs2(i);
         }
+        DG.resize(sz);
+        rep (i, n) {
+            for (const edge<T>& e : G[i]) {
+                if (cmp[i] != cmp[e.to]) DG.add_edge(cmp[i], cmp[e.to], e.cost, true);
+            }
+        }
     }
   public:
     StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
@@ -53,15 +60,8 @@ template<class T> class StronglyConnectedComponents {
         rep (i, n) res[cmp[i]].push_back(i);
         return res;
     }
-    Graph<T> dag() const {
-        Graph<T> res(sz);
-        rep (i, n) {
-            for (const edge<T>& e : G[i]) {
-                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
-            }
-        }
-        return res;
-    }
+    const Graph<T>& dag() const& { return DG; }
+    Graph<T> dag() && { return std::move(DG); }
 };
 
 /**
