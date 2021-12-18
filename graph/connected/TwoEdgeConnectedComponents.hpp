@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 #include "../other/LowLink.hpp"
 
-template<class T> class TwoEdgeConnectedComponents : protected LowLink<T> {
+template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
   protected:
     int sz;
     std::vector<int> cmp;

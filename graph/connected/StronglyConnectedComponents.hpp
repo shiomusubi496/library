@@ -6,9 +6,9 @@
 template<class T> class StronglyConnectedComponents {
   protected:
     int n, sz;
+    Graph<T> G_;
     const Graph<T>& G;
-    Graph<T> RG;
-    Graph<T> DG;
+    std::vector<std::vector<int>> RG;
     std::vector<int> ord;
     std::vector<bool> seen;
     std::vector<int> cmp;
@@ -21,10 +21,10 @@ template<class T> class StronglyConnectedComponents {
         ord.push_back(v);
     }
     void dfs2(int v) {
-        for (const edge<T>& e : RG[v]) {
-            if (cmp[e.to] != -1) continue;
-            cmp[e.to] = cmp[v];
-            dfs2(e.to);
+        for (const int& e : RG[v]) {
+            if (cmp[e] != -1) continue;
+            cmp[e] = cmp[v];
+            dfs2(e);
         }
     }
     void init() {
@@ -36,7 +36,12 @@ template<class T> class StronglyConnectedComponents {
             dfs(i);
         }
         std::reverse(all(ord));
-        RG = ReverseGraph(G);
+
+        RG.assign(n, std::vector<int>());
+        rep (i, n) {
+            for (const edge<T>& e : G[i]) RG[e.to].push_back(i);
+        }
+
         sz = 0;
         cmp.assign(n, -1);
         for (const int& i : ord) {
@@ -44,15 +49,10 @@ template<class T> class StronglyConnectedComponents {
             cmp[i] = sz++;
             dfs2(i);
         }
-        DG.resize(sz);
-        rep (i, n) {
-            for (const edge<T>& e : G[i]) {
-                if (cmp[i] != cmp[e.to]) DG.add_edge(cmp[i], cmp[e.to], e.cost, true);
-            }
-        }
     }
   public:
     StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
+    StronglyConnectedComponents(Graph<T>&& G) : G_(std::move(G)), G(G_) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }
     std::vector<std::vector<int>> groups() const {
@@ -60,8 +60,15 @@ template<class T> class StronglyConnectedComponents {
         rep (i, n) res[cmp[i]].push_back(i);
         return res;
     }
-    const Graph<T>& dag() const& { return DG; }
-    Graph<T> dag() && { return std::move(DG); }
+    Graph<T> dag() const {
+        Graph<T> res(n);
+        rep (i, n) {
+            for (const auto& e : G[i]) {
+                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
+            }
+        }
+        return res;
+    }
 };
 
 /**

@@ -7,7 +7,7 @@ template<class T = int> struct edge {
     T cost;
     int idx;
     edge() : from(-1), to(-1) {}
-    edge(int f, int t, const T& c = 1, int i = -1): from(f), to(t), cost(c), idx(i) {}
+    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}
     operator int() const { return to; }
     friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
         return lhs.cost < rhs.cost;
@@ -23,9 +23,8 @@ template<class T = int> using GMatrix = std::vector<std::vector<T>>;
 template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
   private:
     using Base = std::vector<std::vector<edge<T>>>;
-  protected:
-    int edge_id = 0;
   public:
+    int edge_id = 0;
     using Base::Base;
     int edge_size() const { return edge_id; }
     int add_edge(int a, int b, const T& c, bool is_directed = false) {
@@ -80,25 +79,15 @@ template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
     return Ed;
 }
 
-template<class T> std::vector<std::pair<edge<T>, bool>> ListToEdgeses(const Graph<T>& G) {
-    int V = G.size();
-    std::vector<std::pair<edge<T>, bool>> res(G.edge_size());
-    rep (i, V) {
-        for (const edge<T>& e : G[i]) {
-            if (res[e.idx].first == -1) res[e.idx].first = e;
-            else res[e.idx].second = true;
-        }
-    }
-    return res;
-}
-
 template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     const int V = G.size();
     Graph<T> res(V);
-    for (const auto& p : ListToEdgeses(G)) {
-        res.add_edge(p.first.to, p.first.from, p.first.cost, true);
-        if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);
+    rep (i, V) {
+        for (const auto& e : G[i]) {
+            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);
+        }
     }
+    res.edge_id = G.edge_size();
     return res;
 }
 
