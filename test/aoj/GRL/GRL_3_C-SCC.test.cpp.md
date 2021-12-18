@@ -128,76 +128,73 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1): from(f),\
-    \ to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend\
-    \ bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
-    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
-    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
-    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  protected:\n    int edge_id = 0;\n  public:\n    using Base::Base;\n    int\
-    \ edge_size() const { return edge_id; }\n    int add_edge(int a, int b, const\
-    \ T& c, bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
-    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
-    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
-    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n  \
-    \  rep (i, N) {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n\
-    \    }\n    return res;\n}\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
-    \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n\
-    \        all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int {\
-    \ return a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
-    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
-    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
-    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
+    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
+    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
+    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
+    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
+    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\n\n#line 5 \"\
-    graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class T> class StronglyConnectedComponents\
-    \ {\n  protected:\n    int n, sz;\n    const Graph<T>& G;\n    Graph<T> RG;\n\
-    \    Graph<T> DG;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n  \
-    \  std::vector<int> cmp;\n    void dfs(int v) {\n        seen[v] = true;\n   \
-    \     for (const edge<T>& e : G[v]) {\n            if (seen[e.to]) continue;\n\
-    \            dfs(e.to);\n        }\n        ord.push_back(v);\n    }\n    void\
-    \ dfs2(int v) {\n        for (const edge<T>& e : RG[v]) {\n            if (cmp[e.to]\
-    \ != -1) continue;\n            cmp[e.to] = cmp[v];\n            dfs2(e.to);\n\
-    \        }\n    }\n    void init() {\n        n = G.size();\n        ord.clear();\
-    \ ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n    \
-    \        if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
-    \        RG = ReverseGraph(G);\n        sz = 0;\n        cmp.assign(n, -1);\n\
-    \        for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n\
-    \            cmp[i] = sz++;\n            dfs2(i);\n        }\n        DG.resize(sz);\n\
-    \        rep (i, n) {\n            for (const edge<T>& e : G[i]) {\n         \
-    \       if (cmp[i] != cmp[e.to]) DG.add_edge(cmp[i], cmp[e.to], e.cost, true);\n\
-    \            }\n        }\n    }\n  public:\n    StronglyConnectedComponents(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    int size() const { return sz; }\n    int\
-    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
+    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
+    \ T> class StronglyConnectedComponents {\n  protected:\n    int n, sz;\n    Graph<T>\
+    \ G_;\n    const Graph<T>& G;\n    std::vector<std::vector<int>> RG;\n    std::vector<int>\
+    \ ord;\n    std::vector<bool> seen;\n    std::vector<int> cmp;\n    void dfs(int\
+    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
+    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
+    \   ord.push_back(v);\n    }\n    void dfs2(int v) {\n        for (const int&\
+    \ e : RG[v]) {\n            if (cmp[e] != -1) continue;\n            cmp[e] =\
+    \ cmp[v];\n            dfs2(e);\n        }\n    }\n    void init() {\n       \
+    \ n = G.size();\n        ord.clear(); ord.reserve(n);\n        seen.assign(n,\
+    \ false);\n        rep (i, n) {\n            if (seen[i]) continue;\n        \
+    \    dfs(i);\n        }\n        std::reverse(all(ord));\n\n        RG.assign(n,\
+    \ std::vector<int>());\n        rep (i, n) {\n            for (const edge<T>&\
+    \ e : G[i]) RG[e.to].push_back(i);\n        }\n\n        sz = 0;\n        cmp.assign(n,\
+    \ -1);\n        for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n\
+    \            cmp[i] = sz++;\n            dfs2(i);\n        }\n    }\n  public:\n\
+    \    StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
+    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
+    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    const Graph<T>&\
-    \ dag() const& { return DG; }\n    Graph<T> dag() && { return std::move(DG); }\n\
-    };\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\
-    \u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n#line 5 \"test/aoj/GRL/GRL_3_C-SCC.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int v, e; cin >> v >> e;\n    Graph<int>\
-    \ G(v);\n    rep (e) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u,\
-    \ v, true);\n    }\n    StronglyConnectedComponents<int> SCC(G);\n    int q; cin\
-    \ >> q;\n    rep (q) {\n        int a, b; cin >> a >> b;\n        cout << (SCC[a]\
-    \ == SCC[b]) << endl;\n    }\n}\n"
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
+    \ const {\n        Graph<T> res(n);\n        rep (i, n) {\n            for (const\
+    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
+    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
+    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n#line\
+    \ 5 \"test/aoj/GRL/GRL_3_C-SCC.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int v, e; cin >> v >> e;\n    Graph<int> G(v);\n    rep (e) {\n        int\
+    \ u, v; cin >> u >> v;\n        G.add_edge(u, v, true);\n    }\n    StronglyConnectedComponents<int>\
+    \ SCC(G);\n    int q; cin >> q;\n    rep (q) {\n        int a, b; cin >> a >>\
+    \ b;\n        cout << (SCC[a] == SCC[b]) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/connected/StronglyConnectedComponents.hpp\"\nusing namespace\
@@ -213,7 +210,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   requiredBy: []
-  timestamp: '2021-12-14 17:59:41+09:00'
+  timestamp: '2021-12-18 16:19:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp

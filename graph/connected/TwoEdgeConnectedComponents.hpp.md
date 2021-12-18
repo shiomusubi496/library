@@ -129,75 +129,71 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1): from(f),\
-    \ to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend\
-    \ bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
-    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
-    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
-    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  protected:\n    int edge_id = 0;\n  public:\n    using Base::Base;\n    int\
-    \ edge_size() const { return edge_id; }\n    int add_edge(int a, int b, const\
-    \ T& c, bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
-    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, c, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, c,\
-    \ edge_id);\n        return edge_id++;\n    }\n    int add_edge(int a, int b,\
-    \ bool is_directed = false) {\n        assert(0 <= a && a < (int)this->size());\n\
-    \        assert(0 <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a,\
-    \ b, 1, edge_id);\n        if (!is_directed) (*this)[b].emplace_back(b, a, 1,\
-    \ edge_id);\n        return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T>\
-    \ ListToMatrix(const Graph<T>& G) {\n    const int N = G.size();\n    auto res\
-    \ = make_vec<T>(N, N, infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n  \
-    \  rep (i, N) {\n        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n\
-    \    }\n    return res;\n}\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = G.edge_size();\n\
-    \    Edges<T> Ed(E);\n    rep (i, V) {\n        for (const edge<T>& e : G[i])\
-    \ Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n\
-    \        all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int {\
-    \ return a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> std::vector<std::pair<edge<T>, bool>>\
-    \ ListToEdgeses(const Graph<T>& G) {\n    int V = G.size();\n    std::vector<std::pair<edge<T>,\
-    \ bool>> res(G.edge_size());\n    rep (i, V) {\n        for (const edge<T>& e\
-    \ : G[i]) {\n            if (res[e.idx].first == -1) res[e.idx].first = e;\n \
-    \           else res[e.idx].second = true;\n        }\n    }\n    return res;\n\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
+    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
+    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
+    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
+    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
+    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    for (const auto& p : ListToEdgeses(G))\
-    \ {\n        res.add_edge(p.first.to, p.first.from, p.first.cost, true);\n   \
-    \     if (p.second) res.add_edge(p.first.from, p.first.to, p.first.cost, true);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"graph/other/LowLink.hpp\"\
-    \n\ntemplate<class T> class LowLink {\n  protected:\n    int n, cnt;\n    const\
-    \ Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int> aps;\n  \
-    \  Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n\
-    \        int deg = 0;\n        bool is_ap = false, mul = false;\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (e.to == p && !mul) {\n               \
-    \ mul = true;\n                continue;\n            }\n            if (ord[e.to]\
-    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
-    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
-    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
-    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
-    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
-    \    }\n    void init() {\n        n = G.size();\n        ord.assign(n, -1); low.assign(n,\
-    \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
-    \ dfs(i, -1);\n        }\n    }\n  public:\n    LowLink(const Graph<T>& G) : G(G)\
-    \ { init(); }\n    const std::vector<int>& articulation_points() const& { return\
-    \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
-    \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
-    \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
-    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 6 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\
-    \n\ntemplate<class T> class TwoEdgeConnectedComponents : protected LowLink<T>\
-    \ {\n  protected:\n    int sz;\n    std::vector<int> cmp;\n    void dcmp(int v)\
-    \ {\n        for (const edge<T>& e : this->G[v]) {\n            if (cmp[e.to]\
-    \ != -1) continue;\n            if (this->ord[v] < this->low[e.to] || this->ord[e.to]\
-    \ < this->low[v]) continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n\
-    \        }\n    }\n    void init() {\n        sz = 0;\n        cmp.assign(this->n,\
-    \ -1);\n        rep (i, this->n) {\n            if (cmp[i] == -1) {\n        \
-    \        cmp[i] = sz++;\n                dcmp(i);\n            }\n        }\n\
-    \    }\n  public:\n    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G)\
+    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
+    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/other/LowLink.hpp\"\
+    \n\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n\
+    \  protected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord,\
+    \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
+    \ p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap\
+    \ = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n           \
+    \ if (e.to == p && !mul) {\n                mul = true;\n                continue;\n\
+    \            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n \
+    \           else {\n                dfs(e.to, v);\n                chmin(low[v],\
+    \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
+    \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
+    \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
+    \     if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
+    \        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt = 0;\n        rep\
+    \ (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n  public:\n\
+    \    LowLink(const Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>&\
+    \ articulation_points() const& { return aps; }\n    std::vector<int> articulation_points()\
+    \ && { return std::move(aps); }\n    const Edges<T>& bridges() const& { return\
+    \ brd; }\n    Edges<T> bridges() && { return std::move(brd); }\n};\n\n/**\n *\
+    \ @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n\
+    \ */\n#line 6 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\ntemplate<class\
+    \ T> class TwoEdgeConnectedComponents : public LowLink<T> {\n  protected:\n  \
+    \  int sz;\n    std::vector<int> cmp;\n    void dcmp(int v) {\n        for (const\
+    \ edge<T>& e : this->G[v]) {\n            if (cmp[e.to] != -1) continue;\n   \
+    \         if (this->ord[v] < this->low[e.to] || this->ord[e.to] < this->low[v])\
+    \ continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n      \
+    \  }\n    }\n    void init() {\n        sz = 0;\n        cmp.assign(this->n, -1);\n\
+    \        rep (i, this->n) {\n            if (cmp[i] == -1) {\n               \
+    \ cmp[i] = sz++;\n                dcmp(i);\n            }\n        }\n    }\n\
+    \  public:\n    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G)\
     \ { init(); }\n    int size() const { return sz; }\n    int operator[](int k)\
     \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
     \        std::vector<std::vector<int>> res(sz);\n        rep (i, this->n) res[cmp[i]].push_back(i);\n\
@@ -208,7 +204,7 @@ data:
     )\n * @docs docs/TwoEdgeConnectedComponents.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../other/LowLink.hpp\"\n\ntemplate<class T> class TwoEdgeConnectedComponents\
-    \ : protected LowLink<T> {\n  protected:\n    int sz;\n    std::vector<int> cmp;\n\
+    \ : public LowLink<T> {\n  protected:\n    int sz;\n    std::vector<int> cmp;\n\
     \    void dcmp(int v) {\n        for (const edge<T>& e : this->G[v]) {\n     \
     \       if (cmp[e.to] != -1) continue;\n            if (this->ord[v] < this->low[e.to]\
     \ || this->ord[e.to] < this->low[v]) continue;\n            cmp[e.to] = cmp[v];\n\
@@ -232,7 +228,7 @@ data:
   isVerificationFile: false
   path: graph/connected/TwoEdgeConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-12-14 17:59:41+09:00'
+  timestamp: '2021-12-18 16:19:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_edge_connected_components.test.cpp
