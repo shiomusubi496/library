@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
@@ -165,22 +165,20 @@ data:
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
     \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
     \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
-    \ T> class StronglyConnectedComponents {\n  protected:\n    int n, sz;\n    Graph<T>\
-    \ G_;\n    const Graph<T>& G;\n    std::vector<std::vector<int>> RG;\n    std::vector<int>\
-    \ ord;\n    std::vector<bool> seen;\n    std::vector<int> cmp;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n   \
-    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
-    \   ord.push_back(v);\n    }\n    void dfs2(int v) {\n        for (const int&\
-    \ e : RG[v]) {\n            if (cmp[e] != -1) continue;\n            cmp[e] =\
-    \ cmp[v];\n            dfs2(e);\n        }\n    }\n    void init() {\n       \
-    \ n = G.size();\n        ord.clear(); ord.reserve(n);\n        seen.assign(n,\
-    \ false);\n        rep (i, n) {\n            if (seen[i]) continue;\n        \
-    \    dfs(i);\n        }\n        std::reverse(all(ord));\n\n        RG.assign(n,\
-    \ std::vector<int>());\n        rep (i, n) {\n            for (const edge<T>&\
-    \ e : G[i]) RG[e.to].push_back(i);\n        }\n\n        sz = 0;\n        cmp.assign(n,\
-    \ -1);\n        for (const int& i : ord) {\n            if (cmp[i] != -1) continue;\n\
-    \            cmp[i] = sz++;\n            dfs2(i);\n        }\n    }\n  public:\n\
-    \    StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
+    \ T> class StronglyConnectedComponents {\n  protected:\n    int n, sz, cnt;\n\
+    \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n  \
+    \  std::vector<int> st;\n    std::vector<int> cmp;\n    void dfs(int v) {\n  \
+    \      low[v] = ord[v] = cnt++;\n        st.push_back(v);\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n\
+    \            else {\n                dfs(e.to);\n                chmin(low[v],\
+    \ low[e.to]);\n            }\n        }\n        if (low[v] == ord[v]) {\n   \
+    \         while (1) {\n                int u = st.back(); st.pop_back();\n   \
+    \             cmp[u] = sz;\n                if (u == v) break;\n            }\n\
+    \            sz++;\n        }\n    }\n    void init() {\n        n = G.size();\n\
+    \        sz = 0;\n        cnt = 0;\n        ord.assign(n, -1); low.assign(n, -1);\n\
+    \        cmp.assign(n, -1);\n        st.reserve(n);\n        rep (i, n) {\n  \
+    \          if (ord[i] == -1) dfs(i);\n        }\n    }\n  public:\n    StronglyConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
     \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
     \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
@@ -210,8 +208,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   requiredBy: []
-  timestamp: '2021-12-18 16:19:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-19 20:57:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp
 layout: document
