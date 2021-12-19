@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -170,21 +170,22 @@ data:
     \ ord[e.to]);\n            else {\n                dfs(e.to);\n              \
     \  chmin(low[v], low[e.to]);\n            }\n        }\n        if (low[v] ==\
     \ ord[v]) {\n            while (1) {\n                int u = st.back(); st.pop_back();\n\
-    \                cmp[u] = sz;\n                if (u == v) break;\n          \
-    \  }\n            sz++;\n        }\n    }\n    void init() {\n        n = G.size();\n\
-    \        sz = 0;\n        cnt = 0;\n        ord.assign(n, -1); low.assign(n, -1);\n\
-    \        cmp.assign(n, -1);\n        st.reserve(n);\n        rep (i, n) {\n  \
-    \          if (ord[i] == -1) dfs(i);\n        }\n    }\n  public:\n    StronglyConnectedComponents(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
-    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
-    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
-    \ const {\n        Graph<T> res(n);\n        rep (i, n) {\n            for (const\
-    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
-    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
-    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
-    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
+    \                cmp[u] = sz;\n                ord[u] = n;\n                if\
+    \ (u == v) break;\n            }\n            sz++;\n        }\n    }\n    void\
+    \ init() {\n        n = G.size();\n        sz = 0;\n        cnt = 0;\n       \
+    \ ord.assign(n, -1); low.assign(n, -1);\n        cmp.assign(n, -1);\n        st.reserve(n);\n\
+    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i);\n        }\n    }\n\
+    \  public:\n    StronglyConnectedComponents(const Graph<T>& G) : G(G) { init();\
+    \ }\n    StronglyConnectedComponents(Graph<T>&& G) : G_(std::move(G)), G(G_) {\
+    \ init(); }\n    int size() const { return sz; }\n    int operator[](int k) const\
+    \ { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n   \
+    \     std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n    Graph<T> dag() const {\n        Graph<T> res(n);\n\
+    \        rep (i, n) {\n            for (const auto& e : G[i]) {\n            \
+    \    if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n\
+    \            }\n        }\n        return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class StronglyConnectedComponents {\n  protected:\n    int\
     \ n, sz, cnt;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int>\
@@ -194,29 +195,30 @@ data:
     \ ord[e.to]);\n            else {\n                dfs(e.to);\n              \
     \  chmin(low[v], low[e.to]);\n            }\n        }\n        if (low[v] ==\
     \ ord[v]) {\n            while (1) {\n                int u = st.back(); st.pop_back();\n\
-    \                cmp[u] = sz;\n                if (u == v) break;\n          \
-    \  }\n            sz++;\n        }\n    }\n    void init() {\n        n = G.size();\n\
-    \        sz = 0;\n        cnt = 0;\n        ord.assign(n, -1); low.assign(n, -1);\n\
-    \        cmp.assign(n, -1);\n        st.reserve(n);\n        rep (i, n) {\n  \
-    \          if (ord[i] == -1) dfs(i);\n        }\n    }\n  public:\n    StronglyConnectedComponents(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
-    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
-    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
-    \ const {\n        Graph<T> res(n);\n        rep (i, n) {\n            for (const\
-    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
-    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
-    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
-    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
+    \                cmp[u] = sz;\n                ord[u] = n;\n                if\
+    \ (u == v) break;\n            }\n            sz++;\n        }\n    }\n    void\
+    \ init() {\n        n = G.size();\n        sz = 0;\n        cnt = 0;\n       \
+    \ ord.assign(n, -1); low.assign(n, -1);\n        cmp.assign(n, -1);\n        st.reserve(n);\n\
+    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i);\n        }\n    }\n\
+    \  public:\n    StronglyConnectedComponents(const Graph<T>& G) : G(G) { init();\
+    \ }\n    StronglyConnectedComponents(Graph<T>&& G) : G_(std::move(G)), G(G_) {\
+    \ init(); }\n    int size() const { return sz; }\n    int operator[](int k) const\
+    \ { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n   \
+    \     std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
+    \        return res;\n    }\n    Graph<T> dag() const {\n        Graph<T> res(n);\n\
+    \        rep (i, n) {\n            for (const auto& e : G[i]) {\n            \
+    \    if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n\
+    \            }\n        }\n        return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2021-12-19 20:57:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-20 00:51:05+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp

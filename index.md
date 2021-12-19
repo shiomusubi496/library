@@ -37,7 +37,7 @@ data:
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
@@ -118,7 +118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -229,7 +229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
       title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
       title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     - icon: ':heavy_check_mark:'
