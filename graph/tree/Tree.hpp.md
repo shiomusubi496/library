@@ -1,31 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
+    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Tree.md
-    document_title: Tree-template
+    document_title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B\
+      )"
     links: []
-  bundledCode: "#line 2 \"graph/tree/Tree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\n\n\
-    #line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"graph/tree/Tree.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
+    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -120,93 +127,161 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge\
-    \ {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1)\
-    \ {}\n    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
-    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
-    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
-    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        for (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 4 \"graph/tree/Tree.hpp\"\n\ntemplate<class T> class Tree : public\
-    \ Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n    void dfs_build(int\
-    \ v, int p) {\n        par[v] = p;\n        for (const edge<T>& e : (*this)[v])\
-    \ {\n            if (e.to != p) dfs_build(e.to, v);\n        }\n    }\n  public:\n\
-    \    int root;\n    std::vector<int> par;\n    using Base::Base;\n    Tree(const\
-    \ Base& G) : Base(G) {}\n    Tree(Base&& G) : Base(std::move(G)) {}\n    void\
-    \ build(int r = 0) {\n        assert(this->edge_size() + 1 == (int)this->size());\n\
-    \        assert(0 <= r && r < (int)this->size());\n        par.resize(this->size());\n\
-    \        dfs_build(r, -1);\n        root = r;\n    }\n    Graph<T> child() const\
-    \ {\n        Graph<T> res(this->size());\n        rep (i, this->size()) {\n  \
-    \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
-    \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
-    \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
-    \   }\n        return res;\n    }\n};\n\n/**\n * @brief Tree-template\n * @docs\
-    \ docs/Tree.md\n */\n"
-  code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree\
-    \ : public Graph<T> {\n  private:\n    using Base = Graph<T>;\n  protected:\n\
-    \    void dfs_build(int v, int p) {\n        par[v] = p;\n        for (const edge<T>&\
-    \ e : (*this)[v]) {\n            if (e.to != p) dfs_build(e.to, v);\n        }\n\
-    \    }\n  public:\n    int root;\n    std::vector<int> par;\n    using Base::Base;\n\
-    \    Tree(const Base& G) : Base(G) {}\n    Tree(Base&& G) : Base(std::move(G))\
-    \ {}\n    void build(int r = 0) {\n        assert(this->edge_size() + 1 == (int)this->size());\n\
-    \        assert(0 <= r && r < (int)this->size());\n        par.resize(this->size());\n\
-    \        dfs_build(r, -1);\n        root = r;\n    }\n    Graph<T> child() const\
-    \ {\n        Graph<T> res(this->size());\n        rep (i, this->size()) {\n  \
-    \          if (i == root) res[i].reserve(this->size());\n            else res[i].reserve(this->size()\
-    \ - 1);\n            for (const edge<T>& e : (*this)[i]) {\n                if\
-    \ (e.to != par[i]) res.add_edge(i, e.to, e.cost, true);\n            }\n     \
-    \   }\n        return res;\n    }\n};\n\n/**\n * @brief Tree-template\n * @docs\
-    \ docs/Tree.md\n */\n"
+    \    }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\n\
+    template<class T = int> struct edge {\n    int from, to;\n    T cost;\n    int\
+    \ idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T& c =\
+    \ 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    operator int() const\
+    \ { return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>&\
+    \ rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
+    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
+    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
+    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
+    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/Tree.hpp\"\
+    \n\ntemplate<class T> class Tree {\n  protected:\n    int root, n, h;\n    Graph<T>\
+    \ G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int>\
+    \ dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int\
+    \ p) {\n        for (const edge<T>& e : G[v]) {\n            if (e.to != p) {\n\
+    \                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n         \
+    \       dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n       \
+    \     }\n        }\n    }\n    void init() {\n        n = G.size();\n        h\
+    \ = bitop::ceil_log2(n);\n        par.resize(n); par[root] = edge<T>{};\n    \
+    \    dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n        dbl.assign(n,\
+    \ std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n     \
+    \   rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ?\
+    \ -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    Tree(const Graph<T>&\
+    \ G, int r = 0) : G(G), root(r) { init(); }\n    Tree(Graph<T>&& G, int r = 0)\
+    \ : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int v) const {\
+    \ return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
+    \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
+    \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
+    \        return v;\n    }\n    int nxt(int s, int t) const {\n        assert(s\
+    \ != t);\n        if (dep[s] >= dep[t]) return parent(s);\n        int v = kth_ancestor(t,\
+    \ dep[t] - dep[s] - 1);\n        return parent(v) == s ? v : parent(s);\n    }\n\
+    \    Edges<T> path(int s, int t) const {\n        Edges<T> pre, suf;\n       \
+    \ while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n        while\
+    \ (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n        while (s !=\
+    \ t) {\n            pre.push_back(par[s]), s = par[s].to;\n            suf.push_back(par[t]),\
+    \ t = par[t].to;\n        }\n        rrep (i, suf.size()) pre.emplace_back(suf[i].to,\
+    \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
+    \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
+    \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
+    \ dep[u]);\n        rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n\
+    \                u = dbl[u][i];\n                v = dbl[v][i];\n            }\n\
+    \        }\n        return parent(u);\n    }\n    Graph<T> rooted() const {\n\
+    \        Graph<T> res(G.size());\n        rep (i, G.size()) {\n            if\
+    \ (i == root) res[i].reserve(G[i].size());\n            else res[i].reserve(G[i].size()\
+    \ - 1);\n            for (const edge<T>& e : G[i]) {\n                if (e.to\
+    \ != par[i].to) res[i].push_back(e);\n            }\n        }\n        res.edge_id\
+    \ = G.edge_size();\n        return res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\
+    \u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)\n * @docs docs/Tree.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree {\n  protected:\n\
+    \    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>>\
+    \ par;\n    std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n  \
+    \  void dfs_build(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n \
+    \           if (e.to != p) {\n                par[e.to] = edge<T>(e.to, e.from,\
+    \ e.cost, e.idx);\n                dep[e.to] = dep[v] + 1;\n                dfs_build(e.to,\
+    \ v);\n            }\n        }\n    }\n    void init() {\n        n = G.size();\n\
+    \        h = bitop::ceil_log2(n);\n        par.resize(n); par[root] = edge<T>{};\n\
+    \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
+    \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
+    \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
+    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    Tree(const\
+    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    Tree(Graph<T>&& G,\
+    \ int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
+    \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
+    \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
+    \       }\n        return v;\n    }\n    int nxt(int s, int t) const {\n     \
+    \   assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n       \
+    \ int v = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(v) == s\
+    \ ? v : parent(s);\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
+    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
+    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
+    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
+    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
+    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
+    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
+    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
+    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        rrep (i, h) {\n            if\
+    \ (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n               \
+    \ v = dbl[v][i];\n            }\n        }\n        return parent(u);\n    }\n\
+    \    Graph<T> rooted() const {\n        Graph<T> res(G.size());\n        rep (i,\
+    \ G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n     \
+    \       else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
+    \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
+    \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
+    \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
+    \u5408\u308F\u305B)\n * @docs docs/Tree.md\n */\n"
   dependsOn:
-  - graph/Graph.hpp
   - other/template.hpp
+  - other/bitop.hpp
+  - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/Tree.hpp
   requiredBy: []
-  timestamp: '2021-12-18 16:19:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2021-12-19 17:47:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
 documentation_of: graph/tree/Tree.hpp
 layout: document
 redirect_from:
 - /library/graph/tree/Tree.hpp
 - /library/graph/tree/Tree.hpp.html
-title: Tree-template
+title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
 ---
 ## 概要
 
-木の構造体。 `Graph` を継承している。
+木に対する基本的なクエリを詰め合わせた構造体。ダブリングを使っているので、空間計算量は $\Theta(E + V \log V)$ であるため注意。
 
-- `Tree(int N)` : 頂点数 `N` のグラフを作成する。
-- `void build(int root = 0)` : 頂点 `root` を根とする根付き木を構築する。 `root` は根に、 `par[v]` は `v` の親になる。
-- `Graph<T> child()` : 根付き木を返す。
+- `Tree(Graph<T> G, int r = 0)` : 頂点 `r` を根としてグラフ `G` で初期化する。ここで、 `G` は木である必要がある。 $\Theta(V \log V)$ 。
+- `int depth(int v)` : 頂点 `v` の深さ(根からの距離)を返す。 $\Theta(1)$ 。
+- `int parent(int v)` : 頂点 `v` の親を返す。ただし頂点 `v` が根である場合 $-1$ が返る。 $\Theta(1)$ 。
+- `int kth_parent(int v, int k)` : 頂点 `v` の `k` 番目に近い祖先を返す。存在しない場合 $-1$ が返る。 $\Theta(\log V)$ 。
+- `int lca(int s, int t)` : 頂点 `s` と頂点 `t` の最小共通祖先(Lowest Common Ancestor)を返す。 $\Theta(\log V)$ 。
+- `int nxt(int s, int t)` : 頂点 `s` から頂点 `t` へのパスにおいて、 `s` の次の頂点を返す。 $\Theta(\log V)$ 。
+- `Edges<T> path(int s, int t)` : 頂点 `s` から頂点 `t` へのパスに含まれる辺を返す。パスの長さを $P$ として $\Theta(P)$ 。
+- `Graph<T> rooted()` : 根付き木を返す。

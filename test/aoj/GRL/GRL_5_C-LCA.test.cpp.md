@@ -4,24 +4,27 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BellmanFord.hpp
-    title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
+  - icon: ':x:'
+    path: graph/tree/Tree.hpp
+    title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
+  - icon: ':question:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#line 2 \"other/template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_5_C-LCA.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -162,50 +165,86 @@ data:
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BellmanFord.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\n\ntemplate<class T> std::vector<T>\
-    \ BellmanFord(int V, const Edges<T>& Ed, int start = 0) {\n    assert(0 <= start\
-    \ && start <= V);\n    std::vector<T> dist(V, infinity<T>::value); dist[start]\
-    \ = 0;\n    rep (i, V) {\n        bool changed = false;\n        for (const edge<T>&\
-    \ e : Ed) {\n            if (dist[e.from] != infinity<T>::value && chmin(dist[e.to],\
-    \ dist[e.from] + e.cost)) changed = true;\n        }\n        if (!changed) return\
-    \ dist;\n    }\n    for (const edge<T>& e : Ed) {\n        if (dist[e.from] !=\
-    \ infinity<T>::value && dist[e.to] > dist[e.from] + e.cost) dist[e.to] = -infinity<T>::value;\n\
-    \    }\n    rep (i, V - 1) {\n        bool changed = false;\n        for (const\
-    \ edge<T>& e : Ed) {\n            if (dist[e.from] == -infinity<T>::value) {\n\
-    \                dist[e.to] = -infinity<T>::value;\n                changed =\
-    \ true;\n            }\n        }\n        if (!changed) break;\n    }\n    return\
-    \ dist;\n}\n\n/**\n * @brief Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\
-    \u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
-    \   Edges<int> Ed(E);\n    for (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n\
-    \    auto dist = BellmanFord(V, Ed, r);\n    if (count(all(dist), -infinity<int>::value))\
-    \ {\n        puts(\"NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i,\
-    \ V) {\n        if (dist[i] == infinity<int>::value) puts(\"INF\");\n        else\
-    \ cout << dist[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#include\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/Tree.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
+    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
+    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
+    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 6 \"graph/tree/Tree.hpp\"\n\ntemplate<class T> class Tree\
+    \ {\n  protected:\n    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>&\
+    \ G;\n    std::vector<edge<T>> par;\n    std::vector<int> dep;\n    std::vector<std::vector<int>>\
+    \ dbl;\n    void dfs_build(int v, int p) {\n        for (const edge<T>& e : G[v])\
+    \ {\n            if (e.to != p) {\n                par[e.to] = edge<T>(e.to, e.from,\
+    \ e.cost, e.idx);\n                dep[e.to] = dep[v] + 1;\n                dfs_build(e.to,\
+    \ v);\n            }\n        }\n    }\n    void init() {\n        n = G.size();\n\
+    \        h = bitop::ceil_log2(n);\n        par.resize(n); par[root] = edge<T>{};\n\
+    \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
+    \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
+    \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
+    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    Tree(const\
+    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    Tree(Graph<T>&& G,\
+    \ int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
+    \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
+    \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
+    \       }\n        return v;\n    }\n    int nxt(int s, int t) const {\n     \
+    \   assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n       \
+    \ int v = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(v) == s\
+    \ ? v : parent(s);\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
+    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
+    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
+    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
+    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
+    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
+    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
+    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
+    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        rrep (i, h) {\n            if\
+    \ (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n               \
+    \ v = dbl[v][i];\n            }\n        }\n        return parent(u);\n    }\n\
+    \    Graph<T> rooted() const {\n        Graph<T> res(G.size());\n        rep (i,\
+    \ G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n     \
+    \       else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
+    \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
+    \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
+    \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
+    \u5408\u308F\u305B)\n * @docs docs/Tree.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_C-LCA.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (i, N) {\n        int k; cin >> k;\n        rep (k) {\n            int\
+    \ t; cin >> t;\n            G.add_edge(i, t, true);\n        }\n    }\n    Tree<int>\
+    \ T(G);\n    int Q; cin >> Q;\n    rep (i, Q) {\n        int a, b; cin >> a >>\
+    \ b;\n        cout << T.lca(a, b) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n    for\
-    \ (auto&& e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V,\
-    \ Ed, r);\n    if (count(all(dist), -infinity<int>::value)) {\n        puts(\"\
-    NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i]\
-    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
-    \    }\n}"
+    \ \"../../../graph/tree/Tree.hpp\"\nusing namespace std;\nint main() {\n    int\
+    \ N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n        int k; cin >>\
+    \ k;\n        rep (k) {\n            int t; cin >> t;\n            G.add_edge(i,\
+    \ t, true);\n        }\n    }\n    Tree<int> T(G);\n    int Q; cin >> Q;\n   \
+    \ rep (i, Q) {\n        int a, b; cin >> a >> b;\n        cout << T.lca(a, b)\
+    \ << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
-  - graph/shortest-path/BellmanFord.hpp
+  - graph/tree/Tree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2021-12-18 16:19:45+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-19 17:47:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+documentation_of: test/aoj/GRL/GRL_5_C-LCA.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-- /verify/test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp.html
-title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+- /verify/test/aoj/GRL/GRL_5_C-LCA.test.cpp
+- /verify/test/aoj/GRL/GRL_5_C-LCA.test.cpp.html
+title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
 ---
