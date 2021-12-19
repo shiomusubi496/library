@@ -5,49 +5,40 @@
 
 template<class T> class StronglyConnectedComponents {
   protected:
-    int n, sz;
+    int n, sz, cnt;
     Graph<T> G_;
     const Graph<T>& G;
-    std::vector<std::vector<int>> RG;
-    std::vector<int> ord;
-    std::vector<bool> seen;
+    std::vector<int> ord, low;
+    std::vector<int> st;
     std::vector<int> cmp;
     void dfs(int v) {
-        seen[v] = true;
+        low[v] = ord[v] = cnt++;
+        st.push_back(v);
         for (const edge<T>& e : G[v]) {
-            if (seen[e.to]) continue;
-            dfs(e.to);
+            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);
+            else {
+                dfs(e.to);
+                chmin(low[v], low[e.to]);
+            }
         }
-        ord.push_back(v);
-    }
-    void dfs2(int v) {
-        for (const int& e : RG[v]) {
-            if (cmp[e] != -1) continue;
-            cmp[e] = cmp[v];
-            dfs2(e);
+        if (low[v] == ord[v]) {
+            while (1) {
+                int u = st.back(); st.pop_back();
+                cmp[u] = sz;
+                if (u == v) break;
+            }
+            sz++;
         }
     }
     void init() {
         n = G.size();
-        ord.clear(); ord.reserve(n);
-        seen.assign(n, false);
-        rep (i, n) {
-            if (seen[i]) continue;
-            dfs(i);
-        }
-        std::reverse(all(ord));
-
-        RG.assign(n, std::vector<int>());
-        rep (i, n) {
-            for (const edge<T>& e : G[i]) RG[e.to].push_back(i);
-        }
-
         sz = 0;
+        cnt = 0;
+        ord.assign(n, -1); low.assign(n, -1);
         cmp.assign(n, -1);
-        for (const int& i : ord) {
-            if (cmp[i] != -1) continue;
-            cmp[i] = sz++;
-            dfs2(i);
+        st.reserve(n);
+        rep (i, n) {
+            if (ord[i] == -1) dfs(i);
         }
     }
   public:
