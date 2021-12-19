@@ -23,7 +23,7 @@ template<class T> class Tree {
     }
     void init() {
         n = G.size();
-        h = bitop::ceil_log2(n);
+        h = bitop::ceil_log2(n) + 1;
         par.resize(n); par[root] = edge<T>{};
         dep.resize(n); dep[root] = 0;
         dfs_build(root, -1);
