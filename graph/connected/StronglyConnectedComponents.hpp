@@ -25,6 +25,7 @@ template<class T> class StronglyConnectedComponents {
             while (1) {
                 int u = st.back(); st.pop_back();
                 cmp[u] = sz;
+                ord[u] = n;
                 if (u == v) break;
             }
             sz++;
