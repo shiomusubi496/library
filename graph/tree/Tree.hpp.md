@@ -206,16 +206,16 @@ data:
     \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
     \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
     \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
-    \ dep[u]);\n        rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n\
-    \                u = dbl[u][i];\n                v = dbl[v][i];\n            }\n\
-    \        }\n        return parent(u);\n    }\n    Graph<T> rooted() const {\n\
-    \        Graph<T> res(G.size());\n        rep (i, G.size()) {\n            if\
-    \ (i == root) res[i].reserve(G[i].size());\n            else res[i].reserve(G[i].size()\
-    \ - 1);\n            for (const edge<T>& e : G[i]) {\n                if (e.to\
-    \ != par[i].to) res[i].push_back(e);\n            }\n        }\n        res.edge_id\
-    \ = G.edge_size();\n        return res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\
-    \u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)\n * @docs docs/Tree.md\n\
-    \ */\n"
+    \ dep[u]);\n        if (u == v) return u;\n        rrep (i, h) {\n           \
+    \ if (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n            \
+    \    v = dbl[v][i];\n            }\n        }\n        return parent(u);\n   \
+    \ }\n    Graph<T> rooted() const {\n        Graph<T> res(G.size());\n        rep\
+    \ (i, G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n \
+    \           else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
+    \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
+    \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
+    \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
+    \u5408\u308F\u305B)\n * @docs docs/Tree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree {\n  protected:\n\
     \    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>>\
@@ -245,12 +245,12 @@ data:
     \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
     \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
     \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
-    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        rrep (i, h) {\n            if\
-    \ (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n               \
-    \ v = dbl[v][i];\n            }\n        }\n        return parent(u);\n    }\n\
-    \    Graph<T> rooted() const {\n        Graph<T> res(G.size());\n        rep (i,\
-    \ G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n     \
-    \       else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
+    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
+    \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
+    \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
+    \       return parent(u);\n    }\n    Graph<T> rooted() const {\n        Graph<T>\
+    \ res(G.size());\n        rep (i, G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n\
+    \            else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
     \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
     \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
     \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
@@ -262,7 +262,7 @@ data:
   isVerificationFile: false
   path: graph/tree/Tree.hpp
   requiredBy: []
-  timestamp: '2021-12-19 17:47:53+09:00'
+  timestamp: '2021-12-19 18:19:39+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
