@@ -65,6 +65,7 @@ template<class T> class Tree {
     int lca(int u, int v) const {
         if (dep[u] > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);
         if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] - dep[u]);
+        if (u == v) return u;
         rrep (i, h) {
             if (dbl[u][i] != dbl[v][i]) {
                 u = dbl[u][i];
