@@ -32,6 +32,7 @@
 "test/aoj/GRL/GRL_2_A-Prim.test.cpp": "2021-12-18 16:19:45 +0900",
 "test/aoj/GRL/GRL_3_A-LowLink.test.cpp": "2021-12-18 16:19:45 +0900",
 "test/aoj/GRL/GRL_3_B-LowLink.test.cpp": "2021-12-18 16:19:45 +0900",
+"test/aoj/GRL/GRL_3_C-SCC.test.cpp": "2021-12-20 00:51:05 +0900",
 "test/aoj/GRL/GRL_4_A-Cycle.test.cpp": "2021-12-18 16:19:45 +0900",
 "test/aoj/GRL/GRL_4_B-Toposo.test.cpp": "2021-12-18 16:19:45 +0900",
 "test/aoj/GRL/GRL_5_A-Diameter.test.cpp": "2021-12-18 16:19:45 +0900",
