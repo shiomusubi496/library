@@ -41,6 +41,7 @@ template<class T> class StronglyConnectedComponents {
         rep (i, n) {
             if (ord[i] == -1) dfs(i);
         }
+        for (int& i : cmp) i = sz - i - 1;
     }
   public:
     StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
