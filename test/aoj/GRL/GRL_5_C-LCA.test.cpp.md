@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/Tree.hpp
     title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
@@ -186,7 +186,7 @@ data:
     \ {\n            if (e.to != p) {\n                par[e.to] = edge<T>(e.to, e.from,\
     \ e.cost, e.idx);\n                dep[e.to] = dep[v] + 1;\n                dfs_build(e.to,\
     \ v);\n            }\n        }\n    }\n    void init() {\n        n = G.size();\n\
-    \        h = bitop::ceil_log2(n);\n        par.resize(n); par[root] = edge<T>{};\n\
+    \        h = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
     \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
     \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
     \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
@@ -238,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2021-12-19 18:19:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-19 18:48:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-LCA.test.cpp
 layout: document
