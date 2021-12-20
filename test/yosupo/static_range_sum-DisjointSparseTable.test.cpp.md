@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -101,11 +101,13 @@ data:
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
-    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
-    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
-    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
+    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
+    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
     \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
@@ -175,8 +177,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-20 15:01:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -12,7 +12,7 @@ data:
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -22,10 +22,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
@@ -38,20 +38,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/Tree.hpp
     title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
@@ -109,27 +109,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/cycle_detection.test.cpp
     title: test/yosupo/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/two_edge_connected_components.test.cpp
     title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -214,11 +214,13 @@ data:
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
-    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
-    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
-    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
+    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
+    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
     \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
@@ -334,8 +336,8 @@ data:
   - graph/other/LowLink.hpp
   - graph/other/TopologicalSort.hpp
   - graph/other/GraphCycle.hpp
-  timestamp: '2021-12-18 16:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-20 15:01:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

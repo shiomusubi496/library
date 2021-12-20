@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -108,11 +108,13 @@ data:
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
-    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
-    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
-    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
+    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
+    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
     \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
@@ -212,8 +214,8 @@ data:
   path: graph/shortest-path/Restore.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2021-12-18 16:19:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2021-12-20 15:01:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp

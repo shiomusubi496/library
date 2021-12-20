@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -98,11 +98,13 @@ data:
     \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class T, class\
-    \ Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ arg);\n}\ntemplate<class T, class... Args> constexpr auto make_vec(int n, Args&&...\
-    \ args)\n        -> std::vector<decltype(make_vec<T>(args...))> {\n    return\
-    \ std::vector<decltype(make_vec<T>(args...))>\n               (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
+    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
+    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
     \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
@@ -151,7 +153,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2021-12-10 19:07:57+09:00'
+  timestamp: '2021-12-20 15:01:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
