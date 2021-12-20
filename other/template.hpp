@@ -197,13 +197,19 @@ template<class F> inline constexpr RecLambda<F> rec_lambda(F&& f) {
     return RecLambda<F>(std::forward<F>(f));
 }
 
+template<class Head, class... Tails> struct multi_dim_vector {
+    using type = std::vector<typename multi_dim_vector<Tails...>::type>;
+};
+template<class T> struct multi_dim_vector<T> {
+    using type = T;
+};
+
 template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {
     return std::vector<T>(n, arg);
 }
-template<class T, class... Args> constexpr auto make_vec(int n, Args&&... args)
-        -> std::vector<decltype(make_vec<T>(args...))> {
-    return std::vector<decltype(make_vec<T>(args...))>
-               (n, make_vec<T>(std::forward<Args>(args)...));
+template<class T, class... Args>
+constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&... args) {
+    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));
 }
 
 inline CONSTEXPR int popcnt(ull x) {
