@@ -12,12 +12,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Tree.md
     document_title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B\
@@ -265,7 +265,7 @@ data:
   path: graph/tree/Tree.hpp
   requiredBy: []
   timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
 documentation_of: graph/tree/Tree.hpp

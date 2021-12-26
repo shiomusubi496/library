@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -9,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -125,55 +128,97 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
-    \ T, class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class\
-    \ BinaryIndexedTree {\n  protected:\n    F op;\n    T e;\n    G inv;\n    bool\
-    \ inv_exits;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree()\
-    \ = default;\n    BinaryIndexedTree(int n_)\n        : BinaryIndexedTree(n_  ,\
-    \ [](const T& a, const T& b) -> T { return a + b; },\n                       \
-    \     T(0), [](const T& a, const T& b) -> T { return a - b; }) {}\n    BinaryIndexedTree(const\
-    \ F& op, const T& e) : BinaryIndexedTree(0, op, e) {}\n    BinaryIndexedTree(int\
-    \ n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }\n\
-    \    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op),\
-    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = n_;\n        data.assign(n + 1, e);\n    }\n    void add(int k, T x)\
-    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = e;\n        while (k) {\n\
-    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
-    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
-    \ r);\n        assert(inv_exits);\n        return inv(sum(r), sum(l));\n    }\n\
-    \    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void set(int\
-    \ k, T x) {\n        add(k, inv(x, get(k)));\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
-    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
-    \ class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class BinaryIndexedTree\
-    \ {\n  protected:\n    F op;\n    T e;\n    G inv;\n    bool inv_exits;\n    int\
-    \ n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTree() = default;\n\
-    \    BinaryIndexedTree(int n_)\n        : BinaryIndexedTree(n_  , [](const T&\
-    \ a, const T& b) -> T { return a + b; },\n                            T(0), [](const\
-    \ T& a, const T& b) -> T { return a - b; }) {}\n    BinaryIndexedTree(const F&\
-    \ op, const T& e) : BinaryIndexedTree(0, op, e) {}\n    BinaryIndexedTree(int\
-    \ n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }\n\
-    \    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op),\
-    \ e(e), inv(inv), inv_exits(true) { init(n_); }\n    void init(int n_) {\n   \
-    \     n = n_;\n        data.assign(n + 1, e);\n    }\n    void add(int k, T x)\
-    \ {\n        ++k;\n        while (k <= n) {\n            data[k] = op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T sum(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = e;\n        while (k) {\n\
-    \            res = op(res, data[k]);\n            k -= k & -k;\n        }\n  \
-    \      return res;\n    }\n    T sum(int l, int r) const {\n        assert(l <=\
-    \ r);\n        assert(inv_exits);\n        return inv(sum(r), sum(l));\n    }\n\
-    \    T get(int k) const {\n        return sum(k, k + 1);\n    }\n    void set(int\
-    \ k, T x) {\n        add(k, inv(x, get(k)));\n    }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
-    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
+    \    }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
+    \ constexpr T op(T a, T b) { return a + b; }\n    static constexpr T id() { return\
+    \ T{0}; }\n    static constexpr T inv(T a, T b) { return a - b; }\n    static\
+    \ constexpr T get_inv(T a) { return -a; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
+    \ T op(T a, T b) { return a > b ? b : a; }\n    static constexpr T id() { return\
+    \ max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
+    \ Max {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(T a,\
+    \ T b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T, T\
+    \ min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
+    };\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using E\
+    \ = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n    static\
+    \ constexpr T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
+    };\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E =\
+    \ Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr\
+    \ T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct ChminMin {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
+    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
+    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
+    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
+    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
+    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
+    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
+    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
+    \ Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
+    \ M> class BinaryIndexedTreeAnyOperation {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTreeAnyOperation()\
+    \ : BinaryIndexedTreeAnyOperation(0) {}\n    BinaryIndexedTreeAnyOperation(int\
+    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
+    \ + 1, M::id());\n    }\n    void add(int k, T x) {\n        ++k;\n        while\
+    \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
+    \        }\n    }\n    T sum(int k) const {\n        assert(0 <= k && k <= n);\n\
+    \        T res = M::id();\n        while (k) {\n            res = M::op(res, data[k]);\n\
+    \            k -= k & -k;\n        }\n        return res;\n    }\n    template<bool\
+    \ AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T sum(int l, int r) const {\n        assert(l <= r);\n     \
+    \   return M::inv(sum(r), sum(l));\n    }\n    T get(int k) const {\n        return\
+    \ sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, M::inv(x,\
+    \ get(k)));\n    }\n};\n\ntemplate<class T> using BinaryIndexedTree = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n\
+    \n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
+    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
+    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
+    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
+    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
+    \ add(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
+    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T sum(int\
+    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
+    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
+    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T sum(int l, int r) const {\n        assert(l <= r);\n     \
+    \   return M::inv(sum(r), sum(l));\n    }\n    T get(int k) const {\n        return\
+    \ sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, M::inv(x,\
+    \ get(k)));\n    }\n};\n\ntemplate<class T> using BinaryIndexedTree = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n\
+    \n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
+  - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2021-12-26 18:54:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp

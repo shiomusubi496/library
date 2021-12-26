@@ -8,6 +8,9 @@ data:
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -140,39 +143,87 @@ data:
     \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
     \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class T, class F = std::function<T(T, T)>> class SparseTable {\n\
-    \  protected:\n    F op;\n    int h, ori;\n    std::vector<int> logtable;\n  \
-    \  std::vector<std::vector<T>> data;\n  public:\n    SparseTable() = default;\n\
-    \    SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }\n\
-    \    void init(const std::vector<T>& v) {\n        ori = v.size();\n        h\
-    \ = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n      \
-    \  reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Sum {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a + b; }\n    static constexpr T id() { return T{0}; }\n    static constexpr\
+    \ T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T a) { return\
+    \ -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n\
+    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a > b\
+    \ ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static constexpr\
+    \ T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using\
+    \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
+    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
+    \ a, T b) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct\
+    \ AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
+    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
+    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
+    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
+    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
+    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
+    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
+    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
+    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
+    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
+    \ Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M>\
+    \ class SparseTable {\n  protected:\n    using T = typename M::value_type;\n \
+    \   int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
     \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
     \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
-    \   data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);\n            }\n \
-    \       }\n    }\n    T query(int l, int r) const {\n        assert(0 <= l &&\
-    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return op(data[d][l],\
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    T query(int l, int r) const {\n        assert(0 <= l &&\
+    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
     \ */\n#line 4 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\n  \
-    \  cin >> A;\n    SparseTable<int> ST(A, [](int a, int b) -> int { return min(a,\
-    \ b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout << ST.query(l,\
-    \ r) << endl;\n    }\n}\n"
+    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N); cin\
+    \ >> A;\n    SparseTable<Monoid::Min<int>> ST(A);\n    rep (Q) {\n        int\
+    \ l, r; cin >> l >> r;\n        cout << ST.query(l, r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../data-struct/segment/SparseTable.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N);\n    cin >> A;\n    SparseTable<int> ST(A, [](int a, int b) -> int { return\
-    \ min(a, b); });\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout\
-    \ << ST.query(l, r) << endl;\n    }\n}\n"
+    \ A(N); cin >> A;\n    SparseTable<Monoid::Min<int>> ST(A);\n    rep (Q) {\n \
+    \       int l, r; cin >> l >> r;\n        cout << ST.query(l, r) << endl;\n  \
+    \  }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SparseTable.hpp
   - other/bitop.hpp
+  - other/monoid.hpp
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
+  timestamp: '2021-12-26 18:54:48+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp

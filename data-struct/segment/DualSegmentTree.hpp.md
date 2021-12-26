@@ -5,6 +5,9 @@ data:
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -142,23 +145,70 @@ data:
     \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
     \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 5 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
-    \ T, class U, class F = std::function<T(U, T)>, class G = std::function<U(U, U)>>\
-    \ class DualSegmentTree {\n  protected:\n    F mapping;\n    G composition;\n\
-    \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
-    \    if (lazyflag[k]) {\n                lazy[k] = composition(lazy[k], x);\n\
-    \            }\n            else {\n                lazy[k] = x;\n           \
-    \     lazyflag[k] = true;\n            }\n        }\n        else if (k < n +\
-    \ ori) {\n            data[k - n] = mapping(x, data[k - n]);\n        }\n    }\n\
-    \    void eval(int k) {\n        if (lazyflag[k]) {\n            all_apply(k <<\
-    \ 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k]\
-    \ = false;\n        }\n    }\n  public:\n    DualSegmentTree() = default;\n  \
-    \  DualSegmentTree(const F& mapping, const G& composition)\n        : DualSegmentTree(0,\
-    \ mapping, composition) {}\n    DualSegmentTree(int n_, const F& mapping, const\
-    \ G& composition)\n        : DualSegmentTree(std::vector<T>(n_), mapping, composition)\
-    \ {}\n    DualSegmentTree(const std::vector<T>& v, const F& mapping, const G&\
-    \ composition)\n        : mapping(mapping), composition(composition) { init(v);\
+    \ 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(T a, T b) { return a + b; }\n    static constexpr\
+    \ T id() { return T{0}; }\n    static constexpr T inv(T a, T b) { return a - b;\
+    \ }\n    static constexpr T get_inv(T a) { return -a; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct Min {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return a > b ? b : a; }\n    static constexpr\
+    \ T id() { return max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct Max {\n    using value_type = T;\n    static constexpr T op(T a, T b)\
+    \ { return a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(T a, T b) { return b; }\n};\n\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n \
+    \   using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
+    };\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax {\n \
+    \   using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n \
+    \   using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(T a,\
+    \ T b) { return a; }\n    static constexpr T mul(T a, int b) { return a * b; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr T op(T a,\
+    \ T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
+    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
+    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
+    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
+    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
+    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
+    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
+    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
+    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
+    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
+    \ Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
+    \ A> class DualSegmentTreeDifferentOperation {\n  protected:\n    using M = typename\
+    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    int n, h, ori;\n    std::vector<T>\
+    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
+    \ k, U x) {\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
+    \      lazy[k] = E::op(lazy[k], x);\n            }\n            else {\n     \
+    \           lazy[k] = x;\n                lazyflag[k] = true;\n            }\n\
+    \        }\n        else if (k < n + ori) {\n            data[k - n] = A::op(x,\
+    \ data[k - n]);\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k])\
+    \ {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1,\
+    \ lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  public:\n \
+    \   DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
+    \ {}\n    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_))\
+    \ {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
     \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
     \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
     \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
@@ -168,52 +218,36 @@ data:
     \        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k - n] = upd(data[k\
     \ - n]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T) -> T { return\
     \ x; });\n    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T\
-    \ { return mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n  \
-    \      assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n    \
-    \    rreps (i, h) {\n            bool seen = false;\n            if (((l >> i)\
-    \ << i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r)\
-    \ eval((r - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\
-    \n        while (l != r) {\n            if (l & 1) all_apply(l++, x);\n      \
-    \      if (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n\
-    \    }\n};\n\ntemplate<class T> class RangeUpdateQuery : public DualSegmentTree<T,\
-    \ T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n  public:\n   \
-    \ template<class... Args> RangeUpdateQuery(Args&&... args)\n        : Base(\n\
-    \            std::forward<Args>(args)...,\n            [](T a, T) -> T { return\
-    \ a; },\n            [](T, T a) -> T { return a; }\n        ) {}\n};\n\ntemplate<class\
-    \ T> class RangeAddQuery : public DualSegmentTree<T, T> {\n  protected:\n    using\
-    \ Base = DualSegmentTree<T, T>;\n  public:\n    template<class... Args> RangeAddQuery(Args&&...\
-    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
-    \   [](T a, T b) -> T { return a + b; },\n            [](T a, T b) -> T { return\
-    \ a + b; }\n        ) {}\n};\n\ntemplate<class T> class RangeChminQuery : public\
-    \ DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n\
-    \  public:\n    template<class... Args> RangeChminQuery(Args&&... args)\n    \
-    \    : Base(\n            std::forward<Args>(args)...,\n            [](T a, T\
-    \ b) -> T { return std::min(a, b); },\n            [](T a, T b) -> T { return\
-    \ std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T> class RangeChmaxQuery\
-    \ : public DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T,\
-    \ T>;\n  public:\n    template<class... Args> RangeChmaxQuery(Args&&... args)\n\
-    \        : Base(\n            std::forward<Args>(args)...,\n            [](T a,\
-    \ T b) -> T { return std::max(a, b); },\n            [](T a, T b) -> T { return\
-    \ std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
-    \ */\n"
+    \ { return A::op(x, a); });\n    }\n    void apply(int l, int r, U x) {\n    \
+    \    assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n      \
+    \  rreps (i, h) {\n            bool seen = false;\n            if (((l >> i) <<\
+    \ i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r) eval((r\
+    \ - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\n     \
+    \   while (l != r) {\n            if (l & 1) all_apply(l++, x);\n            if\
+    \ (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n    }\n\
+    };\n\ntemplate<class E> using DualSegmentTree = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;\n\
+    \n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
+    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
+    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
+    \ T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;\n\ntemplate<class\
+    \ T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;\n\n/**\n * @brief\
+    \ DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
+    \ docs/DualSegmentTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n\ntemplate<class T, class U, class F = std::function<T(U, T)>, class G = std::function<U(U,\
-    \ U)>> class DualSegmentTree {\n  protected:\n    F mapping;\n    G composition;\n\
+    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class A> class DualSegmentTreeDifferentOperation\
+    \ {\n  protected:\n    using M = typename A::M;\n    using E = typename A::E;\n\
+    \    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
     \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
     \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
-    \    if (lazyflag[k]) {\n                lazy[k] = composition(lazy[k], x);\n\
-    \            }\n            else {\n                lazy[k] = x;\n           \
-    \     lazyflag[k] = true;\n            }\n        }\n        else if (k < n +\
-    \ ori) {\n            data[k - n] = mapping(x, data[k - n]);\n        }\n    }\n\
-    \    void eval(int k) {\n        if (lazyflag[k]) {\n            all_apply(k <<\
-    \ 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k]\
-    \ = false;\n        }\n    }\n  public:\n    DualSegmentTree() = default;\n  \
-    \  DualSegmentTree(const F& mapping, const G& composition)\n        : DualSegmentTree(0,\
-    \ mapping, composition) {}\n    DualSegmentTree(int n_, const F& mapping, const\
-    \ G& composition)\n        : DualSegmentTree(std::vector<T>(n_), mapping, composition)\
-    \ {}\n    DualSegmentTree(const std::vector<T>& v, const F& mapping, const G&\
-    \ composition)\n        : mapping(mapping), composition(composition) { init(v);\
+    \    if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n      \
+    \      }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
+    \ = true;\n            }\n        }\n        else if (k < n + ori) {\n       \
+    \     data[k - n] = A::op(x, data[k - n]);\n        }\n    }\n    void eval(int\
+    \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
+    \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
+    \        }\n    }\n  public:\n    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
+    \ {}\n    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_))\
+    \ {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
     \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
     \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
     \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
@@ -223,42 +257,29 @@ data:
     \        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k - n] = upd(data[k\
     \ - n]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T) -> T { return\
     \ x; });\n    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T\
-    \ { return mapping(x, a); });\n    }\n    void apply(int l, int r, U x) {\n  \
-    \      assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n    \
-    \    rreps (i, h) {\n            bool seen = false;\n            if (((l >> i)\
-    \ << i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r)\
-    \ eval((r - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\
-    \n        while (l != r) {\n            if (l & 1) all_apply(l++, x);\n      \
-    \      if (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n\
-    \    }\n};\n\ntemplate<class T> class RangeUpdateQuery : public DualSegmentTree<T,\
-    \ T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n  public:\n   \
-    \ template<class... Args> RangeUpdateQuery(Args&&... args)\n        : Base(\n\
-    \            std::forward<Args>(args)...,\n            [](T a, T) -> T { return\
-    \ a; },\n            [](T, T a) -> T { return a; }\n        ) {}\n};\n\ntemplate<class\
-    \ T> class RangeAddQuery : public DualSegmentTree<T, T> {\n  protected:\n    using\
-    \ Base = DualSegmentTree<T, T>;\n  public:\n    template<class... Args> RangeAddQuery(Args&&...\
-    \ args)\n        : Base(\n            std::forward<Args>(args)...,\n         \
-    \   [](T a, T b) -> T { return a + b; },\n            [](T a, T b) -> T { return\
-    \ a + b; }\n        ) {}\n};\n\ntemplate<class T> class RangeChminQuery : public\
-    \ DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T, T>;\n\
-    \  public:\n    template<class... Args> RangeChminQuery(Args&&... args)\n    \
-    \    : Base(\n            std::forward<Args>(args)...,\n            [](T a, T\
-    \ b) -> T { return std::min(a, b); },\n            [](T a, T b) -> T { return\
-    \ std::min(a, b); }\n        ) {}\n};\n\ntemplate<class T> class RangeChmaxQuery\
-    \ : public DualSegmentTree<T, T> {\n  protected:\n    using Base = DualSegmentTree<T,\
-    \ T>;\n  public:\n    template<class... Args> RangeChmaxQuery(Args&&... args)\n\
-    \        : Base(\n            std::forward<Args>(args)...,\n            [](T a,\
-    \ T b) -> T { return std::max(a, b); },\n            [](T a, T b) -> T { return\
-    \ std::max(a, b); }\n        ) {}\n};\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
-    \ */\n"
+    \ { return A::op(x, a); });\n    }\n    void apply(int l, int r, U x) {\n    \
+    \    assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n      \
+    \  rreps (i, h) {\n            bool seen = false;\n            if (((l >> i) <<\
+    \ i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r) eval((r\
+    \ - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\n     \
+    \   while (l != r) {\n            if (l & 1) all_apply(l++, x);\n            if\
+    \ (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n    }\n\
+    };\n\ntemplate<class E> using DualSegmentTree = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;\n\
+    \n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
+    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
+    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
+    \ T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;\n\ntemplate<class\
+    \ T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;\n\n/**\n * @brief\
+    \ DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
+    \ docs/DualSegmentTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
+  - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
+  timestamp: '2021-12-26 18:54:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -124,20 +127,68 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 4 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class T, class F = std::function<T(T, T)>, class G = std::function<T(T,\
-    \ T)>> class CumulativeSum {\n  protected:\n    F op;\n    T e;\n    G inv;\n\
-    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSum() = default;\n\
-    \    CumulativeSum(const std::vector<T>& v)\n        : CumulativeSum(v, [](T a,\
-    \ T b) -> T { return a + b; },\n                        T(0), [](T a, T b) ->\
-    \ T { return a - b; }) {}\n    CumulativeSum(const std::vector<T>& v, const F&\
-    \ op, const T& e, const G& inv) : op(op), e(e), inv(inv) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        n = v.size();\n        data.assign(n\
-    \ + 1, e);\n        rep (i, n) data[i + 1] = op(data[i], v[i]);\n    }\n    T\
-    \ query(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n \
-    \       return inv(data[r], data[l]);\n    }\n    std::vector<T> get_data() const\
-    \ { return data; }\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n *\
-    \ @docs docs/CumulativeSum.md\n */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\
+    \    }\n};\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Sum {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a + b; }\n    static constexpr T id() { return T{0}; }\n    static constexpr\
+    \ T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T a) { return\
+    \ -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n\
+    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a > b\
+    \ ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static constexpr\
+    \ T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using\
+    \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
+    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
+    \ a, T b) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct\
+    \ AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
+    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
+    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
+    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
+    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
+    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
+    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
+    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
+    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
+    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
+    \ Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class\
+    \ M> class CumulativeSumAnyOperation {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSumAnyOperation()\
+    \ = default;\n    CumulativeSumAnyOperation(const std::vector<T>& v) { init(v);\
+    \ }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n       \
+    \ data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T query(int l, int r) const {\n      \
+    \  assert(0 <= l && l <= r && r <= n);\n        return M::inv(data[r], data[l]);\n\
+    \    }\n    const std::vector<T>& get_data() const& { return data; }\n    std::vector<T>\
+    \ get_data() && { return std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum\
+    \ = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\n/**\n * @brief CumulativeSum(\u7D2F\
+    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n#line 4 \"test/yosupo/static_range_sum-CumulativeSum.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l,\
     \ r; cin >> l >> r;\n        cout << CS.query(l, r) << endl;\n    }\n}\n"
@@ -149,11 +200,12 @@ data:
   dependsOn:
   - other/template.hpp
   - data-struct/segment/CumulativeSum.hpp
+  - other/monoid.hpp
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-26 18:54:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp
 layout: document
