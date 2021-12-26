@@ -1,55 +1,50 @@
 #pragma once
 
 #include "../../other/template.hpp"
+#include "../../other/monoid.hpp"
 
-template<class T, class F = std::function<T(T, T)>, class G = std::function<T(T, T)>> class BinaryIndexedTree {
+template<class M> class BinaryIndexedTreeAnyOperation {
   protected:
-    F op;
-    T e;
-    G inv;
-    bool inv_exits;
+    using T = typename M::value_type;
     int n;
     std::vector<T> data;
   public:
-    BinaryIndexedTree() = default;
-    BinaryIndexedTree(int n_)
-        : BinaryIndexedTree(n_  , [](const T& a, const T& b) -> T { return a + b; },
-                            T(0), [](const T& a, const T& b) -> T { return a - b; }) {}
-    BinaryIndexedTree(const F& op, const T& e) : BinaryIndexedTree(0, op, e) {}
-    BinaryIndexedTree(int n_, const F& op, const T& e) : op(op), e(e), inv_exits(false) { init(n_); }
-    BinaryIndexedTree(int n_, const F& op, const T& e, const G& inv) : op(op), e(e), inv(inv), inv_exits(true) { init(n_); }
+    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0) {}
+    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }
     void init(int n_) {
         n = n_;
-        data.assign(n + 1, e);
+        data.assign(n + 1, M::id());
     }
     void add(int k, T x) {
         ++k;
         while (k <= n) {
-            data[k] = op(data[k], x);
+            data[k] = M::op(data[k], x);
             k += k & -k;
         }
     }
     T sum(int k) const {
         assert(0 <= k && k <= n);
-        T res = e;
+        T res = M::id();
         while (k) {
-            res = op(res, data[k]);
+            res = M::op(res, data[k]);
             k -= k & -k;
         }
         return res;
     }
+    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>
     T sum(int l, int r) const {
         assert(l <= r);
-        assert(inv_exits);
-        return inv(sum(r), sum(l));
+        return M::inv(sum(r), sum(l));
     }
     T get(int k) const {
         return sum(k, k + 1);
     }
     void set(int k, T x) {
-        add(k, inv(x, get(k)));
+        add(k, M::inv(x, get(k)));
     }
 };
+
+template<class T> using BinaryIndexedTree = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;
 
 /**
  * @brief BinaryIndexedTree(FenwickTree, BIT)

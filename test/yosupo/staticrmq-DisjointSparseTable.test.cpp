@@ -4,9 +4,8 @@
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;
-    vector<int> A(N);
-    cin >> A;
-    DisjointSparseTable<int> ST(A, [](int a, int b) -> int { return min(a, b); });
+    vector<int> A(N); cin >> A;
+    DisjointSparseTable<Monoid::Min<int>> ST(A);
     rep (Q) {
         int l, r; cin >> l >> r;
         cout << ST.query(l, r) << endl;

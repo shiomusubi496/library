@@ -2,16 +2,17 @@
 
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
+#include "../../other/monoid.hpp"
 
-template<class T, class F = std::function<T(T, T)>> class SparseTable {
+template<class M> class SparseTable {
   protected:
-    F op;
+    using T = typename M::value_type;
     int h, ori;
     std::vector<int> logtable;
     std::vector<std::vector<T>> data;
   public:
     SparseTable() = default;
-    SparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
+    SparseTable(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
         h = bitop::ceil_log2(ori);
@@ -21,14 +22,14 @@ template<class T, class F = std::function<T(T, T)>> class SparseTable {
         rep (i, ori) data[0][i] = v[i];
         rep (i, h) {
             rep (j, (1 << h) - (1 << i)) {
-                data[i + 1][j] = op(data[i][j], data[i][j + (1 << i)]);
+                data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);
             }
         }
     }
     T query(int l, int r) const {
         assert(0 <= l && l < r && r <= ori);
         int d = logtable[r - l];
-        return op(data[d][l], data[d][r - (1 << d)]);
+        return M::op(data[d][l], data[d][r - (1 << d)]);
     }
 };
 

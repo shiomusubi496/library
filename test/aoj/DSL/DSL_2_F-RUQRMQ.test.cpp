@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeUpdateQueryRangeMinimumQuery<int, int, (1ull << 31) - 1> seg(n);
+    RangeUpdateQueryRangeMinimumQuery<int, (1ull << 31) - 1> seg(n);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {

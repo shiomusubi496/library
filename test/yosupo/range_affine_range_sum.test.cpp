@@ -8,14 +8,20 @@ using PMM = pair<mint, mint>;
 int main() {
     int N, Q; cin >> N >> Q;
     vector<mint> A(N); cin >> A;
-    MultiLazySegmentTree<mint, PMM> seg(
-        A,
-        [](mint a, mint b) -> mint { return a + b; },
-        mint{0},
-        [](PMM a, mint b) -> mint { return a.first * b + a.second; },
-        [](PMM a, PMM b) -> PMM { return PMM{a.first * b.first, a.second * b.first + b.second}; },
-        [](PMM a, int b) -> PMM { return PMM{a.first, a.second * b}; }
-    );
+    struct AffineSum {
+        struct M {
+            using value_type = mint;
+            static mint op(mint a, mint b) { return a + b; };
+            static mint id() { return 0; }
+        };
+        struct E {
+            using value_type = PMM;
+            static PMM op(PMM a, PMM b) { return PMM{a.first * b.first, a.second * b.first + b.second}; };
+        };
+        static mint op(PMM a, mint b) { return a.first * b + a.second; };
+        static PMM mul(PMM a, int b) { return PMM{a.first, a.second * b}; };
+    };
+    MultiLazySegmentTree<AffineSum> seg(A);
     rep (Q) {
         int t; cin >> t;
         if (t == 0) {

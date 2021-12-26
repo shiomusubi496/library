@@ -4,10 +4,10 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeSumQuery<int> seg(n);
+    RangeSumQuery<int> RSQ(n);
     rep (q) {
         int t, a, b; cin >> t >> a >> b;
-        if (t == 0) seg.apply(a - 1, b);
-        else cout << seg.prod(a - 1, b) << endl;
+        if (t == 0) RSQ.apply(a - 1, b);
+        else cout << RSQ.prod(a - 1, b) << endl;
     }
 }

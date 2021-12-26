@@ -2,11 +2,14 @@
 
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
+#include "../../other/monoid.hpp"
 
-template<class T, class U, class F = std::function<T(U, T)>, class G = std::function<U(U, U)>> class DualSegmentTree {
+template<class A> class DualSegmentTreeDifferentOperation {
   protected:
-    F mapping;
-    G composition;
+    using M = typename A::M;
+    using E = typename A::E;
+    using T = typename M::value_type;
+    using U = typename E::value_type;
     int n, h, ori;
     std::vector<T> data;
     std::vector<U> lazy;
@@ -14,7 +17,7 @@ template<class T, class U, class F = std::function<T(U, T)>, class G = std::func
     void all_apply(int k, U x) {
         if (k < n) {
             if (lazyflag[k]) {
-                lazy[k] = composition(lazy[k], x);
+                lazy[k] = E::op(lazy[k], x);
             }
             else {
                 lazy[k] = x;
@@ -22,7 +25,7 @@ template<class T, class U, class F = std::function<T(U, T)>, class G = std::func
             }
         }
         else if (k < n + ori) {
-            data[k - n] = mapping(x, data[k - n]);
+            data[k - n] = A::op(x, data[k - n]);
         }
     }
     void eval(int k) {
@@ -33,13 +36,9 @@ template<class T, class U, class F = std::function<T(U, T)>, class G = std::func
         }
     }
   public:
-    DualSegmentTree() = default;
-    DualSegmentTree(const F& mapping, const G& composition)
-        : DualSegmentTree(0, mapping, composition) {}
-    DualSegmentTree(int n_, const F& mapping, const G& composition)
-        : DualSegmentTree(std::vector<T>(n_), mapping, composition) {}
-    DualSegmentTree(const std::vector<T>& v, const F& mapping, const G& composition)
-        : mapping(mapping), composition(composition) { init(v); }
+    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0) {}
+    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_)) {}
+    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
         h = bitop::ceil_log2(ori);
@@ -66,7 +65,7 @@ template<class T, class U, class F = std::function<T(U, T)>, class G = std::func
         update(k, [&](T) -> T { return x; });
     }
     void apply(int k, U x) {
-        update(k, [&](T a) -> T { return mapping(x, a); });
+        update(k, [&](T a) -> T { return A::op(x, a); });
     }
     void apply(int l, int r, U x) {
         assert(0 <= l && l <= r && r <= ori);
@@ -87,53 +86,17 @@ template<class T, class U, class F = std::function<T(U, T)>, class G = std::func
     }
 };
 
-template<class T> class RangeUpdateQuery : public DualSegmentTree<T, T> {
-  protected:
-    using Base = DualSegmentTree<T, T>;
-  public:
-    template<class... Args> RangeUpdateQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T) -> T { return a; },
-            [](T, T a) -> T { return a; }
-        ) {}
-};
+template<class E> using DualSegmentTree = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;
 
-template<class T> class RangeAddQuery : public DualSegmentTree<T, T> {
-  protected:
-    using Base = DualSegmentTree<T, T>;
-  public:
-    template<class... Args> RangeAddQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return a + b; },
-            [](T a, T b) -> T { return a + b; }
-        ) {}
-};
+// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
 
-template<class T> class RangeChminQuery : public DualSegmentTree<T, T> {
-  protected:
-    using Base = DualSegmentTree<T, T>;
-  public:
-    template<class... Args> RangeChminQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::min(a, b); },
-            [](T a, T b) -> T { return std::min(a, b); }
-        ) {}
-};
+// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;
 
-template<class T> class RangeChmaxQuery : public DualSegmentTree<T, T> {
-  protected:
-    using Base = DualSegmentTree<T, T>;
-  public:
-    template<class... Args> RangeChmaxQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::max(a, b); },
-            [](T a, T b) -> T { return std::max(a, b); }
-        ) {}
-};
+template<class T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;
+
+template<class T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)

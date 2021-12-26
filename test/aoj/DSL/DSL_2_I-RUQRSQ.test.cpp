@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeUpdateQueryRangeSumQuery<int, int> seg(n);
+    RangeUpdateQueryRangeSumQuery<int> seg(n);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {

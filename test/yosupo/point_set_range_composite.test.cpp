@@ -8,13 +8,16 @@ using PMM = pair<mint, mint>;
 int main() {
     int N, Q; cin >> N >> Q;
     vector<PMM> A(N); cin >> A;
-    SegmentTree<PMM> seg(
-        A,
-        [](const PMM& a, const PMM& b) -> PMM {
+    struct Composite {
+        using value_type = PMM;
+        static PMM op(const PMM& a, const PMM& b) {
             return {b.first * a.first, b.first * a.second + b.second};
-        },
-        PMM{1, 0}
-    );
+        };
+        static PMM id() {
+            return {1, 0};
+        }
+    };
+    SegmentTree<Composite> seg(A);
     rep (Q) {
         int t, a, b, c; cin >> t >> a >> b >> c;
         if (t == 0) seg.set(a, PMM{b, c});

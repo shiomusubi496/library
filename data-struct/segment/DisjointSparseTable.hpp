@@ -2,17 +2,18 @@
 
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
+#include "../../other/monoid.hpp"
 
-template<class T, class F = std::function<T(T, T)>> class DisjointSparseTable {
+template<class M> class DisjointSparseTable {
   protected:
-    F op;
+    using T = typename M::value_type;
     int h, ori;
     std::vector<int> logtable;
     std::vector<T> v_;
     std::vector<std::vector<T>> data;
   public:
     DisjointSparseTable() = default;
-    DisjointSparseTable(const std::vector<T>& v, const F& op) : op(op) { init(v); }
+    DisjointSparseTable(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         v_ = v;
         ori = v.size();
@@ -24,11 +25,11 @@ template<class T, class F = std::function<T(T, T)>> class DisjointSparseTable {
             int len = 1 << i;
             rep (j, len, ori, len << 1) {
                 data[i][j - 1] = v[j - 1];
-                rep (k, 1, len) data[i][j - k - 1] = op(v[j - k - 1], data[i][j - k]);
+                rep (k, 1, len) data[i][j - k - 1] = M::op(v[j - k - 1], data[i][j - k]);
                 data[i][j] = v[j];
                 rep (k, 1, len) {
                     if (j + k >= ori) break;
-                    data[i][j + k] = op(data[i][j + k - 1], v[j + k]);
+                    data[i][j + k] = M::op(data[i][j + k - 1], v[j + k]);
                 }
             }
         }
@@ -38,7 +39,7 @@ template<class T, class F = std::function<T(T, T)>> class DisjointSparseTable {
         --r;
         if (l == r) return v_[l];
         int d = logtable[l ^ r];
-        return op(data[d][l], data[d][r]);
+        return M::op(data[d][l], data[d][r]);
     }
 };
 

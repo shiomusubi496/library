@@ -2,23 +2,23 @@
 
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
+#include "../../other/monoid.hpp"
 
-template<class T, class U, class F = std::function<T(T, T)>, class G = std::function<T(U, T)>, class H = std::function<U(U, U)>>
-class LazySegmentTree {
+template<class A> class LazySegmentTree {
   protected:
-    F op;
-    T e;
-    G mapping;
-    H composition;
+    using M = typename A::M;
+    using E = typename A::E;
+    using T = typename M::value_type;
+    using U = typename E::value_type;
     int h, n, ori;
     std::vector<T> data;
     std::vector<U> lazy;
     std::vector<bool> lazyflag;
     void all_apply(int k, const U& x) {
-        data[k] = mapping(x, data[k]);
+        data[k] = A::op(x, data[k]);
         if (k < n) {
             if (lazyflag[k]) {
-                lazy[k] = composition(lazy[k], x);
+                lazy[k] = E::op(lazy[k], x);
             }
             else {
                 lazy[k] = x;
@@ -34,28 +34,24 @@ class LazySegmentTree {
         }
     }
     void dataup(int k) {
-        data[k] = op(data[k << 1], data[k << 1 ^ 1]);
+        data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);
     }
   public:
-    LazySegmentTree() = default;
-    LazySegmentTree(const F& op, const T& e, const G& mapping, const H& composition)
-        : LazySegmentTree(0, op, e, mapping, composition) {}
-    LazySegmentTree(int n_, const F& op, const T& e, const G& mapping, const H& composition)
-        : LazySegmentTree(std::vector<T>(n_, e), op, e, mapping, composition) {}
-    LazySegmentTree(const std::vector<T>& v, const F& op, const T& e, const G& mapping, const H& composition)
-        : op(op), e(e), mapping(mapping), composition(composition) { init(v); }
+    LazySegmentTree() : LazySegmentTree(0) {}
+    LazySegmentTree(int n_) : LazySegmentTree(std::vector<T>(n_, M::id())) {}
+    LazySegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
         h = bitop::ceil_log2(ori);
         n = 1 << h;
-        data.assign(n << 1, e);
+        data.assign(n << 1, M::id());
         rep (i, ori) data[n + i] = v[i];
         rrep (i, n, 1) dataup(i);
-        lazy.resize(n << 1); lazyflag.assign(n << 1, false);
+        lazy.resize(n); lazyflag.assign(n, false);
     }
     T prod(int l, int r) {
         assert(0 <= l && l <= r && r <= ori);
-        if (l == r) return e;
+        if (l == r) return M::id();
 
         l += n; r += n;
         rreps (i, h) {
@@ -65,13 +61,13 @@ class LazySegmentTree {
             if (!seen) break;
         }
 
-        T lsm = e, rsm = e;
+        T lsm = M::id(), rsm = M::id();
         while (l != r) {
-            if (l & 1) lsm = op(lsm, data[l++]);
-            if (r & 1) rsm = op(data[--r], rsm);
+            if (l & 1) lsm = M::op(lsm, data[l++]);
+            if (r & 1) rsm = M::op(data[--r], rsm);
             l >>= 1; r >>= 1;
         }
-        return op(lsm, rsm);
+        return M::op(lsm, rsm);
     }
     T get(int k) {
         assert(0 <= k && k < ori);
@@ -90,10 +86,10 @@ class LazySegmentTree {
         reps (i, h) dataup(k >> i);
     }
     void set(int k, T x) {
-        update(k, [&](T) -> T { return x; });
+        update(k, [&](const T&) -> T { return x; });
     }
     void apply(int k, U x) {
-        update(k, [&](T a) -> T { return mapping(x, a); });
+        update(k, [&](const T& a) -> T { return A::op(x, a); });
     }
     void apply(int l, int r, U x) {
         assert(0 <= l && l <= r && r <= ori);
@@ -119,7 +115,7 @@ class LazySegmentTree {
     }
     template<class C> int max_right(int l, const C& cond) {
         assert(0 <= l && l <= ori);
-        assert(cond(e));
+        assert(cond(M::id()));
         if (l == ori) return ori;
 
         l += n;
@@ -128,24 +124,24 @@ class LazySegmentTree {
             else break;
         }
 
-        T sm = e;
+        T sm = M::id();
         do {
             while ((l & 1) == 0) l >>= 1;
-            if (!cond(op(sm, data[l]))) {
+            if (!cond(M::op(sm, data[l]))) {
                 while (l < n) {
                     eval(l);
                     l <<= 1;
-                    if (cond(op(sm, data[l]))) sm = op(sm, data[l++]);
+                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);
                 }
                 return l - n;
             }
-            sm = op(sm, data[l++]);
+            sm = M::op(sm, data[l++]);
         } while ((l & -l) != l);
         return ori;
     }
     template<class C> int min_left(int r, const C& cond) {
         assert(0 <= r && r <= ori);
-        assert(cond(e));
+        assert(cond(M::id()));
         if (r == 0) return 0;
 
         r += n;
@@ -154,214 +150,94 @@ class LazySegmentTree {
             else break;
         }
 
-        T sm = e;
+        T sm = M::id();
         do {
             --r;
             while ((r & 1) && r > 1) r >>= 1;
-            if (!cond(op(data[r], sm))) {
+            if (!cond(M::op(data[r], sm))) {
                 while (r < n) {
                     eval(r);
                     r = r << 1 ^ 1;
-                    if (cond(op(data[r], sm))) sm = op(data[r--], sm);
+                    if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);
                 }
                 return r + 1 - n;
             }
-            sm = op(data[r], sm);
+            sm = M::op(data[r], sm);
         } while ((r & -r) != r);
         return 0;
     }
 };
 
-template<class T, class U> class MultiLazySegmentTree {
+template<class A> class MultiLazySegmentTree {
   protected:
-    struct E {
-        T val;
-        int len;
-        E() = default;
-        E(T v, int l) : val(v), len(l) {}
-        friend std::ostream& operator<<(std::ostream& ost, const E& e) { return ost << e.val << '*' << e.len; }
+    using M_ = typename A::M;
+    using E_ = typename A::E;
+    using T_ = typename M_::value_type;
+    using U_ = typename E_::value_type;
+    struct MultiA {
+        struct M {
+            struct value_type {
+                T_ val;
+                int len;
+                value_type() = default;
+                value_type(T_ v, int l) : val(v), len(l) {}
+                friend std::ostream& operator<<(std::ostream& ost, const value_type& e) { return ost << e.val << '*' << e.len; }
+            };
+            static value_type op(const value_type& a, const value_type& b) { return {M_::op(a.val, b.val), a.len + b.len}; }
+            static value_type id() { return {M_::id(), 0}; }
+        };
+        using E = E_;
+        using T = typename M::value_type;
+        using U = typename E::value_type;
+        static T op(const U& a, const T& b) { return {A::op(A::mul(a, b.len), b.val), b.len}; }
     };
-    using F = std::function<T(T, T)>;
-    using G = std::function<T(U, T)>;
-    using H = std::function<U(U, U)>;
-    using I = std::function<U(U, int)>;
-    LazySegmentTree<E, U> seg;
-    std::vector<E> Tvec_to_Evec(const std::vector<T>& v) {
-        std::vector<E> res(v.size());
-        rep (i, v.size()) res[i] = E{v[i], 1};
+    using elm = typename MultiA::M::value_type;
+    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
+        const int n = v.size();
+        std::vector<elm> res(n);
+        rep (i, n) res[i] = elm{v[i], 1};
         return res;
     }
+    LazySegmentTree<MultiA> seg;
   public:
-    MultiLazySegmentTree() = default;
-    MultiLazySegmentTree(const F& op, const T& e, const G& mapping, const H& composition, const I& mul)
-        : MultiLazySegmentTree(0, op, e, mapping, composition, mul) {}
-    MultiLazySegmentTree(int n_, const F& op, const T& e, const G& mapping, const H& composition, const I& mul)
-        : seg(
-            std::vector<E>(n_, E{e, 1}), [=](E a, E b) -> E { return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},
-            [=](U a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition
-        ) {}
-    MultiLazySegmentTree(const std::vector<T>& v, const F& op, const T& e, const G& mapping, const H& composition, const I& mul)
-        : seg(
-            Tvec_to_Evec(v), [=](E a, E b) -> E { return E{op(a.val, b.val), a.len + b.len}; }, E{e, 0},
-            [=](U a, E b) -> E { return E{mapping(mul(a, b.len), b.val), b.len}; }, composition
-        ) {}
-    void init(const std::vector<T>& v) { seg.init(Tvec_to_Evec(v)); }
-    T prod(int l, int r) { return seg.prod(l, r).val; }
-    T get(int k) { return seg.get(k).val; }
-    T all_prod() const { return seg.all_prod().val; }
-    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](E a) -> E { return E{upd(a.val), a.len}; }); }
-    void set(int k, T x) { seg.set(k, E{x, 1}); }
-    void apply(int k, U x) { seg.apply(k, x); }
-    void apply(int l, int r, U x) { seg.apply(l, r, x); }
-    template<class C> int max_right(int l, const C& cond) { return seg.max_right(l, [&](E a) -> bool { return cond(a.val); }); }
-    template<class C> int min_left(int r, const C& cond) { return seg.min_left(r, [&](E a) -> bool { return cond(a.val); }); }
+    MultiLazySegmentTree() : MultiLazySegmentTree(0) {}
+    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_, MultiA::M::id())) {}
+    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}
+    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }
+    T_ prod(int l, int r) { return seg.prod(l, r).val; }
+    T_ get(int k) { return seg.get(k).val; }
+    T_ all_prod() const { return seg.all_prod().val; }
+    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len}; }); }
+    void set(int k, T_ x) { seg.set(k, elm{x, 1}); }
+    void apply(int k, U_ x) { seg.apply(k, x); }
+    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }
+    template<class C> int max_right(int l, const C& cond) { return seg.max_right(l, [&](const elm& a) -> bool { return cond(a.val); }); }
+    template<class C> int min_left(int r, const C& cond) { return seg.min_left(r, [&](const elm& a) -> bool { return cond(a.val); }); }
 };
 
 //verified with test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-template<class T, class U, T max_value = infinity<T>::max> class RangeUpdateQueryRangeMinimumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeUpdateQueryRangeMinimumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::min(a, b); },
-            max_value,
-            [](U a, T) -> T { return a; },
-            [](U, U a) -> U { return a; }
-        ) {}
-};
+template<class T, T max_value = infinity<T>::max> using RangeUpdateQueryRangeMinimumQuery = LazySegmentTree<Monoid::AssignMin<T, max_value>>;
 
-template<class T, class U, T min_value = infinity<T>::min> class RangeUpdateQueryRangeMaximumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeUpdateQueryRangeMaximumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::max(a, b); },
-            min_value,
-            [](U a, T) -> T { return a; },
-            [](U, U a) -> U { return a; }
-        ) {}
-};
+template<class T, T min_value = infinity<T>::min> using RangeUpdateQueryRangeMaximumQuery = LazySegmentTree<Monoid::AssignMax<T, min_value>>;
 
 //verified with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-template<class T, class U> class RangeUpdateQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {
-  protected:
-    using Base = MultiLazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeUpdateQueryRangeSumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return a + b; },
-            T(0),
-            [](U a, T) -> T { return a; },
-            [](U, U a) -> U { return a; },
-            [](U a, int b) -> U { return a * b; }
-        ) {}
-};
+template<class T> using RangeUpdateQueryRangeSumQuery = MultiLazySegmentTree<Monoid::AssignSum<T>>;
 
 //verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-template<class T, class U, T max_value = infinity<T>::max> class RangeAddQueryRangeMinimumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeAddQueryRangeMinimumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::min(a, b); },
-            max_value,
-            [](U a, T b) -> T { return a + b; },
-            [](U a, U b) -> U { return a + b; }
-        ) {}
-};
+template<class T, T max_value = infinity<T>::max> using RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T, max_value>>;
 
-template<class T, class U, T min_value = infinity<T>::min> class RangeAddQueryRangeMaximumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeAddQueryRangeMaximumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::max(a, b); },
-            min_value,
-            [](U a, T b) -> T { return a + b; },
-            [](U a, U b) -> U { return a + b; }
-        ) {}
-};
+template<class T, T min_value = infinity<T>::min> using RangeAddQueryRangeMaximumQuery = LazySegmentTree<Monoid::AddMax<T, min_value>>;
 
 //verified with test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-template<class T, class U> class RangeAddQueryRangeSumQuery : public MultiLazySegmentTree<T, U> {
-  protected:
-    using Base = MultiLazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeAddQueryRangeSumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return a + b; },
-            T(0),
-            [](U a, T b) -> T { return a + b; },
-            [](U a, U b) -> U { return a + b; },
-            [](U a, int b) -> U { return a * b; }
-        ) {}
-};
+template<class T> using RangeAddQueryRangeSumQuery = MultiLazySegmentTree<Monoid::AddSum<T>>;
 
-template<class T, class U, T max_value = infinity<T>::max> class RangeChminQueryRangeMinimumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeChminQueryRangeMinimumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::min(a, b); },
-            max_value,
-            [](U a, T b) -> T { return std::min(a, b); },
-            [](U a, U b) -> U { return std::min(a, b); }
-        ) {}
-};
+template<class T, T max_value = infinity<T>::max> using RangeChminQueryRangeMinimumQuery = LazySegmentTree<Monoid::ChminMin<T, max_value>>;
 
-template<class T, class U, T min_value = infinity<T>::min> class RangeChminQueryRangeMaximumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeChminQueryRangeMaximumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::max(a, b); },
-            min_value,
-            [](U a, T b) -> T { return std::min(a, b); },
-            [](U a, U b) -> U { return std::min(a, b); }
-        ) {}
-};
+template<class T, T min_value = infinity<T>::min> using RangeChminQueryRangeMaximumQuery = LazySegmentTree<Monoid::ChminMax<T, min_value>>;
 
-template<class T, class U, T max_value = infinity<T>::max> class RangeChmaxQueryRangeMinimumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeChmaxQueryRangeMinimumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::min(a, b); },
-            max_value,
-            [](U a, T b) -> T { return std::max(a, b); },
-            [](U a, U b) -> U { return std::max(a, b); }
-        ) {}
-};
+template<class T, T max_value = infinity<T>::max> using RangeChmaxQueryRangeMinimumQuery = LazySegmentTree<Monoid::ChmaxMin<T, max_value>>;
 
-template<class T, class U, T min_value = infinity<T>::min> class RangeChmaxQueryRangeMaximumQuery : public LazySegmentTree<T, U> {
-  protected:
-    using Base = LazySegmentTree<T, U>;
-  public:
-    template<class... Args> RangeChmaxQueryRangeMaximumQuery(Args&&... args)
-        : Base(
-            std::forward<Args>(args)...,
-            [](T a, T b) -> T { return std::max(a, b); },
-            min_value,
-            [](U a, T b) -> T { return std::max(a, b); },
-            [](U a, U b) -> U { return std::max(a, b); }
-        ) {}
-};
+template<class T, T min_value = infinity<T>::min> using RangeChmaxQueryRangeMaximumQuery = LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;
 
 /**
  * @brief LazySegmentTree(遅延セグメント木)
