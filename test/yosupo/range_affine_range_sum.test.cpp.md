@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -367,7 +367,7 @@ data:
     \ res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n        return res;\n  \
     \  }\n    LazySegmentTree<MultiA> seg;\n  public:\n    MultiLazySegmentTree()\
     \ : MultiLazySegmentTree(0) {}\n    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_,\
-    \ MultiA::M::id())) {}\n    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
+    \ {M_::id(), 1})) {}\n    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
     \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
     \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
@@ -436,7 +436,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2021-12-26 18:54:48+09:00'
+  timestamp: '2021-12-26 19:31:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

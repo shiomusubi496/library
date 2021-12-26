@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_I
@@ -273,7 +273,7 @@ data:
     \ res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n        return res;\n  \
     \  }\n    LazySegmentTree<MultiA> seg;\n  public:\n    MultiLazySegmentTree()\
     \ : MultiLazySegmentTree(0) {}\n    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_,\
-    \ MultiA::M::id())) {}\n    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
+    \ {M_::id(), 1})) {}\n    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
     \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
     \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
@@ -304,17 +304,17 @@ data:
     \ min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQueryRangeSumQuery<int>\
-    \ seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n  \
-    \          int l, r, x; cin >> l >> r >> x;\n            seg.apply(l, r + 1, x);\n\
-    \        }\n        else {\n            int l, r; cin >> l >> r;\n           \
-    \ cout << seg.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
+    \ RUQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            int l, r, x; cin >> l >> r >> x;\n            RUQRSQ.apply(l, r +\
+    \ 1, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
+    \          cout << RUQRSQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_I\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQueryRangeSumQuery<int>\
-    \ seg(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n  \
-    \          int l, r, x; cin >> l >> r >> x;\n            seg.apply(l, r + 1, x);\n\
-    \        }\n        else {\n            int l, r; cin >> l >> r;\n           \
-    \ cout << seg.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
+    \ RUQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            int l, r, x; cin >> l >> r >> x;\n            RUQRSQ.apply(l, r +\
+    \ 1, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
+    \          cout << RUQRSQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/LazySegmentTree.hpp
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-26 18:54:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-26 19:31:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
 layout: document
