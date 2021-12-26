@@ -4,16 +4,16 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeAddQueryRangeSumQuery<ll> seg(n);
+    RangeAddQueryRangeSumQuery<ll> RAQRSQ(n);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {
             int l, r, x; cin >> l >> r >> x;
-            seg.apply(l - 1, r, x);
+            RAQRSQ.apply(l - 1, r, x);
         }
         else {
             int l, r; cin >> l >> r;
-            cout << seg.prod(l - 1, r) << endl;
+            cout << RAQRSQ.prod(l - 1, r) << endl;
         }
     }
 }

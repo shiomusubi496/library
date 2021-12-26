@@ -201,7 +201,7 @@ template<class A> class MultiLazySegmentTree {
     LazySegmentTree<MultiA> seg;
   public:
     MultiLazySegmentTree() : MultiLazySegmentTree(0) {}
-    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_, MultiA::M::id())) {}
+    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_, {M_::id(), 1})) {}
     MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}
     void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }
     T_ prod(int l, int r) { return seg.prod(l, r).val; }
