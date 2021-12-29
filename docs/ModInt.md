@@ -36,6 +36,9 @@ modint - modint
 modint * modint
 modint / modint
 
+modint == modint
+modint != modint
+
 cin >> modint
 cout << modint
 ```

@@ -104,6 +104,12 @@ template<ll mod> class StaticModInt : StaticModIntBase {
     StaticModInt operator-() const {
         return StaticModInt(0) - *this;
     }
+    friend bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return lhs.val == rhs.val;
+    }
+    friend bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs) {
+        return lhs.val != rhs.val;
+    }
     StaticModInt pow(ll a) const {
         StaticModInt v = *this, res = 1;
         while (a) {
@@ -203,6 +209,12 @@ template<int id> class DynamicModInt : DynamicModIntBase {
     }
     DynamicModInt operator-() const {
         return DynamicModInt(0) - *this;
+    }
+    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return lhs.val == rhs.val;
+    }
+    friend bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {
+        return lhs.val != rhs.val;
     }
     DynamicModInt pow(ll a) const {
         DynamicModInt v = *this, res = 1;
