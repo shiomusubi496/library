@@ -190,15 +190,18 @@ data:
     \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
     \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
-    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
-    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
-    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
-    \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
-    \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
-    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
-    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
+    \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
+    \ sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll\
+    \ mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\nusing modint1000000007\
+    \ = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
     \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
     \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
     \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
@@ -229,14 +232,18 @@ data:
     \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
     \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
     \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
-    \ - *this;\n    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt\
-    \ v = *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n\
-    \            a >>= 1;\n            v *= v;\n        }\n        return res;\n \
-    \   }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
-    \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
-    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n"
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {\n        return\
+    \ ist >> sm.val;\n    }\n};\n\ntemplate<int id> ll DynamicModInt<id>::mod = 1000000007;\n\
+    \nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass ModIntBase {};\n\
     class StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
     \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
@@ -281,15 +288,18 @@ data:
     \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
     \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
-    \ *this;\n    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v =\
-    \ *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n   \
-    \         a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n\
-    \    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm)\
-    \ {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, StaticModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
-    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
-    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
+    \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
+    \ sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll\
+    \ mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\nusing modint1000000007\
+    \ = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
     \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
     \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
     \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
@@ -320,21 +330,25 @@ data:
     \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
     \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
     \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
-    \ - *this;\n    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt\
-    \ v = *this, res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n\
-    \            a >>= 1;\n            v *= v;\n        }\n        return res;\n \
-    \   }\n    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt&\
-    \ sm) {\n        return ost << sm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& sm) {\n        return ist >> sm.val;\n    }\n};\n\ntemplate<int\
-    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n"
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {\n        return\
+    \ ist >> sm.val;\n    }\n};\n\ntemplate<int id> ll DynamicModInt<id>::mod = 1000000007;\n\
+    \nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/ModInt.hpp
   requiredBy:
   - math/Combinatorics.hpp
-  timestamp: '2021-12-20 15:01:16+09:00'
+  timestamp: '2021-12-29 22:10:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_D.test.cpp
@@ -389,6 +403,9 @@ modint + modint
 modint - modint
 modint * modint
 modint / modint
+
+modint == modint
+modint != modint
 
 cin >> modint
 cout << modint
