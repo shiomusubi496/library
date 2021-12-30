@@ -90,7 +90,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: math/Matrix.hpp
+    title: math/Matrix.hpp
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -241,6 +244,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/matrix_product.test.cpp
+    title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
@@ -280,9 +286,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -530,11 +536,12 @@ data:
   - math/EulerPhi.hpp
   - math/PrimeFactor.hpp
   - math/ModInt.hpp
+  - math/Matrix.hpp
   - math/Combinatorics.hpp
   - other/bitop.hpp
   - other/monoid.hpp
   timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
@@ -589,6 +596,7 @@ data:
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/matrix_product.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/tree_diameter.test.cpp

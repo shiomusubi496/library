@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
+  - icon: ':x:'
+    path: math/Matrix.hpp
+    title: math/Matrix.hpp
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
@@ -12,24 +12,25 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F
-  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_F.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/matrix_product
+  bundledCode: "#line 1 \"test/yosupo/matrix_product.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/matrix_product\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -223,55 +224,57 @@ data:
     \ std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {\n        return\
     \ ist >> sm.val;\n    }\n};\n\ntemplate<int id> ll DynamicModInt<id>::mod = 1000000007;\n\
     \nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n\
-    \ */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\
-    \n\ntemplate<class T> class IntCombinatorics {\n  protected:\n    static std::vector<T>\
-    \ factorial;\n  public:\n    static void init(ll n) {\n        factorial.reserve(n\
-    \ + 1);\n        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back()\
-    \ * factorial.size());\n    }\n    static T fact(ll x) {\n        init(x);\n \
-    \       return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n       \
-    \ if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
-    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
-    \ comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> IntCombinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\n  protected:\n\
-    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n  public:\n\
-    \    static void init(ll n) {\n        int b = factorial.size();\n        if (n\
-    \ < b) return;\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
-    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n        factinv.resize(n\
-    \ + 1);\n        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
-    \ + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T> std::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
-    \ */\n#line 5 \"test/aoj/DPL/DPL_5_F.test.cpp\"\nusing namespace std;\nusing mint\
-    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
-    \ n, k; cin >> n >> k;\n    cout << comb::comb(n - 1, k - 1) << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_F\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; cin >> n >> k;\n\
-    \    cout << comb::comb(n - 1, k - 1) << endl;\n}\n"
+    \ */\n#line 2 \"math/Matrix.hpp\"\n\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class\
+    \ T> class Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using\
+    \ Base = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n  \
+    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
+    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    static Matrix get_id(int\
+    \ sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i] = T{1};\n\
+    \        return res;\n    }\n    int height() const { return this->size(); }\n\
+    \    int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
+    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
+    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
+    \ {\n        Matrix res(this->size(), other[0].size());\n        rep (i, this->size())\
+    \ {\n            rep (k, other.size()) {\n                rep (j, other[0].size())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ res[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
+    int main() {\n    int N, M, K; cin >> N >> M >> K;\n    Mat A(N, M); cin >> A;\n\
+    \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    for (const auto& v : C) cout\
+    \ << v << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n#include \"\
+    ../../math/Matrix.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
+    using Mat = Matrix<mint>;\nint main() {\n    int N, M, K; cin >> N >> M >> K;\n\
+    \    Mat A(N, M); cin >> A;\n    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n\
+    \    for (const auto& v : C) cout << v << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - math/ModInt.hpp
-  - math/Combinatorics.hpp
+  - math/Matrix.hpp
   isVerificationFile: true
-  path: test/aoj/DPL/DPL_5_F.test.cpp
+  path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2021-12-29 22:10:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2021-12-30 17:24:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DPL/DPL_5_F.test.cpp
+documentation_of: test/yosupo/matrix_product.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL/DPL_5_F.test.cpp
-- /verify/test/aoj/DPL/DPL_5_F.test.cpp.html
-title: test/aoj/DPL/DPL_5_F.test.cpp
+- /verify/test/yosupo/matrix_product.test.cpp
+- /verify/test/yosupo/matrix_product.test.cpp.html
+title: test/yosupo/matrix_product.test.cpp
 ---

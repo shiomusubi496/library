@@ -1,28 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/matrix_product.test.cpp
+    title: test/yosupo/matrix_product.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    links: []
+  bundledCode: "#line 2 \"math/Matrix.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -127,81 +120,73 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
-    \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
-    \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
-    \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
-    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
-    \   que.pop();\n        if (dist[v] != c) continue;\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
-    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
-    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 5\
-    \ \"test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E) {\n\
-    \        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
-    \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
-    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E, r; cin >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E) {\n\
-    \        int s, t, d; cin >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
-    \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
-    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
-    \    }\n}\n"
+    \    }\n};\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\n  protected:\n    using Base = std::vector<std::vector<T>>;\n\
+    \  public:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n     \
+    \   rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
+    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
+    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
+    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        Matrix res(this->size(), other[0].size());\n     \
+    \   rep (i, this->size()) {\n            rep (k, other.size()) {\n           \
+    \     rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n   \
+    \         }\n        }\n        *this = std::move(res);\n        return *this;\n\
+    \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
+    \       rep (j, (*this)[0].size()) res[i][j] *= s;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
+    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
+    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
+    \ 1;\n        }\n        return res;\n    }\n};\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
+    \ Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using Base\
+    \ = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n    Matrix(int\
+    \ h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int w, const T&\
+    \ v) : Base(h, std::vector<T>(w, v)) {}\n    static Matrix get_id(int sz) {\n\
+    \        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i] = T{1};\n  \
+    \      return res;\n    }\n    int height() const { return this->size(); }\n \
+    \   int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
+    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
+    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
+    \ {\n        Matrix res(this->size(), other[0].size());\n        rep (i, this->size())\
+    \ {\n            rep (k, other.size()) {\n                rep (j, other[0].size())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ res[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n"
   dependsOn:
   - other/template.hpp
-  - graph/Graph.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  isVerificationFile: true
-  path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  isVerificationFile: false
+  path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  timestamp: '2021-12-30 17:24:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/matrix_product.test.cpp
+documentation_of: math/Matrix.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-- /verify/test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp.html
-title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+- /library/math/Matrix.hpp
+- /library/math/Matrix.hpp.html
+title: math/Matrix.hpp
 ---
