@@ -40,7 +40,7 @@ template<class T> class Matrix : public std::vector<std::vector<T>> {
     }
     Matrix& operator*=(T s) {
         rep (i, this->size()) {
-            rep (j, (*this)[0].size()) res[i][j] *= s;
+            rep (j, (*this)[0].size()) (*this)[i][j] *= s;
         }
         return *this;
     }
