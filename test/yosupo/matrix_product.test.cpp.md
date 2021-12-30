@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Matrix.hpp
     title: math/Matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -242,7 +242,7 @@ data:
     \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
     \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
     \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ res[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
     \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
     \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
     \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
@@ -268,8 +268,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2021-12-30 17:24:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2021-12-30 17:28:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
 layout: document

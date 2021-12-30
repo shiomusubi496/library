@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/Matrix.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -137,7 +137,7 @@ data:
     \     rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n   \
     \         }\n        }\n        *this = std::move(res);\n        return *this;\n\
     \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
-    \       rep (j, (*this)[0].size()) res[i][j] *= s;\n        }\n        return\
+    \       rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return\
     \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
     \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
     \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
@@ -165,7 +165,7 @@ data:
     \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
     \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
     \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ res[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
     \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
     \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
     \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
@@ -179,8 +179,8 @@ data:
   isVerificationFile: false
   path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2021-12-30 17:24:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2021-12-30 17:28:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
 documentation_of: math/Matrix.hpp
