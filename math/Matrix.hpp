@@ -66,3 +66,8 @@ template<class T> class Matrix : public std::vector<std::vector<T>> {
         return res;
     }
 };
+
+/**
+ * @brief Matrix(行列)
+ * @docs docs/Matrix.md
+ */
