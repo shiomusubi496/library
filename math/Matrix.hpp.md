@@ -13,6 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/Matrix.md
+    document_title: "Matrix(\u884C\u5217)"
     links: []
   bundledCode: "#line 2 \"math/Matrix.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
     #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -146,7 +148,8 @@ data:
     \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
     \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
     \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
-    \ 1;\n        }\n        return res;\n    }\n};\n"
+    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
+    \u5217)\n * @docs docs/Matrix.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
     \ Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using Base\
     \ = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n    Matrix(int\
@@ -173,13 +176,14 @@ data:
     \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
     \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n"
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2021-12-30 17:28:08+09:00'
+  timestamp: '2021-12-30 17:33:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
@@ -188,5 +192,32 @@ layout: document
 redirect_from:
 - /library/math/Matrix.hpp
 - /library/math/Matrix.hpp.html
-title: math/Matrix.hpp
+title: "Matrix(\u884C\u5217)"
 ---
+## 概要
+
+行列のライブラリ。 `vector<vector<T>>` を継承している。
+
+- `Matrix(int h, int w)` : `h` 行 `w` 列の行列を作成する。 $\Theta(hw)$ 。
+- `Matrix(int h, int w, T v)` : 初期値 `v` で行列を作成する。 $\Theta(hw)$ 。
+- `int height()` : 行数を返す。 $\Theta(1)$ 。
+- `int width()` : 列数を返す。 $\Theta(1)$ 。
+- `Matrix get_id(int n)` : `n` 行 `n` 列の単位行列を返す。 $\Theta(n^2)$ 。
+
+さらに以下の演算が動く。
+
+```
+Matrix += Matrix
+Matrix -= Matrix
+Matrix *= Matrix
+Matrix *= T
+
+Matrix + Matrix
+Matrix - Matrix
+Matrix * Matrix
+Matrix * T
+```
+
+行列同士の和差はそれぞれ $H \times W$ 行列と $H \times W$ 行列に対して $\Theta(HW)$ 。  
+行列同士の積は $H \times W$ 行列と $W \times K$ 行列に対して $\Theta(HWK)$ 。  
+行列とスカラー倍は $H \times W$ 行列に対して $\Theta(HW)$ 。

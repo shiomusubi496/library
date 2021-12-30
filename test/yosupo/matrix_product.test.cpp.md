@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: math/Matrix.hpp
-    title: math/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
@@ -250,7 +250,8 @@ data:
     \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
     \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
     int main() {\n    int N, M, K; cin >> N >> M >> K;\n    Mat A(N, M); cin >> A;\n\
     \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    for (const auto& v : C) cout\
@@ -268,7 +269,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2021-12-30 17:28:08+09:00'
+  timestamp: '2021-12-30 17:33:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
