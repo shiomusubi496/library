@@ -13,9 +13,9 @@
 分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g$ を効率よく計算できるときは、 `MultiLazySegmentTree` を参照。
 
 - コンストラクタ
-  - `LazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U))` : $a \cdot b$ を返す `op(a, b)` 、単位元 `e` 、 `f(x)` を計算する `mp(f, x)` 、写像の合成 $b \circ a$ を返す `cmp(a, b)` で長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `LazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `LazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。 $\Theta(N)$ 。
+  - `LazySegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
+  - `LazySegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
+  - `LazySegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
   - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
@@ -41,9 +41,9 @@
 分配則が成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g_{f, k} \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g_{f, k}$ を効率よく計算できるときは、 `MultiLazySegmentTree` を使う。
 
 - コンストラクタ
-  - `MultiLazySegmentTree(T op(T, T), T e, T mp(U, T), U cmp(U, U), U mul(U, int))` : $a \cdot b$ を返す `op(a, b)` 、単位元 `e` 、 `f(x)` を計算する `mp(f, x)` 、写像の合成 $b \circ a$ を返す `cmp(a, b)` 、 $g_{f, k}$  を計算する `mul(f, k)` で長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `MultiLazySegmentTree(int n, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `MultiLazySegmentTree(vector<T> v, T op(T, T), T e, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。 $\Theta(N)$ 。
+  - `MultiLazySegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
+  - `MultiLazySegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
+  - `MultiLazySegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 
 また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` を継承して作られている。
 

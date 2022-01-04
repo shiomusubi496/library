@@ -34,7 +34,7 @@ template<class M> class DisjointSparseTable {
             }
         }
     }
-    T query(int l, int r) const {
+    T prod(int l, int r) const {
         assert(0 <= l && l < r && r <= ori);
         --r;
         if (l == r) return v_[l];

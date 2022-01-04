@@ -26,7 +26,7 @@ template<class M> class SparseTable {
             }
         }
     }
-    T query(int l, int r) const {
+    T prod(int l, int r) const {
         assert(0 <= l && l < r && r <= ori);
         int d = logtable[r - l];
         return M::op(data[d][l], data[d][r - (1 << d)]);

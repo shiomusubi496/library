@@ -189,6 +189,9 @@ template<class A> class MultiLazySegmentTree {
         using E = E_;
         using T = typename M::value_type;
         using U = typename E::value_type;
+        template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_mul_op<A>::value && AlwaysTrue>::type* = nullptr>
+        static T op(const U& a, const T& b) { return {A::mul_op(a, b.len, b.val), b.len}; }
+        template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_mul_op<A>::value && AlwaysTrue>::type* = nullptr>
         static T op(const U& a, const T& b) { return {A::op(A::mul(a, b.len), b.val), b.len}; }
     };
     using elm = typename MultiA::M::value_type;

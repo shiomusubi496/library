@@ -11,7 +11,5 @@
 
 を満たす構造の列を扱えるデータ構造。例えば、足し算や bitwise xor などがこの条件を満たす。
 
-以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $\Theta(f(n))$ の時、以下の計算量は全て $\Theta(f(n))$ 倍になる。
-
-- `SparseTable(vector<int> v, T op(T, T), T e, T inv(T, T))` : リスト `v` と $a \cdot b$ を返す `op(a, b)` 、単位元 `e` 、 $a \cdot c = b$ なる $c$ を返す `inv(a, b)` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
-- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。
+- `CumulativeSum(vector<int> v)` : リスト `v` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
+- `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。

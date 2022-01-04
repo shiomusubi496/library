@@ -8,6 +8,6 @@ int main() {
     SparseTable<Monoid::Min<int>> ST(A);
     rep (Q) {
         int l, r; cin >> l >> r;
-        cout << ST.query(l, r) << endl;
+        cout << ST.prod(l, r) << endl;
     }
 }

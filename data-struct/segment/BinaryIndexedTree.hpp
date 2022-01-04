@@ -15,14 +15,14 @@ template<class M> class BinaryIndexedTreeAnyOperation {
         n = n_;
         data.assign(n + 1, M::id());
     }
-    void add(int k, T x) {
+    void apply(int k, T x) {
         ++k;
         while (k <= n) {
             data[k] = M::op(data[k], x);
             k += k & -k;
         }
     }
-    T sum(int k) const {
+    T prod(int k) const {
         assert(0 <= k && k <= n);
         T res = M::id();
         while (k) {
@@ -32,19 +32,27 @@ template<class M> class BinaryIndexedTreeAnyOperation {
         return res;
     }
     template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>
-    T sum(int l, int r) const {
+    T prod(int l, int r) const {
         assert(l <= r);
-        return M::inv(sum(r), sum(l));
+        return M::inv(prod(r), prod(l));
     }
     T get(int k) const {
-        return sum(k, k + 1);
+        return prod(k, k + 1);
     }
     void set(int k, T x) {
-        add(k, M::inv(x, get(k)));
+        apply(k, M::inv(x, prod(k)));
     }
 };
 
-template<class T> using BinaryIndexedTree = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;
+template<class T> class BinaryIndexedTree : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {
+  protected:
+    using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;
+  public:
+    using Base::Base;
+    void add(int k, T x) { this->apply(k, x); }
+    T sum(int k) const { return this->prod(k); }
+    T sum(int l, int r) const { return this->prod(l, r); }
+};
 
 /**
  * @brief BinaryIndexedTree(FenwickTree, BIT)

@@ -17,7 +17,7 @@ template<class M> class CumulativeSumAnyOperation {
         rep (i, n) data[i + 1] = M::op(data[i], v[i]);
     }
     template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>
-    T query(int l, int r) const {
+    T prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= n);
         return M::inv(data[r], data[l]);
     }

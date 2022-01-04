@@ -8,6 +8,6 @@ int main() {
     CumulativeSum<ll> CS(A);
     rep (Q) {
         int l, r; cin >> l >> r;
-        cout << CS.query(l, r) << endl;
+        cout << CS.prod(l, r) << endl;
     }
 }
