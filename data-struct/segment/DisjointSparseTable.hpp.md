@@ -158,28 +158,42 @@ data:
     \ constexpr T op(T a, T b) { return b; }\n};\n\n\ntemplate<class T, T max_value\
     \ = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n \
     \   using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
-    };\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax {\n \
-    \   using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n \
+    \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
+    \ mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class T, T min_value =\
+    \ infinity<T>::min> struct AssignMax {\n    using M = Max<T, min_value>;\n   \
+    \ using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n  \
+    \  static constexpr T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T\
+    \ a, int b, T c) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n \
     \   using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(T a,\
     \ T b) { return a; }\n    static constexpr T mul(T a, int b) { return a * b; }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr T op(T a,\
-    \ T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
-    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
-    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \    static constexpr T mul_op(T a, int b, T c) { return a * b; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
+    \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
+    \ mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static\
+    \ constexpr T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a,\
+    \ int b, T c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(T a, T b)\
+    \ { return b + a; }\n    static constexpr T mul(T a, int b) { return a * b; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return c + a * b; }\n};\n\n\
+    template<class T, T max_value = infinity<T>::max> struct ChminMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T op(T a,\
+    \ T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c, a);\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax {\n\
+    \    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
     \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
     \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
     \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
     \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
@@ -192,26 +206,31 @@ data:
     \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
     \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
-    \ Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class\
-    \ M> class DisjointSparseTable {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T> v_;\n   \
-    \ std::vector<std::vector<T>> data;\n  public:\n    DisjointSparseTable() = default;\n\
-    \    DisjointSparseTable(const std::vector<T>& v) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        v_ = v;\n        ori = v.size();\n        h =\
-    \ bitop::ceil_log2(ori);\n        logtable.assign(1 << h, 0);\n        rep (i,\
-    \ 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(ori));\n\
-    \        rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len,\
-    \ ori, len << 1) {\n                data[i][j - 1] = v[j - 1];\n             \
-    \   rep (k, 1, len) data[i][j - k - 1] = M::op(v[j - k - 1], data[i][j - k]);\n\
-    \                data[i][j] = v[j];\n                rep (k, 1, len) {\n     \
-    \               if (j + k >= ori) break;\n                    data[i][j + k] =\
-    \ M::op(data[i][j + k - 1], v[j + k]);\n                }\n            }\n   \
-    \     }\n    }\n    T query(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        --r;\n        if (l == r) return v_[l];\n       \
-    \ int d = logtable[l ^ r];\n        return M::op(data[d][l], data[d][r]);\n  \
-    \  }\n};\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n"
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
+    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
+    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
+    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
+    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
+    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\
+    \n\ntemplate<class M> class DisjointSparseTable {\n  protected:\n    using T =\
+    \ typename M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n \
+    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n   \
+    \ DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ = v;\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign(1\
+    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
+    \        data.assign(h, std::vector<T>(ori));\n        rep (i, 0, h) {\n     \
+    \       int len = 1 << i;\n            rep (j, len, ori, len << 1) {\n       \
+    \         data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
+    \ - k - 1] = M::op(v[j - k - 1], data[i][j - k]);\n                data[i][j]\
+    \ = v[j];\n                rep (k, 1, len) {\n                    if (j + k >=\
+    \ ori) break;\n                    data[i][j + k] = M::op(data[i][j + k - 1],\
+    \ v[j + k]);\n                }\n            }\n        }\n    }\n    T prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n\
+    \        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n       \
+    \ return M::op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DisjointSparseTable\
     \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
@@ -227,7 +246,7 @@ data:
     \            data[i][j] = v[j];\n                rep (k, 1, len) {\n         \
     \           if (j + k >= ori) break;\n                    data[i][j + k] = M::op(data[i][j\
     \ + k - 1], v[j + k]);\n                }\n            }\n        }\n    }\n \
-    \   T query(int l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n\
+    \   T prod(int l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n\
     \        --r;\n        if (l == r) return v_[l];\n        int d = logtable[l ^\
     \ r];\n        return M::op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief\
     \ DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n */\n"
@@ -238,7 +257,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2021-12-26 18:54:48+09:00'
+  timestamp: '2022-01-04 11:38:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
@@ -260,5 +279,5 @@ title: DisjointSparseTable
 
 以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $\Theta(f(n))$ の時、以下の計算量は全て $\Theta(f(n))$ 倍になる。
 
-- `DisjointSparseTable(vector<int> v, T op(T, T))` : 数列 `v` と $a \cdot b$ を返す `op(a, b)` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N \log N)$ 。
-- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。
+- `DisjointSparseTable(vector<int> v)` : 数列 `v` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N \log N)$ 。
+- `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。

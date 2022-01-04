@@ -8,9 +8,9 @@
 を満たす構造の列を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
 
 - コンストラクタ
-  - `SegmentTree<T>(T op(T, T), T e)` : $a \cdot b$ を返す `op(a, b)` と単位元 `e` で長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
-  - `SegmentTree<T>(int n, T op(T, T), T e)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(N)$ 。
-  - `SegmentTree<T>(vector<T> v, T op(T, T), T e)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
+  - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
+  - `SegmentTree(int n)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(N)$ 。
+  - `SegmentTree(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
   - `void init(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
 - 変更クエリ
   - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。

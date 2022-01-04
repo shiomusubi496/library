@@ -157,46 +157,65 @@ data:
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(T a,\
     \ T b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
     \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T, T\
-    \ min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
-    };\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using E\
-    \ = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n    static\
-    \ constexpr T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
-    };\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E =\
-    \ Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr\
-    \ T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \    static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
+    \ a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
+    \ a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b, T c)\
+    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a,\
+    \ int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
+    \ c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\
+    \ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n\
+    \    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr T\
+    \ mul(T a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b,\
+    \ T c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
     \ struct ChminMin {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
-    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
-    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
-    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
-    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct ChminMax {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::max(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::max(c, a); }\n};\n\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public\
+    \ std::false_type {};\ntemplate<class M> struct has_id<M, typename std::conditional<false,\
+    \ decltype(M::id), void>::type> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> struct has_inv : public std::false_type {};\ntemplate<class\
+    \ M> struct has_inv<M, typename std::conditional<false, decltype(M::inv), void>::type>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M> struct has_get_inv<M, typename\
+    \ std::conditional<false, decltype(M::get_inv), void>::type> : public std::true_type\
+    \ {};\n\n\ntemplate<class M, class = void> struct has_mul : public std::false_type\
+    \ {};\ntemplate<class M> struct has_mul<M, typename std::conditional<false, decltype(M::mul),\
     \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
-    \ Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
-    \ A> class LazySegmentTree {\n  protected:\n    using M = typename A::M;\n   \
-    \ using E = typename A::E;\n    using T = typename M::value_type;\n    using U\
-    \ = typename E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n  \
-    \  std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
+    \ struct has_mul_op : public std::false_type {};\ntemplate<class M> struct has_mul_op<M,\
+    \ typename std::conditional<false, decltype(M::mul_op), void>::type> : public\
+    \ std::true_type {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n\ntemplate<class A> class LazySegmentTree {\n  protected:\n    using M = typename\
+    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
+    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
     \ k, const U& x) {\n        data[k] = A::op(x, data[k]);\n        if (k < n) {\n\
     \            if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n\
     \            }\n            else {\n                lazy[k] = x;\n           \
@@ -266,21 +285,26 @@ data:
     \ value_type op(const value_type& a, const value_type& b) { return {M_::op(a.val,\
     \ b.val), a.len + b.len}; }\n            static value_type id() { return {M_::id(),\
     \ 0}; }\n        };\n        using E = E_;\n        using T = typename M::value_type;\n\
-    \        using U = typename E::value_type;\n        static T op(const U& a, const\
-    \ T& b) { return {A::op(A::mul(a, b.len), b.val), b.len}; }\n    };\n    using\
-    \ elm = typename MultiA::M::value_type;\n    static std::vector<elm> get_elm_vec(const\
-    \ std::vector<T_>& v) {\n        const int n = v.size();\n        std::vector<elm>\
-    \ res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n        return res;\n  \
-    \  }\n    LazySegmentTree<MultiA> seg;\n  public:\n    MultiLazySegmentTree()\
-    \ : MultiLazySegmentTree(0) {}\n    MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_,\
-    \ {M_::id(), 1})) {}\n    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
-    \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
-    \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
-    \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) { seg.update(k,\
-    \ [&](const elm& a) -> elm { return {upd(a.val), a.len}; }); }\n    void set(int\
-    \ k, T_ x) { seg.set(k, elm{x, 1}); }\n    void apply(int k, U_ x) { seg.apply(k,\
-    \ x); }\n    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }\n    template<class\
+    \        using U = typename E::value_type;\n        template<bool AlwaysTrue =\
+    \ true, typename std::enable_if< Monoid::has_mul_op<A>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n        static T op(const U& a, const T& b) { return {A::mul_op(a,\
+    \ b.len, b.val), b.len}; }\n        template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_mul_op<A>::value && AlwaysTrue>::type* = nullptr>\n\
+    \        static T op(const U& a, const T& b) { return {A::op(A::mul(a, b.len),\
+    \ b.val), b.len}; }\n    };\n    using elm = typename MultiA::M::value_type;\n\
+    \    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {\n       \
+    \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
+    \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<MultiA>\
+    \ seg;\n  public:\n    MultiLazySegmentTree() : MultiLazySegmentTree(0) {}\n \
+    \   MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_, {M_::id(), 1})) {}\n\
+    \    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}\n\
+    \    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n    T_\
+    \ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) { return\
+    \ seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val; }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](const\
+    \ elm& a) -> elm { return {upd(a.val), a.len}; }); }\n    void set(int k, T_ x)\
+    \ { seg.set(k, elm{x, 1}); }\n    void apply(int k, U_ x) { seg.apply(k, x); }\n\
+    \    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }\n    template<class\
     \ C> int max_right(int l, const C& cond) { return seg.max_right(l, [&](const elm&\
     \ a) -> bool { return cond(a.val); }); }\n    template<class C> int min_left(int\
     \ r, const C& cond) { return seg.min_left(r, [&](const elm& a) -> bool { return\
@@ -323,7 +347,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2021-12-26 19:31:26+09:00'
+  timestamp: '2022-01-04 11:38:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp

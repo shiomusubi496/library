@@ -257,28 +257,42 @@ data:
     \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
     template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
     \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
-    \ a, T b) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct\
+    \ a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
+    \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
+    \ constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class T> struct\
     \ AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr\
     \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
-    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
-    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a * b; }\n    static constexpr T mul_op(T a, int b, T c) { return a * b; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr T op(T a,\
+    \ T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
+    \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
+    \ mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum\
+    \ {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(T\
+    \ a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a\
+    \ * b; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a * b; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
     \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
     \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
     \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
     \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
@@ -291,14 +305,19 @@ data:
     \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
     \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
-    \ Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M>\
-    \ class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n \
-    \   int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
+    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
+    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
+    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
+    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
+    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
@@ -364,7 +383,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2021-12-29 22:10:06+09:00'
+  timestamp: '2022-01-04 11:38:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp

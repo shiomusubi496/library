@@ -141,28 +141,42 @@ data:
     \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return b;\
     \ }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max> struct AssignMin\
     \ {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T> struct\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
+    \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
+    \ constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class T> struct\
     \ AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr\
     \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
-    \   static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class T>\
-    \ struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
+    \ a * b; }\n    static constexpr T mul_op(T a, int b, T c) { return a * b; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr T op(T a,\
+    \ T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
+    \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
+    \ mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum\
+    \ {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(T\
+    \ a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a\
+    \ * b; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a * b; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
     \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
     \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(b, a); }\n    static constexpr T mul(T a, int\
+    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::max(c,\
     \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
     \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
@@ -175,23 +189,33 @@ data:
     \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
     \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
-    \ Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class\
-    \ M> class BinaryIndexedTreeAnyOperation {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n    BinaryIndexedTreeAnyOperation()\
-    \ : BinaryIndexedTreeAnyOperation(0) {}\n    BinaryIndexedTreeAnyOperation(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void add(int k, T x) {\n        ++k;\n        while\
-    \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
-    \        }\n    }\n    T sum(int k) const {\n        assert(0 <= k && k <= n);\n\
-    \        T res = M::id();\n        while (k) {\n            res = M::op(res, data[k]);\n\
-    \            k -= k & -k;\n        }\n        return res;\n    }\n    template<bool\
-    \ AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T sum(int l, int r) const {\n        assert(l <= r);\n     \
-    \   return M::inv(sum(r), sum(l));\n    }\n    T get(int k) const {\n        return\
-    \ sum(k, k + 1);\n    }\n    void set(int k, T x) {\n        add(k, M::inv(x,\
-    \ get(k)));\n    }\n};\n\ntemplate<class T> using BinaryIndexedTree = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
+    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
+    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
+    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
+    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
+    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
+    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
+    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
+    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
+    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
+    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
+    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
+    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
+    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
+    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
+    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
+    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
+    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
+    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
+    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
+    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
+    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-BIT.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int> BIT(n);\n\
     \    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0)\
@@ -210,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   requiredBy: []
-  timestamp: '2021-12-26 18:54:48+09:00'
+  timestamp: '2022-01-04 11:38:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-BIT.test.cpp

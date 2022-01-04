@@ -138,54 +138,74 @@ data:
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(T a,\
     \ T b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
     \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n};\n\ntemplate<class T, T\
-    \ min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
-    };\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using E\
-    \ = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n    static\
-    \ constexpr T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
-    };\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E =\
-    \ Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr\
-    \ T mul(T a, int b) { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \    static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
+    \ a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
+    \ a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b, T c)\
+    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a,\
+    \ int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
+    \ c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\
+    \ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n\
+    \    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr T\
+    \ mul(T a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b,\
+    \ T c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
     \ struct ChminMin {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(b, a); }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(T a, T b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M_> struct AttachEffector {\n    using M = M_;\n\
-    \    using E = M_;\n    using T = typename M_::value_type;\n    static T op(const\
-    \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
-    \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
-    \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
+    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct ChminMax {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::max(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n\
+    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
+    \ c) { return std::max(c, a); }\n};\n\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public\
+    \ std::false_type {};\ntemplate<class M> struct has_id<M, typename std::conditional<false,\
+    \ decltype(M::id), void>::type> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> struct has_inv : public std::false_type {};\ntemplate<class\
+    \ M> struct has_inv<M, typename std::conditional<false, decltype(M::inv), void>::type>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M> struct has_get_inv<M, typename\
+    \ std::conditional<false, decltype(M::get_inv), void>::type> : public std::true_type\
+    \ {};\n\n\ntemplate<class M, class = void> struct has_mul : public std::false_type\
+    \ {};\ntemplate<class M> struct has_mul<M, typename std::conditional<false, decltype(M::mul),\
     \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n} // namespace\
-    \ Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class\
-    \ M> class CumulativeSumAnyOperation {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSumAnyOperation()\
-    \ = default;\n    CumulativeSumAnyOperation(const std::vector<T>& v) { init(v);\
-    \ }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n       \
-    \ data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
-    \ v[i]);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value\
-    \ && AlwaysTrue>::type* = nullptr>\n    T query(int l, int r) const {\n      \
-    \  assert(0 <= l && l <= r && r <= n);\n        return M::inv(data[r], data[l]);\n\
-    \    }\n    const std::vector<T>& get_data() const& { return data; }\n    std::vector<T>\
-    \ get_data() && { return std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum\
-    \ = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\n/**\n * @brief CumulativeSum(\u7D2F\
-    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
+    \ struct has_mul_op : public std::false_type {};\ntemplate<class M> struct has_mul_op<M,\
+    \ typename std::conditional<false, decltype(M::mul_op), void>::type> : public\
+    \ std::true_type {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
+    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
+    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
+    \ = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(0 <= l && l <=\
+    \ r && r <= n);\n        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>&\
+    \ get_data() const& { return data; }\n    std::vector<T> get_data() && { return\
+    \ std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
+    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
     \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
@@ -194,7 +214,7 @@ data:
     \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
     \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
     \ = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T query(int l, int r) const {\n        assert(0 <= l && l <=\
+    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(0 <= l && l <=\
     \ r && r <= n);\n        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>&\
     \ get_data() const& { return data; }\n    std::vector<T> get_data() && { return\
     \ std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
@@ -206,7 +226,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2021-12-26 18:54:48+09:00'
+  timestamp: '2022-01-04 11:38:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
@@ -230,7 +250,5 @@ title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
 
 を満たす構造の列を扱えるデータ構造。例えば、足し算や bitwise xor などがこの条件を満たす。
 
-以下の計算量は `op` が定数時間で動くと仮定したもの。 `op` 内部の計算量が $\Theta(f(n))$ の時、以下の計算量は全て $\Theta(f(n))$ 倍になる。
-
-- `SparseTable(vector<int> v, T op(T, T), T e, T inv(T, T))` : リスト `v` と $a \cdot b$ を返す `op(a, b)` 、単位元 `e` 、 $a \cdot c = b$ なる $c$ を返す `inv(a, b)` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
-- `T query(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。
+- `CumulativeSum(vector<int> v)` : リスト `v` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
+- `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。

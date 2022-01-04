@@ -1,15 +1,15 @@
 ## 概要
 
-集合 $T$ と、 $T$ から $T$ への写像 $U$ のうち、
+モノイド $T$ と、 $T$ から $T$ への写像 $U$ のうち、
 
 - 写像は閉じている : 任意の $f, g \in U$ に対して、 $f \circ g \in U$
 
 を満たすものを扱える。
 
 - コンストラクタ
-  - `DualSegmentTree(T mp(U, T), T cmp(U, U))` : `f(x)` を計算する `mp(f, x)` 、写像の合成 $b \circ a$ を返す `cmp(a, b)` で長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `DualSegmentTree(int n, T mp(U, T), U cmp(U, U))` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `DualSegmentTree(vector<T> v, T mp(U, T), U cmp(U, U))` : 列 `v` で初期化する。 $\Theta(N)$ 。
+  - `DualSegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
+  - `DualSegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
+  - `DualSegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
   - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 - 取得クエリ
   - `T get(int k)` : `a[k]` を返す。 $\Theta(\log N)$ 。
