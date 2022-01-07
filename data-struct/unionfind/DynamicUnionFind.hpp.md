@@ -122,46 +122,46 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 4 \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\nclass DynamicUnionFind\
-    \ {\n  protected:\n    std::map<ll, ll> st;\n  public:\n    DynamicUnionFind()\
-    \ = default;\n    ll find(ll x) {\n        auto itr = st.find(x);\n        return\
-    \ itr == st.end() || itr->second < 0 ? x : itr->second = find(itr->second);\n\
-    \    }\n    std::pair<ll, ll> merge(ll x, ll y) {\n        x = find(x);\n    \
-    \    y = find(y);\n        if (x == y) return {x, -1};\n        auto itrx = st.find(x),\
-    \ itry = st.find(y);\n        if (itrx == st.end()) itrx = st.insert({x, -1}).first;\n\
-    \        if (itry == st.end()) itry = st.insert({y, -1}).first;\n        if (itrx->second\
-    \ > itry->second) std::swap(itrx, itry), std::swap(x, y);\n        itrx->second\
-    \ += itry->second;\n        itry->second = x;\n        return {x, y};\n    }\n\
-    \    bool same(ll x, ll y) {\n        return find(x) == find(y);\n    }\n    int\
-    \ size(ll x) {\n        x = find(x);\n        auto itr = st.find(x);\n       \
-    \ if (itr == st.end()) return 1;\n        else return -itr->second;\n    }\n \
-    \   bool is_root(ll x) {\n        auto itr = st.find(x);\n        if (itr == st.end()\
-    \ || itr->second < 0) return true;\n        return false; \n    }\n};\n\n/**\n\
-    \ * @brief DynamicUnionFind(\u52D5\u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass DynamicUnionFind\
-    \ {\n  protected:\n    std::map<ll, ll> st;\n  public:\n    DynamicUnionFind()\
-    \ = default;\n    ll find(ll x) {\n        auto itr = st.find(x);\n        return\
-    \ itr == st.end() || itr->second < 0 ? x : itr->second = find(itr->second);\n\
-    \    }\n    std::pair<ll, ll> merge(ll x, ll y) {\n        x = find(x);\n    \
-    \    y = find(y);\n        if (x == y) return {x, -1};\n        auto itrx = st.find(x),\
-    \ itry = st.find(y);\n        if (itrx == st.end()) itrx = st.insert({x, -1}).first;\n\
-    \        if (itry == st.end()) itry = st.insert({y, -1}).first;\n        if (itrx->second\
-    \ > itry->second) std::swap(itrx, itry), std::swap(x, y);\n        itrx->second\
-    \ += itry->second;\n        itry->second = x;\n        return {x, y};\n    }\n\
-    \    bool same(ll x, ll y) {\n        return find(x) == find(y);\n    }\n    int\
-    \ size(ll x) {\n        x = find(x);\n        auto itr = st.find(x);\n       \
-    \ if (itr == st.end()) return 1;\n        else return -itr->second;\n    }\n \
-    \   bool is_root(ll x) {\n        auto itr = st.find(x);\n        if (itr == st.end()\
-    \ || itr->second < 0) return true;\n        return false; \n    }\n};\n\n/**\n\
-    \ * @brief DynamicUnionFind(\u52D5\u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n\
-    \ */\n"
+    \    }\n};\n#line 4 \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\ntemplate<class\
+    \ T = ll> class DynamicUnionFind {\n  protected:\n    std::map<T, T> data;\n \
+    \ public:\n    DynamicUnionFind() = default;\n    T find(T x) {\n        auto\
+    \ itr = data.find(x);\n        return itr == data.end() || itr->second < 0 ? x\
+    \ : itr->second = find(itr->second);\n    }\n    std::pair<T, T> merge(T x, T\
+    \ y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {x, -1};\n        auto itrx = data.find(x), itry = data.find(y);\n        if\
+    \ (itrx == data.end()) itrx = data.insert({x, -1}).first;\n        if (itry ==\
+    \ data.end()) itry = data.insert({y, -1}).first;\n        if (itrx->second > itry->second)\
+    \ std::swap(itrx, itry), std::swap(x, y);\n        itrx->second += itry->second;\n\
+    \        itry->second = x;\n        return {x, y};\n    }\n    bool same(T x,\
+    \ T y) {\n        return find(x) == find(y);\n    }\n    int size(T x) {\n   \
+    \     x = find(x);\n        auto itr = data.find(x);\n        if (itr == data.end())\
+    \ return 1;\n        else return -itr->second;\n    }\n    bool is_root(T x) {\n\
+    \        auto itr = data.find(x);\n        if (itr == data.end() || itr->second\
+    \ < 0) return true;\n        return false; \n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\
+    \u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
+    \ = ll> class DynamicUnionFind {\n  protected:\n    std::map<T, T> data;\n  public:\n\
+    \    DynamicUnionFind() = default;\n    T find(T x) {\n        auto itr = data.find(x);\n\
+    \        return itr == data.end() || itr->second < 0 ? x : itr->second = find(itr->second);\n\
+    \    }\n    std::pair<T, T> merge(T x, T y) {\n        x = find(x);\n        y\
+    \ = find(y);\n        if (x == y) return {x, -1};\n        auto itrx = data.find(x),\
+    \ itry = data.find(y);\n        if (itrx == data.end()) itrx = data.insert({x,\
+    \ -1}).first;\n        if (itry == data.end()) itry = data.insert({y, -1}).first;\n\
+    \        if (itrx->second > itry->second) std::swap(itrx, itry), std::swap(x,\
+    \ y);\n        itrx->second += itry->second;\n        itry->second = x;\n    \
+    \    return {x, y};\n    }\n    bool same(T x, T y) {\n        return find(x)\
+    \ == find(y);\n    }\n    int size(T x) {\n        x = find(x);\n        auto\
+    \ itr = data.find(x);\n        if (itr == data.end()) return 1;\n        else\
+    \ return -itr->second;\n    }\n    bool is_root(T x) {\n        auto itr = data.find(x);\n\
+    \        if (itr == data.end() || itr->second < 0) return true;\n        return\
+    \ false; \n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\u7684UnionFind)\n\
+    \ * @docs docs/DynamicUnionFind.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/DynamicUnionFind.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
+  timestamp: '2022-01-07 19:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/unionfind-Dynamic.test.cpp
