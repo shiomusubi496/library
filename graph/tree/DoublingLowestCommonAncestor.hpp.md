@@ -11,28 +11,25 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/Tree.md
-    document_title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B\
-      )"
+    _deprecated_at_docs: docs/DoublingLowestCommonAncestor.md
+    document_title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
+      \u3088\u308BLCA)"
     links: []
-  bundledCode: "#line 2 \"graph/tree/Tree.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
-    \n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\n#line 2\
+    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -179,47 +176,40 @@ data:
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/Tree.hpp\"\
-    \n\ntemplate<class T> class Tree {\n  protected:\n    int root, n, h;\n    Graph<T>\
-    \ G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int\
-    \ p) {\n        for (const edge<T>& e : G[v]) {\n            if (e.to != p) {\n\
-    \                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n         \
-    \       dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n       \
-    \     }\n        }\n    }\n    void init() {\n        n = G.size();\n        h\
-    \ = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
+    \n\ntemplate<class T> class DoublingLCA {\n  protected:\n    int root, n, h;\n\
+    \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n   \
+    \ std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int\
+    \ v, int p) {\n        for (const edge<T>& e : G[v]) {\n            if (e.to !=\
+    \ p) {\n                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n  \
+    \              dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n\
+    \            }\n        }\n    }\n    void init() {\n        n = G.size();\n \
+    \       h = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
     \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
     \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
     \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
-    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    Tree(const\
-    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    Tree(Graph<T>&& G,\
-    \ int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
+    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    DoublingLCA(Graph<T>&&\
+    \ G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    int nxt(int s, int t) const {\n     \
-    \   assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n       \
-    \ int v = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(v) == s\
-    \ ? v : parent(s);\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
-    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
-    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
-    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
-    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
-    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
-    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
-    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
+    \       }\n        return v;\n    }\n    Edges<T> path(int s, int t) const {\n\
+    \        Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
+    \ s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n\
+    \        while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n\
+    \            suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i,\
+    \ suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n\
+    \        return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u]\
+    \ > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
     \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
     \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
     \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
-    \       return parent(u);\n    }\n    Graph<T> rooted() const {\n        Graph<T>\
-    \ res(G.size());\n        rep (i, G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n\
-    \            else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
-    \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
-    \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
-    \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
-    \u5408\u308F\u305B)\n * @docs docs/Tree.md\n */\n"
+    \       return parent(u);\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../Graph.hpp\"\n\ntemplate<class T> class Tree {\n  protected:\n\
+    \n#include \"../Graph.hpp\"\n\ntemplate<class T> class DoublingLCA {\n  protected:\n\
     \    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>>\
     \ par;\n    std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n  \
     \  void dfs_build(int v, int p) {\n        for (const edge<T>& e : G[v]) {\n \
@@ -230,48 +220,51 @@ data:
     \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
     \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
     \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
-    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    Tree(const\
-    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    Tree(Graph<T>&& G,\
-    \ int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
+    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    DoublingLCA(Graph<T>&&\
+    \ G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    int nxt(int s, int t) const {\n     \
-    \   assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n       \
-    \ int v = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(v) == s\
-    \ ? v : parent(s);\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
-    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
-    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
-    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
-    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
-    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
-    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
-    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
+    \       }\n        return v;\n    }\n    Edges<T> path(int s, int t) const {\n\
+    \        Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
+    \ s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n\
+    \        while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n\
+    \            suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i,\
+    \ suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n\
+    \        return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u]\
+    \ > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
     \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
     \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
     \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
-    \       return parent(u);\n    }\n    Graph<T> rooted() const {\n        Graph<T>\
-    \ res(G.size());\n        rep (i, G.size()) {\n            if (i == root) res[i].reserve(G[i].size());\n\
-    \            else res[i].reserve(G[i].size() - 1);\n            for (const edge<T>&\
-    \ e : G[i]) {\n                if (e.to != par[i].to) res[i].push_back(e);\n \
-    \           }\n        }\n        res.edge_id = G.edge_size();\n        return\
-    \ res;\n    }\n};\n\n/**\n * @brief Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\
-    \u5408\u308F\u305B)\n * @docs docs/Tree.md\n */\n"
+    \       return parent(u);\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/tree/Tree.hpp
+  path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-documentation_of: graph/tree/Tree.hpp
+  timestamp: '2022-01-07 18:27:32+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp
 layout: document
 redirect_from:
-- /library/graph/tree/Tree.hpp
-- /library/graph/tree/Tree.hpp.html
-title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
+- /library/graph/tree/DoublingLowestCommonAncestor.hpp
+- /library/graph/tree/DoublingLowestCommonAncestor.hpp.html
+title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308B\
+  LCA)"
 ---
+## 概要
+
+木に対してダブリングによって LCA などを求める。空間計算量は $\Theta(E + V \log V)$ であるため注意。
+
+- `DoublingLCA(Graph<T> G, int r = 0)` : 頂点 `r` を根としてグラフ `G` で初期化する。ここで、 `G` は木である必要がある。 $\Theta(V \log V)$ 。
+- `int depth(int v)` : 頂点 `v` の深さ(根からの距離)を返す。 $\Theta(1)$ 。
+- `int parent(int v)` : 頂点 `v` の親を返す。ただし頂点 `v` が根である場合 $-1$ が返る。 $\Theta(1)$ 。
+- `int lca(int s, int t)` : 頂点 `s` と頂点 `t` の最小共通祖先(Lowest Common Ancestor)を返す。 $\Theta(\log V)$ 。
+- `int kth_parent(int v, int k)` : 頂点 `v` の `k` 番目に近い祖先を返す。存在しない場合 $-1$ が返る。 $\Theta(\log V)$ 。
+- `Edges<T> path(int s, int t)` : 頂点 `s` から頂点 `t` へのパスに含まれる辺を返す。パスの長さを $P$ として $\Theta(P)$ 。

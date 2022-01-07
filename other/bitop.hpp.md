@@ -20,9 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/Tree.hpp
-    title: "Tree(\u6728\u306E\u30AF\u30A8\u30EA\u8A70\u3081\u5408\u308F\u305B)"
+  - icon: ':warning:'
+    path: graph/tree/DoublingLowestCommonAncestor.hpp
+    title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
+      \u308BLCA)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
@@ -48,9 +49,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
@@ -214,7 +212,7 @@ data:
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/DualSegmentTree.hpp
-  - graph/tree/Tree.hpp
+  - graph/tree/DoublingLowestCommonAncestor.hpp
   timestamp: '2021-12-20 15:01:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -226,7 +224,6 @@ data:
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
