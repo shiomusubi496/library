@@ -2,39 +2,39 @@
 
 #include "../../other/template.hpp"
 
-class DynamicUnionFind {
+template<class T = ll> class DynamicUnionFind {
   protected:
-    std::map<ll, ll> st;
+    std::map<T, T> data;
   public:
     DynamicUnionFind() = default;
-    ll find(ll x) {
-        auto itr = st.find(x);
-        return itr == st.end() || itr->second < 0 ? x : itr->second = find(itr->second);
+    T find(T x) {
+        auto itr = data.find(x);
+        return itr == data.end() || itr->second < 0 ? x : itr->second = find(itr->second);
     }
-    std::pair<ll, ll> merge(ll x, ll y) {
+    std::pair<T, T> merge(T x, T y) {
         x = find(x);
         y = find(y);
         if (x == y) return {x, -1};
-        auto itrx = st.find(x), itry = st.find(y);
-        if (itrx == st.end()) itrx = st.insert({x, -1}).first;
-        if (itry == st.end()) itry = st.insert({y, -1}).first;
+        auto itrx = data.find(x), itry = data.find(y);
+        if (itrx == data.end()) itrx = data.insert({x, -1}).first;
+        if (itry == data.end()) itry = data.insert({y, -1}).first;
         if (itrx->second > itry->second) std::swap(itrx, itry), std::swap(x, y);
         itrx->second += itry->second;
         itry->second = x;
         return {x, y};
     }
-    bool same(ll x, ll y) {
+    bool same(T x, T y) {
         return find(x) == find(y);
     }
-    int size(ll x) {
+    int size(T x) {
         x = find(x);
-        auto itr = st.find(x);
-        if (itr == st.end()) return 1;
+        auto itr = data.find(x);
+        if (itr == data.end()) return 1;
         else return -itr->second;
     }
-    bool is_root(ll x) {
-        auto itr = st.find(x);
-        if (itr == st.end() || itr->second < 0) return true;
+    bool is_root(T x) {
+        auto itr = data.find(x);
+        if (itr == data.end() || itr->second < 0) return true;
         return false; 
     }
 };
