@@ -4,7 +4,7 @@
 #include "../../other/bitop.hpp"
 #include "../Graph.hpp"
 
-template<class T> class Tree {
+template<class T> class DoublingLCA {
   protected:
     int root, n, h;
     Graph<T> G_;
@@ -34,8 +34,8 @@ template<class T> class Tree {
         }
     }
   public:
-    Tree(const Graph<T>& G, int r = 0) : G(G), root(r) { init(); }
-    Tree(Graph<T>&& G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }
+    DoublingLCA(const Graph<T>& G, int r = 0) : G(G), root(r) { init(); }
+    DoublingLCA(Graph<T>&& G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }
     int depth(int v) const { return dep[v]; }
     int parent(int v) const { return par[v].to; }
     int kth_ancestor(int v, int k) const {
@@ -44,12 +44,6 @@ template<class T> class Tree {
             if ((k >> i) & 1) v = dbl[v][i];
         }
         return v;
-    }
-    int nxt(int s, int t) const {
-        assert(s != t);
-        if (dep[s] >= dep[t]) return parent(s);
-        int v = kth_ancestor(t, dep[t] - dep[s] - 1);
-        return parent(v) == s ? v : parent(s);
     }
     Edges<T> path(int s, int t) const {
         Edges<T> pre, suf;
@@ -74,21 +68,9 @@ template<class T> class Tree {
         }
         return parent(u);
     }
-    Graph<T> rooted() const {
-        Graph<T> res(G.size());
-        rep (i, G.size()) {
-            if (i == root) res[i].reserve(G[i].size());
-            else res[i].reserve(G[i].size() - 1);
-            for (const edge<T>& e : G[i]) {
-                if (e.to != par[i].to) res[i].push_back(e);
-            }
-        }
-        res.edge_id = G.edge_size();
-        return res;
-    }
 };
 
 /**
- * @brief Tree(木のクエリ詰め合わせ)
- * @docs docs/Tree.md
+ * @brief DoublingLowestCommonAncestor(ダブリングによるLCA)
+ * @docs docs/DoublingLowestCommonAncestor.md
  */
