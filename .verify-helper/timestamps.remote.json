@@ -57,6 +57,6 @@
 "test/yosupo/staticrmq-SparseTable.test.cpp": "2022-01-04 11:38:26 +0900",
 "test/yosupo/tree_diameter.test.cpp": "2021-12-20 15:01:16 +0900",
 "test/yosupo/two_edge_connected_components.test.cpp": "2021-12-20 15:01:16 +0900",
-"test/yosupo/unionfind-Dynamic.test.cpp": "2021-12-20 15:01:16 +0900",
+"test/yosupo/unionfind-Dynamic.test.cpp": "2022-01-07 19:54:06 +0900",
 "test/yosupo/unionfind.test.cpp": "2021-12-20 15:01:16 +0900"
 }
