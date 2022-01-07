@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C"
 #include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
-#include "../../../graph/tree/Tree.hpp"
+#include "../../../graph/tree/DoublingLowestCommonAncestor.hpp"
 using namespace std;
 int main() {
     int N; cin >> N;
@@ -13,7 +13,7 @@ int main() {
             G.add_edge(i, t, true);
         }
     }
-    Tree<int> T(G);
+    DoublingLCA<int> T(G);
     int Q; cin >> Q;
     rep (i, Q) {
         int a, b; cin >> a >> b;
