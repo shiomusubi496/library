@@ -93,7 +93,7 @@ data:
         \u6CD5)"
   - name: graph/tree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -248,7 +248,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - name: test/aoj/NTL

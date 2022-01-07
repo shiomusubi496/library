@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -49,6 +49,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
+    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
@@ -224,6 +227,7 @@ data:
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
