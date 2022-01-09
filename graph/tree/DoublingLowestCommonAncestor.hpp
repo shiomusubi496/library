@@ -34,8 +34,8 @@ template<class T> class DoublingLCA {
         }
     }
   public:
-    DoublingLCA(const Graph<T>& G, int r = 0) : G(G), root(r) { init(); }
-    DoublingLCA(Graph<T>&& G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }
+    DoublingLCA(const Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }
+    DoublingLCA(Graph<T>&& G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }
     int depth(int v) const { return dep[v]; }
     int parent(int v) const { return par[v].to; }
     int kth_ancestor(int v, int k) const {

@@ -46,7 +46,7 @@ class EulerTour {
         RMQ.init(rmqvec);
     }
   public:
-    EulerTour(const Graph<T>& G, int root = 0) : G(G), root(root) { init(); }
+    EulerTour(const Graph<T>& G, int root = 0) : root(root), G(G) { init(); }
     const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }
     std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }
     int lca(int u, int v) const {
