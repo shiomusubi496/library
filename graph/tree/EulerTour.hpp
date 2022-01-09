@@ -52,7 +52,7 @@ class EulerTour {
     int lca(int u, int v) const {
         return RMQ.prod(
             std::min(idx[u].first, idx[v].first),
-            std::max(idx[u].second, idx[v].second) + 1
+            std::max(idx[u].second, idx[v].second)
         ).second;
     }
     template<class F> void each_vertex_subtree(int v, const F& f) const {
