@@ -74,3 +74,8 @@ class EulerTour {
     }
     template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }
 };
+
+/**
+ * @brief EulerTour(オイラーツアー)
+ * @docs docs/EulerTour.md
+ */
