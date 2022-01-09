@@ -24,6 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_set_path_composite.test.cpp
+    title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -284,7 +290,7 @@ data:
     \       n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
     \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(infinity<int>::value,\
     \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : G(G), root(root) { init(); }\n    const std::pair<int, int>&\
+    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
     \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
@@ -318,7 +324,7 @@ data:
     \       n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
     \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(infinity<int>::value,\
     \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : G(G), root(root) { init(); }\n    const std::pair<int, int>&\
+    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
     \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
@@ -345,11 +351,13 @@ data:
   isVerificationFile: false
   path: graph/tree/EulerTour.hpp
   requiredBy: []
-  timestamp: '2022-01-09 22:53:54+09:00'
+  timestamp: '2022-01-09 23:22:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: graph/tree/EulerTour.hpp
 layout: document
 redirect_from:

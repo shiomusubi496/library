@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
+    path: data-struct/segment/SegmentTree.hpp
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
@@ -13,6 +13,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+  - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -29,20 +32,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
     links:
-    - https://judge.yosupo.jp/problem/vertex_add_path_sum
-  bundledCode: "#line 1 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/vertex_set_path_composite
+  bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -139,22 +142,35 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
-    \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
-    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
-    \ constexpr T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ a > b ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\n\
-    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
-    \ = T;\n    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static\
-    \ constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign\
-    \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return b;\
-    \ }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max> struct AssignMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Sum {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a + b; }\n    static constexpr T id() { return T{0}; }\n    static constexpr\
+    \ T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T a) { return\
+    \ -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n\
+    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a > b\
+    \ ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static constexpr\
+    \ T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using\
+    \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
+    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
+    \ a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
     \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
     \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
     \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
@@ -207,27 +223,144 @@ data:
     \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
     \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
     \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
-    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
-    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
-    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
-    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
-    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
-    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
-    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
-    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
-    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
-    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
-    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
-    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
-    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
-    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
-    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
+    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
+    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
+    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
+    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
+    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
+    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
+    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
+    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
+    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
+    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
+    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
+    \            while (l < n) {\n                    l <<= 1;\n                 \
+    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
+    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
+    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
+    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
+    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
+    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
+    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
+    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
+    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
+    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
+    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
+    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
+    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ */\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase\
+    \ {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
+    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
+    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
+    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n#if __cplusplus\
+    \ >= 201703L\n        if constexpr (mod == 1000000007) {\n            if (val\
+    \ <= 10) return inv1000000007[val];\n        }\n        else if constexpr (mod\
+    \ == 998244353) {\n            if (val <= 10) return inv998244353[val];\n    \
+    \    }\n#else\n        if (mod == 1000000007) {\n            if (val <= 10) return\
+    \ inv1000000007[val];\n        }\n        else if (mod == 998244353) {\n     \
+    \       if (val <= 10) return inv998244353[val];\n        }\n#endif\n        return\
+    \ mod_inv(val, mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n\
+    \        if (val == mod) val = 0;\n        return *this;\n    }\n    StaticModInt\
+    \ operator++(int) {\n        StaticModInt res = *this;\n        ++ *this;\n  \
+    \      return res;\n    }\n    StaticModInt& operator--() {\n        if (val ==\
+    \ 0) val = mod;\n        --val;\n        return *this;\n    }\n    StaticModInt\
+    \ operator--(int) {\n        StaticModInt res = *this;\n        -- *this;\n  \
+    \      return res;\n    }\n    StaticModInt& operator+=(const StaticModInt& other)\
+    \ {\n        val += other.val;\n        if (val >= mod) val -= mod;\n        return\
+    \ *this;\n    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n \
+    \       val -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
+    \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
+    \ sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll\
+    \ mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\nusing modint1000000007\
+    \ = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
+    \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
+    \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
+    \   DynamicModInt& operator++() {\n        ++val;\n        if (val == mod) val\
+    \ = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int) {\n  \
+    \      DynamicModInt res = *this;\n        ++ *this;\n        return res;\n  \
+    \  }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n  \
+    \      --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {\n        return\
+    \ ist >> sm.val;\n    }\n};\n\ntemplate<int id> ll DynamicModInt<id>::mod = 1000000007;\n\
+    \nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
@@ -266,20 +399,7 @@ data:
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
     \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\
-    \n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
-    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
-    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
+    \n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
     \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
     \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
@@ -324,50 +444,83 @@ data:
     \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
     \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
     \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 6 \"test/yosupo/vertex_add_path_sum.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
-    \ cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
-    \        BIT.add(p.first, A[i]);\n        BIT.add(p.second, -A[i]);\n    }\n \
-    \   rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n          \
-    \  int p; ll x; cin >> p >> x;\n            auto idx = ET.get_idx(p);\n      \
-    \      BIT.add(idx.first, x);\n            BIT.add(idx.second, -x);\n        }\n\
-    \        else {\n            int u, v; cin >> u >> v;\n            ll ans = 0;\n\
-    \            ET.each_vertex(u, v, [&](int l, int r) { ans += BIT.sum(l, r); });\n\
-    \            cout << ans << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
-    #include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/tree/EulerTour.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
-    \ cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
-    \        BIT.add(p.first, A[i]);\n        BIT.add(p.second, -A[i]);\n    }\n \
-    \   rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n          \
-    \  int p; ll x; cin >> p >> x;\n            auto idx = ET.get_idx(p);\n      \
-    \      BIT.add(idx.first, x);\n            BIT.add(idx.second, -x);\n        }\n\
-    \        else {\n            int u, v; cin >> u >> v;\n            ll ans = 0;\n\
-    \            ET.each_vertex(u, v, [&](int l, int r) { ans += BIT.sum(l, r); });\n\
-    \            cout << ans << endl;\n        }\n    }\n}\n"
+    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 7 \"test/yosupo/vertex_set_path_composite.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
+    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
+    \ >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >>\
+    \ b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int> ET(G);\n    struct\
+    \ Composite {\n        using value_type = PMM;\n        static PMM op(const PMM&\
+    \ a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second};\
+    \ }\n        static PMM id() { return {1, 0}; }\n        static PMM get_inv(const\
+    \ PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }\n    };\n    struct\
+    \ CompositeRev {\n        using value_type = PMM;\n        static PMM op(const\
+    \ PMM& a, const PMM& b) { return Composite::op(b, a); }\n        static PMM id()\
+    \ { return {1, 0}; }\n        static PMM get_inv(const PMM& a) { return {mint{1}\
+    \ / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite> seg(2\
+    \ * N);\n    SegmentTree<CompositeRev> segrev(2 * N);\n    rep (i, N) {\n    \
+    \    auto p = ET.get_idx(i);\n        seg.set(p.first, A[i]);\n        seg.set(p.second,\
+    \ Composite::get_inv(A[i]));\n        segrev.set(p.first, A[i]);\n        segrev.set(p.second,\
+    \ Composite::get_inv(A[i]));\n    }\n    rep (i, Q) {\n        int t; cin >> t;\n\
+    \        if (t == 0) {\n            int p; mint c, d; cin >> p >> c >> d;\n  \
+    \          auto idx = ET.get_idx(p);\n            seg.set(idx.first, {c, d});\n\
+    \            seg.set(idx.second, Composite::get_inv({c, d}));\n            segrev.set(idx.first,\
+    \ {c, d});\n            segrev.set(idx.second, Composite::get_inv({c, d}));\n\
+    \        }\n        else {\n            int u, v; mint x; cin >> u >> v >> x;\n\
+    \            ET.each_vertex(\n                u, v,\n                [&](int l,\
+    \ int r) {\n                    auto p = seg.prod(l, r);\n                   \
+    \ x = p.first * x + p.second;\n                },\n                [&](int l,\
+    \ int r) {\n                    auto p = segrev.prod(l, r);\n                \
+    \    x = p.first * x + p.second;\n                }\n            );\n        \
+    \    cout << x << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SegmentTree.hpp\"\
+    \n#include \"../../math/ModInt.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
+    \ \"../../graph/tree/EulerTour.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
+    using PMM = pair<mint, mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n  \
+    \  vector<PMM> A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n    \
+    \    int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int>\
+    \ ET(G);\n    struct Composite {\n        using value_type = PMM;\n        static\
+    \ PMM op(const PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first\
+    \ + b.second}; }\n        static PMM id() { return {1, 0}; }\n        static PMM\
+    \ get_inv(const PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }\n\
+    \    };\n    struct CompositeRev {\n        using value_type = PMM;\n        static\
+    \ PMM op(const PMM& a, const PMM& b) { return Composite::op(b, a); }\n       \
+    \ static PMM id() { return {1, 0}; }\n        static PMM get_inv(const PMM& a)\
+    \ { return {mint{1} / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite>\
+    \ seg(2 * N);\n    SegmentTree<CompositeRev> segrev(2 * N);\n    rep (i, N) {\n\
+    \        auto p = ET.get_idx(i);\n        seg.set(p.first, A[i]);\n        seg.set(p.second,\
+    \ Composite::get_inv(A[i]));\n        segrev.set(p.first, A[i]);\n        segrev.set(p.second,\
+    \ Composite::get_inv(A[i]));\n    }\n    rep (i, Q) {\n        int t; cin >> t;\n\
+    \        if (t == 0) {\n            int p; mint c, d; cin >> p >> c >> d;\n  \
+    \          auto idx = ET.get_idx(p);\n            seg.set(idx.first, {c, d});\n\
+    \            seg.set(idx.second, Composite::get_inv({c, d}));\n            segrev.set(idx.first,\
+    \ {c, d});\n            segrev.set(idx.second, Composite::get_inv({c, d}));\n\
+    \        }\n        else {\n            int u, v; mint x; cin >> u >> v >> x;\n\
+    \            ET.each_vertex(\n                u, v,\n                [&](int l,\
+    \ int r) {\n                    auto p = seg.prod(l, r);\n                   \
+    \ x = p.first * x + p.second;\n                },\n                [&](int l,\
+    \ int r) {\n                    auto p = segrev.prod(l, r);\n                \
+    \    x = p.first * x + p.second;\n                }\n            );\n        \
+    \    cout << x << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - other/bitop.hpp
   - other/monoid.hpp
+  - math/ModInt.hpp
   - graph/Graph.hpp
   - graph/tree/EulerTour.hpp
   - data-struct/segment/SparseTable.hpp
-  - other/bitop.hpp
   isVerificationFile: true
-  path: test/yosupo/vertex_add_path_sum.test.cpp
+  path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
   timestamp: '2022-01-09 23:22:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
+documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/vertex_add_path_sum.test.cpp
-- /verify/test/yosupo/vertex_add_path_sum.test.cpp.html
-title: test/yosupo/vertex_add_path_sum.test.cpp
+- /verify/test/yosupo/vertex_set_path_composite.test.cpp
+- /verify/test/yosupo/vertex_set_path_composite.test.cpp.html
+title: test/yosupo/vertex_set_path_composite.test.cpp
 ---

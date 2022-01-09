@@ -192,8 +192,8 @@ data:
     \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
     \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
     \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
-    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    DoublingLCA(Graph<T>&&\
-    \ G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&&\
+    \ G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int\
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
@@ -224,8 +224,8 @@ data:
     \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
     \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
     \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
-    \ Graph<T>& G, int r = 0) : G(G), root(r) { init(); }\n    DoublingLCA(Graph<T>&&\
-    \ G, int r = 0) : G_(std::move(G)), G(G_), root(r) { init(); }\n    int depth(int\
+    \ Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&&\
+    \ G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int\
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
@@ -250,7 +250,7 @@ data:
   isVerificationFile: false
   path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2022-01-07 18:27:32+09:00'
+  timestamp: '2022-01-09 23:22:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp

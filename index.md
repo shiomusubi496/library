@@ -330,6 +330,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_subtree_sum.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_set_path_composite.test.cpp
+      title: test/yosupo/vertex_set_path_composite.test.cpp
 layout: toppage
 ---
 shiomusubi496 の C++ 競プロライブラリ。
