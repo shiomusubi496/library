@@ -99,7 +99,7 @@ data:
         \u308BLCA)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
-      title: graph/tree/EulerTour.hpp
+      title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
@@ -327,6 +327,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_path_sum.test.cpp
+      title: test/yosupo/vertex_add_path_sum.test.cpp
 layout: toppage
 ---
 shiomusubi496 の C++ 競プロライブラリ。

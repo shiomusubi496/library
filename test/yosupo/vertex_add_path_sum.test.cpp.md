@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/EulerTour.hpp
+    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -17,21 +23,17 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/EulerTour.md
-    document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-    links: []
-  bundledCode: "#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
+    links:
+    - https://judge.yosupo.jp/problem/vertex_add_path_sum
+  bundledCode: "#line 1 \"test/yosupo/vertex_add_path_sum.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -137,35 +139,22 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
-    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
-    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
-    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Sum {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ a + b; }\n    static constexpr T id() { return T{0}; }\n    static constexpr\
-    \ T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T a) { return\
-    \ -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n\
-    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a > b\
-    \ ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
-    \    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static constexpr\
-    \ T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using\
-    \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
-    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
-    \ a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
-    \    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
+    other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
+    \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
+    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
+    \ constexpr T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a > b ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\n\
+    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
+    \ = T;\n    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static\
+    \ constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign\
+    \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return b;\
+    \ }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max> struct AssignMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
     \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
     \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
     \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
@@ -218,19 +207,27 @@ data:
     \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
     \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
     \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
-    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
-    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
-    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
-    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
-    \        }\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l &&\
-    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
+    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
+    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
+    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
+    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
+    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
+    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
+    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
+    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
+    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
+    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
+    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
+    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
+    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
+    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
+    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
+    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
+    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
@@ -268,42 +265,34 @@ data:
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\
-    \n\nnamespace Monoid {\n    struct PairMinForEulerTour {\n        using value_type\
-    \ = std::pair<int, int>;\n        static value_type op(const value_type& a, const\
-    \ value_type& b) {\n            return a.first < b.first ? a : b;\n        }\n\
-    \        static value_type id() {\n            return {infinity<int>::value, -1};\n\
-    \        }\n    };\n}\n\ntemplate<class T, template<class> class StaticRMQ = SparseTable>\n\
-    class EulerTour {\n  protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n\
-    \    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
-    \ int>> rmqvec;\n    StaticRMQ<Monoid::PairMinForEulerTour> RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
-    \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
-    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
-    \       n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
-    \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(infinity<int>::value,\
-    \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : G(G), root(root) { init(); }\n    const std::pair<int, int>&\
-    \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
-    \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
-    \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
-    \    template<class F> void each_vertex_subtree(int v, const F& f) const {\n \
-    \       f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
-    \ each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first + 1, idx[v].second\
-    \ + 1);\n    }\n    template<class F, class G> void each_vertex(int u, int v,\
-    \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first,\
-    \ idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n\
-    \    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u,\
-    \ v, f, f); }\n    template<class F, class G> void each_edge(int u, int v, const\
-    \ F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
-    \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
-    \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
-    \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SparseTable.hpp\"\
-    \n#include \"../Graph.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\
+    \n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
+    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l &&\
+    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
+    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
+    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
     \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
     \ op(const value_type& a, const value_type& b) {\n            return a.first <\
     \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
@@ -335,36 +324,50 @@ data:
     \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
     \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
     \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n"
+    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 6 \"test/yosupo/vertex_add_path_sum.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
+    \ cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int> ET(G);\n\
+    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \        BIT.add(p.first, A[i]);\n        BIT.add(p.second, -A[i]);\n    }\n \
+    \   rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n          \
+    \  int p; ll x; cin >> p >> x;\n            auto idx = ET.get_idx(p);\n      \
+    \      BIT.add(idx.first, x);\n            BIT.add(idx.second, -x);\n        }\n\
+    \        else {\n            int u, v; cin >> u >> v;\n            ll ans = 0;\n\
+    \            ET.each_vertex(u, v, [&](int l, int r) { ans += BIT.sum(l, r); });\n\
+    \            cout << ans << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\n\
+    #include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/tree/EulerTour.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b;\
+    \ cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int> ET(G);\n\
+    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \        BIT.add(p.first, A[i]);\n        BIT.add(p.second, -A[i]);\n    }\n \
+    \   rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n          \
+    \  int p; ll x; cin >> p >> x;\n            auto idx = ET.get_idx(p);\n      \
+    \      BIT.add(idx.first, x);\n            BIT.add(idx.second, -x);\n        }\n\
+    \        else {\n            int u, v; cin >> u >> v;\n            ll ans = 0;\n\
+    \            ET.each_vertex(u, v, [&](int l, int r) { ans += BIT.sum(l, r); });\n\
+    \            cout << ans << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/segment/SparseTable.hpp
-  - other/bitop.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   - other/monoid.hpp
   - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/tree/EulerTour.hpp
+  - graph/tree/EulerTour.hpp
+  - data-struct/segment/SparseTable.hpp
+  - other/bitop.hpp
+  isVerificationFile: true
+  path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
   timestamp: '2022-01-09 22:53:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-documentation_of: graph/tree/EulerTour.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
 layout: document
 redirect_from:
-- /library/graph/tree/EulerTour.hpp
-- /library/graph/tree/EulerTour.hpp.html
-title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+- /verify/test/yosupo/vertex_add_path_sum.test.cpp
+- /verify/test/yosupo/vertex_add_path_sum.test.cpp.html
+title: test/yosupo/vertex_add_path_sum.test.cpp
 ---
-## 概要
-
-木を dfs 順に並べて列にする。 SegmentTree など列に対するデータ構造を使うことで様々なクエリを扱える。テンプレートに Static Range Minimum Query を扱える構造 StaticRMQ(デフォルトは SparseTable)をとる。
-
-- `EulerTour(Graph<T> G, int r = 0)` : 木 `G` に対して、頂点 `r` を根としてオイラーツアーを作成する。 StaticRMQ::init が $\Theta(f(N))$ で動くとき、 $\Theta(N + f(N))$ 。
-- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
-- `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
-- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
-- `void each_edge_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の辺。
-- `void each_vertex(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの頂点の区間に `f` を適用する。 `f` は親->子の順に計算した値、 `g` は子->親の値を返す。頂点に入る index には元の値が、頂点から出る index にはその逆元が入っている必要がある。計算量は `f` と `g` のそれに比例。
-- `void each_edge(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの辺。

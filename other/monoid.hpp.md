@@ -28,7 +28,7 @@ data:
     title: SparseTable
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
-    title: graph/tree/EulerTour.hpp
+    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
@@ -81,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_path_sum.test.cpp
+    title: test/yosupo/vertex_add_path_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -354,6 +357,7 @@ data:
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp

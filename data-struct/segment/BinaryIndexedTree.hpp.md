@@ -15,6 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_path_sum.test.cpp
+    title: test/yosupo/vertex_add_path_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -249,6 +252,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document

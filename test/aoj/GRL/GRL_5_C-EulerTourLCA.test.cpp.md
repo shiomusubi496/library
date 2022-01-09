@@ -9,7 +9,7 @@ data:
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
-    title: graph/tree/EulerTour.hpp
+    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -299,9 +299,10 @@ data:
     \ F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
     \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
     \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
-    \ v, f, f); }\n};\n#line 5 \"test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n \
-    \   rep (i, N) {\n        int k; cin >> k;\n        rep (k) {\n            int\
+    \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
+    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
+    \    rep (i, N) {\n        int k; cin >> k;\n        rep (k) {\n            int\
     \ t; cin >> t;\n            G.add_edge(i, t, true);\n        }\n    }\n    EulerTour<int>\
     \ T(G);\n    int Q; cin >> Q;\n    rep (i, Q) {\n        int a, b; cin >> a >>\
     \ b;\n        cout << T.lca(a, b) << endl;\n    }\n}\n"
@@ -323,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 22:39:46+09:00'
+  timestamp: '2022-01-09 22:53:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
