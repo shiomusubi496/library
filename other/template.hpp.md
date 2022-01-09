@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -82,7 +82,7 @@ data:
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: graph/tree/EulerTour.hpp
   - icon: ':heavy_check_mark:'
@@ -103,10 +103,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   _extendedVerifiedWith:
@@ -221,7 +221,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - icon: ':heavy_check_mark:'
@@ -293,9 +293,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -549,7 +549,7 @@ data:
   - other/bitop.hpp
   - other/monoid.hpp
   timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

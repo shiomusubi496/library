@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -17,14 +17,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: graph/tree/EulerTour.hpp
   _extendedVerifiedWith:
@@ -52,7 +52,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,9 +73,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -224,7 +224,7 @@ data:
   - graph/tree/EulerTour.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

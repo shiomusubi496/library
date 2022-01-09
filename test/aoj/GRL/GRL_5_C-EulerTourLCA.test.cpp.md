@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: graph/tree/EulerTour.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C
@@ -287,9 +287,9 @@ data:
     \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
-    \          std::max(idx[u].second, idx[v].second) + 1\n        ).second;\n   \
-    \ }\n    template<class F> void each_vertex_subtree(int v, const F& f) const {\n\
-    \        f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
+    \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
+    \    template<class F> void each_vertex_subtree(int v, const F& f) const {\n \
+    \       f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
     \ each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first + 1, idx[v].second\
     \ + 1);\n    }\n    template<class F, class G> void each_vertex(int u, int v,\
     \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first,\
@@ -323,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 22:27:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-09 22:39:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
 layout: document
