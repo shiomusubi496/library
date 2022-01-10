@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -215,21 +215,26 @@ data:
     \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\
     \n\ntemplate<class M> class DisjointSparseTable {\n  protected:\n    using T =\
     \ typename M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n \
-    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n  public:\n   \
-    \ DisjointSparseTable() = default;\n    DisjointSparseTable(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        v_ = v;\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign(1\
-    \ << h, 0);\n        rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n\
-    \        data.assign(h, std::vector<T>(ori));\n        rep (i, 0, h) {\n     \
-    \       int len = 1 << i;\n            rep (j, len, ori, len << 1) {\n       \
-    \         data[i][j - 1] = v[j - 1];\n                rep (k, 1, len) data[i][j\
-    \ - k - 1] = M::op(v[j - k - 1], data[i][j - k]);\n                data[i][j]\
-    \ = v[j];\n                rep (k, 1, len) {\n                    if (j + k >=\
-    \ ori) break;\n                    data[i][j + k] = M::op(data[i][j + k - 1],\
-    \ v[j + k]);\n                }\n            }\n        }\n    }\n    T prod(int\
+    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
     \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n\
     \        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n       \
-    \ return M::op(data[d][l], data[d][r]);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ return M::op(data[d][l], data[d][r]);\n    }\n  public:\n    DisjointSparseTable()\
+    \ = default;\n    DisjointSparseTable(const std::vector<T>& v) { init(v); }\n\
+    \    void init(const std::vector<T>& v) {\n        v_ = v;\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign(1 << h, 0);\n   \
+    \     rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h,\
+    \ std::vector<T>(ori));\n        rep (i, 0, h) {\n            int len = 1 << i;\n\
+    \            rep (j, len, ori, len << 1) {\n                data[i][j - 1] = v[j\
+    \ - 1];\n                rep (k, 1, len) data[i][j - k - 1] = M::op(v[j - k -\
+    \ 1], data[i][j - k]);\n                data[i][j] = v[j];\n                rep\
+    \ (k, 1, len) {\n                    if (j + k >= ori) break;\n              \
+    \      data[i][j + k] = M::op(data[i][j + k - 1], v[j + k]);\n               \
+    \ }\n            }\n        }\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
+    \ l, int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
     \ * @docs docs/DisjointSparseTable.md\n */\n#line 4 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    DisjointSparseTable<Monoid::Sum<ll>> DST(A);\n    rep (Q)\
@@ -249,8 +254,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2022-01-04 11:38:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-10 15:41:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
 layout: document

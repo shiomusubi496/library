@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
@@ -282,25 +282,31 @@ data:
     \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
     \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
     \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
-    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
-    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
-    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
-    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
-    \        }\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l &&\
-    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
-    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, template<class>\
-    \ class StaticRMQ = SparseTable>\nclass EulerTour {\n  protected:\n    int n,\
-    \ root, cnt;\n    const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
-    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ<Monoid::PairMinForEulerTour>\
-    \ RMQ;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
+    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
+    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
+    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
+    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
+    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
+    \ typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
+    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
+    \ l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n *\
+    \ @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\
+    \n\nnamespace Monoid {\n    struct PairMinForEulerTour {\n        using value_type\
+    \ = std::pair<int, int>;\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return a.first < b.first ? a : b;\n        }\n\
+    \        static value_type id() {\n            return {infinity<int>::value, -1};\n\
+    \        }\n    };\n}\n\ntemplate<class T, template<class> class StaticRMQ = SparseTable>\n\
+    class EulerTour {\n  protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n\
+    \    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
+    \ int>> rmqvec;\n    StaticRMQ<Monoid::PairMinForEulerTour> RMQ;\n    void dfs(int\
+    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -361,8 +367,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_path_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-09 23:22:14+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-10 15:41:27+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_path_sum.test.cpp
 layout: document

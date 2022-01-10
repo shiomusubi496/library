@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
@@ -227,31 +227,42 @@ data:
     \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
     \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
     \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
+    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
+    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
+    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
+    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
+    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
+    \ typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
+    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
+    \ l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n *\
+    \ @brief SparseTable\n * @docs docs/SparseTable.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class SparseTable {\n\
+    \  protected:\n    using T = typename M::value_type;\n    int h, ori;\n    std::vector<int>\
+    \ logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int l,\
+    \ int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int d\
+    \ = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
     \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
     \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
     \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
     \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
     \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
     \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
-    \        }\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l &&\
-    \ l < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class SparseTable {\n\
-    \  protected:\n    using T = typename M::value_type;\n    int h, ori;\n    std::vector<int>\
-    \ logtable;\n    std::vector<std::vector<T>> data;\n  public:\n    SparseTable()\
-    \ = default;\n    SparseTable(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
-    \        logtable.assign((1 << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i]\
-    \ = logtable[i >> 1] + 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n\
-    \        rep (i, ori) data[0][i] = v[i];\n        rep (i, h) {\n            rep\
-    \ (j, (1 << h) - (1 << i)) {\n                data[i + 1][j] = M::op(data[i][j],\
-    \ data[i][j + (1 << i)]);\n            }\n        }\n    }\n    T prod(int l,\
-    \ int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int d\
-    \ = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
-    \    }\n};\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n"
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
+    \ const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -260,8 +271,8 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - graph/tree/EulerTour.hpp
-  timestamp: '2022-01-04 11:38:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-10 15:41:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
