@@ -31,12 +31,12 @@ template<class M> class SparseTable {
             }
         }
     }
-    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         if (l == r) return M::id();
         return internal_prod(l, r);
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         return internal_prod(l, r);
     }
