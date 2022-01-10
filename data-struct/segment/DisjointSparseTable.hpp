@@ -11,6 +11,13 @@ template<class M> class DisjointSparseTable {
     std::vector<int> logtable;
     std::vector<T> v_;
     std::vector<std::vector<T>> data;
+    T internal_prod(int l, int r) const {
+        assert(0 <= l && l < r && r <= ori);
+        --r;
+        if (l == r) return v_[l];
+        int d = logtable[l ^ r];
+        return M::op(data[d][l], data[d][r]);
+    }
   public:
     DisjointSparseTable() = default;
     DisjointSparseTable(const std::vector<T>& v) { init(v); }
@@ -34,12 +41,14 @@ template<class M> class DisjointSparseTable {
             }
         }
     }
+    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
-        assert(0 <= l && l < r && r <= ori);
-        --r;
-        if (l == r) return v_[l];
-        int d = logtable[l ^ r];
-        return M::op(data[d][l], data[d][r]);
+        if (l == r) return M::id();
+        return internal_prod(l, r);
+    }
+    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
+    T prod(int l, int r) const {
+        return internal_prod(l, r);
     }
 };
 

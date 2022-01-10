@@ -10,6 +10,11 @@ template<class M> class SparseTable {
     int h, ori;
     std::vector<int> logtable;
     std::vector<std::vector<T>> data;
+    T internal_prod(int l, int r) const {
+        assert(0 <= l && l < r && r <= ori);
+        int d = logtable[r - l];
+        return M::op(data[d][l], data[d][r - (1 << d)]);
+    }
   public:
     SparseTable() = default;
     SparseTable(const std::vector<T>& v) { init(v); }
@@ -26,10 +31,14 @@ template<class M> class SparseTable {
             }
         }
     }
+    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
-        assert(0 <= l && l < r && r <= ori);
-        int d = logtable[r - l];
-        return M::op(data[d][l], data[d][r - (1 << d)]);
+        if (l == r) return M::id();
+        return internal_prod(l, r);
+    }
+    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>
+    T prod(int l, int r) const {
+        return internal_prod(l, r);
     }
 };
 
