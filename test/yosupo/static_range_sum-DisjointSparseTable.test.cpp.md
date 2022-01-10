@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -230,13 +230,14 @@ data:
     \ (k, 1, len) {\n                    if (j + k >= ori) break;\n              \
     \      data[i][j + k] = M::op(data[i][j + k - 1], v[j + k]);\n               \
     \ }\n            }\n        }\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
-    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>\
-    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
-    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
-    \ * @docs docs/DisjointSparseTable.md\n */\n#line 4 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
+    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
+    };\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
+    \ */\n#line 4 \"test/yosupo/static_range_sum-DisjointSparseTable.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    DisjointSparseTable<Monoid::Sum<ll>> DST(A);\n    rep (Q)\
     \ {\n        int l, r; cin >> l >> r;\n        cout << DST.prod(l, r) << endl;\n\
     \    }\n}\n"
@@ -254,8 +255,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 15:41:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 15:47:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
 layout: document

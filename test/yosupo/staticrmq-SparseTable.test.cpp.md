@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -224,16 +224,16 @@ data:
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
     \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
     \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n\
+    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
     \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
     \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n *\
-    \ @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 4 \"test/yosupo/staticrmq-SparseTable.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N); cin >> A;\n    SparseTable<Monoid::Min<int>> ST(A);\n    rep (Q) {\n \
-    \       int l, r; cin >> l >> r;\n        cout << ST.prod(l, r) << endl;\n   \
-    \ }\n}\n"
+    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
+    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 4 \"\
+    test/yosupo/staticrmq-SparseTable.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N); cin >> A;\n    SparseTable<Monoid::Min<int>>\
+    \ ST(A);\n    rep (Q) {\n        int l, r; cin >> l >> r;\n        cout << ST.prod(l,\
+    \ r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../data-struct/segment/SparseTable.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
@@ -248,8 +248,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-SparseTable.test.cpp
   requiredBy: []
-  timestamp: '2022-01-10 15:41:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-10 15:47:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-SparseTable.test.cpp
 layout: document

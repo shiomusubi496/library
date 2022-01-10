@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/EulerTour.md
     document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -237,26 +237,26 @@ data:
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
     \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
     \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n\
+    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
     \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
     \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n *\
-    \ @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
+    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 2 \"\
+    graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct\
+    \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
+    \ to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend bool\
+    \ operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
+    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
+    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
+    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
+    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \  public:\n    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const\
+    \ { return edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed\
+    \ = false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
     \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
     \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
     \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
@@ -356,8 +356,8 @@ data:
   isVerificationFile: false
   path: graph/tree/EulerTour.hpp
   requiredBy: []
-  timestamp: '2022-01-10 15:41:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-01-10 15:47:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp

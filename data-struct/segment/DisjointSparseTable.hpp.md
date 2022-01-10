@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -230,12 +230,13 @@ data:
     \ (k, 1, len) {\n                    if (j + k >= ori) break;\n              \
     \      data[i][j + k] = M::op(data[i][j + k - 1], v[j + k]);\n               \
     \ }\n            }\n        }\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if< Monoid::has_id<M> && AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
-    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>\
-    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
-    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
-    \ * @docs docs/DisjointSparseTable.md\n */\n"
+    \ std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
+    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
+    };\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DisjointSparseTable\
     \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
@@ -254,10 +255,10 @@ data:
     \            data[i][j] = v[j];\n                rep (k, 1, len) {\n         \
     \           if (j + k >= ori) break;\n                    data[i][j + k] = M::op(data[i][j\
     \ + k - 1], v[j + k]);\n                }\n            }\n        }\n    }\n \
-    \   template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>\
+    \   template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value\
     \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
     \ if (l == r) return M::id();\n        return internal_prod(l, r);\n    }\n  \
-    \  template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>\
+    \  template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
     \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
     \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
     \ * @docs docs/DisjointSparseTable.md\n */\n"
@@ -268,8 +269,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2022-01-10 15:41:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-01-10 15:47:22+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
