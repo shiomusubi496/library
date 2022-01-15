@@ -12,7 +12,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':x:'
@@ -265,6 +268,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
