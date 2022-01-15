@@ -226,33 +226,33 @@ data:
   path: other/bitop.hpp
   requiredBy:
   - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/DualSegmentTree.hpp
-  - graph/tree/EulerTour.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
+  - graph/tree/EulerTour.hpp
   timestamp: '2021-12-20 15:01:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: other/bitop.hpp
 layout: document
 redirect_from:

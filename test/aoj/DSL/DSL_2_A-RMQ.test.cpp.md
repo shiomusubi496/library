@@ -198,26 +198,35 @@ data:
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
-    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
-    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
-    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
-    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
-    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
-    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
+    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
+    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
+    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
+    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
+    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
+    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
+    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
+    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
+    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
+    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
+    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
+    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
+    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
+    \n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
+    \ M> class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
+    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
+    \  SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
@@ -271,7 +280,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-01-04 11:38:26+09:00'
+  timestamp: '2022-01-15 09:51:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-RMQ.test.cpp

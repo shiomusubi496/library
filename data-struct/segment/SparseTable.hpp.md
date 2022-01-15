@@ -211,22 +211,31 @@ data:
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
-    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
-    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
-    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
-    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
-    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
+    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
+    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
+    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
+    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
+    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
+    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
+    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
+    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
+    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
+    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
+    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
+    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
+    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
+    \n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class\
+    \ M> class SparseTable {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
     \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
@@ -271,13 +280,13 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - graph/tree/EulerTour.hpp
-  timestamp: '2022-01-10 15:47:22+09:00'
+  timestamp: '2022-01-15 09:51:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp
 layout: document

@@ -255,20 +255,29 @@ data:
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
-    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
-    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
-    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
-    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
-    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n"
+    \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
+    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
+    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
+    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
+    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
+    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
+    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
+    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
+    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
+    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
+    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
+    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
+    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
+    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
+    \n} // namespace Monoid\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
     \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
     \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
@@ -323,56 +332,65 @@ data:
     \ T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class E_> struct\
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n\ntemplate<class M, class = void> struct has_id : public std::false_type\
-    \ {};\ntemplate<class M> struct has_id<M, typename std::conditional<false, decltype(M::id),\
-    \ void>::type> : public std::true_type {};\n\ntemplate<class M, class = void>\
-    \ struct has_inv : public std::false_type {};\ntemplate<class M> struct has_inv<M,\
-    \ typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> struct has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> struct has_get_inv<M, typename std::conditional<false,\
-    \ decltype(M::get_inv), void>::type> : public std::true_type {};\n\n\ntemplate<class\
-    \ M, class = void> struct has_mul : public std::false_type {};\ntemplate<class\
-    \ M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> struct has_mul_op\
-    \ : public std::false_type {};\ntemplate<class M> struct has_mul_op<M, typename\
-    \ std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n"
+    \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
+    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
+    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
+    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
+    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
+    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
+    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
+    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
+    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
+    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
+    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
+    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
+    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
+    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
+    \n} // namespace Monoid\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
   - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
   - graph/tree/EulerTour.hpp
-  timestamp: '2022-01-04 11:38:26+09:00'
+  timestamp: '2022-01-15 09:51:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:
