@@ -205,7 +205,7 @@ template<class T> struct multi_dim_vector<T> {
 };
 
 template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {
-    return std::vector<T>(n, arg);
+    return std::vector<T>(n, std::forward<Arg>(arg));
 }
 template<class T, class... Args>
 constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&... args) {
