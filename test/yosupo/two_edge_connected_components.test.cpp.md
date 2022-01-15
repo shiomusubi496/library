@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -109,21 +109,22 @@ data:
     \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
-    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
-    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
-    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
-    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
-    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
-    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
-    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
-    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
-    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
-    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
-    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
-    \        std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n \
-    \       std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
+    \ T, class... Args>\nconstexpr typename multi_dim_vector<Args..., T>::type make_vec(int\
+    \ n, Args&&... args) {\n    return typename multi_dim_vector<Args..., T>::type\
+    \ (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
+    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
+    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
+    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
+    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
+    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
+    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
+    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
+    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
+    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
+    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -227,8 +228,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-15 11:26:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
 layout: document

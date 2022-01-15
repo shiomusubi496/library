@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/UnionFindUndo.md
     document_title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
@@ -100,21 +100,22 @@ data:
     \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
-    \ {\n    return std::vector<T>(n, arg);\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
-    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
-    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
-    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
-    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
-    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
-    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
-    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T> class presser : public std::vector<T>\
-    \ {\n  private:\n    using Base = std::vector<T>;\n  public:\n    using Base::Base;\n\
-    \    presser(const std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>&\
-    \ vec) {\n        int n = this->size();\n        this->resize(n + vec.size());\n\
-    \        std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n \
-    \       std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
+    \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
+    \ T, class... Args>\nconstexpr typename multi_dim_vector<Args..., T>::type make_vec(int\
+    \ n, Args&&... args) {\n    return typename multi_dim_vector<Args..., T>::type\
+    \ (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
+    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
+    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
+    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
+    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
+    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
+    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
+    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
+    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
+    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
+    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
+    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
+    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
     \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
     \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
     \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
@@ -171,8 +172,8 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
-  timestamp: '2021-12-20 15:01:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-15 11:26:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/persistent_unionfind-Undo.test.cpp
 documentation_of: data-struct/unionfind/UnionFindUndo.hpp
