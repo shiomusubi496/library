@@ -126,20 +126,33 @@ template<class E_> struct AttachMonoid {
 };
 
 
-template<class M, class = void> struct has_id : public std::false_type {};
-template<class M> struct has_id<M, typename std::conditional<false, decltype(M::id), void>::type> : public std::true_type {};
+template<class M, class = void> class has_id : public std::false_type {};
+template<class M> class has_id<M, decltype(M::id, void())> : public std::true_type {};
 
-template<class M, class = void> struct has_inv : public std::false_type {};
-template<class M> struct has_inv<M, typename std::conditional<false, decltype(M::inv), void>::type> : public std::true_type {};
+template<class M, class = void> class has_inv : public std::false_type {};
+template<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type {};
 
-template<class M, class = void> struct has_get_inv : public std::false_type {};
-template<class M> struct has_get_inv<M, typename std::conditional<false, decltype(M::get_inv), void>::type> : public std::true_type {};
+template<class M, class = void> class has_get_inv : public std::false_type {};
+template<class M> class has_get_inv<M, decltype(M::get_inv, void())> : public std::true_type {};
 
 
-template<class M, class = void> struct has_mul : public std::false_type {};
-template<class M> struct has_mul<M, typename std::conditional<false, decltype(M::mul), void>::type> : public std::true_type {};
+template<class A, class = void> class has_mul : public std::false_type {};
+template<class A> class has_mul<A, decltype(A::mul, void())> : public std::true_type {};
 
-template<class M, class = void> struct has_mul_op : public std::false_type {};
-template<class M> struct has_mul_op<M, typename std::conditional<false, decltype(M::mul_op), void>::type> : public std::true_type {};
+template<class A, class = void> class has_mul_op : public std::false_type {};
+template<class A> class has_mul_op<A, decltype(A::mul_op, void())> : public std::true_type {};
+
+
+template<class T, class = void> class is_semigroup : public std::false_type {};;
+template<class T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op, void())> : public std::true_type {};
+
+template<class T, class = void> class is_monoid : public std::false_type {};;
+template<class T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public std::true_type {};
+
+template<class T, class = void> class is_group : public std::false_type {};;
+template<class T> class is_group<T, decltype(std::declval<typename T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type {};
+
+template<class T, class = void> class is_action : public std::true_type {};
+template<class T> class is_action<T, decltype(std::declval<typename T::M>(), std::declval<typename T::E>(), T::op, void())> : public std::false_type {};
 
 } // namespace Monoid
