@@ -46,6 +46,7 @@
 "test/aoj/NTL/NTL_1_D-Phi.test.cpp": "2022-01-15 11:26:25 +0900",
 "test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp": "2022-01-15 11:26:25 +0900",
 "test/yosupo/aplusb.test.cpp": "2022-01-15 11:26:25 +0900",
+"test/yosupo/cartesian_tree.test.cpp": "2022-01-16 22:05:58 +0900",
 "test/yosupo/cycle_detection.test.cpp": "2022-01-15 11:26:25 +0900",
 "test/yosupo/many_aplusb.test.cpp": "2022-01-15 11:26:25 +0900",
 "test/yosupo/matrix_product.test.cpp": "2022-01-15 11:26:25 +0900",
