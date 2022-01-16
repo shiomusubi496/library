@@ -16,6 +16,9 @@ data:
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/LCARMQ.hpp
+      title: LCARMQ
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -98,7 +101,7 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graph/tree/CartesianTree.hpp
-      title: graph/tree/CartesianTree.hpp
+      title: CartesianTree
     - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
@@ -330,6 +333,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/staticrmq-LCARMQ.test.cpp
+      title: test/yosupo/staticrmq-LCARMQ.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp

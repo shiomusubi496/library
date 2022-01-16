@@ -5,20 +5,25 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LCARMQ.hpp
+    title: LCARMQ
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/cartesian_tree.test.cpp
     title: test/yosupo/cartesian_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LCARMQ.test.cpp
+    title: test/yosupo/staticrmq-LCARMQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: CartesianTree.md
+    document_title: CartesianTree
     links: []
   bundledCode: "#line 2 \"graph/tree/CartesianTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -127,90 +132,14 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
-    \ constexpr T op(T a, T b) { return a + b; }\n    static constexpr T id() { return\
-    \ T{0}; }\n    static constexpr T inv(T a, T b) { return a - b; }\n    static\
-    \ constexpr T get_inv(T a) { return -a; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return a > b ? b : a; }\n    static constexpr T id() { return\
-    \ max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
-    \ Max {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(T a,\
-    \ T b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
-    \ a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
-    \ a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b, T c)\
-    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a,\
-    \ int b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return\
-    \ c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\
-    \ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n\
-    \    static constexpr T op(T a, T b) { return b + a; }\n    static constexpr T\
-    \ mul(T a, int b) { return a * b; }\n    static constexpr T mul_op(T a, int b,\
-    \ T c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct ChminMin {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
-    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
-    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct ChminMax {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::min(b, a); }\n    static constexpr\
-    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
-    \ c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
-    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
-    \ c) { return std::max(c, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n\
-    \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
-    \ T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a, int b, T\
-    \ c) { return std::max(c, a); }\n};\n\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
-    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype(M::id, void())>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype(M::inv,\
-    \ void())> : public std::true_type {};\n\ntemplate<class M, class = void> class\
-    \ has_get_inv : public std::false_type {};\ntemplate<class M> class has_get_inv<M,\
-    \ decltype(M::get_inv, void())> : public std::true_type {};\n\n\ntemplate<class\
-    \ A, class = void> class has_mul : public std::false_type {};\ntemplate<class\
-    \ A> class has_mul<A, decltype(A::mul, void())> : public std::true_type {};\n\n\
-    template<class A, class = void> class has_mul_op : public std::false_type {};\n\
-    template<class A> class has_mul_op<A, decltype(A::mul_op, void())> : public std::true_type\
-    \ {};\n\n\ntemplate<class T, class = void> class is_semigroup : public std::false_type\
-    \ {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(), T::op, void())> : public std::true_type {};\n\ntemplate<class\
-    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
-    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), T::op,\
-    \ T::id, void())> : public std::true_type {};\n\ntemplate<class T, class = void>\
-    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
-    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, T::get_inv, void())>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), T::op, void())> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\
-    \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
-    \  int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T&\
-    \ c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    operator int()\
-    \ const { return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
-    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
+    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
+    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
+    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
     \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
     \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
     \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
@@ -240,7 +169,7 @@ data:
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/CartesianTree.hpp\"\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/CartesianTree.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>> class CartesianTree {\n  protected:\n\
     \    int n;\n    const std::vector<T>& v;\n    std::vector<int> par;\n    Comp\
     \ cmp;\n    void init() {\n        n = v.size();\n        par.assign(n, -1);\n\
@@ -254,38 +183,40 @@ data:
     \ && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
     \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
     \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
-    \ par[i]);\n        }\n        return {res, root};\n    }\n};\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n#include \"../Graph.hpp\"\n\ntemplate<class T, class Comp = std::less<T>> class\
-    \ CartesianTree {\n  protected:\n    int n;\n    const std::vector<T>& v;\n  \
-    \  std::vector<int> par;\n    Comp cmp;\n    void init() {\n        n = v.size();\n\
-    \        par.assign(n, -1);\n        rep (i, 1, n) {\n            int p = i -\
-    \ 1;\n            int lst = -1;\n            while (p != -1 && cmp(v[i], v[p]))\
-    \ {\n                lst = p;\n                p = par[p];\n            }\n  \
-    \          if (lst != -1) par[lst] = i;\n            par[i] = p;\n        }\n\
-    \    }\n  public:\n    CartesianTree(const std::vector<T>& v) : v(v), cmp(Comp())\
-    \ { init(); }\n    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v),\
-    \ cmp(cmp) { init(); }\n    const std::vector<int>& get_vec() const& { return\
-    \ par; }\n    std::vector<int> get_vec() && { return std::move(par); }\n    template<class\
-    \ U = int> std::pair<Graph<U>, int> get_graph() {\n        Graph<U> res(n);\n\
-    \        int root = 0;\n        rep (i, n) {\n            if (par[i] == -1) root\
-    \ = i;\n            else res.add_edge(i, par[i]);\n        }\n        return {res,\
-    \ root};\n    }\n};\n"
+    \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
+    \ CartesianTree\n * @docs CartesianTree.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T, class Comp = std::less<T>> class CartesianTree {\n  protected:\n\
+    \    int n;\n    const std::vector<T>& v;\n    std::vector<int> par;\n    Comp\
+    \ cmp;\n    void init() {\n        n = v.size();\n        par.assign(n, -1);\n\
+    \        rep (i, 1, n) {\n            int p = i - 1;\n            int lst = -1;\n\
+    \            while (p != -1 && cmp(v[i], v[p])) {\n                lst = p;\n\
+    \                p = par[p];\n            }\n            if (lst != -1) par[lst]\
+    \ = i;\n            par[i] = p;\n        }\n    }\n  public:\n    CartesianTree(const\
+    \ std::vector<T>& v) : v(v), cmp(Comp()) { init(); }\n    CartesianTree(const\
+    \ std::vector<T>& v, const Comp& cmp) : v(v), cmp(cmp) { init(); }\n    const\
+    \ std::vector<int>& get_vec() const& { return par; }\n    std::vector<int> get_vec()\
+    \ && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
+    \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
+    \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
+    \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
+    \ CartesianTree\n * @docs CartesianTree.md\n */"
   dependsOn:
   - other/template.hpp
-  - other/monoid.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/CartesianTree.hpp
-  requiredBy: []
-  timestamp: '2022-01-16 22:05:58+09:00'
+  requiredBy:
+  - data-struct/segment/LCARMQ.hpp
+  timestamp: '2022-01-16 22:36:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/cartesian_tree.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/CartesianTree.hpp
 layout: document
 redirect_from:
 - /library/graph/tree/CartesianTree.hpp
 - /library/graph/tree/CartesianTree.hpp.html
-title: graph/tree/CartesianTree.hpp
+title: CartesianTree
 ---

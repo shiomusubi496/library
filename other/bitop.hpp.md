@@ -12,6 +12,9 @@ data:
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LCARMQ.hpp
+    title: LCARMQ
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -82,6 +85,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LCARMQ.test.cpp
+    title: test/yosupo/staticrmq-LCARMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
@@ -244,6 +250,7 @@ data:
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/LCARMQ.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
@@ -269,6 +276,7 @@ data:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: other/bitop.hpp
 layout: document

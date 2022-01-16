@@ -2,11 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/PlusMinusOneRMQ.hpp
+    title: PlusMinusOneRMQ($\pm1$RMQ)
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/CartesianTree.hpp
+    title: CartesianTree
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/EulerTour.hpp
+    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/PMORMQLCA.hpp
+    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -16,43 +28,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LCARMQ.hpp
-    title: LCARMQ
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/PMORMQLCA.hpp
-    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/EulerTour.md
-    document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+    _deprecated_at_docs: docs/LCARMQ.md
+    document_title: LCARMQ
     links: []
-  bundledCode: "#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/segment/LCARMQ.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -159,7 +147,61 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \    }\n};\n#line 2 \"graph/tree/CartesianTree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
+    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
+    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
+    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
+    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
+    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        for (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 5 \"graph/tree/CartesianTree.hpp\"\n\ntemplate<class T, class Comp\
+    \ = std::less<T>> class CartesianTree {\n  protected:\n    int n;\n    const std::vector<T>&\
+    \ v;\n    std::vector<int> par;\n    Comp cmp;\n    void init() {\n        n =\
+    \ v.size();\n        par.assign(n, -1);\n        rep (i, 1, n) {\n           \
+    \ int p = i - 1;\n            int lst = -1;\n            while (p != -1 && cmp(v[i],\
+    \ v[p])) {\n                lst = p;\n                p = par[p];\n          \
+    \  }\n            if (lst != -1) par[lst] = i;\n            par[i] = p;\n    \
+    \    }\n    }\n  public:\n    CartesianTree(const std::vector<T>& v) : v(v), cmp(Comp())\
+    \ { init(); }\n    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v),\
+    \ cmp(cmp) { init(); }\n    const std::vector<int>& get_vec() const& { return\
+    \ par; }\n    std::vector<int> get_vec() && { return std::move(par); }\n    template<class\
+    \ U = int> std::pair<Graph<U>, int> get_graph() {\n        Graph<U> res(n);\n\
+    \        int root = 0;\n        rep (i, n) {\n            if (par[i] == -1) root\
+    \ = i;\n            else res.add_edge(i, par[i]);\n        }\n        return {res,\
+    \ root};\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs CartesianTree.md\n\
+    \ */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line 2 \"graph/tree/EulerTour.hpp\"\
+    \n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
     \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
     \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
     \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
@@ -267,45 +309,8 @@ data:
     \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
     \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
     \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 2 \"\
-    graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct\
-    \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
-    \ to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend bool\
-    \ operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
-    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
-    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
-    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const\
-    \ { return edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed\
-    \ = false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
-    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
-    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
-    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
-    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        for (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
+    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"\
+    graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
     \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
     \ op(const value_type& a, const value_type& b) {\n            return a.first <\
     \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
@@ -338,78 +343,95 @@ data:
     \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
     \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
     \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SparseTable.hpp\"\
-    \n#include \"../Graph.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
-    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
-    \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
-    \ int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int v, int p) {\n        idx[v].first\
-    \ = cnt++;\n        rmqvec.emplace_back(dep[v], v);\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            dep[e.to] = dep[v]\
-    \ + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v], v);\n\
-    \        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n       \
-    \ n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
-    \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(-1,\
-    \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
-    \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
-    \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
-    \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
-    \    template<class F> void each_vertex_subtree(int v, const F& f) const {\n \
-    \       f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
-    \ each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first + 1, idx[v].second\
-    \ + 1);\n    }\n    template<class F, class G> void each_vertex(int u, int v,\
-    \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first,\
-    \ idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n\
-    \    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u,\
-    \ v, f, f); }\n    template<class F, class G> void each_edge(int u, int v, const\
-    \ F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
-    \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
-    \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
-    \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n"
+    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \n\n#line 7 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
+    \ PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n    std::vector<T> v;\n \
+    \   std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n\
+    \    struct PairMin {\n        using value_type = std::pair<T, int>;\n       \
+    \ static value_type op(const value_type& a, const value_type& b) {\n         \
+    \   return a.first < b.first ? a : b;\n        }\n        static value_type id()\
+    \ {\n            return {infinity<T>::value, -1};\n        }\n    };\n    SparseTable<PairMin>\
+    \ st;\n  public:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const\
+    \ std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n\
+    \        v = v_;\n        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n\
+    \        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b,\
+    \ b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n         \
+    \   rep (j, b) {\n                T nw = now, mn = nw, id = j;\n             \
+    \   lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n              \
+    \      nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw))\
+    \ lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k +\
+    \ 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
+    \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
+    \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
+    \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
+    \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
+    \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
+    \ 1, b) {\n                if (i * b + j >= n) break;\n                stv[i]\
+    \ = PairMin::op(stv[i], {v[i * b + j], i * b + j});\n            }\n        }\n\
+    \        st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n      \
+    \  assert(0 <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb\
+    \ = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb)\
+    \ return lb * b + lookup[ud[lb]][lp][rp];\n        else if (lb + 1 == rb) {\n\
+    \            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
+    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
+    \        else {\n            int res = st.prod(lb + 1, rb).second;\n         \
+    \   {\n                int a = lb * b + lookup[ud[lb]][lp][b - 1];\n         \
+    \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
+    \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
+    \ res = a;\n            }\n            return res;\n        }\n        return\
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
+    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n\
+    \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
+    \ RMQ;\n  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
+    \ int>>& v_) { init(v_); }\n    void init(const std::vector<std::pair<int, int>>&\
+    \ v_) {\n        v = v_;\n        n = v.size();\n        std::vector<int> rmqvec(n);\n\
+    \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
+    \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
+    \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \ */\n#line 6 \"data-struct/segment/LCARMQ.hpp\"\n\ntemplate<class T> class LCARMQ\
+    \ {\n  protected:\n    int n;\n    std::vector<T> v;\n    std::pair<Graph<int>,\
+    \ int> G;\n    PMORMQLCA<int> LCA;\n  public:\n    LCARMQ(const std::vector<T>&\
+    \ v) : v(v), G(CartesianTree<T>(v).get_graph()), LCA(G.first, G.second) { n =\
+    \ v.size(); }\n    T prod(int l, int r) {\n        assert(0 <= l && l < r && r\
+    \ <= n);\n        return v[LCA.lca(l, r - 1)];\n    }\n};\n\n/**\n * @brief LCARMQ\n\
+    \ * @docs docs/LCARMQ.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../graph/tree/CartesianTree.hpp\"\
+    \n#include \"../../graph/tree/PMORMQLCA.hpp\"\n\ntemplate<class T> class LCARMQ\
+    \ {\n  protected:\n    int n;\n    std::vector<T> v;\n    std::pair<Graph<int>,\
+    \ int> G;\n    PMORMQLCA<int> LCA;\n  public:\n    LCARMQ(const std::vector<T>&\
+    \ v) : v(v), G(CartesianTree<T>(v).get_graph()), LCA(G.first, G.second) { n =\
+    \ v.size(); }\n    T prod(int l, int r) {\n        assert(0 <= l && l < r && r\
+    \ <= n);\n        return v[LCA.lca(l, r - 1)];\n    }\n};\n\n/**\n * @brief LCARMQ\n\
+    \ * @docs docs/LCARMQ.md\n */\n"
   dependsOn:
   - other/template.hpp
+  - graph/tree/CartesianTree.hpp
+  - graph/Graph.hpp
+  - graph/tree/PMORMQLCA.hpp
+  - graph/tree/EulerTour.hpp
   - data-struct/segment/SparseTable.hpp
   - other/bitop.hpp
   - other/monoid.hpp
-  - graph/Graph.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
   isVerificationFile: false
-  path: graph/tree/EulerTour.hpp
-  requiredBy:
-  - data-struct/segment/LCARMQ.hpp
-  - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-01-16 15:31:19+09:00'
+  path: data-struct/segment/LCARMQ.hpp
+  requiredBy: []
+  timestamp: '2022-01-16 22:36:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-documentation_of: graph/tree/EulerTour.hpp
+documentation_of: data-struct/segment/LCARMQ.hpp
 layout: document
 redirect_from:
-- /library/graph/tree/EulerTour.hpp
-- /library/graph/tree/EulerTour.hpp.html
-title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+- /library/data-struct/segment/LCARMQ.hpp
+- /library/data-struct/segment/LCARMQ.hpp.html
+title: LCARMQ
 ---
 ## 概要
 
-木を dfs 順に並べて列にする。 SegmentTree など列に対するデータ構造を使うことで様々なクエリを扱える。テンプレートに Static Range Minimum Query を扱える構造 StaticRMQ(デフォルトは SparseTable)をとる。
+Cartesian Tree を用いて RMQ を LCA に帰着して解く。 $\pm 1$ RMQ に帰着することで LCA は前処理 $\Theta(N)$ 、各クエリ $\Theta(1)$ で解けるため、 Cartesian Tree を求めるのは $\Theta(N)$ であることと合わせて、前処理 $\Theta(N)$ 各クエリ $\Theta(1)$ が達成される。
 
-- `EulerTour(Graph<T> G, int r = 0)` : 木 `G` に対して、頂点 `r` を根としてオイラーツアーを作成する。 StaticRMQ::init が $\Theta(f(N))$ で動くとき、 $\Theta(N + f(N))$ 。
-- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
-- `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
-- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
-- `void each_edge_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の辺。
-- `void each_vertex(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの頂点の区間に `f` を適用する。 `f` は親->子の順に計算した値、 `g` は子->親の値を返す。頂点に入る index には元の値が、頂点から出る index にはその逆元が入っている必要がある。計算量は `f` と `g` のそれに比例。
-- `void each_edge(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの辺。
+- `LCARMQ(std::vector<T> v)` : リスト `v` で初期化する。 $\Theta(N)$ 。
+- `T prod(int l, int r)` : `min(v[l], v[l+1], ..., v[r-1])` を返す。 $\Theta(1)$ 。

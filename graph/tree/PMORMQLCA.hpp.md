@@ -22,11 +22,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LCARMQ.hpp
+    title: LCARMQ
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LCARMQ.test.cpp
+    title: test/yosupo/staticrmq-LCARMQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -390,11 +396,13 @@ data:
   - data-struct/segment/PlusMinusOneRMQ.hpp
   isVerificationFile: false
   path: graph/tree/PMORMQLCA.hpp
-  requiredBy: []
+  requiredBy:
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-01-16 16:44:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/PMORMQLCA.hpp
 layout: document
 redirect_from:

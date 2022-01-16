@@ -6,6 +6,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LCARMQ.hpp
+    title: LCARMQ
+  - icon: ':heavy_check_mark:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -50,7 +53,7 @@ data:
       )"
   - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
-    title: graph/tree/CartesianTree.hpp
+    title: CartesianTree
   - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
@@ -143,6 +146,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LCARMQ.test.cpp
+    title: test/yosupo/staticrmq-LCARMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
@@ -353,6 +359,7 @@ data:
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
+  - data-struct/segment/LCARMQ.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
   - graph/connected/ConnectedComponents.hpp
@@ -404,6 +411,7 @@ data:
   - test/yosupo/cycle_detection.test.cpp
   - test/yosupo/tree_diameter.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document
