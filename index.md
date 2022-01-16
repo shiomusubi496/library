@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/segment
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':heavy_check_mark:'
@@ -18,18 +18,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
+      path: data-struct/segment/PlusMinusOneRMQ.hpp
+      title: data-struct/segment/PlusMinusOneRMQ.hpp
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -37,7 +40,7 @@ data:
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -49,7 +52,7 @@ data:
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/TwoEdgeConnectedComponents.hpp
       title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
         \u89E3)"
@@ -66,7 +69,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
@@ -84,7 +87,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     - icon: ':heavy_check_mark:'
@@ -97,10 +100,13 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
+      path: graph/tree/PMORMQLCA.hpp
+      title: graph/tree/PMORMQLCA.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
@@ -114,7 +120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -122,13 +128,13 @@ data:
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   verificationCategories:
@@ -258,6 +264,9 @@ data:
       path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+      title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
       title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - name: test/aoj/NTL
@@ -318,25 +327,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/staticrmq-SparseTable.test.cpp
       title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree_diameter.test.cpp
       title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/two_edge_connected_components.test.cpp
       title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind-Dynamic.test.cpp
       title: test/yosupo/unionfind-Dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/unionfind.test.cpp
       title: test/yosupo/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_path_sum.test.cpp
       title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
 layout: toppage

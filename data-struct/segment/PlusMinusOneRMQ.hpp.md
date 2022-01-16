@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SparseTable.hpp
+    title: SparseTable
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -10,37 +13,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/PMORMQLCA.hpp
+    title: graph/tree/PMORMQLCA.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.test.cpp
-    title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
+    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/SegmentTree.md
-    document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\n#line 2 \"\
+    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -228,147 +223,115 @@ data:
     \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
     \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
     \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
-    \n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
-    \ M> class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
-    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
-    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
-    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
-    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
-    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
-    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
-    \            while (l < n) {\n                    l <<= 1;\n                 \
-    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
-    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
-    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
-    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
-    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
-    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
-    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
-    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class SegmentTree {\n\
-    \  protected:\n    using T = typename M::value_type;\n    int n, ori;\n    std::vector<T>\
-    \ data;\n  public:\n    SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int\
-    \ n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(const std::vector<T>&\
+    \n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line\
+    \ 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
+    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
+    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
     \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
-    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
-    \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
-    \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
-    \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
-    \ << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k,\
-    \ [&](T) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
-    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(int l, int r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n; r += n;\n\
-    \        T lsm = M::id(), rsm = M::id();\n        while (l < r) {\n          \
-    \  if (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
-    \ rsm);\n            l >>= 1; r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n"
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n#line 7 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \n\ntemplate<class T> class PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n\
+    \    std::vector<T> v;\n    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>>\
+    \ lookup;\n    struct PairMin {\n        using value_type = std::pair<T, int>;\n\
+    \        static value_type op(const value_type& a, const value_type& b) {\n  \
+    \          return a.first < b.first ? a : b;\n        }\n        static value_type\
+    \ id() {\n            return {infinity<T>::value, -1};\n        }\n    };\n  \
+    \  SparseTable<PairMin> st;\n  public:\n    PlusMinusOneRMQ() = default;\n   \
+    \ PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const\
+    \ std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n)\
+    \ / 2 + 1;\n        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 <<\
+    \ (b - 1), b, b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n\
+    \            rep (j, b) {\n                T nw = now, mn = nw, id = j;\n    \
+    \            lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n     \
+    \               nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn,\
+    \ nw)) lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k\
+    \ + 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
+    \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
+    \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
+    \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
+    \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
+    \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
+    \ 1, b) {\n                if (i * b + j >= n) break;\n                stv[i]\
+    \ = PairMin::op(stv[i], {v[i * b + j], i * b + j});\n            }\n        }\n\
+    \        st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n      \
+    \  assert(0 <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb\
+    \ = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb)\
+    \ return lb * b + lookup[ud[lb]][lp][rp];\n        else if (lb + 1 == rb) {\n\
+    \            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
+    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
+    \        else {\n            int res = st.prod(lb + 1, rb).second;\n         \
+    \   {\n                int a = lb * b + lookup[ud[lb]][lp][b - 1];\n         \
+    \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
+    \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
+    \ res = a;\n            }\n            return res;\n        }\n        return\
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n#include \"../../other/monoid.hpp\"\n#include \"SparseTable.hpp\"\n\ntemplate<class\
+    \ T> class PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n    std::vector<T>\
+    \ v;\n    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>>\
+    \ lookup;\n    struct PairMin {\n        using value_type = std::pair<T, int>;\n\
+    \        static value_type op(const value_type& a, const value_type& b) {\n  \
+    \          return a.first < b.first ? a : b;\n        }\n        static value_type\
+    \ id() {\n            return {infinity<T>::value, -1};\n        }\n    };\n  \
+    \  SparseTable<PairMin> st;\n  public:\n    PlusMinusOneRMQ() = default;\n   \
+    \ PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const\
+    \ std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n)\
+    \ / 2 + 1;\n        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 <<\
+    \ (b - 1), b, b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n\
+    \            rep (j, b) {\n                T nw = now, mn = nw, id = j;\n    \
+    \            lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n     \
+    \               nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn,\
+    \ nw)) lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k\
+    \ + 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
+    \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
+    \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
+    \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
+    \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
+    \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
+    \ 1, b) {\n                if (i * b + j >= n) break;\n                stv[i]\
+    \ = PairMin::op(stv[i], {v[i * b + j], i * b + j});\n            }\n        }\n\
+    \        st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n      \
+    \  assert(0 <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb\
+    \ = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb)\
+    \ return lb * b + lookup[ud[lb]][lp][rp];\n        else if (lb + 1 == rb) {\n\
+    \            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
+    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
+    \        else {\n            int res = st.prod(lb + 1, rb).second;\n         \
+    \   {\n                int a = lb * b + lookup[ud[lb]][lp][b - 1];\n         \
+    \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
+    \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
+    \ res = a;\n            }\n            return res;\n        }\n        return\
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
   - other/monoid.hpp
+  - data-struct/segment/SparseTable.hpp
   isVerificationFile: false
-  path: data-struct/segment/SegmentTree.hpp
-  requiredBy: []
-  timestamp: '2022-01-15 11:26:25+09:00'
+  path: data-struct/segment/PlusMinusOneRMQ.hpp
+  requiredBy:
+  - graph/tree/PMORMQLCA.hpp
+  timestamp: '2022-01-16 15:31:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-documentation_of: data-struct/segment/SegmentTree.hpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/SegmentTree.hpp
-- /library/data-struct/segment/SegmentTree.hpp.html
-title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+- /library/data-struct/segment/PlusMinusOneRMQ.hpp
+- /library/data-struct/segment/PlusMinusOneRMQ.hpp.html
+title: data-struct/segment/PlusMinusOneRMQ.hpp
 ---
-## 概要
-
-モノイド $(T, \cdot : T \times T \to T)$ 、つまり
-
-- 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
-
-を満たす構造の列を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
-
-- コンストラクタ
-  - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
-  - `SegmentTree(int n)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(N)$ 。
-  - `SegmentTree(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
-  - `void init(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
-- 変更クエリ
-  - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log N)$ 。
-  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-- 取得クエリ
-  - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log (r - l))$ 。
-  - `T get(int k)` : `a[k]` を返す。 $\Theta(1)$ 。
-  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 。
-- セグメント木上の二分探索
-  - `int max_right(int l, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
-    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
-  - `int min_left(int r, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
-    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
-
-また、以下のクエリに対するセグメント木が `SegmentTree` を継承して作られている。
-
-- `RangeSumQuery` : `Range Sum Query` 用のセグ木。
-- `RangeMinimumQuery` : `Range Minimum Query` 用のセグ木。
-- `RangeMaximumQuery` : `Range Maximum Query` 用のセグ木。
