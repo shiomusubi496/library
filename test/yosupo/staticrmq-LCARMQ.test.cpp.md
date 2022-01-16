@@ -202,7 +202,7 @@ data:
     \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
     \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
     \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
-    \ CartesianTree\n * @docs CartesianTree.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\
+    \ CartesianTree\n * @docs docs/CartesianTree.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\
     \n\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
@@ -422,7 +422,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-LCARMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 22:36:32+09:00'
+  timestamp: '2022-01-16 22:43:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-LCARMQ.test.cpp

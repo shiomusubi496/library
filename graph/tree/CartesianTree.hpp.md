@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: CartesianTree.md
+    _deprecated_at_docs: docs/CartesianTree.md
     document_title: CartesianTree
     links: []
   bundledCode: "#line 2 \"graph/tree/CartesianTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -184,7 +184,7 @@ data:
     \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
     \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
     \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
-    \ CartesianTree\n * @docs CartesianTree.md\n */\n"
+    \ CartesianTree\n * @docs docs/CartesianTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>> class CartesianTree {\n  protected:\n\
     \    int n;\n    const std::vector<T>& v;\n    std::vector<int> par;\n    Comp\
@@ -200,7 +200,7 @@ data:
     \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
     \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
     \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
-    \ CartesianTree\n * @docs CartesianTree.md\n */"
+    \ CartesianTree\n * @docs docs/CartesianTree.md\n */"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -208,7 +208,7 @@ data:
   path: graph/tree/CartesianTree.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-01-16 22:36:32+09:00'
+  timestamp: '2022-01-16 22:43:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/cartesian_tree.test.cpp
@@ -220,3 +220,12 @@ redirect_from:
 - /library/graph/tree/CartesianTree.hpp.html
 title: CartesianTree
 ---
+## 概要
+
+与えられた数列 v に対しての Cartesian Tree (デカルト木) を求める。これは、頂点 $i$ の親が頂点 $p$ であるとき $v_i > v_p$ であり、かつ in-order 順に頂点を並べたものが $1, 2, \cdots, N$ となるような二分木である。
+
+利用法としては、数列 v における区間の最小値は、 Cartesian Tree における LCA となることなどがある。
+
+- `CartesianTree(std::vector<T> v)` : Cartesian Tree を構築する。 $\Theta(N)$ 。
+- `vector<int> get_vec()` : $i$ 番目の要素が頂点 $i$ の親であるような数列を返す。ただし、根に対しては $-1$ となる。 $\Theta(N)$ 。
+- `pair<Graph<U>, int> get_graph()` : Cartesian Tree とその根のペアを返す。 $\Theta(N)$ 。

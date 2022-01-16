@@ -180,7 +180,7 @@ data:
     \ U = int> std::pair<Graph<U>, int> get_graph() {\n        Graph<U> res(n);\n\
     \        int root = 0;\n        rep (i, n) {\n            if (par[i] == -1) root\
     \ = i;\n            else res.add_edge(i, par[i]);\n        }\n        return {res,\
-    \ root};\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs CartesianTree.md\n\
+    \ root};\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs docs/CartesianTree.md\n\
     \ */\n#line 5 \"test/yosupo/cartesian_tree.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int N; cin >> N;\n    vector<int> A(N); cin >> A;\n    auto\
     \ v = CartesianTree<int>(A).get_vec();\n    rep (i, N) {\n        if (v[i] ==\
@@ -198,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 22:36:32+09:00'
+  timestamp: '2022-01-16 22:43:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/cartesian_tree.test.cpp
