@@ -16,7 +16,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
-    title: graph/tree/PMORMQLCA.hpp
+    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
@@ -25,6 +25,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/PlusMinusOneRMQ.md
+    document_title: PlusMinusOneRMQ($\pm1$RMQ)
     links: []
   bundledCode: "#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\n#line 2 \"\
     other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
@@ -277,7 +279,9 @@ data:
     \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
     \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
     \ res = a;\n            }\n            return res;\n        }\n        return\
-    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n"
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
+    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n#include \"SparseTable.hpp\"\n\ntemplate<class\
     \ T> class PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n    std::vector<T>\
@@ -314,7 +318,9 @@ data:
     \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
     \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
     \ res = a;\n            }\n            return res;\n        }\n        return\
-    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n"
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
+    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -324,7 +330,7 @@ data:
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-01-16 15:31:19+09:00'
+  timestamp: '2022-01-16 16:44:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
@@ -333,5 +339,11 @@ layout: document
 redirect_from:
 - /library/data-struct/segment/PlusMinusOneRMQ.hpp
 - /library/data-struct/segment/PlusMinusOneRMQ.hpp.html
-title: data-struct/segment/PlusMinusOneRMQ.hpp
+title: PlusMinusOneRMQ($\pm1$RMQ)
 ---
+## 概要
+
+隣り合う要素の差が 1 であるような数列に対して Range Minimum Query を行う。 Sparse Table や Segment Tree よりもオーダーが良い。
+
+- `PlusMinusOneRMQ(vector<T> v)` : リスト `v` で初期化する。 $\Theta(N)$ 。
+- `T prod(int l, int r)` : `min(v[l], v[l+1], ..., v[r-1])` を返す。 $\Theta(1)$ 。

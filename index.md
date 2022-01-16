@@ -20,7 +20,7 @@ data:
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
-      title: data-struct/segment/PlusMinusOneRMQ.hpp
+      title: PlusMinusOneRMQ($\pm1$RMQ)
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -105,7 +105,7 @@ data:
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
-      title: graph/tree/PMORMQLCA.hpp
+      title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"

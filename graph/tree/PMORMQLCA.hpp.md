@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
-    title: data-struct/segment/PlusMinusOneRMQ.hpp
+    title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
@@ -31,6 +31,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/PMORMQLCA.md
+    document_title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
     links: []
   bundledCode: "#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -355,15 +357,18 @@ data:
     \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
     \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
     \ res = a;\n            }\n            return res;\n        }\n        return\
-    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n#line\
-    \ 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n    int\
-    \ n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int> RMQ;\n\
-    \  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
+    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n\
+    \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
+    \ RMQ;\n  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
     \ int>>& v_) { init(v_); }\n    void init(const std::vector<std::pair<int, int>>&\
     \ v_) {\n        v = v_;\n        n = v.size();\n        std::vector<int> rmqvec(n);\n\
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
-    \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n"
+    \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"EulerTour.hpp\"\
     \n#include \"../../data-struct/segment/PlusMinusOneRMQ.hpp\"\n\nclass PMORMQForLCA\
     \ {\n  protected:\n    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
@@ -372,7 +377,9 @@ data:
     \ v_) {\n        v = v_;\n        n = v.size();\n        std::vector<int> rmqvec(n);\n\
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
-    \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n"
+    \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \ */"
   dependsOn:
   - other/template.hpp
   - graph/tree/EulerTour.hpp
@@ -384,7 +391,7 @@ data:
   isVerificationFile: false
   path: graph/tree/PMORMQLCA.hpp
   requiredBy: []
-  timestamp: '2022-01-16 15:31:19+09:00'
+  timestamp: '2022-01-16 16:44:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
@@ -393,5 +400,10 @@ layout: document
 redirect_from:
 - /library/graph/tree/PMORMQLCA.hpp
 - /library/graph/tree/PMORMQLCA.hpp.html
-title: graph/tree/PMORMQLCA.hpp
+title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
 ---
+## 概要
+
+Euler Tour と $\pm 1$ RMQ を使うことによって、前処理 $\Theta(N)$ 、クエリ毎 $\Theta(1)$ で LCA を求める。 Sparse Table を使うと前処理 $\Theta(N \log N)$ 、各クエリ $\Theta(1)$ となるため、こちらの方がオーダーが良い。
+
+機能は `EulerTour` と同じなので、そちらを参照。

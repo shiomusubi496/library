@@ -3,7 +3,7 @@ data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
-    title: data-struct/segment/PlusMinusOneRMQ.hpp
+    title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
@@ -15,7 +15,7 @@ data:
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
-    title: graph/tree/PMORMQLCA.hpp
+    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -360,19 +360,21 @@ data:
     \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
     \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
     \ res = a;\n            }\n            return res;\n        }\n        return\
-    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n#line\
-    \ 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n    int\
-    \ n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int> RMQ;\n\
-    \  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
+    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
+    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n\
+    \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
+    \ RMQ;\n  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
     \ int>>& v_) { init(v_); }\n    void init(const std::vector<std::pair<int, int>>&\
     \ v_) {\n        v = v_;\n        n = v.size();\n        std::vector<int> rmqvec(n);\n\
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
     \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
-    #line 5 \"test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n   \
-    \     int k; cin >> k;\n        rep (k) {\n            int t; cin >> t;\n    \
-    \        G.add_edge(i, t, true);\n        }\n    }\n    PMORMQLCA<int> T(G);\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \ */\n#line 5 \"test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n \
+    \       int k; cin >> k;\n        rep (k) {\n            int t; cin >> t;\n  \
+    \          G.add_edge(i, t, true);\n        }\n    }\n    PMORMQLCA<int> T(G);\n\
     \    int Q; cin >> Q;\n    rep (i, Q) {\n        int a, b; cin >> a >> b;\n  \
     \      cout << T.lca(a, b) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C\"\n#include\
@@ -395,7 +397,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 15:31:19+09:00'
+  timestamp: '2022-01-16 16:44:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
