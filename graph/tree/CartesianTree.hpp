@@ -41,5 +41,5 @@ template<class T, class Comp = std::less<T>> class CartesianTree {
 
 /**
  * @brief CartesianTree
- * @docs CartesianTree.md
+ * @docs docs/CartesianTree.md
  */
