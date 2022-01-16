@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/monoid.hpp"
 #include "../Graph.hpp"
 
 template<class T, class Comp = std::less<T>> class CartesianTree {
@@ -39,3 +38,8 @@ template<class T, class Comp = std::less<T>> class CartesianTree {
         return {res, root};
     }
 };
+
+/**
+ * @brief CartesianTree
+ * @docs CartesianTree.md
+ */
