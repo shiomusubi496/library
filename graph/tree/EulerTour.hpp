@@ -16,7 +16,7 @@ namespace Monoid {
     };
 }
 
-template<class T, template<class> class StaticRMQ = SparseTable>
+template<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>
 class EulerTour {
   protected:
     int n, root, cnt;
@@ -24,7 +24,7 @@ class EulerTour {
     std::vector<int> dep;
     std::vector<std::pair<int, int>> idx;
     std::vector<std::pair<int, int>> rmqvec;
-    StaticRMQ<Monoid::PairMinForEulerTour> RMQ;
+    StaticRMQ RMQ;
     void dfs(int v, int p) {
         idx[v].first = cnt++;
         rmqvec.emplace_back(dep[v], v);
@@ -42,7 +42,7 @@ class EulerTour {
         idx.resize(n); rmqvec.reserve(n << 1);
         cnt = 0;
         dfs(root, -1);
-        rmqvec.emplace_back(infinity<int>::value, -1);
+        rmqvec.emplace_back(-1, -1);
         RMQ.init(rmqvec);
     }
   public:
