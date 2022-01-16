@@ -97,6 +97,9 @@ data:
   - name: graph/tree
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/tree/CartesianTree.hpp
+      title: graph/tree/CartesianTree.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -291,6 +294,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/aplusb.test.cpp
       title: test/yosupo/aplusb.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/cartesian_tree.test.cpp
+      title: test/yosupo/cartesian_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cycle_detection.test.cpp
       title: test/yosupo/cycle_detection.test.cpp

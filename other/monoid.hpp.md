@@ -30,6 +30,9 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
+    path: graph/tree/CartesianTree.hpp
+    title: graph/tree/CartesianTree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/cartesian_tree.test.cpp
+    title: test/yosupo/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
@@ -381,6 +387,7 @@ data:
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/DisjointSparseTable.hpp
+  - graph/tree/CartesianTree.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   timestamp: '2022-01-15 11:26:25+09:00'
@@ -401,6 +408,7 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/cartesian_tree.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
