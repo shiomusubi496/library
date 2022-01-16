@@ -87,3 +87,8 @@ template<class T> class PlusMinusOneRMQ {
     }
     T prod(int l, int r) const { return v[prod(l, r)]; }
 };
+
+/**
+ * @brief PlusMinusOneRMQ($\pm1$RMQ)
+ * @docs docs/PlusMinusOneRMQ.md
+ */
