@@ -2,7 +2,6 @@
 
 #include "../../other/template.hpp"
 #include "../../other/bitop.hpp"
-#include "../../other/monoid.hpp"
 #include "SparseTable.hpp"
 
 template<class T> class PlusMinusOneRMQ {
@@ -53,9 +52,9 @@ template<class T> class PlusMinusOneRMQ {
         std::vector<std::pair<T, int>> stv(m);
         rep (i, m) {
             stv[i] = {v[i * b], i * b};
-            rep (j, 1, b) {
-                if (i * b + j >= n) break;
-                stv[i] = PairMin::op(stv[i], {v[i * b + j], i * b + j});
+            rep (j, i * b + 1, (i + 1) * b) {
+                if (j >= n) break;
+                stv[i] = PairMin::op(stv[i], {v[j], j});
             }
         }
         st.init(stv);
@@ -66,24 +65,21 @@ template<class T> class PlusMinusOneRMQ {
         int lb = l / b, rb = r / b;
         int lp = l - lb * b, rp = r - rb * b;
         if (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];
-        else if (lb + 1 == rb) {
+        if (lb + 1 == rb) {
             int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];
             if (v[x] < v[y]) return x;
             else return y;
         }
-        else {
-            int res = st.prod(lb + 1, rb).second;
-            {
-                int a = lb * b + lookup[ud[lb]][lp][b - 1];
-                if (v[a] < v[res]) res = a;
-            }
-            {
-                int a = rb * b + lookup[ud[rb]][0][rp];
-                if (v[a] < v[res]) res = a;
-            }
-            return res;
+        int res = st.prod(lb + 1, rb).second;
+        {
+            int a = lb * b + lookup[ud[lb]][lp][b - 1];
+            if (v[a] < v[res]) res = a;
         }
-        return -1;
+        {
+            int a = rb * b + lookup[ud[rb]][0][rp];
+            if (v[a] < v[res]) res = a;
+        }
+        return res;
     }
     T prod(int l, int r) const { return v[prod(l, r)]; }
 };
