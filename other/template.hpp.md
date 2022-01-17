@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/cht/ConvexHullTrick.hpp
+    title: ConvexHullTrick
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -273,6 +276,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/cycle_detection.test.cpp
     title: test/yosupo/cycle_detection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/line_add_get_min.test.cpp
+    title: test/yosupo/line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/many_aplusb.test.cpp
     title: test/yosupo/many_aplusb.test.cpp
@@ -566,6 +572,7 @@ data:
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/LCARMQ.hpp
+  - data-struct/cht/ConvexHullTrick.hpp
   - data-struct/unionfind/UnionFindUndo.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
@@ -647,6 +654,7 @@ data:
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/aplusb.test.cpp
+  - test/yosupo/line_add_get_min.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp

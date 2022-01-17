@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: data-struct/cht
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data-struct/cht/ConvexHullTrick.hpp
+      title: ConvexHullTrick
   - name: data-struct/segment
     pages:
     - icon: ':heavy_check_mark:'
@@ -307,6 +312,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cycle_detection.test.cpp
       title: test/yosupo/cycle_detection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/line_add_get_min.test.cpp
+      title: test/yosupo/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/many_aplusb.test.cpp
       title: test/yosupo/many_aplusb.test.cpp
