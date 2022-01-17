@@ -15,6 +15,10 @@ data:
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LinearRMQ.hpp
+    title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
+      RMQ)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
@@ -36,6 +40,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LinearRMQ.test.cpp
+    title: test/yosupo/staticrmq-LinearRMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
@@ -298,6 +305,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
+  - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/EulerTour.hpp
@@ -309,6 +317,7 @@ data:
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp

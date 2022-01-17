@@ -18,6 +18,10 @@ data:
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/LinearRMQ.hpp
+    title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
+      RMQ)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
@@ -88,6 +92,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/staticrmq-LinearRMQ.test.cpp
+    title: test/yosupo/staticrmq-LinearRMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
@@ -244,6 +251,7 @@ data:
   isVerificationFile: false
   path: other/bitop.hpp
   requiredBy:
+  - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -272,6 +280,7 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

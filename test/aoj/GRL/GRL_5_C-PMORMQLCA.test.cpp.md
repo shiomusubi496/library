@@ -325,7 +325,7 @@ data:
     \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
     \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
     \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
-    \n\n#line 7 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
+    \n\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
     \ PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n    std::vector<T> v;\n \
     \   std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n\
     \    struct PairMin {\n        using value_type = std::pair<T, int>;\n       \
@@ -347,24 +347,23 @@ data:
     \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
     \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
     \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
-    \ 1, b) {\n                if (i * b + j >= n) break;\n                stv[i]\
-    \ = PairMin::op(stv[i], {v[i * b + j], i * b + j});\n            }\n        }\n\
-    \        st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n      \
-    \  assert(0 <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb\
-    \ = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb)\
-    \ return lb * b + lookup[ud[lb]][lp][rp];\n        else if (lb + 1 == rb) {\n\
-    \            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
+    \ i * b + 1, (i + 1) * b) {\n                if (j >= n) break;\n            \
+    \    stv[i] = PairMin::op(stv[i], {v[j], j});\n            }\n        }\n    \
+    \    st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n        assert(0\
+    \ <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb = r / b;\n\
+    \        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb) return lb\
+    \ * b + lookup[ud[lb]][lp][rp];\n        if (lb + 1 == rb) {\n            int\
+    \ x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
     \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
-    \        else {\n            int res = st.prod(lb + 1, rb).second;\n         \
-    \   {\n                int a = lb * b + lookup[ud[lb]][lp][b - 1];\n         \
-    \       if (v[a] < v[res]) res = a;\n            }\n            {\n          \
-    \      int a = rb * b + lookup[ud[rb]][0][rp];\n                if (v[a] < v[res])\
-    \ res = a;\n            }\n            return res;\n        }\n        return\
-    \ -1;\n    }\n    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n\
-    /**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
-    \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n\
-    \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
-    \ RMQ;\n  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
+    \        int res = st.prod(lb + 1, rb).second;\n        {\n            int a =\
+    \ lb * b + lookup[ud[lb]][lp][b - 1];\n            if (v[a] < v[res]) res = a;\n\
+    \        }\n        {\n            int a = rb * b + lookup[ud[rb]][0][rp];\n \
+    \           if (v[a] < v[res]) res = a;\n        }\n        return res;\n    }\n\
+    \    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n/**\n * @brief\
+    \ PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n */\n#line 6\
+    \ \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\n  protected:\n    int\
+    \ n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int> RMQ;\n\
+    \  public:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
     \ int>>& v_) { init(v_); }\n    void init(const std::vector<std::pair<int, int>>&\
     \ v_) {\n        v = v_;\n        n = v.size();\n        std::vector<int> rmqvec(n);\n\
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
@@ -397,7 +396,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-01-16 16:44:47+09:00'
+  timestamp: '2022-01-17 16:03:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

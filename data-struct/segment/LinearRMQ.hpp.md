@@ -13,37 +13,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LCARMQ.hpp
-    title: LCARMQ
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/PMORMQLCA.hpp
-    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-LCARMQ.test.cpp
-    title: test/yosupo/staticrmq-LCARMQ.test.cpp
+    path: test/yosupo/staticrmq-LinearRMQ.test.cpp
+    title: test/yosupo/staticrmq-LinearRMQ.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/PlusMinusOneRMQ.md
-    document_title: PlusMinusOneRMQ($\pm1$RMQ)
+    _deprecated_at_docs: docs/LinearRMQ.md
+    document_title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE\
+      $\\Theta(1)$\u306ERMQ)"
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"data-struct/segment/LinearRMQ.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -154,46 +146,46 @@ data:
     \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
     \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"\
-    other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
-    \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
-    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
-    \ constexpr T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ a > b ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\n\
-    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
-    \ = T;\n    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static\
-    \ constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign\
-    \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return b;\
-    \ }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max> struct AssignMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
-    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
-    \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
-    \ constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class T> struct\
-    \ AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
-    \ a * b; }\n    static constexpr T mul_op(T a, int b, T c) { return a * b; }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr T op(T a,\
-    \ T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
-    \    static constexpr T mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
+    \ 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(T a, T b) { return a + b; }\n    static constexpr\
+    \ T id() { return T{0}; }\n    static constexpr T inv(T a, T b) { return a - b;\
+    \ }\n    static constexpr T get_inv(T a) { return -a; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct Min {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return a > b ? b : a; }\n    static constexpr\
+    \ T id() { return max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct Max {\n    using value_type = T;\n    static constexpr T op(T a, T b)\
+    \ { return a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(T a, T b) { return b; }\n};\n\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n \
+    \   using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
+    \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
+    \ mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class T, T min_value =\
+    \ infinity<T>::min> struct AssignMax {\n    using M = Max<T, min_value>;\n   \
+    \ using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n  \
+    \  static constexpr T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T\
+    \ a, int b, T c) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n \
+    \   using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(T a,\
+    \ T b) { return a; }\n    static constexpr T mul(T a, int b) { return a * b; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return a * b; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n\
     \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
     \    static constexpr T mul(T a, int b) { return a; }\n    static constexpr T\
-    \ mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum\
-    \ {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(T\
-    \ a, T b) { return b + a; }\n    static constexpr T mul(T a, int b) { return a\
-    \ * b; }\n    static constexpr T mul_op(T a, int b, T c) { return c + a * b; }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
-    \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ mul_op(T a, int b, T c) { return c + a; }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static\
+    \ constexpr T mul(T a, int b) { return a; }\n    static constexpr T mul_op(T a,\
+    \ int b, T c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(T a, T b)\
+    \ { return b + a; }\n    static constexpr T mul(T a, int b) { return a * b; }\n\
+    \    static constexpr T mul_op(T a, int b, T c) { return c + a * b; }\n};\n\n\
+    template<class T, T max_value = infinity<T>::max> struct ChminMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T op(T a,\
+    \ T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c, a);\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax {\n\
+    \    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
     \ T op(T a, T b) { return std::min(b, a); }\n    static constexpr T mul(T a, int\
     \ b) { return a; }\n    static constexpr T mul_op(T a, int b, T c) { return std::min(c,\
     \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
@@ -231,122 +223,125 @@ data:
     \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
     \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
     \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
-    \n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class\
-    \ M> class SparseTable {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"\
-    data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class PlusMinusOneRMQ\
-    \ {\n  protected:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int>\
-    \ ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n    struct PairMin\
-    \ {\n        using value_type = std::pair<T, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<T>::value, -1};\n        }\n    };\n    SparseTable<PairMin> st;\n\
-    \  public:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const std::vector<T>&\
+    \n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line\
+    \ 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
+    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
+    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n#line 7 \"data-struct/segment/LinearRMQ.hpp\"\n\n\
+    template<class M> class LinearRMQ {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n, b, m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n\
+    \    SparseTable<M> st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int\
+    \ k, int l, int r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n    \
+    \    if (a == 0) return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n\
+    \        int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb\
+    \ * b;\n        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n\
+    \        if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb,\
+    \ lp, b - 1), y = rb * b + prod_in_backet(rb, 0, rp);\n            return M::op(v[x],\
+    \ v[y]);\n        }\n        T res = st.prod(lb + 1, rb);\n        {\n       \
+    \     int a = lb * b + prod_in_backet(lb, lp, b - 1);\n            res = M::op(v[a],\
+    \ res);\n        }\n        {\n            int a = rb * b + prod_in_backet(rb,\
+    \ 0, rp);\n            res = M::op(res, v[a]);\n        }\n        return res;\n\
+    \    }\n  public:\n    LinearRMQ() = default;\n    LinearRMQ(const std::vector<T>&\
     \ v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n        v = v_;\n\
     \        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n        m = (n + b\
-    \ - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b, b, -1);\n       \
-    \ rep (i, 1 << (b - 1)) {\n            T now = 0;\n            rep (j, b) {\n\
-    \                T nw = now, mn = nw, id = j;\n                lookup[i][j][j]\
-    \ = j;\n                rep (k, j, b - 1) {\n                    nw += ((i >>\
-    \ k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw)) lookup[i][j][k + 1]\
-    \ = id = k + 1;\n                    else lookup[i][j][k + 1] = id;\n        \
-    \        }\n                now += ((i >> j) & 1) ? 1 : -1;\n            }\n \
-    \       }\n        ud.resize(m);\n        rep (i, m) {\n            rep (j, b\
-    \ - 1) {\n                if (i * b + j + 1 >= n) break;\n                if (v[i\
-    \ * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n            }\n      \
-    \  }\n        std::vector<std::pair<T, int>> stv(m);\n        rep (i, m) {\n \
-    \           stv[i] = {v[i * b], i * b};\n            rep (j, i * b + 1, (i + 1)\
-    \ * b) {\n                if (j >= n) break;\n                stv[i] = PairMin::op(stv[i],\
-    \ {v[j], j});\n            }\n        }\n        st.init(stv);\n    }\n    int\
-    \ prod_idx(int l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n\
-    \        --r;\n        int lb = l / b, rb = r / b;\n        int lp = l - lb *\
-    \ b, rp = r - rb * b;\n        if (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];\n\
-    \        if (lb + 1 == rb) {\n            int x = lb * b + lookup[ud[lb]][lp][b\
-    \ - 1], y = rb * b + lookup[ud[rb]][0][rp];\n            if (v[x] < v[y]) return\
-    \ x;\n            else return y;\n        }\n        int res = st.prod(lb + 1,\
-    \ rb).second;\n        {\n            int a = lb * b + lookup[ud[lb]][lp][b -\
-    \ 1];\n            if (v[a] < v[res]) res = a;\n        }\n        {\n       \
-    \     int a = rb * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res])\
-    \ res = a;\n        }\n        return res;\n    }\n    T prod(int l, int r) const\
-    \ { return v[prod(l, r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n\
-    \ * @docs docs/PlusMinusOneRMQ.md\n */\n"
+    \ - 1) / b;\n        bt.assign(m, std::vector<int>(b, 0));\n        std::vector<int>\
+    \ sta; sta.reserve(b);\n        rep (i, m) {\n            rep (j, b) {\n     \
+    \           if (i * b + j >= n) break;\n                while (!sta.empty() &&\
+    \ M::op(v[i * b + sta.back()], v[i * b + j]) == v[i * b + j]) sta.pop_back();\n\
+    \                if (!sta.empty()) {\n                    int t = sta.back();\n\
+    \                    bt[i][j] = bt[i][t] | (1 << t);\n                }\n    \
+    \            sta.push_back(j);\n            }\n            sta.clear();\n    \
+    \    }\n        std::vector<T> stv(m);\n        rep (i, m) {\n            stv[i]\
+    \ = v[i * b];\n            rep (j, i * b + 1, (i + 1) * b) {\n               \
+    \ if (j >= n) break;\n                stv[i] = M::op(stv[i], v[j]);\n        \
+    \    }\n        }\n        st.init(stv);\n        lsbtable.resize(1 << b);\n \
+    \       rep (i, b) {\n            rep (j, 1 << i, 1 << b, 1 << (i + 1)) lsbtable[j]\
+    \ = i;\n        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief LinearRMQ(\u524D\u8A08\
+    \u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs docs/LinearRMQ.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"SparseTable.hpp\"\n\ntemplate<class T> class PlusMinusOneRMQ {\n\
-    \  protected:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int> ud;\n\
-    \    std::vector<std::vector<std::vector<int>>> lookup;\n    struct PairMin {\n\
-    \        using value_type = std::pair<T, int>;\n        static value_type op(const\
-    \ value_type& a, const value_type& b) {\n            return a.first < b.first\
-    \ ? a : b;\n        }\n        static value_type id() {\n            return {infinity<T>::value,\
-    \ -1};\n        }\n    };\n    SparseTable<PairMin> st;\n  public:\n    PlusMinusOneRMQ()\
-    \ = default;\n    PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }\n  \
-    \  void init(const std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n\
-    \        b = bitop::msb(n) / 2 + 1;\n        m = (n + b - 1) / b;\n        lookup\
-    \ = make_vec<int>(1 << (b - 1), b, b, -1);\n        rep (i, 1 << (b - 1)) {\n\
-    \            T now = 0;\n            rep (j, b) {\n                T nw = now,\
-    \ mn = nw, id = j;\n                lookup[i][j][j] = j;\n                rep\
-    \ (k, j, b - 1) {\n                    nw += ((i >> k) & 1) ? 1 : -1;\n      \
-    \              if (chmin(mn, nw)) lookup[i][j][k + 1] = id = k + 1;\n        \
-    \            else lookup[i][j][k + 1] = id;\n                }\n             \
-    \   now += ((i >> j) & 1) ? 1 : -1;\n            }\n        }\n        ud.resize(m);\n\
-    \        rep (i, m) {\n            rep (j, b - 1) {\n                if (i * b\
-    \ + j + 1 >= n) break;\n                if (v[i * b + j] + 1 == v[i * b + j +\
-    \ 1]) ud[i] |= (1 << j);\n            }\n        }\n        std::vector<std::pair<T,\
-    \ int>> stv(m);\n        rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n\
-    \            rep (j, i * b + 1, (i + 1) * b) {\n                if (j >= n) break;\n\
-    \                stv[i] = PairMin::op(stv[i], {v[j], j});\n            }\n   \
-    \     }\n        st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n\
-    \        assert(0 <= l && l < r && r <= n);\n        --r;\n        int lb = l\
-    \ / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n        if\
-    \ (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];\n        if (lb + 1 == rb)\
-    \ {\n            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
-    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
-    \        int res = st.prod(lb + 1, rb).second;\n        {\n            int a =\
-    \ lb * b + lookup[ud[lb]][lp][b - 1];\n            if (v[a] < v[res]) res = a;\n\
-    \        }\n        {\n            int a = rb * b + lookup[ud[rb]][0][rp];\n \
-    \           if (v[a] < v[res]) res = a;\n        }\n        return res;\n    }\n\
-    \    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n/**\n * @brief\
-    \ PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n */\n"
+    \n#include \"../../other/monoid.hpp\"\n#include \"SparseTable.hpp\"\n\ntemplate<class\
+    \ M> class LinearRMQ {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n, b, m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n\
+    \    SparseTable<M> st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int\
+    \ k, int l, int r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n    \
+    \    if (a == 0) return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n\
+    \        int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb\
+    \ * b;\n        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n\
+    \        if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb,\
+    \ lp, b - 1), y = rb * b + prod_in_backet(rb, 0, rp);\n            return M::op(v[x],\
+    \ v[y]);\n        }\n        T res = st.prod(lb + 1, rb);\n        {\n       \
+    \     int a = lb * b + prod_in_backet(lb, lp, b - 1);\n            res = M::op(v[a],\
+    \ res);\n        }\n        {\n            int a = rb * b + prod_in_backet(rb,\
+    \ 0, rp);\n            res = M::op(res, v[a]);\n        }\n        return res;\n\
+    \    }\n  public:\n    LinearRMQ() = default;\n    LinearRMQ(const std::vector<T>&\
+    \ v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n        v = v_;\n\
+    \        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n        m = (n + b\
+    \ - 1) / b;\n        bt.assign(m, std::vector<int>(b, 0));\n        std::vector<int>\
+    \ sta; sta.reserve(b);\n        rep (i, m) {\n            rep (j, b) {\n     \
+    \           if (i * b + j >= n) break;\n                while (!sta.empty() &&\
+    \ M::op(v[i * b + sta.back()], v[i * b + j]) == v[i * b + j]) sta.pop_back();\n\
+    \                if (!sta.empty()) {\n                    int t = sta.back();\n\
+    \                    bt[i][j] = bt[i][t] | (1 << t);\n                }\n    \
+    \            sta.push_back(j);\n            }\n            sta.clear();\n    \
+    \    }\n        std::vector<T> stv(m);\n        rep (i, m) {\n            stv[i]\
+    \ = v[i * b];\n            rep (j, i * b + 1, (i + 1) * b) {\n               \
+    \ if (j >= n) break;\n                stv[i] = M::op(stv[i], v[j]);\n        \
+    \    }\n        }\n        st.init(stv);\n        lsbtable.resize(1 << b);\n \
+    \       rep (i, b) {\n            rep (j, 1 << i, 1 << b, 1 << (i + 1)) lsbtable[j]\
+    \ = i;\n        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief LinearRMQ(\u524D\u8A08\
+    \u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs docs/LinearRMQ.md\n\
+    \ */"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
-  - data-struct/segment/SparseTable.hpp
   - other/monoid.hpp
+  - data-struct/segment/SparseTable.hpp
   isVerificationFile: false
-  path: data-struct/segment/PlusMinusOneRMQ.hpp
-  requiredBy:
-  - data-struct/segment/LCARMQ.hpp
-  - graph/tree/PMORMQLCA.hpp
+  path: data-struct/segment/LinearRMQ.hpp
+  requiredBy: []
   timestamp: '2022-01-17 16:03:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
-documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
+documentation_of: data-struct/segment/LinearRMQ.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/PlusMinusOneRMQ.hpp
-- /library/data-struct/segment/PlusMinusOneRMQ.hpp.html
-title: PlusMinusOneRMQ($\pm1$RMQ)
+- /library/data-struct/segment/LinearRMQ.hpp
+- /library/data-struct/segment/LinearRMQ.hpp.html
+title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
+  RMQ)"
 ---
 ## 概要
 
-隣り合う要素の差が 1 であるような数列に対して Range Minimum Query を行う。 Sparse Table や Segment Tree よりもオーダーが良い。
+bit 演算を活用して前計算 $\Theta(N)$ 各クエリ $\Theta(1)$ を実現した Range Minimum Query。 LCA に帰着させた RMQ よりも定数倍がいい。また、 Range Maximum Query にも対応している(はず)。
 
-- `PlusMinusOneRMQ(vector<T> v)` : リスト `v` で初期化する。 $\Theta(N)$ 。
-- `T prod(int l, int r)` : `min(v[l], v[l+1], ..., v[r-1])` を返す。 $\Theta(1)$ 。
+- `LinearRMQ(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
+- `T prod(int l, int r)` : `op(v[l], v[l+1], ..., v[r-1])` を返す。 $\Theta(1)$ 。
