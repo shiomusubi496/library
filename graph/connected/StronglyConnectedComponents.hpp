@@ -54,7 +54,7 @@ template<class T> class StronglyConnectedComponents {
         return res;
     }
     Graph<T> dag() const {
-        Graph<T> res(n);
+        Graph<T> res(sz);
         rep (i, n) {
             for (const auto& e : G[i]) {
                 if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);

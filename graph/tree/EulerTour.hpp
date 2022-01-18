@@ -19,7 +19,8 @@ namespace Monoid {
 template<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>
 class EulerTour {
   protected:
-    int n, root, cnt;
+    int n, cnt;
+    std::vector<int> root;
     const Graph<T>& G;
     std::vector<int> dep;
     std::vector<std::pair<int, int>> idx;
@@ -38,15 +39,24 @@ class EulerTour {
     }
     void init() {
         n = G.size();
-        dep.resize(n); dep[root] = 0;
-        idx.resize(n); rmqvec.reserve(n << 1);
+        dep.assign(n, 0);
+        idx.assign(n, {-1, -1});
+        rmqvec.reserve(n << 1);
         cnt = 0;
-        dfs(root, -1);
-        rmqvec.emplace_back(-1, -1);
+        for (const int& r : root) {
+            dfs(r, -1);
+            rmqvec.emplace_back(-1, -1);
+        }
+        rep (i, n) {
+            if (idx[i].first != -1) continue;
+            dfs(i, -1);
+            rmqvec.emplace_back(-1, -1);
+        }
         RMQ.init(rmqvec);
     }
   public:
-    EulerTour(const Graph<T>& G, int root = 0) : root(root), G(G) { init(); }
+    EulerTour(const Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }
+    EulerTour(const Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }
     const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }
     std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }
     int lca(int u, int v) const {
