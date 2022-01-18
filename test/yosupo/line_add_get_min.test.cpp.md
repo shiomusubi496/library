@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -127,41 +127,41 @@ data:
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
     \    }\n};\n#line 2 \"data-struct/cht/ConvexHullTrick.hpp\"\n\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\ntemplate<class T = ll> class ConvexHullTrick {\n  protected:\n    struct Line\
-    \ {\n        T a, b;\n        bool is_query;\n        mutable const Line* nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        Line() = default;\n \
-    \       Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), nxt(nullptr)\
-    \ {}\n        friend bool operator<(const Line& lhs, const Line& rhs) {\n    \
-    \        assert(!lhs.is_query || !rhs.is_query);\n            if (lhs.is_query)\
-    \ {\n                if (rhs.nxt == nullptr) return true;\n                return\
-    \ rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n            if (rhs.is_query)\
-    \ {\n                if (lhs.nxt == nullptr) return false;\n                return\
-    \ lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n            }\n            return lhs.a\
-    \ == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n    };\n    std::set<Line>\
-    \ st;\n    bool is_necessary(const typename std::set<Line>::iterator& itr) {\n\
-    \        if (itr == st.begin() || itr == prev(st.end())) return true;\n      \
-    \  if (itr->a == prev(itr)->a) return itr->b < prev(itr)->b;\n        if (itr->a\
-    \ == next(itr)->a) return itr->b < next(itr)->b;\n        return (__int128_t)(itr->b\
-    \ - prev(itr)->b) * (next(itr)->a - itr->a)\n            <  (__int128_t)(itr->b\
-    \ - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n    ConvexHullTrick()\
-    \ = default;\n    void add_line(T a, T b) {\n        typename std::set<Line>::iterator\
-    \ itr = st.insert(Line(a, b)).first;\n        if (!is_necessary(itr)) {\n    \
-    \        st.erase(itr);\n            return;\n        }\n        while (itr !=\
-    \ st.begin()     && !is_necessary(prev(itr))) st.erase(prev(itr));\n        while\
-    \ (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n \
-    \       if (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
-    \ itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n    }\n    Line get_min_line(T\
-    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return\
-    \ *itr;\n    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
-    \ 0, true});\n        return itr->get(x);\n    }\n    bool empty() const {\n \
-    \       return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
-    \ docs/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/line_add_get_min.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll>\
-    \ CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n        CHT.add_line(a,\
-    \ b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
-    \            ll a, b; cin >> a >> b;\n            CHT.add_line(a, b);\n      \
-    \  }\n        else {\n            ll p; cin >> p;\n            cout << CHT.get_min(p)\
-    \ << endl;\n        }\n    }\n}\n"
+    \n\ntemplate<class T = ll, bool is_max = false> class ConvexHullTrick {\n  protected:\n\
+    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
+    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
+    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
+    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
+    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
+    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
+    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
+    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
+    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
+    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
+    \        }\n    };\n    std::set<Line> st;\n    bool is_necessary(const typename\
+    \ std::set<Line>::iterator& itr) {\n        if (itr == st.begin() || itr == prev(st.end()))\
+    \ return true;\n        if (itr->a == prev(itr)->a) return itr->b < prev(itr)->b;\n\
+    \        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;\n        return\
+    \ (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n            <\
+    \  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n\
+    \    ConvexHullTrick() = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR\
+    \ (is_max) a = -a, b = -b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
+    \ b}).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
+    \            return;\n        }\n        while (itr != st.begin()     && !is_necessary(prev(itr)))\
+    \ st.erase(prev(itr));\n        while (itr != prev(st.end()) && !is_necessary(next(itr)))\
+    \ st.erase(next(itr));\n        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n\
+    \        if (itr != prev(st.end())) itr->nxt = &*next(itr);\n    }\n    T get_min(T\
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        T\
+    \ res = itr->get(x);\n        if IF_CONSTEXPR (is_max) res = -res;\n        return\
+    \ res;\n    }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\
+    \n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n#line\
+    \ 4 \"test/yosupo/line_add_get_min.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll> CHT;\n    rep (N) {\n\
+    \        ll a, b; cin >> a >> b;\n        CHT.add_line(a, b);\n    }\n    rep\
+    \ (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            ll a, b;\
+    \ cin >> a >> b;\n            CHT.add_line(a, b);\n        }\n        else {\n\
+    \            ll p; cin >> p;\n            cout << CHT.get_min(p) << endl;\n  \
+    \      }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/cht/ConvexHullTrick.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll>\
@@ -176,8 +176,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-18 13:55:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.test.cpp
 layout: document

@@ -12,7 +12,7 @@ data:
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/cartesian_tree.test.cpp
     title: test/yosupo/cartesian_tree.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/CartesianTree.md
     document_title: CartesianTree
@@ -210,7 +210,7 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-01-18 13:23:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/cartesian_tree.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
