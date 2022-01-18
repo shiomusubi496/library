@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -30,13 +30,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -106,18 +106,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -283,28 +283,27 @@ data:
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype((void)M::id)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
-    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
-    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
-    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
-    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
-    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
-    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
-    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
-    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
-    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
-    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
-    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
-    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
-    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
-    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
-    \n} // namespace Monoid\n"
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul : public\
+    \ std::false_type {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
+    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
+    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
+    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
+    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
+    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
+    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
+    \ {};\n\n} // namespace Monoid\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
     \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
     \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
@@ -360,28 +359,27 @@ data:
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype((void)M::id)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
-    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
-    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
-    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
-    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
-    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
-    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
-    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
-    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
-    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
-    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
-    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
-    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
-    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
-    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
-    \n} // namespace Monoid\n"
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul : public\
+    \ std::false_type {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
+    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
+    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
+    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
+    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
+    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
+    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
+    \ {};\n\n} // namespace Monoid\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -399,8 +397,8 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-01-18 13:23:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-18 18:38:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp

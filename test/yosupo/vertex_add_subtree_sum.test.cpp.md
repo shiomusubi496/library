@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -197,28 +197,27 @@ data:
     \ AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T = typename\
     \ E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M> class has_id<M, decltype(M::id, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_id<M, decltype((void)M::id)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_inv<M, decltype(M::inv, void())> : public std::true_type\
+    \ {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M> class has_get_inv<M, decltype(M::get_inv, void())> :\
-    \ public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
-    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype(A::mul,\
-    \ void())> : public std::true_type {};\n\ntemplate<class A, class = void> class\
-    \ has_mul_op : public std::false_type {};\ntemplate<class A> class has_mul_op<A,\
-    \ decltype(A::mul_op, void())> : public std::true_type {};\n\n\ntemplate<class\
-    \ T, class = void> class is_semigroup : public std::false_type {};;\ntemplate<class\
-    \ T> class is_semigroup<T, decltype(std::declval<typename T::value_type>(), T::op,\
-    \ void())> : public std::true_type {};\n\ntemplate<class T, class = void> class\
-    \ is_monoid : public std::false_type {};;\ntemplate<class T> class is_monoid<T,\
-    \ decltype(std::declval<typename T::value_type>(), T::op, T::id, void())> : public\
-    \ std::true_type {};\n\ntemplate<class T, class = void> class is_group : public\
-    \ std::false_type {};;\ntemplate<class T> class is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), T::op, T::id, T::get_inv, void())> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_action : public std::true_type\
-    \ {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename T::M>(),\
-    \ std::declval<typename T::E>(), T::op, void())> : public std::false_type {};\n\
-    \n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \ {};\ntemplate<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul : public\
+    \ std::false_type {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
+    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
+    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
+    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
+    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
+    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
+    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
     \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
     \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
     \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
@@ -377,8 +376,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-01-18 18:38:20+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum.test.cpp
 layout: document
