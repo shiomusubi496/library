@@ -2,11 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/EulerTourSubtree.hpp
+    title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
+      \u6728\u30AF\u30A8\u30EA)"
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -20,20 +24,20 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B
-  bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_B-RSQ.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
+  bundledCode: "#line 1 \"test/yosupo/vertex_add_subtree_sum-2.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -132,35 +136,22 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
-    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
-    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
-    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Sum {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ a + b; }\n    static constexpr T id() { return T{0}; }\n    static constexpr\
-    \ T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T a) { return\
-    \ -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n\
-    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a > b\
-    \ ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
-    \    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static constexpr\
-    \ T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using\
-    \ value_type = T;\n    static constexpr T op(T a, T b) { return b; }\n};\n\n\n\
-    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(T\
-    \ a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return a; }\n\
-    \    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
+    \    }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
+    other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
+    \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(T a, T\
+    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
+    \ constexpr T inv(T a, T b) { return a - b; }\n    static constexpr T get_inv(T\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ a > b ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\n\
+    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
+    \ = T;\n    static constexpr T op(T a, T b) { return a < b ? b : a;}\n    static\
+    \ constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct Assign\
+    \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return b;\
+    \ }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max> struct AssignMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(T a, T b) { return a; }\n    static constexpr T mul(T a, int b) { return\
+    \ a; }\n    static constexpr T mul_op(T a, int b, T c) { return a; }\n};\n\ntemplate<class\
     \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
     \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(T a, T b) {\
     \ return a; }\n    static constexpr T mul(T a, int b) { return a; }\n    static\
@@ -221,72 +212,122 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
-    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
-    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
-    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
-    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
-    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
-    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
-    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
-    \            while (l < n) {\n                    l <<= 1;\n                 \
-    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
-    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
-    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
-    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
-    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
-    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
-    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
-    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-RSQ.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, q; cin >> n >> q;\n    RangeSumQuery<int> RSQ(n);\n   \
-    \ rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0) RSQ.apply(a\
-    \ - 1, b);\n        else cout << RSQ.prod(a - 1, b) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeSumQuery<int>\
-    \ RSQ(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
-    \ (t == 0) RSQ.apply(a - 1, b);\n        else cout << RSQ.prod(a - 1, b) << endl;\n\
-    \    }\n}\n"
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
+    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
+    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
+    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
+    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
+    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
+    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
+    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
+    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
+    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
+    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
+    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
+    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
+    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
+    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
+    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
+    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
+    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
+    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
+    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
+    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
+    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
+    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
+    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
+    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
+    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
+    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
+    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
+    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
+    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
+    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
+    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
+    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\
+    \n\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
+    \ {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
+    \ G;\n    std::vector<std::pair<int, int>> idx;\n    void dfs(int v, int p) {\n\
+    \        idx[v].first = cnt++;\n        for (const edge<T>& e : G[v]) {\n    \
+    \        if (e.to != p) dfs(e.to, v);\n        }\n        idx[v].second = cnt;\n\
+    \    }\n    void init() {\n        n = G.size();\n        idx.assign(n, {-1, -1});\n\
+    \        cnt = 0;\n        for (const int& r : root) dfs(r, -1);\n        rep\
+    \ (i, n) {\n            if (idx[i].first == -1) dfs(i, -1);\n        }\n    }\n\
+    \  public:\n    EulerTourSubtree(const Graph<T>& G, int root = 0) : root({root}),\
+    \ G(G) { init(); }\n    EulerTourSubtree(const Graph<T>& G, const std::vector<int>&\
+    \ root) : root(root), G(G) { init(); }\n    const std::pair<int, int>& get_idx(int\
+    \ k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int k) && { return\
+    \ std::move(idx[k]); }\n    template<class F> void each_vertex_subtree(int v,\
+    \ const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
+    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
+    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
+    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
+    \ docs/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/vertex_add_subtree_sum-2.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
+    \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
+    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
+    \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
+    \        auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n     \
+    \   }\n        else {\n            int u; cin >> u;\n            ll ans = 0;\n\
+    \            ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r);\
+    \ });\n            cout << ans << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/tree/EulerTourSubtree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
+    \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
+    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
+    \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
+    \        auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n     \
+    \   }\n        else {\n            int u; cin >> u;\n            ll ans = 0;\n\
+    \            ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r);\
+    \ });\n            cout << ans << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - other/bitop.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   - other/monoid.hpp
+  - graph/Graph.hpp
+  - graph/tree/EulerTourSubtree.hpp
   isVerificationFile: true
-  path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 18:38:20+09:00'
+  timestamp: '2022-01-18 19:09:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-- /verify/test/aoj/DSL/DSL_2_B-RSQ.test.cpp.html
-title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum-2.test.cpp
+- /verify/test/yosupo/vertex_add_subtree_sum-2.test.cpp.html
+title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
 ---

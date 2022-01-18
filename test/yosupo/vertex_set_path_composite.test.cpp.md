@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -431,18 +431,22 @@ data:
     \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
     \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
     \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
-    \ int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int v, int p) {\n        idx[v].first\
-    \ = cnt++;\n        rmqvec.emplace_back(dep[v], v);\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            dep[e.to] = dep[v]\
-    \ + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v], v);\n\
-    \        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n       \
-    \ n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
-    \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(-1,\
-    \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
-    \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
+    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
+    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
+    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
+    \       n = G.size();\n        dep.assign(n, 0);\n        idx.assign(n, {-1, -1});\n\
+    \        rmqvec.reserve(n << 1);\n        cnt = 0;\n        for (const int& r\
+    \ : root) {\n            dfs(r, -1);\n            rmqvec.emplace_back(-1, -1);\n\
+    \        }\n        rep (i, n) {\n            if (idx[i].first != -1) continue;\n\
+    \            dfs(i, -1);\n            rmqvec.emplace_back(-1, -1);\n        }\n\
+    \        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>& G,\
+    \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
     \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
@@ -528,8 +532,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 18:38:20+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-01-18 19:09:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document

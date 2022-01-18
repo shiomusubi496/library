@@ -10,19 +10,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/cycle_detection.test.cpp
-    title: test/yosupo/cycle_detection.test.cpp
+    path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/GraphCycle.md
-    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+    _deprecated_at_docs: docs/EulerTourSubtree.md
+    document_title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
+      \u5206\u6728\u30AF\u30A8\u30EA)"
     links: []
-  bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"graph/tree/EulerTourSubtree.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -167,62 +165,66 @@ data:
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/GraphCycle.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\n  protected:\n    const Graph<T>& G;\n\
-    \    std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n\
-    \            int d = dfs(e.to, v);\n            if (d != -1) {\n             \
-    \   if (d == -2) return -2;\n                cycle.push_back(e);\n           \
-    \     if (d == v) return -2;\n                return d;\n            }\n     \
-    \   }\n        seen[v] = false;\n        return -1;\n    }\n    void init() {\n\
-    \        const int N = G.size();\n        visited.assign(N, false);\n        seen.assign(N,\
-    \ false);\n        rep (i, N) {\n            if (dfs(i, -1) == -2) {\n       \
-    \         std::reverse(all(cycle));\n                break;\n            }\n \
-    \       }\n    }\n  public:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
-    \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
-    \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/GraphCycle.md\n\
-    \ */\n"
+    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\
+    \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
+    \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
+    \      for (const edge<T>& e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n\
+    \        }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n\
+    \ = G.size();\n        idx.assign(n, {-1, -1});\n        cnt = 0;\n        for\
+    \ (const int& r : root) dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first\
+    \ == -1) dfs(i, -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const\
+    \ Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const\
+    \ Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }\n\
+    \    const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }\n   \
+    \ std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n    template<class\
+    \ F> void each_vertex_subtree(int v, const F& f) const {\n        f(idx[v].first,\
+    \ idx[v].second);\n    }\n    template<class F> void each_edge_subtree(int v,\
+    \ const F& f) const {\n        f(idx[v].first + 1, idx[v].second);\n    }\n};\n\
+    \n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
+    \u5206\u6728\u30AF\u30A8\u30EA)\n * @docs docs/EulerTourSubtree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\n  protected:\n    const Graph<T>& G;\n\
-    \    std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        for (const edge<T>& e : G[v]) {\n\
-    \            int d = dfs(e.to, v);\n            if (d != -1) {\n             \
-    \   if (d == -2) return -2;\n                cycle.push_back(e);\n           \
-    \     if (d == v) return -2;\n                return d;\n            }\n     \
-    \   }\n        seen[v] = false;\n        return -1;\n    }\n    void init() {\n\
-    \        const int N = G.size();\n        visited.assign(N, false);\n        seen.assign(N,\
-    \ false);\n        rep (i, N) {\n            if (dfs(i, -1) == -2) {\n       \
-    \         std::reverse(all(cycle));\n                break;\n            }\n \
-    \       }\n    }\n  public:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
-    \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
-    \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/GraphCycle.md\n\
-    \ */\n"
+    \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
+    \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
+    \      for (const edge<T>& e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n\
+    \        }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n\
+    \ = G.size();\n        idx.assign(n, {-1, -1});\n        cnt = 0;\n        for\
+    \ (const int& r : root) dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first\
+    \ == -1) dfs(i, -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const\
+    \ Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const\
+    \ Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }\n\
+    \    const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }\n   \
+    \ std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n    template<class\
+    \ F> void each_vertex_subtree(int v, const F& f) const {\n        f(idx[v].first,\
+    \ idx[v].second);\n    }\n    template<class F> void each_edge_subtree(int v,\
+    \ const F& f) const {\n        f(idx[v].first + 1, idx[v].second);\n    }\n};\n\
+    \n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
+    \u5206\u6728\u30AF\u30A8\u30EA)\n * @docs docs/EulerTourSubtree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/other/GraphCycle.hpp
+  path: graph/tree/EulerTourSubtree.hpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
+  timestamp: '2022-01-18 19:09:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/yosupo/cycle_detection.test.cpp
-documentation_of: graph/other/GraphCycle.hpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+documentation_of: graph/tree/EulerTourSubtree.hpp
 layout: document
 redirect_from:
-- /library/graph/other/GraphCycle.hpp
-- /library/graph/other/GraphCycle.hpp.html
-title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+- /library/graph/tree/EulerTourSubtree.hpp
+- /library/graph/tree/EulerTourSubtree.hpp.html
+title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\
+  \u30AF\u30A8\u30EA)"
 ---
 ## 概要
 
-有向グラフに対して閉路を検出する。
+`EulerTour` の機能を減らしたもの。部分木クエリのみ扱うことで、空間計算量を削減する。
 
-- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
-- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(|p|)$ 。
+- `EulerTourSubtree(Graph<T> G, int r = 0)` : 木 `G` に対して、頂点 `r` を根としてオイラーツアーを作成する。 $\Theta(N)$ 。
+- `EulerTour(Graph<T> G, vector<int> r)` : 森 `G` に対して、頂点列 `r` の頂点を根としてオイラーツアーを作成する。 $\Theta(N)$ 。
+- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
+- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
+- `void each_edge_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の辺。

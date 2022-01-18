@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -36,18 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/EulerTour.md
     document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -311,18 +311,22 @@ data:
     \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
     \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
     \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
-    \ int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int v, int p) {\n        idx[v].first\
-    \ = cnt++;\n        rmqvec.emplace_back(dep[v], v);\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            dep[e.to] = dep[v]\
-    \ + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v], v);\n\
-    \        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n       \
-    \ n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
-    \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(-1,\
-    \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
-    \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
+    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
+    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
+    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
+    \       n = G.size();\n        dep.assign(n, 0);\n        idx.assign(n, {-1, -1});\n\
+    \        rmqvec.reserve(n << 1);\n        cnt = 0;\n        for (const int& r\
+    \ : root) {\n            dfs(r, -1);\n            rmqvec.emplace_back(-1, -1);\n\
+    \        }\n        rep (i, n) {\n            if (idx[i].first != -1) continue;\n\
+    \            dfs(i, -1);\n            rmqvec.emplace_back(-1, -1);\n        }\n\
+    \        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>& G,\
+    \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
     \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
@@ -346,18 +350,22 @@ data:
     \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
     \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
     \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, root, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::pair<int, int>> idx;\n    std::vector<std::pair<int,\
-    \ int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int v, int p) {\n        idx[v].first\
-    \ = cnt++;\n        rmqvec.emplace_back(dep[v], v);\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            dep[e.to] = dep[v]\
-    \ + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v], v);\n\
-    \        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n       \
-    \ n = G.size();\n        dep.resize(n); dep[root] = 0;\n        idx.resize(n);\
-    \ rmqvec.reserve(n << 1);\n        cnt = 0;\n        dfs(root, -1);\n        rmqvec.emplace_back(-1,\
-    \ -1);\n        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>&\
-    \ G, int root = 0) : root(root), G(G) { init(); }\n    const std::pair<int, int>&\
-    \ get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
+    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
+    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
+    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
+    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
+    \       n = G.size();\n        dep.assign(n, 0);\n        idx.assign(n, {-1, -1});\n\
+    \        rmqvec.reserve(n << 1);\n        cnt = 0;\n        for (const int& r\
+    \ : root) {\n            dfs(r, -1);\n            rmqvec.emplace_back(-1, -1);\n\
+    \        }\n        rep (i, n) {\n            if (idx[i].first != -1) continue;\n\
+    \            dfs(i, -1);\n            rmqvec.emplace_back(-1, -1);\n        }\n\
+    \        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>& G,\
+    \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
     \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
     \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
@@ -385,8 +393,8 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-01-18 18:38:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-01-18 19:09:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
@@ -406,7 +414,10 @@ title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
 
 木を dfs 順に並べて列にする。 SegmentTree など列に対するデータ構造を使うことで様々なクエリを扱える。テンプレートに Static Range Minimum Query を扱える構造 StaticRMQ(デフォルトは SparseTable)をとる。
 
+森にも対応している。
+
 - `EulerTour(Graph<T> G, int r = 0)` : 木 `G` に対して、頂点 `r` を根としてオイラーツアーを作成する。 StaticRMQ::init が $\Theta(f(N))$ で動くとき、 $\Theta(N + f(N))$ 。
+- `EulerTour(Graph<T> G, vector<int> r)` : 森 `G` に対して、頂点列 `r` の頂点を根としてオイラーツアーを作成する。 `r` に同じ連結成分に属する頂点がある場合は未定義。 StaticRMQ::init が $\Theta(f(N))$ で動くとき、 $\Theta(N + f(N))$ 。
 - `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
 - `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
 - `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
