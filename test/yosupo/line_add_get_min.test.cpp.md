@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -145,23 +145,23 @@ data:
     \ (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n            <\
     \  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n\
     \    ConvexHullTrick() = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR\
-    \ (is_max) a = -a, b = -b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
-    \ b}).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
-    \            return;\n        }\n        while (itr != st.begin()     && !is_necessary(prev(itr)))\
-    \ st.erase(prev(itr));\n        while (itr != prev(st.end()) && !is_necessary(next(itr)))\
-    \ st.erase(next(itr));\n        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n\
-    \        if (itr != prev(st.end())) itr->nxt = &*next(itr);\n    }\n    T get_min(T\
-    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        T\
-    \ res = itr->get(x);\n        if IF_CONSTEXPR (is_max) res = -res;\n        return\
-    \ res;\n    }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n#line\
-    \ 4 \"test/yosupo/line_add_get_min.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll> CHT;\n    rep (N) {\n\
-    \        ll a, b; cin >> a >> b;\n        CHT.add_line(a, b);\n    }\n    rep\
-    \ (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            ll a, b;\
-    \ cin >> a >> b;\n            CHT.add_line(a, b);\n        }\n        else {\n\
-    \            ll p; cin >> p;\n            cout << CHT.get_min(p) << endl;\n  \
-    \      }\n    }\n}\n"
+    \ (is_max) a = - a, b = - b;\n        typename std::set<Line>::iterator itr =\
+    \ st.insert(Line{a, b}).first;\n        if (!is_necessary(itr)) {\n          \
+    \  st.erase(itr);\n            return;\n        }\n        while (itr != st.begin()\
+    \     && !is_necessary(prev(itr))) st.erase(prev(itr));\n        while (itr !=\
+    \ prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n        if\
+    \ (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
+    \ itr->nxt = &*next(itr);\n    }\n    T get_min(T x) const {\n        auto itr\
+    \ = st.lower_bound(Line{x, 0, true});\n        if IF_CONSTEXPR (is_max) return\
+    \ - itr->get(x);\n        return itr->get(x);\n    }\n    bool empty() const {\n\
+    \        return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
+    \ docs/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/line_add_get_min.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll>\
+    \ CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n        CHT.add_line(a,\
+    \ b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            ll a, b; cin >> a >> b;\n            CHT.add_line(a, b);\n      \
+    \  }\n        else {\n            ll p; cin >> p;\n            cout << CHT.get_min(p)\
+    \ << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/cht/ConvexHullTrick.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll>\
@@ -176,7 +176,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 13:55:45+09:00'
+  timestamp: '2022-01-18 15:50:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.test.cpp

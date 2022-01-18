@@ -2,25 +2,21 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+    path: test/aoj/other/2725-CHT.test.cpp
+    title: test/aoj/other/2725-CHT.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/StronglyConnectedComponents.md
-    document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
-      \u89E3)"
+    _deprecated_at_docs: docs/ConvexHullTrickAddMonotone.md
+    document_title: ConvexHullTrickAddMonotone
     links: []
-  bundledCode: "#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\n\n#line\
+  bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\n#line\
     \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
@@ -128,116 +124,119 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\
-    \n\ntemplate<class T> class StronglyConnectedComponents {\n  protected:\n    int\
-    \ n, sz, cnt;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ ord, low;\n    std::vector<int> st;\n    std::vector<int> cmp;\n    void dfs(int\
-    \ v) {\n        low[v] = ord[v] = cnt++;\n        st.push_back(v);\n        for\
-    \ (const edge<T>& e : G[v]) {\n            if (ord[e.to] != -1) chmin(low[v],\
-    \ ord[e.to]);\n            else {\n                dfs(e.to);\n              \
-    \  chmin(low[v], low[e.to]);\n            }\n        }\n        if (low[v] ==\
-    \ ord[v]) {\n            while (1) {\n                int u = st.back(); st.pop_back();\n\
-    \                cmp[u] = sz;\n                ord[u] = n;\n                if\
-    \ (u == v) break;\n            }\n            sz++;\n        }\n    }\n    void\
-    \ init() {\n        n = G.size();\n        sz = 0;\n        cnt = 0;\n       \
-    \ ord.assign(n, -1); low.assign(n, -1);\n        cmp.assign(n, -1);\n        st.reserve(n);\n\
-    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i);\n        }\n    \
-    \    for (int& i : cmp) i = sz - i - 1;\n    }\n  public:\n    StronglyConnectedComponents(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
-    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
-    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
-    \ const {\n        Graph<T> res(n);\n        rep (i, n) {\n            for (const\
-    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
-    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
-    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
-    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class StronglyConnectedComponents {\n  protected:\n    int\
-    \ n, sz, cnt;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int>\
-    \ ord, low;\n    std::vector<int> st;\n    std::vector<int> cmp;\n    void dfs(int\
-    \ v) {\n        low[v] = ord[v] = cnt++;\n        st.push_back(v);\n        for\
-    \ (const edge<T>& e : G[v]) {\n            if (ord[e.to] != -1) chmin(low[v],\
-    \ ord[e.to]);\n            else {\n                dfs(e.to);\n              \
-    \  chmin(low[v], low[e.to]);\n            }\n        }\n        if (low[v] ==\
-    \ ord[v]) {\n            while (1) {\n                int u = st.back(); st.pop_back();\n\
-    \                cmp[u] = sz;\n                ord[u] = n;\n                if\
-    \ (u == v) break;\n            }\n            sz++;\n        }\n    }\n    void\
-    \ init() {\n        n = G.size();\n        sz = 0;\n        cnt = 0;\n       \
-    \ ord.assign(n, -1); low.assign(n, -1);\n        cmp.assign(n, -1);\n        st.reserve(n);\n\
-    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i);\n        }\n    \
-    \    for (int& i : cmp) i = sz - i - 1;\n    }\n  public:\n    StronglyConnectedComponents(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
-    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
-    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
-    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
-    \ const {\n        Graph<T> res(n);\n        rep (i, n) {\n            for (const\
-    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
-    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
-    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
-    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n"
+    \    }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
+    \ T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {\n  protected:\n\
+    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
+    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
+    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
+    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
+    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
+    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
+    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
+    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
+    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
+    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
+    \        }\n    };\n    std::deque<Line> que;\n    bool is_necessary(const typename\
+    \ std::deque<Line>::iterator& itr) {\n        if (itr == que.begin() || itr ==\
+    \ prev(que.end())) return true;\n        if (itr->a == prev(itr)->a) return itr->b\
+    \ < prev(itr)->b;\n        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;\n\
+    \        return (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n\
+    \            <  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
+    \    }\n  public:\n    ConvexHullTrickAddMonotone() = default;\n    void add_line(T\
+    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        typename\
+    \ std::deque<Line>::iterator itr;\n        if (que.empty() || que.back().a <=\
+    \ a) {\n            que.push_back(Line{a, b});\n            itr = prev(que.end());\n\
+    \        }\n        else {\n            assert(a <= que.front().a);\n        \
+    \    que.push_front(Line{a, b});\n            itr = que.begin();\n        }\n\
+    \        if (!is_necessary(itr)) {\n            que.erase(itr);\n            return;\n\
+    \        }\n        while (itr != que.begin() && !is_necessary(prev(itr))) {\n\
+    \            que.pop_back(); que.pop_back();\n            que.push_back(Line{a,\
+    \ b});\n            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
+    \ && !is_necessary(next(itr))) {\n            que.pop_front(); que.pop_front();\n\
+    \            que.push_front(Line{a, b});\n            itr = que.begin();\n   \
+    \     }\n        if (itr != que.begin()) prev(itr)->nxt = &*itr;\n        if (itr\
+    \ != prev(que.end())) itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n\
+    \    }\n    T get_min(T x) const {\n        auto itr = lower_bound(que.begin(),\
+    \ que.end(), Line{x, 0, true});\n        if IF_CONSTEXPR (is_max) return - itr->get(x);\n\
+    \        return itr->get(x);\n    }\n    T inc_get_min(T x) {\n        while (que.size()\
+    \ > 1 && que.begin()->get(x) > next(que.begin())->get(x)) que.pop_front();\n \
+    \       if IF_CONSTEXPR (is_max) return - que.front().get(x);\n        return\
+    \ que.front().get(x);\n    }\n    T dec_get_min(T x) {\n        while (que.size()\
+    \ > 1 && prev(que.end())->get(x) > prev(que.end(), 2)->get(x)) que.pop_back();\n\
+    \        if IF_CONSTEXPR (is_max) return - que.back().get(x);\n        return\
+    \ que.back().get(x);\n    }\n    bool empty() const {\n        return que.empty();\n\
+    \    }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n * @docs docs/ConvexHullTrickAddMonotone.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
+    \ = ll, bool is_max = false> class ConvexHullTrickAddMonotone {\n  protected:\n\
+    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
+    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
+    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
+    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
+    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
+    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
+    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
+    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
+    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
+    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
+    \        }\n    };\n    std::deque<Line> que;\n    bool is_necessary(const typename\
+    \ std::deque<Line>::iterator& itr) {\n        if (itr == que.begin() || itr ==\
+    \ prev(que.end())) return true;\n        if (itr->a == prev(itr)->a) return itr->b\
+    \ < prev(itr)->b;\n        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;\n\
+    \        return (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n\
+    \            <  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
+    \    }\n  public:\n    ConvexHullTrickAddMonotone() = default;\n    void add_line(T\
+    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        typename\
+    \ std::deque<Line>::iterator itr;\n        if (que.empty() || que.back().a <=\
+    \ a) {\n            que.push_back(Line{a, b});\n            itr = prev(que.end());\n\
+    \        }\n        else {\n            assert(a <= que.front().a);\n        \
+    \    que.push_front(Line{a, b});\n            itr = que.begin();\n        }\n\
+    \        if (!is_necessary(itr)) {\n            que.erase(itr);\n            return;\n\
+    \        }\n        while (itr != que.begin() && !is_necessary(prev(itr))) {\n\
+    \            que.pop_back(); que.pop_back();\n            que.push_back(Line{a,\
+    \ b});\n            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
+    \ && !is_necessary(next(itr))) {\n            que.pop_front(); que.pop_front();\n\
+    \            que.push_front(Line{a, b});\n            itr = que.begin();\n   \
+    \     }\n        if (itr != que.begin()) prev(itr)->nxt = &*itr;\n        if (itr\
+    \ != prev(que.end())) itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n\
+    \    }\n    T get_min(T x) const {\n        auto itr = lower_bound(que.begin(),\
+    \ que.end(), Line{x, 0, true});\n        if IF_CONSTEXPR (is_max) return - itr->get(x);\n\
+    \        return itr->get(x);\n    }\n    T inc_get_min(T x) {\n        while (que.size()\
+    \ > 1 && que.begin()->get(x) > next(que.begin())->get(x)) que.pop_front();\n \
+    \       if IF_CONSTEXPR (is_max) return - que.front().get(x);\n        return\
+    \ que.front().get(x);\n    }\n    T dec_get_min(T x) {\n        while (que.size()\
+    \ > 1 && prev(que.end())->get(x) > prev(que.end(), 2)->get(x)) que.pop_back();\n\
+    \        if IF_CONSTEXPR (is_max) return - que.back().get(x);\n        return\
+    \ que.back().get(x);\n    }\n    bool empty() const {\n        return que.empty();\n\
+    \    }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n * @docs docs/ConvexHullTrickAddMonotone.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
-  - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/connected/StronglyConnectedComponents.hpp
+  path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
+  timestamp: '2022-01-18 15:50:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-documentation_of: graph/connected/StronglyConnectedComponents.hpp
+  - test/aoj/other/2725-CHT.test.cpp
+documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp
 layout: document
 redirect_from:
-- /library/graph/connected/StronglyConnectedComponents.hpp
-- /library/graph/connected/StronglyConnectedComponents.hpp.html
-title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3)"
+- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp
+- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp.html
+title: ConvexHullTrickAddMonotone
 ---
 ## 概要
 
-グラフの強連結成分分解をする。有向グラフで使われることを想定している。
+Convex Hull Trick のうち、追加クエリで与えられる直線の傾きが単調増加あるいは単調減少であるような場合に使える。
 
-- `StronglyConnectedComponennts(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `int size()` : 強連結成分の個数を返す。 $\Theta(1)$ 。
-- `int operator[](int k)` : 頂点 `k` の所属する強連結成分の番号を返す。 $\Theta(1)$ 。
-- `vector<vector<int>> groups()` : 強連結成分のリストを返す。 $\Theta(N)$ 。
-- `Graph<T> dag()` : 強連結成分を縮約した後のグラフは DAG になることが知られているので、それを返す。 $\Theta(V + E)$ 。
+通常の Convex Hull Trick は `std::set` などを使う必要があるのに対して、単調増加あるいは単調減少の場合は `std::deque` を用いればよいため、二分探索をしない追加クエリの計算量が落ちる。
+
+さらに、取得クエリの `x` が単調増加あるいは単調減少のときは二分探索をせず要らなくなった直線を消していけばいいので、取得クエリの計算量も落ちる。当然、 `get_min` `inc_get_min` `dec_get_min` を同時に使ってはいけない。
+
+- `ConvexHullTrickAddMonotone()` : `ConvexHullTrick` を作成する。ここで、関数集合を $s$ と表す。 $\Theta(1)$ 。
+- `void add_line(T a, T b)` : $s$ に `f(x) = ax + b` を追加する。 $\Theta(1)$ 。
+- `T get_min(T x)` : $\min_{f \in s} f(x)$ を返す。 $\Theta(\log N)$ 。
+- `T inc_get_min(T x)` : `x` が単調増加であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
+- `T dec_get_min(T x)` : `x` が単調減少であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
+- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -143,16 +143,16 @@ data:
     \ - prev(itr)->b) * (next(itr)->a - itr->a)\n            <  (__int128_t)(itr->b\
     \ - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n    ConvexHullTrick()\
     \ = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max)\
-    \ a = -a, b = -b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
+    \ a = - a, b = - b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
     \ b}).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
     \            return;\n        }\n        while (itr != st.begin()     && !is_necessary(prev(itr)))\
     \ st.erase(prev(itr));\n        while (itr != prev(st.end()) && !is_necessary(next(itr)))\
     \ st.erase(next(itr));\n        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n\
     \        if (itr != prev(st.end())) itr->nxt = &*next(itr);\n    }\n    T get_min(T\
-    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        T\
-    \ res = itr->get(x);\n        if IF_CONSTEXPR (is_max) res = -res;\n        return\
-    \ res;\n    }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n"
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        if\
+    \ IF_CONSTEXPR (is_max) return - itr->get(x);\n        return itr->get(x);\n \
+    \   }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\n/**\n\
+    \ * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false> class ConvexHullTrick {\n  protected:\n    struct\
     \ Line {\n        T a, b;\n        bool is_query;\n        mutable const Line*\
@@ -172,22 +172,22 @@ data:
     \ - prev(itr)->b) * (next(itr)->a - itr->a)\n            <  (__int128_t)(itr->b\
     \ - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n    ConvexHullTrick()\
     \ = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max)\
-    \ a = -a, b = -b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
+    \ a = - a, b = - b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
     \ b}).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
     \            return;\n        }\n        while (itr != st.begin()     && !is_necessary(prev(itr)))\
     \ st.erase(prev(itr));\n        while (itr != prev(st.end()) && !is_necessary(next(itr)))\
     \ st.erase(next(itr));\n        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n\
     \        if (itr != prev(st.end())) itr->nxt = &*next(itr);\n    }\n    T get_min(T\
-    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        T\
-    \ res = itr->get(x);\n        if IF_CONSTEXPR (is_max) res = -res;\n        return\
-    \ res;\n    }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n"
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        if\
+    \ IF_CONSTEXPR (is_max) return - itr->get(x);\n        return itr->get(x);\n \
+    \   }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\n/**\n\
+    \ * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-01-18 13:55:45+09:00'
+  timestamp: '2022-01-18 15:50:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/line_add_get_min.test.cpp
@@ -205,4 +205,4 @@ title: ConvexHullTrick
 - `ConvexHullTrick()` : `ConvexHullTrick` を作成する。ここで、関数集合を $s$ と表す。 $\Theta(1)$ 。
 - `void add_line(T a, T b)` : $s$ に `f(x) = ax + b` を追加する。 $\Theta(\log N)$ 。
 - `T get_min(T x)` : $\min_{f \in s} f(x)$ を返す。 $\Theta(\log N)$ 。
-- `Line get_min_line(T x)` : $\arg \min_{f \in s} f(x)$ に属する直線のうち 1 つを返す。 $\Theta(\log N)$ 。
+- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。
