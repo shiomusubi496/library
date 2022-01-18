@@ -46,13 +46,16 @@ template<class T = ll> class ConvexHullTrick {
         if (itr != prev(st.end())) itr->nxt = &*next(itr);
         else itr->nxt = nullptr;
     }
-    Line get_min_line(T x) {
+    Line get_min_line(T x) const {
         auto itr = st.lower_bound(Line{x, 0, true});
         return *itr;
     }
-    T get_min(T x) {
+    T get_min(T x) const {
         auto itr = st.lower_bound(Line{x, 0, true});
         return itr->get(x);
+    }
+    bool empty() const {
+        return st.empty();
     }
 };
 
