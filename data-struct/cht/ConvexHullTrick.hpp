@@ -35,7 +35,7 @@ template<class T = ll, bool is_max = false> class ConvexHullTrick {
   public:
     ConvexHullTrick() = default;
     void add_line(T a, T b) {
-        if IF_CONSTEXPR (is_max) a = -a, b = -b;
+        if IF_CONSTEXPR (is_max) a = - a, b = - b;
         typename std::set<Line>::iterator itr = st.insert(Line{a, b}).first;
         if (!is_necessary(itr)) {
             st.erase(itr);
@@ -48,9 +48,8 @@ template<class T = ll, bool is_max = false> class ConvexHullTrick {
     }
     T get_min(T x) const {
         auto itr = st.lower_bound(Line{x, 0, true});
-        T res = itr->get(x);
-        if IF_CONSTEXPR (is_max) res = -res;
-        return res;
+        if IF_CONSTEXPR (is_max) return - itr->get(x);
+        return itr->get(x);
     }
     bool empty() const {
         return st.empty();
