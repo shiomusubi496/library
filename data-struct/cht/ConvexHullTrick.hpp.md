@@ -147,10 +147,11 @@ data:
     \       while (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n\
     \        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
     \ itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n    }\n    Line get_min_line(T\
-    \ x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return *itr;\n\
-    \    }\n    T get_min(T x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n\
-    \        return itr->get(x);\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n *\
-    \ @docs docs/ConvexHullTrick.md\n */\n"
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return\
+    \ *itr;\n    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
+    \ 0, true});\n        return itr->get(x);\n    }\n    bool empty() const {\n \
+    \       return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
+    \ docs/ConvexHullTrick.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll> class ConvexHullTrick {\n  protected:\n    struct Line {\n        T a,\
     \ b;\n        bool is_query;\n        mutable const Line* nxt;\n        T get(T\
@@ -175,16 +176,17 @@ data:
     \       while (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n\
     \        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
     \ itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n    }\n    Line get_min_line(T\
-    \ x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return *itr;\n\
-    \    }\n    T get_min(T x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n\
-    \        return itr->get(x);\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n *\
-    \ @docs docs/ConvexHullTrick.md\n */"
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return\
+    \ *itr;\n    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
+    \ 0, true});\n        return itr->get(x);\n    }\n    bool empty() const {\n \
+    \       return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
+    \ docs/ConvexHullTrick.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-01-18 08:30:09+09:00'
+  timestamp: '2022-01-18 10:21:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/line_add_get_min.test.cpp

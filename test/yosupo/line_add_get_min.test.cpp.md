@@ -150,10 +150,11 @@ data:
     \ (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n \
     \       if (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
     \ itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n    }\n    Line get_min_line(T\
-    \ x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return *itr;\n\
-    \    }\n    T get_min(T x) {\n        auto itr = st.lower_bound(Line{x, 0, true});\n\
-    \        return itr->get(x);\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n *\
-    \ @docs docs/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/line_add_get_min.test.cpp\"\
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        return\
+    \ *itr;\n    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
+    \ 0, true});\n        return itr->get(x);\n    }\n    bool empty() const {\n \
+    \       return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
+    \ docs/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/line_add_get_min.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll>\
     \ CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n        CHT.add_line(a,\
     \ b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
@@ -174,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 08:30:09+09:00'
+  timestamp: '2022-01-18 10:21:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/line_add_get_min.test.cpp
