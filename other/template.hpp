@@ -35,6 +35,12 @@
 #define CONSTEXPR
 #endif
 
+#ifdef __cpp_if_constexpr
+#define IF_CONSTEXPR constexpr
+#else
+#define IF_CONSTEXPR
+#endif
+
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;

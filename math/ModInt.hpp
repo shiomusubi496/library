@@ -31,21 +31,12 @@ template<ll mod> class StaticModInt : StaticModIntBase {
         return res;
     }
     StaticModInt inv() const {
-#if __cplusplus >= 201703L
-        if constexpr (mod == 1000000007) {
+        if IF_CONSTEXPR (mod == 1000000007) {
             if (val <= 10) return inv1000000007[val];
         }
-        else if constexpr (mod == 998244353) {
+        else if IF_CONSTEXPR (mod == 998244353) {
             if (val <= 10) return inv998244353[val];
         }
-#else
-        if (mod == 1000000007) {
-            if (val <= 10) return inv1000000007[val];
-        }
-        else if (mod == 998244353) {
-            if (val <= 10) return inv998244353[val];
-        }
-#endif
         return mod_inv(val, mod);
     }
     StaticModInt& operator++() {
