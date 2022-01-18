@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -36,13 +36,14 @@ data:
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
     \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
-    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\nusing ll = long long;\n\
-    using ull = unsigned long long;\nusing ld = long double;\nusing PLL = std::pair<ll,\
-    \ ll>;\ntemplate<class T> using prique = std::priority_queue<T, std::vector<T>,\
-    \ std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n    static\
-    \ constexpr T value = std::numeric_limits<T>::max() / 2;\n    static constexpr\
-    \ T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr T max =\
-    \ std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
+    \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
+    \ PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
     };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
     template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
     \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
@@ -184,8 +185,8 @@ data:
   isVerificationFile: false
   path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2022-01-15 11:26:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-01-18 13:23:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
 documentation_of: math/Matrix.hpp
