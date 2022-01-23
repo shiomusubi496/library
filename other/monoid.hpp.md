@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':warning:'
+    path: data-struct/segment/DynamicSegmentTree.hpp
+    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
@@ -390,6 +393,7 @@ data:
   requiredBy:
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/CumulativeSum.hpp
   - data-struct/segment/SegmentTree.hpp
