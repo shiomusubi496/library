@@ -28,6 +28,24 @@ template<class T> class IntCombinatorics {
     static T homo(ll n, ll r) {
         return comb(n + r - 1, r);
     }
+    static T small_perm(ll n, ll r) {
+        if (r < 0 || r > n) return 0;
+        chmin(r, n - r);
+        T res = 1;
+        reps (i, r) res *= n - r + i;
+        return res;
+    }
+    static T small_comb(ll n, ll r) {
+        if (r < 0 || r > n) return 0;
+        chmin(r, n - r);
+        init(r);
+        T res = 1;
+        reps (i, r) res *= n - r + i;
+        return res / factorial[r];
+    }
+    static T small_homo(ll n, ll r) {
+        return small_comb(n + r - 1, r);
+    }
 };
 
 template<class T> std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);
@@ -66,6 +84,24 @@ template<class T> class Combinatorics {
     }
     static T homo(ll n, ll r) {
         return comb(n + r - 1, r);
+    }
+    static T small_perm(ll n, ll r) {
+        if (r < 0 || r > n) return 0;
+        chmin(r, n - r);
+        T res = 1;
+        reps (i, r) res *= n - r + i;
+        return res;
+    }
+    static T small_comb(ll n, ll r) {
+        if (r < 0 || r > n) return 0;
+        chmin(r, n - r);
+        init(r);
+        T res = factinv[r];
+        reps (i, r) res *= n - r + i;
+        return res;
+    }
+    static T small_homo(ll n, ll r) {
+        return small_comb(n + r - 1, r);
     }
 };
 
