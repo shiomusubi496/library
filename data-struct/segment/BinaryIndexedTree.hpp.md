@@ -272,8 +272,8 @@ data:
   verifiedWith:
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp

@@ -391,47 +391,47 @@ data:
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/CumulativeSum.hpp
   - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/LCARMQ.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   timestamp: '2022-01-18 18:38:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:

@@ -182,8 +182,8 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
-  - graph/mst/Prim.hpp
   - graph/mst/Kruskal.hpp
+  - graph/mst/Prim.hpp
   timestamp: '2022-01-18 13:23:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

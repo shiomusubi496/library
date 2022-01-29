@@ -224,8 +224,8 @@ data:
   timestamp: '2022-01-18 13:23:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
 documentation_of: graph/other/LowLink.hpp
 layout: document
