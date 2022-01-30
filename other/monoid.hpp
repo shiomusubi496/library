@@ -34,16 +34,16 @@ template<class T, T max_value = infinity<T>::max> struct AssignMin {
     using M = Min<T, max_value>;
     using E = Assign<T>;
     static constexpr T op(T a, T b) { return a; }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return a; }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return a; }
 };
 
 template<class T, T min_value = infinity<T>::min> struct AssignMax {
     using M = Max<T, min_value>;
     using E = Assign<T>;
     static constexpr T op(T a, T b) { return a; }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return a; }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return a; }
 };
 
 template<class T> struct AssignSum {
@@ -58,16 +58,16 @@ template<class T, T max_value = infinity<T>::max> struct AddMin {
     using M = Min<T, max_value>;
     using E = Sum<T>;
     static constexpr T op(T a, T b) { return b + a; }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return c + a; }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return c + a; }
 };
 
 template<class T, T min_value = infinity<T>::min> struct AddMax {
     using M = Max<T, min_value>;
     using E = Sum<T>;
     static constexpr T op(T a, T b) { return b + a; }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return c + a; }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return c + a; }
 };
 
 template<class T> struct AddSum {
@@ -82,32 +82,32 @@ template<class T, T max_value = infinity<T>::max> struct ChminMin {
     using M = Min<T, max_value>;
     using E = Min<T>;
     static constexpr T op(T a, T b) { return std::min(b, a); }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return std::min(c, a); }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return std::min(c, a); }
 };
 
 template<class T, T min_value = infinity<T>::min> struct ChminMax {
     using M = Max<T, min_value>;
     using E = Min<T>;
     static constexpr T op(T a, T b) { return std::min(b, a); }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return std::min(c, a); }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return std::min(c, a); }
 };
 
 template<class T, T max_value = infinity<T>::max> struct ChmaxMin {
     using M = Min<T, max_value>;
     using E = Max<T>;
     static constexpr T op(T a, T b) { return std::max(b, a); }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return std::max(c, a); }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return std::max(c, a); }
 };
 
 template<class T, T min_value = infinity<T>::min> struct ChmaxMax {
     using M = Max<T, min_value>;
     using E = Max<T>;
     static constexpr T op(T a, T b) { return std::max(b, a); }
-    static constexpr T mul(T a, int b) { return a; }
-    static constexpr T mul_op(T a, int b, T c) { return std::max(c, a); }
+    static constexpr T mul(T a, int) { return a; }
+    static constexpr T mul_op(T a, int, T c) { return std::max(c, a); }
 };
 
 
