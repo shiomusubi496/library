@@ -91,6 +91,14 @@ template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     return res;
 }
 
+
+struct unweighted_edge {
+    template<class... Args> unweighted_edge(const Args&...) {}
+    operator int() { return 1; }
+};
+
+using UnweightedGraph = Graph<unweighted_edge>;
+
 /**
  * @brief Graph-template
  * @docs docs/Graph.md
