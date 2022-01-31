@@ -63,6 +63,13 @@
 "test/yosupo/staticrmq-LCARMQ.test.cpp": "2022-01-31 20:54:06 +0900",
 "test/yosupo/staticrmq-LinearRMQ.test.cpp": "2022-01-31 00:18:34 +0900",
 "test/yosupo/staticrmq-SparseTable.test.cpp": "2022-01-31 00:18:34 +0900",
+"test/yosupo/tree_diameter.test.cpp": "2022-01-31 20:54:06 +0900",
+"test/yosupo/two_edge_connected_components.test.cpp": "2022-01-31 20:54:06 +0900",
+"test/yosupo/two_sat.test.cpp": "2022-01-31 23:12:09 +0900",
 "test/yosupo/unionfind-Dynamic.test.cpp": "2022-01-18 13:23:13 +0900",
-"test/yosupo/unionfind.test.cpp": "2022-01-18 13:23:13 +0900"
+"test/yosupo/unionfind.test.cpp": "2022-01-18 13:23:13 +0900",
+"test/yosupo/vertex_add_path_sum.test.cpp": "2022-01-31 20:54:06 +0900",
+"test/yosupo/vertex_add_subtree_sum-2.test.cpp": "2022-01-31 20:54:06 +0900",
+"test/yosupo/vertex_add_subtree_sum.test.cpp": "2022-01-31 20:54:06 +0900",
+"test/yosupo/vertex_set_path_composite.test.cpp": "2022-01-31 20:54:06 +0900"
 }
