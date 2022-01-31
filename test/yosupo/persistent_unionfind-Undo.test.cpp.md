@@ -165,8 +165,10 @@ data:
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
+    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
+    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
+    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
     \n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
     \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
     \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
@@ -222,7 +224,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/persistent_unionfind-Undo.test.cpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
+  timestamp: '2022-01-31 20:54:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/persistent_unionfind-Undo.test.cpp

@@ -169,8 +169,10 @@ data:
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
+    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
+    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
+    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
     \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\n  protected:\n\
     \    int n;\n    std::vector<int> par_vec;\n  public:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
@@ -226,7 +228,7 @@ data:
   isVerificationFile: false
   path: graph/mst/Prim.hpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
+  timestamp: '2022-01-31 20:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

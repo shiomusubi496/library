@@ -164,8 +164,10 @@ data:
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
+    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
+    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
+    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
     \n\ntemplate<class T> class TopologicalSort {\n  protected:\n    int n;\n    const\
     \ Graph<T>& G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void\
     \ dfs(int v) {\n        seen[v] = true;\n        for (const edge<T>& e : G[v])\
@@ -197,7 +199,7 @@ data:
   isVerificationFile: false
   path: graph/other/TopologicalSort.hpp
   requiredBy: []
-  timestamp: '2022-01-18 13:23:13+09:00'
+  timestamp: '2022-01-31 20:54:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp

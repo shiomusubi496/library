@@ -269,8 +269,10 @@ data:
     }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
     \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
     \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n/**\n\
-    \ * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\
+    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
+    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
+    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
+    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\
     \n\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
     \ {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
     \ G;\n    std::vector<std::pair<int, int>> idx;\n    void dfs(int v, int p) {\n\
@@ -321,7 +323,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 00:18:34+09:00'
+  timestamp: '2022-01-31 20:54:06+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp

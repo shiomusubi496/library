@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
   - icon: ':x:'
@@ -304,17 +304,19 @@ data:
     \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
     \        for (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to,\
     \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
-    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
-    \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace\
+    \ Monoid {\n    struct PairMinForEulerTour {\n        using value_type = std::pair<int,\
+    \ int>;\n        static value_type op(const value_type& a, const value_type& b)\
+    \ {\n            return a.first < b.first ? a : b;\n        }\n        static\
+    \ value_type id() {\n            return {infinity<int>::value, -1};\n        }\n\
+    \    };\n}\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
+    class EulerTour {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n\
+    \    const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
+    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        for (const edge<T>& e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -393,7 +395,7 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-01-31 00:18:34+09:00'
+  timestamp: '2022-01-31 20:54:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
