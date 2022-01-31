@@ -5,30 +5,34 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
+    path: graph/connected/StronglyConnectedComponents.hpp
+    title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
+      )"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
+    path: test/yosupo/two_sat.test.cpp
+    title: test/yosupo/two_sat.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/BreadthFirstSearch.md
-    document_title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+    _deprecated_at_docs: docs/TwoSatisfiability.md
+    document_title: TwoSatisfiability(2-SAT)
     links: []
-  bundledCode: "#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\n#line 2\
-    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"graph/other/TwoSatisfiablitity.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -166,55 +170,99 @@ data:
     \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
     struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
     \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
-    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
-    \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T> BFSedge(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < (int)G.size());\n\
-    \    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
-    \ == -1) {\n                dist[e.to] = dist[v] + 1;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\
-    \u512A\u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
+    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
+    \ T> class StronglyConnectedComponents {\n  protected:\n    int n, sz, cnt;\n\
+    \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n  \
+    \  std::vector<int> st;\n    std::vector<int> cmp;\n    void dfs(int v) {\n  \
+    \      low[v] = ord[v] = cnt++;\n        st.push_back(v);\n        for (const\
+    \ edge<T>& e : G[v]) {\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n\
+    \            else {\n                dfs(e.to);\n                chmin(low[v],\
+    \ low[e.to]);\n            }\n        }\n        if (low[v] == ord[v]) {\n   \
+    \         while (1) {\n                int u = st.back(); st.pop_back();\n   \
+    \             cmp[u] = sz;\n                ord[u] = n;\n                if (u\
+    \ == v) break;\n            }\n            sz++;\n        }\n    }\n    void init()\
+    \ {\n        n = G.size();\n        sz = 0;\n        cnt = 0;\n        ord.assign(n,\
+    \ -1); low.assign(n, -1);\n        cmp.assign(n, -1);\n        st.reserve(n);\n\
+    \        rep (i, n) {\n            if (ord[i] == -1) dfs(i);\n        }\n    \
+    \    for (int& i : cmp) i = sz - i - 1;\n    }\n  public:\n    StronglyConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    StronglyConnectedComponents(Graph<T>&&\
+    \ G) : G_(std::move(G)), G(G_) { init(); }\n    int size() const { return sz;\
+    \ }\n    int operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n    Graph<T> dag()\
+    \ const {\n        Graph<T> res(sz);\n        rep (i, n) {\n            for (const\
+    \ auto& e : G[i]) {\n                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i],\
+    \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
+    \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n#line\
+    \ 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability {\n  protected:\n\
+    \    int n;\n    UnweightedGraph G;\n    int neg(int t) const {\n        return\
+    \ t < n ? t + n : t - n;\n    }\n  public:\n    TwoSatisfiability() : TwoSatisfiability(0)\
+    \ {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n    void add_clause(int\
+    \ i, bool f, int j, bool g) {\n        assert(0 <= i && i < n);\n        assert(0\
+    \ <= j && j < n);\n        if (!f) i = neg(i);\n        if (!g) j = neg(j);\n\
+    \        G.add_edge(neg(i), j, true);\n        G.add_edge(neg(j), i, true);\n\
+    \    }\n    void add_or  (int a, int b) { add_clause(a, true , b, true ); }\n\
+    \    void add_if  (int a, int b) { add_clause(a, false, b, true ); }\n    void\
+    \ add_nand(int a, int b) { add_clause(a, false, b, false); }\n    void add_true(int\
+    \ a) {\n        assert(0 <= a && a < n);\n        G.add_edge(neg(a), a);\n   \
+    \ }\n    void add_false(int a) {\n        assert(0 <= a && a < n);\n        G.add_edge(a,\
+    \ neg(a));\n    }\n    std::vector<bool> sat() const {\n        StronglyConnectedComponents<unweighted_edge>\
+    \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
+    \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
+    \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
+    \ * @docs docs/TwoSatisfiability.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
-    \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T> BFSedge(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < (int)G.size());\n\
-    \    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        for (const edge<T>& e : G[v]) {\n            if (dist[e.to]\
-    \ == -1) {\n                dist[e.to] = dist[v] + 1;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\
-    \u512A\u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
+    \n#include \"../connected/StronglyConnectedComponents.hpp\"\n\nclass TwoSatisfiability\
+    \ {\n  protected:\n    int n;\n    UnweightedGraph G;\n    int neg(int t) const\
+    \ {\n        return t < n ? t + n : t - n;\n    }\n  public:\n    TwoSatisfiability()\
+    \ : TwoSatisfiability(0) {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n\
+    \    void add_clause(int i, bool f, int j, bool g) {\n        assert(0 <= i &&\
+    \ i < n);\n        assert(0 <= j && j < n);\n        if (!f) i = neg(i);\n   \
+    \     if (!g) j = neg(j);\n        G.add_edge(neg(i), j, true);\n        G.add_edge(neg(j),\
+    \ i, true);\n    }\n    void add_or  (int a, int b) { add_clause(a, true , b,\
+    \ true ); }\n    void add_if  (int a, int b) { add_clause(a, false, b, true );\
+    \ }\n    void add_nand(int a, int b) { add_clause(a, false, b, false); }\n   \
+    \ void add_true(int a) {\n        assert(0 <= a && a < n);\n        G.add_edge(neg(a),\
+    \ a);\n    }\n    void add_false(int a) {\n        assert(0 <= a && a < n);\n\
+    \        G.add_edge(a, neg(a));\n    }\n    std::vector<bool> sat() const {\n\
+    \        StronglyConnectedComponents<unweighted_edge> SCC(G);\n        std::vector<bool>\
+    \ res(n);\n        rep (i, n) {\n            if (SCC[i] == SCC[neg(i)]) return\
+    \ {};\n            res[i] = SCC[neg(i)] < SCC[i];\n        }\n        return res;\n\
+    \    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n * @docs docs/TwoSatisfiability.md\n\
+    \ */"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
+  - graph/connected/StronglyConnectedComponents.hpp
   isVerificationFile: false
-  path: graph/shortest-path/BreadthFirstSearch.hpp
+  path: graph/other/TwoSatisfiablitity.hpp
   requiredBy: []
-  timestamp: '2022-01-31 20:54:06+09:00'
+  timestamp: '2022-01-31 23:12:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-documentation_of: graph/shortest-path/BreadthFirstSearch.hpp
+  - test/yosupo/two_sat.test.cpp
+documentation_of: graph/other/TwoSatisfiablitity.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/BreadthFirstSearch.hpp
-- /library/graph/shortest-path/BreadthFirstSearch.hpp.html
-title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
+- /library/graph/other/TwoSatisfiablitity.hpp
+- /library/graph/other/TwoSatisfiablitity.hpp.html
+title: TwoSatisfiability(2-SAT)
 ---
 ## 概要
 
-重み付きなしグラフに対して単一始点最短経路問題を解くアルゴリズム。重み付きグラフについてはDijkstra法を使う。
+SAT(Satisfiability) とは、論理式が与えられたとき、それを真にするような変数の割り当てが存在するかを判定する問題。
 
-- `vector<T> BFS(Graph<T> G, int s = 0)` : 重みなしグラフ `G` において、各頂点の `s` からの距離を求める。 $\Theta(V+E)$ 。
+$(a \lor b) \land (c \lor d) \land \cdots$ というように、高々 2 個のリテラルが $\lor$ で結ばれた形のクロージャを $\land$ で結んだ形の論理式に対する SAT は 2-SAT と呼ばれる。
+
+一般の SAT は多項式時間の解法が知られていないが、 2-SAT はグラフを使うことでクロージャの数に対し線形時間で解ける。
+
+- `TwoSatisfiability(int n)` : `n` 変数 $x_0, x_1, \ldots, x_{n-1}$ からなる 2-SAT を作成する。 $\Theta(n)$ 。
+- `void add_clause(int i, bool f, int j, bool g)` : $(x_i = j) \lor (x_j = g)$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `void add_if(int a, int b)` : $a \Rightarrow b$ 、つまり $\lnot a \lor b$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `void add_or(int a, int b)` : $a \lor b$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `void add_nand(int a, int b)` : $\lnot (a \land b)$ 、つまり $\lnot a \lor \lnot b$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `void add_true(int a)` : $a$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `void add_false(int a)` : $\lnot a$ の形のクロージャを作成する。 $\Theta(1)$ 。
+- `vector<bool> sat()` : 現在の論理式が充足可能ならその割り当ての一例を、充足不可能なら空のリストを返す。

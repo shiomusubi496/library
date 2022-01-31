@@ -9,6 +9,9 @@ data:
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   - icon: ':heavy_check_mark:'
+    path: graph/other/TwoSatisfiablitity.hpp
+    title: TwoSatisfiability(2-SAT)
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -18,20 +21,19 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
+    PROBLEM: https://judge.yosupo.jp/problem/two_sat
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C
-  bundledCode: "#line 1 \"test/aoj/GRL/GRL_3_C-SCC.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    - https://judge.yosupo.jp/problem/two_sat
+  bundledCode: "#line 1 \"test/yosupo/two_sat.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -130,46 +132,47 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \    }\n};\n#line 2 \"graph/other/TwoSatisfiablitity.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n\
+    }\n\ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n \
+    \   const int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n\
+    \    rep (i, V) {\n        for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    const int E = std::accumulate(\n    \
+    \    all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
+    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
+    \  rep (i, V) {\n        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        for (const auto& e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
     \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
     \ T> class StronglyConnectedComponents {\n  protected:\n    int n, sz, cnt;\n\
     \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n  \
@@ -195,33 +198,54 @@ data:
     \ cmp[e.to], e.cost, true);\n            }\n        }\n        return res;\n \
     \   }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\
     \u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n */\n#line\
-    \ 5 \"test/aoj/GRL/GRL_3_C-SCC.test.cpp\"\nusing namespace std;\nint main() {\n\
-    \    int v, e; cin >> v >> e;\n    Graph<int> G(v);\n    rep (e) {\n        int\
-    \ u, v; cin >> u >> v;\n        G.add_edge(u, v, true);\n    }\n    StronglyConnectedComponents<int>\
-    \ SCC(G);\n    int q; cin >> q;\n    rep (q) {\n        int a, b; cin >> a >>\
-    \ b;\n        cout << (SCC[a] == SCC[b]) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_C\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/connected/StronglyConnectedComponents.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int v, e; cin >> v >> e;\n    Graph<int> G(v);\n   \
-    \ rep (e) {\n        int u, v; cin >> u >> v;\n        G.add_edge(u, v, true);\n\
-    \    }\n    StronglyConnectedComponents<int> SCC(G);\n    int q; cin >> q;\n \
-    \   rep (q) {\n        int a, b; cin >> a >> b;\n        cout << (SCC[a] == SCC[b])\
-    \ << endl;\n    }\n}\n"
+    \ 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability {\n  protected:\n\
+    \    int n;\n    UnweightedGraph G;\n    int neg(int t) const {\n        return\
+    \ t < n ? t + n : t - n;\n    }\n  public:\n    TwoSatisfiability() : TwoSatisfiability(0)\
+    \ {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n    void add_clause(int\
+    \ i, bool f, int j, bool g) {\n        assert(0 <= i && i < n);\n        assert(0\
+    \ <= j && j < n);\n        if (!f) i = neg(i);\n        if (!g) j = neg(j);\n\
+    \        G.add_edge(neg(i), j, true);\n        G.add_edge(neg(j), i, true);\n\
+    \    }\n    void add_or  (int a, int b) { add_clause(a, true , b, true ); }\n\
+    \    void add_if  (int a, int b) { add_clause(a, false, b, true ); }\n    void\
+    \ add_nand(int a, int b) { add_clause(a, false, b, false); }\n    void add_true(int\
+    \ a) {\n        assert(0 <= a && a < n);\n        G.add_edge(neg(a), a);\n   \
+    \ }\n    void add_false(int a) {\n        assert(0 <= a && a < n);\n        G.add_edge(a,\
+    \ neg(a));\n    }\n    std::vector<bool> sat() const {\n        StronglyConnectedComponents<unweighted_edge>\
+    \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
+    \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
+    \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
+    \ * @docs docs/TwoSatisfiability.md\n */\n#line 4 \"test/yosupo/two_sat.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    cin >>\
+    \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
+    \ a, b; cin >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
+    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) puts(\"\
+    s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\");\n        cout\
+    \ << \"v \";\n        rep (i, N) cout << (v[i] ? i + 1 : -i - 1) << ' ';\n   \
+    \     cout << 0 << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n#include \"\
+    ../../other/template.hpp\"\n#include \"../../graph/other/TwoSatisfiablitity.hpp\"\
+    \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    cin >>\
+    \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
+    \ a, b; cin >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
+    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) puts(\"\
+    s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\");\n        cout\
+    \ << \"v \";\n        rep (i, N) cout << (v[i] ? i + 1 : -i - 1) << ' ';\n   \
+    \     cout << 0 << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - graph/other/TwoSatisfiablitity.hpp
   - graph/Graph.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   isVerificationFile: true
-  path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  path: test/yosupo/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 20:54:06+09:00'
+  timestamp: '2022-01-31 23:12:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+documentation_of: test/yosupo/two_sat.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/GRL/GRL_3_C-SCC.test.cpp
-- /verify/test/aoj/GRL/GRL_3_C-SCC.test.cpp.html
-title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
+- /verify/test/yosupo/two_sat.test.cpp
+- /verify/test/yosupo/two_sat.test.cpp.html
+title: test/yosupo/two_sat.test.cpp
 ---
