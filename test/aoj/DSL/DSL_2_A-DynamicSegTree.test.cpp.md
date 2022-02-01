@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/DynamicSegmentTree.hpp
+    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':heavy_check_mark:'
@@ -11,28 +14,26 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-    title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/DynamicSegmentTree.md
-    document_title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-      \u6728)"
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n#line 2\
-    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A
+  bundledCode: "#line 1 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\n#define\
+    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -131,13 +132,14 @@ data:
     \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
     \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
-    \    }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
-    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
-    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
-    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
-    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
-    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
-    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \    }\n};\n#line 2 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n#line 2\
+    \ \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n\
+    #define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n  \
+    \  inline ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n\
+    \        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b) / a\
+    \ >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k)) - 1;\
+    \ i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
     \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
     \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
     \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
@@ -269,100 +271,32 @@ data:
     \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
     \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
     };\n\n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DynamicSegmentTree\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    struct Node {\n\
-    \        T val;\n        Node *l, *r;\n        Node* get_l() {\n            if\
-    \ (l == nullptr) l = new Node;\n            return l;\n        }\n        Node*\
-    \ get_r() {\n            if (r == nullptr) r = new Node;\n            return r;\n\
-    \        }\n        void update() {\n            val = M::id();\n            if\
-    \ (l != nullptr) val = M::op(val, l->val);\n            if (r != nullptr) val\
-    \ = M::op(val, r->val);\n        }\n        Node() : val(M::id()), l(nullptr),\
-    \ r(nullptr) {}\n    };\n    ll ori, h, n;\n    Node* root;\n    template<class\
-    \ Upd> void update(Node* nd, ll a, ll b, ll k, const Upd& upd) {\n        if (a\
-    \ + 1 == b) {\n            nd->val = upd(nd->val);\n            return;\n    \
-    \    }\n        ll m = (a + b) >> 1;\n        if (k < m) update(nd->get_l(), a,\
-    \ m, k, upd);\n        else update(nd->get_r(), m, b, k, upd);\n        nd->update();\n\
-    \    }\n    T prod(Node* nd, ll a, ll b, ll l, ll r) const {\n        if (nd ==\
-    \ nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n  \
-    \      if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n \
-    \       return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n    }\n\
-    \    template<class Cond> ll max_right(Node* nd, ll a, ll b, ll l, const Cond&\
-    \ cond, T& sm) const {\n        if (nd == nullptr || b <= l) return n;\n     \
-    \   if (l <= a && cond(M::op(sm, nd->val))) {\n            sm = M::op(sm, nd->val);\n\
-    \            return n;\n        }\n        if (a + 1 == b) return a;\n       \
-    \ ll m = (a + b) >> 1;\n        ll res = max_right(nd->l, a, m, l, cond, sm);\n\
-    \        if (res != n) return res;\n        return max_right(nd->r, m, b, l, cond,\
-    \ sm);\n    }\n    template<class Cond> ll min_left(Node* nd, ll a, ll b, ll r,\
-    \ const Cond& cond, T& sm) const {\n        if (nd == nullptr || r <= a) return\
-    \ 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val,\
-    \ sm);\n            return 0;\n        }\n        if (a + 1 == b) return b;\n\
-    \        ll m = (a + b) >> 1;\n        ll res = min_left(nd->l, m, b, r, cond,\
-    \ sm);\n        if (res != 0) return res;\n        return min_left(nd->r, a, m,\
-    \ r, cond, sm);\n    }\n    void del(Node* nd) {\n        if (nd == nullptr) return;\n\
-    \        del(nd->l);\n        del(nd->r);\n        delete nd;\n    }\n  public:\n\
-    \    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) { init(n_); }\n    ~DynamicSegmentTree() { del(root); }\n    void init(ll\
-    \ n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull\
-    \ << h;\n        root = new Node;\n    }\n    template<class Upd> void update(ll\
-    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(root,\
-    \ 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k, [&](T) ->\
-    \ T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k, [&](T\
-    \ a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const {\n \
-    \       assert(0 <= l && l <= r && r <= ori);\n        return prod(root, 0, n,\
-    \ l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll k)\
-    \ const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll l,\
-    \ const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if (l\
-    \ == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n      \
-    \  return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
-    \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
-    };\n\n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n"
+    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicSegmentTree<Monoid::Min<int,\
+    \ (1ull << 31) - 1>> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >>\
+    \ a >> b;\n        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a,\
+    \ b + 1) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_A\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DynamicSegmentTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicSegmentTree<Monoid::Min<int,\
+    \ (1ull << 31) - 1>> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >>\
+    \ a >> b;\n        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a,\
+    \ b + 1) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
   - other/bitop.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/DynamicSegmentTree.hpp
+  isVerificationFile: true
+  path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 00:18:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-documentation_of: data-struct/segment/DynamicSegmentTree.hpp
+  timestamp: '2022-02-01 17:52:45+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/DynamicSegmentTree.hpp
-- /library/data-struct/segment/DynamicSegmentTree.hpp.html
-title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+- /verify/test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+- /verify/test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp.html
+title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
 ---
-## 概要
-
-単位元以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。 ~~あと何も考えずにできるのも利点。~~
-
-- コンストラクタ
-  - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(1)$ 。
-  - `SegmentTree(int n)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(\log \log n)$ 。
-  - `void init(int n)` : 列 `v` で SegmentTree を作成する。 $\Theta(\log \log n)$ 。
-- 変更クエリ
-  - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log N)$ 。
-  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-- 取得クエリ
-  - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
-  - `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
-  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 。
-- セグメント木上の二分探索
-  - `int max_right(int l, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
-    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
-  - `int min_left(int r, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
-    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`

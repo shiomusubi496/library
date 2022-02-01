@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -223,6 +223,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL/DSL_1_A-UF.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+      title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
       title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
