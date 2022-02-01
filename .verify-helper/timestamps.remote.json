@@ -16,6 +16,7 @@
 "test/aoj/DPL/DPL_5_E.test.cpp": "2022-01-29 23:48:52 +0900",
 "test/aoj/DPL/DPL_5_F.test.cpp": "2022-01-29 23:48:52 +0900",
 "test/aoj/DSL/DSL_1_A-UF.test.cpp": "2022-01-18 13:23:13 +0900",
+"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp": "2022-02-01 17:52:45 +0900",
 "test/aoj/DSL/DSL_2_A-RMQ.test.cpp": "2022-01-31 00:18:34 +0900",
 "test/aoj/DSL/DSL_2_B-BIT.test.cpp": "2022-01-31 00:18:34 +0900",
 "test/aoj/DSL/DSL_2_B-RSQ.test.cpp": "2022-01-31 00:18:34 +0900",
