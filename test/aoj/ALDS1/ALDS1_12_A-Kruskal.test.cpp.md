@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -119,19 +119,25 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser : public std::vector<T> {\n  private:\n \
-    \   using Base = std::vector<T>;\n  public:\n    using Base::Base;\n    presser(const\
-    \ std::vector<T>& vec) : Base(vec) {}\n    void push(const std::vector<T>& vec)\
-    \ {\n        int n = this->size();\n        this->resize(n + vec.size());\n  \
-    \      std::copy(all(vec), this->begin() + n);\n    }\n    int build() {\n   \
-    \     std::sort(this->begin(), this->end());\n        this->erase(std::unique(this->begin(),\
-    \ this->end()), this->end());\n        return this->size();\n    }\n    int get_index(const\
-    \ T& val) const {\n        return static_cast<int>(std::lower_bound(this->begin(),\
-    \ this->end(), val) - this->begin());\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        std::vector<int> res(vec.size());\n  \
-    \      rep (i, vec.size()) res[i] = this->get_index(vec[i]);\n        return res;\n\
-    \    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
+    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
+    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
+    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
+    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
+    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
+    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
+    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
+    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
+    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
+    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
+    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
+    \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
+    \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
+    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
+    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
     \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
@@ -215,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2022-01-31 20:54:06+09:00'
+  timestamp: '2022-02-02 23:52:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
