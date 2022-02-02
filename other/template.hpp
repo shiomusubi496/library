@@ -230,32 +230,56 @@ inline CONSTEXPR int popcnt(ull x) {
     return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);
 }
 
-template<class T> class presser : public std::vector<T> {
+template<class T> class presser {
   private:
-    using Base = std::vector<T>;
+    using Cont = std::vector<T>;
+    Cont data;
+    bool sorted = false;
   public:
-    using Base::Base;
-    presser(const std::vector<T>& vec) : Base(vec) {}
+    presser() = default;
+    presser(const std::vector<T>& vec) : data(vec) {}
+    presser(std::vector<T>&& vec) : data(std::move(vec)) {}
+    void reserve(int n) {
+        assert(!sorted);
+        data.reserve(n);
+    }
+    void push_back(const T& v) {
+        assert(!sorted);
+        data.push_back(v);
+    }
+    void push_back(T&& v) {
+        assert(!sorted);
+        data.push_back(std::move(v));
+    }
     void push(const std::vector<T>& vec) {
-        int n = this->size();
-        this->resize(n + vec.size());
-        std::copy(all(vec), this->begin() + n);
+        assert(!sorted);
+        data.reserve(data.size() + vec.size());
+        std::copy(all(vec), std::back_inserter(data));
     }
     int build() {
-        std::sort(this->begin(), this->end());
-        this->erase(std::unique(this->begin(), this->end()), this->end());
-        return this->size();
+        assert(!sorted);
+        sorted = true;
+        std::sort(all(data));
+        data.erase(std::unique(all(data)), data.end());
+        return data.size();
     }
     int get_index(const T& val) const {
-        return static_cast<int>(std::lower_bound(this->begin(), this->end(), val) - this->begin());
+        assert(sorted);
+        return static_cast<int>(std::lower_bound(all(data), val) - data.begin());
     }
     std::vector<int> pressed(const std::vector<T>& vec) const {
+        assert(sorted);
         std::vector<int> res(vec.size());
-        rep (i, vec.size()) res[i] = this->get_index(vec[i]);
+        rep (i, vec.size()) res[i] = get_index(vec[i]);
         return res;
     }
     void press(std::vector<T>& vec) const {
+        assert(sorted);
         static_assert(std::is_integral<T>::value, "cannot convert from int type");
-        rep (i, vec.size()) vec[i] = this->get_index(vec[i]);
+        rep (i, vec.size()) vec[i] = get_index(vec[i]);
+    }
+    int size() const {
+        assert(sorted);
+        return data.size();
     }
 };
