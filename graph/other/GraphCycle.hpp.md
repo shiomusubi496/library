@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/cycle_detection.test.cpp
     title: test/yosupo/cycle_detection.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/GraphCycle.md
     document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
@@ -221,10 +221,10 @@ data:
   path: graph/other/GraphCycle.hpp
   requiredBy: []
   timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/yosupo/cycle_detection.test.cpp
+  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
 documentation_of: graph/other/GraphCycle.hpp
 layout: document
 redirect_from:

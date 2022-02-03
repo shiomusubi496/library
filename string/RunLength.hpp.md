@@ -1,32 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
-    title: ConvexHullTrickAddMonotone
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2725
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/2725
-  bundledCode: "#line 1 \"test/aoj/other/2725-CHT.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    links: []
+  bundledCode: "#line 2 \"string/RunLength.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -136,83 +130,30 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
-    \ T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {\n  protected:\n\
-    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
-    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
-    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
-    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
-    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
-    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
-    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
-    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
-    \        }\n    };\n    std::deque<Line> que;\n    bool is_necessary(const typename\
-    \ std::deque<Line>::iterator& itr) {\n        if (itr == que.begin() || itr ==\
-    \ prev(que.end())) return true;\n        if (itr->a == prev(itr)->a) return itr->b\
-    \ < prev(itr)->b;\n        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;\n\
-    \        return (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n\
-    \            <  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
-    \    }\n  public:\n    ConvexHullTrickAddMonotone() = default;\n    void add_line(T\
-    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        typename\
-    \ std::deque<Line>::iterator itr;\n        if (que.empty() || que.back().a <=\
-    \ a) {\n            que.push_back(Line{a, b});\n            itr = prev(que.end());\n\
-    \        }\n        else {\n            assert(a <= que.front().a);\n        \
-    \    que.push_front(Line{a, b});\n            itr = que.begin();\n        }\n\
-    \        if (!is_necessary(itr)) {\n            que.erase(itr);\n            return;\n\
-    \        }\n        while (itr != que.begin() && !is_necessary(prev(itr))) {\n\
-    \            que.pop_back(); que.pop_back();\n            que.push_back(Line{a,\
-    \ b});\n            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front(); que.pop_front();\n\
-    \            que.push_front(Line{a, b});\n            itr = que.begin();\n   \
-    \     }\n        if (itr != que.begin()) prev(itr)->nxt = &*itr;\n        if (itr\
-    \ != prev(que.end())) itr->nxt = &*next(itr);\n        else itr->nxt = nullptr;\n\
-    \    }\n    T get_min(T x) const {\n        auto itr = lower_bound(que.begin(),\
-    \ que.end(), Line{x, 0, true});\n        if IF_CONSTEXPR (is_max) return - itr->get(x);\n\
-    \        return itr->get(x);\n    }\n    T inc_get_min(T x) {\n        while (que.size()\
-    \ > 1 && que.begin()->get(x) > next(que.begin())->get(x)) que.pop_front();\n \
-    \       if IF_CONSTEXPR (is_max) return - que.front().get(x);\n        return\
-    \ que.front().get(x);\n    }\n    T dec_get_min(T x) {\n        while (que.size()\
-    \ > 1 && prev(que.end())->get(x) > prev(que.end(), 2)->get(x)) que.pop_back();\n\
-    \        if IF_CONSTEXPR (is_max) return - que.back().get(x);\n        return\
-    \ que.back().get(x);\n    }\n    bool empty() const {\n        return que.empty();\n\
-    \    }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n * @docs docs/ConvexHullTrickAddMonotone.md\n\
-    \ */\n#line 4 \"test/aoj/other/2725-CHT.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, T; cin >> N >> T;\n    vector<array<ll, 3>> s(N); cin >>\
-    \ s;\n    sort(s.begin(), s.end(), [](auto a, auto b) -> bool { return a[2] <\
-    \ b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll, true>> dp(T + 1);\n   \
-    \ dp[0].add_line(0, 0);\n    ll ans = 0;\n    for (const auto& arr : s) {\n  \
-    \      ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i, T + 1) {\n   \
-    \         if (dp[i].empty()) continue;\n            if (i + t > T) continue;\n\
-    \            ll val = p + dp[i].inc_get_min(f);\n            if (i != 0) val -=\
-    \ f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2 * f,\
-    \ val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, T; cin >> N >> T;\n    vector<array<ll,\
-    \ 3>> s(N); cin >> s;\n    sort(s.begin(), s.end(), [](auto a, auto b) -> bool\
-    \ { return a[2] < b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll, true>>\
-    \ dp(T + 1);\n    dp[0].add_line(0, 0);\n    ll ans = 0;\n    for (const auto&\
-    \ arr : s) {\n        ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i,\
-    \ T + 1) {\n            if (dp[i].empty()) continue;\n            if (i + t >\
-    \ T) continue;\n            ll val = p + dp[i].inc_get_min(f);\n            if\
-    \ (i != 0) val -= f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2\
-    \ * f, val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"string/RunLength.hpp\"\n\
+    \ntemplate<class Cont> std::vector<std::pair<typename Cont::value_type, int>>\
+    \ RunLength(const Cont& str) {\n    std::vector<std::pair<typename Cont::value_type,\
+    \ int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
+    \ 1);\n    rep (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
+    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont>\
+    \ std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont&\
+    \ str) {\n    std::vector<std::pair<typename Cont::value_type, int>> res;\n  \
+    \  if (str.size() == 0) return res;\n    res.emplace_back(str[0], 1);\n    rep\
+    \ (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
+    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/cht/ConvexHullTrickAddMonotone.hpp
-  isVerificationFile: true
-  path: test/aoj/other/2725-CHT.test.cpp
+  isVerificationFile: false
+  path: string/RunLength.hpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-03 22:44:08+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/aoj/other/2725-CHT.test.cpp
+documentation_of: string/RunLength.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/other/2725-CHT.test.cpp
-- /verify/test/aoj/other/2725-CHT.test.cpp.html
-title: test/aoj/other/2725-CHT.test.cpp
+- /library/string/RunLength.hpp
+- /library/string/RunLength.hpp.html
+title: string/RunLength.hpp
 ---

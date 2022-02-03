@@ -322,8 +322,8 @@ data:
   timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 documentation_of: data-struct/segment/DualSegmentTree.hpp
 layout: document
 redirect_from:

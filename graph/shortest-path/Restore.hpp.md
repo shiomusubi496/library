@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
   - icon: ':x:'
@@ -232,9 +232,9 @@ data:
   timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/tree_diameter.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document
 redirect_from:

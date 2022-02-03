@@ -17,11 +17,11 @@ data:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/PlusMinusOneRMQ.md
     document_title: PlusMinusOneRMQ($\pm1$RMQ)
@@ -344,10 +344,10 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
   timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
 documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
 layout: document
 redirect_from:

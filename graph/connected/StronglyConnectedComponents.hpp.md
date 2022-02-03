@@ -244,8 +244,8 @@ data:
   timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/yosupo/two_sat.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:
