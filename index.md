@@ -42,7 +42,7 @@ data:
     - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
@@ -84,13 +84,13 @@ data:
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     - icon: ':question:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
@@ -108,7 +108,7 @@ data:
     - icon: ':question:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     - icon: ':heavy_check_mark:'
@@ -124,7 +124,7 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':x:'
@@ -134,7 +134,7 @@ data:
     - icon: ':x:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
@@ -279,16 +279,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
       title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
       title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
       title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     - icon: ':x:'

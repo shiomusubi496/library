@@ -30,14 +30,14 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - icon: ':x:'
@@ -213,38 +213,44 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
-    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n"
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace bitop {\n\n#define\
     \ KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline\
     \ ull next_combination(int n, ull x) {\n        if (n == 0) return 1;\n      \
@@ -276,7 +282,7 @@ data:
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

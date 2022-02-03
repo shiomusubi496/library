@@ -123,35 +123,40 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
+    \ f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n\
+    \    operator int() const { return to; }\n    friend bool operator<(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n   \
+    \ friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return\
+    \ lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
     \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
@@ -207,7 +212,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp

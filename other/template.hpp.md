@@ -39,7 +39,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':x:'
@@ -71,13 +71,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
   - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
@@ -93,7 +93,7 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -107,7 +107,7 @@ data:
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
@@ -117,7 +117,7 @@ data:
   - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
@@ -247,16 +247,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - icon: ':x:'
@@ -463,26 +463,31 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n"
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n"
   code: "#pragma once\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_\
@@ -577,26 +582,31 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n"
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: other/template.hpp
@@ -645,7 +655,7 @@ data:
   - math/EulerPhi.hpp
   - math/PrimeFactor.hpp
   - math/Matrix.hpp
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

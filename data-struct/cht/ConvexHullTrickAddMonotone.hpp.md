@@ -111,37 +111,42 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
-    \ T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {\n  protected:\n\
-    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
-    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
-    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
-    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
-    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
-    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
-    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
-    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
+    \n\ntemplate<class T = ll, bool is_max = false> class ConvexHullTrickAddMonotone\
+    \ {\n  protected:\n    struct Line {\n        T a, b;\n        bool is_query;\n\
+    \        mutable const Line* nxt;\n        T get(T x) const { return a * x + b;\
+    \ }\n        Line() = default;\n        Line(T a, T b, bool i = false) : a(a),\
+    \ b(b), is_query(i), nxt(nullptr) {}\n        friend bool operator<(const Line&\
+    \ lhs, const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n\
+    \            if (lhs.is_query) {\n                if (rhs.nxt == nullptr) return\
+    \ true;\n                return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n      \
+    \      }\n            if (rhs.is_query) {\n                if (lhs.nxt == nullptr)\
+    \ return false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n\
+    \            }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
     \        }\n    };\n    std::deque<Line> que;\n    bool is_necessary(const typename\
     \ std::deque<Line>::iterator& itr) {\n        if (itr == que.begin() || itr ==\
     \ prev(que.end())) return true;\n        if (itr->a == prev(itr)->a) return itr->b\
@@ -221,7 +226,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp

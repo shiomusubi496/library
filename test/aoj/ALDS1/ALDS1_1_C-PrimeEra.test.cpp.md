@@ -113,42 +113,47 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n#line 2 \"math/PrimeFactor.hpp\"\n\n#line 4 \"math/PrimeFactor.hpp\"\
-    \n\nclass PrimeFactor {\n  protected:\n    ll MAX;\n    std::vector<ll> era;\n\
-    \  public:\n    PrimeFactor(ll MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep\
-    \ (i, 2, MAX + 1) {\n            if (era[i] != -1) continue;\n            rep\
-    \ (j, i, MAX + 1, i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) {\n\
-    \        return era[x] == x;\n    }\n    std::vector<ll> factorize(ll x) {\n \
-    \       std::vector<ll> res;\n        for (; x > 1; x /= era[x]) res.push_back(x);\n\
-    \        reverse(all(res));\n        return res;\n    }\n};\n\nclass IsPrime {\n\
-    \  protected:\n    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll\
-    \ MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0] = era[1] = false;\n  \
-    \      rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n           \
-    \ rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
-    \ x) {\n        return era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
-    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n\
-    \ */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n \
-    \   int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/PrimeFactor.hpp\"\n\
+    \n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor {\n  protected:\n    ll\
+    \ MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n            if (era[i] !=\
+    \ -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n \
+    \   }\n    bool is_prime(ll x) {\n        return era[x] == x;\n    }\n    std::vector<ll>\
+    \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
+    \ era[x]) res.push_back(x);\n        reverse(all(res));\n        return res;\n\
+    \    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
+    \ era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n    \
+    \    era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i])\
+    \ continue;\n            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n\
+    \    }\n    bool is_prime(ll x) {\n        return era[x];\n    }\n};\n\n/**\n\
+    \ * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
+    )\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
+    \    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
     \ ans++;\n    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
@@ -161,7 +166,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

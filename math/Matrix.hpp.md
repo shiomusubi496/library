@@ -111,53 +111,58 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    using Cont = std::vector<T>;\n\
-    \    Cont data;\n    bool sorted = false;\n  public:\n    presser() = default;\n\
-    \    presser(const std::vector<T>& vec) : data(vec) {}\n    presser(std::vector<T>&&\
-    \ vec) : data(std::move(vec)) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        data.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        data.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        data.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        data.reserve(data.size() + vec.size());\n\
-    \        std::copy(all(vec), std::back_inserter(data));\n    }\n    int build()\
-    \ {\n        assert(!sorted);\n        sorted = true;\n        std::sort(all(data));\n\
-    \        data.erase(std::unique(all(data)), data.end());\n        return data.size();\n\
+    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
+    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
+    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
+    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
+    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
+    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
+    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(data), val) - data.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return data.size();\n\
-    \    }\n};\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
-    \ std::vector<std::vector<T>> {\n  protected:\n    using Base = std::vector<std::vector<T>>;\n\
-    \  public:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
-    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
-    \    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n     \
-    \   rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
-    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
-    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
-    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
-    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        Matrix res(this->size(), other[0].size());\n     \
-    \   rep (i, this->size()) {\n            rep (k, other.size()) {\n           \
-    \     rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n   \
-    \         }\n        }\n        *this = std::move(res);\n        return *this;\n\
-    \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
-    \       rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return\
-    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
-    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
-    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
-    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
-    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
-    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n"
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class\
+    \ T> class Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using\
+    \ Base = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n  \
+    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
+    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    static Matrix get_id(int\
+    \ sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i] = T{1};\n\
+    \        return res;\n    }\n    int height() const { return this->size(); }\n\
+    \    int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
+    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
+    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
+    \ {\n        Matrix res(this->size(), other[0].size());\n        rep (i, this->size())\
+    \ {\n            rep (k, other.size()) {\n                rep (j, other[0].size())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
     \ Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using Base\
     \ = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n    Matrix(int\
@@ -191,7 +196,7 @@ data:
   isVerificationFile: false
   path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2022-02-02 23:52:46+09:00'
+  timestamp: '2022-02-03 10:33:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
