@@ -232,40 +232,50 @@ inline CONSTEXPR int popcnt(ull x) {
 
 template<class T> class presser {
   private:
-    using Cont = std::vector<T>;
-    Cont data;
+    std::vector<T> dat;
     bool sorted = false;
   public:
     presser() = default;
-    presser(const std::vector<T>& vec) : data(vec) {}
-    presser(std::vector<T>&& vec) : data(std::move(vec)) {}
+    presser(const std::vector<T>& vec) : dat(vec) {}
+    presser(std::vector<T>&& vec) : dat(std::move(vec)) {}
+    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}
     void reserve(int n) {
         assert(!sorted);
-        data.reserve(n);
+        dat.reserve(n);
     }
     void push_back(const T& v) {
         assert(!sorted);
-        data.push_back(v);
+        dat.push_back(v);
     }
     void push_back(T&& v) {
         assert(!sorted);
-        data.push_back(std::move(v));
+        dat.push_back(std::move(v));
     }
     void push(const std::vector<T>& vec) {
         assert(!sorted);
-        data.reserve(data.size() + vec.size());
-        std::copy(all(vec), std::back_inserter(data));
+        dat.reserve(dat.size() + vec.size());
+        std::copy(all(vec), std::back_inserter(dat));
     }
     int build() {
         assert(!sorted);
         sorted = true;
-        std::sort(all(data));
-        data.erase(std::unique(all(data)), data.end());
-        return data.size();
+        std::sort(all(dat));
+        dat.erase(std::unique(all(dat)), dat.end());
+        return dat.size();
+    }
+    const T& operator[](int k) const& {
+        assert(sorted);
+        assert(0 <= k && k < (int)dat.size());
+        return dat[k];
+    }
+    T operator[](int k) && {
+        assert(sorted);
+        assert(0 <= k && k < (int)dat.size());
+        return std::move(dat[k]);
     }
     int get_index(const T& val) const {
         assert(sorted);
-        return static_cast<int>(std::lower_bound(all(data), val) - data.begin());
+        return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());
     }
     std::vector<int> pressed(const std::vector<T>& vec) const {
         assert(sorted);
@@ -280,6 +290,8 @@ template<class T> class presser {
     }
     int size() const {
         assert(sorted);
-        return data.size();
+        return dat.size();
     }
+    const std::vector<T>& data() const& { return dat; }
+    std::vector<T> data() && { return std::move(dat); }
 };
