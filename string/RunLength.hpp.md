@@ -13,6 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/RunLength.md
+    document_title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
     links: []
   bundledCode: "#line 2 \"string/RunLength.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -138,19 +140,23 @@ data:
     \ RunLength(const Cont& str) {\n    std::vector<std::pair<typename Cont::value_type,\
     \ int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
     \ 1);\n    rep (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
-    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n"
+    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\n/**\n\
+    \ * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)\n * @docs\
+    \ docs/RunLength.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont>\
     \ std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont&\
     \ str) {\n    std::vector<std::pair<typename Cont::value_type, int>> res;\n  \
     \  if (str.size() == 0) return res;\n    res.emplace_back(str[0], 1);\n    rep\
     \ (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
-    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n"
+    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\n/**\n\
+    \ * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)\n * @docs\
+    \ docs/RunLength.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/RunLength.hpp
   requiredBy: []
-  timestamp: '2022-02-03 22:44:08+09:00'
+  timestamp: '2022-02-04 14:26:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1469.test.cpp
@@ -159,5 +165,12 @@ layout: document
 redirect_from:
 - /library/string/RunLength.hpp
 - /library/string/RunLength.hpp.html
-title: string/RunLength.hpp
+title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
 ---
+## 概要
+
+文字列を圧縮する。同じ文字が続く場所を、その文字と続く個数のペアで表す。例えば `aaabcca` は `{(a, 3), (b, 1), (c, 2), (a, 1)}` のようになる。
+
+`string` でなくても、ランダムアクセス可能なコンテナ型なら動く。
+
+- `vector<pair<char, int>> RunLength(string str)` : `str` を圧縮した配列を返す。 $\Theta(N)$ 。

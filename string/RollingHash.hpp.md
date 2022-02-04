@@ -13,6 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/RollingHash.md
+    document_title: "RollingHash(\u30ED\u30EA\u30CF)"
     links: []
   bundledCode: "#line 2 \"string/RollingHash.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -154,9 +156,11 @@ data:
     \ 1] = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int l, int\
     \ r) const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
     \ calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n        }\n    \
-    \    ull get_all() const { return hash[n]; }\n    };\n    RollingHash() { init();\
-    \ }\n    template<class Cont> Hash get_hash(const Cont& str) {\n        return\
-    \ Hash(BASE, str);\n    }\n};\n"
+    \    ull get_all() const {\n            return hash[n];\n        }\n    };\n \
+    \   RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const Cont&\
+    \ str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base() const\
+    \ {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\
+    \u30CF)\n * @docs docs/RollingHash.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass RollingHash {\n\
     \  protected:\n    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr\
     \ ull MASK30 = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31)\
@@ -177,15 +181,17 @@ data:
     \ + 1); pows[0] = 1;\n            rep (i, n) pows[i + 1] = calc_multi(pows[i],\
     \ BASE);\n        }\n        ull get_hash(int l, int r) const {\n            assert(0\
     \ <= l && l <= r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
-    \ pows[r - l]));\n        }\n        ull get_all() const { return hash[n]; }\n\
-    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
-    \ Cont& str) {\n        return Hash(BASE, str);\n    }\n};\n"
+    \ pows[r - l]));\n        }\n        ull get_all() const {\n            return\
+    \ hash[n];\n        }\n    };\n    RollingHash() { init(); }\n    template<class\
+    \ Cont> Hash get_hash(const Cont& str) const {\n        return Hash(BASE, str);\n\
+    \    }\n    ull get_base() const {\n        return BASE;\n    }\n};\n\n/**\n *\
+    \ @brief RollingHash(\u30ED\u30EA\u30CF)\n * @docs docs/RollingHash.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2022-02-04 14:02:57+09:00'
+  timestamp: '2022-02-04 14:26:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
@@ -194,5 +200,18 @@ layout: document
 redirect_from:
 - /library/string/RollingHash.hpp
 - /library/string/RollingHash.hpp.html
-title: string/RollingHash.hpp
+title: "RollingHash(\u30ED\u30EA\u30CF)"
 ---
+## 概要
+
+文字列などのコンテナは比較に線形時間がかかってしまうため、それを比較が定数時間でできる整数値に変換する。
+
+ローリングハッシュなので、略してロリハ。
+
+- `RollingHash()` : ローリングハッシュを作成する。 $\Theta(1)$ 。
+- `RollingHash::Hash get_hash(string str)` : ハッシュ値を計算するための型を返す。 $\Theta(N)$ 。
+
+`RollingHash::Hash` には次のメンバ関数がある。
+
+- `ull get_hash(int l, int r)` : 文字列の `l` 文字目から `r-1` 文字目までの部分文字列のハッシュ値を返す。 $\Theta(1)$ 。
+- `ull get_all()` : 文字列全体のハッシュ値を返す。 $\Theta(1)$ 。

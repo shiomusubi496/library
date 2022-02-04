@@ -6,7 +6,7 @@ data:
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
-    title: string/RollingHash.hpp
+    title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -158,9 +158,11 @@ data:
     \ (i, n) pows[i + 1] = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int\
     \ l, int r) const {\n            assert(0 <= l && l <= r && r <= n);\n       \
     \     return calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n    \
-    \    }\n        ull get_all() const { return hash[n]; }\n    };\n    RollingHash()\
-    \ { init(); }\n    template<class Cont> Hash get_hash(const Cont& str) {\n   \
-    \     return Hash(BASE, str);\n    }\n};\n#line 4 \"test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp\"\
+    \    }\n        ull get_all() const {\n            return hash[n];\n        }\n\
+    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
+    \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
+    \ const {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
+    \u30EA\u30CF)\n * @docs docs/RollingHash.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string T, P; cin >> T >> P;\n    RollingHash\
     \ RH;\n    auto tr = RH.get_hash(T);\n    auto pr = RH.get_hash(P);\n    rep (i,\
     \ T.size() - P.size() + 1) {\n        if (tr.get_hash(i, i + P.size()) == pr.get_all())\
@@ -177,7 +179,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 14:02:57+09:00'
+  timestamp: '2022-02-04 14:26:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

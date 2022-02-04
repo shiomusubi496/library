@@ -143,10 +143,10 @@ data:
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
-    title: string/RollingHash.hpp
+    title: "RollingHash(\u30ED\u30EA\u30CF)"
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
-    title: string/RunLength.hpp
+    title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
