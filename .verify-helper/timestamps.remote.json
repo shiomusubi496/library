@@ -6,6 +6,7 @@
 "test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp": "2022-02-03 10:33:30 +0900",
 "test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp": "2022-02-03 10:33:30 +0900",
 "test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp": "2022-02-03 10:33:30 +0900",
+"test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp": "2022-02-04 14:02:57 +0900",
 "test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp": "2022-02-03 10:33:30 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp": "2022-02-03 10:33:30 +0900",
 "test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp": "2022-02-03 10:33:30 +0900",
