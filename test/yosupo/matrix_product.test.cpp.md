@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -40,7 +40,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -264,14 +266,14 @@ data:
     \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
     int main() {\n    int N, M, K; cin >> N >> M >> K;\n    Mat A(N, M); cin >> A;\n\
-    \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    for (const auto& v : C) cout\
-    \ << v << endl;\n}\n"
+    \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    each_const (v : C) cout <<\
+    \ v << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n#include \"\
     ../../math/Matrix.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
     using Mat = Matrix<mint>;\nint main() {\n    int N, M, K; cin >> N >> M >> K;\n\
     \    Mat A(N, M); cin >> A;\n    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n\
-    \    for (const auto& v : C) cout << v << endl;\n}\n"
+    \    each_const (v : C) cout << v << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - math/ModInt.hpp
@@ -279,8 +281,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-04 19:51:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
 layout: document

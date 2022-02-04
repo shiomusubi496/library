@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/tree_diameter
@@ -43,7 +43,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -165,67 +167,66 @@ data:
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/TreeDiameter.hpp\"\
-    \n\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line\
+    \ 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
     \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
-    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
-    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
-    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
-    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
-    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
-    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
-    \               res.push_back(e); std::swap(res.back().from, res.back().to);\n\
-    \                t = e.to;\n                flg = true;\n                break;\n\
-    \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n#line 6 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class\
-    \ T> class TreeDiameter {\n  protected:\n    const Graph<T>& G;\n    int s, t;\n\
-    \    std::vector<T> dist;\n    void dfs(int v, int p) {\n        for (const edge<T>&\
-    \ e : G[v]) {\n            if (e.to == p) continue;\n            dist[e.to] =\
-    \ dist[v] + e.cost;\n            dfs(e.to, v);\n        }\n    }\n    void init()\
-    \ {\n        dist.resize(G.size()); dist[0] = 0;\n        dfs(0, -1);\n      \
-    \  s = std::max_element(all(dist)) - dist.begin();\n        dist[s] = 0;\n   \
-    \     dfs(s, -1);\n        t = std::max_element(all(dist)) - dist.begin();\n \
-    \   }\n  public:\n    TreeDiameter(const Graph<T>& G) : G(G) { init(); }\n   \
-    \ T diameter() const { return dist[t]; }\n    std::pair<int, int> get_pair() const\
-    \ { return {s, t}; }\n    Edges<T> get_path() const { return RestorePath(G, dist,\
-    \ s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n * @docs\
-    \ docs/TreeDiameter.md\n */\n#line 5 \"test/yosupo/tree_diameter.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<ll> G(N);\n\
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        each_const\
+    \ (e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const\
+    \ Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n    const auto RG\
+    \ = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false); seen[t] = true;\n\
+    \    Edges<T> res;\n    while (s != t) {\n        bool flg = false;\n        each_const\
+    \ (e : RG[t]) {\n            if (!seen[e.to] && dist[e.to] + e.cost == dist[t])\
+    \ {\n                seen[e.to] = true;\n                res.push_back(e); std::swap(res.back().from,\
+    \ res.back().to);\n                t = e.to;\n                flg = true;\n  \
+    \              break;\n            }\n        }\n        assert(flg);\n    }\n\
+    \    std::reverse(all(res));\n    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"graph/tree/TreeDiameter.hpp\"\
+    \n\ntemplate<class T> class TreeDiameter {\n  protected:\n    const Graph<T>&\
+    \ G;\n    int s, t;\n    std::vector<T> dist;\n    void dfs(int v, int p) {\n\
+    \        each_const (e : G[v]) {\n            if (e.to == p) continue;\n     \
+    \       dist[e.to] = dist[v] + e.cost;\n            dfs(e.to, v);\n        }\n\
+    \    }\n    void init() {\n        dist.resize(G.size()); dist[0] = 0;\n     \
+    \   dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n   \
+    \     dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ - dist.begin();\n    }\n  public:\n    TreeDiameter(const Graph<T>& G) : G(G)\
+    \ { init(); }\n    T diameter() const { return dist[t]; }\n    std::pair<int,\
+    \ int> get_pair() const { return {s, t}; }\n    Edges<T> get_path() const { return\
+    \ RestorePath(G, dist, s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\
+    \u76F4\u5F84)\n * @docs docs/TreeDiameter.md\n */\n#line 5 \"test/yosupo/tree_diameter.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<ll> G(N);\n\
     \    rep (N - 1) {\n        int a, b; ll c; cin >> a >> b >> c;\n        G.add_edge(a,\
     \ b, c);\n    }\n    TreeDiameter<ll> TD(G);\n    auto v = TD.get_path();\n  \
     \  cout << TD.diameter() << ' ' << v.size() + 1 << endl;\n    cout << v[0].from;\n\
-    \    for (const edge<ll>& e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
+    \    each_const (e : v) cout << ' ' << e.to;\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_diameter\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
     ../../graph/tree/TreeDiameter.hpp\"\nusing namespace std;\nint main() {\n    int\
     \ N; cin >> N;\n    Graph<ll> G(N);\n    rep (N - 1) {\n        int a, b; ll c;\
     \ cin >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n    TreeDiameter<ll>\
     \ TD(G);\n    auto v = TD.get_path();\n    cout << TD.diameter() << ' ' << v.size()\
-    \ + 1 << endl;\n    cout << v[0].from;\n    for (const edge<ll>& e : v) cout <<\
-    \ ' ' << e.to;\n    cout << endl;\n}\n"
+    \ + 1 << endl;\n    cout << v[0].from;\n    each_const (e : v) cout << ' ' <<\
+    \ e.to;\n    cout << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -234,8 +235,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree_diameter.test.cpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-04 19:51:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree_diameter.test.cpp
 layout: document

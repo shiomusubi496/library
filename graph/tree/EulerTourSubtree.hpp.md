@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/EulerTourSubtree.md
     document_title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
@@ -39,7 +39,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -161,67 +163,67 @@ data:
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\
-    \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
-    \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\n\
+    template<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n  \
+    \  std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
     \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
-    \      for (const edge<T>& e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n\
-    \        }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n\
-    \ = G.size();\n        idx.assign(n, {-1, -1});\n        cnt = 0;\n        for\
-    \ (const int& r : root) dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first\
-    \ == -1) dfs(i, -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const\
-    \ Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const\
-    \ Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }\n\
-    \    const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }\n   \
-    \ std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n    template<class\
-    \ F> void each_vertex_subtree(int v, const F& f) const {\n        f(idx[v].first,\
-    \ idx[v].second);\n    }\n    template<class F> void each_edge_subtree(int v,\
-    \ const F& f) const {\n        f(idx[v].first + 1, idx[v].second);\n    }\n};\n\
-    \n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
-    \u5206\u6728\u30AF\u30A8\u30EA)\n * @docs docs/EulerTourSubtree.md\n */\n"
+    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
+    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
+    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
+    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
+    \ -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const Graph<T>& G, int\
+    \ root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ k) && { return std::move(idx[k]); }\n    template<class F> void each_vertex_subtree(int\
+    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
+    \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
+    \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
+    \u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n *\
+    \ @docs docs/EulerTourSubtree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
     \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
     \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
-    \      for (const edge<T>& e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n\
-    \        }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n\
-    \ = G.size();\n        idx.assign(n, {-1, -1});\n        cnt = 0;\n        for\
-    \ (const int& r : root) dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first\
-    \ == -1) dfs(i, -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const\
-    \ Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const\
-    \ Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }\n\
-    \    const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }\n   \
-    \ std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n    template<class\
-    \ F> void each_vertex_subtree(int v, const F& f) const {\n        f(idx[v].first,\
-    \ idx[v].second);\n    }\n    template<class F> void each_edge_subtree(int v,\
-    \ const F& f) const {\n        f(idx[v].first + 1, idx[v].second);\n    }\n};\n\
-    \n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
-    \u5206\u6728\u30AF\u30A8\u30EA)\n * @docs docs/EulerTourSubtree.md\n */\n"
+    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
+    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
+    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
+    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
+    \ -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const Graph<T>& G, int\
+    \ root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ k) && { return std::move(idx[k]); }\n    template<class F> void each_vertex_subtree(int\
+    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
+    \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
+    \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
+    \u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n *\
+    \ @docs docs/EulerTourSubtree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/EulerTourSubtree.hpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-04 19:51:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
 documentation_of: graph/tree/EulerTourSubtree.hpp

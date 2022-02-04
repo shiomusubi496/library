@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
@@ -44,7 +44,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -166,73 +168,73 @@ data:
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\
     \n\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"graph/other/LowLink.hpp\"\
     \n\ntemplate<class T> class LowLink {\n  protected:\n    int n, cnt;\n    const\
     \ Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int> aps;\n  \
     \  Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n\
-    \        int deg = 0;\n        bool is_ap = false, mul = false;\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (e.to == p && !mul) {\n               \
-    \ mul = true;\n                continue;\n            }\n            if (ord[e.to]\
-    \ != -1) chmin(low[v], ord[e.to]);\n            else {\n                dfs(e.to,\
-    \ v);\n                chmin(low[v], low[e.to]);\n                if (p != -1\
-    \ && ord[v] <= low[e.to]) is_ap = true;\n                if (ord[v] < low[e.to])\
-    \ brd.push_back(e);\n                ++deg;\n            }\n        }\n      \
-    \  if (p == -1 && deg > 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n\
-    \    }\n    void init() {\n        n = G.size();\n        ord.assign(n, -1); low.assign(n,\
-    \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
-    \ dfs(i, -1);\n        }\n    }\n  public:\n    LowLink(const Graph<T>& G) : G(G)\
-    \ { init(); }\n    const std::vector<int>& articulation_points() const& { return\
-    \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
-    \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
-    \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
-    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 6 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\
+    \        int deg = 0;\n        bool is_ap = false, mul = false;\n        each_const\
+    \ (e : G[v]) {\n            if (e.to == p && !mul) {\n                mul = true;\n\
+    \                continue;\n            }\n            if (ord[e.to] != -1) chmin(low[v],\
+    \ ord[e.to]);\n            else {\n                dfs(e.to, v);\n           \
+    \     chmin(low[v], low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to])\
+    \ is_ap = true;\n                if (ord[v] < low[e.to]) brd.push_back(e);\n \
+    \               ++deg;\n            }\n        }\n        if (p == -1 && deg >\
+    \ 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n    }\n    void init()\
+    \ {\n        n = G.size();\n        ord.assign(n, -1); low.assign(n, n + 1);\n\
+    \        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1) dfs(i,\
+    \ -1);\n        }\n    }\n  public:\n    LowLink(const Graph<T>& G) : G(G) { init();\
+    \ }\n    const std::vector<int>& articulation_points() const& { return aps; }\n\
+    \    std::vector<int> articulation_points() && { return std::move(aps); }\n  \
+    \  const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges() &&\
+    \ { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\
+    \u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n#line 6 \"graph/connected/TwoEdgeConnectedComponents.hpp\"\
     \n\ntemplate<class T> class TwoEdgeConnectedComponents : public LowLink<T> {\n\
     \  protected:\n    int sz;\n    std::vector<int> cmp;\n    void dcmp(int v) {\n\
-    \        for (const edge<T>& e : this->G[v]) {\n            if (cmp[e.to] != -1)\
-    \ continue;\n            if (this->ord[v] < this->low[e.to] || this->ord[e.to]\
-    \ < this->low[v]) continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n\
-    \        }\n    }\n    void init() {\n        sz = 0;\n        cmp.assign(this->n,\
-    \ -1);\n        rep (i, this->n) {\n            if (cmp[i] == -1) {\n        \
-    \        cmp[i] = sz++;\n                dcmp(i);\n            }\n        }\n\
-    \    }\n  public:\n    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G)\
+    \        each_const (e : this->G[v]) {\n            if (cmp[e.to] != -1) continue;\n\
+    \            if (this->ord[v] < this->low[e.to] || this->ord[e.to] < this->low[v])\
+    \ continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n      \
+    \  }\n    }\n    void init() {\n        sz = 0;\n        cmp.assign(this->n, -1);\n\
+    \        rep (i, this->n) {\n            if (cmp[i] == -1) {\n               \
+    \ cmp[i] = sz++;\n                dcmp(i);\n            }\n        }\n    }\n\
+    \  public:\n    TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G)\
     \ { init(); }\n    int size() const { return sz; }\n    int operator[](int k)\
     \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
     \        std::vector<std::vector<int>> res(sz);\n        rep (i, this->n) res[cmp[i]].push_back(i);\n\
     \        return res;\n    }\n    Graph<T> tree() const {\n        Graph<T> res(sz);\n\
-    \        for (const edge<T>& e : this->brd) {\n            res.add_edge(cmp[e.from],\
-    \ cmp[e.to], e.cost);\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-    )\n * @docs docs/TwoEdgeConnectedComponents.md\n */\n#line 5 \"test/yosupo/two_edge_connected_components.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int>\
-    \ G(N);\n    rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n \
-    \   cout << tecc.size() << endl;\n    for (const auto& v : tecc) {\n        cout\
-    \ << v.size() << ' ' << v << endl;\n    }\n}\n"
+    \        each_const (e : this->brd) {\n            res.add_edge(cmp[e.from], cmp[e.to],\
+    \ e.cost);\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoEdgeConnectedComponents(\u4E8C\
+    \u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/TwoEdgeConnectedComponents.md\n\
+    \ */\n#line 5 \"test/yosupo/two_edge_connected_components.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int> G(N);\n   \
+    \ rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n   \
+    \ }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n    cout <<\
+    \ tecc.size() << endl;\n    each_const (v : tecc) {\n        cout << v.size()\
+    \ << ' ' << v << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n\
     #include \"../../graph/connected/TwoEdgeConnectedComponents.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int> G(N);\n   \
     \ rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n   \
     \ }\n    auto tecc = TwoEdgeConnectedComponents<int>(G).groups();\n    cout <<\
-    \ tecc.size() << endl;\n    for (const auto& v : tecc) {\n        cout << v.size()\
+    \ tecc.size() << endl;\n    each_const (v : tecc) {\n        cout << v.size()\
     \ << ' ' << v << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
@@ -242,8 +244,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_edge_connected_components.test.cpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-04 19:51:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/two_edge_connected_components.test.cpp
 layout: document

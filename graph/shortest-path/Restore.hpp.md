@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree_diameter.test.cpp
     title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -47,7 +47,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -169,59 +171,57 @@ data:
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\
-    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\n\
+    template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
     \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
-    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
-    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
-    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
-    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
-    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
-    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
-    \               res.push_back(e); std::swap(res.back().from, res.back().to);\n\
-    \                t = e.to;\n                flg = true;\n                break;\n\
-    \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n"
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        each_const\
+    \ (e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const\
+    \ Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n    const auto RG\
+    \ = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false); seen[t] = true;\n\
+    \    Edges<T> res;\n    while (s != t) {\n        bool flg = false;\n        each_const\
+    \ (e : RG[t]) {\n            if (!seen[e.to] && dist[e.to] + e.cost == dist[t])\
+    \ {\n                seen[e.to] = true;\n                res.push_back(e); std::swap(res.back().from,\
+    \ res.back().to);\n                t = e.to;\n                flg = true;\n  \
+    \              break;\n            }\n        }\n        assert(flg);\n    }\n\
+    \    std::reverse(all(res));\n    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
     \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        for (const\
-    \ edge<T>& e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v]\
-    \ + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
-    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
-    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
-    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
-    \ false;\n        for (const edge<T>& e : RG[t]) {\n            if (!seen[e.to]\
-    \ && dist[e.to] + e.cost == dist[t]) {\n                seen[e.to] = true;\n \
-    \               res.push_back(e); std::swap(res.back().from, res.back().to);\n\
-    \                t = e.to;\n                flg = true;\n                break;\n\
-    \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n"
+    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        each_const\
+    \ (e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                bfr[e.to] = v;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const\
+    \ Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n    const auto RG\
+    \ = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false); seen[t] = true;\n\
+    \    Edges<T> res;\n    while (s != t) {\n        bool flg = false;\n        each_const\
+    \ (e : RG[t]) {\n            if (!seen[e.to] && dist[e.to] + e.cost == dist[t])\
+    \ {\n                seen[e.to] = true;\n                res.push_back(e); std::swap(res.back().from,\
+    \ res.back().to);\n                t = e.to;\n                flg = true;\n  \
+    \              break;\n            }\n        }\n        assert(flg);\n    }\n\
+    \    std::reverse(all(res));\n    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\
+    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -229,8 +229,8 @@ data:
   path: graph/shortest-path/Restore.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2022-02-03 10:33:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-04 19:51:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/tree_diameter.test.cpp

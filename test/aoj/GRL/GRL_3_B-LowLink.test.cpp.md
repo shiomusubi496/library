@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -40,7 +40,9 @@ data:
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define all(v) (v).begin(), (v).end()\n\n#if __cplusplus >= 201402L\n#define\
+    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
+    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
     \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
     \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
@@ -162,36 +164,36 @@ data:
     \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
     };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
     \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        for (const edge<T>& e\
-    \ : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n   \
-    \     for (const edge<T>& e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\
-    \ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = std::accumulate(\n        all(G), 0,\n\
-    \        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size();\
-    \ }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n\
-    \        for (const edge<T>& e : G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx]\
-    \ = e;\n            else Ed.push_back(e);\n        }\n    }\n    return Ed;\n\
-    }\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G) {\n    const int\
-    \ V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n        for (const auto&\
-    \ e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);\n\
-    \        }\n    }\n    res.edge_id = G.edge_size();\n    return res;\n}\n\n\n\
-    struct unweighted_edge {\n    template<class... Args> unweighted_edge(const Args&...)\
-    \ {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph = Graph<unweighted_edge>;\n\
-    \n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n */\n#line 2 \"graph/other/LowLink.hpp\"\
-    \n\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n\
-    \  protected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord,\
-    \ low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int\
-    \ p) {\n        low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap\
-    \ = false, mul = false;\n        for (const edge<T>& e : G[v]) {\n           \
-    \ if (e.to == p && !mul) {\n                mul = true;\n                continue;\n\
-    \            }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n \
-    \           else {\n                dfs(e.to, v);\n                chmin(low[v],\
-    \ low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n\
-    \                if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n\
-    \            }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n   \
-    \     if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"\
+    graph/other/LowLink.hpp\"\n\ntemplate<class T> class LowLink {\n  protected:\n\
+    \    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n   \
+    \ std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v, int p) {\n   \
+    \     low[v] = ord[v] = cnt++;\n        int deg = 0;\n        bool is_ap = false,\
+    \ mul = false;\n        each_const (e : G[v]) {\n            if (e.to == p &&\
+    \ !mul) {\n                mul = true;\n                continue;\n          \
+    \  }\n            if (ord[e.to] != -1) chmin(low[v], ord[e.to]);\n           \
+    \ else {\n                dfs(e.to, v);\n                chmin(low[v], low[e.to]);\n\
+    \                if (p != -1 && ord[v] <= low[e.to]) is_ap = true;\n         \
+    \       if (ord[v] < low[e.to]) brd.push_back(e);\n                ++deg;\n  \
+    \          }\n        }\n        if (p == -1 && deg > 1) is_ap = true;\n     \
+    \   if (is_ap) aps.push_back(v);\n    }\n    void init() {\n        n = G.size();\n\
     \        ord.assign(n, -1); low.assign(n, n + 1);\n        cnt = 0;\n        rep\
     \ (i, n) {\n            if (ord[i] == -1) dfs(i, -1);\n        }\n    }\n  public:\n\
     \    LowLink(const Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>&\
@@ -202,21 +204,21 @@ data:
     \ */\n#line 5 \"test/aoj/GRL/GRL_3_B-LowLink.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E)\
     \ {\n        int s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int>\
-    \ LL(G);\n    auto v = LL.bridges();\n    for (auto&& e : v) {\n        if (e.from\
+    \ LL(G);\n    auto v = LL.bridges();\n    each_for (e : v) {\n        if (e.from\
     \ > e.to) swap(e.from, e.to);\n    }\n    sort(v.begin(), v.end(), [](const edge<int>&\
     \ a, const edge<int>& b) -> bool {\n        if (a.from != b.from) return a.from\
-    \ < b.from;\n        return a.to < b.to;\n    });\n    for (const auto& e : v)\
-    \ cout << e.from << ' ' << e.to << endl;\n}\n"
+    \ < b.from;\n        return a.to < b.to;\n    });\n    each_const (e : v) cout\
+    \ << e.from << ' ' << e.to << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/other/LowLink.hpp\"\nusing namespace std;\nint main() {\n \
     \   int V, E; cin >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n        int\
     \ s, t; cin >> s >> t;\n        G.add_edge(s, t);\n    }\n    LowLink<int> LL(G);\n\
-    \    auto v = LL.bridges();\n    for (auto&& e : v) {\n        if (e.from > e.to)\
+    \    auto v = LL.bridges();\n    each_for (e : v) {\n        if (e.from > e.to)\
     \ swap(e.from, e.to);\n    }\n    sort(v.begin(), v.end(), [](const edge<int>&\
     \ a, const edge<int>& b) -> bool {\n        if (a.from != b.from) return a.from\
-    \ < b.from;\n        return a.to < b.to;\n    });\n    for (const auto& e : v)\
-    \ cout << e.from << ' ' << e.to << endl;\n}\n"
+    \ < b.from;\n        return a.to < b.to;\n    });\n    each_const (e : v) cout\
+    \ << e.from << ' ' << e.to << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -224,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2022-02-03 10:33:30+09:00'
+  timestamp: '2022-02-04 19:51:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
