@@ -107,3 +107,7 @@ template<class T> class Rational {
 };
 
 using Fraction = Rational<ll>;
+
+/**
+ * @brief Rational(有理数型)
+ */
