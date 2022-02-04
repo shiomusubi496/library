@@ -15,6 +15,6 @@ int main() {
     else {
         auto v = GC.get_cycle();
         cout << v.size() << endl;
-        for (const auto& e : GC.get_cycle()) cout << e.idx << endl;
+        each_const (e : GC.get_cycle()) cout << e.idx << endl;
     }
 }

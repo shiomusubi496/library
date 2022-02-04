@@ -13,7 +13,7 @@ template<class T> class DoublingLCA {
     std::vector<int> dep;
     std::vector<std::vector<int>> dbl;
     void dfs_build(int v, int p) {
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (e.to != p) {
                 par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);
                 dep[e.to] = dep[v] + 1;

@@ -13,5 +13,5 @@ int main() {
     LowLink<int> LL(G);
     auto v = LL.articulation_points();
     sort(v.begin(), v.end());
-    for (const auto& i : v) cout << i << endl;
+    each_const (i : v) { cout << i << endl; }
 }

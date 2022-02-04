@@ -12,7 +12,7 @@ template<class T> class GraphCycle {
         if (seen[v]) return v;
         if (visited[v]) return -1;
         visited[v] = seen[v] = true;
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             int d = dfs(e.to, v);
             if (d != -1) {
                 if (d == -2) return -2;

@@ -12,7 +12,7 @@ template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
         int v = que.top().second;
         que.pop();
         if (dist[v] != c) continue;
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);
         }
     }

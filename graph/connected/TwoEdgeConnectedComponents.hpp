@@ -9,7 +9,7 @@ template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
     int sz;
     std::vector<int> cmp;
     void dcmp(int v) {
-        for (const edge<T>& e : this->G[v]) {
+        each_const (e : this->G[v]) {
             if (cmp[e.to] != -1) continue;
             if (this->ord[v] < this->low[e.to] || this->ord[e.to] < this->low[v]) continue;
             cmp[e.to] = cmp[v];
@@ -37,7 +37,7 @@ template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
     }
     Graph<T> tree() const {
         Graph<T> res(sz);
-        for (const edge<T>& e : this->brd) {
+        each_const (e : this->brd) {
             res.add_edge(cmp[e.from], cmp[e.to], e.cost);
         }
         return res;

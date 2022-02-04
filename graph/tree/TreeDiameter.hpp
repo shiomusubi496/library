@@ -10,7 +10,7 @@ template<class T> class TreeDiameter {
     int s, t;
     std::vector<T> dist;
     void dfs(int v, int p) {
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (e.to == p) continue;
             dist[e.to] = dist[v] + e.cost;
             dfs(e.to, v);

@@ -48,7 +48,7 @@ template<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {
     auto res = make_vec<T>(N, N, infinity<T>::value);
     rep (i, N) res[i][i] = 0;
     rep (i, N) {
-        for (const edge<T>& e : G[i]) res[i][e.to] = e.cost;
+        each_const (e : G[i]) res[i][e.to] = e.cost;
     }
     return res;
 }
@@ -58,7 +58,7 @@ template<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {
     const int E = G.edge_size();
     Edges<T> Ed(E);
     rep (i, V) {
-        for (const edge<T>& e : G[i]) Ed[e.idx] = e;
+        each_const (e : G[i]) Ed[e.idx] = e;
     }
     return Ed;
 }
@@ -71,7 +71,7 @@ template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
     );
     Edges<T> Ed(G.edge_size()); Ed.reserve(E);
     rep (i, V) {
-        for (const edge<T>& e : G[i]) {
+        each_const (e : G[i]) {
             if (Ed[e.idx] == -1) Ed[e.idx] = e;
             else Ed.push_back(e);
         }
@@ -83,7 +83,7 @@ template<class T> Graph<T> ReverseGraph(const Graph<T>& G) {
     const int V = G.size();
     Graph<T> res(V);
     rep (i, V) {
-        for (const auto& e : G[i]) {
+        each_const (e : G[i]) {
             res[e.to].emplace_back(e.to, e.from, e.cost, e.idx);
         }
     }

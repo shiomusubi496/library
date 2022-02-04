@@ -8,14 +8,14 @@ template<class T> T Prim(const Graph<T>& G) {
     const int N = G.size();
     std::vector<bool> seen(N, false); seen[0] = true;
     prique<edge<T>> que;
-    for (const edge<T>& e : G[0]) que.emplace(e);
+    each_const (e : G[0]) que.emplace(e);
     T res = 0;
     while (!que.empty()) {
         const edge<T> cre = que.top(); que.pop();
         if (seen[cre.to]) continue;
         res += cre.cost;
         seen[cre.to] = true;
-        for (const edge<T>& e : G[cre.to]) {
+        each_const (e : G[cre.to]) {
             if (seen[e.to]) continue;
             que.emplace(e);
         }
@@ -27,14 +27,14 @@ template<class T> Edges<T> Prim_vec(const Graph<T>& G) {
     const int N = G.size();
     std::vector<bool> seen(N, false); seen[0] = true;
     prique<edge<T>> que;
-    for (const edge<T>& e : G[0]) que.emplace(e);
+    each_const (e : G[0]) que.emplace(e);
     Edges<T> res;
     while (!que.empty()) {
         const edge<T> cre = que.top(); que.pop();
         if (seen[cre.to]) continue;
         res.emplace(cre);
         seen[cre.to] = true;
-        for (const edge<T>& e : G[cre.to]) {
+        each_const (e : G[cre.to]) {
             if (seen[e.to]) continue;
             que.emplace(e);
         }

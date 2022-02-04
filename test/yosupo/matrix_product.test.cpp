@@ -10,5 +10,5 @@ int main() {
     Mat A(N, M); cin >> A;
     Mat B(M, K); cin >> B;
     Mat C = A * B;
-    for (const auto& v : C) cout << v << endl;
+    each_const (v : C) cout << v << endl;
 }

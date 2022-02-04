@@ -11,7 +11,7 @@ template<class T> class EulerTourSubtree {
     std::vector<std::pair<int, int>> idx;
     void dfs(int v, int p) {
         idx[v].first = cnt++;
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (e.to != p) dfs(e.to, v);
         }
         idx[v].second = cnt;
@@ -20,7 +20,7 @@ template<class T> class EulerTourSubtree {
         n = G.size();
         idx.assign(n, {-1, -1});
         cnt = 0;
-        for (const int& r : root) dfs(r, -1);
+        each_const (r : root) dfs(r, -1);
         rep (i, n) {
             if (idx[i].first == -1) dfs(i, -1);
         }

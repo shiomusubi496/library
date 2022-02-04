@@ -27,7 +27,11 @@
 #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))
 #define rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)
 
-#define all(v) (v).begin(), (v).end()
+#define each_for(...) for (auto&& __VA_ARGS__)
+#define each_const(...) for (const auto& __VA_ARGS__)
+
+#define all(v) std::begin(v), std::end(v)
+#define rall(v) std::rbegin(v), std::rend(v)
 
 #if __cplusplus >= 201402L
 #define CONSTEXPR constexpr

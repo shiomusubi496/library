@@ -9,7 +9,7 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
     std::queue<int> que; que.push(start);
     while (!que.empty()) {
         int v = que.front(); que.pop();
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {
                 bfr[e.to] = v;
                 que.push(e.to);
@@ -25,7 +25,7 @@ template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& 
     Edges<T> res;
     while (s != t) {
         bool flg = false;
-        for (const edge<T>& e : RG[t]) {
+        each_const (e : RG[t]) {
             if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {
                 seen[e.to] = true;
                 res.push_back(e); std::swap(res.back().from, res.back().to);

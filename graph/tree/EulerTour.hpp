@@ -29,7 +29,7 @@ class EulerTour {
     void dfs(int v, int p) {
         idx[v].first = cnt++;
         rmqvec.emplace_back(dep[v], v);
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (e.to == p) continue;
             dep[e.to] = dep[v] + 1;
             dfs(e.to, v);
@@ -43,7 +43,7 @@ class EulerTour {
         idx.assign(n, {-1, -1});
         rmqvec.reserve(n << 1);
         cnt = 0;
-        for (const int& r : root) {
+        each_const (r : root) {
             dfs(r, -1);
             rmqvec.emplace_back(-1, -1);
         }

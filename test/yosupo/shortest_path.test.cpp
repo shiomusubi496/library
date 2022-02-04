@@ -18,5 +18,5 @@ int main() {
     }
     Edges<ll> R = RestorePath(G, D, s, t);
     cout << D[t] << ' ' << R.size() << endl;
-    for (const edge<ll>& e : R) cout << e.from << ' ' << e.to << endl;
+    each_const (e : R) cout << e.from << ' ' << e.to << endl;
 }

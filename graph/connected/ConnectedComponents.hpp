@@ -9,7 +9,7 @@ template<class T> class ConnectedComponents {
     const Graph<T>& G;
     std::vector<int> cmp;
     void dfs(int v) {
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (cmp[e.to] != -1) continue;
             cmp[e.to] = cmp[v];
             dfs(e.to);

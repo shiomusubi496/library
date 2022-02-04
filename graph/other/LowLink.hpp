@@ -13,7 +13,7 @@ template<class T> class LowLink {
         low[v] = ord[v] = cnt++;
         int deg = 0;
         bool is_ap = false, mul = false;
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (e.to == p && !mul) {
                 mul = true;
                 continue;

@@ -12,12 +12,12 @@ int main() {
     }
     LowLink<int> LL(G);
     auto v = LL.bridges();
-    for (auto&& e : v) {
+    each_for (e : v) {
         if (e.from > e.to) swap(e.from, e.to);
     }
     sort(v.begin(), v.end(), [](const edge<int>& a, const edge<int>& b) -> bool {
         if (a.from != b.from) return a.from < b.from;
         return a.to < b.to;
     });
-    for (const auto& e : v) cout << e.from << ' ' << e.to << endl;
+    each_const (e : v) cout << e.from << ' ' << e.to << endl;
 }

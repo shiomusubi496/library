@@ -16,12 +16,12 @@ int main() {
     UnionFindUndo UFU(N);
     struct {
         Graph<PLL>& G;
-        vector<vector<array<int, 3>>> A;
+        vector<vector<array<int, 3>>>& A;
         vector<int>& ans;
         UnionFindUndo& UFU;
         void operator()(int v) {
-            for (const auto& a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);
-            for (const auto& e : G[v]) {
+            each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);
+            each_const (e : G[v]) {
                 UFU.merge(e.cost.first, e.cost.second);
                 this->operator()(e.to);
                 UFU.undo();

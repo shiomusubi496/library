@@ -14,6 +14,6 @@ int main() {
     auto v = TD.get_path();
     cout << TD.diameter() << ' ' << v.size() + 1 << endl;
     cout << v[0].from;
-    for (const edge<ll>& e : v) cout << ' ' << e.to;
+    each_const (e : v) cout << ' ' << e.to;
     cout << endl;
 }

@@ -10,5 +10,5 @@ int main() {
         int a, b; cin >> a >> b;
         G.add_edge(a, b, true);
     }
-    for (const int& i : TopologicalSort<int>(G).get()) cout << i << endl;
+    each_const (i : TopologicalSort<int>(G).get()) cout << i << endl;
 }

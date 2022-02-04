@@ -14,7 +14,7 @@ template<class T> class StronglyConnectedComponents {
     void dfs(int v) {
         low[v] = ord[v] = cnt++;
         st.push_back(v);
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (ord[e.to] != -1) chmin(low[v], ord[e.to]);
             else {
                 dfs(e.to);
@@ -41,7 +41,7 @@ template<class T> class StronglyConnectedComponents {
         rep (i, n) {
             if (ord[i] == -1) dfs(i);
         }
-        for (int& i : cmp) i = sz - i - 1;
+        each_for(i : cmp) i = sz - i - 1;
     }
   public:
     StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
@@ -56,7 +56,7 @@ template<class T> class StronglyConnectedComponents {
     Graph<T> dag() const {
         Graph<T> res(sz);
         rep (i, n) {
-            for (const auto& e : G[i]) {
+            each_const (e : G[i]) {
                 if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
             }
         }

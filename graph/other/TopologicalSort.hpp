@@ -11,7 +11,7 @@ template<class T> class TopologicalSort {
     std::vector<bool> seen;
     void dfs(int v) {
         seen[v] = true;
-        for (const edge<T>& e : G[v]) {
+        each_const (e : G[v]) {
             if (seen[e.to]) continue;
             dfs(e.to);
         }
