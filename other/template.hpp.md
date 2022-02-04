@@ -142,6 +142,9 @@ data:
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
+    path: string/RollingHash.hpp
+    title: string/RollingHash.hpp
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: string/RunLength.hpp
   _extendedVerifiedWith:
@@ -166,6 +169,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
@@ -639,6 +645,7 @@ data:
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   - string/RunLength.hpp
+  - string/RollingHash.hpp
   - other/bitop.hpp
   - other/monoid.hpp
   - graph/mst/Kruskal.hpp
@@ -712,6 +719,7 @@ data:
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

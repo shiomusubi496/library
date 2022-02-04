@@ -168,6 +168,9 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/RollingHash.hpp
+      title: string/RollingHash.hpp
+    - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: string/RunLength.hpp
   verificationCategories:
@@ -194,6 +197,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
       title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+      title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
       title: test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
