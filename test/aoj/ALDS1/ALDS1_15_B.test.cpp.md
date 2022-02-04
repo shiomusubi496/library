@@ -187,21 +187,23 @@ data:
     \u578B)\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction> A(N);\
     \ cin >> A;\n    sort(rall(A));\n    Fraction ans;\n    each_const (f : A) {\n\
-    \        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n    }\n\
-    \    cout << fixed << setprecision(10) << ans << endl;\n}\n"
+    \        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n    \
+    \    chmax(W, 0);\n    }\n    cout << fixed << setprecision(12) << ans << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction>\
     \ A(N); cin >> A;\n    sort(rall(A));\n    Fraction ans;\n    each_const (f :\
     \ A) {\n        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n\
-    \    }\n    cout << fixed << setprecision(10) << ans << endl;\n}\n"
+    \        chmax(W, 0);\n    }\n    cout << fixed << setprecision(12) << ans <<\
+    \ endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - math/Rational.hpp
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 20:09:14+09:00'
+  timestamp: '2022-02-04 20:39:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
