@@ -47,10 +47,20 @@ class RollingHash {
             assert(0 <= l && l <= r && r <= n);
             return calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));
         }
-        ull get_all() const { return hash[n]; }
+        ull get_all() const {
+            return hash[n];
+        }
     };
     RollingHash() { init(); }
-    template<class Cont> Hash get_hash(const Cont& str) {
+    template<class Cont> Hash get_hash(const Cont& str) const {
         return Hash(BASE, str);
     }
+    ull get_base() const {
+        return BASE;
+    }
 };
+
+/**
+ * @brief RollingHash(ロリハ)
+ * @docs docs/RollingHash.md
+ */

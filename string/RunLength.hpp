@@ -12,3 +12,8 @@ template<class Cont> std::vector<std::pair<typename Cont::value_type, int>> RunL
     }
     return res;
 }
+
+/**
+ * @brief RunLength(ランレングス圧縮)
+ * @docs docs/RunLength.md
+ */
