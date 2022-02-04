@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/1469.test.cpp
+    title: test/yuki/1469.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/RunLength.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -148,8 +151,9 @@ data:
   path: string/RunLength.hpp
   requiredBy: []
   timestamp: '2022-02-03 22:44:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yuki/1469.test.cpp
 documentation_of: string/RunLength.hpp
 layout: document
 redirect_from:
