@@ -22,14 +22,8 @@ int main() {
         static PMM id() { return {1, 0}; }
         static PMM get_inv(const PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }
     };
-    struct CompositeRev {
-        using value_type = PMM;
-        static PMM op(const PMM& a, const PMM& b) { return Composite::op(b, a); }
-        static PMM id() { return {1, 0}; }
-        static PMM get_inv(const PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }
-    };
     SegmentTree<Composite> seg(2 * N);
-    SegmentTree<CompositeRev> segrev(2 * N);
+    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);
     rep (i, N) {
         auto p = ET.get_idx(i);
         seg.set(p.first, A[i]);

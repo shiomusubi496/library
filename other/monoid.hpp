@@ -111,6 +111,15 @@ template<class T, T min_value = infinity<T>::min> struct ChmaxMax {
 };
 
 
+template<class M> struct ReverseMonoid {
+    using value_type = typename M::value_type;
+    static value_type op(const value_type& a, const value_type& b) {
+        return M::op(b, a);
+    }
+    static value_type id() { return M::id(); }
+    static value_type get_inv(const value_type& a) { return M::get_inv(a); }
+};
+
 template<class M_> struct AttachEffector {
     using M = M_;
     using E = M_;
