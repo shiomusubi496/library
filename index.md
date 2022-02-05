@@ -154,7 +154,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
   - name: other
@@ -165,7 +165,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: string
@@ -173,7 +173,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   verificationCategories:
@@ -203,7 +203,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
       title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
       title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -421,7 +421,7 @@ data:
       title: test/yosupo/vertex_set_path_composite.test.cpp
   - name: test/yuki
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1469.test.cpp
       title: test/yuki/1469.test.cpp
 layout: toppage

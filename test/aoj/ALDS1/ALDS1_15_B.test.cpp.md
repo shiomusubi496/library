@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: 1e-6
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B
   bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n#define ERROR 1e-6\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -184,14 +185,14 @@ data:
     \ (ld)rat.num / rat.den;\n    }\n    friend std::istream& operator>>(std::istream&\
     \ ist, Rational& rat) {\n        return ist >> rat.num >> rat.den;\n    }\n};\n\
     \nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\
-    \u578B)\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace\
+    \u578B)\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction> A(N);\
     \ cin >> A;\n    sort(rall(A));\n    Fraction ans;\n    each_const (f : A) {\n\
     \        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n    \
     \    chmax(W, 0);\n    }\n    cout << fixed << setprecision(12) << ans << endl;\n\
     }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
+    #define ERROR 1e-6\n#include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction>\
     \ A(N); cin >> A;\n    sort(rall(A));\n    Fraction ans;\n    each_const (f :\
     \ A) {\n        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n\
@@ -203,8 +204,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 20:39:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-05 09:48:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
 layout: document
