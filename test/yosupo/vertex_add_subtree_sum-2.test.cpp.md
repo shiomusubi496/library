@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -199,7 +199,11 @@ data:
     \ struct ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n\
     \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
     \ T mul(T a, int) { return a; }\n    static constexpr T mul_op(T a, int, T c)\
-    \ { return std::max(c, a); }\n};\n\n\ntemplate<class M_> struct AttachEffector\
+    \ { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n\
+    \    using value_type = typename M::value_type;\n    static value_type op(const\
+    \ value_type& a, const value_type& b) {\n        return M::op(b, a);\n    }\n\
+    \    static value_type id() { return M::id(); }\n    static value_type get_inv(const\
+    \ value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class M_> struct AttachEffector\
     \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
@@ -336,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-05 18:01:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp
 layout: document

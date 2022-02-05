@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -204,7 +204,11 @@ data:
     \ struct ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n\
     \    static constexpr T op(T a, T b) { return std::max(b, a); }\n    static constexpr\
     \ T mul(T a, int) { return a; }\n    static constexpr T mul_op(T a, int, T c)\
-    \ { return std::max(c, a); }\n};\n\n\ntemplate<class M_> struct AttachEffector\
+    \ { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n\
+    \    using value_type = typename M::value_type;\n    static value_type op(const\
+    \ value_type& a, const value_type& b) {\n        return M::op(b, a);\n    }\n\
+    \    static value_type id() { return M::id(); }\n    static value_type get_inv(const\
+    \ value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class M_> struct AttachEffector\
     \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
@@ -395,7 +399,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-05 18:01:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
