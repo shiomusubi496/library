@@ -1,4 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B"
+#define ERROR 1e-6
 #include "../../../other/template.hpp"
 #include "../../../math/Rational.hpp"
 using namespace std;
