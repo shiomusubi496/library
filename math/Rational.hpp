@@ -20,6 +20,7 @@ template<class T> class Rational {
     Rational(T a, T b) : num(a), den(b) { normalize(); }
     T get_num() const { return num; }
     T get_den() const { return den; }
+    ld get_ld() const { return (ld)num / den; }
     Rational& operator++() {
         num += den;
         return *this;
@@ -99,7 +100,7 @@ template<class T> class Rational {
         return !(lhs < rhs);
     }
     friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {
-        return ost << (ld)rat.num / rat.den;
+        return ost << rat.get_ld();
     }
     friend std::istream& operator>>(std::istream& ist, Rational& rat) {
         return ist >> rat.num >> rat.den;
@@ -110,4 +111,5 @@ using Fraction = Rational<ll>;
 
 /**
  * @brief Rational(有理数型)
+ * @docs docs/Rational.md
  */
