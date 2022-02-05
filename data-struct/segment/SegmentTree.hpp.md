@@ -22,6 +22,9 @@ data:
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':x:'
+    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
@@ -341,6 +344,7 @@ data:
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp

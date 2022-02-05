@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -354,39 +354,39 @@ data:
     \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
     \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
     \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
-    \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
-    \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
-    \    template<class F> void each_vertex_subtree(int v, const F& f) const {\n \
-    \       f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
-    \ each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first + 1, idx[v].second\
-    \ + 1);\n    }\n    template<class F, class G> void each_vertex(int u, int v,\
-    \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first,\
-    \ idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n\
-    \    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u,\
-    \ v, f, f); }\n    template<class F, class G> void each_edge(int u, int v, const\
-    \ F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
-    \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
-    \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
-    \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
-    \n\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
-    \ PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n    std::vector<T> v;\n \
-    \   std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n\
-    \    struct PairMin {\n        using value_type = std::pair<T, int>;\n       \
-    \ static value_type op(const value_type& a, const value_type& b) {\n         \
-    \   return a.first < b.first ? a : b;\n        }\n        static value_type id()\
-    \ {\n            return {infinity<T>::value, -1};\n        }\n    };\n    SparseTable<PairMin>\
-    \ st;\n  public:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const\
-    \ std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n\
-    \        v = v_;\n        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n\
-    \        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b,\
-    \ b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n         \
-    \   rep (j, b) {\n                T nw = now, mn = nw, id = j;\n             \
-    \   lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n              \
-    \      nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw))\
-    \ lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k +\
-    \ 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
+    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
+    \ dep[a] < dep[b] ? a : b; }\n    int lca(int u, int v) const {\n        return\
+    \ RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n            std::max(idx[u].second,\
+    \ idx[v].second)\n        ).second;\n    }\n    template<class F> void each_vertex_subtree(int\
+    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second + 1);\n    }\n\
+    \    template<class F> void each_edge_subtree(int v, const F& f) const {\n   \
+    \     f(idx[v].first + 1, idx[v].second + 1);\n    }\n    template<class F> void\
+    \ each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }\n \
+    \   template<class F, class G> void each_vertex(int u, int v, const F& f, const\
+    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first, idx[u].first\
+    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n    template<class\
+    \ F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }\n\
+    \    template<class F, class G> void each_edge(int u, int v, const F& f, const\
+    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first + 1, idx[u].first\
+    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n};\n\n/**\n *\
+    \ @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)\n * @docs docs/EulerTour.md\n\
+    \ */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \n\ntemplate<class T> class PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n\
+    \    std::vector<T> v;\n    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>>\
+    \ lookup;\n    struct PairMin {\n        using value_type = std::pair<T, int>;\n\
+    \        static value_type op(const value_type& a, const value_type& b) {\n  \
+    \          return a.first < b.first ? a : b;\n        }\n        static value_type\
+    \ id() {\n            return {infinity<T>::value, -1};\n        }\n    };\n  \
+    \  SparseTable<PairMin> st;\n  public:\n    PlusMinusOneRMQ() = default;\n   \
+    \ PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const\
+    \ std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n)\
+    \ / 2 + 1;\n        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 <<\
+    \ (b - 1), b, b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n\
+    \            rep (j, b) {\n                T nw = now, mn = nw, id = j;\n    \
+    \            lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n     \
+    \               nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn,\
+    \ nw)) lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k\
+    \ + 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
     \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
     \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
     \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
@@ -444,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-LCARMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 18:01:36+09:00'
+  timestamp: '2022-02-05 18:13:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-LCARMQ.test.cpp

@@ -61,13 +61,16 @@ data:
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
+  - icon: ':question:'
+    path: graph/tree/HeavyLightDecomposition.hpp
+    title: graph/tree/HeavyLightDecomposition.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
@@ -142,6 +145,9 @@ data:
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/cartesian_tree.test.cpp
     title: test/yosupo/cartesian_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,10 +177,13 @@ data:
   - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   - icon: ':x:'
+    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
@@ -398,6 +407,7 @@ data:
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/tree/EulerTourSubtree.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
+  - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/TreeDiameter.hpp
   - graph/tree/CartesianTree.hpp
   - graph/tree/PMORMQLCA.hpp
@@ -420,6 +430,7 @@ data:
   - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/two_sat.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
@@ -437,6 +448,7 @@ data:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

@@ -4,15 +4,12 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SparseTable.hpp
-    title: SparseTable
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTour.hpp
-    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
+  - icon: ':question:'
+    path: graph/tree/HeavyLightDecomposition.hpp
+    title: graph/tree/HeavyLightDecomposition.hpp
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
@@ -27,15 +24,15 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
     links:
     - https://judge.yosupo.jp/problem/vertex_set_path_composite
-  bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite.test.cpp\"\n#define\
+  bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n#line\
     \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
@@ -425,114 +422,98 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2\
-    \ \"data-struct/segment/SparseTable.hpp\"\n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"\
-    graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
-    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
-    \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
-    \ v);\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
-    \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
-    \       n = G.size();\n        dep.assign(n, 0);\n        idx.assign(n, {-1, -1});\n\
-    \        rmqvec.reserve(n << 1);\n        cnt = 0;\n        each_const (r : root)\
-    \ {\n            dfs(r, -1);\n            rmqvec.emplace_back(-1, -1);\n     \
-    \   }\n        rep (i, n) {\n            if (idx[i].first != -1) continue;\n \
-    \           dfs(i, -1);\n            rmqvec.emplace_back(-1, -1);\n        }\n\
-    \        RMQ.init(rmqvec);\n    }\n  public:\n    EulerTour(const Graph<T>& G,\
-    \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
-    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
-    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
-    \ dep[a] < dep[b] ? a : b; }\n    int lca(int u, int v) const {\n        return\
-    \ RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n            std::max(idx[u].second,\
-    \ idx[v].second)\n        ).second;\n    }\n    template<class F> void each_vertex_subtree(int\
-    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second + 1);\n    }\n\
-    \    template<class F> void each_edge_subtree(int v, const F& f) const {\n   \
-    \     f(idx[v].first + 1, idx[v].second + 1);\n    }\n    template<class F> void\
-    \ each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }\n \
-    \   template<class F, class G> void each_vertex(int u, int v, const F& f, const\
-    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first, idx[u].first\
-    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n    template<class\
-    \ F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }\n\
-    \    template<class F, class G> void each_edge(int u, int v, const F& f, const\
-    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first + 1, idx[u].first\
-    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n};\n\n/**\n *\
-    \ @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)\n * @docs docs/EulerTour.md\n\
-    \ */\n#line 7 \"test/yosupo/vertex_set_path_composite.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    Graph<int>\
-    \ G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    EulerTour<int> ET(G);\n    struct Composite {\n        using\
-    \ value_type = PMM;\n        static PMM op(const PMM& a, const PMM& b) { return\
-    \ {a.first * b.first, a.second * b.first + b.second}; }\n        static PMM id()\
-    \ { return {1, 0}; }\n        static PMM get_inv(const PMM& a) { return {mint{1}\
-    \ / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite> seg(2\
-    \ * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);\n  \
-    \  rep (i, N) {\n        auto p = ET.get_idx(i);\n        seg.set(p.first, A[i]);\n\
-    \        seg.set(p.second, Composite::get_inv(A[i]));\n        segrev.set(p.first,\
-    \ A[i]);\n        segrev.set(p.second, Composite::get_inv(A[i]));\n    }\n   \
-    \ rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            int\
-    \ p; mint c, d; cin >> p >> c >> d;\n            auto idx = ET.get_idx(p);\n \
-    \           seg.set(idx.first, {c, d});\n            seg.set(idx.second, Composite::get_inv({c,\
-    \ d}));\n            segrev.set(idx.first, {c, d});\n            segrev.set(idx.second,\
-    \ Composite::get_inv({c, d}));\n        }\n        else {\n            int u,\
-    \ v; mint x; cin >> u >> v >> x;\n            ET.each_vertex(\n              \
-    \  u, v,\n                [&](int l, int r) {\n                    auto p = seg.prod(l,\
-    \ r);\n                    x = p.first * x + p.second;\n                },\n \
-    \               [&](int l, int r) {\n                    auto p = segrev.prod(l,\
-    \ r);\n                    x = p.first * x + p.second;\n                }\n  \
-    \          );\n            cout << x << endl;\n        }\n    }\n}\n"
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\n\ntemplate<class T> class\
+    \ HeavyLightDecomposition {\n  protected:\n    int n, root, cnt;\n    std::vector<int>\
+    \ ssz, head, vin, vout, par;\n    const Graph<T>& G;\n    int szdfs(int v, int\
+    \ p) {\n        ssz[v] = 1;\n        each_const (e : G[v]) {\n            if (e.to\
+    \ == p) continue;\n            ssz[v] += szdfs(e.to, v);\n        }\n        return\
+    \ ssz[v];\n    }\n    void bldfs(int v, int p) {\n        par[v] = p;\n      \
+    \  vin[v] = cnt++;\n        int idx = -1;\n        each_const (e : G[v]) {\n \
+    \           if (e.to != p) {\n                if (idx == -1 || ssz[idx] < ssz[e.to])\
+    \ idx = e.to;\n            }\n        }\n        if (idx != -1) {\n          \
+    \  head[idx] = head[v];\n            bldfs(idx, v);\n        }\n        each_const\
+    \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
+    \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
+    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.resize(n);\n\
+    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[0] =\
+    \ 0;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n       \
+    \ bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
+    \ G, int root = 0) : root(root), G(G) { init(); }\n    std::pair<int, int> get_idx(int\
+    \ k) const { return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int\
+    \ a, int b) const {\n        if (vin[a] < vin[b]) return {a, b};\n        return\
+    \ {b, a};\n    }\n    int lca(int u, int v) const {\n        while (head[u] !=\
+    \ head[v]) {\n            if (vin[u] > vin[v]) std::swap(u, v);\n            v\
+    \ = par[head[v]];\n        }\n        return vin[u] < vin[v] ? u : v;\n    }\n\
+    \    std::vector<std::pair<int, int>> up_path(int u, int v) const {\n        std::vector<std::pair<int,\
+    \ int>> res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
+    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
+    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
+    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
+    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
+    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
+    \ v, const F& f) const { return each_vertex(u, v, f, f); }\n    template<class\
+    \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
+    \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
+    \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
+    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(l,\
+    \ l);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n   \
+    \ }\n    template<class F> void each_edge(int u, int v, const F& f) const { return\
+    \ each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
+    \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
+    \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
+    \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
+    \ l)) func(p.first, p.second);\n        each_const (p : down_path(l, v)) func(p.first,\
+    \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
+    \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
+    \    }\n};\n#line 7 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\n\
+    int main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n\
+    \    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >> b;\n \
+    \       G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n \
+    \   struct Composite {\n        using value_type = PMM;\n        static PMM op(const\
+    \ PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second};\
+    \ }\n        static PMM id() { return {1, 0}; }\n        static PMM get_inv(const\
+    \ PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite>\
+    \ seg(2 * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);\n\
+    \    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
+    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
+    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
+    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
+    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
+    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
+    \                u, v,\n                [&](int l, int r) {\n                \
+    \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
+    \                },\n                [&](int l, int r) {\n                   \
+    \ auto p = segrev.prod(l, r);\n                    x = p.first * x + p.second;\n\
+    \                }\n            );\n            cout << x << endl;\n        }\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../data-struct/segment/SegmentTree.hpp\"\
     \n#include \"../../math/ModInt.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
-    \ \"../../graph/tree/EulerTour.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    using PMM = pair<mint, mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n  \
-    \  vector<PMM> A(N); cin >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n    \
-    \    int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    EulerTour<int>\
-    \ ET(G);\n    struct Composite {\n        using value_type = PMM;\n        static\
-    \ PMM op(const PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first\
-    \ + b.second}; }\n        static PMM id() { return {1, 0}; }\n        static PMM\
-    \ get_inv(const PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }\n\
-    \    };\n    SegmentTree<Composite> seg(2 * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>>\
-    \ segrev(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n        seg.set(p.first,\
-    \ A[i]);\n        seg.set(p.second, Composite::get_inv(A[i]));\n        segrev.set(p.first,\
-    \ A[i]);\n        segrev.set(p.second, Composite::get_inv(A[i]));\n    }\n   \
-    \ rep (i, Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            int\
-    \ p; mint c, d; cin >> p >> c >> d;\n            auto idx = ET.get_idx(p);\n \
-    \           seg.set(idx.first, {c, d});\n            seg.set(idx.second, Composite::get_inv({c,\
-    \ d}));\n            segrev.set(idx.first, {c, d});\n            segrev.set(idx.second,\
-    \ Composite::get_inv({c, d}));\n        }\n        else {\n            int u,\
-    \ v; mint x; cin >> u >> v >> x;\n            ET.each_vertex(\n              \
-    \  u, v,\n                [&](int l, int r) {\n                    auto p = seg.prod(l,\
-    \ r);\n                    x = p.first * x + p.second;\n                },\n \
-    \               [&](int l, int r) {\n                    auto p = segrev.prod(l,\
-    \ r);\n                    x = p.first * x + p.second;\n                }\n  \
-    \          );\n            cout << x << endl;\n        }\n    }\n}\n"
+    \ \"../../graph/tree/HeavyLightDecomposition.hpp\"\nusing namespace std;\nusing\
+    \ mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main() {\n    int\
+    \ N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    Graph<int> G(N);\n\
+    \    rep (N - 1) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n\
+    \    }\n    HeavyLightDecomposition<int> HLD(G);\n    struct Composite {\n   \
+    \     using value_type = PMM;\n        static PMM op(const PMM& a, const PMM&\
+    \ b) { return {a.first * b.first, a.second * b.first + b.second}; }\n        static\
+    \ PMM id() { return {1, 0}; }\n        static PMM get_inv(const PMM& a) { return\
+    \ {mint{1} / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite>\
+    \ seg(2 * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);\n\
+    \    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
+    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
+    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
+    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
+    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
+    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
+    \                u, v,\n                [&](int l, int r) {\n                \
+    \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
+    \                },\n                [&](int l, int r) {\n                   \
+    \ auto p = segrev.prod(l, r);\n                    x = p.first * x + p.second;\n\
+    \                }\n            );\n            cout << x << endl;\n        }\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -540,18 +521,17 @@ data:
   - other/monoid.hpp
   - math/ModInt.hpp
   - graph/Graph.hpp
-  - graph/tree/EulerTour.hpp
-  - data-struct/segment/SparseTable.hpp
+  - graph/tree/HeavyLightDecomposition.hpp
   isVerificationFile: true
-  path: test/yosupo/vertex_set_path_composite.test.cpp
+  path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
   timestamp: '2022-02-05 18:13:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
+documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/vertex_set_path_composite.test.cpp
-- /verify/test/yosupo/vertex_set_path_composite.test.cpp.html
-title: test/yosupo/vertex_set_path_composite.test.cpp
+- /verify/test/yosupo/vertex_set_path_composite-HLD.test.cpp
+- /verify/test/yosupo/vertex_set_path_composite-HLD.test.cpp.html
+title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
 ---

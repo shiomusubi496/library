@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':question:'
@@ -325,25 +325,26 @@ data:
     \ int root = 0) : root({root}), G(G) { init(); }\n    EulerTour(const Graph<T>&\
     \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
     \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int lca(int u, int v) const {\n   \
-    \     return RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n  \
-    \          std::max(idx[u].second, idx[v].second)\n        ).second;\n    }\n\
-    \    template<class F> void each_vertex_subtree(int v, const F& f) const {\n \
-    \       f(idx[v].first, idx[v].second + 1);\n    }\n    template<class F> void\
-    \ each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first + 1, idx[v].second\
-    \ + 1);\n    }\n    template<class F, class G> void each_vertex(int u, int v,\
-    \ const F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first,\
-    \ idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n\
-    \    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u,\
-    \ v, f, f); }\n    template<class F, class G> void each_edge(int u, int v, const\
-    \ F& f, const G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first\
-    \ + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n  \
-    \  }\n    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u,\
-    \ v, f, f); }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (i, N) {\n        int k; cin >> k;\n        rep (k) {\n            int\
-    \ t; cin >> t;\n            G.add_edge(i, t, true);\n        }\n    }\n    EulerTour<int>\
+    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
+    \ dep[a] < dep[b] ? a : b; }\n    int lca(int u, int v) const {\n        return\
+    \ RMQ.prod(\n            std::min(idx[u].first, idx[v].first),\n            std::max(idx[u].second,\
+    \ idx[v].second)\n        ).second;\n    }\n    template<class F> void each_vertex_subtree(int\
+    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second + 1);\n    }\n\
+    \    template<class F> void each_edge_subtree(int v, const F& f) const {\n   \
+    \     f(idx[v].first + 1, idx[v].second + 1);\n    }\n    template<class F> void\
+    \ each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }\n \
+    \   template<class F, class G> void each_vertex(int u, int v, const F& f, const\
+    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first, idx[u].first\
+    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n    template<class\
+    \ F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }\n\
+    \    template<class F, class G> void each_edge(int u, int v, const F& f, const\
+    \ G& g) const {\n        int l = lca(u, v);\n        g(idx[l].first + 1, idx[u].first\
+    \ + 1);\n        f(idx[l].first + 1, idx[v].first + 1);\n    }\n};\n\n/**\n *\
+    \ @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)\n * @docs docs/EulerTour.md\n\
+    \ */\n#line 5 \"test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i,\
+    \ N) {\n        int k; cin >> k;\n        rep (k) {\n            int t; cin >>\
+    \ t;\n            G.add_edge(i, t, true);\n        }\n    }\n    EulerTour<int>\
     \ T(G);\n    int Q; cin >> Q;\n    rep (i, Q) {\n        int a, b; cin >> a >>\
     \ b;\n        cout << T.lca(a, b) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_C\"\n#include\
@@ -364,7 +365,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 18:01:36+09:00'
+  timestamp: '2022-02-05 18:13:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp

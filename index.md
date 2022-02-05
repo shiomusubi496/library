@@ -42,7 +42,7 @@ data:
     - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
@@ -124,13 +124,16 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':x:'
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
+    - icon: ':question:'
+      path: graph/tree/HeavyLightDecomposition.hpp
+      title: graph/tree/HeavyLightDecomposition.hpp
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
@@ -317,6 +320,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
       title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+      title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - name: test/aoj/NTL
     pages:
     - icon: ':heavy_check_mark:'
@@ -413,10 +419,13 @@ data:
     - icon: ':x:'
       path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
       title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
     - icon: ':x:'
+      path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+      title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
   - name: test/yuki

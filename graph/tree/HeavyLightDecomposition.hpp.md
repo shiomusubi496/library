@@ -9,18 +9,18 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
-    path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
+    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/EulerTourSubtree.md
-    document_title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
-      \u5206\u6728\u30AF\u30A8\u30EA)"
     links: []
-  bundledCode: "#line 2 \"graph/tree/EulerTourSubtree.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -180,68 +180,113 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\n\
-    template<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n  \
-    \  std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
-    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
-    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
-    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
-    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
-    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
-    \ -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const Graph<T>& G, int\
-    \ root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const Graph<T>&\
-    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
-    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
-    \ dep[a] < dep[b] ? a : b; }\n    template<class F> void each_vertex_subtree(int\
-    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
-    \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
-    \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
-    \u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n *\
-    \ @docs docs/EulerTourSubtree.md\n */\n"
+    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \n\ntemplate<class T> class HeavyLightDecomposition {\n  protected:\n    int n,\
+    \ root, cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>&\
+    \ G;\n    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e\
+    \ : G[v]) {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to,\
+    \ v);\n        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p)\
+    \ {\n        par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n   \
+    \     each_const (e : G[v]) {\n            if (e.to != p) {\n                if\
+    \ (idx == -1 || ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n\
+    \        if (idx != -1) {\n            head[idx] = head[v];\n            bldfs(idx,\
+    \ v);\n        }\n        each_const (e : G[v]) {\n            if (e.to != p &&\
+    \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
+    \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
+    \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
+    \        cnt = 0;\n        head.resize(n); head[0] = 0;\n        vin.resize(n);\
+    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
+    \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
+    \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
+    \ vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n      \
+    \  if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n    }\n    int\
+    \ lca(int u, int v) const {\n        while (head[u] != head[v]) {\n          \
+    \  if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n    \
+    \    }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
+    \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
+    \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
+    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
+    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
+    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
+    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
+    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
+    \ v, const F& f) const { return each_vertex(u, v, f, f); }\n    template<class\
+    \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
+    \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
+    \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
+    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(l,\
+    \ l);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n   \
+    \ }\n    template<class F> void each_edge(int u, int v, const F& f) const { return\
+    \ each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
+    \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
+    \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
+    \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
+    \ l)) func(p.first, p.second);\n        each_const (p : down_path(l, v)) func(p.first,\
+    \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
+    \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
+    \    }\n};\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
-    \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
-    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
-    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
-    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
-    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
-    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
-    \ -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const Graph<T>& G, int\
-    \ root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const Graph<T>&\
-    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
-    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
-    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
-    \ dep[a] < dep[b] ? a : b; }\n    template<class F> void each_vertex_subtree(int\
-    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
-    \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
-    \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
-    \u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n *\
-    \ @docs docs/EulerTourSubtree.md\n */\n"
+    \n\ntemplate<class T> class HeavyLightDecomposition {\n  protected:\n    int n,\
+    \ root, cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>&\
+    \ G;\n    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e\
+    \ : G[v]) {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to,\
+    \ v);\n        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p)\
+    \ {\n        par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n   \
+    \     each_const (e : G[v]) {\n            if (e.to != p) {\n                if\
+    \ (idx == -1 || ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n\
+    \        if (idx != -1) {\n            head[idx] = head[v];\n            bldfs(idx,\
+    \ v);\n        }\n        each_const (e : G[v]) {\n            if (e.to != p &&\
+    \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
+    \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
+    \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
+    \        cnt = 0;\n        head.resize(n); head[0] = 0;\n        vin.resize(n);\
+    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
+    \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
+    \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
+    \ vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n      \
+    \  if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n    }\n    int\
+    \ lca(int u, int v) const {\n        while (head[u] != head[v]) {\n          \
+    \  if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n    \
+    \    }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
+    \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
+    \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
+    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
+    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
+    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
+    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
+    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
+    \ v, const F& f) const { return each_vertex(u, v, f, f); }\n    template<class\
+    \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
+    \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
+    \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
+    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(l,\
+    \ l);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n   \
+    \ }\n    template<class F> void each_edge(int u, int v, const F& f) const { return\
+    \ each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
+    \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
+    \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
+    \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
+    \ l)) func(p.first, p.second);\n        each_const (p : down_path(l, v)) func(p.first,\
+    \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
+    \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
+    \    }\n};\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/tree/EulerTourSubtree.hpp
+  path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
   timestamp: '2022-02-05 18:13:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-documentation_of: graph/tree/EulerTourSubtree.hpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+documentation_of: graph/tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:
-- /library/graph/tree/EulerTourSubtree.hpp
-- /library/graph/tree/EulerTourSubtree.hpp.html
-title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\
-  \u30AF\u30A8\u30EA)"
+- /library/graph/tree/HeavyLightDecomposition.hpp
+- /library/graph/tree/HeavyLightDecomposition.hpp.html
+title: graph/tree/HeavyLightDecomposition.hpp
 ---
-## 概要
-
-`EulerTour` の機能を減らしたもの。部分木クエリのみ扱うことで、空間計算量を削減する。
-
-- `EulerTourSubtree(Graph<T> G, int r = 0)` : 木 `G` に対して、頂点 `r` を根としてオイラーツアーを作成する。 $\Theta(N)$ 。
-- `EulerTour(Graph<T> G, vector<int> r)` : 森 `G` に対して、頂点列 `r` の頂点を根としてオイラーツアーを作成する。 $\Theta(N)$ 。
-- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
-- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
-- `void each_edge_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の辺。

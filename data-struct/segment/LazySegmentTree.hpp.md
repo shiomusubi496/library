@@ -25,6 +25,9 @@ data:
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
@@ -493,6 +496,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp

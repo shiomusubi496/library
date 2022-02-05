@@ -30,14 +30,14 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -84,6 +84,9 @@ data:
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -107,10 +110,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   - icon: ':x:'
+    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
@@ -293,12 +299,14 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
