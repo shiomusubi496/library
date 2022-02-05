@@ -9,12 +9,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/EulerTourSubtree.md
     document_title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
@@ -193,7 +193,7 @@ data:
     \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
     \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
-    \ dep[a] < dep[b] ? a : b; }\n    template<class F> void each_vertex_subtree(int\
+    \ idx[a].first < idx[b].first ? a : b; }\n    template<class F> void each_vertex_subtree(int\
     \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
     \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
     \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
@@ -212,7 +212,7 @@ data:
     \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
     \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
     \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
-    \ dep[a] < dep[b] ? a : b; }\n    template<class F> void each_vertex_subtree(int\
+    \ idx[a].first < idx[b].first ? a : b; }\n    template<class F> void each_vertex_subtree(int\
     \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
     \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
     \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
@@ -224,8 +224,8 @@ data:
   isVerificationFile: false
   path: graph/tree/EulerTourSubtree.hpp
   requiredBy: []
-  timestamp: '2022-02-05 18:13:19+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-05 20:47:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
 documentation_of: graph/tree/EulerTourSubtree.hpp

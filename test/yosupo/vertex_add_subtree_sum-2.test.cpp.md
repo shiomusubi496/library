@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
@@ -19,9 +19,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -302,13 +302,13 @@ data:
     \ init(); }\n    EulerTourSubtree(const Graph<T>& G, const std::vector<int>& root)\
     \ : root(root), G(G) { init(); }\n    const std::pair<int, int>& get_idx(int k)\
     \ const& { return idx[k]; }\n    std::pair<int, int> get_idx(int k) && { return\
-    \ std::move(idx[k]); }\n    int get_par(int a, int b) const { return dep[a] <\
-    \ dep[b] ? a : b; }\n    template<class F> void each_vertex_subtree(int v, const\
-    \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
-    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
-    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
-    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/vertex_add_subtree_sum-2.test.cpp\"\
+    \ std::move(idx[k]); }\n    int get_par(int a, int b) const { return idx[a].first\
+    \ < idx[b].first ? a : b; }\n    template<class F> void each_vertex_subtree(int\
+    \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
+    \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
+    \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
+    \u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n *\
+    \ @docs docs/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/vertex_add_subtree_sum-2.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
     \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
@@ -341,8 +341,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 18:13:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-05 20:47:37+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp
 layout: document
