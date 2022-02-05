@@ -18,8 +18,15 @@ class PrimeFactor {
     }
     std::vector<ll> factorize(ll x) {
         std::vector<ll> res;
-        for (; x > 1; x /= era[x]) res.push_back(x);
+        for (; x > 1; x /= era[x]) res.push_back(era[x]);
         reverse(all(res));
+        return res;
+    }
+    std::vector<ll> get_primes(ll m) {
+        std::vector<ll> res;
+        reps (i, MAX) {
+            if (era[i] == i) res.push_back(i);
+        }
         return res;
     }
 };
@@ -38,6 +45,13 @@ class IsPrime {
     }
     bool is_prime(ll x) {
         return era[x];
+    }
+    std::vector<ll> get_primes(ll m) {
+        std::vector<ll> res;
+        reps (i, MAX) {
+            if (era[i]) res.push_back(i);
+        }
+        return res;
     }
 };
 
