@@ -146,16 +146,21 @@ data:
     \ -1) continue;\n            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n \
     \   }\n    bool is_prime(ll x) {\n        return era[x] == x;\n    }\n    std::vector<ll>\
     \ factorize(ll x) {\n        std::vector<ll> res;\n        for (; x > 1; x /=\
-    \ era[x]) res.push_back(x);\n        reverse(all(res));\n        return res;\n\
-    \    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool>\
-    \ era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n    \
-    \    era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i])\
-    \ continue;\n            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n\
-    \    }\n    bool is_prime(ll x) {\n        return era[x];\n    }\n};\n\n/**\n\
-    \ * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
-    )\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n\
-    \    int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
+    \ era[x]) res.push_back(era[x]);\n        reverse(all(res));\n        return res;\n\
+    \    }\n    std::vector<ll> get_primes(ll m) {\n        std::vector<ll> res;\n\
+    \        reps (i, MAX) {\n            if (era[i] == i) res.push_back(i);\n   \
+    \     }\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n   \
+    \ ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX\
+    \ + 1) {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX +\
+    \ 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n       \
+    \ return era[x];\n    }\n    std::vector<ll> get_primes(ll m) {\n        std::vector<ll>\
+    \ res;\n        reps (i, MAX) {\n            if (era[i]) res.push_back(i);\n \
+    \       }\n        return res;\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
+    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n\
+    \ */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n \
+    \   int ans = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a))\
     \ ans++;\n    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
@@ -168,7 +173,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-05 23:34:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

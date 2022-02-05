@@ -144,35 +144,44 @@ data:
     \ (i, 2, MAX + 1) {\n            if (era[i] != -1) continue;\n            rep\
     \ (j, i, MAX + 1, i) era[j] = i;\n        }\n    }\n    bool is_prime(ll x) {\n\
     \        return era[x] == x;\n    }\n    std::vector<ll> factorize(ll x) {\n \
-    \       std::vector<ll> res;\n        for (; x > 1; x /= era[x]) res.push_back(x);\n\
-    \        reverse(all(res));\n        return res;\n    }\n};\n\nclass IsPrime {\n\
-    \  protected:\n    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll\
-    \ MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0] = era[1] = false;\n  \
-    \      rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n           \
-    \ rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll\
-    \ x) {\n        return era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
-    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n\
-    \ */\n"
+    \       std::vector<ll> res;\n        for (; x > 1; x /= era[x]) res.push_back(era[x]);\n\
+    \        reverse(all(res));\n        return res;\n    }\n    std::vector<ll> get_primes(ll\
+    \ m) {\n        std::vector<ll> res;\n        reps (i, MAX) {\n            if\
+    \ (era[i] == i) res.push_back(i);\n        }\n        return res;\n    }\n};\n\
+    \nclass IsPrime {\n  protected:\n    ll MAX;\n    std::vector<bool> era;\n  public:\n\
+    \    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0] = era[1]\
+    \ = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n\
+    \            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n  \
+    \  bool is_prime(ll x) {\n        return era[x];\n    }\n    std::vector<ll> get_primes(ll\
+    \ m) {\n        std::vector<ll> res;\n        reps (i, MAX) {\n            if\
+    \ (era[i]) res.push_back(i);\n        }\n        return res;\n    }\n};\n\n/**\n\
+    \ * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
+    )\n * @docs docs/PrimeFactor.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass PrimeFactor {\n\
     \  protected:\n    ll MAX;\n    std::vector<ll> era;\n  public:\n    PrimeFactor(ll\
     \ MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n       \
     \     if (era[i] != -1) continue;\n            rep (j, i, MAX + 1, i) era[j] =\
     \ i;\n        }\n    }\n    bool is_prime(ll x) {\n        return era[x] == x;\n\
     \    }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll> res;\n\
-    \        for (; x > 1; x /= era[x]) res.push_back(x);\n        reverse(all(res));\n\
-    \        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n    ll MAX;\n\
-    \    std::vector<bool> era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX\
-    \ + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX + 1)\
-    \ {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX + 1, i)\
-    \ era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n        return\
-    \ era[x];\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\
-    \u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n"
+    \        for (; x > 1; x /= era[x]) res.push_back(era[x]);\n        reverse(all(res));\n\
+    \        return res;\n    }\n    std::vector<ll> get_primes(ll m) {\n        std::vector<ll>\
+    \ res;\n        reps (i, MAX) {\n            if (era[i] == i) res.push_back(i);\n\
+    \        }\n        return res;\n    }\n};\n\nclass IsPrime {\n  protected:\n\
+    \    ll MAX;\n    std::vector<bool> era;\n  public:\n    IsPrime(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, true) {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX\
+    \ + 1) {\n            if (!era[i]) continue;\n            rep (j, i * 2, MAX +\
+    \ 1, i) era[j] = false;\n        }\n    }\n    bool is_prime(ll x) {\n       \
+    \ return era[x];\n    }\n    std::vector<ll> get_primes(ll m) {\n        std::vector<ll>\
+    \ res;\n        reps (i, MAX) {\n            if (era[i]) res.push_back(i);\n \
+    \       }\n        return res;\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
+    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-05 23:34:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
@@ -190,5 +199,6 @@ title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
 - `PrimeFactor(ll N)` : `N` 以下の値に対してエラトステネスの篩のテーブルを作成する。$\Theta(N\log\log N)$。
 - `bool is_prime(ll x)` : `x` が素数かどうか判定する。 $\Theta(1)$ 。
 - `vector<ll> factor(ll x)` : `x` を素因数分解する。返る値は昇順。 $\Theta(\log N)$ 。
+- `vector<ll> get_primes(ll x)` : `x` 以下の素数の列を返す。 $\Theta(x)$ 。
 
 素数判定のみしたい場合は `IsPrime` を使う。計算量は `PrimeFactor` と同様。
