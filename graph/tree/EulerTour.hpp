@@ -59,6 +59,7 @@ class EulerTour {
     EulerTour(const Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }
     const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }
     std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }
+    int get_par(int a, int b) const { return dep[a] < dep[b] ? a : b; }
     int lca(int u, int v) const {
         return RMQ.prod(
             std::min(idx[u].first, idx[v].first),
@@ -71,18 +72,18 @@ class EulerTour {
     template<class F> void each_edge_subtree(int v, const F& f) const {
         f(idx[v].first + 1, idx[v].second + 1);
     }
+    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }
     template<class F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         g(idx[l].first, idx[u].first + 1);
         f(idx[l].first + 1, idx[v].first + 1);
     }
-    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }
+    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }
     template<class F, class G> void each_edge(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         g(idx[l].first + 1, idx[u].first + 1);
         f(idx[l].first + 1, idx[v].first + 1);
     }
-    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }
 };
 
 /**
