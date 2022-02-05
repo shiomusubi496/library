@@ -148,49 +148,49 @@ data:
     \ { norm(num, den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) :\
     \ num(a), den(1) {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n\
     \    T get_num() const { return num; }\n    T get_den() const { return den; }\n\
-    \    Rational& operator++() {\n        num += den;\n        return *this;\n  \
-    \  }\n    Rational operator++(int) {\n        Rational res = *this;\n        ++\
-    \ *this;\n        return res;\n    }\n    Rational& operator--() {\n        num\
-    \ -= den;\n        return *this;\n    }\n    Rational operator--(int) {\n    \
-    \    Rational res = *this;\n        -- *this;\n        return res;\n    }\n  \
-    \  Rational& operator+=(const Rational& other) {\n        T g = gcd(den, other.den);\n\
-    \        num = num * (other.den / g) + other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator-=(const Rational& other) {\n        T g = gcd(den, other.den);\n  \
-    \      num = num * (other.den / g) - other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator*=(const Rational& other) {\n        T g1 = gcd(num, other.den);\n \
-    \       T g2 = gcd(den, other.num);\n        num = (num / g1) * (other.num / g2);\n\
-    \        den = (den / g2) * (other.den / g1);\n        return *this;\n    }\n\
-    \    Rational& operator/=(const Rational& other) {\n        return (*this) *=\
-    \ Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() {\n\
-    \        return Rational(*this);\n    }\n    Rational operator-() {\n        return\
-    \ Rational(-num, den);\n    }\n    friend bool operator==(const Rational& lhs,\
-    \ const Rational& rhs) {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n\
-    \    }\n    friend bool operator!=(const Rational& lhs, const Rational& rhs) {\n\
-    \        return lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool\
-    \ operator<(const Rational& lhs, const Rational& rhs) {\n        return (__int128_t)lhs.num\
-    \ * rhs.den < (__int128_t)rhs.num * lhs.den;\n    }\n    friend bool operator>(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n  \
-    \  friend bool operator<=(const Rational& lhs, const Rational& rhs) {\n      \
-    \  return !(rhs < lhs);\n    }\n    friend bool operator>=(const Rational& lhs,\
-    \ const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n    friend std::ostream&\
-    \ operator<<(std::ostream& ost, const Rational& rat) {\n        return ost <<\
-    \ (ld)rat.num / rat.den;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, Rational& rat) {\n        return ist >> rat.num >> rat.den;\n    }\n};\n\
-    \nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\
-    \u578B)\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction> A(N);\
-    \ cin >> A;\n    sort(rall(A));\n    Fraction ans;\n    each_const (f : A) {\n\
-    \        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n    \
-    \    chmax(W, 0);\n    }\n    cout << fixed << setprecision(12) << ans << endl;\n\
-    }\n"
+    \    ld get_ld() const { return (ld)num / den; }\n    Rational& operator++() {\n\
+    \        num += den;\n        return *this;\n    }\n    Rational operator++(int)\
+    \ {\n        Rational res = *this;\n        ++ *this;\n        return res;\n \
+    \   }\n    Rational& operator--() {\n        num -= den;\n        return *this;\n\
+    \    }\n    Rational operator--(int) {\n        Rational res = *this;\n      \
+    \  -- *this;\n        return res;\n    }\n    Rational& operator+=(const Rational&\
+    \ other) {\n        T g = gcd(den, other.den);\n        num = num * (other.den\
+    \ / g) + other.num * (den / g);\n        den = den / g * other.den;\n        normalize();\n\
+    \        return *this;\n    }\n    Rational& operator-=(const Rational& other)\
+    \ {\n        T g = gcd(den, other.den);\n        num = num * (other.den / g) -\
+    \ other.num * (den / g);\n        den = den / g * other.den;\n        normalize();\n\
+    \        return *this;\n    }\n    Rational& operator*=(const Rational& other)\
+    \ {\n        T g1 = gcd(num, other.den);\n        T g2 = gcd(den, other.num);\n\
+    \        num = (num / g1) * (other.num / g2);\n        den = (den / g2) * (other.den\
+    \ / g1);\n        return *this;\n    }\n    Rational& operator/=(const Rational&\
+    \ other) {\n        return (*this) *= Rational(other.den, other.num);\n    }\n\
+    \    friend Rational operator+(const Rational& lhs, const Rational& rhs) {\n \
+    \       return Rational(lhs) += rhs;\n    }\n    friend Rational operator-(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) -= rhs;\n\
+    \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
+    \    }\n    Rational operator+() {\n        return Rational(*this);\n    }\n \
+    \   Rational operator-() {\n        return Rational(-num, den);\n    }\n    friend\
+    \ bool operator==(const Rational& lhs, const Rational& rhs) {\n        return\
+    \ lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend bool operator!=(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return lhs.num != rhs.num ||\
+    \ lhs.den != rhs.den;\n    }\n    friend bool operator<(const Rational& lhs, const\
+    \ Rational& rhs) {\n        return (__int128_t)lhs.num * rhs.den < (__int128_t)rhs.num\
+    \ * lhs.den;\n    }\n    friend bool operator>(const Rational& lhs, const Rational&\
+    \ rhs) {\n        return rhs < lhs;\n    }\n    friend bool operator<=(const Rational&\
+    \ lhs, const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend\
+    \ bool operator>=(const Rational& lhs, const Rational& rhs) {\n        return\
+    \ !(lhs < rhs);\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, Rational& rat) {\n        return\
+    \ ist >> rat.num >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\n\
+    /**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/Rational.md\n\
+    \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction> A(N); cin >> A;\n\
+    \    sort(rall(A));\n    Fraction ans;\n    each_const (f : A) {\n        ans\
+    \ += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n        chmax(W,\
+    \ 0);\n    }\n    cout << fixed << setprecision(12) << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
     #define ERROR 1e-6\n#include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction>\
@@ -204,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 09:48:45+09:00'
+  timestamp: '2022-02-05 10:51:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
