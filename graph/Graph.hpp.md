@@ -154,6 +154,9 @@ data:
     path: test/yosupo/cycle_detection.test.cpp
     title: test/yosupo/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/lca-HLD.test.cpp
+    title: test/yosupo/lca-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
   - icon: ':heavy_check_mark:'
@@ -432,6 +435,7 @@ data:
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
+  - test/yosupo/lca-HLD.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/tree_diameter.test.cpp
