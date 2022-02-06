@@ -49,6 +49,7 @@ template<class T> class HeavyLightDecomposition {
     }
   public:
     HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G) { init(); }
+    int get_size(int k) const { return ssz[k]; }
     std::pair<int, int> get_idx(int k) const { return {vin[k], vout[k]}; }
     std::pair<int, int> get_pach(int a, int b) const {
         if (vin[a] < vin[b]) return {a, b};
