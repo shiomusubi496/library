@@ -13,7 +13,7 @@ int main() {
         G.add_edge(i, p);
     }
     EulerTourSubtree<int> ET(G);
-    BinaryIndexedTree<ll> BIT(2 * N);
+    BinaryIndexedTree<ll> BIT(N);
     rep (i, N) {
         auto p = ET.get_idx(i);
         BIT.add(p.first, A[i]);
