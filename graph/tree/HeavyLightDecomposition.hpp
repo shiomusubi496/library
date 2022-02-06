@@ -84,7 +84,7 @@ template<class T> class HeavyLightDecomposition {
             else g(b, a + 1);
         };
         each_const (p : up_path(u, l)) func(p.first, p.second);
-        func(l, l);
+        func(vin[l], vin[l]);
         each_const (p : down_path(l, v)) func(p.first, p.second);
     }
     template<class F> void each_edge(int u, int v, const F& f) const { return each_edge(u, v, f, f); }
