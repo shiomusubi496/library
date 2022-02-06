@@ -312,7 +312,7 @@ data:
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
     \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
     \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
     \        auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n     \
@@ -325,7 +325,7 @@ data:
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
     \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(2 * N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
+    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
     \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
     \        auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n     \
@@ -341,7 +341,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 20:47:37+09:00'
+  timestamp: '2022-02-06 11:11:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp
