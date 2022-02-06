@@ -25,6 +25,9 @@ data:
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   _isVerificationFailed: false
@@ -289,6 +292,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/point_add_range_sum.test.cpp

@@ -181,6 +181,9 @@ data:
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+    title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -432,6 +435,7 @@ data:
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/two_sat.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp

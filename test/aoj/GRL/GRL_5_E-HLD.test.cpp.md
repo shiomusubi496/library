@@ -417,18 +417,19 @@ data:
     \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
     \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
     \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
-    \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
-    \ vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n      \
-    \  if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n    }\n    int\
-    \ lca(int u, int v) const {\n        while (head[u] != head[v]) {\n          \
-    \  if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n    \
-    \    }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
-    \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
-    \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
-    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
-    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
-    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
-    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
+    \ G(G) { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
+    \ int> get_idx(int k) const { return {vin[k], vout[k]}; }\n    std::pair<int,\
+    \ int> get_pach(int a, int b) const {\n        if (vin[a] < vin[b]) return {a,\
+    \ b};\n        return {b, a};\n    }\n    int lca(int u, int v) const {\n    \
+    \    while (head[u] != head[v]) {\n            if (vin[u] > vin[v]) std::swap(u,\
+    \ v);\n            v = par[head[v]];\n        }\n        return vin[u] < vin[v]\
+    \ ? u : v;\n    }\n    std::vector<std::pair<int, int>> up_path(int u, int v)\
+    \ const {\n        std::vector<std::pair<int, int>> res;\n        while (head[u]\
+    \ != head[v]) {\n            res.emplace_back(vin[u], vin[head[u]]);\n       \
+    \     u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(vin[u],\
+    \ vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int, int>>\
+    \ down_path(int u, int v) const {\n        auto res = up_path(v, u);\n       \
+    \ each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
     \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
     \ v, const F& f) const { return each_vertex(u, v, f, f); }\n    template<class\
     \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
@@ -479,7 +480,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 15:24:57+09:00'
+  timestamp: '2022-02-06 22:50:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp

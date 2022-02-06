@@ -423,6 +423,9 @@ data:
       path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
       title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+      title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
     - icon: ':heavy_check_mark:'
