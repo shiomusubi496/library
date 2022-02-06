@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lca-HLD.test.cpp
     title: test/yosupo/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -217,10 +217,10 @@ data:
     \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
     \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
     \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
-    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(l,\
-    \ l);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n   \
-    \ }\n    template<class F> void each_edge(int u, int v, const F& f) const { return\
-    \ each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
+    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(vin[l],\
+    \ vin[l]);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n\
+    \    }\n    template<class F> void each_edge(int u, int v, const F& f) const {\
+    \ return each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
     \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
     \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
     \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
@@ -263,10 +263,10 @@ data:
     \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
     \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
     \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
-    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(l,\
-    \ l);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n   \
-    \ }\n    template<class F> void each_edge(int u, int v, const F& f) const { return\
-    \ each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
+    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(vin[l],\
+    \ vin[l]);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n\
+    \    }\n    template<class F> void each_edge(int u, int v, const F& f) const {\
+    \ return each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
     \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
     \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
     \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
@@ -281,8 +281,8 @@ data:
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-02-06 12:28:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-02-06 15:24:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/lca-HLD.test.cpp
