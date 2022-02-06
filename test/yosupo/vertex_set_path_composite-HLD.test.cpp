@@ -20,10 +20,9 @@ int main() {
         using value_type = PMM;
         static PMM op(const PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second}; }
         static PMM id() { return {1, 0}; }
-        static PMM get_inv(const PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }
     };
-    SegmentTree<Composite> seg(2 * N);
-    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);
+    SegmentTree<Composite> seg(N);
+    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(N);
     rep (i, N) {
         auto p = HLD.get_idx(i);
         seg.set(p.first, A[i]);

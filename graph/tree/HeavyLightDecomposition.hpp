@@ -42,7 +42,7 @@ template<class T> class HeavyLightDecomposition {
         ssz.resize(n);
         szdfs(root, -1);
         cnt = 0;
-        head.resize(n); head[0] = 0;
+        head.resize(n); head[root] = root;
         vin.resize(n); vout.resize(n);
         par.resize(n);
         bldfs(root, -1);
