@@ -436,9 +436,9 @@ data:
     \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
     \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
     \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.resize(n);\n\
-    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[0] =\
-    \ 0;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n       \
-    \ bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
+    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[root]\
+    \ = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n  \
+    \      bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
     \ G, int root = 0) : root(root), G(G) { init(); }\n    std::pair<int, int> get_idx(int\
     \ k) const { return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int\
     \ a, int b) const {\n        if (vin[a] < vin[b]) return {a, b};\n        return\
@@ -474,15 +474,14 @@ data:
     \       G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n \
     \   struct Composite {\n        using value_type = PMM;\n        static PMM op(const\
     \ PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second};\
-    \ }\n        static PMM id() { return {1, 0}; }\n        static PMM get_inv(const\
-    \ PMM& a) { return {mint{1} / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite>\
-    \ seg(2 * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);\n\
-    \    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
-    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
-    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
-    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
-    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
-    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
+    \ }\n        static PMM id() { return {1, 0}; }\n    };\n    SegmentTree<Composite>\
+    \ seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(N);\n    rep\
+    \ (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first, A[i]);\n\
+    \        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
+    \ >> t;\n        if (t == 0) {\n            int p; mint c, d; cin >> p >> c >>\
+    \ d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first, {c,\
+    \ d});\n            segrev.set(idx.first, {c, d});\n        }\n        else {\n\
+    \            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
     \                u, v,\n                [&](int l, int r) {\n                \
     \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
     \                },\n                [&](int l, int r) {\n                   \
@@ -499,21 +498,19 @@ data:
     \    }\n    HeavyLightDecomposition<int> HLD(G);\n    struct Composite {\n   \
     \     using value_type = PMM;\n        static PMM op(const PMM& a, const PMM&\
     \ b) { return {a.first * b.first, a.second * b.first + b.second}; }\n        static\
-    \ PMM id() { return {1, 0}; }\n        static PMM get_inv(const PMM& a) { return\
-    \ {mint{1} / a.first, -a.second / a.first}; }\n    };\n    SegmentTree<Composite>\
-    \ seg(2 * N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(2 * N);\n\
-    \    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
-    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
-    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
-    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
-    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
-    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
-    \                u, v,\n                [&](int l, int r) {\n                \
-    \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                },\n                [&](int l, int r) {\n                   \
-    \ auto p = segrev.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                }\n            );\n            cout << x << endl;\n        }\n\
-    \    }\n}\n"
+    \ PMM id() { return {1, 0}; }\n    };\n    SegmentTree<Composite> seg(N);\n  \
+    \  SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(N);\n    rep (i, N) {\n\
+    \        auto p = HLD.get_idx(i);\n        seg.set(p.first, A[i]);\n        segrev.set(p.first,\
+    \ A[i]);\n    }\n    rep (i, Q) {\n        int t; cin >> t;\n        if (t ==\
+    \ 0) {\n            int p; mint c, d; cin >> p >> c >> d;\n            auto idx\
+    \ = HLD.get_idx(p);\n            seg.set(idx.first, {c, d});\n            segrev.set(idx.first,\
+    \ {c, d});\n        }\n        else {\n            int u, v; mint x; cin >> u\
+    \ >> v >> x;\n            HLD.each_vertex(\n                u, v,\n          \
+    \      [&](int l, int r) {\n                    auto p = seg.prod(l, r);\n   \
+    \                 x = p.first * x + p.second;\n                },\n          \
+    \      [&](int l, int r) {\n                    auto p = segrev.prod(l, r);\n\
+    \                    x = p.first * x + p.second;\n                }\n        \
+    \    );\n            cout << x << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -525,7 +522,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 18:13:19+09:00'
+  timestamp: '2022-02-06 12:28:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp

@@ -194,9 +194,9 @@ data:
     \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
     \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
     \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.resize(n);\n\
-    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[0] =\
-    \ 0;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n       \
-    \ bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
+    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[root]\
+    \ = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n  \
+    \      bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
     \ G, int root = 0) : root(root), G(G) { init(); }\n    std::pair<int, int> get_idx(int\
     \ k) const { return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int\
     \ a, int b) const {\n        if (vin[a] < vin[b]) return {a, b};\n        return\
@@ -244,7 +244,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/lca-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 11:29:27+09:00'
+  timestamp: '2022-02-06 12:28:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/lca-HLD.test.cpp

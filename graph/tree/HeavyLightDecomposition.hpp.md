@@ -197,7 +197,7 @@ data:
     \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
     \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
     \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
-    \        cnt = 0;\n        head.resize(n); head[0] = 0;\n        vin.resize(n);\
+    \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
     \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
     \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
     \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
@@ -243,7 +243,7 @@ data:
     \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
     \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
     \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
-    \        cnt = 0;\n        head.resize(n); head[0] = 0;\n        vin.resize(n);\
+    \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
     \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
     \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
     \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
@@ -281,7 +281,7 @@ data:
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-02-05 18:13:19+09:00'
+  timestamp: '2022-02-06 12:28:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp

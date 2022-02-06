@@ -414,7 +414,7 @@ data:
     \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
     \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
     \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
-    \        cnt = 0;\n        head.resize(n); head[0] = 0;\n        vin.resize(n);\
+    \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
     \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
     \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
     \ G(G) { init(); }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
@@ -479,7 +479,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-05 18:13:19+09:00'
+  timestamp: '2022-02-06 12:28:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp
