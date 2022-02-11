@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -36,18 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/EulerTour.md
     document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -416,7 +416,7 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
   timestamp: '2022-02-11 11:56:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
@@ -442,7 +442,7 @@ title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
 - `EulerTour(Graph<T> G, vector<int> r)` : 森 `G` に対して、頂点列 `r` の頂点を根としてオイラーツアーを作成する。 `r` に同じ連結成分に属する頂点がある場合は未定義。 StaticRMQ::init が $\Theta(f(N))$ で動くとき、 $\Theta(N + f(N))$ 。
 - `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
 - `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
-- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。頂点に入る index に値が記録され、残りはは単位元である必要がある。計算量は `f` のそれに比例。
+- `void each_vertex_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の頂点の区間に `f` を適用する。セグ木などを使う場合、頂点に入る index に値が記録され、残りは単位元である必要がある。計算量は `f` のそれに比例。
 - `void each_edge_subtree(int v, void f(int, int))` : 頂点 `v` の部分木の辺。
 - `void each_vertex(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの頂点の区間に `f` を適用する。 `f` は親->子の順に計算した値、 `g` は子->親の値を返す。頂点に入る index には元の値が、頂点から出る index にはその逆元が入っている必要がある。計算量は `f` と `g` のそれに比例。
 - `void each_edge(int u, int v, void f(int, int), void g(int, int))` : `u` - `v` パスの辺。

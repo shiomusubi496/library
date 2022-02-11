@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
-    title: graph/tree/HeavyLightDecomposition.hpp
-  - icon: ':question:'
+    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -337,10 +337,11 @@ data:
     \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
     \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
     \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n#line 6 \"test/yosupo/vertex_add_subtree_sum-HLD.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> A(N);\
-    \ cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin >>\
-    \ p;\n        G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
+    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
+    \ docs/HeavyLightDecomposition.md\n */\n#line 6 \"test/yosupo/vertex_add_subtree_sum-HLD.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
+    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
+    \ >> p;\n        G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
     \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n\
     \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
@@ -370,8 +371,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-11 11:56:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-11 12:43:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
 layout: document

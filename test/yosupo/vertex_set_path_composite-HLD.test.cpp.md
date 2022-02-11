@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
-    title: graph/tree/HeavyLightDecomposition.hpp
-  - icon: ':question:'
+    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -471,12 +471,13 @@ data:
     \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
     \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
     \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n#line 7 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\nusing\
-    \ namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\n\
-    int main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n\
-    \    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >> b;\n \
-    \       G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n \
-    \   struct Composite {\n        using value_type = PMM;\n        static PMM op(const\
+    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
+    \ docs/HeavyLightDecomposition.md\n */\n#line 7 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
+    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
+    \ >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >>\
+    \ b;\n        G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
+    \    struct Composite {\n        using value_type = PMM;\n        static PMM op(const\
     \ PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second};\
     \ }\n        static PMM id() { return {1, 0}; }\n    };\n    SegmentTree<Composite>\
     \ seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(N);\n    rep\
@@ -526,8 +527,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-11 11:56:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-11 12:43:56+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp
 layout: document

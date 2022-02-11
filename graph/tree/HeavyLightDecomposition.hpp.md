@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -15,16 +15,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lca-HLD.test.cpp
     title: test/yosupo/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/HeavyLightDecomposition.md
+    document_title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     links: []
   bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -235,7 +237,8 @@ data:
     \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
     \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
     \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n"
+    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
+    \ docs/HeavyLightDecomposition.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class HeavyLightDecomposition {\n  protected:\n    int n,\
     \ root, cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>&\
@@ -285,15 +288,16 @@ data:
     \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
     \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
     \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n"
+    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
+    \ docs/HeavyLightDecomposition.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-02-11 11:56:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-02-11 12:43:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
@@ -304,5 +308,18 @@ layout: document
 redirect_from:
 - /library/graph/tree/HeavyLightDecomposition.hpp
 - /library/graph/tree/HeavyLightDecomposition.hpp.html
-title: graph/tree/HeavyLightDecomposition.hpp
+title: "HeavyLightDecomposition(HL\u5206\u89E3)"
 ---
+## 概要
+
+木に対する様々なクエリを扱える。計算量はオイラーツアーより悪いが、パスに対するクエリや部分木に対するクエリを同時に扱える。
+
+うまく木をいくつかの列に分解することで、パスを $O(\log N)$ 個の列に分割する。
+
+- `HeavyLightDecomposition(Graph<T> G)` : グラフ `G` に大して HL 分解をする。 $\Theta(N)$ 。
+- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
+- `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
+- `void each_vertex_subtree(int v, void f(int, int))` : `v` の部分木の頂点に対して `f` を適用する。計算量は `f` のそれに比例。
+- `void each_edge_subtree(int v, void f(int, int))` : 同様に辺に対して適用する。
+- `void each_vertex(int l, int r, void f(int, int), void g(int, int))` : `l` から `r` までのパスの頂点に対して `f` を適用する。可換でない演算を使う場合、 `g` は逆向きに演算をした場合の結果を返すべき。 `Monoid::ReverseMonoid` を活用する。 `f` が $\Theta(t)$ で動く場合、計算量 $\Theta(t \log N)$ 。
+- `void each_edge(int l, int r, void f(int, int), void g(int, int))` : 同様に辺に対して適用する。

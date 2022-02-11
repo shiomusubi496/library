@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
-    title: graph/tree/HeavyLightDecomposition.hpp
-  - icon: ':question:'
+    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -449,10 +449,11 @@ data:
     \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
     \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
     \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n#line 6 \"test/aoj/GRL/GRL_5_E-HLD.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n    rep (i, n) {\n \
-    \       int k; cin >> k;\n        rep (k) {\n            int a; cin >> a;\n  \
-    \          G.add_edge(i, a);\n        }\n    }\n    HeavyLightDecomposition<int>\
+    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
+    \ docs/HeavyLightDecomposition.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_E-HLD.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n\
+    \    rep (i, n) {\n        int k; cin >> k;\n        rep (k) {\n            int\
+    \ a; cin >> a;\n            G.add_edge(i, a);\n        }\n    }\n    HeavyLightDecomposition<int>\
     \ HLD(G);\n    RangeAddQueryRangeSumQuery<ll> seg(n);\n    int q; cin >> q;\n\
     \    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n            int\
     \ v; ll w; cin >> v >> w;\n            HLD.each_edge(0, v, [&](int l, int r) {\n\
@@ -483,7 +484,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-11 11:56:54+09:00'
+  timestamp: '2022-02-11 12:43:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp
