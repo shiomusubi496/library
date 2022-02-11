@@ -39,13 +39,22 @@ template<class T> class HeavyLightDecomposition {
     }
     void init() {
         n = G.size();
-        ssz.resize(n);
+        ssz.assign(n, -1);
         szdfs(root, -1);
+        rep (i, n) {
+            if (ssz[i] == -1) szdfs(i, -1);
+        }
         cnt = 0;
-        head.resize(n); head[root] = root;
+        head.assign(n, -1); head[root] = root;
         vin.resize(n); vout.resize(n);
         par.resize(n);
         bldfs(root, -1);
+        rep (i, n) {
+            if (head[i] == -1) {
+                head[i] = i;
+                bldfs(i, -1);
+            }
+        }
     }
   public:
     HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G) { init(); }
