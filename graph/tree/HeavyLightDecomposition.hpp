@@ -114,3 +114,8 @@ template<class T> class HeavyLightDecomposition {
         f(vin[u] + 1, vout[u]);
     }
 };
+
+/**
+ * @brief HeavyLightDecomposition(HL分解)
+ * @docs docs/HeavyLightDecomposition.md
+ */
