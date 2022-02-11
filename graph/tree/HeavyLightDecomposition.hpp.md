@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lca-HLD.test.cpp
     title: test/yosupo/lca-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -199,11 +199,14 @@ data:
     \ v);\n        }\n        each_const (e : G[v]) {\n            if (e.to != p &&\
     \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
     \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
-    \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
-    \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
-    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
-    \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
-    \ G(G) { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
+    \ {\n        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
+    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
+    \        cnt = 0;\n        head.assign(n, -1); head[root] = root;\n        vin.resize(n);\
+    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n        rep\
+    \ (i, n) {\n            if (head[i] == -1) {\n                head[i] = i;\n \
+    \               bldfs(i, -1);\n            }\n        }\n    }\n  public:\n  \
+    \  HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G)\
+    \ { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
     \ int> get_idx(int k) const { return {vin[k], vout[k]}; }\n    std::pair<int,\
     \ int> get_pach(int a, int b) const {\n        if (vin[a] < vin[b]) return {a,\
     \ b};\n        return {b, a};\n    }\n    int lca(int u, int v) const {\n    \
@@ -246,11 +249,14 @@ data:
     \ v);\n        }\n        each_const (e : G[v]) {\n            if (e.to != p &&\
     \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
     \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
-    \ {\n        n = G.size();\n        ssz.resize(n);\n        szdfs(root, -1);\n\
-    \        cnt = 0;\n        head.resize(n); head[root] = root;\n        vin.resize(n);\
-    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n    }\n \
-    \ public:\n    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root),\
-    \ G(G) { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
+    \ {\n        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
+    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
+    \        cnt = 0;\n        head.assign(n, -1); head[root] = root;\n        vin.resize(n);\
+    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n        rep\
+    \ (i, n) {\n            if (head[i] == -1) {\n                head[i] = i;\n \
+    \               bldfs(i, -1);\n            }\n        }\n    }\n  public:\n  \
+    \  HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G)\
+    \ { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
     \ int> get_idx(int k) const { return {vin[k], vout[k]}; }\n    std::pair<int,\
     \ int> get_pach(int a, int b) const {\n        if (vin[a] < vin[b]) return {a,\
     \ b};\n        return {b, a};\n    }\n    int lca(int u, int v) const {\n    \
@@ -286,8 +292,8 @@ data:
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-02-06 22:50:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-11 11:56:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp

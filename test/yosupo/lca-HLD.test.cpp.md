@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: graph/tree/HeavyLightDecomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -193,10 +193,13 @@ data:
     \  head[idx] = head[v];\n            bldfs(idx, v);\n        }\n        each_const\
     \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
     \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
-    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.resize(n);\n\
-    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[root]\
-    \ = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n  \
-    \      bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
+    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.assign(n,\
+    \ -1);\n        szdfs(root, -1);\n        rep (i, n) {\n            if (ssz[i]\
+    \ == -1) szdfs(i, -1);\n        }\n        cnt = 0;\n        head.assign(n, -1);\
+    \ head[root] = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n\
+    \        bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1)\
+    \ {\n                head[i] = i;\n                bldfs(i, -1);\n           \
+    \ }\n        }\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
     \ G, int root = 0) : root(root), G(G) { init(); }\n    int get_size(int k) const\
     \ { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
     \ vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n      \
@@ -245,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/lca-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 22:50:50+09:00'
+  timestamp: '2022-02-11 11:56:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/lca-HLD.test.cpp

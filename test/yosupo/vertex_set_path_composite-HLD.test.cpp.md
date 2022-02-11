@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: graph/tree/HeavyLightDecomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -179,28 +179,28 @@ data:
     \ struct Max {\n    using value_type = T;\n    static constexpr T op(T a, T b)\
     \ { return a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n\
     };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(T a, T b) { return b; }\n};\n\n\ntemplate<class T, T max_value\
+    \ constexpr T op(T, T b) { return b; }\n};\n\n\ntemplate<class T, T max_value\
     \ = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n \
-    \   using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n\
-    \    static constexpr T mul(T a, int) { return a; }\n    static constexpr T mul_op(T\
-    \ a, int, T c) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \   using E = Assign<T>;\n    static constexpr T op(T a, T) { return a; }\n  \
+    \  static constexpr T mul(T a, int) { return a; }\n    static constexpr T mul_op(T\
+    \ a, int, T) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
     \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(T a, T b) { return a; }\n    static constexpr T mul(T\
-    \ a, int) { return a; }\n    static constexpr T mul_op(T a, int, T c) { return\
-    \ a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n  \
-    \  using E = Assign<T>;\n    static constexpr T op(T a, T b) { return a; }\n \
-    \   static constexpr T mul(T a, int b) { return a * b; }\n    static constexpr\
-    \ T mul_op(T a, int b, T c) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n    static\
-    \ constexpr T mul(T a, int) { return a; }\n    static constexpr T mul_op(T a,\
-    \ int, T c) { return c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
+    \    static constexpr T op(T a, T) { return a; }\n    static constexpr T mul(T\
+    \ a, int) { return a; }\n    static constexpr T mul_op(T a, int, T) { return a;\
+    \ }\n};\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using\
+    \ E = Assign<T>;\n    static constexpr T op(T a, T) { return a; }\n    static\
+    \ constexpr T mul(T a, int b) { return a * b; }\n    static constexpr T mul_op(T\
+    \ a, int b, T) { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n \
     \   static constexpr T op(T a, T b) { return b + a; }\n    static constexpr T\
     \ mul(T a, int) { return a; }\n    static constexpr T mul_op(T a, int, T c) {\
-    \ return c + a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n\
-    \    static constexpr T mul(T a, int b) { return a * b; }\n    static constexpr\
+    \ return c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
+    \ AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(T a, T b) { return b + a; }\n    static constexpr T mul(T a,\
+    \ int) { return a; }\n    static constexpr T mul_op(T a, int, T c) { return c\
+    \ + a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n   \
+    \ using E = Sum<T>;\n    static constexpr T op(T a, T b) { return b + a; }\n \
+    \   static constexpr T mul(T a, int b) { return a * b; }\n    static constexpr\
     \ T mul_op(T a, int b, T c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
     \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
     \  using E = Min<T>;\n    static constexpr T op(T a, T b) { return std::min(b,\
@@ -435,10 +435,13 @@ data:
     \  head[idx] = head[v];\n            bldfs(idx, v);\n        }\n        each_const\
     \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
     \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
-    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.resize(n);\n\
-    \        szdfs(root, -1);\n        cnt = 0;\n        head.resize(n); head[root]\
-    \ = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n  \
-    \      bldfs(root, -1);\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
+    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.assign(n,\
+    \ -1);\n        szdfs(root, -1);\n        rep (i, n) {\n            if (ssz[i]\
+    \ == -1) szdfs(i, -1);\n        }\n        cnt = 0;\n        head.assign(n, -1);\
+    \ head[root] = root;\n        vin.resize(n); vout.resize(n);\n        par.resize(n);\n\
+    \        bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1)\
+    \ {\n                head[i] = i;\n                bldfs(i, -1);\n           \
+    \ }\n        }\n    }\n  public:\n    HeavyLightDecomposition(const Graph<T>&\
     \ G, int root = 0) : root(root), G(G) { init(); }\n    int get_size(int k) const\
     \ { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const { return {vin[k],\
     \ vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b) const {\n      \
@@ -523,8 +526,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-02-06 22:50:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-11 11:56:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp
 layout: document
