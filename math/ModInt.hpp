@@ -114,7 +114,9 @@ template<ll mod> class StaticModInt : StaticModIntBase {
         return ost << sm.val;
     }
     friend std::istream& operator>>(std::istream& ist, StaticModInt& sm) {
-        return ist >> sm.val;
+        ll v; ist >> v;
+        sm = v;
+        return ist;
     }
 };
 
@@ -216,11 +218,13 @@ template<int id> class DynamicModInt : DynamicModIntBase {
         }
         return res;
     }
-    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt& sm) {
-        return ost << sm.val;
+    friend std::ostream& operator<<(std::ostream& ost, const DynamicModInt& dm) {
+        return ost << dm.val;
     }
-    friend std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {
-        return ist >> sm.val;
+    friend std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {
+        ll v; ist >> v;
+        dm = v;
+        return ist;
     }
 };
 
