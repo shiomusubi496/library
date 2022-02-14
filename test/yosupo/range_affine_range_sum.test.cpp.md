@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -255,53 +255,53 @@ data:
     \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
     \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
     \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
-    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
-    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
-    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
-    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
-    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
-    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
-    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
-    \  }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
-    \n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
-    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
-    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
-    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
-    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
-    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
-    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
-    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
-    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
-    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
-    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
-    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
-    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
-    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
-    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
-    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
-    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
-    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
-    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
-    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
-    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
-    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
-    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
-    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \ U& a, int b, const T& c) {\n        return a.first * c + a.second * b;\n   \
+    \ }\n};\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n  \
+    \  using E = AddAssign<T>;\n    using U = typename E::value_type;\n    static\
+    \ T op(const U& a, const T& b) {\n        if (a.first) return a.second;\n    \
+    \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
+    \ * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase\
+    \ {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class T> using is_ModInt\
+    \ = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using is_StaticModInt =\
+    \ std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using is_DynamicModInt\
+    \ = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod> class StaticModInt\
+    \ : StaticModIntBase {\n  protected:\n    ll val;\n    static constexpr ll inv1000000007[]\
+    \ = {-1, 1, 500000004, 333333336, 250000002,\n            400000003, 166666668,\
+    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr ll inv998244353\
+    \ [] = {-1, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
+    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
+    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> StaticModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static StaticModInt raw(ll v) {\n        StaticModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    StaticModInt inv() const\
+    \ {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10)\
+    \ return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod ==\
+    \ 998244353) {\n            if (val <= 10) return inv998244353[val];\n       \
+    \ }\n        return mod_inv(val, mod);\n    }\n    StaticModInt& operator++()\
+    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
+    \    }\n    StaticModInt operator++(int) {\n        StaticModInt res = *this;\n\
+    \        ++ *this;\n        return res;\n    }\n    StaticModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    StaticModInt operator--(int) {\n        StaticModInt res = *this;\n\
+    \        -- *this;\n        return res;\n    }\n    StaticModInt& operator+=(const\
+    \ StaticModInt& other) {\n        val += other.val;\n        if (val >= mod) val\
+    \ -= mod;\n        return *this;\n    }\n    StaticModInt& operator-=(const StaticModInt&\
+    \ other) {\n        val -= other.val;\n        if (val < 0) val += mod;\n    \
+    \    return *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other)\
+    \ {\n        (val *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt&\
+    \ operator/=(const StaticModInt& other) {\n        (val *= other.inv().get())\
+    \ %= mod;\n        return *this;\n    }\n    friend StaticModInt operator+(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
+    \ StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
     \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
     \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
@@ -513,8 +513,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 21:01:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-14 21:43:34+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document

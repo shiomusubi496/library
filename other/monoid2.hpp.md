@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -250,14 +250,14 @@ data:
     \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
     \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
     \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
-    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
-    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
-    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
-    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
-    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
-    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
-    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
-    \  }\n};\n\n} // namespace Monoid\n"
+    \ U& a, int b, const T& c) {\n        return a.first * c + a.second * b;\n   \
+    \ }\n};\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n  \
+    \  using E = AddAssign<T>;\n    using U = typename E::value_type;\n    static\
+    \ T op(const U& a, const T& b) {\n        if (a.first) return a.second;\n    \
+    \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
+    \ * b;\n    }\n};\n\n} // namespace Monoid\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
     \ Monoid {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
     \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
@@ -276,22 +276,22 @@ data:
     \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
     \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
     \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
-    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
-    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
-    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
-    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
-    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
-    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
-    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
-    \  }\n};\n\n} // namespace Monoid\n"
+    \ U& a, int b, const T& c) {\n        return a.first * c + a.second * b;\n   \
+    \ }\n};\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n  \
+    \  using E = AddAssign<T>;\n    using U = typename E::value_type;\n    static\
+    \ T op(const U& a, const T& b) {\n        if (a.first) return a.second;\n    \
+    \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
+    \ * b;\n    }\n};\n\n} // namespace Monoid\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy: []
-  timestamp: '2022-02-14 21:01:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-14 21:43:34+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
