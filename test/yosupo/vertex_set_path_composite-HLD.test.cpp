@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/vertex_set_path_composite"
 #include "../../other/template.hpp"
+#include "../../other/monoid2.hpp"
 #include "../../data-struct/segment/SegmentTree.hpp"
 #include "../../math/ModInt.hpp"
 #include "../../graph/Graph.hpp"
@@ -16,13 +17,8 @@ int main() {
         G.add_edge(a, b);
     }
     HeavyLightDecomposition<int> HLD(G);
-    struct Composite {
-        using value_type = PMM;
-        static PMM op(const PMM& a, const PMM& b) { return {a.first * b.first, a.second * b.first + b.second}; }
-        static PMM id() { return {1, 0}; }
-    };
-    SegmentTree<Composite> seg(N);
-    SegmentTree<Monoid::ReverseMonoid<Composite>> segrev(N);
+    SegmentTree<Monoid::Composite<mint>> seg(N);
+    SegmentTree<Monoid::ReverseMonoid<Monoid::Composite<mint>>> segrev(N);
     rep (i, N) {
         auto p = HLD.get_idx(i);
         seg.set(p.first, A[i]);
