@@ -38,7 +38,7 @@ template<class M> class SlidingWindowAggregation {
             lst.push(rst.top()); lsm.push(rst.top());
             rst.pop(); rsm.pop();
             while (!rst.empty()) {
-                lst.push(rst.top()); lsm.push(M::op(lsm.top(), rst.top()));
+                lst.push(rst.top()); lsm.push(M::op(rst.top(), lsm.top()));
                 rst.pop(); rsm.pop();
             }
         }
