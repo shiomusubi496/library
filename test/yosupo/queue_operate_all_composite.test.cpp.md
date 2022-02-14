@@ -1,21 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/HeavyLightDecomposition.hpp
-    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+  - icon: ':x:'
+    path: data-struct/structure/SlidingWindowAggregation.hpp
+    title: SlidingWindowAggregation(SWAG)
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -27,16 +18,16 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
+    PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
-    - https://judge.yosupo.jp/problem/vertex_set_path_composite
-  bundledCode: "#line 1 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\n#line\
+    - https://judge.yosupo.jp/problem/queue_operate_all_composite
+  bundledCode: "#line 1 \"test/yosupo/queue_operate_all_composite.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\n#line\
     \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
@@ -268,101 +259,46 @@ data:
     \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
     \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
     \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
-    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
-    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
-    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
-    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
-    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
-    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
-    \ M> class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
-    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
-    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
-    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
-    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
-    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
-    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
-    \            while (l < n) {\n                    l <<= 1;\n                 \
-    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
-    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
-    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
-    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
-    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
-    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
-    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
-    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase\
-    \ {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
-    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
-    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
-    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
-    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
-    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
-    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
-    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
-    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
-    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
-    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
-    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
-    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
-    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
-    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
-    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
-    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
-    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
-    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
-    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
-    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
-    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
-    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
-    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \ * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase\
+    \ {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class T> using is_ModInt\
+    \ = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using is_StaticModInt =\
+    \ std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using is_DynamicModInt\
+    \ = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod> class StaticModInt\
+    \ : StaticModIntBase {\n  protected:\n    ll val;\n    static constexpr ll inv1000000007[]\
+    \ = {-1, 1, 500000004, 333333336, 250000002,\n            400000003, 166666668,\
+    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr ll inv998244353\
+    \ [] = {-1, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
+    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
+    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> StaticModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static StaticModInt raw(ll v) {\n        StaticModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    StaticModInt inv() const\
+    \ {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10)\
+    \ return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod ==\
+    \ 998244353) {\n            if (val <= 10) return inv998244353[val];\n       \
+    \ }\n        return mod_inv(val, mod);\n    }\n    StaticModInt& operator++()\
+    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
+    \    }\n    StaticModInt operator++(int) {\n        StaticModInt res = *this;\n\
+    \        ++ *this;\n        return res;\n    }\n    StaticModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    StaticModInt operator--(int) {\n        StaticModInt res = *this;\n\
+    \        -- *this;\n        return res;\n    }\n    StaticModInt& operator+=(const\
+    \ StaticModInt& other) {\n        val += other.val;\n        if (val >= mod) val\
+    \ -= mod;\n        return *this;\n    }\n    StaticModInt& operator-=(const StaticModInt&\
+    \ other) {\n        val -= other.val;\n        if (val < 0) val += mod;\n    \
+    \    return *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other)\
+    \ {\n        (val *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt&\
+    \ operator/=(const StaticModInt& other) {\n        (val *= other.inv().get())\
+    \ %= mod;\n        return *this;\n    }\n    friend StaticModInt operator+(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
+    \ StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
     \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
     \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
@@ -417,154 +353,64 @@ data:
     \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
     \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx] ==\
-    \ -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n  \
-    \  return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n   \
-    \     each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
-    \n\ntemplate<class T> class HeavyLightDecomposition {\n  protected:\n    int n,\
-    \ root, cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>&\
-    \ G;\n    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e\
-    \ : G[v]) {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to,\
-    \ v);\n        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p)\
-    \ {\n        par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n   \
-    \     each_const (e : G[v]) {\n            if (e.to != p) {\n                if\
-    \ (idx == -1 || ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n\
-    \        if (idx != -1) {\n            head[idx] = head[v];\n            bldfs(idx,\
-    \ v);\n        }\n        each_const (e : G[v]) {\n            if (e.to != p &&\
-    \ e.to != idx) {\n                head[e.to] = e.to;\n                bldfs(e.to,\
-    \ v);\n            }\n        }\n        vout[v] = cnt;\n    }\n    void init()\
-    \ {\n        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
-    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
-    \        cnt = 0;\n        head.assign(n, -1); head[root] = root;\n        vin.resize(n);\
-    \ vout.resize(n);\n        par.resize(n);\n        bldfs(root, -1);\n        rep\
-    \ (i, n) {\n            if (head[i] == -1) {\n                head[i] = i;\n \
-    \               bldfs(i, -1);\n            }\n        }\n    }\n  public:\n  \
-    \  HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G)\
-    \ { init(); }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int,\
-    \ int> get_idx(int k) const { return {vin[k], vout[k]}; }\n    std::pair<int,\
-    \ int> get_pach(int a, int b) const {\n        if (vin[a] < vin[b]) return {a,\
-    \ b};\n        return {b, a};\n    }\n    int lca(int u, int v) const {\n    \
-    \    while (head[u] != head[v]) {\n            if (vin[u] > vin[v]) std::swap(u,\
-    \ v);\n            v = par[head[v]];\n        }\n        return vin[u] < vin[v]\
-    \ ? u : v;\n    }\n    std::vector<std::pair<int, int>> up_path(int u, int v)\
-    \ const {\n        std::vector<std::pair<int, int>> res;\n        while (head[u]\
-    \ != head[v]) {\n            res.emplace_back(vin[u], vin[head[u]]);\n       \
-    \     u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(vin[u],\
-    \ vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int, int>>\
-    \ down_path(int u, int v) const {\n        auto res = up_path(v, u);\n       \
-    \ each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
-    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
-    \ v, const F& f) const { return each_vertex(u, v, f, f); }\n    template<class\
-    \ F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {\n\
-    \        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n       \
-    \     if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n  \
-    \      each_const (p : up_path(u, l)) func(p.first, p.second);\n        func(vin[l],\
-    \ vin[l]);\n        each_const (p : down_path(l, v)) func(p.first, p.second);\n\
-    \    }\n    template<class F> void each_edge(int u, int v, const F& f) const {\
-    \ return each_edge(u, v, f, f); }\n    template<class F, class G> void each_edge(int\
-    \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
-    \    auto func = [&](int a, int b) {\n            if (a <= b) f(a, b + 1);\n \
-    \           else g(b, a + 1);\n        };\n        each_const (p : up_path(u,\
-    \ l)) func(p.first, p.second);\n        each_const (p : down_path(l, v)) func(p.first,\
-    \ p.second);\n    }\n    template<class F> void each_vertex_subtree(int u, const\
-    \ F& f) const {\n        f(vin[u], vout[u]);\n    }\n    template<class F> void\
-    \ each_edge_subtree(int u, const F& f) const {\n        f(vin[u] + 1, vout[u]);\n\
-    \    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\u89E3)\n * @docs\
-    \ docs/HeavyLightDecomposition.md\n */\n#line 8 \"test/yosupo/vertex_set_path_composite-HLD.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
-    \ >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >>\
-    \ b;\n        G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
-    \    SegmentTree<Monoid::Composite<mint>> seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Monoid::Composite<mint>>>\
-    \ segrev(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
-    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
-    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
-    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
-    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
-    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
-    \                u, v,\n                [&](int l, int r) {\n                \
-    \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                },\n                [&](int l, int r) {\n                   \
-    \ auto p = segrev.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                }\n            );\n            cout << x << endl;\n        }\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_set_path_composite\"\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/structure/SlidingWindowAggregation.hpp\"\
+    \n\n#line 5 \"data-struct/structure/SlidingWindowAggregation.hpp\"\n\ntemplate<class\
+    \ M> class SlidingWindowAggregation {\n  protected:\n    using T = typename M::value_type;\n\
+    \    std::stack<T> lst, rst;\n    std::stack<T> lsm, rsm;\n    T internal_all_prod()\
+    \ const {\n        assert(!empty());\n        if (lst.empty()) return rsm.top();\n\
+    \        if (rst.empty()) return lsm.top();\n        return M::op(lsm.top(), rsm.top());\n\
+    \    }\n  public:\n    SlidingWindowAggregation() = default;\n    int size() const\
+    \ {\n        return lst.size() + rst.size();\n    }\n    bool empty() const {\n\
+    \        return lst.empty() && rst.empty();\n    }\n    void push(const T& x)\
+    \ {\n        rst.push(x);\n        if (rsm.empty()) rsm.push(rst.top());\n   \
+    \     else rsm.push(M::op(rsm.top(), rst.top()));\n    }\n    template<class...\
+    \ Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
+    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
+    \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
+    \ (lst.empty()) {\n            lst.push(rst.top()); lsm.push(rst.top());\n   \
+    \         rst.pop(); rsm.pop();\n            while (!rst.empty()) {\n        \
+    \        lst.push(rst.top()); lsm.push(M::op(lsm.top(), rst.top()));\n       \
+    \         rst.pop(); rsm.pop();\n            }\n        }\n        lst.pop();\
+    \ lsm.pop();\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T all_prod()\
+    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
+    \    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T all_prod() const {\n        return internal_all_prod();\n\
+    \    }\n};\n\n/**\n * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
+    \ */\n#line 6 \"test/yosupo/queue_operate_all_composite.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int Q; cin >> Q;\n  \
+    \  SlidingWindowAggregation<Monoid::Composite<mint>> SWAG;\n    rep (Q) {\n  \
+    \      int t; cin >> t;\n        if (t == 0) {\n            mint a, b; cin >>\
+    \ a >> b;\n            SWAG.emplace(a, b);\n        }\n        else if (t == 1)\
+    \ SWAG.pop();\n        else {\n            mint x; cin >> x;\n            auto\
+    \ p = SWAG.all_prod();\n            cout << p.first * x + p.second << endl;\n\
+    \        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid2.hpp\"\n\
-    #include \"../../data-struct/segment/SegmentTree.hpp\"\n#include \"../../math/ModInt.hpp\"\
-    \n#include \"../../graph/Graph.hpp\"\n#include \"../../graph/tree/HeavyLightDecomposition.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
-    \ >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >>\
-    \ b;\n        G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
-    \    SegmentTree<Monoid::Composite<mint>> seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Monoid::Composite<mint>>>\
-    \ segrev(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
-    \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
-    \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
-    \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
-    \ {c, d});\n            segrev.set(idx.first, {c, d});\n        }\n        else\
-    \ {\n            int u, v; mint x; cin >> u >> v >> x;\n            HLD.each_vertex(\n\
-    \                u, v,\n                [&](int l, int r) {\n                \
-    \    auto p = seg.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                },\n                [&](int l, int r) {\n                   \
-    \ auto p = segrev.prod(l, r);\n                    x = p.first * x + p.second;\n\
-    \                }\n            );\n            cout << x << endl;\n        }\n\
-    \    }\n}\n"
+    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/structure/SlidingWindowAggregation.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
+    \ cin >> Q;\n    SlidingWindowAggregation<Monoid::Composite<mint>> SWAG;\n   \
+    \ rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            mint\
+    \ a, b; cin >> a >> b;\n            SWAG.emplace(a, b);\n        }\n        else\
+    \ if (t == 1) SWAG.pop();\n        else {\n            mint x; cin >> x;\n   \
+    \         auto p = SWAG.all_prod();\n            cout << p.first * x + p.second\
+    \ << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - other/monoid2.hpp
   - other/monoid.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - other/bitop.hpp
   - math/ModInt.hpp
-  - graph/Graph.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
+  - data-struct/structure/SlidingWindowAggregation.hpp
   isVerificationFile: true
-  path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 21:43:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-14 22:00:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/vertex_set_path_composite-HLD.test.cpp
-- /verify/test/yosupo/vertex_set_path_composite-HLD.test.cpp.html
-title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
+- /verify/test/yosupo/queue_operate_all_composite.test.cpp
+- /verify/test/yosupo/queue_operate_all_composite.test.cpp.html
+title: test/yosupo/queue_operate_all_composite.test.cpp
 ---

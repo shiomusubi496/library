@@ -45,6 +45,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
+  - name: data-struct/structure
+    pages:
+    - icon: ':x:'
+      path: data-struct/structure/SlidingWindowAggregation.hpp
+      title: SlidingWindowAggregation(SWAG)
   - name: data-struct/unionfind
     pages:
     - icon: ':heavy_check_mark:'
@@ -154,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -168,13 +173,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: string
@@ -386,6 +391,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/queue_operate_all_composite.test.cpp
+      title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/range_affine_range_sum.test.cpp
       title: test/yosupo/range_affine_range_sum.test.cpp

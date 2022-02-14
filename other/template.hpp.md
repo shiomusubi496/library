@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
+  - icon: ':x:'
+    path: data-struct/structure/SlidingWindowAggregation.hpp
+    title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
@@ -135,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -147,10 +150,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
@@ -346,6 +349,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
@@ -406,9 +412,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1469.test.cpp
     title: test/yuki/1469.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -663,6 +669,7 @@ data:
   - math/EulerPhi.hpp
   - math/Matrix.hpp
   - math/Rational.hpp
+  - data-struct/structure/SlidingWindowAggregation.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
@@ -708,7 +715,7 @@ data:
   - graph/other/TopologicalSort.hpp
   - graph/other/TwoSatisfiablitity.hpp
   timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
@@ -717,6 +724,7 @@ data:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/two_sat.test.cpp
   - test/yosupo/line_add_get_min.test.cpp

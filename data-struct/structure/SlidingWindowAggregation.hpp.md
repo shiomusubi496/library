@@ -9,26 +9,26 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/CumulativeSum.md
-    document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+    _deprecated_at_docs: docs/SlidingWindowAggregation.md
+    document_title: SlidingWindowAggregation(SWAG)
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"data-struct/structure/SlidingWindowAggregation.hpp\"\n\n\
+    #line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
+    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
+    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
+    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
+    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -225,63 +225,79 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
-    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
-    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
-    \ = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(0 <= l && l <=\
-    \ r && r <= n);\n        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>&\
-    \ get_data() const& { return data; }\n    std::vector<T> get_data() && { return\
-    \ std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/structure/SlidingWindowAggregation.hpp\"\
+    \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T>\
+    \ lsm, rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n  \
+    \      if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
+    \        return M::op(lsm.top(), rsm.top());\n    }\n  public:\n    SlidingWindowAggregation()\
+    \ = default;\n    int size() const {\n        return lst.size() + rst.size();\n\
+    \    }\n    bool empty() const {\n        return lst.empty() && rst.empty();\n\
+    \    }\n    void push(const T& x) {\n        rst.push(x);\n        if (rsm.empty())\
+    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \    }\n    template<class... Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
+    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
+    \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
+    \ (lst.empty()) {\n            lst.push(rst.top()); lsm.push(rst.top());\n   \
+    \         rst.pop(); rsm.pop();\n            while (!rst.empty()) {\n        \
+    \        lst.push(rst.top()); lsm.push(M::op(lsm.top(), rst.top()));\n       \
+    \         rst.pop(); rsm.pop();\n            }\n        }\n        lst.pop();\
+    \ lsm.pop();\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T all_prod()\
+    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
+    \    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T all_prod() const {\n        return internal_all_prod();\n\
+    \    }\n};\n\n/**\n * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
-    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
-    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
-    \ = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(0 <= l && l <=\
-    \ r && r <= n);\n        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>&\
-    \ get_data() const& { return data; }\n    std::vector<T> get_data() && { return\
-    \ std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T>\
+    \ lsm, rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n  \
+    \      if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
+    \        return M::op(lsm.top(), rsm.top());\n    }\n  public:\n    SlidingWindowAggregation()\
+    \ = default;\n    int size() const {\n        return lst.size() + rst.size();\n\
+    \    }\n    bool empty() const {\n        return lst.empty() && rst.empty();\n\
+    \    }\n    void push(const T& x) {\n        rst.push(x);\n        if (rsm.empty())\
+    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \    }\n    template<class... Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
+    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
+    \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
+    \ (lst.empty()) {\n            lst.push(rst.top()); lsm.push(rst.top());\n   \
+    \         rst.pop(); rsm.pop();\n            while (!rst.empty()) {\n        \
+    \        lst.push(rst.top()); lsm.push(M::op(lsm.top(), rst.top()));\n       \
+    \         rst.pop(); rsm.pop();\n            }\n        }\n        lst.pop();\
+    \ lsm.pop();\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T all_prod()\
+    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
+    \    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T all_prod() const {\n        return internal_all_prod();\n\
+    \    }\n};\n\n/**\n * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/segment/CumulativeSum.hpp
+  path: data-struct/structure/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-02-14 20:43:36+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-14 22:00:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-documentation_of: data-struct/segment/CumulativeSum.hpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+documentation_of: data-struct/structure/SlidingWindowAggregation.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/CumulativeSum.hpp
-- /library/data-struct/segment/CumulativeSum.hpp.html
-title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+- /library/data-struct/structure/SlidingWindowAggregation.hpp
+- /library/data-struct/structure/SlidingWindowAggregation.hpp.html
+title: SlidingWindowAggregation(SWAG)
 ---
 ## 概要
 
-モノイド $(T, \cdot : T \times T \to T)$ 、つまり
+`queue` の要素全てに順に演算を適当した値を $\Theta(1)$ で求めることができるデータ構造。 `stack` 2 つで `queue` を作るテクニックを使っている。
 
-- 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
-
-を満たす構造のうち、
-
-- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
-
-を満たす構造の列を扱えるデータ構造。例えば、足し算や bitwise xor などがこの条件を満たす。
-
-- `CumulativeSum(vector<int> v)` : リスト `v` で初期化する。 $N=\mathrm{len}(a)$ として $\Theta(N)$ 。
-- `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(1)$ 。
+- `SlidingWindowAggregation()` : SWAG を作る。 $\Theta(1)$ 。
+- `int size()` : 要素数を返す。 $\Theta(1)$ 。
+- `bool empty()` : 空であるかを返す。 $\Theta(1)$ 。
+- `void push(T x)` : `x` を追加する。 $\Theta(1)$ 。
+- `void emplace(Args...)` : 要素を直接構築で追加する。 $\Theta(1)$ 。
+- `void pop()` : 要素を削除する。ならし $\Theta(1)$ 。
+- `T all_prod()` : queue の要素全てで順に演算をした値を返す。 $\Theta(1)$ 。
