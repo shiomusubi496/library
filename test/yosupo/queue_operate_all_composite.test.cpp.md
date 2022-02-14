@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/structure/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
@@ -369,7 +369,7 @@ data:
     \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
     \ (lst.empty()) {\n            lst.push(rst.top()); lsm.push(rst.top());\n   \
     \         rst.pop(); rsm.pop();\n            while (!rst.empty()) {\n        \
-    \        lst.push(rst.top()); lsm.push(M::op(lsm.top(), rst.top()));\n       \
+    \        lst.push(rst.top()); lsm.push(M::op(rst.top(), lsm.top()));\n       \
     \         rst.pop(); rsm.pop();\n            }\n        }\n        lst.pop();\
     \ lsm.pop();\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
     \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T all_prod()\
@@ -404,8 +404,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 22:00:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-14 22:09:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
 layout: document
