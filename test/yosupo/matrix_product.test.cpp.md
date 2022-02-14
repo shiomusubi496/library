@@ -191,10 +191,10 @@ data:
     \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
     \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
     \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
-    \ sm) {\n        return ist >> sm.val;\n    }\n};\n\n#if __cplusplus < 201703L\n\
-    template<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\ntemplate<ll\
-    \ mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\nusing modint1000000007\
-    \ = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ sm) {\n        ll v; ist >> v;\n        sm = v;\n        return ist;\n    }\n\
+    };\n\n#if __cplusplus < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
     \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
     \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
     \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
@@ -232,38 +232,39 @@ data:
     \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
     \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
     \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
-    \ const DynamicModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
-    \ std::istream& operator>>(std::istream& ist, DynamicModInt& sm) {\n        return\
-    \ ist >> sm.val;\n    }\n};\n\ntemplate<int id> ll DynamicModInt<id>::mod = 1000000007;\n\
-    \nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n\
-    \ */\n#line 2 \"math/Matrix.hpp\"\n\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class\
-    \ T> class Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using\
-    \ Base = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n  \
-    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
-    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    static Matrix get_id(int\
-    \ sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i] = T{1};\n\
-    \        return res;\n    }\n    int height() const { return this->size(); }\n\
-    \    int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
-    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
-    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
-    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
-    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
-    \ {\n        Matrix res(this->size(), other[0].size());\n        rep (i, this->size())\
-    \ {\n            rep (k, other.size()) {\n                rep (j, other[0].size())\
-    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
-    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Matrix.hpp\"\
+    \n\n#line 4 \"math/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\n  protected:\n    using Base = std::vector<std::vector<T>>;\n  public:\n\
+    \    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n     \
+    \   rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
+    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
+    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
+    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        Matrix res(this->size(), other[0].size());\n     \
+    \   rep (i, this->size()) {\n            rep (k, other.size()) {\n           \
+    \     rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n   \
+    \         }\n        }\n        *this = std::move(res);\n        return *this;\n\
+    \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
+    \       rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
+    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
+    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
+    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
+    \u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"test/yosupo/matrix_product.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
     int main() {\n    int N, M, K; cin >> N >> M >> K;\n    Mat A(N, M); cin >> A;\n\
     \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    each_const (v : C) cout <<\
@@ -281,7 +282,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-14 20:24:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
