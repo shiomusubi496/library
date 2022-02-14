@@ -46,7 +46,7 @@ template<class T> struct AffineSum {
     static T op(const U& a, const T& b) { return a.first * b + a.second; };
     static U mul(const U& a, int b) { return U{a.first, a.second * b}; };
     static T mul_op(const U& a, int b, const T& c) {
-        using a.first * c + a.second * b;
+        return a.first * c + a.second * b;
     }
 };
 
