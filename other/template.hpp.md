@@ -52,6 +52,9 @@ data:
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/WeightedUnionFind.hpp
+    title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -211,6 +214,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
+    title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
@@ -655,6 +661,7 @@ data:
   - math/Matrix.hpp
   - math/Rational.hpp
   - data-struct/unionfind/UnionFind.hpp
+  - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
   - data-struct/unionfind/UnionFindUndo.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
@@ -765,6 +772,7 @@ data:
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

@@ -56,6 +56,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFindUndo.hpp
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
+    - icon: ':heavy_check_mark:'
+      path: data-struct/unionfind/WeightedUnionFind.hpp
+      title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -243,6 +246,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL/DSL_1_A-UF.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
+      title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
       title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
