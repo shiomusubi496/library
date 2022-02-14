@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
-  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -12,15 +9,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - icon: ':x:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/range_affine_range_sum.test.cpp
+    title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
@@ -29,13 +23,11 @@ data:
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SegmentTree.md
-    document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+  bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -155,23 +147,10 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line\
-    \ 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >>\
-    \ (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
-    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Sum {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct Sum\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
     \ constexpr T inv(const T& a, const T& b) { return a - b; }\n    static constexpr\
     \ T get_inv(const T& a) { return -a; }\n};\n\ntemplate<class T, T max_value =\
     \ infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
@@ -253,148 +232,75 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
-    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
-    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
-    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
-    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
-    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
-    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
-    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
-    \            while (l < n) {\n                    l <<= 1;\n                 \
-    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
-    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
-    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
-    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
-    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
-    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
-    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
-    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class SegmentTree {\n\
-    \  protected:\n    using T = typename M::value_type;\n    int n, ori;\n    std::vector<T>\
-    \ data;\n  public:\n    SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int\
-    \ n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
-    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
-    \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
-    \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
-    \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
-    \ << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k,\
-    \ [&](T) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
-    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(int l, int r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n; r += n;\n\
-    \        T lsm = M::id(), rsm = M::id();\n        while (l < r) {\n          \
-    \  if (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
-    \ rsm);\n            l >>= 1; r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n"
+    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
+    \ {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
+    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
+    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
+    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
+    \ a.second / a.first};\n    }\n};\n\ntemplate<class T> struct GCD {\n    using\
+    \ value_type = T;\n    static T op(T a, T b) { return gcd(a, b); }\n    static\
+    \ T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n    using value_type\
+    \ = T;\n    static T op(T a, T b) { return lcm(a, b); }\n    static T id() { return\
+    \ 1; }\n};\n\ntemplate<class T> struct AddAssign {\n    using value_type = std::pair<bool,\
+    \ T>; // false: add, true: assign\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (b.first) return b;\n        return {a.first,\
+    \ a.second + b.second};\n    }\n    static value_type id() { return {false, T{0}};\
+    \ }\n};\n\n\ntemplate<class T> struct AffineSum {\n    using M = Sum<T>;\n   \
+    \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
+    \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
+    \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
+    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
+    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
+    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
+    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
+    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
+    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
+    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
+    \  }\n};\n\n} // namespace Monoid\n"
+  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
+    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
+    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
+    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
+    \ a.second / a.first};\n    }\n};\n\ntemplate<class T> struct GCD {\n    using\
+    \ value_type = T;\n    static T op(T a, T b) { return gcd(a, b); }\n    static\
+    \ T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n    using value_type\
+    \ = T;\n    static T op(T a, T b) { return lcm(a, b); }\n    static T id() { return\
+    \ 1; }\n};\n\ntemplate<class T> struct AddAssign {\n    using value_type = std::pair<bool,\
+    \ T>; // false: add, true: assign\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (b.first) return b;\n        return {a.first,\
+    \ a.second + b.second};\n    }\n    static value_type id() { return {false, T{0}};\
+    \ }\n};\n\n\ntemplate<class T> struct AffineSum {\n    using M = Sum<T>;\n   \
+    \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
+    \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
+    \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
+    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
+    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
+    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
+    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
+    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
+    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
+    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
+    \  }\n};\n\n} // namespace Monoid\n"
   dependsOn:
   - other/template.hpp
-  - other/bitop.hpp
   - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/segment/SegmentTree.hpp
+  path: other/monoid2.hpp
   requiredBy: []
-  timestamp: '2022-02-14 20:43:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-02-14 21:01:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-documentation_of: data-struct/segment/SegmentTree.hpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/SegmentTree.hpp
-- /library/data-struct/segment/SegmentTree.hpp.html
-title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+- /library/other/monoid2.hpp
+- /library/other/monoid2.hpp.html
+title: other/monoid2.hpp
 ---
-## 概要
-
-モノイド $(T, \cdot : T \times T \to T)$ 、つまり
-
-- 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
-
-を満たす構造の列を扱うデータ構造。 min/max や、加算や乗算、 gcd/lcm など、これを満たすものは多い。
-
-- コンストラクタ
-  - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(N)$ 。
-  - `SegmentTree(int n)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(N)$ 。
-  - `SegmentTree(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
-  - `void init(vector<T> v)` : 列 `v` で SegmentTree を作成する。 $\Theta(N)$ 。
-- 変更クエリ
-  - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log N)$ 。
-  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-- 取得クエリ
-  - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log (r - l))$ 。
-  - `T get(int k)` : `a[k]` を返す。 $\Theta(1)$ 。
-  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 。
-- セグメント木上の二分探索
-  - `int max_right(int l, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
-    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
-  - `int min_left(int r, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
-    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
-
-また、以下のクエリに対するセグメント木が `SegmentTree` を継承して作られている。
-
-- `RangeSumQuery` : `Range Sum Query` 用のセグ木。
-- `RangeMinimumQuery` : `Range Minimum Query` 用のセグ木。
-- `RangeMaximumQuery` : `Range Maximum Query` 用のセグ木。

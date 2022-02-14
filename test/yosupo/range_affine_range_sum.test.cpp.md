@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -13,14 +13,17 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
+  - icon: ':x:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -148,46 +151,157 @@ data:
     \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase\
-    \ {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class T> using is_ModInt\
-    \ = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using is_StaticModInt =\
-    \ std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using is_DynamicModInt\
-    \ = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod> class StaticModInt\
-    \ : StaticModIntBase {\n  protected:\n    ll val;\n    static constexpr ll inv1000000007[]\
-    \ = {-1, 1, 500000004, 333333336, 250000002,\n            400000003, 166666668,\
-    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr ll inv998244353\
-    \ [] = {-1, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
-    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> StaticModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
-    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
-    \ { return mod; }\n    static StaticModInt raw(ll v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    StaticModInt inv() const\
-    \ {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10)\
-    \ return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod ==\
-    \ 998244353) {\n            if (val <= 10) return inv998244353[val];\n       \
-    \ }\n        return mod_inv(val, mod);\n    }\n    StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    StaticModInt operator++(int) {\n        StaticModInt res = *this;\n\
-    \        ++ *this;\n        return res;\n    }\n    StaticModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    StaticModInt operator--(int) {\n        StaticModInt res = *this;\n\
-    \        -- *this;\n        return res;\n    }\n    StaticModInt& operator+=(const\
-    \ StaticModInt& other) {\n        val += other.val;\n        if (val >= mod) val\
-    \ -= mod;\n        return *this;\n    }\n    StaticModInt& operator-=(const StaticModInt&\
-    \ other) {\n        val -= other.val;\n        if (val < 0) val += mod;\n    \
-    \    return *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other)\
-    \ {\n        (val *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator/=(const StaticModInt& other) {\n        (val *= other.inv().get())\
-    \ %= mod;\n        return *this;\n    }\n    friend StaticModInt operator+(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
-    \ StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid2.hpp\"\n\n\
+    #line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid\
+    \ {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a + b; }\n    static constexpr T id()\
+    \ { return T{0}; }\n    static constexpr T inv(const T& a, const T& b) { return\
+    \ a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n};\n\n\
+    template<class T, T max_value = infinity<T>::max> struct Min {\n    using value_type\
+    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a > b ? b :\
+    \ a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
+    \    static constexpr T op(const T& a, const T& b) { return a < b ? b : a;}\n\
+    \    static constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct\
+    \ Assign {\n    using value_type = T;\n    static constexpr T op(const T&, const\
+    \ T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n\
+    \    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const\
+    \ T& a, const T&) { return a; }\n    static constexpr T mul(const T& a, int b)\
+    \ { return a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&)\
+    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T& c) { return c + a; }\n};\n\ntemplate<class T, T min_value =\
+    \ infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
+    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
+    \ T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
+    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
+    \  using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
+    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::min(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
+    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::max(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T& c) { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct\
+    \ ReverseMonoid {\n    using value_type = typename M::value_type;\n    static\
+    \ value_type op(const value_type& a, const value_type& b) {\n        return M::op(b,\
+    \ a);\n    }\n    static value_type id() { return M::id(); }\n    static value_type\
+    \ get_inv(const value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class\
+    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
+    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
+    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
+    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
+    \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M> class has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
+    \ {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)> : public std::true_type\
+    \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
+    \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
+    \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
+    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
+    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
+    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
+    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
+    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
+    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
+    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
+    \ {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
+    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
+    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
+    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
+    \ a.second / a.first};\n    }\n};\n\ntemplate<class T> struct GCD {\n    using\
+    \ value_type = T;\n    static T op(T a, T b) { return gcd(a, b); }\n    static\
+    \ T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n    using value_type\
+    \ = T;\n    static T op(T a, T b) { return lcm(a, b); }\n    static T id() { return\
+    \ 1; }\n};\n\ntemplate<class T> struct AddAssign {\n    using value_type = std::pair<bool,\
+    \ T>; // false: add, true: assign\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        if (b.first) return b;\n        return {a.first,\
+    \ a.second + b.second};\n    }\n    static value_type id() { return {false, T{0}};\
+    \ }\n};\n\n\ntemplate<class T> struct AffineSum {\n    using M = Sum<T>;\n   \
+    \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
+    \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
+    \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
+    \ U& a, int b, const T& c) {\n        using a.first * c + a.second * b;\n    }\n\
+    };\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n    using\
+    \ E = AddAssign<T>;\n    using U = typename E::value_type;\n    static T op(const\
+    \ U& a, const T& b) {\n        if (a.first) return a.second;\n        return b\
+    \ + a.second;\n    }\n    static U mul(const U& a, int b) { return U{a.first,\
+    \ a.second * b}; }\n    static T mul_op(const U& a, int b, const T& c) {\n   \
+    \     if (a.first) return a.second * b;\n        return c + a.second * b;\n  \
+    \  }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
+    \n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
+    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
     \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
     \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
@@ -256,96 +370,11 @@ data:
     \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
     \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
     \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\
-    \nnamespace Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a > b ? b : a; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
-    \ constexpr T mul_op(const T& a, int, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
-    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
-    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int) { return\
-    \ a; }\n    static constexpr T mul_op(const T& a, int, const T&) { return a; }\n\
-    };\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using E\
-    \ = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return a; }\n\
-    \    static constexpr T mul(const T& a, int b) { return a * b; }\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
-    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
-    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
-    \ T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
-    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
-    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::min(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::min(b, a); }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
-    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::max(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct\
-    \ ReverseMonoid {\n    using value_type = typename M::value_type;\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        return M::op(b,\
-    \ a);\n    }\n    static value_type id() { return M::id(); }\n    static value_type\
-    \ get_inv(const value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class\
-    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
-    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
-    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
-    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
-    \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M> class has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)> : public std::true_type\
-    \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
-    \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
-    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
-    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
-    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
-    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
-    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\ntemplate<class A> class LazySegmentTree {\n  protected:\n    using M = typename\
-    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
-    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
+    \ 0;\n    }\n}\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
+    \ A> class LazySegmentTree {\n  protected:\n    using M = typename A::M;\n   \
+    \ using E = typename A::E;\n    using T = typename M::value_type;\n    using U\
+    \ = typename E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n  \
+    \  std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
     \ k, const U& x) {\n        data[k] = A::op(x, data[k]);\n        if (k < n) {\n\
     \            if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n\
     \            }\n            else {\n                lazy[k] = x;\n           \
@@ -456,48 +485,36 @@ data:
     \ = LazySegmentTree<Monoid::ChmaxMin<T, max_value>>;\n\ntemplate<class T, T min_value\
     \ = infinity<T>::min> using RangeChmaxQueryRangeMaximumQuery = LazySegmentTree<Monoid::ChmaxMax<T,\
     \ min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n */\n#line 5 \"test/yosupo/range_affine_range_sum.test.cpp\"\
+    \u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n */\n#line 6 \"test/yosupo/range_affine_range_sum.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
     \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
-    \ >> A;\n    struct AffineSum {\n        struct M {\n            using value_type\
-    \ = mint;\n            static mint op(mint a, mint b) { return a + b; };\n   \
-    \         static mint id() { return 0; }\n        };\n        struct E {\n   \
-    \         using value_type = PMM;\n            static PMM op(PMM a, PMM b) { return\
-    \ PMM{a.first * b.first, a.second * b.first + b.second}; };\n        };\n    \
-    \    static mint op(PMM a, mint b) { return a.first * b + a.second; };\n     \
-    \   static PMM mul(PMM a, int b) { return PMM{a.first, a.second * b}; };\n   \
-    \ };\n    MultiLazySegmentTree<AffineSum> seg(A);\n    rep (Q) {\n        int\
-    \ t; cin >> t;\n        if (t == 0) {\n            int l, r, b, c; cin >> l >>\
-    \ r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n        }\n        else\
-    \ {\n            int l, r; cin >> l >> r;\n            cout << seg.prod(l, r)\
-    \ << endl;\n        }\n    }\n}\n"
+    \ >> A;\n    MultiLazySegmentTree<Monoid::AffineSum<mint>> seg(A);\n    rep (Q)\
+    \ {\n        int t; cin >> t;\n        if (t == 0) {\n            int l, r, b,\
+    \ c; cin >> l >> r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n     \
+    \   }\n        else {\n            int l, r; cin >> l >> r;\n            cout\
+    \ << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include \"../../other/template.hpp\"\n#include \"../../math/ModInt.hpp\"\n\
-    #include \"../../data-struct/segment/LazySegmentTree.hpp\"\nusing namespace std;\n\
-    using mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main() {\n \
-    \   int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    struct AffineSum\
-    \ {\n        struct M {\n            using value_type = mint;\n            static\
-    \ mint op(mint a, mint b) { return a + b; };\n            static mint id() { return\
-    \ 0; }\n        };\n        struct E {\n            using value_type = PMM;\n\
-    \            static PMM op(PMM a, PMM b) { return PMM{a.first * b.first, a.second\
-    \ * b.first + b.second}; };\n        };\n        static mint op(PMM a, mint b)\
-    \ { return a.first * b + a.second; };\n        static PMM mul(PMM a, int b) {\
-    \ return PMM{a.first, a.second * b}; };\n    };\n    MultiLazySegmentTree<AffineSum>\
-    \ seg(A);\n    rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n  \
-    \          int l, r, b, c; cin >> l >> r >> b >> c;\n            seg.apply(l,\
-    \ r, PMM{b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
-    \ r;\n            cout << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
+    \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid2.hpp\"\n\
+    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/segment/LazySegmentTree.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
+    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin\
+    \ >> A;\n    MultiLazySegmentTree<Monoid::AffineSum<mint>> seg(A);\n    rep (Q)\
+    \ {\n        int t; cin >> t;\n        if (t == 0) {\n            int l, r, b,\
+    \ c; cin >> l >> r >> b >> c;\n            seg.apply(l, r, PMM{b, c});\n     \
+    \   }\n        else {\n            int l, r; cin >> l >> r;\n            cout\
+    \ << seg.prod(l, r) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - other/monoid2.hpp
+  - other/monoid.hpp
   - math/ModInt.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - other/bitop.hpp
-  - other/monoid.hpp
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 20:43:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-14 21:01:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp
 layout: document
