@@ -103,6 +103,6 @@ class RangeSet {
 };
 
 /**
- * @brief RangeSet(区間をstd::setで管理するやつ)
+ * @brief RangeSet(区間をstd::setで管理する例のやつ)
  * @docs docs/RangeSet.md
  */
