@@ -11,9 +11,10 @@ data:
       title: ConvexHullTrickAddMonotone
   - name: data-struct/other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/RangeSet.hpp
-      title: data-struct/other/RangeSet.hpp
+      title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
+        \u306E\u3084\u3064)"
   - name: data-struct/segment
     pages:
     - icon: ':heavy_check_mark:'
@@ -184,7 +185,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: string
@@ -461,7 +462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/1469.test.cpp
       title: test/yuki/1469.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yuki/1601.test.cpp
       title: test/yuki/1601.test.cpp
 layout: toppage

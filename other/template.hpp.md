@@ -8,9 +8,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/RangeSet.hpp
-    title: data-struct/other/RangeSet.hpp
+    title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
+      \u306E\u3084\u3064)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
@@ -415,12 +416,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1469.test.cpp
     title: test/yuki/1469.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1601.test.cpp
     title: test/yuki/1601.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -722,7 +723,7 @@ data:
   - graph/other/TopologicalSort.hpp
   - graph/other/TwoSatisfiablitity.hpp
   timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
