@@ -45,10 +45,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-  - name: data-struct/structure
+  - name: data-struct/sequence
     pages:
     - icon: ':heavy_check_mark:'
-      path: data-struct/structure/SlidingWindowAggregation.hpp
+      path: data-struct/sequence/SlidingWindowAggregation.hpp
       title: SlidingWindowAggregation(SWAG)
   - name: data-struct/unionfind
     pages:

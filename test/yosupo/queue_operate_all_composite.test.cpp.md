@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/structure/SlidingWindowAggregation.hpp
+    path: data-struct/sequence/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
@@ -353,8 +353,8 @@ data:
     \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
     \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/structure/SlidingWindowAggregation.hpp\"\
-    \n\n#line 5 \"data-struct/structure/SlidingWindowAggregation.hpp\"\n\ntemplate<class\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/sequence/SlidingWindowAggregation.hpp\"\
+    \n\n#line 5 \"data-struct/sequence/SlidingWindowAggregation.hpp\"\n\ntemplate<class\
     \ M> class SlidingWindowAggregation {\n  protected:\n    using T = typename M::value_type;\n\
     \    std::stack<T> lst, rst;\n    std::stack<T> lsm, rsm;\n    T internal_all_prod()\
     \ const {\n        assert(!empty());\n        if (lst.empty()) return rsm.top();\n\
@@ -387,7 +387,7 @@ data:
     \        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid2.hpp\"\n\
-    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/structure/SlidingWindowAggregation.hpp\"\
+    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/sequence/SlidingWindowAggregation.hpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
     \ cin >> Q;\n    SlidingWindowAggregation<Monoid::Composite<mint>> SWAG;\n   \
     \ rep (Q) {\n        int t; cin >> t;\n        if (t == 0) {\n            mint\
@@ -400,11 +400,11 @@ data:
   - other/monoid2.hpp
   - other/monoid.hpp
   - math/ModInt.hpp
-  - data-struct/structure/SlidingWindowAggregation.hpp
+  - data-struct/sequence/SlidingWindowAggregation.hpp
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 22:09:27+09:00'
+  timestamp: '2022-02-15 09:30:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

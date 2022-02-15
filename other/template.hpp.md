@@ -43,7 +43,7 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
-    path: data-struct/structure/SlidingWindowAggregation.hpp
+    path: data-struct/sequence/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
@@ -669,7 +669,6 @@ data:
   - math/EulerPhi.hpp
   - math/Matrix.hpp
   - math/Rational.hpp
-  - data-struct/structure/SlidingWindowAggregation.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
@@ -687,6 +686,7 @@ data:
   - data-struct/segment/SparseTable.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
+  - data-struct/sequence/SlidingWindowAggregation.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
   - other/bitop.hpp

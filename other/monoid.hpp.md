@@ -40,7 +40,7 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
-    path: data-struct/structure/SlidingWindowAggregation.hpp
+    path: data-struct/sequence/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
@@ -445,7 +445,6 @@ data:
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - data-struct/structure/SlidingWindowAggregation.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/CumulativeSum.hpp
@@ -457,6 +456,7 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
+  - data-struct/sequence/SlidingWindowAggregation.hpp
   - other/monoid2.hpp
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
