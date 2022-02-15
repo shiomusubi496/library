@@ -2,7 +2,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid2.hpp"
 #include "../../math/ModInt.hpp"
-#include "../../data-struct/structure/SlidingWindowAggregation.hpp"
+#include "../../data-struct/sequence/SlidingWindowAggregation.hpp"
 using namespace std;
 using mint = modint998244353;
 int main() {
