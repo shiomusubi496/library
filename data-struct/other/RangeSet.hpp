@@ -4,15 +4,14 @@
 
 class RangeSet {
   protected:
+    using iterator = typename std::set<std::pair<ll, ll>>::iterator;
     int sz;
     std::set<std::pair<ll, ll>> st;
-    typename std::set<std::pair<ll, ll>>::iterator
-            st_emplace_hint(const typename std::set<std::pair<ll, ll>>::iterator& itr, ll l, ll r) {
+    iterator st_emplace_hint(const iterator& itr, ll l, ll r) {
         sz += r - l;
         return st.emplace_hint(itr, l, r);
     }
-    typename std::set<std::pair<ll, ll>>::iterator
-            st_erase(const typename std::set<std::pair<ll, ll>>::iterator& itr) {
+    iterator st_erase(const iterator& itr) {
         sz -= itr->second - itr->first;
         return st.erase(itr);
     }
@@ -21,13 +20,15 @@ class RangeSet {
     RangeSet(const std::set<std::pair<ll, ll>>& st_) : sz(0) {
         each_const (p : st_) insert(p.first, p.second);
     }
+    iterator begin() const { return st.begin(); }
+    iterator end() const { return st.end(); }
     bool empty() const { return st.empty(); }
     int size() const { return st.size(); }
     ll length() const { return sz; }
     const std::set<std::pair<ll, ll>>& get_data() const& { return st; }
     std::set<std::pair<ll, ll>>& get_data() & { return st; }
     std::set<std::pair<ll, ll>> get_data() && { return std::move(st); }
-    auto insert(ll l, ll r) -> decltype(st.insert({l, r})) {
+    std::pair<iterator. bool> insert(ll l, ll r) {
         assert(l <= r);
         if (l == r) return {st.end(), false};
         auto itr = st.lower_bound({l, r});
@@ -52,7 +53,7 @@ class RangeSet {
         }
         return {itr, true};
     }
-    auto insert(ll l) -> decltype(insert(l, l + 1)) { return insert(l, l + 1); }
+    std::pair<iterator, bool> insert(ll l) { return insert(l, l + 1); }
     void erase(ll l, ll r) {
         assert(l <= r);
         if (l == r) return;
@@ -82,4 +83,26 @@ class RangeSet {
         if (itr->second <= k) return {-1, -1};
         return *itr;
     }
+    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {
+        RangeSet res = lhs;
+        each_const (p : rhs.get_data()) res.insert(p.first, p.second);
+        return res;
+    }
+    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs) {
+        RangeSet res;
+        auto itr1 = lhs.begin(), itr2 = rhs.begin();
+        while (itr1 != lhs.end() && itr2 != rhs.end()) {
+            ll l = max(itr1->first, itr2->first);
+            ll r = min(itr1->second, itr2->second);
+            if (l < r) res.insert(l, r);
+            if (itr1->second < itr2->second) ++itr1;
+            else ++itr2;
+        }
+        return res;
+    }
 };
+
+/**
+ * @brief RangeSet(区間をstd::setで管理するやつ)
+ * @docs docs/RangeSet.md
+ */
