@@ -156,41 +156,48 @@ data:
     \ false};\n        auto itr = st.lower_bound({l, r});\n        if (itr != st.end()\
     \ && itr->first == l) return {itr, false};\n        if (itr != st.begin() && prev(itr)->first\
     \ != l && r <= prev(itr)->second) {\n            return {prev(itr), false};\n\
-    \        }\n        sz += r - l; itr = st_emplace_hint(itr, l, r);\n        while\
-    \ (itr != prev(st.end()) && next(itr)->first <= itr->second) {\n            if\
-    \ (next(itr)->second <= itr->second) st_erase(next(itr));\n            else {\n\
-    \                itr = st_emplace_hint(next(itr), itr->first, next(itr)->second);\n\
+    \        }\n        itr = st_emplace_hint(itr, l, r);\n        while (itr != prev(st.end())\
+    \ && next(itr)->first <= itr->second) {\n            if (next(itr)->second <=\
+    \ itr->second) st_erase(next(itr));\n            else {\n                itr =\
+    \ st_emplace_hint(next(itr), itr->first, next(itr)->second);\n               \
+    \ st_erase(prev(itr)); st_erase(next(itr));\n            }\n        }\n      \
+    \  while (itr != st.begin() && itr->first <= prev(itr)->second) {\n          \
+    \  if (itr->first == prev(itr)->first) st_erase(prev(itr));\n            else\
+    \ {\n                itr = st_emplace_hint(itr, prev(itr)->first, itr->second);\n\
     \                st_erase(prev(itr)); st_erase(next(itr));\n            }\n  \
-    \      }\n        while (itr != st.begin() && itr->first <= prev(itr)->second)\
-    \ {\n            if (itr->first == prev(itr)->first) st_erase(prev(itr));\n  \
-    \          else {\n                itr = st_emplace_hint(itr, prev(itr)->first,\
-    \ itr->second);\n                st_erase(prev(itr)); st_erase(next(itr));\n \
-    \           }\n        }\n        return {itr, true};\n    }\n    std::pair<iterator,\
-    \ bool> insert(ll l) { return insert(l, l + 1); }\n    void erase(ll l, ll r)\
-    \ {\n        assert(l <= r);\n        if (l == r) return;\n        auto itr =\
-    \ st.lower_bound({l, r});\n        while (itr != st.end() && itr->first < r) {\n\
-    \            if (itr->second <= r) itr = st_erase(itr);\n            else {\n\
-    \                itr = st_emplace_hint(itr, r, itr->second);\n               \
-    \ st_erase(prev(itr));\n            }\n        }\n        if (itr != st.begin()\
-    \ && prev(itr)->first == l) st_erase(prev(itr));\n        else if (itr != st.begin()\
-    \ && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr), prev(itr)->first,\
-    \ l);\n            st_erase(prev(itr));\n        }\n    }\n    void erase(ll l)\
-    \ { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
-    \ + 1, k + 1});\n        return itr != st.begin() && k < prev(itr)->second;\n\
-    \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
-    \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
-    \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
-    \    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {\n\
-    \        RangeSet res = lhs;\n        each_const (p : rhs.get_data()) res.insert(p.first,\
-    \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
-    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
-    \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
-    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
-    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
-    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
-    \          else ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n *\
-    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
+    \      }\n        return {itr, true};\n    }\n    std::pair<iterator, bool> insert(ll\
+    \ l) { return insert(l, l + 1); }\n    void erase(ll l, ll r) {\n        assert(l\
+    \ <= r);\n        if (l == r) return;\n        auto itr = st.lower_bound({l, r});\n\
+    \        while (itr != st.end() && itr->first < r) {\n            if (itr->second\
+    \ <= r) itr = st_erase(itr);\n            else {\n                itr = st_emplace_hint(itr,\
+    \ r, itr->second);\n                st_erase(prev(itr));\n            }\n    \
+    \    }\n        if (itr != st.begin() && prev(itr)->first == l) st_erase(prev(itr));\n\
+    \        else if (itr != st.begin() && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr),\
+    \ prev(itr)->first, l);\n            st_erase(prev(itr));\n        }\n    }\n\
+    \    void erase(ll l) { erase(l, l + 1); }\n    bool include(ll k) {\n       \
+    \ auto itr = st.lower_bound({k + 1, k + 1});\n        return itr != st.begin()\
+    \ && k < prev(itr)->second;\n    }\n    std::pair<ll, ll> find(ll k) {\n     \
+    \   auto itr = st.lower_bound({k + 1, k + 1});\n        if (itr == st.begin())\
+    \ return {-1, -1};\n        --itr;\n        if (itr->second <= k) return {-1,\
+    \ -1};\n        return *itr;\n    }\n    friend RangeSet operator||(const RangeSet&\
+    \ lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n        each_const\
+    \ (p : rhs.get_data()) res.insert(p.first, p.second);\n        return res;\n \
+    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
+    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
+    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
+    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
+    \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
+    \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
+    \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
+    \ {\n        return a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st != b.st;\n    }\n    friend bool\
+    \ operator>(const RangeSet& a, const RangeSet& b) {\n        return a.st > b.st;\n\
+    \    }\n    friend bool operator>=(const RangeSet& a, const RangeSet& b) {\n \
+    \       return a.st >= b.st;\n    }\n    friend bool operator<(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st < b.st;\n    }\n    friend bool\
+    \ operator<=(const RangeSet& a, const RangeSet& b) {\n        return a.st <= b.st;\n\
+    \    }\n};\n\n/**\n * @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\
+    \u3059\u308B\u4F8B\u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     \  protected:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
     \    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
@@ -208,9 +215,9 @@ data:
     \        if (l == r) return {st.end(), false};\n        auto itr = st.lower_bound({l,\
     \ r});\n        if (itr != st.end() && itr->first == l) return {itr, false};\n\
     \        if (itr != st.begin() && prev(itr)->first != l && r <= prev(itr)->second)\
-    \ {\n            return {prev(itr), false};\n        }\n        sz += r - l; itr\
-    \ = st_emplace_hint(itr, l, r);\n        while (itr != prev(st.end()) && next(itr)->first\
-    \ <= itr->second) {\n            if (next(itr)->second <= itr->second) st_erase(next(itr));\n\
+    \ {\n            return {prev(itr), false};\n        }\n        itr = st_emplace_hint(itr,\
+    \ l, r);\n        while (itr != prev(st.end()) && next(itr)->first <= itr->second)\
+    \ {\n            if (next(itr)->second <= itr->second) st_erase(next(itr));\n\
     \            else {\n                itr = st_emplace_hint(next(itr), itr->first,\
     \ next(itr)->second);\n                st_erase(prev(itr)); st_erase(next(itr));\n\
     \            }\n        }\n        while (itr != st.begin() && itr->first <= prev(itr)->second)\
@@ -240,7 +247,15 @@ data:
     \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
     \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
     \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
-    \          else ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n *\
+    \          else ++itr2;\n        }\n        return res;\n    }\n    friend bool\
+    \ operator==(const RangeSet& a, const RangeSet& b) {\n        return a.st == b.st;\n\
+    \    }\n    friend bool operator!=(const RangeSet& a, const RangeSet& b) {\n \
+    \       return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st > b.st;\n    }\n    friend bool\
+    \ operator>=(const RangeSet& a, const RangeSet& b) {\n        return a.st >= b.st;\n\
+    \    }\n    friend bool operator<(const RangeSet& a, const RangeSet& b) {\n  \
+    \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
     \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
     \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   dependsOn:
@@ -248,7 +263,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-02-15 19:53:10+09:00'
+  timestamp: '2022-02-15 20:29:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601.test.cpp
