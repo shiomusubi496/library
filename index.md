@@ -9,6 +9,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
+  - name: data-struct/other
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data-struct/other/RangeSet.hpp
+      title: data-struct/other/RangeSet.hpp
   - name: data-struct/segment
     pages:
     - icon: ':heavy_check_mark:'
@@ -456,6 +461,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/1469.test.cpp
       title: test/yuki/1469.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki/1601.test.cpp
+      title: test/yuki/1601.test.cpp
 layout: toppage
 ---
 shiomusubi496 の C++ 競プロライブラリ。

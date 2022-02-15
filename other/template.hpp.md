@@ -9,6 +9,9 @@ data:
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/RangeSet.hpp
+    title: data-struct/other/RangeSet.hpp
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -412,6 +415,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1469.test.cpp
     title: test/yuki/1469.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/1601.test.cpp
+    title: test/yuki/1601.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -684,6 +690,7 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
+  - data-struct/other/RangeSet.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   - data-struct/sequence/SlidingWindowAggregation.hpp
@@ -799,6 +806,7 @@ data:
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/yuki/1601.test.cpp
   - test/yuki/1469.test.cpp
 documentation_of: other/template.hpp
 layout: document
