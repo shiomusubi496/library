@@ -28,7 +28,7 @@ class RangeSet {
     const std::set<std::pair<ll, ll>>& get_data() const& { return st; }
     std::set<std::pair<ll, ll>>& get_data() & { return st; }
     std::set<std::pair<ll, ll>> get_data() && { return std::move(st); }
-    std::pair<iterator. bool> insert(ll l, ll r) {
+    std::pair<iterator, bool> insert(ll l, ll r) {
         assert(l <= r);
         if (l == r) return {st.end(), false};
         auto itr = st.lower_bound({l, r});
@@ -92,8 +92,8 @@ class RangeSet {
         RangeSet res;
         auto itr1 = lhs.begin(), itr2 = rhs.begin();
         while (itr1 != lhs.end() && itr2 != rhs.end()) {
-            ll l = max(itr1->first, itr2->first);
-            ll r = min(itr1->second, itr2->second);
+            ll l = std::max(itr1->first, itr2->first);
+            ll r = std::min(itr1->second, itr2->second);
             if (l < r) res.insert(l, r);
             if (itr1->second < itr2->second) ++itr1;
             else ++itr2;
