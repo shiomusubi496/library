@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1601.test.cpp
     title: test/yuki/1601.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/RangeSet.md
     document_title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\
@@ -151,7 +151,7 @@ data:
     \    int size() const { return st.size(); }\n    ll length() const { return sz;\
     \ }\n    const std::set<std::pair<ll, ll>>& get_data() const& { return st; }\n\
     \    std::set<std::pair<ll, ll>>& get_data() & { return st; }\n    std::set<std::pair<ll,\
-    \ ll>> get_data() && { return std::move(st); }\n    std::pair<iterator. bool>\
+    \ ll>> get_data() && { return std::move(st); }\n    std::pair<iterator, bool>\
     \ insert(ll l, ll r) {\n        assert(l <= r);\n        if (l == r) return {st.end(),\
     \ false};\n        auto itr = st.lower_bound({l, r});\n        if (itr != st.end()\
     \ && itr->first == l) return {itr, false};\n        if (itr != st.begin() && prev(itr)->first\
@@ -185,12 +185,12 @@ data:
     \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
     \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
     \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
-    \ != rhs.end()) {\n            ll l = max(itr1->first, itr2->first);\n       \
-    \     ll r = min(itr1->second, itr2->second);\n            if (l < r) res.insert(l,\
-    \ r);\n            if (itr1->second < itr2->second) ++itr1;\n            else\
-    \ ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief RangeSet(\u533A\
-    \u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\u306E\u3084\u3064)\n\
-    \ * @docs docs/RangeSet.md\n */\n"
+    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
+    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
+    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
+    \          else ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n *\
+    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
+    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     \  protected:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
     \    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
@@ -204,7 +204,7 @@ data:
     \ st.size(); }\n    ll length() const { return sz; }\n    const std::set<std::pair<ll,\
     \ ll>>& get_data() const& { return st; }\n    std::set<std::pair<ll, ll>>& get_data()\
     \ & { return st; }\n    std::set<std::pair<ll, ll>> get_data() && { return std::move(st);\
-    \ }\n    std::pair<iterator. bool> insert(ll l, ll r) {\n        assert(l <= r);\n\
+    \ }\n    std::pair<iterator, bool> insert(ll l, ll r) {\n        assert(l <= r);\n\
     \        if (l == r) return {st.end(), false};\n        auto itr = st.lower_bound({l,\
     \ r});\n        if (itr != st.end() && itr->first == l) return {itr, false};\n\
     \        if (itr != st.begin() && prev(itr)->first != l && r <= prev(itr)->second)\
@@ -237,19 +237,19 @@ data:
     \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
     \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
     \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
-    \ != rhs.end()) {\n            ll l = max(itr1->first, itr2->first);\n       \
-    \     ll r = min(itr1->second, itr2->second);\n            if (l < r) res.insert(l,\
-    \ r);\n            if (itr1->second < itr2->second) ++itr1;\n            else\
-    \ ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief RangeSet(\u533A\
-    \u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\u306E\u3084\u3064)\n\
-    \ * @docs docs/RangeSet.md\n */\n"
+    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
+    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
+    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
+    \          else ++itr2;\n        }\n        return res;\n    }\n};\n\n/**\n *\
+    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
+    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-02-15 19:48:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-15 19:53:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601.test.cpp
 documentation_of: data-struct/other/RangeSet.hpp
