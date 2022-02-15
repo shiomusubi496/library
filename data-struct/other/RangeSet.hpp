@@ -36,7 +36,7 @@ class RangeSet {
         if (itr != st.begin() && prev(itr)->first != l && r <= prev(itr)->second) {
             return {prev(itr), false};
         }
-        sz += r - l; itr = st_emplace_hint(itr, l, r);
+        itr = st_emplace_hint(itr, l, r);
         while (itr != prev(st.end()) && next(itr)->first <= itr->second) {
             if (next(itr)->second <= itr->second) st_erase(next(itr));
             else {
@@ -99,6 +99,24 @@ class RangeSet {
             else ++itr2;
         }
         return res;
+    }
+    friend bool operator==(const RangeSet& a, const RangeSet& b) {
+        return a.st == b.st;
+    }
+    friend bool operator!=(const RangeSet& a, const RangeSet& b) {
+        return a.st != b.st;
+    }
+    friend bool operator>(const RangeSet& a, const RangeSet& b) {
+        return a.st > b.st;
+    }
+    friend bool operator>=(const RangeSet& a, const RangeSet& b) {
+        return a.st >= b.st;
+    }
+    friend bool operator<(const RangeSet& a, const RangeSet& b) {
+        return a.st < b.st;
+    }
+    friend bool operator<=(const RangeSet& a, const RangeSet& b) {
+        return a.st <= b.st;
     }
 };
 
