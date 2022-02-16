@@ -223,13 +223,13 @@ data:
     \ false, b, true );\n    }\n    void add_neq(int a, int b) {\n        add_clause(a,\
     \ true , b, true );\n        add_clause(a, false, b, false);\n    }\n    void\
     \ add_true(int a) {\n        assert(0 <= a && a < n);\n        G.add_edge(neg(a),\
-    \ a);\n    }\n    void add_false(int a) {\n        assert(0 <= a && a < n);\n\
-    \        G.add_edge(a, neg(a));\n    }\n    std::vector<bool> sat() const {\n\
-    \        StronglyConnectedComponents<unweighted_edge> SCC(G);\n        std::vector<bool>\
-    \ res(n);\n        rep (i, n) {\n            if (SCC[i] == SCC[neg(i)]) return\
-    \ {};\n            res[i] = SCC[neg(i)] < SCC[i];\n        }\n        return res;\n\
-    \    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n * @docs docs/TwoSatisfiability.md\n\
-    \ */\n"
+    \ a, true);\n    }\n    void add_false(int a) {\n        assert(0 <= a && a <\
+    \ n);\n        G.add_edge(a, neg(a), true);\n    }\n    std::vector<bool> sat()\
+    \ const {\n        StronglyConnectedComponents<unweighted_edge> SCC(G);\n    \
+    \    std::vector<bool> res(n);\n        rep (i, n) {\n            if (SCC[i] ==\
+    \ SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] < SCC[i];\n      \
+    \  }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
+    \ * @docs docs/TwoSatisfiability.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../connected/StronglyConnectedComponents.hpp\"\n\nclass TwoSatisfiability\
     \ {\n  protected:\n    int n;\n    UnweightedGraph G;\n  public:\n    TwoSatisfiability()\
@@ -245,8 +245,8 @@ data:
     \   add_clause(a, false, b, true );\n    }\n    void add_neq(int a, int b) {\n\
     \        add_clause(a, true , b, true );\n        add_clause(a, false, b, false);\n\
     \    }\n    void add_true(int a) {\n        assert(0 <= a && a < n);\n       \
-    \ G.add_edge(neg(a), a);\n    }\n    void add_false(int a) {\n        assert(0\
-    \ <= a && a < n);\n        G.add_edge(a, neg(a));\n    }\n    std::vector<bool>\
+    \ G.add_edge(neg(a), a, true);\n    }\n    void add_false(int a) {\n        assert(0\
+    \ <= a && a < n);\n        G.add_edge(a, neg(a), true);\n    }\n    std::vector<bool>\
     \ sat() const {\n        StronglyConnectedComponents<unweighted_edge> SCC(G);\n\
     \        std::vector<bool> res(n);\n        rep (i, n) {\n            if (SCC[i]\
     \ == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] < SCC[i];\n   \
@@ -259,7 +259,7 @@ data:
   isVerificationFile: false
   path: graph/other/TwoSatisfiablitity.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-16 12:33:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/two_sat.test.cpp

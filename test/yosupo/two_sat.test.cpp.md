@@ -225,19 +225,20 @@ data:
     \ false, b, true );\n    }\n    void add_neq(int a, int b) {\n        add_clause(a,\
     \ true , b, true );\n        add_clause(a, false, b, false);\n    }\n    void\
     \ add_true(int a) {\n        assert(0 <= a && a < n);\n        G.add_edge(neg(a),\
-    \ a);\n    }\n    void add_false(int a) {\n        assert(0 <= a && a < n);\n\
-    \        G.add_edge(a, neg(a));\n    }\n    std::vector<bool> sat() const {\n\
-    \        StronglyConnectedComponents<unweighted_edge> SCC(G);\n        std::vector<bool>\
-    \ res(n);\n        rep (i, n) {\n            if (SCC[i] == SCC[neg(i)]) return\
-    \ {};\n            res[i] = SCC[neg(i)] < SCC[i];\n        }\n        return res;\n\
-    \    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n * @docs docs/TwoSatisfiability.md\n\
-    \ */\n#line 4 \"test/yosupo/two_sat.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    string s;\n    int N, M;\n    cin >> s >> s >> N >> M;\n    TwoSatisfiability\
-    \ SAT(N);\n    rep (M) {\n        int a, b; cin >> a >> b >> s;\n        SAT.add_clause(abs(a)\
-    \ - 1, a > 0, abs(b) - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size()\
-    \ == 0) puts(\"s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\"\
-    );\n        cout << \"v \";\n        rep (i, N) cout << (v[i] ? i + 1 : -i - 1)\
-    \ << ' ';\n        cout << 0 << endl;\n    }\n}\n"
+    \ a, true);\n    }\n    void add_false(int a) {\n        assert(0 <= a && a <\
+    \ n);\n        G.add_edge(a, neg(a), true);\n    }\n    std::vector<bool> sat()\
+    \ const {\n        StronglyConnectedComponents<unweighted_edge> SCC(G);\n    \
+    \    std::vector<bool> res(n);\n        rep (i, n) {\n            if (SCC[i] ==\
+    \ SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] < SCC[i];\n      \
+    \  }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
+    \ * @docs docs/TwoSatisfiability.md\n */\n#line 4 \"test/yosupo/two_sat.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    cin >>\
+    \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
+    \ a, b; cin >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
+    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) puts(\"\
+    s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\");\n        cout\
+    \ << \"v \";\n        rep (i, N) cout << (v[i] ? i + 1 : -i - 1) << ' ';\n   \
+    \     cout << 0 << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../graph/other/TwoSatisfiablitity.hpp\"\
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    cin >>\
@@ -255,7 +256,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
+  timestamp: '2022-02-16 12:33:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/two_sat.test.cpp
