@@ -181,23 +181,23 @@ data:
     \ return {-1, -1};\n        --itr;\n        if (itr->second <= k) return {-1,\
     \ -1};\n        return *itr;\n    }\n    friend RangeSet operator||(const RangeSet&\
     \ lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n        each_const\
-    \ (p : rhs.get_data()) res.insert(p.first, p.second);\n        return res;\n \
-    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
-    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
-    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
-    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
-    \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
-    \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
-    \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
-    \ {\n        return a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st != b.st;\n    }\n    friend bool\
-    \ operator>(const RangeSet& a, const RangeSet& b) {\n        return a.st > b.st;\n\
-    \    }\n    friend bool operator>=(const RangeSet& a, const RangeSet& b) {\n \
-    \       return a.st >= b.st;\n    }\n    friend bool operator<(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st < b.st;\n    }\n    friend bool\
-    \ operator<=(const RangeSet& a, const RangeSet& b) {\n        return a.st <= b.st;\n\
-    \    }\n};\n\n/**\n * @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\
-    \u3059\u308B\u4F8B\u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
+    \ (p : rhs) res.insert(p.first, p.second);\n        return res;\n    }\n    friend\
+    \ RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet\
+    \ res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n        while (itr1\
+    \ != lhs.end() && itr2 != rhs.end()) {\n            ll l = std::max(itr1->first,\
+    \ itr2->first);\n            ll r = std::min(itr1->second, itr2->second);\n  \
+    \          if (l < r) res.insert(l, r);\n            if (itr1->second < itr2->second)\
+    \ ++itr1;\n            else ++itr2;\n        }\n        return res;\n    }\n \
+    \   friend bool operator==(const RangeSet& a, const RangeSet& b) {\n        return\
+    \ a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet& a, const RangeSet&\
+    \ b) {\n        return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st > b.st;\n    }\n    friend bool\
+    \ operator>=(const RangeSet& a, const RangeSet& b) {\n        return a.st >= b.st;\n\
+    \    }\n    friend bool operator<(const RangeSet& a, const RangeSet& b) {\n  \
+    \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
+    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
+    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     \  protected:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
     \    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
@@ -240,7 +240,7 @@ data:
     \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
     \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
     \    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {\n\
-    \        RangeSet res = lhs;\n        each_const (p : rhs.get_data()) res.insert(p.first,\
+    \        RangeSet res = lhs;\n        each_const (p : rhs) res.insert(p.first,\
     \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
     \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
     \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
@@ -263,7 +263,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-02-15 20:29:23+09:00'
+  timestamp: '2022-02-16 22:30:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601.test.cpp
