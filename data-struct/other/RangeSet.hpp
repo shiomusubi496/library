@@ -85,7 +85,7 @@ class RangeSet {
     }
     friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {
         RangeSet res = lhs;
-        each_const (p : rhs.get_data()) res.insert(p.first, p.second);
+        each_const (p : rhs) res.insert(p.first, p.second);
         return res;
     }
     friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs) {
