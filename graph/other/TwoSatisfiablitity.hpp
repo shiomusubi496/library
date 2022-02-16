@@ -35,11 +35,11 @@ class TwoSatisfiability {
     }
     void add_true(int a) {
         assert(0 <= a && a < n);
-        G.add_edge(neg(a), a);
+        G.add_edge(neg(a), a, true);
     }
     void add_false(int a) {
         assert(0 <= a && a < n);
-        G.add_edge(a, neg(a));
+        G.add_edge(a, neg(a), true);
     }
     std::vector<bool> sat() const {
         StronglyConnectedComponents<unweighted_edge> SCC(G);
