@@ -15,6 +15,9 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
+    - icon: ':warning:'
+      path: data-struct/other/SlidingWindowAggregation.hpp
+      title: SlidingWindowAggregation(SWAG)
   - name: data-struct/segment
     pages:
     - icon: ':heavy_check_mark:'
@@ -51,11 +54,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-  - name: data-struct/sequence
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: data-struct/sequence/SlidingWindowAggregation.hpp
-      title: SlidingWindowAggregation(SWAG)
   - name: data-struct/unionfind
     pages:
     - icon: ':heavy_check_mark:'
@@ -397,7 +395,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/point_set_range_composite.test.cpp
       title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/queue_operate_all_composite.test.cpp
       title: test/yosupo/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'

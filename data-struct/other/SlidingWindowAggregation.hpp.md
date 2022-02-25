@@ -8,19 +8,16 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/queue_operate_all_composite.test.cpp
-    title: test/yosupo/queue_operate_all_composite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/SlidingWindowAggregation.md
     document_title: SlidingWindowAggregation(SWAG)
     links: []
-  bundledCode: "#line 2 \"data-struct/sequence/SlidingWindowAggregation.hpp\"\n\n\
-    #line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+  bundledCode: "#line 2 \"data-struct/other/SlidingWindowAggregation.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
     \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
@@ -225,7 +222,7 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/sequence/SlidingWindowAggregation.hpp\"\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
     \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
     \ T = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T>\
     \ lsm, rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n  \
@@ -277,17 +274,16 @@ data:
   - other/template.hpp
   - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/sequence/SlidingWindowAggregation.hpp
+  path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-02-15 09:30:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/queue_operate_all_composite.test.cpp
-documentation_of: data-struct/sequence/SlidingWindowAggregation.hpp
+  timestamp: '2022-02-25 22:06:36+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: data-struct/other/SlidingWindowAggregation.hpp
 layout: document
 redirect_from:
-- /library/data-struct/sequence/SlidingWindowAggregation.hpp
-- /library/data-struct/sequence/SlidingWindowAggregation.hpp.html
+- /library/data-struct/other/SlidingWindowAggregation.hpp
+- /library/data-struct/other/SlidingWindowAggregation.hpp.html
 title: SlidingWindowAggregation(SWAG)
 ---
 ## 概要

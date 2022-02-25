@@ -12,6 +12,9 @@ data:
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
+  - icon: ':warning:'
+    path: data-struct/other/SlidingWindowAggregation.hpp
+    title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
@@ -46,9 +49,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
-    path: data-struct/sequence/SlidingWindowAggregation.hpp
-    title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
@@ -353,9 +353,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/queue_operate_all_composite.test.cpp
-    title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
@@ -692,9 +689,9 @@ data:
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/other/RangeSet.hpp
+  - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
-  - data-struct/sequence/SlidingWindowAggregation.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
   - other/bitop.hpp
@@ -732,7 +729,6 @@ data:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/shortest_path.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/two_sat.test.cpp
   - test/yosupo/line_add_get_min.test.cpp

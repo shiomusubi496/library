@@ -5,6 +5,9 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/other/SlidingWindowAggregation.hpp
+    title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
@@ -39,9 +42,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
-    path: data-struct/sequence/SlidingWindowAggregation.hpp
-    title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -100,9 +100,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/queue_operate_all_composite.test.cpp
-    title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
@@ -456,7 +453,7 @@ data:
   - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
-  - data-struct/sequence/SlidingWindowAggregation.hpp
+  - data-struct/other/SlidingWindowAggregation.hpp
   - other/monoid2.hpp
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
@@ -469,7 +466,6 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
