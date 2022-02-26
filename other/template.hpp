@@ -293,7 +293,7 @@ template<class T, class Comp = std::less<T>> class presser {
     void press(std::vector<T>& vec) const {
         static_assert(std::is_integral<T>::value, "template argument must be convertible from int type");
         assert(sorted);
-        each_for (i, vec) i = get_index(i);
+        each_for (i : vec) i = get_index(i);
     }
     int size() const {
         assert(sorted);
