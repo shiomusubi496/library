@@ -34,6 +34,9 @@ data:
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -371,6 +374,7 @@ data:
   verifiedWith:
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/matrix_product.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp

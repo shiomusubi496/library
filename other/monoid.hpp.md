@@ -5,7 +5,7 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
   - icon: ':heavy_check_mark:'
@@ -100,6 +100,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
@@ -466,6 +469,7 @@ data:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp

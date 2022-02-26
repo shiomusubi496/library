@@ -8,10 +8,13 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/queue_operate_all_composite.test.cpp
+    title: test/yosupo/queue_operate_all_composite.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/SlidingWindowAggregation.md
     document_title: SlidingWindowAggregation(SWAG)
@@ -277,8 +280,9 @@ data:
   path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
   timestamp: '2022-02-25 22:06:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/queue_operate_all_composite.test.cpp
 documentation_of: data-struct/other/SlidingWindowAggregation.hpp
 layout: document
 redirect_from:
