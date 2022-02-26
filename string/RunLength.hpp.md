@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -139,7 +139,7 @@ data:
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
     \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
     \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
-    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class Cont> std::vector<std::pair<typename\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: false
   path: string/RunLength.hpp
   requiredBy: []
-  timestamp: '2022-02-26 18:51:28+09:00'
+  timestamp: '2022-02-26 19:19:05+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1469.test.cpp
