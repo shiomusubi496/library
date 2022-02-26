@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/persistent_unionfind-Undo.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/UnionFindUndo.md
     document_title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
@@ -100,7 +100,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -113,52 +113,57 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\nclass UnionFindUndo {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
-    \    std::stack<std::pair<int, int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0)\
-    \ {}\n    UnionFindUndo(int n) : n(n), par_vec(n, -1) {}\n    int find(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x\
-    \ : find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        hist.emplace(x, par_vec[x]);\n\
-    \        hist.emplace(y, par_vec[y]);\n        if (x == y) return {x, -1};\n \
-    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
-    \        par_vec[y] = x;\n        return {x, y};\n    }\n    bool same(int x,\
-    \ int y) const {\n        return find(x) == find(y);\n    }\n    int size(int\
-    \ x) const {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(n);\n        rep\
-    \ (i, n) res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
-    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
-    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
-    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n    void\
-    \ undo() {\n        par_vec[hist.top().first] = hist.top().second; hist.pop();\n\
-    \        par_vec[hist.top().first] = hist.top().second; hist.pop();\n    }\n \
-    \   void snapshot() {\n        while (!hist.empty()) hist.pop();\n    }\n    void\
-    \ rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief\
-    \ UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n */\n"
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
+    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
+    \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
+    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
+    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
+    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
+    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
+    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
+    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
+    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const {\n \
+    \       return find(x) == find(y);\n    }\n    int size(int x) const {\n     \
+    \   return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
+    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(all(res), [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end()\n        );\n        return\
+    \ res;\n    }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n\
+    \        return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
+    \ = hist.top().second; hist.pop();\n        par_vec[hist.top().first] = hist.top().second;\
+    \ hist.pop();\n    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n\
+    \    }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n\
+    };\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFindUndo\
     \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
     \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
@@ -186,8 +191,8 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/persistent_unionfind-Undo.test.cpp
 documentation_of: data-struct/unionfind/UnionFindUndo.hpp

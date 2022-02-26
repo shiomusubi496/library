@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_B.test.cpp
     title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/Combinatorics.md
     document_title: Combinatorics
@@ -115,7 +115,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -128,70 +128,75 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase\
-    \ {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class T> using is_ModInt\
-    \ = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using is_StaticModInt =\
-    \ std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using is_DynamicModInt\
-    \ = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod> class StaticModInt\
-    \ : StaticModIntBase {\n  protected:\n    ll val;\n    static constexpr ll inv1000000007[]\
-    \ = {-1, 1, 500000004, 333333336, 250000002,\n            400000003, 166666668,\
-    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr ll inv998244353\
-    \ [] = {-1, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
-    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> StaticModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
-    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
-    \ { return mod; }\n    static StaticModInt raw(ll v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    StaticModInt inv() const\
-    \ {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10)\
-    \ return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod ==\
-    \ 998244353) {\n            if (val <= 10) return inv998244353[val];\n       \
-    \ }\n        return mod_inv(val, mod);\n    }\n    StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    StaticModInt operator++(int) {\n        StaticModInt res = *this;\n\
-    \        ++ *this;\n        return res;\n    }\n    StaticModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    StaticModInt operator--(int) {\n        StaticModInt res = *this;\n\
-    \        -- *this;\n        return res;\n    }\n    StaticModInt& operator+=(const\
-    \ StaticModInt& other) {\n        val += other.val;\n        if (val >= mod) val\
-    \ -= mod;\n        return *this;\n    }\n    StaticModInt& operator-=(const StaticModInt&\
-    \ other) {\n        val -= other.val;\n        if (val < 0) val += mod;\n    \
-    \    return *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other)\
-    \ {\n        (val *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator/=(const StaticModInt& other) {\n        (val *= other.inv().get())\
-    \ %= mod;\n        return *this;\n    }\n    friend StaticModInt operator+(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
-    \ StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase\
+    \ {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
+    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
+    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
+    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
+    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
     \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
     \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
@@ -334,8 +339,8 @@ data:
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy: []
-  timestamp: '2022-02-14 20:24:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/WeightedUnionFind.md
     document_title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
@@ -100,7 +100,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -113,53 +113,58 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/unionfind/WeightedUnionFind.hpp\"\
-    \n\n\ntemplate<class T = ll> class WeightedUnionFind {\n  protected:\n    int\
-    \ n;\n    std::vector<int> par_vec;\n    std::vector<T> wei;\n  public:\n    WeightedUnionFind()\
-    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par_vec(n, -1),\
-    \ wei(n) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n       \
-    \ if (par_vec[x] < 0) return x;\n        int r = find(par_vec[x]);\n        wei[x]\
-    \ += wei[par_vec[x]];\n        return par_vec[x] = r;\n    }\n    T weight(int\
-    \ x) {\n        return find(x), wei[x];\n    }\n    T diff(int x, int y) {\n \
-    \       assert(find(x) == find(y));\n        return wei[y] - wei[x];\n    }\n\
-    \    std::pair<int, int> merge(int x, int y, T w) {\n        w += weight(x); w\
-    \ -= weight(y);\n        x = find(x);    y = find(y);\n        if (x == y) {\n\
-    \            if (w == 0) return {x, -1};\n            else return {x, -2};\n \
-    \       }\n        if (par_vec[x] > par_vec[y]) std::swap(x, y), w = -w;\n   \
-    \     par_vec[x] += par_vec[y]; par_vec[y] = x;\n        wei[y] = w;\n       \
-    \ return {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x)\
-    \ == find(y);\n    }\n    int size(int x) {\n        return -par_vec[find(x)];\n\
-    \    }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(all(res), [](const std::vector<int>& v) { return v.empty();\
-    \ }),\n            res.end()\n        );\n        return res;\n    }\n    bool\
-    \ is_root(int x) const {\n        assert(0 <= x && x < n);\n        return par_vec[x]\
-    \ < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304D\
-    UF)\n * @docs docs/WeightedUnionFind.md\n */\n"
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 4 \"data-struct/unionfind/WeightedUnionFind.hpp\"\n\n\ntemplate<class\
+    \ T = ll> class WeightedUnionFind {\n  protected:\n    int n;\n    std::vector<int>\
+    \ par_vec;\n    std::vector<T> wei;\n  public:\n    WeightedUnionFind() : WeightedUnionFind(0)\
+    \ {}\n    WeightedUnionFind(int n) : n(n), par_vec(n, -1), wei(n) {}\n    int\
+    \ find(int x) {\n        assert(0 <= x && x < n);\n        if (par_vec[x] < 0)\
+    \ return x;\n        int r = find(par_vec[x]);\n        wei[x] += wei[par_vec[x]];\n\
+    \        return par_vec[x] = r;\n    }\n    T weight(int x) {\n        return\
+    \ find(x), wei[x];\n    }\n    T diff(int x, int y) {\n        assert(find(x)\
+    \ == find(y));\n        return wei[y] - wei[x];\n    }\n    std::pair<int, int>\
+    \ merge(int x, int y, T w) {\n        w += weight(x); w -= weight(y);\n      \
+    \  x = find(x);    y = find(y);\n        if (x == y) {\n            if (w == 0)\
+    \ return {x, -1};\n            else return {x, -2};\n        }\n        if (par_vec[x]\
+    \ > par_vec[y]) std::swap(x, y), w = -w;\n        par_vec[x] += par_vec[y]; par_vec[y]\
+    \ = x;\n        wei[y] = w;\n        return {x, y};\n    }\n    bool same(int\
+    \ x, int y) {\n        return find(x) == find(y);\n    }\n    int size(int x)\
+    \ {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
+    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
+    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
+    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
+    /**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/WeightedUnionFind.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\n\ntemplate<class\
     \ T = ll> class WeightedUnionFind {\n  protected:\n    int n;\n    std::vector<int>\
     \ par_vec;\n    std::vector<T> wei;\n  public:\n    WeightedUnionFind() : WeightedUnionFind(0)\
@@ -188,8 +193,8 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
-  timestamp: '2022-02-14 14:21:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
 documentation_of: data-struct/unionfind/WeightedUnionFind.hpp

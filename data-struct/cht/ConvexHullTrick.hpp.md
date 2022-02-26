@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/line_add_get_min.test.cpp
     title: test/yosupo/line_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/ConvexHullTrick.md
     document_title: ConvexHullTrick
@@ -100,7 +100,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -113,60 +113,64 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false> class ConvexHullTrick {\n  protected:\n\
-    \    struct Line {\n        T a, b;\n        bool is_query;\n        mutable const\
-    \ Line* nxt;\n        T get(T x) const { return a * x + b; }\n        Line() =\
-    \ default;\n        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i),\
-    \ nxt(nullptr) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (rhs.nxt == nullptr) return true;\n   \
-    \             return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n  \
-    \          if (rhs.is_query) {\n                if (lhs.nxt == nullptr) return\
-    \ false;\n                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n     \
-    \       }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
-    \        }\n    };\n    std::set<Line> st;\n    bool is_necessary(const typename\
-    \ std::set<Line>::iterator& itr) {\n        if (itr == st.begin() || itr == prev(st.end()))\
-    \ return true;\n        if (itr->a == prev(itr)->a) return itr->b < prev(itr)->b;\n\
-    \        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;\n        return\
-    \ (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\n            <\
-    \  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n\
-    \    ConvexHullTrick() = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR\
-    \ (is_max) a = - a, b = - b;\n        typename std::set<Line>::iterator itr =\
-    \ st.insert(Line{a, b}).first;\n        if (!is_necessary(itr)) {\n          \
-    \  st.erase(itr);\n            return;\n        }\n        while (itr != st.begin()\
-    \     && !is_necessary(prev(itr))) st.erase(prev(itr));\n        while (itr !=\
-    \ prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n        if\
-    \ (itr != st.begin()) prev(itr)->nxt = &*itr;\n        if (itr != prev(st.end()))\
-    \ itr->nxt = &*next(itr);\n    }\n    T get_min(T x) const {\n        auto itr\
-    \ = st.lower_bound(Line{x, 0, true});\n        if IF_CONSTEXPR (is_max) return\
-    \ - itr->get(x);\n        return itr->get(x);\n    }\n    bool empty() const {\n\
-    \        return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs\
-    \ docs/ConvexHullTrick.md\n */\n"
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\n\ntemplate<class T =\
+    \ ll, bool is_max = false> class ConvexHullTrick {\n  protected:\n    struct Line\
+    \ {\n        T a, b;\n        bool is_query;\n        mutable const Line* nxt;\n\
+    \        T get(T x) const { return a * x + b; }\n        Line() = default;\n \
+    \       Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), nxt(nullptr)\
+    \ {}\n        friend bool operator<(const Line& lhs, const Line& rhs) {\n    \
+    \        assert(!lhs.is_query || !rhs.is_query);\n            if (lhs.is_query)\
+    \ {\n                if (rhs.nxt == nullptr) return true;\n                return\
+    \ rhs.get(lhs.a) < rhs.nxt->get(lhs.a);\n            }\n            if (rhs.is_query)\
+    \ {\n                if (lhs.nxt == nullptr) return false;\n                return\
+    \ lhs.get(rhs.a) > lhs.nxt->get(rhs.a);\n            }\n            return lhs.a\
+    \ == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n    };\n    std::set<Line>\
+    \ st;\n    bool is_necessary(const typename std::set<Line>::iterator& itr) {\n\
+    \        if (itr == st.begin() || itr == prev(st.end())) return true;\n      \
+    \  if (itr->a == prev(itr)->a) return itr->b < prev(itr)->b;\n        if (itr->a\
+    \ == next(itr)->a) return itr->b < next(itr)->b;\n        return (__int128_t)(itr->b\
+    \ - prev(itr)->b) * (next(itr)->a - itr->a)\n            <  (__int128_t)(itr->b\
+    \ - next(itr)->b) * (prev(itr)->a - itr->a);\n    }\n  public:\n    ConvexHullTrick()\
+    \ = default;\n    void add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max)\
+    \ a = - a, b = - b;\n        typename std::set<Line>::iterator itr = st.insert(Line{a,\
+    \ b}).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
+    \            return;\n        }\n        while (itr != st.begin()     && !is_necessary(prev(itr)))\
+    \ st.erase(prev(itr));\n        while (itr != prev(st.end()) && !is_necessary(next(itr)))\
+    \ st.erase(next(itr));\n        if (itr != st.begin()) prev(itr)->nxt = &*itr;\n\
+    \        if (itr != prev(st.end())) itr->nxt = &*next(itr);\n    }\n    T get_min(T\
+    \ x) const {\n        auto itr = st.lower_bound(Line{x, 0, true});\n        if\
+    \ IF_CONSTEXPR (is_max) return - itr->get(x);\n        return itr->get(x);\n \
+    \   }\n    bool empty() const {\n        return st.empty();\n    }\n};\n\n/**\n\
+    \ * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false> class ConvexHullTrick {\n  protected:\n    struct\
     \ Line {\n        T a, b;\n        bool is_query;\n        mutable const Line*\
@@ -201,8 +205,8 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/line_add_get_min.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrick.hpp

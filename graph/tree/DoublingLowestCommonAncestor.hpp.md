@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/DoublingLowestCommonAncestor.md
     document_title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
@@ -107,7 +107,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -120,109 +120,113 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line\
-    \ 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >>\
-    \ (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
-    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
-    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
-    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
-    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
-    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
-    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
-    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
-    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
-    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
-    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx] ==\
-    \ -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n  \
-    \  return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n   \
-    \     each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\ntemplate<class\
-    \ T> class DoublingLCA {\n  protected:\n    int root, n, h;\n    Graph<T> G_;\n\
-    \    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int> dep;\n\
-    \    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int p) {\n\
-    \        each_const (e : G[v]) {\n            if (e.to != p) {\n             \
-    \   par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n                dep[e.to]\
-    \ = dep[v] + 1;\n                dfs_build(e.to, v);\n            }\n        }\n\
-    \    }\n    void init() {\n        n = G.size();\n        h = bitop::ceil_log2(n)\
-    \ + 1;\n        par.resize(n); par[root] = edge<T>{};\n        dep.resize(n);\
-    \ dep[root] = 0;\n        dfs_build(root, -1);\n        dbl.assign(n, std::vector<int>(h,\
-    \ -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n        rep (i, h - 1) {\n\
-    \            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ? -1 : dbl[ dbl[j][i]\
-    \ ][i];\n        }\n    }\n  public:\n    DoublingLCA(const Graph<T>& G, int r\
-    \ = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&& G, int r = 0)\
-    \ : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int v) const {\
-    \ return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
-    \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
-    \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
-    \        return v;\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
-    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
-    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
-    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
-    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
-    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
-    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
-    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
+    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
+    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
+    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\n\
+    template<class T = int> struct edge {\n    int from, to;\n    T cost;\n    int\
+    \ idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T& c =\
+    \ 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    operator int() const\
+    \ { return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>&\
+    \ rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
+    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
+    \n\ntemplate<class T> class DoublingLCA {\n  protected:\n    int root, n, h;\n\
+    \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n   \
+    \ std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int\
+    \ v, int p) {\n        each_const (e : G[v]) {\n            if (e.to != p) {\n\
+    \                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n         \
+    \       dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n       \
+    \     }\n        }\n    }\n    void init() {\n        n = G.size();\n        h\
+    \ = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
+    \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
+    \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
+    \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
+    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
+    \ Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&&\
+    \ G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int\
+    \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
+    \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
+    \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
+    \       }\n        return v;\n    }\n    Edges<T> path(int s, int t) const {\n\
+    \        Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
+    \ s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n\
+    \        while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n\
+    \            suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i,\
+    \ suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n\
+    \        return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u]\
+    \ > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
     \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
     \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
     \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
@@ -268,8 +272,8 @@ data:
   isVerificationFile: false
   path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
 documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp

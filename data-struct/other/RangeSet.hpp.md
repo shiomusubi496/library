@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1601.test.cpp
     title: test/yuki/1601.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/RangeSet.md
     document_title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\
@@ -101,7 +101,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -114,83 +114,88 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/RangeSet.hpp\"\
-    \n\nclass RangeSet {\n  protected:\n    using iterator = typename std::set<std::pair<ll,\
-    \ ll>>::iterator;\n    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator\
-    \ st_emplace_hint(const iterator& itr, ll l, ll r) {\n        sz += r - l;\n \
-    \       return st.emplace_hint(itr, l, r);\n    }\n    iterator st_erase(const\
-    \ iterator& itr) {\n        sz -= itr->second - itr->first;\n        return st.erase(itr);\n\
-    \    }\n  public:\n    RangeSet() : sz(0) {}\n    RangeSet(const std::set<std::pair<ll,\
-    \ ll>>& st_) : sz(0) {\n        each_const (p : st_) insert(p.first, p.second);\n\
-    \    }\n    iterator begin() const { return st.begin(); }\n    iterator end()\
-    \ const { return st.end(); }\n    bool empty() const { return st.empty(); }\n\
-    \    int size() const { return st.size(); }\n    ll length() const { return sz;\
-    \ }\n    const std::set<std::pair<ll, ll>>& get_data() const& { return st; }\n\
-    \    std::set<std::pair<ll, ll>>& get_data() & { return st; }\n    std::set<std::pair<ll,\
-    \ ll>> get_data() && { return std::move(st); }\n    std::pair<iterator, bool>\
-    \ insert(ll l, ll r) {\n        assert(l <= r);\n        if (l == r) return {st.end(),\
-    \ false};\n        auto itr = st.lower_bound({l, r});\n        if (itr != st.end()\
-    \ && itr->first == l) return {itr, false};\n        if (itr != st.begin() && prev(itr)->first\
-    \ != l && r <= prev(itr)->second) {\n            return {prev(itr), false};\n\
-    \        }\n        itr = st_emplace_hint(itr, l, r);\n        while (itr != prev(st.end())\
-    \ && next(itr)->first <= itr->second) {\n            if (next(itr)->second <=\
-    \ itr->second) st_erase(next(itr));\n            else {\n                itr =\
-    \ st_emplace_hint(next(itr), itr->first, next(itr)->second);\n               \
-    \ st_erase(prev(itr)); st_erase(next(itr));\n            }\n        }\n      \
-    \  while (itr != st.begin() && itr->first <= prev(itr)->second) {\n          \
-    \  if (itr->first == prev(itr)->first) st_erase(prev(itr));\n            else\
-    \ {\n                itr = st_emplace_hint(itr, prev(itr)->first, itr->second);\n\
-    \                st_erase(prev(itr)); st_erase(next(itr));\n            }\n  \
-    \      }\n        return {itr, true};\n    }\n    std::pair<iterator, bool> insert(ll\
-    \ l) { return insert(l, l + 1); }\n    void erase(ll l, ll r) {\n        assert(l\
-    \ <= r);\n        if (l == r) return;\n        auto itr = st.lower_bound({l, r});\n\
-    \        while (itr != st.end() && itr->first < r) {\n            if (itr->second\
-    \ <= r) itr = st_erase(itr);\n            else {\n                itr = st_emplace_hint(itr,\
-    \ r, itr->second);\n                st_erase(prev(itr));\n            }\n    \
-    \    }\n        if (itr != st.begin() && prev(itr)->first == l) st_erase(prev(itr));\n\
-    \        else if (itr != st.begin() && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr),\
-    \ prev(itr)->first, l);\n            st_erase(prev(itr));\n        }\n    }\n\
-    \    void erase(ll l) { erase(l, l + 1); }\n    bool include(ll k) {\n       \
-    \ auto itr = st.lower_bound({k + 1, k + 1});\n        return itr != st.begin()\
-    \ && k < prev(itr)->second;\n    }\n    std::pair<ll, ll> find(ll k) {\n     \
-    \   auto itr = st.lower_bound({k + 1, k + 1});\n        if (itr == st.begin())\
-    \ return {-1, -1};\n        --itr;\n        if (itr->second <= k) return {-1,\
-    \ -1};\n        return *itr;\n    }\n    friend RangeSet operator||(const RangeSet&\
-    \ lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n        each_const\
-    \ (p : rhs) res.insert(p.first, p.second);\n        return res;\n    }\n    friend\
-    \ RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet\
-    \ res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n        while (itr1\
-    \ != lhs.end() && itr2 != rhs.end()) {\n            ll l = std::max(itr1->first,\
-    \ itr2->first);\n            ll r = std::min(itr1->second, itr2->second);\n  \
-    \          if (l < r) res.insert(l, r);\n            if (itr1->second < itr2->second)\
-    \ ++itr1;\n            else ++itr2;\n        }\n        return res;\n    }\n \
-    \   friend bool operator==(const RangeSet& a, const RangeSet& b) {\n        return\
-    \ a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet& a, const RangeSet&\
-    \ b) {\n        return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 4 \"data-struct/other/RangeSet.hpp\"\n\nclass RangeSet {\n  protected:\n\
+    \    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n    int\
+    \ sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
+    \ iterator& itr, ll l, ll r) {\n        sz += r - l;\n        return st.emplace_hint(itr,\
+    \ l, r);\n    }\n    iterator st_erase(const iterator& itr) {\n        sz -= itr->second\
+    \ - itr->first;\n        return st.erase(itr);\n    }\n  public:\n    RangeSet()\
+    \ : sz(0) {}\n    RangeSet(const std::set<std::pair<ll, ll>>& st_) : sz(0) {\n\
+    \        each_const (p : st_) insert(p.first, p.second);\n    }\n    iterator\
+    \ begin() const { return st.begin(); }\n    iterator end() const { return st.end();\
+    \ }\n    bool empty() const { return st.empty(); }\n    int size() const { return\
+    \ st.size(); }\n    ll length() const { return sz; }\n    const std::set<std::pair<ll,\
+    \ ll>>& get_data() const& { return st; }\n    std::set<std::pair<ll, ll>>& get_data()\
+    \ & { return st; }\n    std::set<std::pair<ll, ll>> get_data() && { return std::move(st);\
+    \ }\n    std::pair<iterator, bool> insert(ll l, ll r) {\n        assert(l <= r);\n\
+    \        if (l == r) return {st.end(), false};\n        auto itr = st.lower_bound({l,\
+    \ r});\n        if (itr != st.end() && itr->first == l) return {itr, false};\n\
+    \        if (itr != st.begin() && prev(itr)->first != l && r <= prev(itr)->second)\
+    \ {\n            return {prev(itr), false};\n        }\n        itr = st_emplace_hint(itr,\
+    \ l, r);\n        while (itr != prev(st.end()) && next(itr)->first <= itr->second)\
+    \ {\n            if (next(itr)->second <= itr->second) st_erase(next(itr));\n\
+    \            else {\n                itr = st_emplace_hint(next(itr), itr->first,\
+    \ next(itr)->second);\n                st_erase(prev(itr)); st_erase(next(itr));\n\
+    \            }\n        }\n        while (itr != st.begin() && itr->first <= prev(itr)->second)\
+    \ {\n            if (itr->first == prev(itr)->first) st_erase(prev(itr));\n  \
+    \          else {\n                itr = st_emplace_hint(itr, prev(itr)->first,\
+    \ itr->second);\n                st_erase(prev(itr)); st_erase(next(itr));\n \
+    \           }\n        }\n        return {itr, true};\n    }\n    std::pair<iterator,\
+    \ bool> insert(ll l) { return insert(l, l + 1); }\n    void erase(ll l, ll r)\
+    \ {\n        assert(l <= r);\n        if (l == r) return;\n        auto itr =\
+    \ st.lower_bound({l, r});\n        while (itr != st.end() && itr->first < r) {\n\
+    \            if (itr->second <= r) itr = st_erase(itr);\n            else {\n\
+    \                itr = st_emplace_hint(itr, r, itr->second);\n               \
+    \ st_erase(prev(itr));\n            }\n        }\n        if (itr != st.begin()\
+    \ && prev(itr)->first == l) st_erase(prev(itr));\n        else if (itr != st.begin()\
+    \ && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr), prev(itr)->first,\
+    \ l);\n            st_erase(prev(itr));\n        }\n    }\n    void erase(ll l)\
+    \ { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
+    \ + 1, k + 1});\n        return itr != st.begin() && k < prev(itr)->second;\n\
+    \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
+    \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
+    \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
+    \    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {\n\
+    \        RangeSet res = lhs;\n        each_const (p : rhs) res.insert(p.first,\
+    \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
+    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
+    \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
+    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
+    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
+    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
+    \          else ++itr2;\n        }\n        return res;\n    }\n    friend bool\
+    \ operator==(const RangeSet& a, const RangeSet& b) {\n        return a.st == b.st;\n\
+    \    }\n    friend bool operator!=(const RangeSet& a, const RangeSet& b) {\n \
+    \       return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
     \ a, const RangeSet& b) {\n        return a.st > b.st;\n    }\n    friend bool\
     \ operator>=(const RangeSet& a, const RangeSet& b) {\n        return a.st >= b.st;\n\
     \    }\n    friend bool operator<(const RangeSet& a, const RangeSet& b) {\n  \
@@ -263,8 +268,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-02-16 22:30:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1601.test.cpp
 documentation_of: data-struct/other/RangeSet.hpp

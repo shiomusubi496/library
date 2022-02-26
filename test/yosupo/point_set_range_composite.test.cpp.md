@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -114,7 +114,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -127,107 +127,111 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid2.hpp\"\n\n\
-    #line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a + b; }\n    static constexpr T id()\
-    \ { return T{0}; }\n    static constexpr T inv(const T& a, const T& b) { return\
-    \ a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n};\n\n\
-    template<class T, T max_value = infinity<T>::max> struct Min {\n    using value_type\
-    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a > b ? b :\
-    \ a; }\n    static constexpr T id() { return max_value; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct Max {\n    using value_type = T;\n\
-    \    static constexpr T op(const T& a, const T& b) { return a < b ? b : a;}\n\
-    \    static constexpr T id() { return min_value; }\n};\n\ntemplate<class T> struct\
-    \ Assign {\n    using value_type = T;\n    static constexpr T op(const T&, const\
-    \ T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n\
-    \    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const\
-    \ T& a, const T&) { return a; }\n    static constexpr T mul(const T& a, int b)\
-    \ { return a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&)\
-    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return c + a; }\n};\n\ntemplate<class T, T min_value =\
-    \ infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
-    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
-    \ T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
-    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct Sum\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
+    \ constexpr T inv(const T& a, const T& b) { return a - b; }\n    static constexpr\
+    \ T get_inv(const T& a) { return -a; }\n};\n\ntemplate<class T, T max_value =\
+    \ infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a > b ? b : a; }\n    static constexpr\
+    \ T id() { return max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct Max {\n    using value_type = T;\n    static constexpr T op(const T&\
+    \ a, const T& b) { return a < b ? b : a;}\n    static constexpr T id() { return\
+    \ min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using value_type\
+    \ = T;\n    static constexpr T op(const T&, const T& b) { return b; }\n};\n\n\n\
+    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
+    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(const\
+    \ T& a, const T&) { return a; }\n    static constexpr T mul(const T& a, int) {\
+    \ return a; }\n    static constexpr T mul_op(const T& a, int, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n    static constexpr T mul(const T&\
+    \ a, int) { return a; }\n    static constexpr T mul_op(const T& a, int, const\
+    \ T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using M =\
+    \ Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a, const\
+    \ T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return a\
+    \ * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n    static constexpr T mul(const\
+    \ T& a, int) { return a; }\n    static constexpr T mul_op(const T& a, int, const\
+    \ T& c) { return c + a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ struct AddMax {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n \
+    \   static constexpr T op(const T& a, const T& b) { return b + a; }\n    static\
+    \ constexpr T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const\
+    \ T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class T> struct AddSum\
+    \ {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T op(const\
+    \ T& a, const T& b) { return b + a; }\n    static constexpr T mul(const T& a,\
+    \ int b) { return a * b; }\n    static constexpr T mul_op(const T& a, int b, const\
+    \ T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct ChminMin {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n\
+    \    static constexpr T op(const T& a, const T& b) { return std::min(b, a); }\n\
+    \    static constexpr T mul(const T& a, int) { return a; }\n    static constexpr\
+    \ T mul_op(const T& a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
     \ std::min(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
     \    static constexpr T mul_op(const T& a, int, const T& c) { return std::min(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::min(b, a); }\n    static constexpr\
+    \ a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChmaxMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
     \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n  \
+    \ a, int, const T& c) { return std::max(c, a); }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n  \
     \  using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
     \ std::max(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
     \    static constexpr T mul_op(const T& a, int, const T& c) { return std::max(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct\
-    \ ReverseMonoid {\n    using value_type = typename M::value_type;\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        return M::op(b,\
-    \ a);\n    }\n    static value_type id() { return M::id(); }\n    static value_type\
-    \ get_inv(const value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class\
-    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
-    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
-    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
-    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
-    \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M> class has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)> : public std::true_type\
-    \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
-    \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() { return M::id(); }\n    static value_type get_inv(const value_type& a)\
+    \ { return M::get_inv(a); }\n};\n\ntemplate<class M_> struct AttachEffector {\n\
+    \    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
+    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M> class has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -437,8 +441,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-02-14 21:43:34+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/point_set_range_composite.test.cpp
 layout: document

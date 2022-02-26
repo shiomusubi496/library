@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/RollingHash.md
     document_title: "RollingHash(\u30ED\u30EA\u30CF)"
@@ -100,7 +100,7 @@ data:
     \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
     \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tails> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tails...>::type>;\n\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
     };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
     template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
     \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
@@ -113,56 +113,60 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T> class presser {\n  private:\n    std::vector<T> dat;\n\
-    \    bool sorted = false;\n  public:\n    presser() = default;\n    presser(const\
-    \ std::vector<T>& vec) : dat(vec) {}\n    presser(std::vector<T>&& vec) : dat(std::move(vec))\
-    \ {}\n    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}\n\
-    \    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
+    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
+    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
+    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
+    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
+    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
+    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
+    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat));\n        dat.erase(std::unique(all(dat)), dat.end());\n\
+    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
+    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
+    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
     \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
     \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());\n\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
     \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
     \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        assert(sorted);\n        static_assert(std::is_integral<T>::value,\
-    \ \"cannot convert from int type\");\n        rep (i, vec.size()) vec[i] = get_index(vec[i]);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"string/RollingHash.hpp\"\
-    \n\nclass RollingHash {\n  protected:\n    static constexpr ull MOD = (1ull <<\
-    \ 61) - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
-    \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
-    \ static ull calc_mod(ull a) {\n        ull res = (a & MASK61) + (a >> 61);\n\
-    \        if (res >= MOD) res -= MOD;\n        return res;\n    }\n    static ull\
-    \ calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad = a & MASK31;\n   \
-    \     ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au * bd + ad * bu;\n\
-    \        return calc_mod(((au * bu) << 1) + ((mid & MASK30) << 31) + (mid >> 30)\
-    \ + ad * bd);\n    }\n    static ull calc_add(ull a, ull b) {\n        ull res\
-    \ = a + b;\n        if (res >= MOD) res -= MOD;\n        return res;\n    }\n\
-    \    ull BASE;\n    void init() {\n        BASE = (1ull << 31) + (std::random_device()()\
-    \ & MASK31);\n    }\n  public:\n    class Hash {\n      protected:\n        int\
-    \ n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
-    \ pows;\n      public:\n        template<class Cont> Hash(ull b, const Cont& str)\
-    \ : BASE(b) {\n            n = str.size();\n            hash.resize(n + 1);\n\
-    \            rep (i, n) hash[i + 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n\
-    \            pows.resize(n + 1); pows[0] = 1;\n            rep (i, n) pows[i +\
-    \ 1] = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int l, int\
-    \ r) const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
-    \ calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n        }\n    \
-    \    ull get_all() const {\n            return hash[n];\n        }\n    };\n \
-    \   RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const Cont&\
-    \ str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base() const\
-    \ {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\
-    \u30CF)\n * @docs docs/RollingHash.md\n */\n"
+    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
+    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
+    \        each_for (i, vec) i = get_index(i);\n    }\n    int size() const {\n\
+    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
+    \ }\n};\n#line 4 \"string/RollingHash.hpp\"\n\nclass RollingHash {\n  protected:\n\
+    \    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr ull MASK30\
+    \ = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n \
+    \   static constexpr ull MASK61 = MOD;\n    static ull calc_mod(ull a) {\n   \
+    \     ull res = (a & MASK61) + (a >> 61);\n        if (res >= MOD) res -= MOD;\n\
+    \        return res;\n    }\n    static ull calc_multi(ull a, ull b) {\n     \
+    \   ull au = a >> 31, ad = a & MASK31;\n        ull bu = b >> 31, bd = b & MASK31;\n\
+    \        ull mid = au * bd + ad * bu;\n        return calc_mod(((au * bu) << 1)\
+    \ + ((mid & MASK30) << 31) + (mid >> 30) + ad * bd);\n    }\n    static ull calc_add(ull\
+    \ a, ull b) {\n        ull res = a + b;\n        if (res >= MOD) res -= MOD;\n\
+    \        return res;\n    }\n    ull BASE;\n    void init() {\n        BASE =\
+    \ (1ull << 31) + (std::random_device()() & MASK31);\n    }\n  public:\n    class\
+    \ Hash {\n      protected:\n        int n;\n        ull BASE;\n        std::vector<ull>\
+    \ hash;\n        std::vector<ull> pows;\n      public:\n        template<class\
+    \ Cont> Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n\
+    \            hash.resize(n + 1);\n            rep (i, n) hash[i + 1] = calc_add(calc_multi(hash[i],\
+    \ BASE), str[i]);\n            pows.resize(n + 1); pows[0] = 1;\n            rep\
+    \ (i, n) pows[i + 1] = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int\
+    \ l, int r) const {\n            assert(0 <= l && l <= r && r <= n);\n       \
+    \     return calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n    \
+    \    }\n        ull get_all() const {\n            return hash[n];\n        }\n\
+    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
+    \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
+    \ const {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
+    \u30EA\u30CF)\n * @docs docs/RollingHash.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass RollingHash {\n\
     \  protected:\n    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr\
     \ ull MASK30 = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31)\
@@ -193,8 +197,8 @@ data:
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2022-02-04 19:51:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-26 18:51:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: string/RollingHash.hpp
