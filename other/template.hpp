@@ -207,8 +207,8 @@ template<class F> inline constexpr RecLambda<F> rec_lambda(F&& f) {
     return RecLambda<F>(std::forward<F>(f));
 }
 
-template<class Head, class... Tails> struct multi_dim_vector {
-    using type = std::vector<typename multi_dim_vector<Tails...>::type>;
+template<class Head, class... Tail> struct multi_dim_vector {
+    using type = std::vector<typename multi_dim_vector<Tail...>::type>;
 };
 template<class T> struct multi_dim_vector<T> {
     using type = T;
@@ -234,15 +234,17 @@ inline CONSTEXPR int popcnt(ull x) {
     return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);
 }
 
-template<class T> class presser {
+template<class T, class Comp = std::less<T>> class presser {
   private:
     std::vector<T> dat;
+    Comp cmp;
     bool sorted = false;
   public:
     presser() = default;
-    presser(const std::vector<T>& vec) : dat(vec) {}
-    presser(std::vector<T>&& vec) : dat(std::move(vec)) {}
-    presser(std::initializer_list<T> il) : dat(il.begin(), il.end()) {}
+    presser(const Comp& cmp) : cmp(cmp) {}
+    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}
+    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}
+    presser(std::initializer_list<T> il, const Comp& cmp = Comp()) : dat(il.begin(), il.end()), cmp(cmp) {}
     void reserve(int n) {
         assert(!sorted);
         dat.reserve(n);
@@ -261,10 +263,11 @@ template<class T> class presser {
         std::copy(all(vec), std::back_inserter(dat));
     }
     int build() {
-        assert(!sorted);
-        sorted = true;
-        std::sort(all(dat));
-        dat.erase(std::unique(all(dat)), dat.end());
+        assert(!sorted); sorted = true;
+        std::sort(all(dat), cmp);
+        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) -> bool {
+            return !cmp(a, b) && !cmp(b, a);
+        }), dat.end());
         return dat.size();
     }
     const T& operator[](int k) const& {
@@ -279,7 +282,7 @@ template<class T> class presser {
     }
     int get_index(const T& val) const {
         assert(sorted);
-        return static_cast<int>(std::lower_bound(all(dat), val) - dat.begin());
+        return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());
     }
     std::vector<int> pressed(const std::vector<T>& vec) const {
         assert(sorted);
@@ -288,9 +291,9 @@ template<class T> class presser {
         return res;
     }
     void press(std::vector<T>& vec) const {
+        static_assert(std::is_integral<T>::value, "template argument must be convertible from int type");
         assert(sorted);
-        static_assert(std::is_integral<T>::value, "cannot convert from int type");
-        rep (i, vec.size()) vec[i] = get_index(vec[i]);
+        each_for (i, vec) i = get_index(i);
     }
     int size() const {
         assert(sorted);
