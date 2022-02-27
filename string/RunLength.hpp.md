@@ -142,27 +142,32 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class Cont> std::vector<std::pair<typename\
-    \ Cont::value_type, int>> RunLength(const Cont& str) {\n    std::vector<std::pair<typename\
-    \ Cont::value_type, int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
-    \ 1);\n    rep (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
-    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)\n * @docs\
-    \ docs/RunLength.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont>\
-    \ std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont&\
-    \ str) {\n    std::vector<std::pair<typename Cont::value_type, int>> res;\n  \
-    \  if (str.size() == 0) return res;\n    res.emplace_back(str[0], 1);\n    rep\
-    \ (i, 1, str.size()) {\n        if (res.back().first == str[i]) ++res.back().second;\n\
-    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)\n * @docs\
-    \ docs/RunLength.md\n */\n"
+    \ }\n};\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class Cont, class Comp>\n\
+    std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont& str,\
+    \ const Comp& cmp) {\n    std::vector<std::pair<typename Cont::value_type, int>>\
+    \ res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0], 1);\n\
+    \    rep (i, 1, str.size()) {\n        if (cmp(res.back().first, str[i])) ++res.back().second;\n\
+    \        else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\ntemplate<class\
+    \ Cont> std::vector<std::pair<typename Cont::value_type, int>> RunLength(const\
+    \ Cont& str) {\n    return RunLength(str, std::equal_to<typename Cont::value_type>());\n\
+    }\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
+    )\n * @docs docs/RunLength.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont,\
+    \ class Comp>\nstd::vector<std::pair<typename Cont::value_type, int>> RunLength(const\
+    \ Cont& str, const Comp& cmp) {\n    std::vector<std::pair<typename Cont::value_type,\
+    \ int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
+    \ 1);\n    rep (i, 1, str.size()) {\n        if (cmp(res.back().first, str[i]))\
+    \ ++res.back().second;\n        else res.emplace_back(str[i], 1);\n    }\n   \
+    \ return res;\n}\n\ntemplate<class Cont> std::vector<std::pair<typename Cont::value_type,\
+    \ int>> RunLength(const Cont& str) {\n    return RunLength(str, std::equal_to<typename\
+    \ Cont::value_type>());\n}\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\
+    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/RunLength.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/RunLength.hpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-02-27 16:46:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1469.test.cpp
