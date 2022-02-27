@@ -12,7 +12,7 @@ data:
     path: graph/other/TwoSatisfiablitity.hpp
     title: TwoSatisfiability(2-SAT)
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yosupo/two_sat.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -123,11 +123,11 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
-    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
-    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
+    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
+    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
     \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
     \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
     \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
@@ -248,8 +248,8 @@ data:
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy:
   - graph/other/TwoSatisfiablitity.hpp
-  timestamp: '2022-02-26 19:19:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-27 15:19:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/two_sat.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp

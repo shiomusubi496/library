@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':x:'
@@ -134,11 +134,11 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
-    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
-    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
+    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
+    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
     \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
     \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
     \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
@@ -202,7 +202,7 @@ data:
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2022-02-26 19:19:05+09:00'
+  timestamp: '2022-02-27 15:19:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/unionfind.test.cpp

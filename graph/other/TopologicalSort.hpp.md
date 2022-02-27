@@ -9,12 +9,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/TopologicalSort.md
     document_title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
@@ -117,11 +117,11 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
-    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
-    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
+    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
+    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
     \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
     \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
     \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
@@ -217,8 +217,8 @@ data:
   isVerificationFile: false
   path: graph/other/TopologicalSort.hpp
   requiredBy: []
-  timestamp: '2022-02-26 19:19:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-27 15:19:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
 documentation_of: graph/other/TopologicalSort.hpp

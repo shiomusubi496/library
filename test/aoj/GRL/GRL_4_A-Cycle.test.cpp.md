@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_4_A
@@ -118,11 +118,11 @@ data:
     \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
     \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
     \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  private:\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() = default;\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const\
-    \ std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}\n   \
-    \ presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
+    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
+    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
+    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
     \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
     \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
     \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 19:19:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-27 15:19:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
 layout: document
