@@ -4,14 +4,17 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':x:'
+    path: random/Random.hpp
+    title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/RollingHash.md
     document_title: "RollingHash(\u30ED\u30EA\u30CF)"
@@ -142,63 +145,95 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 4 \"string/RollingHash.hpp\"\n\nclass RollingHash {\n  protected:\n\
-    \    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr ull MASK30\
-    \ = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n \
-    \   static constexpr ull MASK61 = MOD;\n    static ull calc_mod(ull a) {\n   \
-    \     ull res = (a & MASK61) + (a >> 61);\n        if (res >= MOD) res -= MOD;\n\
-    \        return res;\n    }\n    static ull calc_multi(ull a, ull b) {\n     \
-    \   ull au = a >> 31, ad = a & MASK31;\n        ull bu = b >> 31, bd = b & MASK31;\n\
-    \        ull mid = au * bd + ad * bu;\n        return calc_mod(((au * bu) << 1)\
-    \ + ((mid & MASK30) << 31) + (mid >> 30) + ad * bd);\n    }\n    static ull calc_add(ull\
-    \ a, ull b) {\n        ull res = a + b;\n        if (res >= MOD) res -= MOD;\n\
-    \        return res;\n    }\n    ull BASE;\n    void init() {\n        BASE =\
-    \ (1ull << 31) + (std::random_device()() & MASK31);\n    }\n  public:\n    class\
-    \ Hash {\n      protected:\n        int n;\n        ull BASE;\n        std::vector<ull>\
-    \ hash;\n        std::vector<ull> pows;\n      public:\n        template<class\
-    \ Cont> Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n\
-    \            hash.resize(n + 1);\n            rep (i, n) hash[i + 1] = calc_add(calc_multi(hash[i],\
-    \ BASE), str[i]);\n            pows.resize(n + 1); pows[0] = 1;\n            rep\
-    \ (i, n) pows[i + 1] = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int\
-    \ l, int r) const {\n            assert(0 <= l && l <= r && r <= n);\n       \
-    \     return calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n    \
-    \    }\n        ull get_all() const {\n            return hash[n];\n        }\n\
-    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
-    \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
-    \ const {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
-    \u30EA\u30CF)\n * @docs docs/RollingHash.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass RollingHash {\n\
-    \  protected:\n    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr\
-    \ ull MASK30 = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31)\
-    \ - 1;\n    static constexpr ull MASK61 = MOD;\n    static ull calc_mod(ull a)\
-    \ {\n        ull res = (a & MASK61) + (a >> 61);\n        if (res >= MOD) res\
-    \ -= MOD;\n        return res;\n    }\n    static ull calc_multi(ull a, ull b)\
-    \ {\n        ull au = a >> 31, ad = a & MASK31;\n        ull bu = b >> 31, bd\
-    \ = b & MASK31;\n        ull mid = au * bd + ad * bu;\n        return calc_mod(((au\
-    \ * bu) << 1) + ((mid & MASK30) << 31) + (mid >> 30) + ad * bd);\n    }\n    static\
-    \ ull calc_add(ull a, ull b) {\n        ull res = a + b;\n        if (res >= MOD)\
-    \ res -= MOD;\n        return res;\n    }\n    ull BASE;\n    void init() {\n\
-    \        BASE = (1ull << 31) + (std::random_device()() & MASK31);\n    }\n  public:\n\
-    \    class Hash {\n      protected:\n        int n;\n        ull BASE;\n     \
-    \   std::vector<ull> hash;\n        std::vector<ull> pows;\n      public:\n  \
-    \      template<class Cont> Hash(ull b, const Cont& str) : BASE(b) {\n       \
-    \     n = str.size();\n            hash.resize(n + 1);\n            rep (i, n)\
-    \ hash[i + 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n            pows.resize(n\
-    \ + 1); pows[0] = 1;\n            rep (i, n) pows[i + 1] = calc_multi(pows[i],\
-    \ BASE);\n        }\n        ull get_hash(int l, int r) const {\n            assert(0\
-    \ <= l && l <= r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
-    \ pows[r - l]));\n        }\n        ull get_all() const {\n            return\
-    \ hash[n];\n        }\n    };\n    RollingHash() { init(); }\n    template<class\
-    \ Cont> Hash get_hash(const Cont& str) const {\n        return Hash(BASE, str);\n\
-    \    }\n    ull get_base() const {\n        return BASE;\n    }\n};\n\n/**\n *\
-    \ @brief RollingHash(\u30ED\u30EA\u30CF)\n * @docs docs/RollingHash.md\n */\n"
+    \ }\n};\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ T> class Random {\n  protected:\n    T rnd;\n  public:\n    using result_type\
+    \ = typename T::result_type;\n    Random() : Random(std::random_device{}()) {}\n\
+    \    Random(result_type seed) : rnd(seed) {}\n    result_type operator()() {\n\
+    \        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
+    template argument must be an integral type\");\n        assert(l <= r);\n    \
+    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
+    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
+    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
+    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(int n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
+    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
+    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
+    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
+    \n\nclass RollingHash {\n  protected:\n    static constexpr ull MOD = (1ull <<\
+    \ 61) - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
+    \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
+    \ static ull calc_mod(ull a) {\n        ull res = (a & MASK61) + (a >> 61);\n\
+    \        if (res >= MOD) res -= MOD;\n        return res;\n    }\n    static ull\
+    \ calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad = a & MASK31;\n   \
+    \     ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au * bd + ad * bu;\n\
+    \        return calc_mod(((au * bu) << 1) + ((mid & MASK30) << 31) + (mid >> 30)\
+    \ + ad * bd);\n    }\n    static ull calc_add(ull a, ull b) {\n        ull res\
+    \ = a + b;\n        if (res >= MOD) res -= MOD;\n        return res;\n    }\n\
+    \    ull BASE;\n    void init() {\n        BASE = (1ull << 31) + (rand32() & MASK31);\n\
+    \    }\n  public:\n    class Hash {\n      protected:\n        int n;\n      \
+    \  ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull> pows;\n\
+    \      public:\n        template<class Cont> Hash(ull b, const Cont& str) : BASE(b)\
+    \ {\n            n = str.size();\n            hash.resize(n + 1);\n          \
+    \  rep (i, n) hash[i + 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n   \
+    \         pows.resize(n + 1); pows[0] = 1;\n            rep (i, n) pows[i + 1]\
+    \ = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int l, int r)\
+    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
+    \ calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n        }\n    \
+    \    ull get_all() const {\n            return hash[n];\n        }\n    };\n \
+    \   RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const Cont&\
+    \ str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base() const\
+    \ {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\
+    \u30CF)\n * @docs docs/RollingHash.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
+    \n\nclass RollingHash {\n  protected:\n    static constexpr ull MOD = (1ull <<\
+    \ 61) - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
+    \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
+    \ static ull calc_mod(ull a) {\n        ull res = (a & MASK61) + (a >> 61);\n\
+    \        if (res >= MOD) res -= MOD;\n        return res;\n    }\n    static ull\
+    \ calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad = a & MASK31;\n   \
+    \     ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au * bd + ad * bu;\n\
+    \        return calc_mod(((au * bu) << 1) + ((mid & MASK30) << 31) + (mid >> 30)\
+    \ + ad * bd);\n    }\n    static ull calc_add(ull a, ull b) {\n        ull res\
+    \ = a + b;\n        if (res >= MOD) res -= MOD;\n        return res;\n    }\n\
+    \    ull BASE;\n    void init() {\n        BASE = (1ull << 31) + (rand32() & MASK31);\n\
+    \    }\n  public:\n    class Hash {\n      protected:\n        int n;\n      \
+    \  ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull> pows;\n\
+    \      public:\n        template<class Cont> Hash(ull b, const Cont& str) : BASE(b)\
+    \ {\n            n = str.size();\n            hash.resize(n + 1);\n          \
+    \  rep (i, n) hash[i + 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n   \
+    \         pows.resize(n + 1); pows[0] = 1;\n            rep (i, n) pows[i + 1]\
+    \ = calc_multi(pows[i], BASE);\n        }\n        ull get_hash(int l, int r)\
+    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
+    \ calc_add(hash[r], MOD - calc_multi(hash[l], pows[r - l]));\n        }\n    \
+    \    ull get_all() const {\n            return hash[n];\n        }\n    };\n \
+    \   RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const Cont&\
+    \ str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base() const\
+    \ {\n        return BASE;\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\
+    \u30CF)\n * @docs docs/RollingHash.md\n */\n"
   dependsOn:
   - other/template.hpp
+  - random/Random.hpp
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-02-27 17:16:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: string/RollingHash.hpp

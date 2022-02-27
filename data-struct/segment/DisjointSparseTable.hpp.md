@@ -12,15 +12,15 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -307,7 +307,7 @@ data:
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
   timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

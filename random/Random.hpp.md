@@ -1,32 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: string/RollingHash.hpp
+    title: "RollingHash(\u30ED\u30EA\u30CF)"
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
-    links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/yosupo/unionfind.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    _deprecated_at_docs: docs/Random.md
+    document_title: Random
+    links: []
+  bundledCode: "#line 2 \"random/Random.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -143,45 +145,95 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n\
-    \  public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
-    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
-    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) {\n        return find(x) == find(y);\n\
-    \    }\n    int size(int x) {\n        return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\
-    \ [](const std::vector<int>& v) { return v.empty(); }),\n            res.end()\n\
-    \        );\n        return res;\n    }\n    bool is_root(int x) const {\n   \
-    \     assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n\
-    /**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line 4 \"test/yosupo/unionfind.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
-    ../../other/template.hpp\"\n#include \"../../data-struct/unionfind/UnionFind.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
-    \ UF(N);\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n \
-    \       if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
+    \ }\n};\n#line 4 \"random/Random.hpp\"\n\ntemplate<class T> class Random {\n \
+    \ protected:\n    T rnd;\n  public:\n    using result_type = typename T::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
+    \    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n  \
+    \      static_assert(std::is_integral<IntType>::value, \"template argument must\
+    \ be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
+    \ \"template argument must be an floating point type\");\n        assert(l <=\
+    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
+    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
+    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
+    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
+    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
+    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
+    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
+    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
+    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
+    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
+    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(int n)\
+    \ {\n        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
+    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
+    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
+    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
+    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
+    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
+    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
+    \ * @docs docs/Random.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
+    \ Random {\n  protected:\n    T rnd;\n  public:\n    using result_type = typename\
+    \ T::result_type;\n    Random() : Random(std::random_device{}()) {}\n    Random(result_type\
+    \ seed) : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n\
+    \    }\n    template<class IntType = ll> IntType uniform(IntType l, IntType r)\
+    \ {\n        static_assert(std::is_integral<IntType>::value, \"template argument\
+    \ must be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
+    \ \"template argument must be an floating point type\");\n        assert(l <=\
+    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
+    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
+    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
+    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
+    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
+    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
+    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
+    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
+    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
+    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
+    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(int n)\
+    \ {\n        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
+    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
+    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
+    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
+    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
+    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
+    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
+    \ * @docs docs/Random.md\n */\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/unionfind/UnionFind.hpp
-  isVerificationFile: true
-  path: test/yosupo/unionfind.test.cpp
-  requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/unionfind.test.cpp
+  isVerificationFile: false
+  path: random/Random.hpp
+  requiredBy:
+  - string/RollingHash.hpp
+  timestamp: '2022-02-27 17:16:33+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+documentation_of: random/Random.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/unionfind.test.cpp
-- /verify/test/yosupo/unionfind.test.cpp.html
-title: test/yosupo/unionfind.test.cpp
+- /library/random/Random.hpp
+- /library/random/Random.hpp.html
+title: Random
 ---
+## 概要
+
+乱数を生成するクラス。テンプレート引数にとった型 `T` を使って乱数を生成する。 `operator()` の返り値の型である `result_type` をメンバ型に持つ。
+
+- `Random()` : seed を `std::random_device` で生成する。 $\Theta(1)$ 。
+- `Random(result_type seed)` : seed を与えられた値にする。 $\Theta(1)$ 。
+- `result_type operator()` : 乱数を生成して返す。 $\Theta(1)$ 。
+- `IntType uniform(IntType l, IntType r)` : `[l, r]` から整数を $1$ つ返す。全ての値は同様に確からしく出る。 $\Theta(1)$ 。
+- `RealType uniform_real(RealType l, RealType r)` : `[l, r]` から実数を $1$ つ返す。全ての値は同様に確からしく出る。 $\Theta(1)$ 。
+- `bool uniform_bool()` : `true` と `false` を一様に確からしく返す。 $\Theta(1)$ 。
+- `pair<T, T> uniform_pair(T l, T r)` : `[l, r]` から整数を $2$ 個返す。全てのペアは同様に確からしく出る。期待 $\Theta(1)$ 。
+- `vector<T> choice(int n, T l, T r)` : `[l, r]` から整数を $n$ 個返す。全ての整数組が同様に確からしく出る。期待 $\Theta(n \log n)$ 。
+- `vector<T> choice_shuffle(int n, T l, T r)` : `[l, r]` から整数を $n$ 個返す。全ての整数組が同様に確からしく出る。内部で `shuffle` を使用している。 $\Theta(r - l)$ 。
+- `void shuffle(Iter first, Iter last)` : `[first, last)` をシャッフルする。 $\Theta(n)$ 。
+- `vector<T> permutation(int n)` : 長さ `n` の順列を返す。全ての順列が同様に確からしく出る。 $\Theta(n)$ 。
