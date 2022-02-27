@@ -119,6 +119,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/1435_SegTree-BinarySearch.test.cpp
+    title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -322,6 +325,7 @@ data:
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/yuki/1435_SegTree-BinarySearch.test.cpp
 documentation_of: other/bitop.hpp
 layout: document
 redirect_from:
