@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/Random.md
     document_title: Random
@@ -145,74 +145,74 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 4 \"random/Random.hpp\"\n\ntemplate<class T> class Random {\n \
-    \ protected:\n    T rnd;\n  public:\n    using result_type = typename T::result_type;\n\
-    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
-    \ : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
-    \    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n  \
-    \      static_assert(std::is_integral<IntType>::value, \"template argument must\
-    \ be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
-    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
-    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
-    \ \"template argument must be an floating point type\");\n        assert(l <=\
-    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
-    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
-    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
-    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
-    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
-    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
-    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
-    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
-    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
-    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
-    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(int n)\
-    \ {\n        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
-    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
-    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
-    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
-    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
-    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
-    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
-    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
-    \ * @docs docs/Random.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
-    \ Random {\n  protected:\n    T rnd;\n  public:\n    using result_type = typename\
-    \ T::result_type;\n    Random() : Random(std::random_device{}()) {}\n    Random(result_type\
-    \ seed) : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n\
-    \    }\n    template<class IntType = ll> IntType uniform(IntType l, IntType r)\
-    \ {\n        static_assert(std::is_integral<IntType>::value, \"template argument\
-    \ must be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
-    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
-    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
-    \ \"template argument must be an floating point type\");\n        assert(l <=\
-    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
-    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
-    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
-    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
-    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
-    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
-    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
-    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
-    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
-    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
-    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(int n)\
-    \ {\n        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
-    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
-    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
-    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
-    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
-    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
-    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
-    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
-    \ * @docs docs/Random.md\n */\n"
+    \ }\n};\n#line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random\
+    \ {\n  protected:\n    Engine rnd;\n  public:\n    using result_type = typename\
+    \ Engine::result_type;\n    Random() : Random(std::random_device{}()) {}\n   \
+    \ Random(result_type seed) : rnd(seed) {}\n    result_type operator()() {\n  \
+    \      return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
+    template argument must be an integral type\");\n        assert(l <= r);\n    \
+    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
+    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
+    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
+    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(int n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
+    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
+    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
+    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Engine>\
+    \ class Random {\n  protected:\n    Engine rnd;\n  public:\n    using result_type\
+    \ = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
+    \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
+    \ {\n        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
+    template argument must be an integral type\");\n        assert(l <= r);\n    \
+    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
+    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
+    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
+    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(int n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
+    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
+    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
+    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: random/Random.hpp
   requiredBy:
   - string/RollingHash.hpp
-  timestamp: '2022-02-27 17:16:33+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-02-27 17:58:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: random/Random.hpp

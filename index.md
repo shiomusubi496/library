@@ -183,17 +183,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
     - icon: ':heavy_check_mark:'
@@ -223,7 +223,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
       title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
       title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     - icon: ':heavy_check_mark:'

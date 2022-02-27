@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_14_B
@@ -148,10 +148,10 @@ data:
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 2 \"string/RollingHash.hpp\"\n\n#line 2 \"random/Random.hpp\"\n\
-    \n#line 4 \"random/Random.hpp\"\n\ntemplate<class T> class Random {\n  protected:\n\
-    \    T rnd;\n  public:\n    using result_type = typename T::result_type;\n   \
-    \ Random() : Random(std::random_device{}()) {}\n    Random(result_type seed) :\
-    \ rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
+    \n#line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\n  protected:\n\
+    \    Engine rnd;\n  public:\n    using result_type = typename Engine::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
     \    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n  \
     \      static_assert(std::is_integral<IntType>::value, \"template argument must\
     \ be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
@@ -219,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 17:16:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-02-27 17:58:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 layout: document
