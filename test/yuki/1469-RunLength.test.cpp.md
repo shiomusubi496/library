@@ -17,32 +17,32 @@ data:
     PROBLEM: https://yukicoder.me/problems/no/1469
     links:
     - https://yukicoder.me/problems/no/1469
-  bundledCode: "#line 1 \"test/yuki/1469.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1469\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
-    \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
-    \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2) (__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
-    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
-    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
-    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
-    \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
-    \ PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
+  bundledCode: "#line 1 \"test/yuki/1469-RunLength.test.cpp\"\n#define PROBLEM \"\
+    https://yukicoder.me/problems/no/1469\"\n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\
+    \n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \ for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_\
+    \ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i\
+    \ = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b);\
+    \ ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n\
+    #define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1) (__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a) - 1; i >= 0; --i)\n#define RREP3(i, a,\
+    \ b) for (ll i = (ll)(a) - 1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for\
+    \ (ll i = (ll)(a) - 1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2) (__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <=\
+    \ (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i +=\
+    \ (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2) (__VA_ARGS__)\n\
+    #define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b)\
+    \ for (ll i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i\
+    \ = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define rreps(...) REP_SELECTER(__VA_ARGS__,\
+    \ RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus\
+    \ >= 201402L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n\
+    #ifdef __cpp_if_constexpr\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n\
+    #endif\n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
     \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
     \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
@@ -152,7 +152,7 @@ data:
     \ return res;\n}\n\ntemplate<class Cont> std::vector<std::pair<typename Cont::value_type,\
     \ int>> RunLength(const Cont& str) {\n    return RunLength(str, std::equal_to<typename\
     \ Cont::value_type>());\n}\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\
-    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/RunLength.md\n */\n#line 4 \"test/yuki/1469.test.cpp\"\
+    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/RunLength.md\n */\n#line 4 \"test/yuki/1469-RunLength.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string S; cin >> S;\n    each_const\
     \ (p : RunLength(S)) cout << p.first;\n    cout << endl;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1469\"\n#include \"../../other/template.hpp\"\
@@ -163,15 +163,15 @@ data:
   - other/template.hpp
   - string/RunLength.hpp
   isVerificationFile: true
-  path: test/yuki/1469.test.cpp
+  path: test/yuki/1469-RunLength.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 16:46:35+09:00'
+  timestamp: '2022-02-27 18:38:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yuki/1469.test.cpp
+documentation_of: test/yuki/1469-RunLength.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yuki/1469.test.cpp
-- /verify/test/yuki/1469.test.cpp.html
-title: test/yuki/1469.test.cpp
+- /verify/test/yuki/1469-RunLength.test.cpp
+- /verify/test/yuki/1469-RunLength.test.cpp.html
+title: test/yuki/1469-RunLength.test.cpp
 ---

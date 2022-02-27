@@ -463,11 +463,11 @@ data:
   - name: test/yuki
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yuki/1469.test.cpp
-      title: test/yuki/1469.test.cpp
+      path: test/yuki/1469-RunLength.test.cpp
+      title: test/yuki/1469-RunLength.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yuki/1601.test.cpp
-      title: test/yuki/1601.test.cpp
+      path: test/yuki/1601-RangeSet.test.cpp
+      title: test/yuki/1601-RangeSet.test.cpp
 layout: toppage
 ---
 shiomusubi496 の C++ 競プロライブラリ。

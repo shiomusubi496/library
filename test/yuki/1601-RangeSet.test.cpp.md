@@ -18,7 +18,7 @@ data:
     PROBLEM: https://yukicoder.me/problems/1601
     links:
     - https://yukicoder.me/problems/1601
-  bundledCode: "#line 1 \"test/yuki/1601.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/1601\"\
+  bundledCode: "#line 1 \"test/yuki/1601-RangeSet.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/1601\"\
     \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
@@ -203,7 +203,7 @@ data:
     \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
     \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
     \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n#line 4 \"test/yuki/1601.test.cpp\"\
+    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n#line 4 \"test/yuki/1601-RangeSet.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll D, Q; cin >> D >> Q;\n    RangeSet\
     \ st;\n    ll ans = 0;\n    rep (Q) {\n        ll a, b; cin >> a >> b;\n     \
     \   st.insert(a, b + 1);\n        auto p = st.find(a);\n        chmax(ans, p.second\
@@ -218,15 +218,15 @@ data:
   - other/template.hpp
   - data-struct/other/RangeSet.hpp
   isVerificationFile: true
-  path: test/yuki/1601.test.cpp
+  path: test/yuki/1601-RangeSet.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-02-27 18:38:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yuki/1601.test.cpp
+documentation_of: test/yuki/1601-RangeSet.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yuki/1601.test.cpp
-- /verify/test/yuki/1601.test.cpp.html
-title: test/yuki/1601.test.cpp
+- /verify/test/yuki/1601-RangeSet.test.cpp
+- /verify/test/yuki/1601-RangeSet.test.cpp.html
+title: test/yuki/1601-RangeSet.test.cpp
 ---

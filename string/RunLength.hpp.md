@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yuki/1469.test.cpp
-    title: test/yuki/1469.test.cpp
+    path: test/yuki/1469-RunLength.test.cpp
+    title: test/yuki/1469-RunLength.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -170,7 +170,7 @@ data:
   timestamp: '2022-02-27 16:46:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/1469.test.cpp
+  - test/yuki/1469-RunLength.test.cpp
 documentation_of: string/RunLength.hpp
 layout: document
 redirect_from:

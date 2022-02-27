@@ -417,11 +417,11 @@ data:
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yuki/1469.test.cpp
-    title: test/yuki/1469.test.cpp
+    path: test/yuki/1469-RunLength.test.cpp
+    title: test/yuki/1469-RunLength.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yuki/1601.test.cpp
-    title: test/yuki/1601.test.cpp
+    path: test/yuki/1601-RangeSet.test.cpp
+    title: test/yuki/1601-RangeSet.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -821,8 +821,8 @@ data:
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/yuki/1601.test.cpp
-  - test/yuki/1469.test.cpp
+  - test/yuki/1601-RangeSet.test.cpp
+  - test/yuki/1469-RunLength.test.cpp
 documentation_of: other/template.hpp
 layout: document
 redirect_from:

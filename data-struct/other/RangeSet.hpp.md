@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yuki/1601.test.cpp
-    title: test/yuki/1601.test.cpp
+    path: test/yuki/1601-RangeSet.test.cpp
+    title: test/yuki/1601-RangeSet.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -271,7 +271,7 @@ data:
   timestamp: '2022-02-27 15:19:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/1601.test.cpp
+  - test/yuki/1601-RangeSet.test.cpp
 documentation_of: data-struct/other/RangeSet.hpp
 layout: document
 redirect_from:
