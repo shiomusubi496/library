@@ -29,5 +29,10 @@ int main() {
         ll idx = seg.max_right(i, [&](const auto& v) { return v.M <= v.m1 + v.m2; });
         ans1 += idx - i - 1;
     }
+    reps (i, N) {
+        ll idx = seg.min_left(i, [&](const auto& v) { return v.M <= v.m1 + v.m2; });
+        ans2 += i - idx - 1;
+    }
+    assert(ans1 == ans2);
     cout << ans1 << endl;
 }
