@@ -2,11 +2,11 @@
 
 #include "../other/template.hpp"
 
-template<class T> class Random {
+template<class Engine> class Random {
   protected:
-    T rnd;
+    Engine rnd;
   public:
-    using result_type = typename T::result_type;
+    using result_type = typename Engine::result_type;
     Random() : Random(std::random_device{}()) {}
     Random(result_type seed) : rnd(seed) {}
     result_type operator()() {
