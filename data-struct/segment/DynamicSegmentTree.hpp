@@ -66,9 +66,9 @@ template<class M> class DynamicSegmentTree {
         }
         if (a + 1 == b) return b;
         ll m = (a + b) >> 1;
-        ll res = min_left(nd->l, m, b, r, cond, sm);
+        ll res = min_left(nd->r, m, b, r, cond, sm);
         if (res != 0) return res;
-        return min_left(nd->r, a, m, r, cond, sm);
+        return min_left(nd->l, a, m, r, cond, sm);
     }
   public:
     DynamicSegmentTree() : DynamicSegmentTree(inf) {}
