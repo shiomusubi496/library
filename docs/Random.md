@@ -1,6 +1,6 @@
 ## 概要
 
-乱数を生成するクラス。テンプレート引数にとった型 `T` を使って乱数を生成する。 `operator()` の返り値の型である `result_type` をメンバ型に持つ。
+乱数を生成するクラス。テンプレート引数にとった型を使って乱数を生成する。 `operator()` の返り値の型である `result_type` をメンバ型に持つ。
 
 - `Random()` : seed を `std::random_device` で生成する。 $\Theta(1)$ 。
 - `Random(result_type seed)` : seed を与えられた値にする。 $\Theta(1)$ 。
@@ -13,3 +13,8 @@
 - `vector<T> choice_shuffle(int n, T l, T r)` : `[l, r]` から整数を $n$ 個返す。全ての整数組が同様に確からしく出る。内部で `shuffle` を使用している。 $\Theta(r - l)$ 。
 - `void shuffle(Iter first, Iter last)` : `[first, last)` をシャッフルする。 $\Theta(n)$ 。
 - `vector<T> permutation(int n)` : 長さ `n` の順列を返す。全ての順列が同様に確からしく出る。 $\Theta(n)$ 。
+
+また、次の型が使える。
+
+- `Random32` : `Random<std::mt19937>` のエイリアス。 32bit の値を返す。
+- `Random64` : `Random<std::mt19937_64>` のエイリアス。 64bit の値を返す。
