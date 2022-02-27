@@ -463,6 +463,9 @@ data:
   - name: test/yuki
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+      title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1435_SegTree-BinarySearch.test.cpp
       title: test/yuki/1435_SegTree-BinarySearch.test.cpp
     - icon: ':heavy_check_mark:'

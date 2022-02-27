@@ -278,8 +278,8 @@ data:
     \ nd, ll a, ll b, ll r, const Cond& cond, T& sm) const {\n        if (nd == nullptr\
     \ || r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n  \
     \          sm = M::op(nd->val, sm);\n            return 0;\n        }\n      \
-    \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->l,\
-    \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->r,\
+    \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r,\
+    \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->l,\
     \ a, m, r, cond, sm);\n    }\n  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf)\
     \ {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n    void init(ll n_) {\n  \
     \      ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 17:53:12+09:00'
+  timestamp: '2022-02-27 20:18:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp

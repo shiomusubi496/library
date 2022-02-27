@@ -417,6 +417,9 @@ data:
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+    title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,6 +828,7 @@ data:
   - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/yuki/1601-RangeSet.test.cpp
+  - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1469-RunLength.test.cpp
 documentation_of: other/template.hpp
