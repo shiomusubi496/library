@@ -300,7 +300,9 @@ data:
     \ B[i].M = A[i];\n        B[i].m2 = infinity<int>::value;\n    }\n    SegmentTree<Mmm>\
     \ seg(B);\n    ll ans1 = 0, ans2 = 0;\n    rep (i, N) {\n        ll idx = seg.max_right(i,\
     \ [&](const auto& v) { return v.M <= v.m1 + v.m2; });\n        ans1 += idx - i\
-    \ - 1;\n    }\n    cout << ans1 << endl;\n}\n"
+    \ - 1;\n    }\n    reps (i, N) {\n        ll idx = seg.min_left(i, [&](const auto&\
+    \ v) { return v.M <= v.m1 + v.m2; });\n        ans2 += i - idx - 1;\n    }\n \
+    \   assert(ans1 == ans2);\n    cout << ans1 << endl;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1435\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../data-struct/segment/SegmentTree.hpp\"\nusing namespace std;\n\
     int main() {\n    struct Mmm {\n        typedef struct value_type {\n        \
@@ -313,7 +315,9 @@ data:
     \ B[i].M = A[i];\n        B[i].m2 = infinity<int>::value;\n    }\n    SegmentTree<Mmm>\
     \ seg(B);\n    ll ans1 = 0, ans2 = 0;\n    rep (i, N) {\n        ll idx = seg.max_right(i,\
     \ [&](const auto& v) { return v.M <= v.m1 + v.m2; });\n        ans1 += idx - i\
-    \ - 1;\n    }\n    cout << ans1 << endl;\n}\n"
+    \ - 1;\n    }\n    reps (i, N) {\n        ll idx = seg.min_left(i, [&](const auto&\
+    \ v) { return v.M <= v.m1 + v.m2; });\n        ans2 += i - idx - 1;\n    }\n \
+    \   assert(ans1 == ans2);\n    cout << ans1 << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -322,7 +326,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1435_SegTree-BinarySearch.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 18:58:32+09:00'
+  timestamp: '2022-02-27 19:02:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/1435_SegTree-BinarySearch.test.cpp
