@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int N, W; cin >> N >> W;
     vector<Fraction> A(N); cin >> A;
-    sort(rall(A));
+    sort(all(A), greater<Fraction>());
     Fraction ans;
     each_const (f : A) {
         ans += min<ll>(W, f.get_den()) * f;
