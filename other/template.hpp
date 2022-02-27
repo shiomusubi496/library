@@ -235,12 +235,12 @@ inline CONSTEXPR int popcnt(ull x) {
 }
 
 template<class T, class Comp = std::less<T>> class presser {
-  private:
+  protected:
     std::vector<T> dat;
     Comp cmp;
     bool sorted = false;
   public:
-    presser() = default;
+    presser() : presser(Comp()) {}
     presser(const Comp& cmp) : cmp(cmp) {}
     presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec), cmp(cmp) {}
     presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}
