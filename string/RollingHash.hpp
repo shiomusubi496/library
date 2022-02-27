@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
+#include "../random/Random.hpp"
 
 class RollingHash {
   protected:
@@ -26,7 +27,7 @@ class RollingHash {
     }
     ull BASE;
     void init() {
-        BASE = (1ull << 31) + (std::random_device()() & MASK31);
+        BASE = (1ull << 31) + (rand32() & MASK31);
     }
   public:
     class Hash {
