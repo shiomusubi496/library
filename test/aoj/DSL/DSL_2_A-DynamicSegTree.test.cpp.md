@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -251,49 +251,49 @@ data:
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
     \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DynamicSegmentTree.hpp\"\
     \n\ntemplate<class M> class DynamicSegmentTree {\n  protected:\n    using T =\
-    \ typename M::value_type;\n    struct Node {\n        T val;\n        Node *l,\
-    \ *r;\n        Node* get_l() {\n            if (l == nullptr) l = new Node;\n\
-    \            return l;\n        }\n        Node* get_r() {\n            if (r\
-    \ == nullptr) r = new Node;\n            return r;\n        }\n        void update()\
-    \ {\n            val = M::id();\n            if (l != nullptr) val = M::op(val,\
-    \ l->val);\n            if (r != nullptr) val = M::op(val, r->val);\n        }\n\
-    \        Node() : val(M::id()), l(nullptr), r(nullptr) {}\n    };\n    ll ori,\
-    \ h, n;\n    Node* root;\n    template<class Upd> void update(Node* nd, ll a,\
-    \ ll b, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n            nd->val\
-    \ = upd(nd->val);\n            return;\n        }\n        ll m = (a + b) >> 1;\n\
-    \        if (k < m) update(nd->get_l(), a, m, k, upd);\n        else update(nd->get_r(),\
-    \ m, b, k, upd);\n        nd->update();\n    }\n    T prod(Node* nd, ll a, ll\
-    \ b, ll l, ll r) const {\n        if (nd == nullptr) return M::id();\n       \
-    \ if (l <= a && b <= r) return nd->val;\n        if (r <= a || b <= l) return\
-    \ M::id();\n        ll m = (a + b) >> 1;\n        return M::op(prod(nd->l, a,\
-    \ m, l, r), prod(nd->r, m, b, l, r));\n    }\n    template<class Cond> ll max_right(Node*\
-    \ nd, ll a, ll b, ll l, const Cond& cond, T& sm) const {\n        if (nd == nullptr\
-    \ || b <= l) return n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n  \
-    \          sm = M::op(sm, nd->val);\n            return n;\n        }\n      \
-    \  if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res = max_right(nd->l,\
-    \ a, m, l, cond, sm);\n        if (res != n) return res;\n        return max_right(nd->r,\
-    \ m, b, l, cond, sm);\n    }\n    template<class Cond> ll min_left(Node* nd, ll\
-    \ a, ll b, ll r, const Cond& cond, T& sm) const {\n        if (nd == nullptr ||\
-    \ r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n     \
-    \       sm = M::op(nd->val, sm);\n            return 0;\n        }\n        if\
-    \ (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->l,\
+    \ typename M::value_type;\n    struct Node;\n    using Node_ptr = std::unique_ptr<Node>;\n\
+    \    struct Node {\n        T val;\n        Node_ptr l, r;\n        Node_ptr&\
+    \ get_l() {\n            if (l == nullptr) l = std::make_unique<Node>();\n   \
+    \         return l;\n        }\n        Node_ptr& get_r() {\n            if (r\
+    \ == nullptr) r = std::make_unique<Node>();\n            return r;\n        }\n\
+    \        void update() {\n            val = M::id();\n            if (l != nullptr)\
+    \ val = M::op(val, l->val);\n            if (r != nullptr) val = M::op(val, r->val);\n\
+    \        }\n        Node() : val(M::id()), l(nullptr), r(nullptr) {}\n    };\n\
+    \    ll ori, h, n;\n    Node_ptr root;\n    template<class Upd> void update(Node_ptr&\
+    \ nd, ll a, ll b, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n       \
+    \     nd->val = upd(nd->val);\n            return;\n        }\n        ll m =\
+    \ (a + b) >> 1;\n        if (k < m) update(nd->get_l(), a, m, k, upd);\n     \
+    \   else update(nd->get_r(), m, b, k, upd);\n        nd->update();\n    }\n  \
+    \  T prod(const Node_ptr& nd, ll a, ll b, ll l, ll r) const {\n        if (nd\
+    \ == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
+    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
+    \        return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n   \
+    \ }\n    template<class Cond> ll max_right(const Node_ptr& nd, ll a, ll b, ll\
+    \ l, const Cond& cond, T& sm) const {\n        if (nd == nullptr || b <= l) return\
+    \ n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n            sm = M::op(sm,\
+    \ nd->val);\n            return n;\n        }\n        if (a + 1 == b) return\
+    \ a;\n        ll m = (a + b) >> 1;\n        ll res = max_right(nd->l, a, m, l,\
+    \ cond, sm);\n        if (res != n) return res;\n        return max_right(nd->r,\
+    \ m, b, l, cond, sm);\n    }\n    template<class Cond> ll min_left(const Node_ptr&\
+    \ nd, ll a, ll b, ll r, const Cond& cond, T& sm) const {\n        if (nd == nullptr\
+    \ || r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n  \
+    \          sm = M::op(nd->val, sm);\n            return 0;\n        }\n      \
+    \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->l,\
     \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->r,\
-    \ a, m, r, cond, sm);\n    }\n    void del(Node* nd) {\n        if (nd == nullptr)\
-    \ return;\n        del(nd->l);\n        del(nd->r);\n        delete nd;\n    }\n\
-    \  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) { init(n_); }\n    ~DynamicSegmentTree() { del(root); }\n    void init(ll\
-    \ n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull\
-    \ << h;\n        root = new Node;\n    }\n    template<class Upd> void update(ll\
-    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(root,\
-    \ 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k, [&](T) ->\
-    \ T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k, [&](T\
-    \ a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const {\n \
-    \       assert(0 <= l && l <= r && r <= ori);\n        return prod(root, 0, n,\
-    \ l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll k)\
-    \ const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll l,\
-    \ const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if (l\
-    \ == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n      \
-    \  return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
+    \ a, m, r, cond, sm);\n    }\n  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf)\
+    \ {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n    void init(ll n_) {\n  \
+    \      ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n\
+    \        root = std::make_unique<Node>();\n    }\n    template<class Upd> void\
+    \ update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n       \
+    \ update(root, 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k,\
+    \ [&](T) -> T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k,\
+    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(root,\
+    \ 0, n, l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll\
+    \ k) const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll\
+    \ l, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if\
+    \ (l == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n   \
+    \     return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
     \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
     \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
     \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
@@ -317,7 +317,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-02-27 17:53:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
