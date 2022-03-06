@@ -140,6 +140,9 @@ data:
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
+    path: math/KthRoot.hpp
+    title: "KthRoot(k\u4E57\u6839)"
+  - icon: ':heavy_check_mark:'
     path: math/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -335,6 +338,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/cycle_detection.test.cpp
     title: test/yosupo/cycle_detection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/kth_root_integer.test.cpp
+    title: test/yosupo/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/lca-HLD.test.cpp
     title: test/yosupo/lca-HLD.test.cpp
@@ -694,6 +700,7 @@ data:
   - math/ModInt.hpp
   - math/EulerPhi.hpp
   - math/Matrix.hpp
+  - math/KthRoot.hpp
   - math/Rational.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
@@ -762,6 +769,7 @@ data:
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
   - test/yosupo/lca-HLD.test.cpp
+  - test/yosupo/kth_root_integer.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/aplusb.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
