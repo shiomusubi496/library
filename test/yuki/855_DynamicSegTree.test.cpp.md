@@ -20,12 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1435
+    PROBLEM: https://yukicoder.me/problems/no/855
     links:
-    - https://yukicoder.me/problems/no/1435
-  bundledCode: "#line 1 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\n\
-    #define PROBLEM \"https://yukicoder.me/problems/no/1435\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    - https://yukicoder.me/problems/no/855
+  bundledCode: "#line 1 \"test/yuki/855_DynamicSegTree.test.cpp\"\n#define PROBLEM\
+    \ \"https://yukicoder.me/problems/no/855\"\n#line 2 \"other/template.hpp\"\n\n\
+    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
     \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
@@ -305,52 +305,111 @@ data:
     \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
     \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n *\
     \ @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
-    \ * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    struct Mmm {\n        typedef struct\
-    \ value_type {\n            int m1, m2, M;\n        } T;\n        static T op(T\
-    \ a, T b) {\n            int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
-    \            return {v[0], v[1], max(a.M, b.M)};\n        }\n        static T\
-    \ id() {\n            return {infinity<int>::value, infinity<int>::value, infinity<int>::mvalue};\n\
-    \        }\n    };\n    int N; cin >> N;\n    vector<int> A(N); cin >> A;\n  \
-    \  vector<typename Mmm::value_type> B(N);\n    rep (i, N) {\n        B[i].m1 =\
-    \ B[i].M = A[i];\n        B[i].m2 = infinity<int>::value;\n    }\n    DynamicSegmentTree<Mmm>\
-    \ seg(N);\n    rep (i, N) seg.set(i, B[i]);\n    ll ans1 = 0, ans2 = 0;\n    rep\
-    \ (i, N) {\n        ll idx = seg.max_right(i, [&](const auto& v) { return v.M\
-    \ <= v.m1 + v.m2; });\n        ans1 += idx - i - 1;\n    }\n    reps (i, N) {\n\
-    \        ll idx = seg.min_left(i, [&](const auto& v) { return v.M <= v.m1 + v.m2;\
-    \ });\n        ans2 += i - idx - 1;\n    }\n    assert(ans1 == ans2);\n    cout\
-    \ << ans1 << endl;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1435\"\n#include \"../../other/template.hpp\"\
+    \ * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/855_DynamicSegTree.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    ll H, W, N; cin >> H >> W >> N;\n  \
+    \  DynamicSegmentTree<Monoid::Max<ll>> segl(H + 2), segu(W + 2);\n    DynamicSegmentTree<Monoid::Min<ll>>\
+    \ segr(H + 2), segd(W + 2);\n    map<ll, ll> mpl, mpr, mpu, mpd;\n    rep (N)\
+    \ {\n        ll x, y, l; cin >> x >> y >> l;\n        bool flg = false;\n    \
+    \    if (y == 0 || y == H + 1) {\n            swap(H, W);\n            swap(x,\
+    \ y);\n            swap(segl, segu); swap(segr, segd);\n            swap(mpl,\
+    \ mpu); swap(mpr, mpd);\n            flg = true;\n        }\n        if (x ==\
+    \ 0) {\n            if (mpl.count(y)) {\n                l += mpl[y];\n      \
+    \          mpl.erase(y);\n                segl.reset(y);\n            }\n    \
+    \        ll nx = min(l, W);\n            ll idx = infinity<ll>::max, kd = -1;\n\
+    \            if (l >= W + 1) {\n                idx = W + 1; kd = 3;\n       \
+    \     }\n            if (mpr.count(y) && mpr[y] <= nx) {\n                if (chmin(idx,\
+    \ mpr[y])) kd = 0;\n            }\n            if (segu.prod(0, nx + 1) >= y)\
+    \ {\n                if (chmin(idx, segu.max_right(0, [&](ll a) { return a < y;\
+    \ }))) kd = 1;\n            }\n            if (segd.prod(0, nx + 1) <= y) {\n\
+    \                if (chmin(idx, segd.max_right(0, [&](ll a) { return a > y; })))\
+    \ kd = 2;\n            }\n            if (kd == 0) {\n                mpr.erase(y);\n\
+    \                segr.reset(y);\n            }\n            else if (kd == 1)\
+    \ {\n                mpu.erase(idx);\n                segu.reset(idx);\n     \
+    \       }\n            else if (kd == 2) {\n                mpd.erase(idx);\n\
+    \                segd.reset(idx);\n            }\n            else if (kd == -1)\
+    \ {\n                mpl[y] = nx;\n                segl.set(y, nx);\n        \
+    \    }\n        }\n        if (x == W + 1) {\n            if (mpr.count(y)) {\n\
+    \                l += W + 1 - mpr[y];\n                mpr.erase(y);\n       \
+    \         segr.reset(y);\n            }\n            ll nx = max(W - l + 1, 0ll);\n\
+    \            ll idx = infinity<ll>::min, kd = -1;\n            if (l >= W + 1)\
+    \ {\n                idx = 0; kd = 3;\n            }\n            if (mpl.count(y)\
+    \ && nx <= mpl[y]) {\n                if (chmax(idx, mpl[y])) kd = 0;\n      \
+    \      }\n            if (segu.prod(nx, W + 2) >= y) {\n                if (chmax(idx,\
+    \ segu.min_left(W + 2, [&](ll a) { return a < y; }) - 1)) kd = 1;\n          \
+    \  }\n            if (segd.prod(nx, W + 2) <= y) {\n                if (chmax(idx,\
+    \ segd.min_left(W + 2, [&](ll a) { return a > y; }) - 1)) kd = 2;\n          \
+    \  }\n            if (kd == 0) {\n                mpl.erase(y);\n            \
+    \    segl.reset(y);\n            }\n            else if (kd == 1) {\n        \
+    \        mpu.erase(idx);\n                segu.reset(idx);\n            }\n  \
+    \          else if (kd == 2) {\n                mpd.erase(idx);\n            \
+    \    segd.reset(idx);\n            }\n            else if (kd == -1) {\n     \
+    \           mpr[y] = nx;\n                segr.set(y, nx);\n            }\n  \
+    \      }\n        if (flg) {\n            swap(H, W);\n            swap(x, y);\n\
+    \            swap(segl, segu); swap(segr, segd);\n            swap(mpl, mpu);\
+    \ swap(mpr, mpd);\n        }\n    }\n    ll ans = 0;\n    each_const (p : mpl)\
+    \ ans += p.second;\n    each_const (p : mpr) ans += W + 1 - p.second;\n    each_const\
+    \ (p : mpu) ans += p.second;\n    each_const (p : mpd) ans += H + 1 - p.second;\n\
+    \    cout << ans << endl;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/855\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../data-struct/segment/DynamicSegmentTree.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    struct Mmm {\n        typedef struct value_type {\n\
-    \            int m1, m2, M;\n        } T;\n        static T op(T a, T b) {\n \
-    \           int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
-    \            return {v[0], v[1], max(a.M, b.M)};\n        }\n        static T\
-    \ id() {\n            return {infinity<int>::value, infinity<int>::value, infinity<int>::mvalue};\n\
-    \        }\n    };\n    int N; cin >> N;\n    vector<int> A(N); cin >> A;\n  \
-    \  vector<typename Mmm::value_type> B(N);\n    rep (i, N) {\n        B[i].m1 =\
-    \ B[i].M = A[i];\n        B[i].m2 = infinity<int>::value;\n    }\n    DynamicSegmentTree<Mmm>\
-    \ seg(N);\n    rep (i, N) seg.set(i, B[i]);\n    ll ans1 = 0, ans2 = 0;\n    rep\
-    \ (i, N) {\n        ll idx = seg.max_right(i, [&](const auto& v) { return v.M\
-    \ <= v.m1 + v.m2; });\n        ans1 += idx - i - 1;\n    }\n    reps (i, N) {\n\
-    \        ll idx = seg.min_left(i, [&](const auto& v) { return v.M <= v.m1 + v.m2;\
-    \ });\n        ans2 += i - idx - 1;\n    }\n    assert(ans1 == ans2);\n    cout\
-    \ << ans1 << endl;\n}\n"
+    \ std;\nint main() {\n    ll H, W, N; cin >> H >> W >> N;\n    DynamicSegmentTree<Monoid::Max<ll>>\
+    \ segl(H + 2), segu(W + 2);\n    DynamicSegmentTree<Monoid::Min<ll>> segr(H +\
+    \ 2), segd(W + 2);\n    map<ll, ll> mpl, mpr, mpu, mpd;\n    rep (N) {\n     \
+    \   ll x, y, l; cin >> x >> y >> l;\n        bool flg = false;\n        if (y\
+    \ == 0 || y == H + 1) {\n            swap(H, W);\n            swap(x, y);\n  \
+    \          swap(segl, segu); swap(segr, segd);\n            swap(mpl, mpu); swap(mpr,\
+    \ mpd);\n            flg = true;\n        }\n        if (x == 0) {\n         \
+    \   if (mpl.count(y)) {\n                l += mpl[y];\n                mpl.erase(y);\n\
+    \                segl.reset(y);\n            }\n            ll nx = min(l, W);\n\
+    \            ll idx = infinity<ll>::max, kd = -1;\n            if (l >= W + 1)\
+    \ {\n                idx = W + 1; kd = 3;\n            }\n            if (mpr.count(y)\
+    \ && mpr[y] <= nx) {\n                if (chmin(idx, mpr[y])) kd = 0;\n      \
+    \      }\n            if (segu.prod(0, nx + 1) >= y) {\n                if (chmin(idx,\
+    \ segu.max_right(0, [&](ll a) { return a < y; }))) kd = 1;\n            }\n  \
+    \          if (segd.prod(0, nx + 1) <= y) {\n                if (chmin(idx, segd.max_right(0,\
+    \ [&](ll a) { return a > y; }))) kd = 2;\n            }\n            if (kd ==\
+    \ 0) {\n                mpr.erase(y);\n                segr.reset(y);\n      \
+    \      }\n            else if (kd == 1) {\n                mpu.erase(idx);\n \
+    \               segu.reset(idx);\n            }\n            else if (kd == 2)\
+    \ {\n                mpd.erase(idx);\n                segd.reset(idx);\n     \
+    \       }\n            else if (kd == -1) {\n                mpl[y] = nx;\n  \
+    \              segl.set(y, nx);\n            }\n        }\n        if (x == W\
+    \ + 1) {\n            if (mpr.count(y)) {\n                l += W + 1 - mpr[y];\n\
+    \                mpr.erase(y);\n                segr.reset(y);\n            }\n\
+    \            ll nx = max(W - l + 1, 0ll);\n            ll idx = infinity<ll>::min,\
+    \ kd = -1;\n            if (l >= W + 1) {\n                idx = 0; kd = 3;\n\
+    \            }\n            if (mpl.count(y) && nx <= mpl[y]) {\n            \
+    \    if (chmax(idx, mpl[y])) kd = 0;\n            }\n            if (segu.prod(nx,\
+    \ W + 2) >= y) {\n                if (chmax(idx, segu.min_left(W + 2, [&](ll a)\
+    \ { return a < y; }) - 1)) kd = 1;\n            }\n            if (segd.prod(nx,\
+    \ W + 2) <= y) {\n                if (chmax(idx, segd.min_left(W + 2, [&](ll a)\
+    \ { return a > y; }) - 1)) kd = 2;\n            }\n            if (kd == 0) {\n\
+    \                mpl.erase(y);\n                segl.reset(y);\n            }\n\
+    \            else if (kd == 1) {\n                mpu.erase(idx);\n          \
+    \      segu.reset(idx);\n            }\n            else if (kd == 2) {\n    \
+    \            mpd.erase(idx);\n                segd.reset(idx);\n            }\n\
+    \            else if (kd == -1) {\n                mpr[y] = nx;\n            \
+    \    segr.set(y, nx);\n            }\n        }\n        if (flg) {\n        \
+    \    swap(H, W);\n            swap(x, y);\n            swap(segl, segu); swap(segr,\
+    \ segd);\n            swap(mpl, mpu); swap(mpr, mpd);\n        }\n    }\n    ll\
+    \ ans = 0;\n    each_const (p : mpl) ans += p.second;\n    each_const (p : mpr)\
+    \ ans += W + 1 - p.second;\n    each_const (p : mpu) ans += p.second;\n    each_const\
+    \ (p : mpd) ans += H + 1 - p.second;\n    cout << ans << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   - other/bitop.hpp
   - other/monoid.hpp
   isVerificationFile: true
-  path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  path: test/yuki/855_DynamicSegTree.test.cpp
   requiredBy: []
   timestamp: '2022-03-06 15:41:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+documentation_of: test/yuki/855_DynamicSegTree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-- /verify/test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp.html
-title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+- /verify/test/yuki/855_DynamicSegTree.test.cpp
+- /verify/test/yuki/855_DynamicSegTree.test.cpp.html
+title: test/yuki/855_DynamicSegTree.test.cpp
 ---

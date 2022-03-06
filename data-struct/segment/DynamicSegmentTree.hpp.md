@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/855_DynamicSegTree.test.cpp
+    title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -281,25 +284,32 @@ data:
     \          sm = M::op(nd->val, sm);\n            return 0;\n        }\n      \
     \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r,\
     \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->l,\
-    \ a, m, r, cond, sm);\n    }\n  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf)\
-    \ {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n    void init(ll n_) {\n  \
-    \      ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n\
-    \        root = std::make_unique<Node>();\n    }\n    template<class Upd> void\
-    \ update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n       \
-    \ update(root, 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k,\
-    \ [&](T) -> T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k,\
-    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(root,\
-    \ 0, n, l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll\
-    \ k) const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll\
-    \ l, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if\
-    \ (l == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n   \
-    \     return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
-    \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
-    };\n\n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n"
+    \ a, m, r, cond, sm);\n    }\n    void reset(Node_ptr& nd, ll a, ll b, ll l, ll\
+    \ r) {\n        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n\
+    \        if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<Node>();\n\
+    \            else nd.reset();\n            return;\n        }\n        ll m =\
+    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
+    \ l, r);\n        nd->update();\n    }\n  public:\n    DynamicSegmentTree() :\
+    \ DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n  \
+    \  void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
+    \        n = 1ull << h;\n        root = std::make_unique<Node>();\n    }\n   \
+    \ template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0 <=\
+    \ k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
+    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
+    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
+    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
+    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
+    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
+    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
+    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
+    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
+    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
+    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n *\
+    \ @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
+    \ * @docs docs/DynamicSegmentTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DynamicSegmentTree\
     \ {\n  protected:\n    using T = typename M::value_type;\n    struct Node;\n \
@@ -332,25 +342,32 @@ data:
     \         return 0;\n        }\n        if (a + 1 == b) return b;\n        ll\
     \ m = (a + b) >> 1;\n        ll res = min_left(nd->r, m, b, r, cond, sm);\n  \
     \      if (res != 0) return res;\n        return min_left(nd->l, a, m, r, cond,\
-    \ sm);\n    }\n  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n\
-    \    DynamicSegmentTree(ll n_) { init(n_); }\n    void init(ll n_) {\n       \
-    \ ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n    \
-    \    root = std::make_unique<Node>();\n    }\n    template<class Upd> void update(ll\
-    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(root,\
-    \ 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k, [&](T) ->\
-    \ T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k, [&](T\
-    \ a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const {\n \
-    \       assert(0 <= l && l <= r && r <= ori);\n        return prod(root, 0, n,\
-    \ l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll k)\
-    \ const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll l,\
-    \ const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if (l\
-    \ == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n      \
-    \  return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
-    \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
-    };\n\n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n"
+    \ sm);\n    }\n    void reset(Node_ptr& nd, ll a, ll b, ll l, ll r) {\n      \
+    \  if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n       \
+    \ if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<Node>();\n\
+    \            else nd.reset();\n            return;\n        }\n        ll m =\
+    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
+    \ l, r);\n        nd->update();\n    }\n  public:\n    DynamicSegmentTree() :\
+    \ DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n  \
+    \  void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
+    \        n = 1ull << h;\n        root = std::make_unique<Node>();\n    }\n   \
+    \ template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0 <=\
+    \ k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
+    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
+    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
+    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
+    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
+    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
+    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
+    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
+    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
+    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
+    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n *\
+    \ @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
+    \ * @docs docs/DynamicSegmentTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -358,11 +375,12 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-02-27 20:18:02+09:00'
+  timestamp: '2022-03-06 15:41:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  - test/yuki/855_DynamicSegTree.test.cpp
 documentation_of: data-struct/segment/DynamicSegmentTree.hpp
 layout: document
 redirect_from:
@@ -372,7 +390,7 @@ title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
 ---
 ## 概要
 
-単位元以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。 ~~あと何も考えずにできるのも利点。~~
+単位元以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。あと楽。
 
 - コンストラクタ
   - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(1)$ 。
@@ -382,6 +400,8 @@ title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
   - `void apply(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log N)$ 。
   - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
+  - `void reset(int k)` : `a[k]` に単位元を代入する。 $\Theta(\log N)$ 。
+  - `void reset(int l, int r)` : `a[l], a[l+1], ..., a[r-1]` に単位元を代入する。 $\Theta(\log N)$ 。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
   - `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。

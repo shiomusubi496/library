@@ -480,6 +480,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/1601-RangeSet.test.cpp
       title: test/yuki/1601-RangeSet.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki/855_DynamicSegTree.test.cpp
+      title: test/yuki/855_DynamicSegTree.test.cpp
 layout: toppage
 ---
 shiomusubi496 の C++ 競プロライブラリ。

@@ -280,25 +280,32 @@ data:
     \          sm = M::op(nd->val, sm);\n            return 0;\n        }\n      \
     \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r,\
     \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->l,\
-    \ a, m, r, cond, sm);\n    }\n  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf)\
-    \ {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n    void init(ll n_) {\n  \
-    \      ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n\
-    \        root = std::make_unique<Node>();\n    }\n    template<class Upd> void\
-    \ update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n       \
-    \ update(root, 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k,\
-    \ [&](T) -> T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k,\
-    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(root,\
-    \ 0, n, l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll\
-    \ k) const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll\
-    \ l, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if\
-    \ (l == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n   \
-    \     return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
-    \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
-    };\n\n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\
+    \ a, m, r, cond, sm);\n    }\n    void reset(Node_ptr& nd, ll a, ll b, ll l, ll\
+    \ r) {\n        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n\
+    \        if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<Node>();\n\
+    \            else nd.reset();\n            return;\n        }\n        ll m =\
+    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
+    \ l, r);\n        nd->update();\n    }\n  public:\n    DynamicSegmentTree() :\
+    \ DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n  \
+    \  void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
+    \        n = 1ull << h;\n        root = std::make_unique<Node>();\n    }\n   \
+    \ template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0 <=\
+    \ k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
+    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
+    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
+    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
+    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
+    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
+    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
+    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
+    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
+    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
+    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n *\
+    \ @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
+    \ * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicSegmentTree<Monoid::Min<int,\
     \ (1ull << 31) - 1>> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >>\
     \ a >> b;\n        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a,\
@@ -317,7 +324,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 20:18:02+09:00'
+  timestamp: '2022-03-06 15:41:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp

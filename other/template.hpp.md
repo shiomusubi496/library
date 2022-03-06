@@ -434,6 +434,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/855_DynamicSegTree.test.cpp
+    title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -839,6 +842,7 @@ data:
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1469-RunLength.test.cpp
+  - test/yuki/855_DynamicSegTree.test.cpp
 documentation_of: other/template.hpp
 layout: document
 redirect_from:
