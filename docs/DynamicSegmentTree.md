@@ -1,6 +1,6 @@
 ## 概要
 
-単位元以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。 ~~あと何も考えずにできるのも利点。~~
+単位元以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。あと楽。
 
 - コンストラクタ
   - `SegmentTree()` : 長さ $0$ に SegmentTree を初期化する。 $\Theta(1)$ 。
@@ -10,6 +10,8 @@
   - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
   - `void apply(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log N)$ 。
   - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
+  - `void reset(int k)` : `a[k]` に単位元を代入する。 $\Theta(\log N)$ 。
+  - `void reset(int l, int r)` : `a[l], a[l+1], ..., a[r-1]` に単位元を代入する。 $\Theta(\log N)$ 。
 - 取得クエリ
   - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
   - `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。

@@ -70,6 +70,19 @@ template<class M> class DynamicSegmentTree {
         if (res != 0) return res;
         return min_left(nd->l, a, m, r, cond, sm);
     }
+    void reset(Node_ptr& nd, ll a, ll b, ll l, ll r) {
+        if (nd == nullptr) return;
+        if (r <= a || b <= l) return;
+        if (l <= a && b <= r) {
+            if (nd == root) nd = std::make_unique<Node>();
+            else nd.reset();
+            return;
+        }
+        ll m = (a + b) >> 1;
+        reset(nd->l, a, m, l, r);
+        reset(nd->r, m, b, l, r);
+        nd->update();
+    }
   public:
     DynamicSegmentTree() : DynamicSegmentTree(inf) {}
     DynamicSegmentTree(ll n_) { init(n_); }
@@ -109,6 +122,8 @@ template<class M> class DynamicSegmentTree {
         assert(cond(sm));
         return min_left(root, 0, n, r, cond, sm);
     }
+    void reset(ll l, ll r) { reset(root, 0, n, l, r); }
+    void reset(ll k) { reset(root, 0, n, k, k + 1); }
 };
 
 /**
