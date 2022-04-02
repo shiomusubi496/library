@@ -246,8 +246,9 @@ data:
     \ {\n  protected:\n    using Base = std::vector<std::vector<T>>;\n  public:\n\
     \    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
     \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
-    \    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n     \
-    \   rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
     \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
     \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
     \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
@@ -287,7 +288,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-04-02 23:21:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix_product.test.cpp
