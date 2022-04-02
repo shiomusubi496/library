@@ -55,6 +55,9 @@ data:
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
   - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/ZeroOneBFS.hpp
+    title: ZeroOneBFS(01-BFS)
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
@@ -147,6 +150,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/other/2945-01BFS.test.cpp
+    title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/cartesian_tree.test.cpp
     title: test/yosupo/cartesian_tree.test.cpp
@@ -428,6 +434,7 @@ data:
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/ZeroOneBFS.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/LowLink.hpp
   - graph/other/TopologicalSort.hpp
@@ -473,6 +480,7 @@ data:
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/other/2945-01BFS.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document
 redirect_from:

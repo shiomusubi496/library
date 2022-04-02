@@ -127,6 +127,9 @@ data:
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
+    - icon: ':heavy_check_mark:'
+      path: graph/shortest-path/ZeroOneBFS.hpp
+      title: ZeroOneBFS(01-BFS)
   - name: graph/tree
     pages:
     - icon: ':heavy_check_mark:'
@@ -371,6 +374,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/other/2945-01BFS.test.cpp
+      title: test/aoj/other/2945-01BFS.test.cpp
   - name: test/yosupo
     pages:
     - icon: ':heavy_check_mark:'

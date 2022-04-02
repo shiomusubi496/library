@@ -111,6 +111,9 @@ data:
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
   - icon: ':heavy_check_mark:'
+    path: graph/shortest-path/ZeroOneBFS.hpp
+    title: ZeroOneBFS(01-BFS)
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
@@ -329,6 +332,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/other/2945-01BFS.test.cpp
+    title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/aplusb.test.cpp
     title: test/yosupo/aplusb.test.cpp
@@ -748,6 +754,7 @@ data:
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/ZeroOneBFS.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/LowLink.hpp
   - graph/other/TopologicalSort.hpp
@@ -819,6 +826,7 @@ data:
   - test/aoj/ALDS1/ALDS1_1_B-GCD.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/other/2725-CHT.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
