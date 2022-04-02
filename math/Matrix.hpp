@@ -9,6 +9,8 @@ template<class T> class Matrix : public std::vector<std::vector<T>> {
     Matrix() = default;
     Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}
     Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}
+    Matrix(const Base& v) : Base(v) {}
+    Matrix(Base&& v) : Base(std::move(v)) {}
     static Matrix get_id(int sz) {
         Matrix res(sz, sz, T{0});
         rep (i, sz) res[i][i] = T{1};
