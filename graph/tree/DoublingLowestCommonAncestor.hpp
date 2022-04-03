@@ -45,6 +45,11 @@ template<class T> class DoublingLCA {
         }
         return v;
     }
+    int next_vertex(int s, int t) const {
+        if (dep[s] >= dep[t]) return parent(s);
+        int u = kth_ancestor(t, dep[t] - dep[s] - 1);
+        return parent(u) == s ? u : parent(s);
+    }
     Edges<T> path(int s, int t) const {
         Edges<T> pre, suf;
         while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;
@@ -67,6 +72,9 @@ template<class T> class DoublingLCA {
             }
         }
         return parent(u);
+    }
+    int dist(int u, int v) const {
+        return dep[u] + dep[v] - 2 * dep[lca(u, v)];
     }
 };
 
