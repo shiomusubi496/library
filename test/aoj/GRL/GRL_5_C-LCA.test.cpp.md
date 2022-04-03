@@ -222,18 +222,22 @@ data:
     \ return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
     \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
     \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
-    \        return v;\n    }\n    Edges<T> path(int s, int t) const {\n        Edges<T>\
-    \ pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n\
-    \        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n     \
-    \   while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n    \
-    \        suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i, suf.size())\
-    \ pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n       \
-    \ return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u] >\
-    \ dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
-    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
-    \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
-    \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
-    \       return parent(u);\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \        return v;\n    }\n    int next_vertex(int s, int t) const {\n       \
+    \ if (dep[s] >= dep[t]) return parent(s);\n        int u = kth_ancestor(t, dep[t]\
+    \ - dep[s] - 1);\n        return parent(u) == s ? u : parent(s);\n    }\n    Edges<T>\
+    \ path(int s, int t) const {\n        Edges<T> pre, suf;\n        while (dep[s]\
+    \ > dep[t]) pre.push_back(par[s]), s = par[s].to;\n        while (dep[t] > dep[s])\
+    \ suf.push_back(par[t]), t = par[t].to;\n        while (s != t) {\n          \
+    \  pre.push_back(par[s]), s = par[s].to;\n            suf.push_back(par[t]), t\
+    \ = par[t].to;\n        }\n        rrep (i, suf.size()) pre.emplace_back(suf[i].to,\
+    \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
+    \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
+    \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
+    \ dep[u]);\n        if (u == v) return u;\n        rrep (i, h) {\n           \
+    \ if (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n            \
+    \    v = dbl[v][i];\n            }\n        }\n        return parent(u);\n   \
+    \ }\n    int dist(int u, int v) const {\n        return dep[u] + dep[v] - 2 *\
+    \ dep[lca(u, v)];\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
     \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n\
     \ */\n#line 5 \"test/aoj/GRL/GRL_5_C-LCA.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n   \
@@ -257,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-04-03 18:12:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-LCA.test.cpp

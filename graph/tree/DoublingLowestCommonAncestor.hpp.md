@@ -219,18 +219,22 @@ data:
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    Edges<T> path(int s, int t) const {\n\
-    \        Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
-    \ s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n\
-    \        while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n\
-    \            suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i,\
-    \ suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n\
-    \        return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u]\
-    \ > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
-    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
-    \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
-    \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
-    \       return parent(u);\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \       }\n        return v;\n    }\n    int next_vertex(int s, int t) const {\n\
+    \        if (dep[s] >= dep[t]) return parent(s);\n        int u = kth_ancestor(t,\
+    \ dep[t] - dep[s] - 1);\n        return parent(u) == s ? u : parent(s);\n    }\n\
+    \    Edges<T> path(int s, int t) const {\n        Edges<T> pre, suf;\n       \
+    \ while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n        while\
+    \ (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n        while (s !=\
+    \ t) {\n            pre.push_back(par[s]), s = par[s].to;\n            suf.push_back(par[t]),\
+    \ t = par[t].to;\n        }\n        rrep (i, suf.size()) pre.emplace_back(suf[i].to,\
+    \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
+    \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
+    \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
+    \ dep[u]);\n        if (u == v) return u;\n        rrep (i, h) {\n           \
+    \ if (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n            \
+    \    v = dbl[v][i];\n            }\n        }\n        return parent(u);\n   \
+    \ }\n    int dist(int u, int v) const {\n        return dep[u] + dep[v] - 2 *\
+    \ dep[lca(u, v)];\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
     \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
@@ -251,18 +255,22 @@ data:
     \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
     \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
     \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    Edges<T> path(int s, int t) const {\n\
-    \        Edges<T> pre, suf;\n        while (dep[s] > dep[t]) pre.push_back(par[s]),\
-    \ s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n\
-    \        while (s != t) {\n            pre.push_back(par[s]), s = par[s].to;\n\
-    \            suf.push_back(par[t]), t = par[t].to;\n        }\n        rrep (i,\
-    \ suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);\n\
-    \        return pre;\n    }\n    int lca(int u, int v) const {\n        if (dep[u]\
-    \ > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if (dep[u] < dep[v])\
-    \ v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v) return u;\n     \
-    \   rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n               \
-    \ u = dbl[u][i];\n                v = dbl[v][i];\n            }\n        }\n \
-    \       return parent(u);\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \       }\n        return v;\n    }\n    int next_vertex(int s, int t) const {\n\
+    \        if (dep[s] >= dep[t]) return parent(s);\n        int u = kth_ancestor(t,\
+    \ dep[t] - dep[s] - 1);\n        return parent(u) == s ? u : parent(s);\n    }\n\
+    \    Edges<T> path(int s, int t) const {\n        Edges<T> pre, suf;\n       \
+    \ while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n        while\
+    \ (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n        while (s !=\
+    \ t) {\n            pre.push_back(par[s]), s = par[s].to;\n            suf.push_back(par[t]),\
+    \ t = par[t].to;\n        }\n        rrep (i, suf.size()) pre.emplace_back(suf[i].to,\
+    \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
+    \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
+    \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
+    \ dep[u]);\n        if (u == v) return u;\n        rrep (i, h) {\n           \
+    \ if (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n            \
+    \    v = dbl[v][i];\n            }\n        }\n        return parent(u);\n   \
+    \ }\n    int dist(int u, int v) const {\n        return dep[u] + dep[v] - 2 *\
+    \ dep[lca(u, v)];\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
     \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n\
     \ */\n"
   dependsOn:
@@ -272,7 +280,7 @@ data:
   isVerificationFile: false
   path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-04-03 18:12:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
@@ -292,5 +300,7 @@ title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
 - `int depth(int v)` : 頂点 `v` の深さ(根からの距離)を返す。 $\Theta(1)$ 。
 - `int parent(int v)` : 頂点 `v` の親を返す。ただし頂点 `v` が根である場合 $-1$ が返る。 $\Theta(1)$ 。
 - `int lca(int s, int t)` : 頂点 `s` と頂点 `t` の最小共通祖先(Lowest Common Ancestor)を返す。 $\Theta(\log V)$ 。
+- `int dist(int s, int t)` : 頂点 `s` と頂点 `t` の距離を返す。 $\Theta(\log V)$ 。
 - `int kth_parent(int v, int k)` : 頂点 `v` の `k` 番目に近い祖先を返す。存在しない場合 $-1$ が返る。 $\Theta(\log V)$ 。
+- `int next_vertex(int v, int u)` : 頂点 `s` から頂点 `t` へのパスにおいて、 `s` の次の頂点を返す。 $\Theta(\log V)$ 。
 - `Edges<T> path(int s, int t)` : 頂点 `s` から頂点 `t` へのパスに含まれる辺を返す。パスの長さを $P$ として $\Theta(P)$ 。
