@@ -5,11 +5,11 @@ data:
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseOrConvolution.hpp
-    title: BitwiseOrConvolution
+    path: math/convolution/BitwiseAndConvolution.hpp
+    title: BitwiseAndConvolution
   - icon: ':heavy_check_mark:'
-    path: math/convolution/SubsetZetaMoebiusTransform.hpp
-    title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+    path: math/convolution/SupersetZetaMoebiusTransform.hpp
+    title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
@@ -30,7 +30,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
     links:
     - https://judge.yosupo.jp/problem/bitwise_and_convolution
-  bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution-or.test.cpp\"\n#define\
+  bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n#line 2\
     \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
     \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
@@ -367,53 +367,51 @@ data:
     \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
     \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseOrConvolution.hpp\"\
-    \n\n#line 2 \"math/convolution/SubsetZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
-    math/convolution/SubsetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
-    \ subset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int n\
-    \ = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n) {\n  \
-    \          if (j & i) v[j] = Sum::op(v[j], v[j ^ i]);\n        }\n    }\n}\n\n\
-    template<class Sum>\nvoid subset_moebius_transform(std::vector<typename Sum::value_type>&\
-    \ v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
-    \ (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j ^ i]);\n        }\n\
-    \    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\
-    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SubsetZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/BitwiseOrConvolution.hpp\"\n\ntemplate<class\
-    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_or_convolution(std::vector<typename\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\
+    \n\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
+    math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
+    \ superset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
+    \ n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n) {\n\
+    \            if (j & i) v[j ^ i] = Sum::op(v[j ^ i], v[j]);\n        }\n    }\n\
+    }\n\ntemplate<class Sum>\nvoid superset_moebius_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
+    \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
+    \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
+    \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
+    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
-    \ b) {\n    subset_zeta_transform<Sum>(a);\n    subset_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    subset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/BitwiseOrConvolution.md\n\
-    \ */\n#line 7 \"test/yosupo/bitwise_and_convolution-or.test.cpp\"\nusing namespace\
+    \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
+    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+    \ */\n#line 7 \"test/yosupo/bitwise_and_convolution.test.cpp\"\nusing namespace\
     \ std;\nusing mint = modint998244353;\nint main() {\n    int N; cin >> N;\n  \
-    \  vector<mint> a(1 << N), b(1 << N);\n    cin >> a >> b;\n    reverse(all(a));\
-    \ reverse(all(b));\n    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a,\
-    \ b);\n    reverse(all(c));\n    cout << c << endl;\n}\n"
+    \  vector<mint> a(1 << N), b(1 << N);\n    cin >> a >> b;\n    auto c = bitwise_and_convolution<Monoid::Sum<mint>,\
+    \ Monoid::Product<mint>>(a, b);\n    cout << c << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\n\
     #include \"../../other/monoid2.hpp\"\n#include \"../../math/ModInt.hpp\"\n#include\
-    \ \"../../math/convolution/BitwiseOrConvolution.hpp\"\nusing namespace std;\n\
+    \ \"../../math/convolution/BitwiseAndConvolution.hpp\"\nusing namespace std;\n\
     using mint = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint>\
-    \ a(1 << N), b(1 << N);\n    cin >> a >> b;\n    reverse(all(a)); reverse(all(b));\n\
-    \    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a,\
-    \ b);\n    reverse(all(c));\n    cout << c << endl;\n}\n"
+    \ a(1 << N), b(1 << N);\n    cin >> a >> b;\n    auto c = bitwise_and_convolution<Monoid::Sum<mint>,\
+    \ Monoid::Product<mint>>(a, b);\n    cout << c << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
   - other/monoid2.hpp
   - math/ModInt.hpp
-  - math/convolution/BitwiseOrConvolution.hpp
-  - math/convolution/SubsetZetaMoebiusTransform.hpp
+  - math/convolution/BitwiseAndConvolution.hpp
+  - math/convolution/SupersetZetaMoebiusTransform.hpp
   isVerificationFile: true
-  path: test/yosupo/bitwise_and_convolution-or.test.cpp
+  path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
   timestamp: '2022-04-06 12:07:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/bitwise_and_convolution-or.test.cpp
+documentation_of: test/yosupo/bitwise_and_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/bitwise_and_convolution-or.test.cpp
-- /verify/test/yosupo/bitwise_and_convolution-or.test.cpp.html
-title: test/yosupo/bitwise_and_convolution-or.test.cpp
+- /verify/test/yosupo/bitwise_and_convolution.test.cpp
+- /verify/test/yosupo/bitwise_and_convolution.test.cpp.html
+title: test/yosupo/bitwise_and_convolution.test.cpp
 ---

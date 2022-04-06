@@ -158,11 +158,18 @@ data:
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':heavy_check_mark:'
+    path: math/convolution/BitwiseAndConvolution.hpp
+    title: BitwiseAndConvolution
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
   - icon: ':heavy_check_mark:'
     path: math/convolution/SubsetZetaMoebiusTransform.hpp
     title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+      \u30A6\u30B9\u5909\u63DB)"
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/SupersetZetaMoebiusTransform.hpp
+    title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
@@ -348,6 +355,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/bitwise_and_convolution-or.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_and_convolution.test.cpp
+    title: test/yosupo/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/cartesian_tree.test.cpp
     title: test/yosupo/cartesian_tree.test.cpp
@@ -771,6 +781,8 @@ data:
   - math/Combinatorics.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/SubsetZetaMoebiusTransform.hpp
+  - math/convolution/SupersetZetaMoebiusTransform.hpp
+  - math/convolution/BitwiseAndConvolution.hpp
   timestamp: '2022-02-27 15:19:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -841,6 +853,7 @@ data:
   - test/yosupo/line_add_get_min.test.cpp
   - test/yosupo/cartesian_tree.test.cpp
   - test/yosupo/aplusb.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/kth_root_integer.test.cpp
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp

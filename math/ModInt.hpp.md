@@ -31,6 +31,9 @@ data:
     path: test/yosupo/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/bitwise_and_convolution-or.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_and_convolution.test.cpp
+    title: test/yosupo/bitwise_and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -389,6 +392,7 @@ data:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/bitwise_and_convolution-or.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/matrix_product.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp

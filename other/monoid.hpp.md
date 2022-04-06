@@ -98,6 +98,9 @@ data:
     path: test/yosupo/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/bitwise_and_convolution-or.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_and_convolution.test.cpp
+    title: test/yosupo/bitwise_and_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -502,6 +505,7 @@ data:
   - test/yosupo/bitwise_and_convolution-or.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
