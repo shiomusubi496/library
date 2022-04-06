@@ -28,6 +28,9 @@ data:
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/bitwise_and_convolution-or.test.cpp
+    title: test/yosupo/bitwise_and_convolution-or.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix_product.test.cpp
     title: test/yosupo/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -377,18 +380,19 @@ data:
   timestamp: '2022-02-27 15:19:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/matrix_product.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/matrix_product.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

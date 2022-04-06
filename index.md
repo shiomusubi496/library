@@ -178,6 +178,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
+  - name: math/convolution
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/BitwiseOrConvolution.hpp
+      title: BitwiseOrConvolution
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/SubsetZetaMoebiusTransform.hpp
+      title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+        \u30A6\u30B9\u5909\u63DB)"
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -382,6 +391,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/aplusb.test.cpp
       title: test/yosupo/aplusb.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/bitwise_and_convolution-or.test.cpp
+      title: test/yosupo/bitwise_and_convolution-or.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cartesian_tree.test.cpp
       title: test/yosupo/cartesian_tree.test.cpp

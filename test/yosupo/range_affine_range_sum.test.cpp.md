@@ -242,70 +242,76 @@ data:
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
     \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
-    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
-    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
-    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
-    \ a.second / a.first};\n    }\n};\n\ntemplate<class T> struct GCD {\n    using\
-    \ value_type = T;\n    static T op(T a, T b) { return gcd(a, b); }\n    static\
-    \ T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n    using value_type\
-    \ = T;\n    static T op(T a, T b) { return lcm(a, b); }\n    static T id() { return\
-    \ 1; }\n};\n\ntemplate<class T> struct AddAssign {\n    using value_type = std::pair<bool,\
-    \ T>; // false: add, true: assign\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        if (b.first) return b;\n        return {a.first,\
-    \ a.second + b.second};\n    }\n    static value_type id() { return {false, T{0}};\
-    \ }\n};\n\n\ntemplate<class T> struct AffineSum {\n    using M = Sum<T>;\n   \
-    \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
-    \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
-    \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
-    \ U& a, int b, const T& c) {\n        return a.first * c + a.second * b;\n   \
-    \ }\n};\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n  \
-    \  using E = AddAssign<T>;\n    using U = typename E::value_type;\n    static\
-    \ T op(const U& a, const T& b) {\n        if (a.first) return a.second;\n    \
-    \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
-    \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase : ModIntBase\
-    \ {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class T> using is_ModInt\
-    \ = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using is_StaticModInt =\
-    \ std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using is_DynamicModInt\
-    \ = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod> class StaticModInt\
-    \ : StaticModIntBase {\n  protected:\n    ll val;\n    static constexpr ll inv1000000007[]\
-    \ = {-1, 1, 500000004, 333333336, 250000002,\n            400000003, 166666668,\
-    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr ll inv998244353\
-    \ [] = {-1, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
-    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> StaticModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
-    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
-    \ { return mod; }\n    static StaticModInt raw(ll v) {\n        StaticModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    StaticModInt inv() const\
-    \ {\n        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10)\
-    \ return inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod ==\
-    \ 998244353) {\n            if (val <= 10) return inv998244353[val];\n       \
-    \ }\n        return mod_inv(val, mod);\n    }\n    StaticModInt& operator++()\
-    \ {\n        ++val;\n        if (val == mod) val = 0;\n        return *this;\n\
-    \    }\n    StaticModInt operator++(int) {\n        StaticModInt res = *this;\n\
-    \        ++ *this;\n        return res;\n    }\n    StaticModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    StaticModInt operator--(int) {\n        StaticModInt res = *this;\n\
-    \        -- *this;\n        return res;\n    }\n    StaticModInt& operator+=(const\
-    \ StaticModInt& other) {\n        val += other.val;\n        if (val >= mod) val\
-    \ -= mod;\n        return *this;\n    }\n    StaticModInt& operator-=(const StaticModInt&\
-    \ other) {\n        val -= other.val;\n        if (val < 0) val += mod;\n    \
-    \    return *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other)\
-    \ {\n        (val *= other.val) %= mod;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator/=(const StaticModInt& other) {\n        (val *= other.inv().get())\
-    \ %= mod;\n        return *this;\n    }\n    friend StaticModInt operator+(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
-    \ StaticModInt operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ /= rhs;\n    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
+    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
+    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
+    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
+    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
+    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
+    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
+    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
+    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
+    \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
+    \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
+    \ LCM {\n    using value_type = T;\n    static T op(T a, T b) { return lcm(a,\
+    \ b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign\
+    \ {\n    using value_type = std::pair<bool, T>; // false: add, true: assign\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  if (b.first) return b;\n        return {a.first, a.second + b.second};\n  \
+    \  }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
+    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
+    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
+    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
+    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
+    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
     \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
     \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
     \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
@@ -517,7 +523,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-04-06 11:40:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

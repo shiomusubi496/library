@@ -251,51 +251,56 @@ data:
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
     \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
-    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
-    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
-    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
-    \ a.second / a.first};\n    }\n};\n\ntemplate<class T> struct GCD {\n    using\
-    \ value_type = T;\n    static T op(T a, T b) { return gcd(a, b); }\n    static\
-    \ T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n    using value_type\
-    \ = T;\n    static T op(T a, T b) { return lcm(a, b); }\n    static T id() { return\
-    \ 1; }\n};\n\ntemplate<class T> struct AddAssign {\n    using value_type = std::pair<bool,\
-    \ T>; // false: add, true: assign\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        if (b.first) return b;\n        return {a.first,\
-    \ a.second + b.second};\n    }\n    static value_type id() { return {false, T{0}};\
-    \ }\n};\n\n\ntemplate<class T> struct AffineSum {\n    using M = Sum<T>;\n   \
-    \ using E = Composite<T>;\n    using U = typename E::value_type;\n    static T\
-    \ op(const U& a, const T& b) { return a.first * b + a.second; };\n    static U\
-    \ mul(const U& a, int b) { return U{a.first, a.second * b}; };\n    static T mul_op(const\
-    \ U& a, int b, const T& c) {\n        return a.first * c + a.second * b;\n   \
-    \ }\n};\n\ntemplate<class T> struct AddAssignSum {\n    using M = Sum<T>;\n  \
-    \  using E = AddAssign<T>;\n    using U = typename E::value_type;\n    static\
-    \ T op(const U& a, const T& b) {\n        if (a.first) return a.second;\n    \
-    \    return b + a.second;\n    }\n    static U mul(const U& a, int b) { return\
-    \ U{a.first, a.second * b}; }\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
-    \ * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
-    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
-    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
-    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
-    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
-    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
-    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
-    \ M> class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
+    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
+    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
+    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
+    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
+    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
+    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
+    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
+    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
+    \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
+    \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
+    \ LCM {\n    using value_type = T;\n    static T op(T a, T b) { return lcm(a,\
+    \ b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign\
+    \ {\n    using value_type = std::pair<bool, T>; // false: add, true: assign\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  if (b.first) return b;\n        return {a.first, a.second + b.second};\n  \
+    \  }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
+    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
+    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
+    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
+    \ Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\n    inline ull next_combination(int\
+    \ n, ull x) {\n        if (n == 0) return 1;\n        ull a = x & -x;\n      \
+    \  ull b = x + a;\n        return (x & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i,\
+    \ n, k) for (ull i = (1ull << (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n),\
+    \ i))\n\n    inline CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n\
+    \        if (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n   \
+    \     if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000, res += 16;\n      \
+    \  if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=  8;\n        if\
+    \ (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res +=  4;\n        if (x\
+    \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
+    \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
@@ -578,7 +583,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
+  timestamp: '2022-04-06 11:40:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp

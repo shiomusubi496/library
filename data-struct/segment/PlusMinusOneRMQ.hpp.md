@@ -363,8 +363,8 @@ data:
   timestamp: '2022-02-27 15:19:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
 documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
 layout: document
 redirect_from:

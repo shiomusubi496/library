@@ -2,46 +2,45 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/BitwiseOrConvolution.hpp
+    title: BitwiseOrConvolution
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/SubsetZetaMoebiusTransform.hpp
+    title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+      \u30A6\u30B9\u5909\u63DB)"
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.test.cpp
-    title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/queue_operate_all_composite.test.cpp
-    title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_range_sum.test.cpp
-    title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
-    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
+    links:
+    - https://judge.yosupo.jp/problem/bitwise_and_convolution
+  bundledCode: "#line 1 \"test/yosupo/bitwise_and_convolution-or.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
+    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
+    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
+    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
+    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -243,45 +242,13 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
-    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
-    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
-    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
-    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
-    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
-    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
-    \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
-    \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
-    \ LCM {\n    using value_type = T;\n    static T op(T a, T b) { return lcm(a,\
-    \ b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign\
-    \ {\n    using value_type = std::pair<bool, T>; // false: add, true: assign\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (b.first) return b;\n        return {a.first, a.second + b.second};\n  \
-    \  }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
-    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
-    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
-    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
-    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
-    \ Monoid\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) {\n        return a * b;\n    }\n   \
-    \ static T id() {\n        return T{1};\n    }\n    static T inv(const T& a, const\
-    \ T& b) {\n        return a / b;\n    }\n    static T get_inv(const T& a) {\n\
-    \        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n\
-    \    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
+    \ {};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
+    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
+    \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
+    \ T& a, const T& b) {\n        return a / b;\n    }\n    static T get_inv(const\
+    \ T& a) {\n        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite\
+    \ {\n    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
     \ a, const value_type& b) {\n        return {b.first * a.first, b.first * a.second\
     \ + b.second};\n    }\n    static value_type id() {\n        return {T{1}, T{0}};\n\
     \    }\n    static value_type get_inv(const value_type& a) {\n        return {T{1}\
@@ -306,26 +273,147 @@ data:
     \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
     \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
     \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
-    \ Monoid\n"
+    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
+    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
+    \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
+    \ sm) {\n        ll v; ist >> v;\n        sm = v;\n        return ist;\n    }\n\
+    };\n\n#if __cplusplus < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
+    \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
+    \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
+    \   DynamicModInt& operator++() {\n        ++val;\n        if (val == mod) val\
+    \ = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int) {\n  \
+    \      DynamicModInt res = *this;\n        ++ *this;\n        return res;\n  \
+    \  }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n  \
+    \      --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseOrConvolution.hpp\"\
+    \n\n#line 2 \"math/convolution/SubsetZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
+    math/convolution/SubsetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
+    \ subset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int n\
+    \ = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n) {\n  \
+    \          if (j & i) v[j] = Sum::op(v[j], v[j ^ i]);\n        }\n    }\n}\n\n\
+    template<class Sum>\nvoid subset_moebius_transform(std::vector<typename Sum::value_type>&\
+    \ v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
+    \ (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j ^ i]);\n        }\n\
+    \    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\
+    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SubsetZetaMoebiusTransform.md\n\
+    \ */\n#line 5 \"math/convolution/BitwiseOrConvolution.hpp\"\n\ntemplate<class\
+    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_or_convolution(std::vector<typename\
+    \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
+    \ b) {\n    subset_zeta_transform<Sum>(a);\n    subset_zeta_transform<Sum>(b);\n\
+    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    subset_moebius_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/BitwiseOrConvolution.md\n\
+    \ */\n#line 7 \"test/yosupo/bitwise_and_convolution-or.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int N; cin >> N;\n  \
+    \  vector<mint> a(1 << N), b(1 << N);\n    cin >> a >> b;\n    reverse(all(a));\
+    \ reverse(all(b));\n    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a,\
+    \ b);\n    reverse(all(c));\n    cout << c << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\n\
+    #include \"../../other/monoid2.hpp\"\n#include \"../../math/ModInt.hpp\"\n#include\
+    \ \"../../math/convolution/BitwiseOrConvolution.hpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint>\
+    \ a(1 << N), b(1 << N);\n    cin >> a >> b;\n    reverse(all(a)); reverse(all(b));\n\
+    \    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a,\
+    \ b);\n    reverse(all(c));\n    cout << c << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: other/monoid2.hpp
+  - other/monoid2.hpp
+  - math/ModInt.hpp
+  - math/convolution/BitwiseOrConvolution.hpp
+  - math/convolution/SubsetZetaMoebiusTransform.hpp
+  isVerificationFile: true
+  path: test/yosupo/bitwise_and_convolution-or.test.cpp
   requiredBy: []
   timestamp: '2022-04-06 11:40:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-documentation_of: other/monoid2.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/bitwise_and_convolution-or.test.cpp
 layout: document
 redirect_from:
-- /library/other/monoid2.hpp
-- /library/other/monoid2.hpp.html
-title: other/monoid2.hpp
+- /verify/test/yosupo/bitwise_and_convolution-or.test.cpp
+- /verify/test/yosupo/bitwise_and_convolution-or.test.cpp.html
+title: test/yosupo/bitwise_and_convolution-or.test.cpp
 ---
