@@ -1,26 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
+  - icon: ':x:'
+    path: math/Divisor.hpp
+    title: "Divisors(\u7D04\u6570\u5217\u6319)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/WarshallFloyd.md
-    document_title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
-      \u30C9\u6CD5)"
-    links: []
-  bundledCode: "#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D
+  bundledCode: "#line 1 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -146,82 +144,34 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
-    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
-    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
-    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
-    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
-    \     rep (j, N) {\n                if (G[i][k] != infinity<T>::value && G[k][j]\
-    \ != infinity<T>::value) chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n \
-    \       }\n    }\n}\n\n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\
-    \u30D5\u30ED\u30A4\u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
-    \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
-    \     rep (j, N) {\n                if (G[i][k] != infinity<T>::value && G[k][j]\
-    \ != infinity<T>::value) chmin(G[i][j], G[i][k] + G[k][j]);\n            }\n \
-    \       }\n    }\n}\n\n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\
-    \u30D5\u30ED\u30A4\u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
+    \ }\n};\n#line 2 \"math/Divisor.hpp\"\n\n#line 4 \"math/Divisor.hpp\"\n\nstd::vector<ll>\
+    \ divisors(ll n) {\n    std::vector<ll> res1, res2;\n    for (ll i = 1; i * i\
+    \ <= n; ++i) {\n        if (n % i == 0) {\n            res1.push_back(i);\n  \
+    \          if (i * i != n) res2.push_back(n / i);\n        }\n    }\n    res1.reserve(res1.size()\
+    \ + res2.size());\n    std::copy(res2.rbegin(), res2.rend(), std::back_inserter(res1));\n\
+    \    return res1;\n}\n\n/**\n * @brief Divisors(\u7D04\u6570\u5217\u6319)\n *\
+    \ @docs Divisors.md\n */\n#line 4 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    ll a, b, c; cin >> a >> b >> c;\n  \
+    \  cout << divisors(c) << endl;\n    ll ans = 0;\n    each_const (i : divisors(c))\
+    \ {\n        if (a <= i && i <= b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/Divisor.hpp\"\
+    \nusing namespace std;\nint main() {\n    ll a, b, c; cin >> a >> b >> c;\n  \
+    \  cout << divisors(c) << endl;\n    ll ans = 0;\n    each_const (i : divisors(c))\
+    \ {\n        if (a <= i && i <= b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
   dependsOn:
   - other/template.hpp
-  - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/shortest-path/WarshallFloyd.hpp
+  - math/Divisor.hpp
+  isVerificationFile: true
+  path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-documentation_of: graph/shortest-path/WarshallFloyd.hpp
+  timestamp: '2022-04-17 15:39:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
 layout: document
 redirect_from:
-- /library/graph/shortest-path/WarshallFloyd.hpp
-- /library/graph/shortest-path/WarshallFloyd.hpp.html
-title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-  )"
+- /verify/test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
+- /verify/test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp.html
+title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
 ---
-## 概要
-
-全ての頂点対に対する最短経路問題を解く。
-
-- `WarshallFloyd(GMatrix& D)` :  
-与えられた隣接行列に対し、 `D[i][j]` = 頂点 `i` から頂点 `j` までの最短コストとする。  
-`D[i][i]<0` となる `i` が存在する場合、負の閉路が存在する。  
-$\Theta(V^3)$ 。

@@ -139,6 +139,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
+  - icon: ':x:'
+    path: math/Divisor.hpp
+    title: "Divisors(\u7D04\u6570\u5217\u6319)"
   - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
@@ -342,6 +345,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - icon: ':x:'
+    path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
+    title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
@@ -483,9 +489,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -758,6 +764,7 @@ data:
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
   - math/convolution/DivisorZetaMoebiusTransform.hpp
+  - math/Divisor.hpp
   - math/EulerPhi.hpp
   - math/Rational.hpp
   - math/ModInt.hpp
@@ -808,7 +815,7 @@ data:
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/other/2725-CHT.test.cpp
@@ -830,6 +837,7 @@ data:
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp

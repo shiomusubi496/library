@@ -160,6 +160,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
+    - icon: ':x:'
+      path: math/Divisor.hpp
+      title: "Divisors(\u7D04\u6570\u5217\u6319)"
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
@@ -219,7 +222,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -382,6 +385,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
       title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - name: test/aoj/ITP1
+    pages:
+    - icon: ':x:'
+      path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
+      title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
     pages:
     - icon: ':heavy_check_mark:'
