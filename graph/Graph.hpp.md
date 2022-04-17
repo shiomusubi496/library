@@ -25,6 +25,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+  - icon: ':warning:'
+    path: graph/other/BipartiteGraph.hpp
+    title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
@@ -420,6 +423,7 @@ data:
   - graph/mst/Kruskal.hpp
   - graph/other/TopologicalSort.hpp
   - graph/other/TwoSatisfiablitity.hpp
+  - graph/other/BipartiteGraph.hpp
   - graph/other/LowLink.hpp
   - graph/other/GraphCycle.hpp
   - graph/connected/ConnectedComponents.hpp

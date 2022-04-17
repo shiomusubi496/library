@@ -96,6 +96,9 @@ data:
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
     pages:
+    - icon: ':warning:'
+      path: graph/other/BipartiteGraph.hpp
+      title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
