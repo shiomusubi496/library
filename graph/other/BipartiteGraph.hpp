@@ -29,12 +29,13 @@ template<class T> class BipartiteGraph {
         label.assign(n, false);
         used.assign(n, false);
         rep (i, n) {
-            if (!used[i]) dfs(i, -1);
+            if (!used[i]) dfs(i);
         }
     }
     bool is_bipartite() const { return is_bip; }
-    const std::vector<bool>& get_label() const& { return label; }
-    std::vector<bool> get_label() && { return std::move(label); }
+    bool get_label(int k) const { return label[k]; }
+    const std::vector<bool>& labels() const& { return label; }
+    std::vector<bool> labels() && { return std::move(label); }
 };
 
 /**
