@@ -380,7 +380,7 @@ data:
     \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
     \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
+    \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
     \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
     \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
@@ -405,7 +405,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-04-06 12:07:58+09:00'
+  timestamp: '2022-04-17 12:35:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/bitwise_and_convolution.test.cpp

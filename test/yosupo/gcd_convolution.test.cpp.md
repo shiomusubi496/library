@@ -2,51 +2,45 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/GcdConvolution.hpp
+    title: GCDConvolution
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/MultipleZetaMoebiusTransform.hpp
+    title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+      \u30A6\u30B9\u5909\u63DB)"
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_add_range_sum.test.cpp
-    title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/BinaryIndexedTree.md
-    document_title: BinaryIndexedTree(FenwickTree, BIT)
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
+    links:
+    - https://judge.yosupo.jp/problem/gcd_convolution
+  bundledCode: "#line 1 \"test/yosupo/gcd_convolution.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -248,93 +242,180 @@ data:
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
     \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
-    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
-    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
-    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
-    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
-    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
-    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
-    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
-    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
-    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
-    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
-    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
-    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
-    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
-    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
-    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
-    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
-    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
-    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
-    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
-    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
-    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
-    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
-    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
-    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
-    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
-    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
-    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
-    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
-    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
-    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ {};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
+    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
+    \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
+    \ T& a, const T& b) {\n        return a / b;\n    }\n    static T get_inv(const\
+    \ T& a) {\n        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite\
+    \ {\n    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return {b.first * a.first, b.first * a.second\
+    \ + b.second};\n    }\n    static value_type id() {\n        return {T{1}, T{0}};\n\
+    \    }\n    static value_type get_inv(const value_type& a) {\n        return {T{1}\
+    \ / a.first, - a.second / a.first};\n    }\n    static value_type inv(const value_type&\
+    \ a, const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\n\
+    template<class T> struct GCD {\n    using value_type = T;\n    static T op(T a,\
+    \ T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class\
+    \ T> struct LCM {\n    using value_type = T;\n    static T op(T a, T b) { return\
+    \ lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct\
+    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
+    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
+    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
+    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
+    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
+    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
+    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
+    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
+    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
+    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
+    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
+    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
+    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
+    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
+    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
+    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
+    \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
+    \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        (val *=\
+    \ other.val) %= mod;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        (val *= other.inv().get()) %= mod;\n       \
+    \ return *this;\n    }\n    friend StaticModInt operator+(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt\
+    \ operator*(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) /= rhs;\n\
+    \    }\n    StaticModInt operator+() const {\n        return StaticModInt(*this);\n\
+    \    }\n    StaticModInt operator-() const {\n        return StaticModInt(0) -\
+    \ *this;\n    }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost, const StaticModInt& sm) {\n        return ost\
+    \ << sm.val;\n    }\n    friend std::istream& operator>>(std::istream& ist, StaticModInt&\
+    \ sm) {\n        ll v; ist >> v;\n        sm = v;\n        return ist;\n    }\n\
+    };\n\n#if __cplusplus < 201703L\ntemplate<ll mod> constexpr ll StaticModInt<mod>::inv1000000007[];\n\
+    template<ll mod> constexpr ll StaticModInt<mod>::inv998244353 [];\n#endif\n\n\
+    using modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353  = StaticModInt<998244353>;\n\
+    \ntemplate<int id> class DynamicModInt : DynamicModIntBase {\n  protected:\n \
+    \   ll val;\n    static ll mod;\n  public:\n    DynamicModInt() : DynamicModInt(0)\
+    \ {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> DynamicModInt(T v) : val(v) {\n        val %= mod;\n        if (val\
+    \ < 0) val += mod;\n    }\n    ll get() const { return val; }\n    static ll get_mod()\
+    \ { return mod; }\n    static void set_mod(ll v) { mod = v; }\n    static DynamicModInt\
+    \ raw(ll v) {\n        DynamicModInt res;\n        res.val = v;\n        return\
+    \ res;\n    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n \
+    \   DynamicModInt& operator++() {\n        ++val;\n        if (val == mod) val\
+    \ = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int) {\n  \
+    \      DynamicModInt res = *this;\n        ++ *this;\n        return res;\n  \
+    \  }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n  \
+    \      --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        val\
+    \ -= other.val;\n        if (val < 0) val += mod;\n        return *this;\n   \
+    \ }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        (val\
+    \ *= other.val) %= mod;\n        return *this;\n    }\n    DynamicModInt& operator/=(const\
+    \ DynamicModInt& other) {\n        (val *= other.inv().get()) %= mod;\n      \
+    \  return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/GcdConvolution.hpp\"\
+    \n\n#line 2 \"math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
+    math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
+    \ multiple_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
+    \ n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for (ll\
+    \ i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps (j,\
+    \ n / i) {\n            v[j] = Sum::op(v[j], v[j * i]);\n            is_prime[j\
+    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid multiple_moebius_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
+    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
+    \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
+    \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/MultipleZetaMoebiusTransform.md\n\
+    \ */\n#line 5 \"math/convolution/GcdConvolution.hpp\"\n\ntemplate<class Sum, class\
+    \ Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
+    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
+    \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
+    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
+    \ */\n#line 7 \"test/yosupo/gcd_convolution.test.cpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint>\
+    \ A(N + 1), B(N + 1);\n    reps (i, N) cin >> A[i];\n    reps (i, N) cin >> B[i];\n\
+    \    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A, B);\n\
+    \    reps (i, N) cout << v[i] << \" \\n\"[i == N];\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\n#include\
+    \ \"../../other/monoid2.hpp\"\n#include \"../../math/ModInt.hpp\"\n#include \"\
+    ../../math/convolution/GcdConvolution.hpp\"\nusing namespace std;\nusing mint\
+    \ = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint> A(N\
+    \ + 1), B(N + 1);\n    reps (i, N) cin >> A[i];\n    reps (i, N) cin >> B[i];\n\
+    \    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A, B);\n\
+    \    reps (i, N) cout << v[i] << \" \\n\"[i == N];\n}\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/BinaryIndexedTree.hpp
+  - other/monoid2.hpp
+  - math/ModInt.hpp
+  - math/convolution/GcdConvolution.hpp
+  - math/convolution/MultipleZetaMoebiusTransform.hpp
+  isVerificationFile: true
+  path: test/yosupo/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-documentation_of: data-struct/segment/BinaryIndexedTree.hpp
+  timestamp: '2022-04-17 12:35:54+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/gcd_convolution.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/BinaryIndexedTree.hpp
-- /library/data-struct/segment/BinaryIndexedTree.hpp.html
-title: BinaryIndexedTree(FenwickTree, BIT)
+- /verify/test/yosupo/gcd_convolution.test.cpp
+- /verify/test/yosupo/gcd_convolution.test.cpp.html
+title: test/yosupo/gcd_convolution.test.cpp
 ---
-## 概要
-
-モノイド $(T, \cdot : T \times T \to T)$ 、つまり
-
-- 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
-
-を満たす構造の列を扱えるデータ構造。 min/max などが扱える。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log n)$ 。
-- `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $\Theta(\log n)$ 。
-
-また、以下の条件を満たすと、さらに多くのことができる。
-
-- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
-
-足し算や bitwise xor などはこれを満たす。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
-- `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
-- `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。

@@ -187,6 +187,13 @@ data:
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
     - icon: ':heavy_check_mark:'
+      path: math/convolution/GcdConvolution.hpp
+      title: GCDConvolution
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/MultipleZetaMoebiusTransform.hpp
+      title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+        \u30A6\u30B9\u5909\u63DB)"
+    - icon: ':heavy_check_mark:'
       path: math/convolution/SubsetZetaMoebiusTransform.hpp
       title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -410,6 +417,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cycle_detection.test.cpp
       title: test/yosupo/cycle_detection.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/gcd_convolution.test.cpp
+      title: test/yosupo/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp

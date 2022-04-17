@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/convolution/SupersetZetaMoebiusTransform.hpp
-    title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+    path: math/convolution/MultipleZetaMoebiusTransform.hpp
+    title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
@@ -11,25 +11,25 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/bitwise_and_convolution.test.cpp
-    title: test/yosupo/bitwise_and_convolution.test.cpp
+    path: test/yosupo/gcd_convolution.test.cpp
+    title: test/yosupo/gcd_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/BitwiseAndConvolution.md
-    document_title: BitwiseAndConvolution
+    _deprecated_at_docs: docs/GcdConvolution.md
+    document_title: GCDConvolution
     links: []
-  bundledCode: "#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\n\n#line 2\
-    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+  bundledCode: "#line 2 \"math/convolution/GcdConvolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -146,50 +146,51 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\n#line\
-    \ 4 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\n\
-    void superset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n   \
-    \ int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n)\
-    \ {\n            if (j & i) v[j ^ i] = Sum::op(v[j ^ i], v[j]);\n        }\n \
-    \   }\n}\n\ntemplate<class Sum>\nvoid superset_moebius_transform(std::vector<typename\
-    \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
-    \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
-    \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
-    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
-    \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+    \ }\n};\n#line 2 \"math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\n#line\
+    \ 4 \"math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\n\
+    void multiple_zeta_transform(std::vector<typename Sum::value_type>& v) {\n   \
+    \ int n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for\
+    \ (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps\
+    \ (j, n / i) {\n            v[j] = Sum::op(v[j], v[j * i]);\n            is_prime[j\
+    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid multiple_moebius_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
+    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
+    \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
+    \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/MultipleZetaMoebiusTransform.md\n\
+    \ */\n#line 5 \"math/convolution/GcdConvolution.hpp\"\n\ntemplate<class Sum, class\
+    \ Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
+    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
+    \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
+    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
     \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"SupersetZetaMoebiusTransform.hpp\"\
-    \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
-    \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"MultipleZetaMoebiusTransform.hpp\"\
+    \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
+    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
+    \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
+    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
+    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
-  - math/convolution/SupersetZetaMoebiusTransform.hpp
+  - math/convolution/MultipleZetaMoebiusTransform.hpp
   isVerificationFile: false
-  path: math/convolution/BitwiseAndConvolution.hpp
+  path: math/convolution/GcdConvolution.hpp
   requiredBy: []
   timestamp: '2022-04-17 12:35:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bitwise_and_convolution.test.cpp
-documentation_of: math/convolution/BitwiseAndConvolution.hpp
+  - test/yosupo/gcd_convolution.test.cpp
+documentation_of: math/convolution/GcdConvolution.hpp
 layout: document
 redirect_from:
-- /library/math/convolution/BitwiseAndConvolution.hpp
-- /library/math/convolution/BitwiseAndConvolution.hpp.html
-title: BitwiseAndConvolution
+- /library/math/convolution/GcdConvolution.hpp
+- /library/math/convolution/GcdConvolution.hpp.html
+title: GCDConvolution
 ---
 ## 概要
 
-- `vector<T> bitwise_and_convolution(vector<T> a, vector<T> b)` :  
+- `vector<T> gcd_convolution(vector<T> a, vector<T> b)` :  
     次の条件を満たす $c$ を計算して返す。
-    ただし $\mathrm{and}$ は bitwise and とする。
-    - $\displaystyle c_k = \sum_{i\ \mathrm{and}\ j = k} a_ib_j$
+    - $\displaystyle c_k = \sum_{\gcd(i, j) = k} a_ib_j$

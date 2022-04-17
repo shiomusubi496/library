@@ -16,6 +16,9 @@ data:
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/gcd_convolution.test.cpp
+    title: test/yosupo/gcd_convolution.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -319,13 +322,14 @@ data:
   timestamp: '2022-04-06 11:40:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:
