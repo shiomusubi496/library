@@ -187,8 +187,15 @@ data:
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
     - icon: ':heavy_check_mark:'
+      path: math/convolution/DivisorZetaMoebiusTransform.hpp
+      title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
+        \u30A6\u30B9\u5909\u63DB)"
+    - icon: ':heavy_check_mark:'
       path: math/convolution/GcdConvolution.hpp
       title: GCDConvolution
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/LcmConvolution.hpp
+      title: LCMConvolution
     - icon: ':heavy_check_mark:'
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
@@ -426,6 +433,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/lca-HLD.test.cpp
       title: test/yosupo/lca-HLD.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/lcm_convolution.test.cpp
+      title: test/yosupo/lcm_convolution.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/line_add_get_min.test.cpp
       title: test/yosupo/line_add_get_min.test.cpp
