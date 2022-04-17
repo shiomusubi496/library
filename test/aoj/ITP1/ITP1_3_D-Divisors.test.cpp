@@ -4,7 +4,6 @@
 using namespace std;
 int main() {
     ll a, b, c; cin >> a >> b >> c;
-    cout << divisors(c) << endl;
     ll ans = 0;
     each_const (i : divisors(c)) {
         if (a <= i && i <= b) ++ans;
