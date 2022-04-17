@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D
@@ -152,21 +152,21 @@ data:
     \    return res1;\n}\n\n/**\n * @brief Divisors(\u7D04\u6570\u5217\u6319)\n *\
     \ @docs Divisors.md\n */\n#line 4 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll a, b, c; cin >> a >> b >> c;\n  \
-    \  cout << divisors(c) << endl;\n    ll ans = 0;\n    each_const (i : divisors(c))\
-    \ {\n        if (a <= i && i <= b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
+    \  ll ans = 0;\n    each_const (i : divisors(c)) {\n        if (a <= i && i <=\
+    \ b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ITP1_3_D\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/Divisor.hpp\"\
     \nusing namespace std;\nint main() {\n    ll a, b, c; cin >> a >> b >> c;\n  \
-    \  cout << divisors(c) << endl;\n    ll ans = 0;\n    each_const (i : divisors(c))\
-    \ {\n        if (a <= i && i <= b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
+    \  ll ans = 0;\n    each_const (i : divisors(c)) {\n        if (a <= i && i <=\
+    \ b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - math/Divisor.hpp
   isVerificationFile: true
   path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   requiredBy: []
-  timestamp: '2022-04-17 15:39:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-04-17 17:21:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
 layout: document

@@ -163,7 +163,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
     - icon: ':heavy_check_mark:'
@@ -225,7 +225,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -390,7 +390,7 @@ data:
       title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - name: test/aoj/ITP1
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
       title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
