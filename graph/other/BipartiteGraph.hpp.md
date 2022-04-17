@@ -190,11 +190,12 @@ data:
     \ label[v]) {\n                is_bip = false;\n            }\n        }\n   \
     \ }\n  public:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n        n = G.size();\n\
     \        is_bip = true;\n        label.assign(n, false);\n        used.assign(n,\
-    \ false);\n        rep (i, n) {\n            if (!used[i]) dfs(i, -1);\n     \
-    \   }\n    }\n    bool is_bipartite() const { return is_bip; }\n    const std::vector<bool>&\
-    \ get_label() const& { return label; }\n    std::vector<bool> get_label() && {\
-    \ return std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\
-    \u30B0\u30E9\u30D5\u5224\u5B9A)\n * @docs docs/BipartiteGraph.md\n */\n"
+    \ false);\n        rep (i, n) {\n            if (!used[i]) dfs(i);\n        }\n\
+    \    }\n    bool is_bipartite() const { return is_bip; }\n    bool get_label(int\
+    \ k) const { return label[k]; }\n    const std::vector<bool>& labels() const&\
+    \ { return label; }\n    std::vector<bool> labels() && { return std::move(label);\
+    \ }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A\
+    )\n * @docs docs/BipartiteGraph.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class BipartiteGraph {\n  private:\n    int n;\n    bool\
     \ is_bip;\n    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void\
@@ -205,18 +206,18 @@ data:
     \            }\n        }\n    }\n  public:\n    BipartiteGraph(const Graph<T>&\
     \ G) : G(G) {\n        n = G.size();\n        is_bip = true;\n        label.assign(n,\
     \ false);\n        used.assign(n, false);\n        rep (i, n) {\n            if\
-    \ (!used[i]) dfs(i, -1);\n        }\n    }\n    bool is_bipartite() const { return\
-    \ is_bip; }\n    const std::vector<bool>& get_label() const& { return label; }\n\
-    \    std::vector<bool> get_label() && { return std::move(label); }\n};\n\n/**\n\
-    \ * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)\n * @docs\
-    \ docs/BipartiteGraph.md\n */\n"
+    \ (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite() const { return\
+    \ is_bip; }\n    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
+    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
+    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
+    \u30D5\u5224\u5B9A)\n * @docs docs/BipartiteGraph.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/other/BipartiteGraph.hpp
   requiredBy: []
-  timestamp: '2022-04-17 17:08:08+09:00'
+  timestamp: '2022-04-17 19:10:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/other/BipartiteGraph.hpp
@@ -232,4 +233,5 @@ title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
 
 - `BipartiteGraph(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
 - `bool is_bipartite()` : グラフ `G` が二部グラフであるかを返す。 $\Theta(1)$ 。
-- `vector<bool> get_label()` : 各頂点がどちらに割り当てられたかを返す。二部グラフでない場合は未定義。 $\Theta(V)$ 。
+- `bool get_label(int k)` : 頂点 `k` のラベルを返す。 $\Theta(1)$ 。
+- `vector<bool> labels()` : 各頂点がどちらに割り当てられたかを返す。二部グラフでない場合は未定義。 $\Theta(1)$ 。
