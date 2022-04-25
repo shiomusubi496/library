@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/other/SkipList.hpp
+    title: SkipList
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
@@ -211,6 +214,7 @@ data:
   path: random/Random.hpp
   requiredBy:
   - string/RollingHash.hpp
+  - data-struct/other/SkipList.hpp
   timestamp: '2022-02-27 17:58:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

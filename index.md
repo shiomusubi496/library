@@ -15,6 +15,9 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
+    - icon: ':warning:'
+      path: data-struct/other/SkipList.hpp
+      title: SkipList
     - icon: ':heavy_check_mark:'
       path: data-struct/other/SlidingWindowAggregation.hpp
       title: SlidingWindowAggregation(SWAG)
@@ -70,7 +73,7 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -155,7 +158,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     - icon: ':heavy_check_mark:'
@@ -222,13 +225,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid.hpp
       title: other/monoid.hpp
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -379,7 +382,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
       title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     - icon: ':heavy_check_mark:'

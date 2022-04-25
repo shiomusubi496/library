@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -150,7 +150,7 @@ data:
     \          if (i * i != n) res2.push_back(n / i);\n        }\n    }\n    res1.reserve(res1.size()\
     \ + res2.size());\n    std::copy(res2.rbegin(), res2.rend(), std::back_inserter(res1));\n\
     \    return res1;\n}\n\n/**\n * @brief Divisors(\u7D04\u6570\u5217\u6319)\n *\
-    \ @docs Divisors.md\n */\n#line 4 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\
+    \ @docs docs/Divisors.md\n */\n#line 4 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll a, b, c; cin >> a >> b >> c;\n  \
     \  ll ans = 0;\n    each_const (i : divisors(c)) {\n        if (a <= i && i <=\
     \ b) ++ans;\n    }\n    cout << ans << endl;\n}\n"
@@ -165,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   requiredBy: []
-  timestamp: '2022-04-17 17:21:51+09:00'
+  timestamp: '2022-04-25 23:28:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
