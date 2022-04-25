@@ -70,7 +70,7 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -155,6 +155,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+    - icon: ':x:'
+      path: graph/tree/ReRooting.hpp
+      title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
@@ -219,13 +222,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -233,6 +236,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
+    - icon: ':warning:'
+      path: random/Timer.hpp
+      title: random/Timer.hpp
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
@@ -373,6 +379,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+    - icon: ':x:'
+      path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+      title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
       title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp

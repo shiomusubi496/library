@@ -1,27 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFindUndo.hpp
-    title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
+  - icon: ':x:'
+    path: graph/tree/ReRooting.hpp
+    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
+  - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/5/GRL/all/GRL_5_B
     links:
-    - https://judge.yosupo.jp/problem/persistent_unionfind
-  bundledCode: "#line 1 \"test/yosupo/persistent_unionfind-Undo.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line 2 \"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/5/GRL/all/GRL_5_B
+  bundledCode: "#line 1 \"test/aoj/GRL/GRL_5_B-ReRooting.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/5/GRL/all/GRL_5_B\"\n#line 2 \"\
     other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
     \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
     #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
@@ -186,69 +189,160 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
-    \ {\n  protected:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
-    \ int>> hist;\n  public:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
-    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
-    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
-    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
-    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
-    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
-    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const {\n \
-    \       return find(x) == find(y);\n    }\n    int size(int x) const {\n     \
-    \   return -par_vec[find(x)];\n    }\n    std::vector<std::vector<int>> groups()\
-    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res), [](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n            res.end()\n        );\n        return\
-    \ res;\n    }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n\
-    \        return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
-    \ = hist.top().second; hist.pop();\n        par_vec[hist.top().first] = hist.top().second;\
-    \ hist.pop();\n    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n\
-    \    }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n\
-    };\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n\
-    \ */\n#line 5 \"test/yosupo/persistent_unionfind-Undo.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL> G(Q + 1);\n\
-    \    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t,\
-    \ k, u, v; cin >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k + 1, i +\
-    \ 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n   \
-    \ }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n  \
-    \      Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n            each_const\
-    \ (e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n    \
-    \            this->operator()(e.to);\n                UFU.undo();\n          \
-    \  }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q) {\n\
-    \        if (ans[i] != -1) cout << ans[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
-    #include \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include\
-    \ \"../../data-struct/unionfind/UnionFindUndo.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL> G(Q + 1);\n    vector<vector<array<int,\
-    \ 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t, k, u, v; cin >> t >> k >> u\
-    \ >> v;\n        if (t == 0) G.add_edge(k + 1, i + 1, PLL{u, v}, true);\n    \
-    \    else A[k + 1].push_back({(int)i, u, v});\n    }\n    vector<int> ans(Q, -1);\n\
-    \    UnionFindUndo UFU(N);\n    struct {\n        Graph<PLL>& G;\n        vector<vector<array<int,\
-    \ 3>>>& A;\n        vector<int>& ans;\n        UnionFindUndo& UFU;\n        void\
-    \ operator()(int v) {\n            each_const (a : A[v]) ans[a[0]] = UFU.same(a[1],\
-    \ a[2]);\n            each_const (e : G[v]) {\n                UFU.merge(e.cost.first,\
-    \ e.cost.second);\n                this->operator()(e.to);\n                UFU.undo();\n\
-    \            }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep\
-    \ (i, Q) {\n        if (ans[i] != -1) cout << ans[i] << endl;\n    }\n}\n"
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/ReRooting.hpp\"\n\n#line 4\
+    \ \"graph/tree/ReRooting.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\
+    \n\nnamespace Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type\
+    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n\
+    \    static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a > b ? b : a; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a;}\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
+    \ constexpr T mul_op(const T& a, int, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int) { return\
+    \ a; }\n    static constexpr T mul_op(const T& a, int, const T&) { return a; }\n\
+    };\n\ntemplate<class T> struct AssignSum {\n    using M = Sum<T>;\n    using E\
+    \ = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return a; }\n\
+    \    static constexpr T mul(const T& a, int b) { return a * b; }\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
+    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
+    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
+    \ T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
+    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
+    \  using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
+    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::min(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::min(b, a); }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n  \
+    \  using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
+    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::max(c,\
+    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
+    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
+    \ a, int, const T& c) { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct\
+    \ ReverseMonoid {\n    using value_type = typename M::value_type;\n    static\
+    \ value_type op(const value_type& a, const value_type& b) {\n        return M::op(b,\
+    \ a);\n    }\n    static value_type id() { return M::id(); }\n    static value_type\
+    \ get_inv(const value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class\
+    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
+    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
+    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
+    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
+    \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M> class has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
+    \ {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)> : public std::true_type\
+    \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
+    \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
+    \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
+    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
+    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
+    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
+    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
+    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
+    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
+    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
+    \ {};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\n\ntemplate<class\
+    \ M, class T, class F>\nclass ReRooting {\n  protected:\n    using U = typename\
+    \ M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>& G;\n    std::vector<U>\
+    \ init_data;\n    std::vector<std::vector<U>> dp;\n    std::vector<U> res;\n \
+    \   std::vector<int> par;\n    void dfs1(int v, int p) {\n        rep (i, G[v].size())\
+    \ {\n            const auto& e = G[v][i];\n            if (e.to == p) par[v] =\
+    \ i;\n            else dfs1(e.to, v);\n        }\n        rep (i, G[v].size())\
+    \ {\n            const auto& e = G[v][i];\n            if (e.to == p) continue;\n\
+    \            dp[v][par[v]] = M::op(dp[v][par[v]], f(dp[e.to][par[e.to]], edge<T>{e.to,\
+    \ v, e.cost, e.idx}));\n        }\n        if (p != -1 && G[v].size() == 1) {\n\
+    \            dp[v][par[v]] = init_data[v];\n        }\n    }\n    void dfs2(int\
+    \ v, int p, int v_id) {\n        std::vector<U> memo(G[v].size());\n        rep\
+    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            memo[i]\
+    \ = f(dp[e.to][e.to == p ? v_id : par[e.to]], edge<T>{e.to, v, e.cost, e.idx});\n\
+    \        }\n        dp[v][G[v].size() - 1] = M::id();\n        rrep (i, (int)G[v].size()\
+    \ - 1) {\n            dp[v][i] = M::op(memo[i + 1], dp[v][i + 1]);\n        }\n\
+    \        U sml = M::id();\n        rep (i, G[v].size()) {\n            dp[v][i]\
+    \ = M::op(sml, dp[v][i]);\n            sml = M::op(sml, memo[i]);\n        }\n\
+    \        dp[v].back() = std::move(sml);\n        if (G[v].size() == 1) {\n   \
+    \         dp[v][p == -1 ? 0 : par[v]] = init_data[v];\n        }\n        rep\
+    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            if (e.to\
+    \ != p) dfs2(e.to, v, i);\n        }\n    }\n    void init() {\n        n = G.size();\n\
+    \        if (n == 1) {\n            res = init_data;\n            dp.assign(1,\
+    \ std::vector<U>{});\n            return;\n        }\n        dp.resize(n);\n\
+    \        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n        par.resize(n);\
+    \ par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0, -1, -1);\n    \
+    \    res.resize(n);\n        rep (i, n) {\n            res[i] = dp[i].back();\n\
+    \            dp[i].pop_back();\n        }\n    }\n  public:\n    ReRooting(const\
+    \ Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(), M::id()))\
+    \ {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>& ind)\
+    \ : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>& G, const\
+    \ F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind)) { init();\
+    \ }\n    const std::vector<U>& get_res() const& { return res; }\n    std::vector<U>\
+    \ get_res() && { return std::move(res); }\n    const U& operator[](int v) const&\
+    \ { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]); }\n\
+    \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
+    \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
+    \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
+    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
+    \u6728DP)\n * @docs docs/ReRooting.md\n */\n#line 5 \"test/aoj/GRL/GRL_5_B-ReRooting.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<ll> G(N);\n\
+    \    rep (N - 1) {\n        ll a, b, c; cin >> a >> b >> c;\n        G.add_edge(a,\
+    \ b, c);\n    }\n    auto f = [&](ll x, auto e) {\n        return x + e.cost;\n\
+    \    };\n    ReRooting<Monoid::Max<ll>, ll, decltype(f)> rr(G, f, vector<ll>(N,\
+    \ 0));\n    rep (i, N) cout << rr[i] << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/5/GRL/all/GRL_5_B\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
+    \n#include \"../../../graph/tree/ReRooting.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N; cin >> N;\n    Graph<ll> G(N);\n    rep (N - 1) {\n        ll\
+    \ a, b, c; cin >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n    auto\
+    \ f = [&](ll x, auto e) {\n        return x + e.cost;\n    };\n    ReRooting<Monoid::Max<ll>,\
+    \ ll, decltype(f)> rr(G, f, vector<ll>(N, 0));\n    rep (i, N) cout << rr[i] <<\
+    \ endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
-  - data-struct/unionfind/UnionFindUndo.hpp
+  - graph/tree/ReRooting.hpp
+  - other/monoid.hpp
   isVerificationFile: true
-  path: test/yosupo/persistent_unionfind-Undo.test.cpp
+  path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   requiredBy: []
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-25 23:24:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/persistent_unionfind-Undo.test.cpp
+documentation_of: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/persistent_unionfind-Undo.test.cpp
-- /verify/test/yosupo/persistent_unionfind-Undo.test.cpp.html
-title: test/yosupo/persistent_unionfind-Undo.test.cpp
+- /verify/test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+- /verify/test/aoj/GRL/GRL_5_B-ReRooting.test.cpp.html
+title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
 ---

@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -136,6 +136,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+  - icon: ':x:'
+    path: graph/tree/ReRooting.hpp
+    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
@@ -194,7 +197,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -203,6 +206,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
+  - icon: ':warning:'
+    path: random/Timer.hpp
+    title: random/Timer.hpp
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
@@ -333,6 +339,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
@@ -492,9 +501,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -789,6 +798,7 @@ data:
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/WarshallFloyd.hpp
   - graph/Graph.hpp
+  - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/CartesianTree.hpp
@@ -797,6 +807,7 @@ data:
   - graph/tree/TreeDiameter.hpp
   - graph/tree/PMORMQLCA.hpp
   - random/Random.hpp
+  - random/Timer.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
@@ -819,7 +830,7 @@ data:
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/other/2725-CHT.test.cpp
@@ -855,6 +866,7 @@ data:
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp

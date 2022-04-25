@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -80,6 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+  - icon: ':x:'
+    path: graph/tree/ReRooting.hpp
+    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
@@ -138,6 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
@@ -201,9 +207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Graph.md
     document_title: Graph-template
@@ -435,6 +441,7 @@ data:
   - graph/shortest-path/BellmanFord.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/WarshallFloyd.hpp
+  - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/HeavyLightDecomposition.hpp
   - graph/tree/CartesianTree.hpp
@@ -444,7 +451,7 @@ data:
   - graph/tree/PMORMQLCA.hpp
   - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
@@ -467,6 +474,7 @@ data:
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp

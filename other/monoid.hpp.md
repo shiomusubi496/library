@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
+  - icon: ':x:'
+    path: graph/tree/ReRooting.hpp
+    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
@@ -82,6 +85,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - icon: ':x:'
+    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
@@ -163,9 +169,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -472,6 +478,7 @@ data:
   path: other/monoid.hpp
   requiredBy:
   - other/monoid2.hpp
+  - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
@@ -487,11 +494,12 @@ data:
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp

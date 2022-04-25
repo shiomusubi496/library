@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
