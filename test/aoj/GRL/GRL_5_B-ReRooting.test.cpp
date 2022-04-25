@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/5/GRL/all/GRL_5_B"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_B"
 #include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
 #include "../../../graph/tree/ReRooting.hpp"
