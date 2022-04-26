@@ -289,29 +289,29 @@ data:
     \        }\n        dp[v][G[v].size() - 1] = M::id();\n        rrep (i, (int)G[v].size()\
     \ - 1) {\n            dp[v][i] = M::op(memo[i + 1], dp[v][i + 1]);\n        }\n\
     \        U sml = M::id();\n        rep (i, G[v].size()) {\n            dp[v][i]\
-    \ = M::op(sml, dp[v][i]);\n            sml = M::op(sml, memo[i]);\n        }\n\
-    \        dp[v].back() = std::move(sml);\n        if (G[v].size() == 1) {\n   \
-    \         dp[v][p == -1 ? 0 : par[v]] = init_data[v];\n        }\n        rep\
-    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            if (e.to\
-    \ != p) dfs2(e.to, v, i);\n        }\n    }\n    void init() {\n        n = G.size();\n\
-    \        if (n == 1) {\n            res = init_data;\n            dp.assign(1,\
-    \ std::vector<U>{});\n            return;\n        }\n        dp.resize(n);\n\
-    \        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n        par.resize(n);\
-    \ par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0, -1, -1);\n    \
-    \    res.resize(n);\n        rep (i, n) {\n            res[i] = dp[i].back();\n\
-    \            dp[i].pop_back();\n        }\n    }\n  public:\n    ReRooting(const\
-    \ Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(), M::id()))\
-    \ {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>& ind)\
-    \ : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>& G, const\
-    \ F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind)) { init();\
-    \ }\n    const std::vector<U>& get_res() const& { return res; }\n    std::vector<U>\
-    \ get_res() && { return std::move(res); }\n    const U& operator[](int v) const&\
-    \ { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]); }\n\
-    \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
-    \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
-    \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/ReRooting.md\n */\n"
+    \ = M::op(sml, dp[v][i]);\n            sml = M::op(sml, std::move(memo[i]));\n\
+    \        }\n        dp[v].back() = std::move(sml);\n        if (G[v].size() ==\
+    \ 1) {\n            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);\n \
+    \       }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
+    \            if (e.to != p) dfs2(e.to, v, i);\n        }\n    }\n    void init()\
+    \ {\n        n = G.size();\n        if (n == 1) {\n            res = std::move(init_data);\n\
+    \            dp.assign(1, std::vector<U>{});\n            return;\n        }\n\
+    \        dp.resize(n);\n        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n\
+    \        par.resize(n); par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0,\
+    \ -1, -1);\n        res.resize(n);\n        rep (i, n) {\n            res[i] =\
+    \ std::move(dp[i].back());\n            dp[i].pop_back();\n        }\n    }\n\
+    \  public:\n    ReRooting(const Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(),\
+    \ M::id())) {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>&\
+    \ ind) : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>&\
+    \ G, const F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind))\
+    \ { init(); }\n    const std::vector<U>& get_res() const& { return res; }\n  \
+    \  std::vector<U> get_res() && { return std::move(res); }\n    const U& operator[](int\
+    \ v) const& { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]);\
+    \ }\n    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n \
+    \   std::vector<std::vector<U>> get_dp() && { return std::move(dp); }\n    const\
+    \ U& get_dp(int v, int p_idx) const& { return dp[v][p_idx]; }\n    U get_dp(int\
+    \ v, int p_idx) && { return std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\
+    \u65B9\u4F4D\u6728DP)\n * @docs docs/ReRooting.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, class T, class F>\nclass ReRooting {\n  protected:\n   \
     \ using U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
@@ -330,28 +330,29 @@ data:
     \ = M::id();\n        rrep (i, (int)G[v].size() - 1) {\n            dp[v][i] =\
     \ M::op(memo[i + 1], dp[v][i + 1]);\n        }\n        U sml = M::id();\n   \
     \     rep (i, G[v].size()) {\n            dp[v][i] = M::op(sml, dp[v][i]);\n \
-    \           sml = M::op(sml, memo[i]);\n        }\n        dp[v].back() = std::move(sml);\n\
-    \        if (G[v].size() == 1) {\n            dp[v][p == -1 ? 0 : par[v]] = init_data[v];\n\
-    \        }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
-    \            if (e.to != p) dfs2(e.to, v, i);\n        }\n    }\n    void init()\
-    \ {\n        n = G.size();\n        if (n == 1) {\n            res = init_data;\n\
-    \            dp.assign(1, std::vector<U>{});\n            return;\n        }\n\
-    \        dp.resize(n);\n        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n\
-    \        par.resize(n); par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0,\
-    \ -1, -1);\n        res.resize(n);\n        rep (i, n) {\n            res[i] =\
-    \ dp[i].back();\n            dp[i].pop_back();\n        }\n    }\n  public:\n\
-    \    ReRooting(const Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(),\
-    \ M::id())) {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>&\
-    \ ind) : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>&\
-    \ G, const F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind))\
-    \ { init(); }\n    const std::vector<U>& get_res() const& { return res; }\n  \
-    \  std::vector<U> get_res() && { return std::move(res); }\n    const U& operator[](int\
-    \ v) const& { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]);\
-    \ }\n    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n \
-    \   std::vector<std::vector<U>> get_dp() && { return std::move(dp); }\n    const\
-    \ U& get_dp(int v, int p_idx) const& { return dp[v][p_idx]; }\n    U get_dp(int\
-    \ v, int p_idx) && { return std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\
-    \u65B9\u4F4D\u6728DP)\n * @docs docs/ReRooting.md\n */\n"
+    \           sml = M::op(sml, std::move(memo[i]));\n        }\n        dp[v].back()\
+    \ = std::move(sml);\n        if (G[v].size() == 1) {\n            dp[v][p == -1\
+    \ ? 0 : par[v]] = std::move(init_data[v]);\n        }\n        rep (i, G[v].size())\
+    \ {\n            const auto& e = G[v][i];\n            if (e.to != p) dfs2(e.to,\
+    \ v, i);\n        }\n    }\n    void init() {\n        n = G.size();\n       \
+    \ if (n == 1) {\n            res = std::move(init_data);\n            dp.assign(1,\
+    \ std::vector<U>{});\n            return;\n        }\n        dp.resize(n);\n\
+    \        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n        par.resize(n);\
+    \ par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0, -1, -1);\n    \
+    \    res.resize(n);\n        rep (i, n) {\n            res[i] = std::move(dp[i].back());\n\
+    \            dp[i].pop_back();\n        }\n    }\n  public:\n    ReRooting(const\
+    \ Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(), M::id()))\
+    \ {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>& ind)\
+    \ : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>& G, const\
+    \ F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind)) { init();\
+    \ }\n    const std::vector<U>& get_res() const& { return res; }\n    std::vector<U>\
+    \ get_res() && { return std::move(res); }\n    const U& operator[](int v) const&\
+    \ { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]); }\n\
+    \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
+    \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
+    \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
+    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
+    \u6728DP)\n * @docs docs/ReRooting.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -359,7 +360,7 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2022-04-25 23:24:04+09:00'
+  timestamp: '2022-04-26 21:30:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
