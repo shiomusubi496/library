@@ -43,11 +43,11 @@ class ReRooting {
         U sml = M::id();
         rep (i, G[v].size()) {
             dp[v][i] = M::op(sml, dp[v][i]);
-            sml = M::op(sml, memo[i]);
+            sml = M::op(sml, std::move(memo[i]));
         }
         dp[v].back() = std::move(sml);
         if (G[v].size() == 1) {
-            dp[v][p == -1 ? 0 : par[v]] = init_data[v];
+            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);
         }
         rep (i, G[v].size()) {
             const auto& e = G[v][i];
@@ -57,7 +57,7 @@ class ReRooting {
     void init() {
         n = G.size();
         if (n == 1) {
-            res = init_data;
+            res = std::move(init_data);
             dp.assign(1, std::vector<U>{});
             return;
         }
@@ -68,7 +68,7 @@ class ReRooting {
         dfs2(0, -1, -1);
         res.resize(n);
         rep (i, n) {
-            res[i] = dp[i].back();
+            res[i] = std::move(dp[i].back());
             dp[i].pop_back();
         }
     }
