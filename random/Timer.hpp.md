@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -10,6 +10,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: docs/Timer.md
+    document_title: Timer
     links: []
   bundledCode: "#line 2 \"random/Timer.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
     #include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
@@ -142,26 +144,26 @@ data:
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 4 \"random/Timer.hpp\"\n\nclass Timer {\n  private:\n    std::chrono::system_clock::time_point\
     \ start_time;\n  public:\n    Timer() : start_time(std::chrono::system_clock::now())\
-    \ {\n    }\n    void restart() {\n        start_time = std::chrono::system_clock::now();\n\
+    \ {}\n    void restart() {\n        start_time = std::chrono::system_clock::now();\n\
     \    }\n    // return the time in milliseconds\n    double elapsed() const {\n\
     \        return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now()\
     \ - start_time).count();\n    }\n    auto get_start_time() const {\n        return\
     \ start_time;\n    }\n    auto get_now_time() const {\n        return std::chrono::system_clock::now();\n\
-    \    }\n};\n"
+    \    }\n};\n\n/**\n * @brief Timer\n * @docs docs/Timer.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass Timer {\n  private:\n\
     \    std::chrono::system_clock::time_point start_time;\n  public:\n    Timer()\
-    \ : start_time(std::chrono::system_clock::now()) {\n    }\n    void restart()\
-    \ {\n        start_time = std::chrono::system_clock::now();\n    }\n    // return\
-    \ the time in milliseconds\n    double elapsed() const {\n        return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now()\
+    \ : start_time(std::chrono::system_clock::now()) {}\n    void restart() {\n  \
+    \      start_time = std::chrono::system_clock::now();\n    }\n    // return the\
+    \ time in milliseconds\n    double elapsed() const {\n        return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now()\
     \ - start_time).count();\n    }\n    auto get_start_time() const {\n        return\
     \ start_time;\n    }\n    auto get_now_time() const {\n        return std::chrono::system_clock::now();\n\
-    \    }\n};\n"
+    \    }\n};\n\n/**\n * @brief Timer\n * @docs docs/Timer.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: random/Timer.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-01 21:45:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/Timer.hpp
@@ -169,5 +171,14 @@ layout: document
 redirect_from:
 - /library/random/Timer.hpp
 - /library/random/Timer.hpp.html
-title: random/Timer.hpp
+title: Timer
 ---
+## 概要
+
+時間を測る。 `std::chrono` を使用している。
+
+- `Timer()` : 時間計測をはじめる。
+- `void restart()` : タイマーをリセットしてリスタートする。
+- `double elapsed()` : タイマーの現在の時間を返す。単位はミリ秒。
+- `double get_start_time()` : 最後にタイマーをリセットした時刻を返す。
+- `double get_now_time()` : 現在の時刻を返す。
