@@ -165,20 +165,20 @@ data:
     \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
     \ - itr->a)\n            <  (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a -\
     \ itr->a);\n    }\n  public:\n    ConvexHullTrick() = default;\n    void add_line(T\
-    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        typename\
-    \ std::set<Line>::iterator itr = st.insert(Line{a, b}).first;\n        if (!is_necessary(itr))\
-    \ {\n            st.erase(itr);\n            return;\n        }\n        while\
-    \ (itr != st.begin()     && !is_necessary(prev(itr))) st.erase(prev(itr));\n \
-    \       while (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a; prev(itr)->nxt_b = itr->b;\n        }\n\
-    \        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n    \
-    \        itr->nxt_a = next(itr)->a; itr->nxt_b = next(itr)->b;\n        }\n  \
-    \      else itr->has_nxt = false;\n    }\n    T get_min(T x) const {\n       \
-    \ auto itr = st.lower_bound(Line{x, 0, true});\n        if IF_CONSTEXPR (is_max)\
-    \ return - itr->get(x);\n        return itr->get(x);\n    }\n    bool empty()\
-    \ const {\n        return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/ConvexHullTrick.md\n */\n"
+    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        auto\
+    \ itr = st.emplace(a, b).first;\n        if (!is_necessary(itr)) {\n         \
+    \   st.erase(itr);\n            return;\n        }\n        while (itr != st.begin()\
+    \     && !is_necessary(prev(itr))) st.erase(prev(itr));\n        while (itr !=\
+    \ prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n        if\
+    \ (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n            prev(itr)->nxt_a\
+    \ = itr->a; prev(itr)->nxt_b = itr->b;\n        }\n        if (itr != prev(st.end()))\
+    \ {\n            itr->has_nxt = true;\n            itr->nxt_a = next(itr)->a;\
+    \ itr->nxt_b = next(itr)->b;\n        }\n        else itr->has_nxt = false;\n\
+    \    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
+    \ 0, true});\n        if IF_CONSTEXPR (is_max) return - itr->get(x);\n       \
+    \ return itr->get(x);\n    }\n    bool empty() const {\n        return st.empty();\n\
+    \    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false, class LargeT = __int128_t> class ConvexHullTrick\
     \ {\n  protected:\n    struct Line {\n        T a, b;\n        bool is_query;\n\
@@ -199,26 +199,26 @@ data:
     \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
     \ - itr->a)\n            <  (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a -\
     \ itr->a);\n    }\n  public:\n    ConvexHullTrick() = default;\n    void add_line(T\
-    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        typename\
-    \ std::set<Line>::iterator itr = st.insert(Line{a, b}).first;\n        if (!is_necessary(itr))\
-    \ {\n            st.erase(itr);\n            return;\n        }\n        while\
-    \ (itr != st.begin()     && !is_necessary(prev(itr))) st.erase(prev(itr));\n \
-    \       while (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a; prev(itr)->nxt_b = itr->b;\n        }\n\
-    \        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n    \
-    \        itr->nxt_a = next(itr)->a; itr->nxt_b = next(itr)->b;\n        }\n  \
-    \      else itr->has_nxt = false;\n    }\n    T get_min(T x) const {\n       \
-    \ auto itr = st.lower_bound(Line{x, 0, true});\n        if IF_CONSTEXPR (is_max)\
-    \ return - itr->get(x);\n        return itr->get(x);\n    }\n    bool empty()\
-    \ const {\n        return st.empty();\n    }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/ConvexHullTrick.md\n */\n"
+    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = - a, b = - b;\n        auto\
+    \ itr = st.emplace(a, b).first;\n        if (!is_necessary(itr)) {\n         \
+    \   st.erase(itr);\n            return;\n        }\n        while (itr != st.begin()\
+    \     && !is_necessary(prev(itr))) st.erase(prev(itr));\n        while (itr !=\
+    \ prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));\n        if\
+    \ (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n            prev(itr)->nxt_a\
+    \ = itr->a; prev(itr)->nxt_b = itr->b;\n        }\n        if (itr != prev(st.end()))\
+    \ {\n            itr->has_nxt = true;\n            itr->nxt_a = next(itr)->a;\
+    \ itr->nxt_b = next(itr)->b;\n        }\n        else itr->has_nxt = false;\n\
+    \    }\n    T get_min(T x) const {\n        auto itr = st.lower_bound(Line{x,\
+    \ 0, true});\n        if IF_CONSTEXPR (is_max) return - itr->get(x);\n       \
+    \ return itr->get(x);\n    }\n    bool empty() const {\n        return st.empty();\n\
+    \    }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/ConvexHullTrick.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-05-01 19:37:15+09:00'
+  timestamp: '2022-05-01 20:03:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/line_add_get_min.test.cpp
