@@ -261,98 +261,108 @@ data:
     \ == nullptr) r = std::make_unique<Node>();\n            return r;\n        }\n\
     \        void update() {\n            val = M::id();\n            if (l != nullptr)\
     \ val = M::op(val, l->val);\n            if (r != nullptr) val = M::op(val, r->val);\n\
-    \        }\n        Node() : val(M::id()), l(nullptr), r(nullptr) {}\n    };\n\
-    \    ll ori, h, n;\n    Node_ptr root;\n    template<class Upd> void update(Node_ptr&\
-    \ nd, ll a, ll b, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n       \
-    \     nd->val = upd(nd->val);\n            return;\n        }\n        ll m =\
-    \ (a + b) >> 1;\n        if (k < m) update(nd->get_l(), a, m, k, upd);\n     \
-    \   else update(nd->get_r(), m, b, k, upd);\n        nd->update();\n    }\n  \
-    \  T prod(const Node_ptr& nd, ll a, ll b, ll l, ll r) const {\n        if (nd\
-    \ == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
-    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
-    \        return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n   \
-    \ }\n    template<class Cond> ll max_right(const Node_ptr& nd, ll a, ll b, ll\
-    \ l, const Cond& cond, T& sm) const {\n        if (nd == nullptr || b <= l) return\
-    \ n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n            sm = M::op(sm,\
-    \ nd->val);\n            return n;\n        }\n        if (a + 1 == b) return\
-    \ a;\n        ll m = (a + b) >> 1;\n        ll res = max_right(nd->l, a, m, l,\
-    \ cond, sm);\n        if (res != n) return res;\n        return max_right(nd->r,\
-    \ m, b, l, cond, sm);\n    }\n    template<class Cond> ll min_left(const Node_ptr&\
-    \ nd, ll a, ll b, ll r, const Cond& cond, T& sm) const {\n        if (nd == nullptr\
-    \ || r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n  \
-    \          sm = M::op(nd->val, sm);\n            return 0;\n        }\n      \
-    \  if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r,\
-    \ m, b, r, cond, sm);\n        if (res != 0) return res;\n        return min_left(nd->l,\
-    \ a, m, r, cond, sm);\n    }\n    void reset(Node_ptr& nd, ll a, ll b, ll l, ll\
-    \ r) {\n        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n\
-    \        if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<Node>();\n\
+    \        }\n        Node() : val(M::id()), l(nullptr), r(nullptr) {}\n       \
+    \ Node(const T& v) : val(v), l(nullptr), r(nullptr) {}\n    };\n    ll ori, h,\
+    \ n;\n    Node_ptr root;\n    template<class Upd> void update(Node_ptr& nd, ll\
+    \ a, ll b, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n            nd->val\
+    \ = upd(nd->val);\n            return;\n        }\n        ll m = (a + b) >> 1;\n\
+    \        if (k < m) update(nd->get_l(), a, m, k, upd);\n        else update(nd->get_r(),\
+    \ m, b, k, upd);\n        nd->update();\n    }\n    T prod(const Node_ptr& nd,\
+    \ ll a, ll b, ll l, ll r) const {\n        if (nd == nullptr) return M::id();\n\
+    \        if (l <= a && b <= r) return nd->val;\n        if (r <= a || b <= l)\
+    \ return M::id();\n        ll m = (a + b) >> 1;\n        return M::op(prod(nd->l,\
+    \ a, m, l, r), prod(nd->r, m, b, l, r));\n    }\n    template<class Cond> ll max_right(const\
+    \ Node_ptr& nd, ll a, ll b, ll l, const Cond& cond, T& sm) const {\n        if\
+    \ (nd == nullptr || b <= l) return n;\n        if (l <= a && cond(M::op(sm, nd->val)))\
+    \ {\n            sm = M::op(sm, nd->val);\n            return n;\n        }\n\
+    \        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res\
+    \ = max_right(nd->l, a, m, l, cond, sm);\n        if (res != n) return res;\n\
+    \        return max_right(nd->r, m, b, l, cond, sm);\n    }\n    template<class\
+    \ Cond> ll min_left(const Node_ptr& nd, ll a, ll b, ll r, const Cond& cond, T&\
+    \ sm) const {\n        if (nd == nullptr || r <= a) return 0;\n        if (b <=\
+    \ r && cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val, sm);\n   \
+    \         return 0;\n        }\n        if (a + 1 == b) return b;\n        ll\
+    \ m = (a + b) >> 1;\n        ll res = min_left(nd->r, m, b, r, cond, sm);\n  \
+    \      if (res != 0) return res;\n        return min_left(nd->l, a, m, r, cond,\
+    \ sm);\n    }\n    void reset(Node_ptr& nd, ll a, ll b, ll l, ll r) {\n      \
+    \  if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n       \
+    \ if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<Node>();\n\
     \            else nd.reset();\n            return;\n        }\n        ll m =\
     \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
-    \ l, r);\n        nd->update();\n    }\n  public:\n    DynamicSegmentTree() :\
-    \ DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n  \
-    \  void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1ull << h;\n        root = std::make_unique<Node>();\n    }\n   \
-    \ template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0 <=\
-    \ k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
-    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
-    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
-    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
-    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
-    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
-    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
-    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
-    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
-    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
-    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n *\
-    \ @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n\
-    \ * @docs docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/855_DynamicSegTree.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    ll H, W, N; cin >> H >> W >> N;\n  \
-    \  DynamicSegmentTree<Monoid::Max<ll>> segl(H + 2), segu(W + 2);\n    DynamicSegmentTree<Monoid::Min<ll>>\
-    \ segr(H + 2), segd(W + 2);\n    map<ll, ll> mpl, mpr, mpu, mpd;\n    rep (N)\
-    \ {\n        ll x, y, l; cin >> x >> y >> l;\n        bool flg = false;\n    \
-    \    if (y == 0 || y == H + 1) {\n            swap(H, W);\n            swap(x,\
-    \ y);\n            swap(segl, segu); swap(segr, segd);\n            swap(mpl,\
-    \ mpu); swap(mpr, mpd);\n            flg = true;\n        }\n        if (x ==\
-    \ 0) {\n            if (mpl.count(y)) {\n                l += mpl[y];\n      \
-    \          mpl.erase(y);\n                segl.reset(y);\n            }\n    \
-    \        ll nx = min(l, W);\n            ll idx = infinity<ll>::max, kd = -1;\n\
-    \            if (l >= W + 1) {\n                idx = W + 1; kd = 3;\n       \
-    \     }\n            if (mpr.count(y) && mpr[y] <= nx) {\n                if (chmin(idx,\
-    \ mpr[y])) kd = 0;\n            }\n            if (segu.prod(0, nx + 1) >= y)\
-    \ {\n                if (chmin(idx, segu.max_right(0, [&](ll a) { return a < y;\
-    \ }))) kd = 1;\n            }\n            if (segd.prod(0, nx + 1) <= y) {\n\
-    \                if (chmin(idx, segd.max_right(0, [&](ll a) { return a > y; })))\
-    \ kd = 2;\n            }\n            if (kd == 0) {\n                mpr.erase(y);\n\
-    \                segr.reset(y);\n            }\n            else if (kd == 1)\
-    \ {\n                mpu.erase(idx);\n                segu.reset(idx);\n     \
-    \       }\n            else if (kd == 2) {\n                mpd.erase(idx);\n\
-    \                segd.reset(idx);\n            }\n            else if (kd == -1)\
-    \ {\n                mpl[y] = nx;\n                segl.set(y, nx);\n        \
-    \    }\n        }\n        if (x == W + 1) {\n            if (mpr.count(y)) {\n\
-    \                l += W + 1 - mpr[y];\n                mpr.erase(y);\n       \
-    \         segr.reset(y);\n            }\n            ll nx = max(W - l + 1, 0ll);\n\
-    \            ll idx = infinity<ll>::min, kd = -1;\n            if (l >= W + 1)\
-    \ {\n                idx = 0; kd = 3;\n            }\n            if (mpl.count(y)\
-    \ && nx <= mpl[y]) {\n                if (chmax(idx, mpl[y])) kd = 0;\n      \
-    \      }\n            if (segu.prod(nx, W + 2) >= y) {\n                if (chmax(idx,\
-    \ segu.min_left(W + 2, [&](ll a) { return a < y; }) - 1)) kd = 1;\n          \
-    \  }\n            if (segd.prod(nx, W + 2) <= y) {\n                if (chmax(idx,\
-    \ segd.min_left(W + 2, [&](ll a) { return a > y; }) - 1)) kd = 2;\n          \
-    \  }\n            if (kd == 0) {\n                mpl.erase(y);\n            \
-    \    segl.reset(y);\n            }\n            else if (kd == 1) {\n        \
-    \        mpu.erase(idx);\n                segu.reset(idx);\n            }\n  \
-    \          else if (kd == 2) {\n                mpd.erase(idx);\n            \
-    \    segd.reset(idx);\n            }\n            else if (kd == -1) {\n     \
-    \           mpr[y] = nx;\n                segr.set(y, nx);\n            }\n  \
-    \      }\n        if (flg) {\n            swap(H, W);\n            swap(x, y);\n\
-    \            swap(segl, segu); swap(segr, segd);\n            swap(mpl, mpu);\
-    \ swap(mpr, mpd);\n        }\n    }\n    ll ans = 0;\n    each_const (p : mpl)\
-    \ ans += p.second;\n    each_const (p : mpr) ans += W + 1 - p.second;\n    each_const\
-    \ (p : mpu) ans += p.second;\n    each_const (p : mpd) ans += H + 1 - p.second;\n\
-    \    cout << ans << endl;\n}\n"
+    \ l, r);\n        nd->update();\n    }\n    void init_copy(Node_ptr& nd, const\
+    \ Node_ptr& src) {\n        if (src == nullptr) return;\n        nd = std::make_unique<Node>(src->val);\n\
+    \        init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\
+    \  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
+    \ n_) { init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
+    \        : n(other.n), h(other.h), ori(other.ori), root(std::make_unique<Node>(other.root->val))\
+    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&)\
+    \ = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree& other)\
+    \ {\n        if (this == &other) return *this;\n        n = other.n;\n       \
+    \ h = other.h;\n        ori = other.ori;\n        root = std::make_unique<Node>(other.root->val);\n\
+    \        init_copy(root, other.root);\n        return *this;\n    }\n    DynamicSegmentTree&\
+    \ operator=(DynamicSegmentTree&&) = default;\n    void init(ll n_) {\n       \
+    \ ori = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n    \
+    \    root = std::make_unique<Node>();\n    }\n    template<class Upd> void update(ll\
+    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(root,\
+    \ 0, n, k, upd);\n    }\n    void set(ll k, T x) {\n        update(k, [&](T) ->\
+    \ T { return x; });\n    }\n    void apply(ll k, T x) {\n        update(k, [&](T\
+    \ a) -> T { return M::op(a, x); });\n    }\n    T prod(ll l, ll r) const {\n \
+    \       assert(0 <= l && l <= r && r <= ori);\n        return prod(root, 0, n,\
+    \ l, r);\n    }\n    T all_prod() const { return root->val; }\n    T get(ll k)\
+    \ const { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll l,\
+    \ const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        if (l\
+    \ == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n      \
+    \  return std::min(max_right(root, 0, n, l, cond, sm), ori);\n    }\n    template<class\
+    \ Cond> ll min_left(ll r, const Cond& cond) const {\n        assert(0 <= r &&\
+    \ r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return min_left(root, 0, n, r, cond, sm);\n    }\n\
+    \    void reset(ll l, ll r) { reset(root, 0, n, l, r); }\n    void reset(ll k)\
+    \ { reset(root, 0, n, k, k + 1); }\n};\n\n/**\n * @brief DynamicSegmentTree(\u52D5\
+    \u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DynamicSegmentTree.md\n\
+    \ */\n#line 4 \"test/yuki/855_DynamicSegTree.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    ll H, W, N; cin >> H >> W >> N;\n    DynamicSegmentTree<Monoid::Max<ll>>\
+    \ segl(H + 2), segu(W + 2);\n    DynamicSegmentTree<Monoid::Min<ll>> segr(H +\
+    \ 2), segd(W + 2);\n    map<ll, ll> mpl, mpr, mpu, mpd;\n    rep (N) {\n     \
+    \   ll x, y, l; cin >> x >> y >> l;\n        bool flg = false;\n        if (y\
+    \ == 0 || y == H + 1) {\n            swap(H, W);\n            swap(x, y);\n  \
+    \          swap(segl, segu); swap(segr, segd);\n            swap(mpl, mpu); swap(mpr,\
+    \ mpd);\n            flg = true;\n        }\n        if (x == 0) {\n         \
+    \   if (mpl.count(y)) {\n                l += mpl[y];\n                mpl.erase(y);\n\
+    \                segl.reset(y);\n            }\n            ll nx = min(l, W);\n\
+    \            ll idx = infinity<ll>::max, kd = -1;\n            if (l >= W + 1)\
+    \ {\n                idx = W + 1; kd = 3;\n            }\n            if (mpr.count(y)\
+    \ && mpr[y] <= nx) {\n                if (chmin(idx, mpr[y])) kd = 0;\n      \
+    \      }\n            if (segu.prod(0, nx + 1) >= y) {\n                if (chmin(idx,\
+    \ segu.max_right(0, [&](ll a) { return a < y; }))) kd = 1;\n            }\n  \
+    \          if (segd.prod(0, nx + 1) <= y) {\n                if (chmin(idx, segd.max_right(0,\
+    \ [&](ll a) { return a > y; }))) kd = 2;\n            }\n            if (kd ==\
+    \ 0) {\n                mpr.erase(y);\n                segr.reset(y);\n      \
+    \      }\n            else if (kd == 1) {\n                mpu.erase(idx);\n \
+    \               segu.reset(idx);\n            }\n            else if (kd == 2)\
+    \ {\n                mpd.erase(idx);\n                segd.reset(idx);\n     \
+    \       }\n            else if (kd == -1) {\n                mpl[y] = nx;\n  \
+    \              segl.set(y, nx);\n            }\n        }\n        if (x == W\
+    \ + 1) {\n            if (mpr.count(y)) {\n                l += W + 1 - mpr[y];\n\
+    \                mpr.erase(y);\n                segr.reset(y);\n            }\n\
+    \            ll nx = max(W - l + 1, 0ll);\n            ll idx = infinity<ll>::min,\
+    \ kd = -1;\n            if (l >= W + 1) {\n                idx = 0; kd = 3;\n\
+    \            }\n            if (mpl.count(y) && nx <= mpl[y]) {\n            \
+    \    if (chmax(idx, mpl[y])) kd = 0;\n            }\n            if (segu.prod(nx,\
+    \ W + 2) >= y) {\n                if (chmax(idx, segu.min_left(W + 2, [&](ll a)\
+    \ { return a < y; }) - 1)) kd = 1;\n            }\n            if (segd.prod(nx,\
+    \ W + 2) <= y) {\n                if (chmax(idx, segd.min_left(W + 2, [&](ll a)\
+    \ { return a > y; }) - 1)) kd = 2;\n            }\n            if (kd == 0) {\n\
+    \                mpl.erase(y);\n                segl.reset(y);\n            }\n\
+    \            else if (kd == 1) {\n                mpu.erase(idx);\n          \
+    \      segu.reset(idx);\n            }\n            else if (kd == 2) {\n    \
+    \            mpd.erase(idx);\n                segd.reset(idx);\n            }\n\
+    \            else if (kd == -1) {\n                mpr[y] = nx;\n            \
+    \    segr.set(y, nx);\n            }\n        }\n        if (flg) {\n        \
+    \    swap(H, W);\n            swap(x, y);\n            swap(segl, segu); swap(segr,\
+    \ segd);\n            swap(mpl, mpu); swap(mpr, mpd);\n        }\n    }\n    ll\
+    \ ans = 0;\n    each_const (p : mpl) ans += p.second;\n    each_const (p : mpr)\
+    \ ans += W + 1 - p.second;\n    each_const (p : mpu) ans += p.second;\n    each_const\
+    \ (p : mpd) ans += H + 1 - p.second;\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/855\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../data-struct/segment/DynamicSegmentTree.hpp\"\nusing namespace\
     \ std;\nint main() {\n    ll H, W, N; cin >> H >> W >> N;\n    DynamicSegmentTree<Monoid::Max<ll>>\
@@ -406,7 +416,7 @@ data:
   isVerificationFile: true
   path: test/yuki/855_DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-01 17:45:50+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/855_DynamicSegTree.test.cpp

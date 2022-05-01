@@ -9,7 +9,7 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/HeavyLightDecomposition.md
     document_title: "HeavyLightDecomposition(HL\u5206\u89E3)"
@@ -305,7 +305,7 @@ data:
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
