@@ -58,6 +58,7 @@ template<class T> class Combinatorics {
     static std::vector<T> factinv;
   public:
     static void init(ll n) {
+        chmax(n, 1000000);
         const int b = factorial.size();
         if (n < b) return;
         factorial.resize(n + 1);
