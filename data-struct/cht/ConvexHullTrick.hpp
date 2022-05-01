@@ -38,7 +38,7 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
     ConvexHullTrick() = default;
     void add_line(T a, T b) {
         if IF_CONSTEXPR (is_max) a = - a, b = - b;
-        typename std::set<Line>::iterator itr = st.insert(Line{a, b}).first;
+        auto itr = st.emplace(a, b).first;
         if (!is_necessary(itr)) {
             st.erase(itr);
             return;

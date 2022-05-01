@@ -2,35 +2,37 @@
 
 #include "../../other/template.hpp"
 
-template<class T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {
+template<class T = ll, bool is_max = false, class LargeT = __int128_t> class ConvexHullTrickAddMonotone {
   protected:
     struct Line {
         T a, b;
         bool is_query;
-        mutable const Line* nxt;
+        mutable ll nxt_a, nxt_b;
+        mutable bool has_nxt;
         T get(T x) const { return a * x + b; }
+        T get_nxt(T x) const { return nxt_a * x + nxt_b; }
         Line() = default;
-        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), nxt(nullptr) {}
+        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), has_nxt(false) {}
         friend bool operator<(const Line& lhs, const Line& rhs) {
             assert(!lhs.is_query || !rhs.is_query);
             if (lhs.is_query) {
-                if (rhs.nxt == nullptr) return true;
-                return rhs.get(lhs.a) < rhs.nxt->get(lhs.a);
+                if (!rhs.has_nxt) return true;
+                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);
             }
             if (rhs.is_query) {
-                if (lhs.nxt == nullptr) return false;
-                return lhs.get(rhs.a) > lhs.nxt->get(rhs.a);
+                if (!lhs.has_nxt) return false;
+                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);
             }
             return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;
         }
     };
     std::deque<Line> que;
     bool is_necessary(const typename std::deque<Line>::iterator& itr) {
+        if (itr != que.begin()     && itr->a == prev(itr)->a) return itr->b < prev(itr)->b;
+        if (itr != prev(que.end()) && itr->a == next(itr)->a) return itr->b < next(itr)->b;
         if (itr == que.begin() || itr == prev(que.end())) return true;
-        if (itr->a == prev(itr)->a) return itr->b < prev(itr)->b;
-        if (itr->a == next(itr)->a) return itr->b < next(itr)->b;
-        return (__int128_t)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)
-            <  (__int128_t)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);
+        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)
+            <  (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);
     }
   public:
     ConvexHullTrickAddMonotone() = default;
@@ -38,12 +40,12 @@ template<class T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {
         if IF_CONSTEXPR (is_max) a = - a, b = - b;
         typename std::deque<Line>::iterator itr;
         if (que.empty() || que.back().a <= a) {
-            que.push_back(Line{a, b});
+            que.emplace_back(a, b);
             itr = prev(que.end());
         }
         else {
             assert(a <= que.front().a);
-            que.push_front(Line{a, b});
+            que.emplace_front(a, b);
             itr = que.begin();
         }
         if (!is_necessary(itr)) {
@@ -52,20 +54,28 @@ template<class T = ll, bool is_max = false> class ConvexHullTrickAddMonotone {
         }
         while (itr != que.begin() && !is_necessary(prev(itr))) {
             que.pop_back(); que.pop_back();
-            que.push_back(Line{a, b});
+            que.emplace_back(a, b);
             itr = prev(que.end());
         }
         while (itr != prev(que.end()) && !is_necessary(next(itr))) {
             que.pop_front(); que.pop_front();
-            que.push_front(Line{a, b});
+            que.emplace_front(a, b);
             itr = que.begin();
         }
-        if (itr != que.begin()) prev(itr)->nxt = &*itr;
-        if (itr != prev(que.end())) itr->nxt = &*next(itr);
-        else itr->nxt = nullptr;
+        if (itr != que.begin()) {
+            prev(itr)->nxt_a = itr->a;
+            prev(itr)->nxt_b = itr->b;
+            prev(itr)->has_nxt = true;
+        }
+        if (itr != prev(que.end())) {
+            itr->nxt_a = next(itr)->a;
+            itr->nxt_b = next(itr)->b;
+            itr->has_nxt = true;
+        }
+        else itr->has_nxt = false;
     }
     T get_min(T x) const {
-        auto itr = lower_bound(que.begin(), que.end(), Line{x, 0, true});
+        auto itr = lower_bound(all(que), Line{x, 0, true});
         if IF_CONSTEXPR (is_max) return - itr->get(x);
         return itr->get(x);
     }
