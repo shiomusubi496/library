@@ -1,60 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
@@ -76,105 +76,105 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -242,57 +242,60 @@ data:
     \ }\n    return res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept\
     \ {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
     \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
-    \ res;\n}\n\nPLL extGCD(ll a, ll b) noexcept {\n    if (b == 0) return PLL{1,\
-    \ 0};\n    PLL p = extGCD(b, a % b);\n    std::swap(p.first, p.second);\n    p.second\
-    \ -= p.first * (a / b);\n    if (p.first < 0) {\n        p.first += b;\n     \
-    \   p.second -= a;\n    }\n    return p;\n}\nll mod_inv(ll a, ll mod) noexcept\
-    \ {\n    const PLL p = extGCD(a, mod);\n    assert(p.first * a + p.second * mod\
-    \ == 1);\n    return p.first;\n}\nPLL ChineseRemainder(ll b1, ll m1, ll b2, ll\
-    \ m2) noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first\
-    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g\
-    \ != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 /\
-    \ g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
-    \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
-    \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
-    }\n\ntemplate<class F> class RecLambda {\n  private:\n    F f;\n  public:\n  \
-    \  explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
-    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
-    \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
-    \ T, class... Args>\nconstexpr typename multi_dim_vector<Args..., T>::type make_vec(int\
-    \ n, Args&&... args) {\n    return typename multi_dim_vector<Args..., T>::type\
-    \ (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
-    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
-    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
-    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
-    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
-    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
-    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m =\
+    \ b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n       \
+    \ t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u,\
+    \ u);\n        std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x +=\
+    \ m;\n        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll\
+    \ mod) noexcept {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while\
+    \ (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x\
+    \ -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return\
+    \ x;\n}\ninline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {\n\
+    \    const PLL p = extGCD(m1, m2);\n    const ll g = p.first * m1 + p.second *\
+    \ m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g != 0) return PLL{-1,\
+    \ -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n    return {(x *\
+    \ m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>& b, const\
+    \ std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size()) {\n\
+    \        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n        if\
+    \ (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class F>\
+    \ class RecLambda {\n  private:\n    F f;\n  public:\n    explicit constexpr RecLambda(F&&\
+    \ f_) : f(std::forward<F>(f_)) {}\n    template<class... Args> constexpr auto\
+    \ operator()(Args&&... args) const\n            -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\ntemplate<class T,\
+    \ class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T, class Comp = std::less<T>>\
+    \ class presser {\n  protected:\n    std::vector<T> dat;\n    Comp cmp;\n    bool\
+    \ sorted = false;\n  public:\n    presser() : presser(Comp()) {}\n    presser(const\
+    \ Comp& cmp) : cmp(cmp) {}\n    presser(const std::vector<T>& vec, const Comp&\
+    \ cmp = Comp()) : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&& vec, const\
+    \ Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
+    \ il, const Comp& cmp = Comp()) : dat(il.begin(), il.end()), cmp(cmp) {}\n   \
+    \ void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n \
+    \   }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
-    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
-    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
-    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
-    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
-    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
+    \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
+    \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
+    \    assert(!sorted); sorted = true;\n        std::sort(all(dat), cmp);\n    \
+    \    dat.erase(std::unique(all(dat), [&](const T& a, const T& b) -> bool {\n \
+    \           return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n      \
+    \  return dat.size();\n    }\n    const T& operator[](int k) const& {\n      \
+    \  assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n        return\
+    \ dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n    \
+    \    assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
     \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
@@ -480,64 +483,64 @@ data:
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - other/monoid2.hpp
   - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
+  - other/monoid2.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/SkipList.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/SegmentTree.hpp
   - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
-  timestamp: '2022-02-27 15:19:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - data-struct/segment/LazySegmentTree.hpp
+  timestamp: '2022-05-01 15:10:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/gcd_convolution.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/lcm_convolution.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:

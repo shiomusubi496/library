@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -85,57 +85,60 @@ data:
     \ }\n    return res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept\
     \ {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
     \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
-    \ res;\n}\n\nPLL extGCD(ll a, ll b) noexcept {\n    if (b == 0) return PLL{1,\
-    \ 0};\n    PLL p = extGCD(b, a % b);\n    std::swap(p.first, p.second);\n    p.second\
-    \ -= p.first * (a / b);\n    if (p.first < 0) {\n        p.first += b;\n     \
-    \   p.second -= a;\n    }\n    return p;\n}\nll mod_inv(ll a, ll mod) noexcept\
-    \ {\n    const PLL p = extGCD(a, mod);\n    assert(p.first * a + p.second * mod\
-    \ == 1);\n    return p.first;\n}\nPLL ChineseRemainder(ll b1, ll m1, ll b2, ll\
-    \ m2) noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first\
-    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g\
-    \ != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 /\
-    \ g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
-    \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
-    \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
-    }\n\ntemplate<class F> class RecLambda {\n  private:\n    F f;\n  public:\n  \
-    \  explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
-    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
-    \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
-    \ T, class... Args>\nconstexpr typename multi_dim_vector<Args..., T>::type make_vec(int\
-    \ n, Args&&... args) {\n    return typename multi_dim_vector<Args..., T>::type\
-    \ (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
-    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
-    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
-    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
-    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
-    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
-    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m =\
+    \ b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n       \
+    \ t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u,\
+    \ u);\n        std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x +=\
+    \ m;\n        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll\
+    \ mod) noexcept {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while\
+    \ (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x\
+    \ -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return\
+    \ x;\n}\ninline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {\n\
+    \    const PLL p = extGCD(m1, m2);\n    const ll g = p.first * m1 + p.second *\
+    \ m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g != 0) return PLL{-1,\
+    \ -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n    return {(x *\
+    \ m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>& b, const\
+    \ std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size()) {\n\
+    \        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n        if\
+    \ (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class F>\
+    \ class RecLambda {\n  private:\n    F f;\n  public:\n    explicit constexpr RecLambda(F&&\
+    \ f_) : f(std::forward<F>(f_)) {}\n    template<class... Args> constexpr auto\
+    \ operator()(Args&&... args) const\n            -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\ntemplate<class T,\
+    \ class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T, class Comp = std::less<T>>\
+    \ class presser {\n  protected:\n    std::vector<T> dat;\n    Comp cmp;\n    bool\
+    \ sorted = false;\n  public:\n    presser() : presser(Comp()) {}\n    presser(const\
+    \ Comp& cmp) : cmp(cmp) {}\n    presser(const std::vector<T>& vec, const Comp&\
+    \ cmp = Comp()) : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&& vec, const\
+    \ Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
+    \ il, const Comp& cmp = Comp()) : dat(il.begin(), il.end()), cmp(cmp) {}\n   \
+    \ void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n \
+    \   }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
-    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
-    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
-    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
-    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
-    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
+    \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
+    \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
+    \    assert(!sorted); sorted = true;\n        std::sort(all(dat), cmp);\n    \
+    \    dat.erase(std::unique(all(dat), [&](const T& a, const T& b) -> bool {\n \
+    \           return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n      \
+    \  return dat.size();\n    }\n    const T& operator[](int k) const& {\n      \
+    \  assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n        return\
+    \ dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n    \
+    \    assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
     \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
@@ -243,28 +246,28 @@ data:
     \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
     \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
     \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
-    \ void init(ll n) {\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
-    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n    }\n   \
-    \ static T fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n\
-    \    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n \
-    \       init(n);\n        return factorial[n] / factorial[n - r];\n    }\n   \
-    \ static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return T(0);\n    \
-    \    init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
-    \    }\n    static T homo(ll n, ll r) {\n        return comb(n + r - 1, r);\n\
-    \    }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        chmin(r, n - r);\n        T res = 1;\n        reps (i, r) res *=\
-    \ n - r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r)\
-    \ {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n       \
-    \ init(r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n      \
-    \  return res / factorial[r];\n    }\n    static T small_homo(ll n, ll r) {\n\
-    \        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T>\
-    \ IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\ntemplate<class T>\
-    \ class Combinatorics {\n  protected:\n    static std::vector<T> factorial;\n\
-    \    static std::vector<T> factinv;\n  public:\n    static void init(ll n) {\n\
-    \        chmax(n, 1000000);\n        int b = factorial.size();\n        if (n\
-    \ < b) return;\n        factorial.reserve(n + 1);\n        while ((ll)factorial.size()\
-    \ <= n) factorial.push_back(factorial.back() * factorial.size());\n        factinv.resize(n\
-    \ + 1);\n        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ void init(ll n) {\n        const int b = factorial.size();\n        if (n <\
+    \ b) return;\n        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i]\
+    \ = factorial[i - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n      \
+    \  if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
+    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
+    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
+    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
+    \ comb(n + r - 1, r);\n    }\n    static T small_perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n \
+    \       reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
+    \ T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
+    \ n - r);\n        init(r);\n        T res = 1;\n        reps (i, r) res *= n\
+    \ - r + i;\n        return res / factorial[r];\n    }\n    static T small_homo(ll\
+    \ n, ll r) {\n        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class\
+    \ T> std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\n\
+    template<class T> class Combinatorics {\n  protected:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n  public:\n    static void init(ll\
+    \ n) {\n        chmax(n, 1000000);\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
     \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
     \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
     \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
@@ -297,7 +300,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-03-31 20:59:26+09:00'
+  timestamp: '2022-05-01 15:11:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_E.test.cpp

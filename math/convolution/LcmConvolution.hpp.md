@@ -1,21 +1,21 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/DivisorZetaMoebiusTransform.hpp
     title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/LcmConvolution.md
     document_title: LCMConvolution
@@ -85,57 +85,60 @@ data:
     \ }\n    return res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept\
     \ {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
     \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
-    \ res;\n}\n\nPLL extGCD(ll a, ll b) noexcept {\n    if (b == 0) return PLL{1,\
-    \ 0};\n    PLL p = extGCD(b, a % b);\n    std::swap(p.first, p.second);\n    p.second\
-    \ -= p.first * (a / b);\n    if (p.first < 0) {\n        p.first += b;\n     \
-    \   p.second -= a;\n    }\n    return p;\n}\nll mod_inv(ll a, ll mod) noexcept\
-    \ {\n    const PLL p = extGCD(a, mod);\n    assert(p.first * a + p.second * mod\
-    \ == 1);\n    return p.first;\n}\nPLL ChineseRemainder(ll b1, ll m1, ll b2, ll\
-    \ m2) noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first\
-    \ * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g\
-    \ != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 /\
-    \ g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b, const std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n\
-    \    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
-    \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
-    }\n\ntemplate<class F> class RecLambda {\n  private:\n    F f;\n  public:\n  \
-    \  explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args> constexpr auto operator()(Args&&... args) const\n            -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\n\
-    template<class T, class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg)\
-    \ {\n    return std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class\
-    \ T, class... Args>\nconstexpr typename multi_dim_vector<Args..., T>::type make_vec(int\
-    \ n, Args&&... args) {\n    return typename multi_dim_vector<Args..., T>::type\
-    \ (n, make_vec<T>(std::forward<Args>(args)...));\n}\n\ninline CONSTEXPR int popcnt(ull\
-    \ x) {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n#endif\n   \
-    \ x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n    x = (x\
-    \ & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f)\
-    \ + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff) + ((x\
-    \ >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >> 16)\
-    \ & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\n  protected:\n\
-    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n  public:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp()) : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp()) : dat(std::move(vec)),\
-    \ cmp(cmp) {}\n    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\
-    \ : dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n      \
-    \  assert(!sorted);\n        dat.reserve(n);\n    }\n    void push_back(const\
-    \ T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n    }\n    void\
-    \ push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m =\
+    \ b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n       \
+    \ t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u,\
+    \ u);\n        std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x +=\
+    \ m;\n        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll\
+    \ mod) noexcept {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while\
+    \ (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x\
+    \ -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return\
+    \ x;\n}\ninline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {\n\
+    \    const PLL p = extGCD(m1, m2);\n    const ll g = p.first * m1 + p.second *\
+    \ m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g != 0) return PLL{-1,\
+    \ -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n    return {(x *\
+    \ m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>& b, const\
+    \ std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size()) {\n\
+    \        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n        if\
+    \ (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class F>\
+    \ class RecLambda {\n  private:\n    F f;\n  public:\n    explicit constexpr RecLambda(F&&\
+    \ f_) : f(std::forward<F>(f_)) {}\n    template<class... Args> constexpr auto\
+    \ operator()(Args&&... args) const\n            -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\ntemplate<class T,\
+    \ class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
+    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
+    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
+    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T, class Comp = std::less<T>>\
+    \ class presser {\n  protected:\n    std::vector<T> dat;\n    Comp cmp;\n    bool\
+    \ sorted = false;\n  public:\n    presser() : presser(Comp()) {}\n    presser(const\
+    \ Comp& cmp) : cmp(cmp) {}\n    presser(const std::vector<T>& vec, const Comp&\
+    \ cmp = Comp()) : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&& vec, const\
+    \ Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
+    \ il, const Comp& cmp = Comp()) : dat(il.begin(), il.end()), cmp(cmp) {}\n   \
+    \ void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n \
+    \   }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
-    \        dat.reserve(dat.size() + vec.size());\n        std::copy(all(vec), std::back_inserter(dat));\n\
-    \    }\n    int build() {\n        assert(!sorted); sorted = true;\n        std::sort(all(dat),\
-    \ cmp);\n        dat.erase(std::unique(all(dat), [&](const T& a, const T& b) ->\
-    \ bool {\n            return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n\
-    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
-    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
+    \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
+    \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
+    \    assert(!sorted); sorted = true;\n        std::sort(all(dat), cmp);\n    \
+    \    dat.erase(std::unique(all(dat), [&](const T& a, const T& b) -> bool {\n \
+    \           return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n      \
+    \  return dat.size();\n    }\n    const T& operator[](int k) const& {\n      \
+    \  assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n        return\
+    \ dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n    \
+    \    assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
     \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
     \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
@@ -178,8 +181,8 @@ data:
   isVerificationFile: false
   path: math/convolution/LcmConvolution.hpp
   requiredBy: []
-  timestamp: '2022-04-17 14:53:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-01 15:10:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/lcm_convolution.test.cpp
 documentation_of: math/convolution/LcmConvolution.hpp
