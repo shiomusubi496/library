@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int N, Q; cin >> N >> Q;
-    ConvexHullTrick<ll> CHT;
+    ConvexHullTrick<ll, false, __int128_t> CHT;
     rep (N) {
         ll a, b; cin >> a >> b;
         CHT.add_line(a, b);
