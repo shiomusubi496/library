@@ -6,8 +6,7 @@ class Timer {
   private:
     std::chrono::system_clock::time_point start_time;
   public:
-    Timer() : start_time(std::chrono::system_clock::now()) {
-    }
+    Timer() : start_time(std::chrono::system_clock::now()) {}
     void restart() {
         start_time = std::chrono::system_clock::now();
     }
@@ -22,3 +21,8 @@ class Timer {
         return std::chrono::system_clock::now();
     }
 };
+
+/**
+ * @brief Timer
+ * @docs docs/Timer.md
+ */
