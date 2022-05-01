@@ -26,6 +26,7 @@ template<class M> class DynamicSegmentTree {
             if (r != nullptr) val = M::op(val, r->val);
         }
         Node() : val(M::id()), l(nullptr), r(nullptr) {}
+        Node(const T& v) : val(v), l(nullptr), r(nullptr) {}
     };
     ll ori, h, n;
     Node_ptr root;
@@ -83,9 +84,30 @@ template<class M> class DynamicSegmentTree {
         reset(nd->r, m, b, l, r);
         nd->update();
     }
+    void init_copy(Node_ptr& nd, const Node_ptr& src) {
+        if (src == nullptr) return;
+        nd = std::make_unique<Node>(src->val);
+        init_copy(nd->l, src->l);
+        init_copy(nd->r, src->r);
+    }
   public:
     DynamicSegmentTree() : DynamicSegmentTree(inf) {}
     DynamicSegmentTree(ll n_) { init(n_); }
+    DynamicSegmentTree(const DynamicSegmentTree& other)
+        : n(other.n), h(other.h), ori(other.ori), root(std::make_unique<Node>(other.root->val)) {
+        init_copy(root, other.root);
+    }
+    DynamicSegmentTree(DynamicSegmentTree&&) = default;
+    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {
+        if (this == &other) return *this;
+        n = other.n;
+        h = other.h;
+        ori = other.ori;
+        root = std::make_unique<Node>(other.root->val);
+        init_copy(root, other.root);
+        return *this;
+    }
+    DynamicSegmentTree& operator=(DynamicSegmentTree&&) = default;
     void init(ll n_) {
         ori = n_;
         h = bitop::ceil_log2(ori);
