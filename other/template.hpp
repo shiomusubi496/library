@@ -159,23 +159,36 @@ inline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept {
     return res;
 }
 
-PLL extGCD(ll a, ll b) noexcept {
-    if (b == 0) return PLL{1, 0};
-    PLL p = extGCD(b, a % b);
-    std::swap(p.first, p.second);
-    p.second -= p.first * (a / b);
-    if (p.first < 0) {
-        p.first += b;
-        p.second -= a;
+inline PLL extGCD(ll a, ll b) noexcept {
+    const ll n = a, m = b;
+    ll x = 1, y = 0, u = 0, v = 1;
+    ll t;
+    while (b) {
+        t = a / b;
+        std::swap(a -= t * b, b);
+        std::swap(x -= t * u, u);
+        std::swap(y -= t * v, v);
     }
-    return p;
+    if (x < 0) {
+        x += m;
+        y -= n;
+    }
+    return {x, y};
 }
-ll mod_inv(ll a, ll mod) noexcept {
-    const PLL p = extGCD(a, mod);
-    assert(p.first * a + p.second * mod == 1);
-    return p.first;
+inline ll mod_inv(ll a, ll mod) noexcept {
+    ll b = mod;
+    ll x = 1, u = 0;
+    ll t;
+    while (b) {
+        t = a / b;
+        std::swap(a -= t * b, b);
+        std::swap(x -= t * u, u);
+    }
+    if (x < 0) x += mod;
+    assert(a == 1);
+    return x;
 }
-PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {
+inline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {
     const PLL p = extGCD(m1, m2);
     const ll g = p.first * m1 + p.second * m2;
     const ll l = m1 / g * m2;
@@ -259,8 +272,9 @@ template<class T, class Comp = std::less<T>> class presser {
     }
     void push(const std::vector<T>& vec) {
         assert(!sorted);
-        dat.reserve(dat.size() + vec.size());
-        std::copy(all(vec), std::back_inserter(dat));
+        const int n = dat.size();
+        dat.resize(n + vec.size());
+        rep (i, vec.size()) dat[n + i] = vec[i];
     }
     int build() {
         assert(!sorted); sorted = true;

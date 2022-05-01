@@ -8,8 +8,10 @@ template<class T> class IntCombinatorics {
     static std::vector<T> factorial;
   public:
     static void init(ll n) {
-        factorial.reserve(n + 1);
-        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back() * factorial.size());
+        const int b = factorial.size();
+        if (n < b) return;
+        factorial.resize(n + 1);
+        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;
     }
     static T fact(ll x) {
         init(x);
@@ -56,11 +58,10 @@ template<class T> class Combinatorics {
     static std::vector<T> factinv;
   public:
     static void init(ll n) {
-        chmax(n, 1000000);
-        int b = factorial.size();
+        const int b = factorial.size();
         if (n < b) return;
-        factorial.reserve(n + 1);
-        while ((ll)factorial.size() <= n) factorial.push_back(factorial.back() * factorial.size());
+        factorial.resize(n + 1);
+        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;
         factinv.resize(n + 1);
         factinv[n] = T(1) / factorial[n];
         rreps (i, n, b) factinv[i - 1] = factinv[i] * i;
