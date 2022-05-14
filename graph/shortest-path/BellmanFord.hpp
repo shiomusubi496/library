@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
-    assert(0 <= start && start <= V);
+    assert(0 <= start && start < V);
     std::vector<T> dist(V, infinity<T>::value); dist[start] = 0;
     rep (i, V) {
         bool changed = false;

@@ -8,7 +8,7 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
     std::vector<int> bfr(N, -2); bfr[start] = -1;
     std::queue<int> que; que.push(start);
     while (!que.empty()) {
-        int v = que.front(); que.pop();
+        int v = std::move(que.front()); que.pop();
         each_const (e : G[v]) {
             if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {
                 bfr[e.to] = v;
