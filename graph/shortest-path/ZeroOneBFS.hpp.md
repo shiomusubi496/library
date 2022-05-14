@@ -191,10 +191,10 @@ data:
     \ntemplate<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start = 0)\
     \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    std::deque<std::pair<T, int>> que;\
-    \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = que.front().first;\n\
-    \        int v = que.front().second;\n        que.pop_front();\n        if (dist[v]\
-    \ != c) continue;\n        each_const (e : G[v]) {\n            if (e.cost ==\
-    \ 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
+    \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = std::move(que.front().first);\n\
+    \        int v = std::move(que.front().second);\n        que.pop_front();\n  \
+    \      if (dist[v] != c) continue;\n        each_const (e : G[v]) {\n        \
+    \    if (e.cost == 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
     \ e.to);\n            }\n            else {\n                if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace_back(dist[e.to], e.to);\n            }\n        }\n\
     \    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs docs/ZeroOneBFS.md\n\
@@ -203,10 +203,10 @@ data:
     \n\ntemplate<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start =\
     \ 0) {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    std::deque<std::pair<T, int>> que;\
-    \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = que.front().first;\n\
-    \        int v = que.front().second;\n        que.pop_front();\n        if (dist[v]\
-    \ != c) continue;\n        each_const (e : G[v]) {\n            if (e.cost ==\
-    \ 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
+    \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = std::move(que.front().first);\n\
+    \        int v = std::move(que.front().second);\n        que.pop_front();\n  \
+    \      if (dist[v] != c) continue;\n        each_const (e : G[v]) {\n        \
+    \    if (e.cost == 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
     \ e.to);\n            }\n            else {\n                if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace_back(dist[e.to], e.to);\n            }\n        }\n\
     \    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs docs/ZeroOneBFS.md\n\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/ZeroOneBFS.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp

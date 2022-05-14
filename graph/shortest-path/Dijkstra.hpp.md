@@ -200,35 +200,35 @@ data:
     template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {\n\
     \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        each_const (e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost))\
-    \ que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n\
-    \ * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n\
-    \ */\n"
+    \ start);\n    while (!que.empty()) {\n        T c = std::move(que.top().first);\n\
+    \        int v = std::move(que.top().second);\n        que.pop();\n        if\
+    \ (dist[v] != c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
+    \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
+    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
+    \ docs/Dijkstra.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
     \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    prique<std::pair<T, int>> que; que.emplace(0,\
-    \ start);\n    while (!que.empty()) {\n        T c = que.top().first;\n      \
-    \  int v = que.top().second;\n        que.pop();\n        if (dist[v] != c) continue;\n\
-    \        each_const (e : G[v]) {\n            if (chmin(dist[e.to], c + e.cost))\
-    \ que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n\
-    \ * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n\
-    \ */\n"
+    \ start);\n    while (!que.empty()) {\n        T c = std::move(que.top().first);\n\
+    \        int v = std::move(que.top().second);\n        que.pop();\n        if\
+    \ (dist[v] != c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
+    \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
+    }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
+    \ docs/Dijkstra.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/shortest_path.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Dijkstra.hpp
 layout: document
 redirect_from:

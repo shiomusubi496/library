@@ -191,39 +191,41 @@ data:
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
     \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        each_const\
-    \ (e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T> BFSedge(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < (int)G.size());\n\
-    \    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        each_const (e : G[v]) {\n            if (dist[e.to] == -1)\
-    \ {\n                dist[e.to] = dist[v] + 1;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\
-    \u512A\u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
+    \ (!que.empty()) {\n        int v = std::move(que.front()); que.pop();\n     \
+    \   each_const (e : G[v]) {\n            if (dist[e.to] == -1) {\n           \
+    \     dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n      \
+    \      }\n        }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T>\
+    \ BFSedge(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < (int)G.size());\n    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n\
+    \    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n     \
+    \   int v = std::move(que.front()); que.pop();\n        each_const (e : G[v])\
+    \ {\n            if (dist[e.to] == -1) {\n                dist[e.to] = dist[v]\
+    \ + 1;\n                que.push(e.to);\n            }\n        }\n    }\n   \
+    \ return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n * @docs\
+    \ docs/BreadthFirstSearch.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n\
     \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ -1); dist[start] = 0;\n    std::queue<int> que; que.push(start);\n    while\
-    \ (!que.empty()) {\n        int v = que.front(); que.pop();\n        each_const\
-    \ (e : G[v]) {\n            if (dist[e.to] == -1) {\n                dist[e.to]\
-    \ = dist[v] + e.cost;\n                que.push(e.to);\n            }\n      \
-    \  }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T> BFSedge(const\
-    \ Graph<T>& G, int start = 0) {\n    assert(0 <= start && start < (int)G.size());\n\
-    \    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n    std::queue<int>\
-    \ que; que.push(start);\n    while (!que.empty()) {\n        int v = que.front();\
-    \ que.pop();\n        each_const (e : G[v]) {\n            if (dist[e.to] == -1)\
-    \ {\n                dist[e.to] = dist[v] + 1;\n                que.push(e.to);\n\
-    \            }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\
-    \u512A\u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n"
+    \ (!que.empty()) {\n        int v = std::move(que.front()); que.pop();\n     \
+    \   each_const (e : G[v]) {\n            if (dist[e.to] == -1) {\n           \
+    \     dist[e.to] = dist[v] + e.cost;\n                que.push(e.to);\n      \
+    \      }\n        }\n    }\n    return dist;\n}\n\ntemplate<class T> std::vector<T>\
+    \ BFSedge(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
+    \ < (int)G.size());\n    std::vector<T> dist(G.size(), -1); dist[start] = 0;\n\
+    \    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n     \
+    \   int v = std::move(que.front()); que.pop();\n        each_const (e : G[v])\
+    \ {\n            if (dist[e.to] == -1) {\n                dist[e.to] = dist[v]\
+    \ + 1;\n                que.push(e.to);\n            }\n        }\n    }\n   \
+    \ return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\u5148\u63A2\u7D22)\n * @docs\
+    \ docs/BreadthFirstSearch.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/BreadthFirstSearch.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

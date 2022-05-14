@@ -194,16 +194,17 @@ data:
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
     \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
     \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
-    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
-    \   que.pop();\n        if (dist[v] != c) continue;\n        each_const (e : G[v])\
-    \ {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);\n\
-    \        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\
-    \u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (N) {\n        int v, k; cin >> v >> k;\n        G[v].reserve(k);\n \
-    \       rep (k) {\n            int u, c; cin >> u >> c;\n            G.add_edge(v,\
-    \ u, c, true);\n        }\n    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n\
-    \        cout << i << ' ' << v[i] << endl;\n    }\n}\n"
+    \ {\n        T c = std::move(que.top().first);\n        int v = std::move(que.top().second);\n\
+    \        que.pop();\n        if (dist[v] != c) continue;\n        each_const (e\
+    \ : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
+    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
+    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 5\
+    \ \"test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n        int v,\
+    \ k; cin >> v >> k;\n        G[v].reserve(k);\n        rep (k) {\n           \
+    \ int u, c; cin >> u >> c;\n            G.add_edge(v, u, c, true);\n        }\n\
+    \    }\n    auto v = Dijkstra(G);\n    rep (i, N) {\n        cout << i << ' '\
+    \ << v[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\n\
@@ -219,7 +220,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp

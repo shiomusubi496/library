@@ -208,12 +208,12 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/unionfind.test.cpp
+  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/yosupo/unionfind.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document
 redirect_from:

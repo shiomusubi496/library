@@ -192,7 +192,7 @@ data:
     \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BellmanFord.hpp\"\n\
     \n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ BellmanFord(int V, const Edges<T>& Ed, int start = 0) {\n    assert(0 <= start\
-    \ && start <= V);\n    std::vector<T> dist(V, infinity<T>::value); dist[start]\
+    \ && start < V);\n    std::vector<T> dist(V, infinity<T>::value); dist[start]\
     \ = 0;\n    rep (i, V) {\n        bool changed = false;\n        each_const (e\
     \ : Ed) {\n            if (dist[e.from] != infinity<T>::value && chmin(dist[e.to],\
     \ dist[e.from] + e.cost)) changed = true;\n        }\n        if (!changed) return\
@@ -226,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

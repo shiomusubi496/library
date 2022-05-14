@@ -236,8 +236,8 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
 documentation_of: graph/mst/Kruskal.hpp
 layout: document
 redirect_from:

@@ -197,35 +197,36 @@ data:
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
     \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value); dist[start]\
     \ = 0;\n    prique<std::pair<T, int>> que; que.emplace(0, start);\n    while (!que.empty())\
-    \ {\n        T c = que.top().first;\n        int v = que.top().second;\n     \
-    \   que.pop();\n        if (dist[v] != c) continue;\n        each_const (e : G[v])\
-    \ {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to], e.to);\n\
-    \        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\
-    \u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\
-    \n\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T> std::vector<int>\
-    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
-    \  const int N = G.size();\n    std::vector<int> bfr(N, -2); bfr[start] = -1;\n\
-    \    std::queue<int> que; que.push(start);\n    while (!que.empty()) {\n     \
-    \   int v = que.front(); que.pop();\n        each_const (e : G[v]) {\n       \
-    \     if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {\n             \
-    \   bfr[e.to] = v;\n                que.push(e.to);\n            }\n        }\n\
-    \    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T> RestorePath(const Graph<T>&\
-    \ G, const std::vector<T>& dist, int s, int t) {\n    const auto RG = ReverseGraph(G);\n\
-    \    std::vector<bool> seen(G.size(), false); seen[t] = true;\n    Edges<T> res;\n\
-    \    while (s != t) {\n        bool flg = false;\n        each_const (e : RG[t])\
-    \ {\n            if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {\n      \
-    \          seen[e.to] = true;\n                res.push_back(e); std::swap(res.back().from,\
-    \ res.back().to);\n                t = e.to;\n                flg = true;\n  \
-    \              break;\n            }\n        }\n        assert(flg);\n    }\n\
-    \    std::reverse(all(res));\n    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\
-    \u8DEF\u5FA9\u5143)\n * @docs docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
-    \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
-    \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
-    \ s);\n    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n       \
-    \ return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    cout << D[t]\
-    \ << ' ' << R.size() << endl;\n    each_const (e : R) cout << e.from << ' ' <<\
-    \ e.to << endl;\n}\n"
+    \ {\n        T c = std::move(que.top().first);\n        int v = std::move(que.top().second);\n\
+    \        que.pop();\n        if (dist[v] != c) continue;\n        each_const (e\
+    \ : G[v]) {\n            if (chmin(dist[e.to], c + e.cost)) que.emplace(dist[e.to],\
+    \ e.to);\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief Dijkstra(\u30C0\
+    \u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs docs/Dijkstra.md\n */\n#line 2\
+    \ \"graph/shortest-path/Restore.hpp\"\n\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    const int N = G.size();\n    std::vector<int> bfr(N,\
+    \ -2); bfr[start] = -1;\n    std::queue<int> que; que.push(start);\n    while\
+    \ (!que.empty()) {\n        int v = std::move(que.front()); que.pop();\n     \
+    \   each_const (e : G[v]) {\n            if (bfr[e.to] == -2 && dist[e.to] ==\
+    \ dist[v] + e.cost) {\n                bfr[e.to] = v;\n                que.push(e.to);\n\
+    \            }\n        }\n    }\n    return bfr;\n}\n\ntemplate<class T> Edges<T>\
+    \ RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {\n\
+    \    const auto RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(), false);\
+    \ seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n        bool flg =\
+    \ false;\n        each_const (e : RG[t]) {\n            if (!seen[e.to] && dist[e.to]\
+    \ + e.cost == dist[t]) {\n                seen[e.to] = true;\n               \
+    \ res.push_back(e); std::swap(res.back().from, res.back().to);\n             \
+    \   t = e.to;\n                flg = true;\n                break;\n         \
+    \   }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n \
+    \   return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
+    \ docs/Restore.md\n */\n#line 6 \"test/yosupo/shortest_path.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >> t;\n\
+    \    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >> c;\n\
+    \        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G, s);\n\
+    \    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n        return\
+    \ 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    cout << D[t] << '\
+    \ ' << R.size() << endl;\n    each_const (e : R) cout << e.from << ' ' << e.to\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
     ../../graph/shortest-path/Dijkstra.hpp\"\n#include \"../../graph/shortest-path/Restore.hpp\"\
@@ -244,7 +245,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 14:49:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/shortest_path.test.cpp
