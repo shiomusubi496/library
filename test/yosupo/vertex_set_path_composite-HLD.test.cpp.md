@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -433,6 +433,7 @@ data:
     \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
     \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
     \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
+    \ idx(i) {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)),\
     \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
     \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
     \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
@@ -570,8 +571,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-05-14 15:03:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp
 layout: document

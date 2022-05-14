@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -154,6 +154,7 @@ data:
     \ }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n\
     \    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
     \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
+    \ idx(i) {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)),\
     \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
     \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
     \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
@@ -363,7 +364,7 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-05-14 15:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

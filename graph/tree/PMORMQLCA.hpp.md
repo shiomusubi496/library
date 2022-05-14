@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/PMORMQLCA.md
     document_title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
@@ -290,13 +290,14 @@ data:
     graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct\
     \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
     \ to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    operator int() const { return to; }\n    friend bool\
-    \ operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const edge<T>&\
-    \ rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T =\
-    \ int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix\
-    \ = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph : public\
-    \ std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t),\
+    \ cost(std::move(c)), idx(i) {}\n    operator int() const { return to; }\n   \
+    \ friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return\
+    \ lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class\
+    \ T = int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using\
+    \ GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph\
+    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
     \  public:\n    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const\
     \ { return edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed\
     \ = false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
@@ -433,8 +434,8 @@ data:
   path: graph/tree/PMORMQLCA.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-05-14 15:03:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -151,11 +151,12 @@ data:
     \ }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    operator int() const { return to; }\n\
-    \    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n       \
-    \ return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\
+    \ : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator int() const {\
+    \ return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs)\
+    \ {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
+    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
     \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
     \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
     \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
@@ -192,9 +193,9 @@ data:
     \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    std::deque<std::pair<T, int>> que;\
     \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = std::move(que.front().first);\n\
-    \        int v = std::move(que.front().second);\n        que.pop_front();\n  \
-    \      if (dist[v] != c) continue;\n        each_const (e : G[v]) {\n        \
-    \    if (e.cost == 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
+    \        int v = que.front().second;\n        que.pop_front();\n        if (dist[v]\
+    \ != c) continue;\n        each_const (e : G[v]) {\n            if (e.cost ==\
+    \ 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
     \ e.to);\n            }\n            else {\n                if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace_back(dist[e.to], e.to);\n            }\n        }\n\
     \    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs docs/ZeroOneBFS.md\n\
@@ -204,9 +205,9 @@ data:
     \ 0) {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value); dist[start] = 0;\n    std::deque<std::pair<T, int>> que;\
     \ que.emplace_front(0, start);\n    while (!que.empty()) {\n        T c = std::move(que.front().first);\n\
-    \        int v = std::move(que.front().second);\n        que.pop_front();\n  \
-    \      if (dist[v] != c) continue;\n        each_const (e : G[v]) {\n        \
-    \    if (e.cost == 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
+    \        int v = que.front().second;\n        que.pop_front();\n        if (dist[v]\
+    \ != c) continue;\n        each_const (e : G[v]) {\n            if (e.cost ==\
+    \ 0) {\n                if (chmin(dist[e.to], c + e.cost)) que.emplace_front(dist[e.to],\
     \ e.to);\n            }\n            else {\n                if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace_back(dist[e.to], e.to);\n            }\n        }\n\
     \    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs docs/ZeroOneBFS.md\n\
@@ -217,7 +218,7 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/ZeroOneBFS.hpp
   requiredBy: []
-  timestamp: '2022-05-14 14:49:55+09:00'
+  timestamp: '2022-05-14 15:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp
