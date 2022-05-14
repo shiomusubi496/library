@@ -9,7 +9,7 @@ template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
     prique<std::pair<T, int>> que; que.emplace(0, start);
     while (!que.empty()) {
         T c = std::move(que.top().first);
-        int v = std::move(que.top().second);
+        int v = que.top().second;
         que.pop();
         if (dist[v] != c) continue;
         each_const (e : G[v]) {

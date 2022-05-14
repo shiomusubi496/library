@@ -8,6 +8,7 @@ template<class T = int> struct edge {
     int idx;
     edge() : from(-1), to(-1) {}
     edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}
+    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)), idx(i) {}
     operator int() const { return to; }
     friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
         return lhs.cost < rhs.cost;

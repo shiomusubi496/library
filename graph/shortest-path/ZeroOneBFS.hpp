@@ -9,7 +9,7 @@ template<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start = 0) {
     std::deque<std::pair<T, int>> que; que.emplace_front(0, start);
     while (!que.empty()) {
         T c = std::move(que.front().first);
-        int v = std::move(que.front().second);
+        int v = que.front().second;
         que.pop_front();
         if (dist[v] != c) continue;
         each_const (e : G[v]) {

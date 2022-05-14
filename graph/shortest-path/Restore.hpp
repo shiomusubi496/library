@@ -8,7 +8,7 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
     std::vector<int> bfr(N, -2); bfr[start] = -1;
     std::queue<int> que; que.push(start);
     while (!que.empty()) {
-        int v = std::move(que.front()); que.pop();
+        int v = que.front(); que.pop();
         each_const (e : G[v]) {
             if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {
                 bfr[e.to] = v;
@@ -20,7 +20,7 @@ template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<
 }
 
 template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {
-    const auto RG = ReverseGraph(G);
+    const Graph<T> RG = ReverseGraph(G);
     std::vector<bool> seen(G.size(), false); seen[t] = true;
     Edges<T> res;
     while (s != t) {
@@ -28,7 +28,7 @@ template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& 
         each_const (e : RG[t]) {
             if (!seen[e.to] && dist[e.to] + e.cost == dist[t]) {
                 seen[e.to] = true;
-                res.push_back(e); std::swap(res.back().from, res.back().to);
+                res.emplace_back(e.to, e.from, std::move(e.cost), e.idx);
                 t = e.to;
                 flg = true;
                 break;
