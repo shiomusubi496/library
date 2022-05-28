@@ -7,12 +7,13 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
     struct Line {
         T a, b;
         bool is_query;
+        int idx;
         mutable ll nxt_a, nxt_b;
         mutable bool has_nxt;
         T get(T x) const { return a * x + b; }
         T get_nxt(T x) const { return nxt_a * x + nxt_b; }
         Line() = default;
-        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), has_nxt(false) {}
+        Line(T a, T b, int id, bool i = false) : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}
         friend bool operator<(const Line& lhs, const Line& rhs) {
             assert(!lhs.is_query || !rhs.is_query);
             if (lhs.is_query) {
@@ -26,6 +27,7 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
             return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;
         }
     };
+    int line_count = 0;
     std::deque<Line> que;
     bool is_necessary(const typename std::deque<Line>::iterator& itr) {
         if (itr != que.begin()     && itr->a == prev(itr)->a) return itr->b < prev(itr)->b;
@@ -36,30 +38,30 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
     }
   public:
     ConvexHullTrickAddMonotone() = default;
-    void add_line(T a, T b) {
+    int add_line(T a, T b) {
         if IF_CONSTEXPR (is_max) a = - a, b = - b;
         typename std::deque<Line>::iterator itr;
         if (que.empty() || que.back().a <= a) {
-            que.emplace_back(a, b);
+            que.emplace_back(a, b, line_count);
             itr = prev(que.end());
         }
         else {
             assert(a <= que.front().a);
-            que.emplace_front(a, b);
+            que.emplace_front(a, b, line_count);
             itr = que.begin();
         }
         if (!is_necessary(itr)) {
             que.erase(itr);
-            return;
+            return line_count++;
         }
         while (itr != que.begin() && !is_necessary(prev(itr))) {
             que.pop_back(); que.pop_back();
-            que.emplace_back(a, b);
+            que.emplace_back(a, b, line_count);
             itr = prev(que.end());
         }
         while (itr != prev(que.end()) && !is_necessary(next(itr))) {
             que.pop_front(); que.pop_front();
-            que.emplace_front(a, b);
+            que.emplace_front(a, b, line_count);
             itr = que.begin();
         }
         if (itr != que.begin()) {
@@ -73,25 +75,30 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
             itr->has_nxt = true;
         }
         else itr->has_nxt = false;
+        return line_count++;
     }
-    T get_min(T x) const {
-        auto itr = lower_bound(all(que), Line{x, 0, true});
-        if IF_CONSTEXPR (is_max) return - itr->get(x);
-        return itr->get(x);
+    Line get_min_line(T x) const {
+        auto itr = lower_bound(all(que), Line{x, 0, -1, true});
+        Line res{*itr};
+        if IF_CONSTEXPR (is_max) res.a = - res.a, res.b = - res.b;
+        return res;
     }
-    T inc_get_min(T x) {
+    T get_min(T x) const { return get_min_line(x).get(x); }
+    Line dec_get_min_line(T x) {
         while (que.size() > 1 && que.begin()->get(x) > next(que.begin())->get(x)) que.pop_front();
-        if IF_CONSTEXPR (is_max) return - que.front().get(x);
-        return que.front().get(x);
+        Line res{que.front()};
+        if IF_CONSTEXPR (is_max) res.a = - res.a, res.b = - res.b;
+        return res;
     }
-    T dec_get_min(T x) {
+    T dec_get_min(T x) { return dec_get_min_line(x).get(x); }
+    Line inc_get_min_line(T x) {
         while (que.size() > 1 && prev(que.end())->get(x) > prev(que.end(), 2)->get(x)) que.pop_back();
-        if IF_CONSTEXPR (is_max) return - que.back().get(x);
-        return que.back().get(x);
+        Line res{que.back()};
+        if IF_CONSTEXPR (is_max) res.a = - res.a, res.b = - res.b;
+        return res;
     }
-    bool empty() const {
-        return que.empty();
-    }
+    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }
+    bool empty() const { return que.empty(); }
 };
 
 /**

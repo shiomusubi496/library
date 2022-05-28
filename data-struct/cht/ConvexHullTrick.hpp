@@ -7,12 +7,13 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
     struct Line {
         T a, b;
         bool is_query;
+        int idx;
         mutable ll nxt_a, nxt_b;
         mutable bool has_nxt;
         T get(T x) const { return a * x + b; }
         T get_nxt(T x) const { return nxt_a * x + nxt_b; }
         Line() = default;
-        Line(T a, T b, bool i = false) : a(a), b(b), is_query(i), has_nxt(false) {}
+        Line(T a, T b, int id, bool i = false) : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}
         friend bool operator<(const Line& lhs, const Line& rhs) {
             assert(!lhs.is_query || !rhs.is_query);
             if (lhs.is_query) {
@@ -26,6 +27,7 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
             return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;
         }
     };
+    int line_count = 0;
     std::set<Line> st;
     bool is_necessary(const typename std::set<Line>::iterator& itr) {
         if (itr != st.begin()     && itr->a == prev(itr)->a) return itr->b < prev(itr)->b;
@@ -36,12 +38,12 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
     }
   public:
     ConvexHullTrick() = default;
-    void add_line(T a, T b) {
+    int add_line(T a, T b) {
         if IF_CONSTEXPR (is_max) a = - a, b = - b;
-        auto itr = st.emplace(a, b).first;
+        auto itr = st.emplace(a, b, line_count).first;
         if (!is_necessary(itr)) {
             st.erase(itr);
-            return;
+            return line_count++;
         }
         while (itr != st.begin()     && !is_necessary(prev(itr))) st.erase(prev(itr));
         while (itr != prev(st.end()) && !is_necessary(next(itr))) st.erase(next(itr));
@@ -54,15 +56,16 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t> class Con
             itr->nxt_a = next(itr)->a; itr->nxt_b = next(itr)->b;
         }
         else itr->has_nxt = false;
+        return line_count++;
     }
-    T get_min(T x) const {
-        auto itr = st.lower_bound(Line{x, 0, true});
-        if IF_CONSTEXPR (is_max) return - itr->get(x);
-        return itr->get(x);
+    Line get_min_line(T x) const {
+        auto itr = st.lower_bound(Line{x, 0, -1, true});
+        Line res{*itr};
+        if IF_CONSTEXPR (is_max) res.a = - res.a, res.b = - res.b;
+        return res;
     }
-    bool empty() const {
-        return st.empty();
-    }
+    T get_min(T x) const { return get_min_line(x).get(x); }
+    bool empty() const { return st.empty(); }
 };
 
 /**
