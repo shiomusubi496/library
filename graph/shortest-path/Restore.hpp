@@ -3,20 +3,20 @@
 #include "../../other/template.hpp"
 #include "../Graph.hpp"
 
-template<class T> std::vector<int> Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {
+template<class T> Edges<T> Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {
     const int N = G.size();
-    std::vector<int> bfr(N, -2); bfr[start] = -1;
+    Edges<T> res(N, edge<T>{-2, -2}); res[start] = {-1, start};
     std::queue<int> que; que.push(start);
     while (!que.empty()) {
         int v = que.front(); que.pop();
         each_const (e : G[v]) {
-            if (bfr[e.to] == -2 && dist[e.to] == dist[v] + e.cost) {
-                bfr[e.to] = v;
+            if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost) {
+                res[e.to] = e;
                 que.push(e.to);
             }
         }
     }
-    return bfr;
+    return res;
 }
 
 template<class T> Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s, int t) {
