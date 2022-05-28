@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -51,15 +51,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/ModInt.md
     document_title: ModInt
@@ -390,24 +390,24 @@ data:
   requiredBy:
   - math/Combinatorics.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/matrix_product.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/bitwise_and_convolution-or.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/bitwise_and_convolution.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/matrix_product.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_C.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

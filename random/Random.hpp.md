@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -216,8 +216,8 @@ data:
   isVerificationFile: false
   path: random/Random.hpp
   requiredBy:
-  - data-struct/other/SkipList.hpp
   - string/RollingHash.hpp
+  - data-struct/other/SkipList.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
