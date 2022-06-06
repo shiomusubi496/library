@@ -254,7 +254,7 @@ data:
     \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
     \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
     \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
-    \ permutation(int n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
     \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
     \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
     \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
@@ -303,7 +303,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-06-06 20:14:34+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp

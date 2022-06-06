@@ -358,11 +358,11 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document

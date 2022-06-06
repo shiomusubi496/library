@@ -304,13 +304,13 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document
 redirect_from:
