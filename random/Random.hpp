@@ -43,7 +43,7 @@ template<class Engine> class Random {
     template<class Iter> void shuffle(const Iter& first, const Iter& last) {
         std::shuffle(first, last, rnd);
     }
-    template<class T> std::vector<T> permutation(int n) {
+    template<class T> std::vector<T> permutation(T n) {
         std::vector<T> res(n);
         rep (i, n) res[i] = i;
         shuffle(all(res));
