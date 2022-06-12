@@ -32,7 +32,7 @@
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
 
-また、以下のクエリに対するセグメント木が `SegmentTree` を継承して作られている。
+また、以下のクエリに対するセグメント木が `SegmentTree` のエイリアスとして作られている。
 
 - `RangeSumQuery` : `Range Sum Query` 用のセグ木。
 - `RangeMinimumQuery` : `Range Minimum Query` 用のセグ木。
