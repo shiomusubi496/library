@@ -337,24 +337,23 @@ data:
     \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
     \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<MultiA>\
     \ seg;\n  public:\n    MultiLazySegmentTree() : MultiLazySegmentTree(0) {}\n \
-    \   MultiLazySegmentTree(int n_) : seg(std::vector<elm>(n_, {M_::id(), 1})) {}\n\
-    \    MultiLazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}\n\
-    \    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n    T_\
-    \ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) { return\
-    \ seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val; }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) { seg.update(k, [&](const\
-    \ elm& a) -> elm { return {upd(a.val), a.len}; }); }\n    void set(int k, T_ x)\
-    \ { seg.set(k, elm{x, 1}); }\n    void apply(int k, U_ x) { seg.apply(k, x); }\n\
-    \    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }\n    template<class\
-    \ C> int max_right(int l, const C& cond) { return seg.max_right(l, [&](const elm&\
-    \ a) -> bool { return cond(a.val); }); }\n    template<class C> int min_left(int\
-    \ r, const C& cond) { return seg.min_left(r, [&](const elm& a) -> bool { return\
-    \ cond(a.val); }); }\n};\n\n//verified with test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeUpdateQueryRangeMinimumQuery\
-    \ = LazySegmentTree<Monoid::AssignMin<T, max_value>>;\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> using RangeUpdateQueryRangeMaximumQuery = LazySegmentTree<Monoid::AssignMax<T,\
-    \ min_value>>;\n\n//verified with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\ntemplate<class\
-    \ T> using RangeUpdateQueryRangeSumQuery = MultiLazySegmentTree<Monoid::AssignSum<T>>;\n\
+    \   MultiLazySegmentTree(int n_) : seg(n_, {M_::id(), 1}) {}\n    MultiLazySegmentTree(const\
+    \ std::vector<T_>& v) : seg(get_elm_vec(v)) {}\n    void init(const std::vector<T_>&\
+    \ v) { seg.init(get_elm_vec(v)); }\n    T_ prod(int l, int r) { return seg.prod(l,\
+    \ r).val; }\n    T_ get(int k) { return seg.get(k).val; }\n    T_ all_prod() const\
+    \ { return seg.all_prod().val; }\n    template<class Upd> void update(int k, const\
+    \ Upd& upd) { seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len};\
+    \ }); }\n    void set(int k, T_ x) { seg.set(k, elm{x, 1}); }\n    void apply(int\
+    \ k, U_ x) { seg.apply(k, x); }\n    void apply(int l, int r, U_ x) { seg.apply(l,\
+    \ r, x); }\n    template<class C> int max_right(int l, const C& cond) { return\
+    \ seg.max_right(l, [&](const elm& a) -> bool { return cond(a.val); }); }\n   \
+    \ template<class C> int min_left(int r, const C& cond) { return seg.min_left(r,\
+    \ [&](const elm& a) -> bool { return cond(a.val); }); }\n};\n\n//verified with\
+    \ test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ using RangeUpdateQueryRangeMinimumQuery = LazySegmentTree<Monoid::AssignMin<T,\
+    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeUpdateQueryRangeMaximumQuery\
+    \ = LazySegmentTree<Monoid::AssignMax<T, min_value>>;\n\n//verified with test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp\n\
+    template<class T> using RangeUpdateQueryRangeSumQuery = MultiLazySegmentTree<Monoid::AssignSum<T>>;\n\
     \n//verified with test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\ntemplate<class T, T max_value\
     \ = infinity<T>::max> using RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeAddQueryRangeMaximumQuery\
@@ -388,7 +387,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:37:21+09:00'
+  timestamp: '2022-06-12 17:04:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp

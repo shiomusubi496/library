@@ -264,45 +264,45 @@ data:
     \      if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n         \
     \   all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n      \
     \  }\n    }\n  public:\n    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
-    \ {}\n    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_))\
-    \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v) : DualSegmentTreeDifferentOperation(std::vector<T>(n_,\
-    \ v)) {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
-    \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
-    \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
-    \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
-    \ k) {\n        assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i,\
-    \ h) eval(k >> i);\n        return data[k - n];\n    }\n    template<class Upd>\
-    \ void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n\
-    \        k += n;\n        rreps (i, h) eval(k >> i);\n        data[k - n] = upd(data[k\
-    \ - n]);\n    }\n    void set(int k, T x) {\n        update(k, [&](T) -> T { return\
-    \ x; });\n    }\n    void apply(int k, U x) {\n        update(k, [&](T a) -> T\
-    \ { return A::op(x, a); });\n    }\n    void apply(int l, int r, U x) {\n    \
-    \    assert(0 <= l && l <= r && r <= ori);\n\n        l += n; r += n;\n      \
-    \  rreps (i, h) {\n            bool seen = false;\n            if (((l >> i) <<\
-    \ i) != l) eval(l >> i), seen = true;\n            if (((r >> i) << i) != r) eval((r\
-    \ - 1) >> i), seen = true;\n            if (!seen) break;\n        }\n\n     \
-    \   while (l != r) {\n            if (l & 1) all_apply(l++, x);\n            if\
-    \ (r & 1) all_apply(--r, x);\n            l >>= 1; r >>= 1;\n        }\n    }\n\
-    };\n\ntemplate<class E> using DualSegmentTree = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;\n\
-    \n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
-    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
+    \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v)\n            :\
+    \ DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}\n    DualSegmentTreeDifferentOperation(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n, false);\n\
+    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
+    \ n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n    }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
+    \       data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x) {\n \
+    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, U\
+    \ x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n   \
+    \ void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \n        l += n; r += n;\n        rreps (i, h) {\n            bool seen = false;\n\
+    \            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n          \
+    \  if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n            if\
+    \ (!seen) break;\n        }\n\n        while (l != r) {\n            if (l & 1)\
+    \ all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n            l\
+    \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> using DualSegmentTree\
+    \ = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;\n\n// verified\
+    \ with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using RangeUpdateQuery\
+    \ = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
     template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
     \ T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;\n\ntemplate<class\
     \ T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;\n\n/**\n * @brief\
     \ DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
     \ docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_E-RAQ.test.cpp\"\n\
     using namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll>\
-    \ RAQ(std::vector<ll>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n     \
-    \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l\
-    \ - 1, r, x);\n        }\n        else {\n            int k; cin >> k;\n     \
-    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
+    \ RAQ(n, 0);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l - 1, r,\
+    \ x);\n        }\n        else {\n            int k; cin >> k;\n            cout\
+    \ << RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_E\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQuery<ll>\
-    \ RAQ(std::vector<ll>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n     \
-    \   if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l\
-    \ - 1, r, x);\n        }\n        else {\n            int k; cin >> k;\n     \
-    \       cout << RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
+    \ RAQ(n, 0);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            int l, r, x; cin >> l >> r >> x;\n            RAQ.apply(l - 1, r,\
+    \ x);\n        }\n        else {\n            int k; cin >> k;\n            cout\
+    \ << RAQ.get(k - 1) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -311,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:24:41+09:00'
+  timestamp: '2022-06-12 17:04:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
