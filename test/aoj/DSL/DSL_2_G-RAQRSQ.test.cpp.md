@@ -264,9 +264,10 @@ data:
     \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
     \        }\n    }\n    void dataup(int k) {\n        data[k] = M::op(data[k <<\
     \ 1], data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() : LazySegmentTree(0)\
-    \ {}\n    LazySegmentTree(int n_) : LazySegmentTree(std::vector<T>(n_, M::id()))\
-    \ {}\n    LazySegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
-    \ std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
+    \ {}\n    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id()))\
+    \ {}\n    LazySegmentTree(int n, const T& v) : LazySegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    LazySegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
     \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
     \ data[n + i] = v[i];\n        rrep (i, n, 1) dataup(i);\n        lazy.resize(n);\
     \ lazyflag.assign(n, false);\n    }\n    T prod(int l, int r) {\n        assert(0\
@@ -387,7 +388,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-06-12 16:24:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp

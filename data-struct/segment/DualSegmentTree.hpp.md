@@ -267,7 +267,8 @@ data:
     \   all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n      \
     \  }\n    }\n  public:\n    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
     \ {}\n    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_))\
-    \ {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
+    \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v) : DualSegmentTreeDifferentOperation(std::vector<T>(n_,\
+    \ v)) {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
     \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
     \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
     \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
@@ -306,7 +307,8 @@ data:
     \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
     \        }\n    }\n  public:\n    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
     \ {}\n    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_))\
-    \ {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
+    \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v) : DualSegmentTreeDifferentOperation(std::vector<T>(n_,\
+    \ v)) {}\n    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v);\
     \ }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n     \
     \   h = bitop::ceil_log2(ori);\n        n = 1 << h;\n        data = v;\n     \
     \   lazy.resize(n);\n        lazyflag.assign(n, false);\n    }\n    T get(int\
@@ -338,7 +340,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-06-12 16:24:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

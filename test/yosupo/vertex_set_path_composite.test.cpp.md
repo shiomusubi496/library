@@ -301,8 +301,9 @@ data:
     \n\ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
     \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
     \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \ M::id())) {}\n    SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
+    \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
     \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
@@ -587,7 +588,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 15:03:37+09:00'
+  timestamp: '2022-06-12 16:24:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
