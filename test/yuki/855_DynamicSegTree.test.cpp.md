@@ -294,21 +294,21 @@ data:
     \ node_ptr& src) {\n        if (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n\
     \        init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\
     \  public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) : iv(1, M::id()) { init(n_); }\n    DynamicSegmentTree(ll n_, const T& v)\
-    \ : iv(1, v) { init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
-    \            : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),\n\
-    \            root(std::make_unique<node>(other.root->val)) {\n        init_copy(root,\
-    \ other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&) = default;\n\
-    \    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {\n      \
-    \  if (this == &other) return *this;\n        n = other.n;\n        h = other.h;\n\
-    \        ori = other.ori;\n        iv = other.iv;\n        iv2 = other.iv2;\n\
-    \        root = std::make_unique<node>(other.root->val);\n        init_copy(root,\
-    \ other.root);\n        return *this;\n    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&)\
-    \ = default;\n    void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1ull << h;\n        iv.reserve(h + 1);\n        rep (h) iv.push_back(M::op(iv.back(),\
-    \ iv.back()));\n        iv2.assign(h + 1, M::id());\n        rep (i, h) {\n  \
-    \          if ((ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n          \
-    \  else iv2[i + 1] = iv2[i];\n        }\n        root = std::make_unique<node>(iv2[h]);\n\
+    \ n_) { init(n_); }\n    DynamicSegmentTree(ll n_, const T& v) { init(n_, v);\
+    \ }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n            : n(other.n),\
+    \ h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),\n            root(std::make_unique<node>(other.root->val))\
+    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&)\
+    \ = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree& other)\
+    \ {\n        if (this == &other) return *this;\n        n = other.n;\n       \
+    \ h = other.h;\n        ori = other.ori;\n        iv = other.iv;\n        iv2\
+    \ = other.iv2;\n        root = std::make_unique<node>(other.root->val);\n    \
+    \    init_copy(root, other.root);\n        return *this;\n    }\n    DynamicSegmentTree&\
+    \ operator=(DynamicSegmentTree&&) = default;\n    void init(ll n_, const T& v\
+    \ = M::id()) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n      \
+    \  n = 1ull << h;\n        iv.reserve(h + 1); iv.push_back(v);\n        rep (h)\
+    \ iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(h + 1, M::id());\n\
+    \        rep (i, h) {\n            if ((ori >> i) & 1) iv2[i + 1] = M::op(iv2[i],\
+    \ iv[i]);\n            else iv2[i + 1] = iv2[i];\n        }\n        root = std::make_unique<node>(iv2[h]);\n\
     \    }\n    template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        update(root, 0, n, h, k, upd);\n    }\n    void set(ll\
     \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
@@ -423,7 +423,7 @@ data:
   isVerificationFile: true
   path: test/yuki/855_DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:24:41+09:00'
+  timestamp: '2022-06-12 16:37:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/855_DynamicSegTree.test.cpp

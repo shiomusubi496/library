@@ -369,15 +369,15 @@ data:
     \ min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeMinimumQuery<int>\
-    \ RAQRMQ(vector<int>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n      \
-    \  if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQRMQ.apply(l,\
+    \ RAQRMQ(n, 0);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0)\
+    \ {\n            int l, r, x; cin >> l >> r >> x;\n            RAQRMQ.apply(l,\
     \ r + 1, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n\
     \            cout << RAQRMQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeMinimumQuery<int>\
-    \ RAQRMQ(vector<int>(n, 0));\n    rep (q) {\n        int t; cin >> t;\n      \
-    \  if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RAQRMQ.apply(l,\
+    \ RAQRMQ(n, 0);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0)\
+    \ {\n            int l, r, x; cin >> l >> r >> x;\n            RAQRMQ.apply(l,\
     \ r + 1, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n\
     \            cout << RAQRMQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   dependsOn:
@@ -388,7 +388,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:24:41+09:00'
+  timestamp: '2022-06-12 16:37:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
