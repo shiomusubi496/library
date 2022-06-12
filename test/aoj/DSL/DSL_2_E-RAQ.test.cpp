@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeAddQuery<ll> RAQ(std::vector<ll>(n, 0));
+    RangeAddQuery<ll> RAQ(n, 0);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {

@@ -37,8 +37,8 @@ template<class A> class DualSegmentTreeDifferentOperation {
     }
   public:
     DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0) {}
-    DualSegmentTreeDifferentOperation(int n_) : DualSegmentTreeDifferentOperation(std::vector<T>(n_)) {}
-    DualSegmentTreeDifferentOperation(int n_, const T& v) : DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}
+    DualSegmentTreeDifferentOperation(int n_, const T& v)
+            : DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}
     DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();

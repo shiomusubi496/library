@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeUpdateQuery<int> RUQ(std::vector<int>(n, (1ull << 31) - 1));
+    RangeUpdateQuery<int> RUQ(n, (1ull << 31) - 1);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {
