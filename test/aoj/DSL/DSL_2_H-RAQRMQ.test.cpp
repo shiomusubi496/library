@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    RangeAddQueryRangeMinimumQuery<int> RAQRMQ(vector<int>(n, 0));
+    RangeAddQueryRangeMinimumQuery<int> RAQRMQ(n, 0);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {

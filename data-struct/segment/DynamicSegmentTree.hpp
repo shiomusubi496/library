@@ -92,8 +92,8 @@ template<class M> class DynamicSegmentTree {
     }
   public:
     DynamicSegmentTree() : DynamicSegmentTree(inf) {}
-    DynamicSegmentTree(ll n_) : iv(1, M::id()) { init(n_); }
-    DynamicSegmentTree(ll n_, const T& v) : iv(1, v) { init(n_); }
+    DynamicSegmentTree(ll n_) { init(n_); }
+    DynamicSegmentTree(ll n_, const T& v) { init(n_, v); }
     DynamicSegmentTree(const DynamicSegmentTree& other)
             : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),
             root(std::make_unique<node>(other.root->val)) {
@@ -112,11 +112,11 @@ template<class M> class DynamicSegmentTree {
         return *this;
     }
     DynamicSegmentTree& operator=(DynamicSegmentTree&&) = default;
-    void init(ll n_) {
+    void init(ll n_, const T& v = M::id()) {
         ori = n_;
         h = bitop::ceil_log2(ori);
         n = 1ull << h;
-        iv.reserve(h + 1);
+        iv.reserve(h + 1); iv.push_back(v);
         rep (h) iv.push_back(M::op(iv.back(), iv.back()));
         iv2.assign(h + 1, M::id());
         rep (i, h) {
