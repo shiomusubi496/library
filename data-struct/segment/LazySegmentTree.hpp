@@ -38,7 +38,8 @@ template<class A> class LazySegmentTree {
     }
   public:
     LazySegmentTree() : LazySegmentTree(0) {}
-    LazySegmentTree(int n_) : LazySegmentTree(std::vector<T>(n_, M::id())) {}
+    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id())) {}
+    LazySegmentTree(int n, const T& v) : LazySegmentTree(std::vector<T>(n, v)) {}
     LazySegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();

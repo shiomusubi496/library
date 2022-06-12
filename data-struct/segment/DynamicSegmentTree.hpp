@@ -12,12 +12,12 @@ template<class M> class DynamicSegmentTree {
     struct node {
         T val;
         node_ptr l, r;
-        node_ptr& get_l() {
-            if (l == nullptr) l = std::make_unique<node>();
+        node_ptr& get_l(const T& v) {
+            if (l == nullptr) l = std::make_unique<node>(v);
             return l;
         }
-        node_ptr& get_r() {
-            if (r == nullptr) r = std::make_unique<node>();
+        node_ptr& get_r(const T& v) {
+            if (r == nullptr) r = std::make_unique<node>(v);
             return r;
         }
         void update() {
@@ -25,19 +25,19 @@ template<class M> class DynamicSegmentTree {
             if (l != nullptr) val = M::op(val, l->val);
             if (r != nullptr) val = M::op(val, r->val);
         }
-        node() : val(M::id()), l(nullptr), r(nullptr) {}
         node(const T& v) : val(v), l(nullptr), r(nullptr) {}
     };
     ll ori, h, n;
+    std::vector<T> iv, iv2;
     node_ptr root;
-    template<class Upd> void update(node_ptr& nd, ll a, ll b, ll k, const Upd& upd) {
+    template<class Upd> void update(node_ptr& nd, ll a, ll b, int t, ll k, const Upd& upd) {
         if (a + 1 == b) {
             nd->val = upd(nd->val);
             return;
         }
         ll m = (a + b) >> 1;
-        if (k < m) update(nd->get_l(), a, m, k, upd);
-        else update(nd->get_r(), m, b, k, upd);
+        if (k < m) update(nd->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), a, m, t - 1, k, upd);
+        else update(nd->get_r(b <= ori ? iv[t - 1] : iv2[t - 1]), m, b, t - 1, k, upd);
         nd->update();
     }
     T prod(const node_ptr& nd, ll a, ll b, ll l, ll r) const {
@@ -75,7 +75,7 @@ template<class M> class DynamicSegmentTree {
         if (nd == nullptr) return;
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
-            if (nd == root) nd = std::make_unique<node>();
+            if (nd == root) nd = std::make_unique<node>(iv[h]);
             else nd.reset();
             return;
         }
@@ -92,9 +92,11 @@ template<class M> class DynamicSegmentTree {
     }
   public:
     DynamicSegmentTree() : DynamicSegmentTree(inf) {}
-    DynamicSegmentTree(ll n_) { init(n_); }
+    DynamicSegmentTree(ll n_) : iv(1, M::id()) { init(n_); }
+    DynamicSegmentTree(ll n_, const T& v) : iv(1, v) { init(n_); }
     DynamicSegmentTree(const DynamicSegmentTree& other)
-        : n(other.n), h(other.h), ori(other.ori), root(std::make_unique<node>(other.root->val)) {
+            : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),
+            root(std::make_unique<node>(other.root->val)) {
         init_copy(root, other.root);
     }
     DynamicSegmentTree(DynamicSegmentTree&&) = default;
@@ -103,6 +105,8 @@ template<class M> class DynamicSegmentTree {
         n = other.n;
         h = other.h;
         ori = other.ori;
+        iv = other.iv;
+        iv2 = other.iv2;
         root = std::make_unique<node>(other.root->val);
         init_copy(root, other.root);
         return *this;
@@ -112,11 +116,18 @@ template<class M> class DynamicSegmentTree {
         ori = n_;
         h = bitop::ceil_log2(ori);
         n = 1ull << h;
-        root = std::make_unique<node>();
+        iv.reserve(h + 1);
+        rep (h) iv.push_back(M::op(iv.back(), iv.back()));
+        iv2.assign(h + 1, M::id());
+        rep (i, h) {
+            if ((ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
+            else iv2[i + 1] = iv2[i];
+        }
+        root = std::make_unique<node>(iv2[h]);
     }
     template<class Upd> void update(ll k, const Upd& upd) {
         assert(0 <= k && k < ori);
-        update(root, 0, n, k, upd);
+        update(root, 0, n, h, k, upd);
     }
     void set(ll k, T x) {
         update(k, [&](T) -> T { return x; });

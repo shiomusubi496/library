@@ -12,6 +12,7 @@ template<class M> class SegmentTree {
   public:
     SegmentTree() : SegmentTree(0) {}
     SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
+    SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}
     SegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
