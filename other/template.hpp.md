@@ -31,6 +31,10 @@ data:
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/DynamicLazySegmentTree.hpp
+    title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
+      \u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -298,8 +302,14 @@ data:
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+    title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+    title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
@@ -783,6 +793,7 @@ data:
   - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/DynamicLazySegmentTree.hpp
   - data-struct/segment/CumulativeSum.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -850,6 +861,7 @@ data:
   - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
@@ -858,6 +870,7 @@ data:
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp

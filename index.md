@@ -36,6 +36,10 @@ data:
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/DynamicLazySegmentTree.hpp
+      title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
+        \u30C8\u6728)"
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -336,8 +340,14 @@ data:
       path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
       title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+      title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+      title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
       title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
