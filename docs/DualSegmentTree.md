@@ -19,7 +19,7 @@
   - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
   - `void apply(int l, int r, U f)` : `a[l], a[l+1], ..., a[r-1]` に `mp(f, a[l]), mp(f, a[l+1]), ..., mp(f, a[r-1])` を代入する。 $\Theta(\log N)$ 。
 
-また、以下のクエリに対する双対セグメント木が `DualSegmentTree` を継承して作られている。
+また、以下のクエリに対する双対セグメント木が `DualSegmentTree` のエイリアスとして作られている。
 
 - `RangeUpdateQuery` : 区間代入クエリを扱える。
 - `RangeAddQuery` : 区間加算クエリを扱える。

@@ -567,7 +567,7 @@ title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - `MultiLazySegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
   - `MultiLazySegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
 
-また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` を継承して作られている。
+また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` のエイリアスとして作られている。
 
 - `RangeUpdateQueryRangeSumQuery` : 区間代入クエリと区間和クエリを扱える。
 - `RangeUpdateQueryRangeMinimumQuery` : 区間代入クエリと区間最小値クエリを扱える。
