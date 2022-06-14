@@ -262,14 +262,14 @@ data:
     \     lazyflag[k] = true;\n            }\n        }\n    }\n    void eval(int\
     \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
     \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
-    \        }\n    }\n    void dataup(int k) {\n        data[k] = M::op(data[k <<\
-    \ 1], data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() : LazySegmentTree(0)\
+    \        }\n    }\n    void calc(int k) {\n        data[k] = M::op(data[k << 1],\
+    \ data[k << 1 ^ 1]);\n    }\n  public:\n    LazySegmentTree() : LazySegmentTree(0)\
     \ {}\n    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n, M::id()))\
     \ {}\n    LazySegmentTree(int n, const T& v) : LazySegmentTree(std::vector<T>(n,\
     \ v)) {}\n    LazySegmentTree(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
     \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) dataup(i);\n        lazy.resize(n);\
+    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\
     \ lazyflag.assign(n, false);\n    }\n    T prod(int l, int r) {\n        assert(0\
     \ <= l && l <= r && r <= ori);\n        if (l == r) return M::id();\n\n      \
     \  l += n; r += n;\n        rreps (i, h) {\n            bool seen = false;\n \
@@ -283,7 +283,7 @@ data:
     \ eval(k >> i);\n        return data[k];\n    }\n    T all_prod() const { return\
     \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
     \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
-    \ >> i);\n        data[k] = upd(data[k]);\n        reps (i, h) dataup(k >> i);\n\
+    \ >> i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k >> i);\n\
     \    }\n    void set(int k, T x) {\n        update(k, [&](const T&) -> T { return\
     \ x; });\n    }\n    void apply(int k, U x) {\n        update(k, [&](const T&\
     \ a) -> T { return A::op(x, a); });\n    }\n    void apply(int l, int r, U x)\
@@ -294,13 +294,13 @@ data:
     \ i) break;\n        }\n\n        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1,\
     \ r2 >>= 1) {\n            if (l2 & 1) all_apply(l2++, x);\n            if (r2\
     \ & 1) all_apply(--r2, x);\n        }\n        \n        rep (i, lst, h + 1) {\n\
-    \            if (((l >> i) << i) != l) dataup(l >> i);\n            if (((r >>\
-    \ i) << i) != r) dataup((r - 1) >> i);\n        }\n    }\n    template<class C>\
-    \ int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
-    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
-    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
-    \ >> i);\n            else break;\n        }\n\n        T sm = M::id();\n    \
-    \    do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \            if (((l >> i) << i) != l) calc(l >> i);\n            if (((r >> i)\
+    \ << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class C> int\
+    \ max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n   \
+    \     assert(cond(M::id()));\n        if (l == ori) return ori;\n\n        l +=\
+    \ n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
+    \ i);\n            else break;\n        }\n\n        T sm = M::id();\n       \
+    \ do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
     \ data[l]))) {\n                while (l < n) {\n                    eval(l);\n\
     \                    l <<= 1;\n                    if (cond(M::op(sm, data[l])))\
     \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
@@ -389,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 17:04:33+09:00'
+  timestamp: '2022-06-14 20:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
