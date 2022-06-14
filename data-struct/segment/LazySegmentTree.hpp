@@ -33,7 +33,7 @@ template<class A> class LazySegmentTree {
             lazyflag[k] = false;
         }
     }
-    void dataup(int k) {
+    void calc(int k) {
         data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);
     }
   public:
@@ -47,7 +47,7 @@ template<class A> class LazySegmentTree {
         n = 1 << h;
         data.assign(n << 1, M::id());
         rep (i, ori) data[n + i] = v[i];
-        rrep (i, n, 1) dataup(i);
+        rrep (i, n, 1) calc(i);
         lazy.resize(n); lazyflag.assign(n, false);
     }
     T prod(int l, int r) {
@@ -84,7 +84,7 @@ template<class A> class LazySegmentTree {
         k += n;
         rreps (i, h) eval(k >> i);
         data[k] = upd(data[k]);
-        reps (i, h) dataup(k >> i);
+        reps (i, h) calc(k >> i);
     }
     void set(int k, T x) {
         update(k, [&](const T&) -> T { return x; });
@@ -110,8 +110,8 @@ template<class A> class LazySegmentTree {
         }
         
         rep (i, lst, h + 1) {
-            if (((l >> i) << i) != l) dataup(l >> i);
-            if (((r >> i) << i) != r) dataup((r - 1) >> i);
+            if (((l >> i) << i) != l) calc(l >> i);
+            if (((r >> i) << i) != r) calc((r - 1) >> i);
         }
     }
     template<class C> int max_right(int l, const C& cond) {
