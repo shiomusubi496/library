@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
@@ -255,20 +255,20 @@ data:
     \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
-    \ A> class DualSegmentTreeDifferentOperation {\n  protected:\n    using M = typename\
-    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n    int n, h, ori;\n    std::vector<T>\
-    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
-    \ k, U x) {\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
-    \      lazy[k] = E::op(lazy[k], x);\n            }\n            else {\n     \
-    \           lazy[k] = x;\n                lazyflag[k] = true;\n            }\n\
-    \        }\n        else if (k < n + ori) {\n            data[k - n] = A::op(x,\
-    \ data[k - n]);\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k])\
-    \ {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1,\
-    \ lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  public:\n \
-    \   DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
-    \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v)\n            :\
-    \ DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}\n    DualSegmentTreeDifferentOperation(const\
+    \ A, bool is_monoid = Monoid::is_action<A>::value> class DualSegmentTree {\n \
+    \ protected:\n    using M = typename A::M;\n    using E = typename A::E;\n   \
+    \ using T = typename M::value_type;\n    using U = typename E::value_type;\n \
+    \   int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
+    \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
+    \    if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n      \
+    \      }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
+    \ = true;\n            }\n        }\n        else if (k < n + ori) {\n       \
+    \     data[k - n] = A::op(x, data[k - n]);\n        }\n    }\n    void eval(int\
+    \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
+    \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
+    \        }\n    }\n  public:\n    DualSegmentTree() : DualSegmentTree(0) {}\n\
+    \    DualSegmentTree(int n) : DualSegmentTree(n, M::id()) {}\n    DualSegmentTree(int\
+    \ n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}\n    DualSegmentTree(const\
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
     \ h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n, false);\n\
@@ -285,16 +285,18 @@ data:
     \  if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n            if\
     \ (!seen) break;\n        }\n\n        while (l != r) {\n            if (l & 1)\
     \ all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n            l\
-    \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> using DualSegmentTree\
-    \ = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;\n\n// verified\
-    \ with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using RangeUpdateQuery\
-    \ = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
-    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
-    \ T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;\n\ntemplate<class\
-    \ T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;\n\n/**\n * @brief\
-    \ DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
+    \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> class DualSegmentTree<E,\
+    \ false> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n  private:\n   \
+    \ using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n    using\
+    \ Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class\
+    \ T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified\
+    \ with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using RangeAddQuery\
+    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\
+    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
+    \ max_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
+    \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
     \ RUQ(n, (1ull << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n       \
     \ if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RUQ.apply(l,\
     \ r + 1, x);\n        }\n        else {\n            int k; cin >> k;\n      \
@@ -314,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 14:53:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-26 17:33:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 layout: document
