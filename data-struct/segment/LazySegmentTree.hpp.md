@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -244,6 +244,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -255,7 +257,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -263,13 +265,14 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\ntemplate<class A> class LazySegmentTree {\n  protected:\n    using M = typename\
-    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
-    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class\
+    \ A> class LazySegmentTree {\n  protected:\n    using M = typename A::M;\n   \
+    \ using E = typename A::E;\n    using T = typename M::value_type;\n    using U\
+    \ = typename E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n  \
+    \  std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
     \ k, const U& x) {\n        data[k] = A::op(x, data[k]);\n        if (k < n) {\n\
     \            if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n\
     \            }\n            else {\n                lazy[k] = x;\n           \
@@ -504,15 +507,15 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-06-14 20:12:49+09:00'
+  timestamp: '2022-06-26 14:53:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
 documentation_of: data-struct/segment/LazySegmentTree.hpp
 layout: document
 redirect_from:

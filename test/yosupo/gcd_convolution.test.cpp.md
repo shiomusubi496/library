@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,13 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -224,6 +224,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -235,7 +237,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -243,9 +245,10 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
     \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
     \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
     \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
@@ -412,7 +415,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-06-26 14:53:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/gcd_convolution.test.cpp

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -230,8 +230,10 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
-    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
+    \ std::false_type {};\ntemplate<class M> class has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
     \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
@@ -241,7 +243,7 @@ data:
     \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
     \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ : public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -249,21 +251,22 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\
-    \n\ntemplate<class A> class DualSegmentTreeDifferentOperation {\n  protected:\n\
-    \    using M = typename A::M;\n    using E = typename A::E;\n    using T = typename\
-    \ M::value_type;\n    using U = typename E::value_type;\n    int n, h, ori;\n\
-    \    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n\
-    \    void all_apply(int k, U x) {\n        if (k < n) {\n            if (lazyflag[k])\
-    \ {\n                lazy[k] = E::op(lazy[k], x);\n            }\n           \
-    \ else {\n                lazy[k] = x;\n                lazyflag[k] = true;\n\
-    \            }\n        }\n        else if (k < n + ori) {\n            data[k\
-    \ - n] = A::op(x, data[k - n]);\n        }\n    }\n    void eval(int k) {\n  \
-    \      if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n         \
-    \   all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n      \
-    \  }\n    }\n  public:\n    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
+    \ A> class DualSegmentTreeDifferentOperation {\n  protected:\n    using M = typename\
+    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    int n, h, ori;\n    std::vector<T>\
+    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int\
+    \ k, U x) {\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
+    \      lazy[k] = E::op(lazy[k], x);\n            }\n            else {\n     \
+    \           lazy[k] = x;\n                lazyflag[k] = true;\n            }\n\
+    \        }\n        else if (k < n + ori) {\n            data[k - n] = A::op(x,\
+    \ data[k - n]);\n        }\n    }\n    void eval(int k) {\n        if (lazyflag[k])\
+    \ {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1,\
+    \ lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  public:\n \
+    \   DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0)\
     \ {}\n    DualSegmentTreeDifferentOperation(int n_, const T& v)\n            :\
     \ DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}\n    DualSegmentTreeDifferentOperation(const\
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
@@ -311,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 17:04:33+09:00'
+  timestamp: '2022-06-26 14:53:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp

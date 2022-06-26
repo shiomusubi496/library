@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -221,8 +221,10 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
-    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
+    \ std::false_type {};\ntemplate<class M> class has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
     \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
@@ -232,7 +234,7 @@ data:
     \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
     \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ : public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -240,84 +242,84 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
-    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
-    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
-    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
-    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
-    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
-    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
-    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
-    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
-    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
-    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
-    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
-    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
-    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
-    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
-    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
-    \ from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\
-    \ : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator int() const {\
-    \ return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs)\
-    \ {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
-    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
-    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
-    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
-    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\n\n\
-    #line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
-    \ {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<std::pair<int, int>> idx;\n    void dfs(int v, int p) {\n\
-    \        idx[v].first = cnt++;\n        each_const (e : G[v]) {\n            if\
-    \ (e.to != p) dfs(e.to, v);\n        }\n        idx[v].second = cnt;\n    }\n\
-    \    void init() {\n        n = G.size();\n        idx.assign(n, {-1, -1});\n\
-    \        cnt = 0;\n        each_const (r : root) dfs(r, -1);\n        rep (i,\
-    \ n) {\n            if (idx[i].first == -1) dfs(i, -1);\n        }\n    }\n  public:\n\
-    \    EulerTourSubtree(const Graph<T>& G, int root = 0) : root({root}), G(G) {\
-    \ init(); }\n    EulerTourSubtree(const Graph<T>& G, const std::vector<int>& root)\
-    \ : root(root), G(G) { init(); }\n    const std::pair<int, int>& get_idx(int k)\
-    \ const& { return idx[k]; }\n    std::pair<int, int> get_idx(int k) && { return\
-    \ std::move(idx[k]); }\n    int get_par(int a, int b) const { return idx[a].first\
-    \ < idx[b].first ? a : b; }\n    template<class F> void each_vertex_subtree(int\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n\
+    template<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
+    \    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0) {}\n \
+    \   BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int n_)\
+    \ {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void apply(int\
+    \ k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
+    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
+    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        assert(l <= r);\n        return M::inv(prod(r),\
+    \ prod(l));\n    }\n    T get(int k) const {\n        return prod(k, k + 1);\n\
+    \    }\n    void set(int k, T x) {\n        apply(k, M::inv(x, prod(k)));\n  \
+    \  }\n};\n\ntemplate<class T> class BinaryIndexedTree : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>\
+    \ {\n  protected:\n    using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n\
+    \  public:\n    using Base::Base;\n    void add(int k, T x) { this->apply(k, x);\
+    \ }\n    T sum(int k) const { return this->prod(k); }\n    T sum(int l, int r)\
+    \ const { return this->prod(l, r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n#line 2 \"graph/Graph.hpp\"\n\
+    \n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int\
+    \ from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n   \
+    \ edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
+    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
+    \  rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx] ==\
+    \ -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n  \
+    \  return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n   \
+    \     each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\n\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\
+    \n\ntemplate<class T> class EulerTourSubtree {\n  protected:\n    int n, cnt;\n\
+    \    std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
+    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
+    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
+    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
+    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
+    \ -1);\n        }\n    }\n  public:\n    EulerTourSubtree(const Graph<T>& G, int\
+    \ root = 0) : root({root}), G(G) { init(); }\n    EulerTourSubtree(const Graph<T>&\
+    \ G, const std::vector<int>& root) : root(root), G(G) { init(); }\n    const std::pair<int,\
+    \ int>& get_idx(int k) const& { return idx[k]; }\n    std::pair<int, int> get_idx(int\
+    \ k) && { return std::move(idx[k]); }\n    int get_par(int a, int b) const { return\
+    \ idx[a].first < idx[b].first ? a : b; }\n    template<class F> void each_vertex_subtree(int\
     \ v, const F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n   \
     \ template<class F> void each_edge_subtree(int v, const F& f) const {\n      \
     \  f(idx[v].first + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\
@@ -355,8 +357,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-05-14 15:03:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-2.test.cpp
 layout: document

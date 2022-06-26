@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -237,8 +237,8 @@ data:
   timestamp: '2022-05-14 15:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
 documentation_of: graph/mst/Kruskal.hpp
 layout: document
 redirect_from:

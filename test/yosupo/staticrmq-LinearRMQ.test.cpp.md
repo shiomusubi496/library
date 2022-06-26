@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -234,8 +234,10 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
-    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
+    \ std::false_type {};\ntemplate<class M> class has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
     \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
@@ -245,7 +247,7 @@ data:
     \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
     \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ : public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -253,69 +255,69 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
-    \n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class\
-    \ SparseTable {\n  protected:\n    using T = typename M::value_type;\n    int\
-    \ h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n\
-    \    T internal_prod(int l, int r) const {\n        assert(0 <= l && l < r &&\
-    \ r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 7 \"\
-    data-struct/segment/LinearRMQ.hpp\"\n\ntemplate<class M> class LinearRMQ {\n \
-    \ protected:\n    using T = typename M::value_type;\n    int n, b, m;\n    std::vector<T>\
-    \ v;\n    std::vector<std::vector<int>> bt;\n    SparseTable<M> st;\n    std::vector<int>\
-    \ lsbtable;\n    int prod_in_backet(int k, int l, int r) const {\n        int\
-    \ a = bt[k][r] & ~((1 << l) - 1);\n        if (a == 0) return r;\n        return\
-    \ lsbtable[a];\n    }\n    T internal_prod(int l, int r) const {\n        assert(0\
-    \ <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb = r / b;\n\
-    \        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb) return v[lb\
-    \ * b + prod_in_backet(lb, lp, rp)];\n        if (lb + 1 == rb) {\n          \
-    \  int x = lb * b + prod_in_backet(lb, lp, b - 1), y = rb * b + prod_in_backet(rb,\
-    \ 0, rp);\n            return M::op(v[x], v[y]);\n        }\n        T res = st.prod(lb\
-    \ + 1, rb);\n        {\n            int a = lb * b + prod_in_backet(lb, lp, b\
-    \ - 1);\n            res = M::op(v[a], res);\n        }\n        {\n         \
-    \   int a = rb * b + prod_in_backet(rb, 0, rp);\n            res = M::op(res,\
-    \ v[a]);\n        }\n        return res;\n    }\n  public:\n    LinearRMQ() =\
-    \ default;\n    LinearRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const\
-    \ std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n)\
-    \ / 2 + 1;\n        m = (n + b - 1) / b;\n        bt.assign(m, std::vector<int>(b,\
-    \ 0));\n        std::vector<int> sta; sta.reserve(b);\n        rep (i, m) {\n\
-    \            rep (j, b) {\n                if (i * b + j >= n) break;\n      \
-    \          while (!sta.empty() && M::op(v[i * b + sta.back()], v[i * b + j]) ==\
-    \ v[i * b + j]) sta.pop_back();\n                if (!sta.empty()) {\n       \
-    \             int t = sta.back();\n                    bt[i][j] = bt[i][t] | (1\
-    \ << t);\n                }\n                sta.push_back(j);\n            }\n\
-    \            sta.clear();\n        }\n        std::vector<T> stv(m);\n       \
-    \ rep (i, m) {\n            stv[i] = v[i * b];\n            rep (j, i * b + 1,\
-    \ (i + 1) * b) {\n                if (j >= n) break;\n                stv[i] =\
-    \ M::op(stv[i], v[j]);\n            }\n        }\n        st.init(stv);\n    \
-    \    lsbtable.resize(1 << b);\n        rep (i, b) {\n            rep (j, 1 <<\
-    \ i, 1 << b, 1 << (i + 1)) lsbtable[j] = i;\n        }\n    }\n    template<bool\
-    \ AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        if (l == r) return M::id();\n\
-    \        return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\
-    \u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs docs/LinearRMQ.md\n */\n#line 4 \"test/yosupo/staticrmq-LinearRMQ.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N); cin >> A;\n    LinearRMQ<Monoid::Min<int>> RMQ(A);\n    rep (Q) {\n  \
-    \      int l, r; cin >> l >> r;\n        cout << RMQ.prod(l, r) << endl;\n   \
-    \ }\n}\n"
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 6\
+    \ \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
+    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
+    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n#line 7 \"data-struct/segment/LinearRMQ.hpp\"\n\n\
+    template<class M> class LinearRMQ {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n, b, m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n\
+    \    SparseTable<M> st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int\
+    \ k, int l, int r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n    \
+    \    if (a == 0) return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n\
+    \        int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb\
+    \ * b;\n        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n\
+    \        if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb,\
+    \ lp, b - 1), y = rb * b + prod_in_backet(rb, 0, rp);\n            return M::op(v[x],\
+    \ v[y]);\n        }\n        T res = st.prod(lb + 1, rb);\n        {\n       \
+    \     int a = lb * b + prod_in_backet(lb, lp, b - 1);\n            res = M::op(v[a],\
+    \ res);\n        }\n        {\n            int a = rb * b + prod_in_backet(rb,\
+    \ 0, rp);\n            res = M::op(res, v[a]);\n        }\n        return res;\n\
+    \    }\n  public:\n    LinearRMQ() = default;\n    LinearRMQ(const std::vector<T>&\
+    \ v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n        v = v_;\n\
+    \        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n        m = (n + b\
+    \ - 1) / b;\n        bt.assign(m, std::vector<int>(b, 0));\n        std::vector<int>\
+    \ sta; sta.reserve(b);\n        rep (i, m) {\n            rep (j, b) {\n     \
+    \           if (i * b + j >= n) break;\n                while (!sta.empty() &&\
+    \ M::op(v[i * b + sta.back()], v[i * b + j]) == v[i * b + j]) sta.pop_back();\n\
+    \                if (!sta.empty()) {\n                    int t = sta.back();\n\
+    \                    bt[i][j] = bt[i][t] | (1 << t);\n                }\n    \
+    \            sta.push_back(j);\n            }\n            sta.clear();\n    \
+    \    }\n        std::vector<T> stv(m);\n        rep (i, m) {\n            stv[i]\
+    \ = v[i * b];\n            rep (j, i * b + 1, (i + 1) * b) {\n               \
+    \ if (j >= n) break;\n                stv[i] = M::op(stv[i], v[j]);\n        \
+    \    }\n        }\n        st.init(stv);\n        lsbtable.resize(1 << b);\n \
+    \       rep (i, b) {\n            rep (j, 1 << i, 1 << b, 1 << (i + 1)) lsbtable[j]\
+    \ = i;\n        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief LinearRMQ(\u524D\u8A08\
+    \u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs docs/LinearRMQ.md\n\
+    \ */\n#line 4 \"test/yosupo/staticrmq-LinearRMQ.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N); cin >> A;\n\
+    \    LinearRMQ<Monoid::Min<int>> RMQ(A);\n    rep (Q) {\n        int l, r; cin\
+    \ >> l >> r;\n        cout << RMQ.prod(l, r) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     ../../other/template.hpp\"\n#include \"../../data-struct/segment/LinearRMQ.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
@@ -331,8 +333,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-LinearRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-LinearRMQ.test.cpp
 layout: document

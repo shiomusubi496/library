@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -18,21 +18,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -230,6 +230,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -241,7 +243,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -249,30 +251,30 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
-    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
-    \ public:\n    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0)\
-    \ {}\n    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int\
-    \ n_) {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void\
-    \ apply(int k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k]\
-    \ = M::op(data[k], x);\n            k += k & -k;\n        }\n    }\n    T prod(int\
-    \ k) const {\n        assert(0 <= k && k <= n);\n        T res = M::id();\n  \
-    \      while (k) {\n            res = M::op(res, data[k]);\n            k -= k\
-    \ & -k;\n        }\n        return res;\n    }\n    template<bool AlwaysTrue =\
-    \ true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree\
-    \ : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {\n  protected:\n   \
-    \ using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n  public:\n   \
-    \ using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T sum(int\
-    \ k) const { return this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l,\
-    \ r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n\
+    template<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
+    \    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0) {}\n \
+    \   BinaryIndexedTreeAnyOperation(int n_) { init(n_); }\n    void init(int n_)\
+    \ {\n        n = n_;\n        data.assign(n + 1, M::id());\n    }\n    void apply(int\
+    \ k, T x) {\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
+    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
+    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        assert(l <= r);\n        return M::inv(prod(r),\
+    \ prod(l));\n    }\n    T get(int k) const {\n        return prod(k, k + 1);\n\
+    \    }\n    void set(int k, T x) {\n        apply(k, M::inv(x, prod(k)));\n  \
+    \  }\n};\n\ntemplate<class T> class BinaryIndexedTree : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>\
+    \ {\n  protected:\n    using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;\n\
+    \  public:\n    using Base::Base;\n    void add(int k, T x) { this->apply(k, x);\
+    \ }\n    T sum(int k) const { return this->prod(k); }\n    T sum(int l, int r)\
+    \ const { return this->prod(l, r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class BinaryIndexedTreeAnyOperation {\n  protected:\n  \
     \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n \
@@ -301,16 +303,16 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document
 redirect_from:

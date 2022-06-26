@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -30,15 +30,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -234,6 +234,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -245,7 +247,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -253,19 +255,20 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
-    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
-    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
-    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
-    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
-    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
-    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
+    \ T> struct Product {\n    using value_type = T;\n    static T op(const T& a,\
+    \ const T& b) {\n        return a * b;\n    }\n    static T id() {\n        return\
+    \ T{1};\n    }\n    static T inv(const T& a, const T& b) {\n        return a /\
+    \ b;\n    }\n    static T get_inv(const T& a) {\n        return T{1} / a;\n  \
+    \  }\n};\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
+    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
+    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
+    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
+    \ a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
     \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
     \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
     \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
@@ -325,18 +328,18 @@ data:
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/bitwise_and_convolution.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/gcd_convolution.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:

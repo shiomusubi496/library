@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -232,8 +232,10 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_id : public\
-    \ std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
+    \ std::false_type {};\ntemplate<class M> class has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M> class has_id<M, decltype((void)M::id)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
     \ : public std::false_type {};\ntemplate<class M> class has_inv<M, decltype((void)M::inv)>\
     \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
@@ -243,7 +245,7 @@ data:
     \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
     \ : public std::false_type {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ : public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -251,19 +253,20 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
-    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
-    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
-    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
-    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
-    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
-    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
+    \ T> struct Product {\n    using value_type = T;\n    static T op(const T& a,\
+    \ const T& b) {\n        return a * b;\n    }\n    static T id() {\n        return\
+    \ T{1};\n    }\n    static T inv(const T& a, const T& b) {\n        return a /\
+    \ b;\n    }\n    static T get_inv(const T& a) {\n        return T{1} / a;\n  \
+    \  }\n};\n\ntemplate<class T> struct Composite {\n    using value_type = std::pair<T,\
+    \ T>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        return {b.first * a.first, b.first * a.second + b.second};\n    }\n \
+    \   static value_type id() {\n        return {T{1}, T{0}};\n    }\n    static\
+    \ value_type get_inv(const value_type& a) {\n        return {T{1} / a.first, -\
+    \ a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
     \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
     \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
     \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
@@ -588,8 +591,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:24:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp
 layout: document

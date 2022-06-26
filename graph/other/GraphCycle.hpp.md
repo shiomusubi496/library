@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -233,8 +233,8 @@ data:
   timestamp: '2022-05-14 15:03:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/yosupo/cycle_detection.test.cpp
+  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
 documentation_of: graph/other/GraphCycle.hpp
 layout: document
 redirect_from:

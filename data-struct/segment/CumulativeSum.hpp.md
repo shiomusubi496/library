@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -212,6 +212,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -223,7 +225,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -231,22 +233,22 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
-    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
-    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
-    \ = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(0 <= l && l <=\
-    \ r && r <= n);\n        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>&\
-    \ get_data() const& { return data; }\n    std::vector<T> get_data() && { return\
-    \ std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
-    \ */\n"
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class\
+    \ M> class CumulativeSumAnyOperation {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int n;\n    std::vector<T> data;\n  public:\n    CumulativeSumAnyOperation()\
+    \ = default;\n    CumulativeSumAnyOperation(const std::vector<T>& v) { init(v);\
+    \ }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n       \
+    \ data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ assert(0 <= l && l <= r && r <= n);\n        return M::inv(data[r], data[l]);\n\
+    \    }\n    const std::vector<T>& get_data() const& { return data; }\n    std::vector<T>\
+    \ get_data() && { return std::move(data); }\n};\n\ntemplate<class T> using CumulativeSum\
+    \ = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\n/**\n * @brief CumulativeSum(\u7D2F\
+    \u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
     \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
@@ -267,7 +269,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-06-26 14:53:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp

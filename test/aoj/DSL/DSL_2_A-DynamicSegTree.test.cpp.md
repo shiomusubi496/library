@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -231,6 +231,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -242,7 +244,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -250,11 +252,12 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DynamicSegmentTree.hpp\"\
-    \n\ntemplate<class M> class DynamicSegmentTree {\n  protected:\n    using T =\
-    \ typename M::value_type;\n    struct node;\n    using node_ptr = std::unique_ptr<node>;\n\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 6 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n\
+    template<class M> class DynamicSegmentTree {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    struct node;\n    using node_ptr = std::unique_ptr<node>;\n\
     \    struct node {\n        T val;\n        node_ptr l, r;\n        node_ptr&\
     \ get_l(const T& v) {\n            if (l == nullptr) l = std::make_unique<node>(v);\n\
     \            return l;\n        }\n        node_ptr& get_r(const T& v) {\n   \
@@ -344,7 +347,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-06-12 16:37:21+09:00'
+  timestamp: '2022-06-26 14:53:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp

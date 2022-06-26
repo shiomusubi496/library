@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':heavy_check_mark:'
@@ -27,38 +27,38 @@ data:
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
@@ -140,51 +140,51 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -380,6 +380,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -391,7 +393,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -399,9 +401,10 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n"
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
     \ T> struct Sum {\n    using value_type = T;\n    static constexpr T op(const\
     \ T& a, const T& b) { return a + b; }\n    static constexpr T id() { return T{0};\
@@ -466,6 +469,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -477,7 +482,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -485,75 +490,76 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n"
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/CumulativeSum.hpp
   - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/LCARMQ.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/SkipList.hpp
+  - other/monoid2.hpp
   - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  - other/monoid2.hpp
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/yosupo/bitwise_and_convolution.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/gcd_convolution.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
-  - test/yosupo/lcm_convolution.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/point_add_range_sum.test.cpp
-  - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
+  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/queue_operate_all_composite.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/bitwise_and_convolution.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/yosupo/lcm_convolution.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:

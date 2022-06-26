@@ -1,30 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
@@ -37,27 +37,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/SparseTable.md
     document_title: SparseTable
@@ -268,6 +268,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -279,7 +281,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -287,11 +289,12 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class\
+    \ M> class SparseTable {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
     \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
@@ -336,22 +339,22 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/LCARMQ.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/staticrmq-SparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/vertex_add_path_sum.test.cpp
+  - test/yosupo/vertex_set_path_composite.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp
 layout: document
 redirect_from:

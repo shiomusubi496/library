@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -231,6 +231,8 @@ data:
     \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
     \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
     \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
+    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
+    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
     \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -242,7 +244,7 @@ data:
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};;\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
+    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
     \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
     \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
@@ -250,15 +252,16 @@ data:
     \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::true_type {};\ntemplate<class T> class is_action<T, decltype(std::declval<typename\
-    \ T::M>(), std::declval<typename T::E>(), (void)T::op)> : public std::false_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\
-    \n\ntemplate<class M> class DisjointSparseTable {\n  protected:\n    using T =\
-    \ typename M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n \
-    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n\
-    \        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n       \
-    \ return M::op(data[d][l], data[d][r]);\n    }\n  public:\n    DisjointSparseTable()\
+    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
+    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
+    \ namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\n\n\
+    template<class M> class DisjointSparseTable {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T>\
+    \ v_;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int l, int r)\
+    \ const {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n      \
+    \  if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n        return\
+    \ M::op(data[d][l], data[d][r]);\n    }\n  public:\n    DisjointSparseTable()\
     \ = default;\n    DisjointSparseTable(const std::vector<T>& v) { init(v); }\n\
     \    void init(const std::vector<T>& v) {\n        v_ = v;\n        ori = v.size();\n\
     \        h = bitop::ceil_log2(ori);\n        logtable.assign(1 << h, 0);\n   \
@@ -309,8 +312,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 14:53:17+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -247,8 +247,8 @@ data:
   timestamp: '2022-05-28 12:03:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/tree_diameter.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
 documentation_of: graph/tree/TreeDiameter.hpp
 layout: document
 redirect_from:
