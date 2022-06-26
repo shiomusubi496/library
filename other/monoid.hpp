@@ -166,6 +166,6 @@ template<class T> class is_group<T, decltype(std::declval<typename T::value_type
 
 template<class T, class = void> class is_action : public std::false_type {};
 template<class T> class is_action<T, typename std::enable_if<
-        is_monoid<typename T::M>::value && is_semigroup<typename T::E>::value && has_op<T>::value>::type> : public std::true_type {};
+        is_semigroup<typename T::M>::value && is_semigroup<typename T::E>::value && has_op<T>::value>::type> : public std::true_type {};
 
 } // namespace Monoid
