@@ -3,14 +3,14 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class M> class BinaryIndexedTreeAnyOperation {
+template<class M, bool is_monoid = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
   protected:
     using T = typename M::value_type;
     int n;
     std::vector<T> data;
   public:
-    BinaryIndexedTreeAnyOperation() : BinaryIndexedTreeAnyOperation(0) {}
-    BinaryIndexedTreeAnyOperation(int n_) { init(n_); }
+    BinaryIndexedTree() : BinaryIndexedTree(0) {}
+    BinaryIndexedTree(int n_) { init(n_); }
     void init(int n_) {
         n = n_;
         data.assign(n + 1, M::id());
@@ -44,9 +44,9 @@ template<class M> class BinaryIndexedTreeAnyOperation {
     }
 };
 
-template<class T> class BinaryIndexedTree : public BinaryIndexedTreeAnyOperation<Monoid::Sum<T>> {
+template<class T> class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {
   protected:
-    using Base = BinaryIndexedTreeAnyOperation<Monoid::Sum<T>>;
+    using Base = BinaryIndexedTree<Monoid::Sum<T>>;
   public:
     using Base::Base;
     void add(int k, T x) { this->apply(k, x); }
