@@ -4,7 +4,7 @@
 #include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A> class DualSegmentTreeDifferentOperation {
+template<class A, bool is_monoid = Monoid::is_action<A>::value> class DualSegmentTree {
   protected:
     using M = typename A::M;
     using E = typename A::E;
@@ -36,10 +36,10 @@ template<class A> class DualSegmentTreeDifferentOperation {
         }
     }
   public:
-    DualSegmentTreeDifferentOperation() : DualSegmentTreeDifferentOperation(0) {}
-    DualSegmentTreeDifferentOperation(int n_, const T& v)
-            : DualSegmentTreeDifferentOperation(std::vector<T>(n_, v)) {}
-    DualSegmentTreeDifferentOperation(const std::vector<T>& v) { init(v); }
+    DualSegmentTree() : DualSegmentTree(0) {}
+    DualSegmentTree(int n) : DualSegmentTree(n, M::id()) {}
+    DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}
+    DualSegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
         h = bitop::ceil_log2(ori);
@@ -87,7 +87,12 @@ template<class A> class DualSegmentTreeDifferentOperation {
     }
 };
 
-template<class E> using DualSegmentTree = DualSegmentTreeDifferentOperation<Monoid::AttachMonoid<E>>;
+template<class E> class DualSegmentTree<E, false> : public DualSegmentTree<Monoid::AttachMonoid<E>> {
+  private:
+    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;
+  public:
+    using Base::Base;
+};
 
 // verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
@@ -95,9 +100,9 @@ template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
 // verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;
 
-template<class T> using RangeChminQuery = DualSegmentTree<Monoid::Min<T>>;
+template<class T, T min_value = infinity<T>::min> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;
 
-template<class T> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T>>;
+template<class T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, max_value>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)
