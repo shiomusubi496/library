@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -252,7 +252,7 @@ data:
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
     \ A, bool is_monoid = Monoid::is_action<A>::value> class DualSegmentTree {\n \
@@ -316,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 17:33:19+09:00'
+  timestamp: '2022-06-26 18:42:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp

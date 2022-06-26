@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -242,7 +242,7 @@ data:
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
     \ T> struct Product {\n    using value_type = T;\n    static T op(const T& a,\
@@ -420,7 +420,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 14:53:17+09:00'
+  timestamp: '2022-06-26 18:42:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp

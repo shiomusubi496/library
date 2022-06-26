@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/LinearRMQ.md
     document_title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE\
@@ -254,7 +254,7 @@ data:
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 6\
     \ \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
@@ -360,8 +360,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LinearRMQ.hpp
   requiredBy: []
-  timestamp: '2022-06-26 14:53:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-06-26 18:42:46+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
 documentation_of: data-struct/segment/LinearRMQ.hpp

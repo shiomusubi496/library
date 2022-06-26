@@ -254,7 +254,7 @@ data:
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 6 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
     \n\ntemplate<class A> class DynamicLazySegmentTree {\n  protected:\n    using\
@@ -520,7 +520,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-06-26 14:53:17+09:00'
+  timestamp: '2022-06-26 18:42:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp

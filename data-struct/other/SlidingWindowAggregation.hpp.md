@@ -234,7 +234,7 @@ data:
     \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
     \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_monoid<typename T::M>::value && is_semigroup<typename\
+    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
     \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
@@ -290,7 +290,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-06-26 14:53:17+09:00'
+  timestamp: '2022-06-26 18:42:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp
