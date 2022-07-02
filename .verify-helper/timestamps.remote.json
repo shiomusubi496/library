@@ -91,6 +91,7 @@
 "test/yosupo/vertex_add_subtree_sum.test.cpp": "2022-06-26 19:06:48 +0900",
 "test/yosupo/vertex_set_path_composite-HLD.test.cpp": "2022-06-26 18:42:46 +0900",
 "test/yosupo/vertex_set_path_composite.test.cpp": "2022-06-26 18:42:46 +0900",
+"test/yosupo/zalgorithm.test.cpp": "2022-07-03 00:05:35 +0900",
 "test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp": "2022-06-26 18:42:46 +0900",
 "test/yuki/1435_SegTree-BinarySearch.test.cpp": "2022-06-26 18:42:46 +0900",
 "test/yuki/1469-RunLength.test.cpp": "2022-05-01 15:10:58 +0900",
