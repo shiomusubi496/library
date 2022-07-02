@@ -254,6 +254,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
+    - icon: ':heavy_check_mark:'
+      path: string/ZAlgorithm.hpp
+      title: Z-Algorithm
   verificationCategories:
   - name: test/aoj/ALDS1
     pages:
@@ -547,6 +550,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/zalgorithm.test.cpp
+      title: test/yosupo/zalgorithm.test.cpp
   - name: test/yuki
     pages:
     - icon: ':heavy_check_mark:'

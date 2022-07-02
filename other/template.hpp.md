@@ -222,6 +222,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
+  - icon: ':heavy_check_mark:'
+    path: string/ZAlgorithm.hpp
+    title: Z-Algorithm
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
@@ -499,6 +502,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/zalgorithm.test.cpp
+    title: test/yosupo/zalgorithm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
@@ -820,6 +826,7 @@ data:
   - data-struct/other/SkipList.hpp
   - random/Random.hpp
   - random/Timer.hpp
+  - string/ZAlgorithm.hpp
   - string/RollingHash.hpp
   - string/RunLength.hpp
   - other/bitop.hpp
@@ -892,6 +899,7 @@ data:
   - test/yosupo/two_sat.test.cpp
   - test/yosupo/unionfind-Dynamic.test.cpp
   - test/yosupo/two_edge_connected_components.test.cpp
+  - test/yosupo/zalgorithm.test.cpp
   - test/yosupo/cycle_detection.test.cpp
   - test/aoj/NTL/NTL_1_A-Prime.test.cpp
   - test/aoj/NTL/NTL_1_C-LCM.test.cpp
