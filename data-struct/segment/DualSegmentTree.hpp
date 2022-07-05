@@ -100,9 +100,9 @@ template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
 // verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;
 
-template<class T, T min_value = infinity<T>::min> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;
+template<class T, T max_value = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;
 
-template<class T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, max_value>>;
+template<class T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, min_value>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)
