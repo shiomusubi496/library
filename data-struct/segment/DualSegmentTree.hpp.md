@@ -293,10 +293,10 @@ data:
     \ Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class\
     \ T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified\
     \ with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using RangeAddQuery\
-    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
-    \ max_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
+    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
+    \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class A, bool is_monoid = Monoid::is_action<A>::value>\
@@ -335,10 +335,10 @@ data:
     \  public:\n    using Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\n\
     template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\
     \n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using\
-    \ RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;\n\
-    \ntemplate<class T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
-    \ max_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
+    \ RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\
+    \ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
+    \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n"
   dependsOn:
   - other/template.hpp
@@ -347,7 +347,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-06-26 18:42:46+09:00'
+  timestamp: '2022-07-05 19:32:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp

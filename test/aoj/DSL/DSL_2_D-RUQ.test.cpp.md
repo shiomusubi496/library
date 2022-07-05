@@ -291,10 +291,10 @@ data:
     \ Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class\
     \ T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified\
     \ with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using RangeAddQuery\
-    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, min_value>>;\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
-    \ max_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
+    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
+    \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
     \ RUQ(n, (1ull << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n       \
@@ -316,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-06-26 18:42:46+09:00'
+  timestamp: '2022-07-05 19:32:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
