@@ -4,7 +4,7 @@
 #include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A, bool is_monoid = Monoid::is_action<A>::value> class DualSegmentTree {
+template<class A, bool = Monoid::is_action<A>::value> class DualSegmentTree {
   protected:
     using M = typename A::M;
     using E = typename A::E;

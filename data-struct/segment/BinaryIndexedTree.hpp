@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class M, bool is_monoid = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
+template<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
   protected:
     using T = typename M::value_type;
     int n;
