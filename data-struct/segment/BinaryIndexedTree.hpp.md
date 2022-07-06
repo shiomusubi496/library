@@ -255,7 +255,7 @@ data:
     \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
     \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
     \ namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n\
-    template<class M, bool is_monoid = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
+    template<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
     \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
     \ data;\n  public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
@@ -276,7 +276,7 @@ data:
     };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M, bool is_monoid = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
     \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
     \ data;\n  public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-06-26 19:06:48+09:00'
+  timestamp: '2022-07-07 00:11:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
