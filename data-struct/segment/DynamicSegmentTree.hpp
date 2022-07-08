@@ -14,39 +14,36 @@ template<class M> class DynamicSegmentTreeBase {
     struct node {
         T val;
         node_ptr l, r;
-        node_ptr& get_l(const T& v) {
-            if (l == nullptr) l = std::make_unique<node>(v);
-            return l;
-        }
-        node_ptr& get_r(const T& v) {
-            if (r == nullptr) r = std::make_unique<node>(v);
-            return r;
-        }
-        void update() {
-            val = M::id();
-            if (l != nullptr) val = M::op(val, l->val);
-            if (r != nullptr) val = M::op(val, r->val);
-        }
         node(const T& v) : val(v), l(nullptr), r(nullptr) {}
     };
+    node_ptr& get_l(const node_ptr& nd, ll a, ll b, int t) const {
+        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(a, b, t));
+        return nd->l;
+    }
+    node_ptr& get_r(const node_ptr& nd, ll a, ll b, int t) const {
+        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(a, b, t));
+        return nd->r;
+    }
     ll ori, h, n;
     node_ptr root;
     template<class Upd> void update(node_ptr& nd, ll a, ll b, int t, ll k, const Upd& upd) {
+        if (nd == nullptr) nd = std::make_unique<node>(get_init(a, b, t));
         if (a + 1 == b) {
             nd->val = upd(nd->val);
             return;
         }
         ll m = (a + b) >> 1;
-        if (k < m) update(nd->get_l(get_init(a, m, t - 1)), a, m, t - 1, k, upd);
-        else update(nd->get_r(get_init(m, b, t - 1)), m, b, t - 1, k, upd);
-        nd->update();
+        if (k < m) update(nd->l, a, m, t - 1, k, upd);
+        else update(nd->r, m, b, t - 1, k, upd);
+        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
+                        nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     T prod(const node_ptr& nd, ll a, ll b, int t, ll l, ll r) const {
         if (l <= a && b <= r) return nd->val;
         if (r <= a || b <= l) return M::id();
         ll m = (a + b) >> 1;
-        return M::op(prod(nd->get_l(get_init(a, m, t - 1)), a, m, t - 1, l, r),
-                    prod(nd->get_r(get_init(m, b, t - 1)), m, b, t - 1, l, r));
+        return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),
+                    prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));
     }
     template<class Cond> ll max_right(const node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond, T& sm) const {
         if (b <= l) return n;
@@ -56,9 +53,9 @@ template<class M> class DynamicSegmentTreeBase {
         }
         if (a + 1 == b) return a;
         ll m = (a + b) >> 1;
-        ll res = max_right(nd->get_l(get_init(a, m, t - 1)), a, m, t - 1, l, cond, sm);
+        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);
         if (res != n) return res;
-        return max_right(nd->get_r(get_init(m, b, t - 1)), m, b, t - 1, l, cond, sm);
+        return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);
     }
     template<class Cond> ll min_left(const node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond, T& sm) const {
         if (r <= a) return 0;
@@ -68,11 +65,11 @@ template<class M> class DynamicSegmentTreeBase {
         }
         if (a + 1 == b) return b;
         ll m = (a + b) >> 1;
-        ll res = min_left(nd->get_r(get_init(m, b, t - 1)), m, b, t - 1, r, cond, sm);
+        ll res = min_left(get_r(nd, m, b, t - 1), m, b, t - 1, r, cond, sm);
         if (res != 0) return res;
-        return min_left(nd->get_l(get_init(a, b, t - 1)), a, m, t - 1, r, cond, sm);
+        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);
     }
-    void reset(node_ptr& nd, ll a, ll b, ll l, ll r) {
+    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
         if (nd == nullptr) return;
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
@@ -81,9 +78,10 @@ template<class M> class DynamicSegmentTreeBase {
             return;
         }
         ll m = (a + b) >> 1;
-        reset(nd->l, a, m, l, r);
-        reset(nd->r, m, b, l, r);
-        nd->update();
+        reset(nd->l, a, m, t - 1, l, r);
+        reset(nd->r, m, b, t - 1, l, r);
+        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
+                        nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     void init_copy(node_ptr& nd, const node_ptr& src) {
         if (src == nullptr) return;
@@ -143,8 +141,8 @@ template<class M> class DynamicSegmentTreeBase {
         assert(cond(sm));
         return min_left(root, 0, n, h, r, cond, sm);
     }
-    void reset(ll l, ll r) { reset(root, 0, n, l, r); }
-    void reset(ll k) { reset(root, 0, n, k, k + 1); }
+    void reset(ll l, ll r) { reset(root, 0, n, h, l, r); }
+    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }
 };
 
 } // namespace lib_shiomusubi
