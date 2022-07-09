@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/PlusMinusOneRMQ.md
     document_title: PlusMinusOneRMQ($\pm1$RMQ)
@@ -186,8 +186,6 @@ data:
     \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
     template<class M, class = void> class has_get_inv : public std::false_type {};\n\
     template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
-    \ {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)> : public std::true_type\
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup : public\
@@ -203,39 +201,40 @@ data:
     \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
     \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
     \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
-    \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
-    \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n    using\
-    \ value_type = T;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ a < b ? a : b; }\n    static constexpr T id() { return max_value; }\n};\n\n\
-    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
-    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a < b ? b :\
-    \ a; }\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
-    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
-    \ const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using\
-    \ M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
-    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return\
-    \ a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
     \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n    static constexpr T mul(const T& a, int b) { return a * b; }\n    static\
-    \ constexpr T mul_op(const T& a, int b, const T& c) {\n        return c + a *\
-    \ b;\n    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
     \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
     \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
     \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
@@ -355,8 +354,8 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-07-09 11:19:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-09 13:37:20+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

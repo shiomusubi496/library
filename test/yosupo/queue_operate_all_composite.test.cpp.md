@@ -4,16 +4,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -166,8 +166,6 @@ data:
     \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
     template<class M, class = void> class has_get_inv : public std::false_type {};\n\
     template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
-    \ {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)> : public std::true_type\
     \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
     \ {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)> : public\
     \ std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup : public\
@@ -183,39 +181,40 @@ data:
     \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
     \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
     \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
-    \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
-    \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n    using\
-    \ value_type = T;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ a < b ? a : b; }\n    static constexpr T id() { return max_value; }\n};\n\n\
-    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
-    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a < b ? b :\
-    \ a; }\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
-    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
-    \ const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using\
-    \ M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
-    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return\
-    \ a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
-    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T, T min_value\
-    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
     \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n    static constexpr T mul(const T& a, int b) { return a * b; }\n    static\
-    \ constexpr T mul_op(const T& a, int b, const T& c) {\n        return c + a *\
-    \ b;\n    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
-    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
     \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
     \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
     \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
@@ -255,28 +254,24 @@ data:
     \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
     \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
     \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
-    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
     \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
-    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
-    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
-    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
-    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
-    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
-    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
-    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
-    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
-    \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
-    \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
-    \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
-    \ 700000005};\n    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118,\
-    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
-    \ 299473306};\n  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class\
-    \ T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\
+    \n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase\
+    \ : ModIntBase {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class\
+    \ T> using is_ModInt = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using\
+    \ is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using\
+    \ is_DynamicModInt = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<ll mod>\
+    \ class StaticModInt : StaticModIntBase {\n  protected:\n    ll val;\n    static\
+    \ constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336, 250000002,\n  \
+    \          400000003, 166666668, 142857144, 125000001, 111111112, 700000005};\n\
+    \    static constexpr ll inv998244353 [] = {-1, 1, 499122177, 332748118, 748683265,\n\
+    \            598946612, 166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \  public:\n    StaticModInt() : StaticModInt(0) {}\n    template<class T, typename\
+    \ std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
     \ v) : val(v) {\n        val %= mod;\n        if (val < 0) val += mod;\n    }\n\
     \    ll get() const { return val; }\n    static ll get_mod() { return mod; }\n\
     \    static StaticModInt raw(ll v) {\n        StaticModInt res;\n        res.val\
@@ -410,7 +405,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 11:19:44+09:00'
+  timestamp: '2022-07-09 13:37:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/queue_operate_all_composite.test.cpp
