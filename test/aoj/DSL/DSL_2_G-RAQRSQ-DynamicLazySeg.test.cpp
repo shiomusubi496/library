@@ -5,7 +5,7 @@
 using namespace std;
 int main() {
     int n, q; cin >> n >> q;
-    DynamicMultiLazySegmentTree<Monoid::AddSum<ll>> RAQRSQ(n);
+    DynamicLazySegmentTree<Monoid::AddSum<ll>> RAQRSQ(n);
     rep (q) {
         int t; cin >> t;
         if (t == 0) {
