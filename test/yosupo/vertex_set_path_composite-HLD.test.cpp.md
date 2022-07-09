@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -166,61 +166,11 @@ data:
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct Sum\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
-    \ constexpr T inv(const T& a, const T& b) { return a - b; }\n    static constexpr\
-    \ T get_inv(const T& a) { return -a; }\n};\n\ntemplate<class T, T max_value =\
-    \ infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct Max {\n    using value_type = T;\n    static constexpr T op(const T&\
-    \ a, const T& b) { return a < b ? b : a; }\n    static constexpr T id() { return\
-    \ min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using value_type\
-    \ = T;\n    static constexpr T op(const T&, const T& b) { return b; }\n};\n\n\n\
-    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(const\
-    \ T& a, const T&) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n    static constexpr T mul(const\
-    \ T& a, int b) { return a * b; }\n    static constexpr T mul_op(const T& a, int\
-    \ b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
-    \ ChminMax {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
-    \ ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\n\n\
-    template<class M> struct ReverseMonoid {\n    using value_type = typename M::value_type;\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  return M::op(b, a);\n    }\n    static value_type id() {\n        static_assert(has_id<M>::value,\
-    \ \"id is not defined\");\n        return M::id();\n    }\n    static value_type\
-    \ get_inv(const value_type& a) {\n        static_assert(has_get_inv<M>::value,\
-    \ \"get_inv is not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
-    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
-    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
-    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
-    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\n\
-    class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
-    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
+    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
+    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
     \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
     template<class M, class = void> class has_get_inv : public std::false_type {};\n\
@@ -243,26 +193,76 @@ data:
     \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
     \                   is_semigroup<typename T::E>::value &&\n                  \
     \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
-    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
-    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
-    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
-    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
-    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
-    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
-    \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
-    \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
-    \ LCM {\n    using value_type = T;\n    static T op(T a, T b) { return lcm(a,\
-    \ b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign\
-    \ {\n    using value_type = std::pair<bool, T>; // false: add, true: assign\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (b.first) return b;\n        return {a.first, a.second + b.second};\n  \
-    \  }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
+    \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
+    \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n    using\
+    \ value_type = T;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ a < b ? a : b; }\n    static constexpr T id() { return max_value; }\n};\n\n\
+    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
+    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a < b ? b :\
+    \ a; }\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using\
+    \ M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return\
+    \ a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n    static constexpr T mul(const T& a, int b) { return a * b; }\n    static\
+    \ constexpr T mul_op(const T& a, int b, const T& c) {\n        return c + a *\
+    \ b;\n    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
+    \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
+    \ T& a, const T& b) {\n        return a / b;\n    }\n    static T get_inv(const\
+    \ T& a) {\n        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite\
+    \ {\n    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return {b.first * a.first, b.first * a.second\
+    \ + b.second};\n    }\n    static value_type id() {\n        return {T{1}, T{0}};\n\
+    \    }\n    static value_type get_inv(const value_type& a) {\n        return {T{1}\
+    \ / a.first, - a.second / a.first};\n    }\n    static value_type inv(const value_type&\
+    \ a, const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\n\
+    template<class T> struct GCD {\n    using value_type = T;\n    static T op(T a,\
+    \ T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class\
+    \ T> struct LCM {\n    using value_type = T;\n    static T op(T a, T b) { return\
+    \ lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct\
+    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
+    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
     \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
     \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
     \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
@@ -565,7 +565,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 10:47:11+09:00'
+  timestamp: '2022-07-09 11:19:44+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite-HLD.test.cpp

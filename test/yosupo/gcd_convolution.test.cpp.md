@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/GcdConvolution.hpp
     title: GCDConvolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -22,9 +22,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
@@ -161,7 +161,33 @@ data:
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
+    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         has_op<T>::value>::type>\n    : public std::true_type\
+    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
     \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
     \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
     \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
@@ -211,68 +237,43 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
-    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
-    \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
-    \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
-    \ T& a, const T& b) {\n        return a / b;\n    }\n    static T get_inv(const\
-    \ T& a) {\n        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite\
-    \ {\n    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return {b.first * a.first, b.first * a.second\
-    \ + b.second};\n    }\n    static value_type id() {\n        return {T{1}, T{0}};\n\
-    \    }\n    static value_type get_inv(const value_type& a) {\n        return {T{1}\
-    \ / a.first, - a.second / a.first};\n    }\n    static value_type inv(const value_type&\
-    \ a, const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\n\
-    template<class T> struct GCD {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class\
-    \ T> struct LCM {\n    using value_type = T;\n    static T op(T a, T b) { return\
-    \ lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct\
-    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
-    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ { return a.first * b + a.second; };\n    static U mul(const U& a, int b) { return\
-    \ U{a.first, a.second * b}; };\n    static T mul_op(const U& a, int b, const T&\
-    \ c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T op(const U& a, const T& b)\
-    \ {\n        if (a.first) return a.second;\n        return b + a.second;\n   \
-    \ }\n    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n\
-    \    static T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return\
-    \ a.second * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace\
-    \ Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass\
-    \ ModIntBase {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase\
-    \ : ModIntBase {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase,\
-    \ T>;\ntemplate<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase,\
-    \ T>;\ntemplate<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\
+    \n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Product {\n    using value_type = T;\n    static T op(const T& a, const T& b)\
+    \ {\n        return a * b;\n    }\n    static T id() {\n        return T{1};\n\
+    \    }\n    static T inv(const T& a, const T& b) {\n        return a / b;\n  \
+    \  }\n    static T get_inv(const T& a) {\n        return T{1} / a;\n    }\n};\n\
+    \ntemplate<class T> struct Composite {\n    using value_type = std::pair<T, T>;\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  return {b.first * a.first, b.first * a.second + b.second};\n    }\n    static\
+    \ value_type id() {\n        return {T{1}, T{0}};\n    }\n    static value_type\
+    \ get_inv(const value_type& a) {\n        return {T{1} / a.first, - a.second /\
+    \ a.first};\n    }\n    static value_type inv(const value_type& a, const value_type&\
+    \ b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct\
+    \ GCD {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a,\
+    \ b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n\
+    \    using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n\
+    \    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n\
+    \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
+    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
+    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
+    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T op(const U& a, const T& b) { return\
+    \ a.first * b + a.second; };\n    static U mul(const U& a, int b) { return U{a.first,\
+    \ a.second * b}; };\n    static T mul_op(const U& a, int b, const T& c) {\n  \
+    \      return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T> struct\
+    \ AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n    using\
+    \ U = typename E::value_type;\n    static T op(const U& a, const T& b) {\n   \
+    \     if (a.first) return a.second;\n        return b + a.second;\n    }\n   \
+    \ static U mul(const U& a, int b) { return U{a.first, a.second * b}; }\n    static\
+    \ T mul_op(const U& a, int b, const T& c) {\n        if (a.first) return a.second\
+    \ * b;\n        return c + a.second * b;\n    }\n};\n\n} // namespace Monoid\n\
+    #line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase\
+    \ {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
+    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
+    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
+    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
     \ T>;\n\ntemplate<ll mod> class StaticModInt : StaticModIntBase {\n  protected:\n\
     \    ll val;\n    static constexpr ll inv1000000007[] = {-1, 1, 500000004, 333333336,\
     \ 250000002,\n            400000003, 166666668, 142857144, 125000001, 111111112,\
@@ -404,8 +405,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 10:47:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-09 11:19:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/gcd_convolution.test.cpp
 layout: document

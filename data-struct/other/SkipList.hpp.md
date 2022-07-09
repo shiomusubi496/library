@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -149,7 +149,33 @@ data:
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
+    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         has_op<T>::value>::type>\n    : public std::true_type\
+    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
     \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
     \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
     \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
@@ -199,78 +225,53 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\
-    \n\ntemplate<class Engine> class Random {\n  protected:\n    Engine rnd;\n  public:\n\
-    \    using result_type = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
-    \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
-    \ {\n        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
-    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
-    template argument must be an integral type\");\n        assert(l <= r);\n    \
-    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
-    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
-    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
-    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
-    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
-    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
-    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
-    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
-    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
-    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
-    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
-    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
-    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
-    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
-    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
-    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
-    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
-    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
-    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
-    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
-    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
-    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
-    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
-    \n\nusing M = Monoid::Max<ll>;\nusing T = typename M::value_type;\nusing Rand\
-    \ = Random32;\nconstexpr int MAX_LEVEL = 30;\n\nclass SkipList {\n  protected:\n\
-    \    struct Node;\n    using Node_ptr = std::shared_ptr<Node>;\n    struct Node\
-    \ {\n        T val;\n        int level;\n        std::vector<std::tuple<Node_ptr,\
-    \ int, T>> nxt, prv;\n        Node(T x, Rand &rnd) : val(x) {\n            level\
-    \ = 1;\n            while (level < 30 && (rnd() & 1)) ++level;\n            nxt.assign(level,\
-    \ {Node_ptr{}, -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1,\
-    \ M::id()});\n        }\n        Node(int L) : level(L) {\n            nxt.assign(level,\
-    \ {Node_ptr{}, -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1,\
-    \ M::id()});\n        }\n    };\n    Rand rnd;\n    Node_ptr fptr, bptr;\n  public:\n\
-    \    SkipList() : SkipList(Rand()) {}\n    SkipList(const Rand &rnd) : rnd(rnd)\n\
-    \                              , fptr(std::make_shared<Node>(MAX_LEVEL))\n   \
-    \                           , bptr(std::make_shared<Node>(MAX_LEVEL)) {\n    \
-    \    rep(i, MAX_LEVEL) fptr->nxt[i] = {bptr, 0, M::id()};\n        rep(i, MAX_LEVEL)\
-    \ bptr->prv[i] = {fptr, 0, M::id()};\n    }\n};\n\n/**\n * @brief SkipList\n *\
-    \ @docs docs/SkipList.md\n */\n"
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"random/Random.hpp\"\n\
+    \n#line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\n  protected:\n\
+    \    Engine rnd;\n  public:\n    using result_type = typename Engine::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
+    \    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n  \
+    \      static_assert(std::is_integral<IntType>::value, \"template argument must\
+    \ be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
+    \ \"template argument must be an floating point type\");\n        assert(l <=\
+    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
+    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
+    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
+    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
+    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
+    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
+    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
+    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
+    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
+    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
+    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(T n) {\n\
+    \        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
+    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
+    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
+    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
+    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
+    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
+    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
+    \ * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\n\n\
+    using M = Monoid::Max<ll>;\nusing T = typename M::value_type;\nusing Rand = Random32;\n\
+    constexpr int MAX_LEVEL = 30;\n\nclass SkipList {\n  protected:\n    struct Node;\n\
+    \    using Node_ptr = std::shared_ptr<Node>;\n    struct Node {\n        T val;\n\
+    \        int level;\n        std::vector<std::tuple<Node_ptr, int, T>> nxt, prv;\n\
+    \        Node(T x, Rand &rnd) : val(x) {\n            level = 1;\n           \
+    \ while (level < 30 && (rnd() & 1)) ++level;\n            nxt.assign(level, {Node_ptr{},\
+    \ -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1, M::id()});\n\
+    \        }\n        Node(int L) : level(L) {\n            nxt.assign(level, {Node_ptr{},\
+    \ -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1, M::id()});\n\
+    \        }\n    };\n    Rand rnd;\n    Node_ptr fptr, bptr;\n  public:\n    SkipList()\
+    \ : SkipList(Rand()) {}\n    SkipList(const Rand &rnd) : rnd(rnd)\n          \
+    \                    , fptr(std::make_shared<Node>(MAX_LEVEL))\n             \
+    \                 , bptr(std::make_shared<Node>(MAX_LEVEL)) {\n        rep(i,\
+    \ MAX_LEVEL) fptr->nxt[i] = {bptr, 0, M::id()};\n        rep(i, MAX_LEVEL) bptr->prv[i]\
+    \ = {fptr, 0, M::id()};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../../random/Random.hpp\"\n\nusing M = Monoid::Max<ll>;\nusing T\
     \ = typename M::value_type;\nusing Rand = Random32;\nconstexpr int MAX_LEVEL =\
@@ -295,7 +296,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-09 10:47:11+09:00'
+  timestamp: '2022-07-09 11:19:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp

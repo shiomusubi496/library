@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_H
@@ -167,59 +167,9 @@ data:
     \ & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=  2;\n        return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n    inline CONSTEXPR int ceil_log2(ull\
     \ x) {\n        return x ? msb(x - 1) + 1 : 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\
-    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Sum {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a + b; }\n    static constexpr T id() { return T{0}; }\n    static\
-    \ constexpr T inv(const T& a, const T& b) { return a - b; }\n    static constexpr\
-    \ T get_inv(const T& a) { return -a; }\n};\n\ntemplate<class T, T max_value =\
-    \ infinity<T>::max> struct Min {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return max_value; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct Max {\n    using value_type = T;\n    static constexpr T op(const T&\
-    \ a, const T& b) { return a < b ? b : a; }\n    static constexpr T id() { return\
-    \ min_value; }\n};\n\ntemplate<class T> struct Assign {\n    using value_type\
-    \ = T;\n    static constexpr T op(const T&, const T& b) { return b; }\n};\n\n\n\
-    template<class T, T max_value = infinity<T>::max> struct AssignMin {\n    using\
-    \ M = Min<T, max_value>;\n    using E = Assign<T>;\n    static constexpr T op(const\
-    \ T& a, const T&) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n    static constexpr T mul(const\
-    \ T& a, int b) { return a * b; }\n    static constexpr T mul_op(const T& a, int\
-    \ b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
-    \ ChminMax {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct\
-    \ ChmaxMax {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\n\n\
-    template<class M> struct ReverseMonoid {\n    using value_type = typename M::value_type;\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  return M::op(b, a);\n    }\n    static value_type id() {\n        static_assert(has_id<M>::value,\
-    \ \"id is not defined\");\n        return M::id();\n    }\n    static value_type\
-    \ get_inv(const value_type& a) {\n        static_assert(has_get_inv<M>::value,\
-    \ \"get_inv is not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
-    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
-    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
-    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
-    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\n\
-    class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
     class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
     \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
@@ -244,7 +194,57 @@ data:
     \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
     \                   is_semigroup<typename T::E>::value &&\n                  \
     \                         has_op<T>::value>::type>\n    : public std::true_type\
-    \ {};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \ {};\n\n\ntemplate<class T> struct Sum {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return a + b; }\n    static constexpr\
+    \ T id() { return T{0}; }\n    static constexpr T inv(const T& a, const T& b)\
+    \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n    using\
+    \ value_type = T;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ a < b ? a : b; }\n    static constexpr T id() { return max_value; }\n};\n\n\
+    template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
+    \ = T;\n    static constexpr T op(const T& a, const T& b) { return a < b ? b :\
+    \ a; }\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
+    \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using\
+    \ M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return\
+    \ a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n    static constexpr T mul(const T& a, int b) { return a * b; }\n    static\
+    \ constexpr T mul_op(const T& a, int b, const T& c) {\n        return c + a *\
+    \ b;\n    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\ntemplate<class A> class LazySegmentTree {\n  protected:\n    using M = typename\
     \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
@@ -380,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 10:47:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-09 11:19:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
 layout: document
