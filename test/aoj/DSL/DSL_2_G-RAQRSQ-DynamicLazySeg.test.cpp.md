@@ -1,24 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G
@@ -376,14 +376,14 @@ data:
     \ cond(a.val); });\n    }\n};\n\n/**\n * @brief DynamicLazySegmentTree(\u52D5\u7684\
     \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DynamicLazySegmentTree.md\n\
     \ */\n#line 5 \"test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicMultiLazySegmentTree<Monoid::AddSum<ll>>\
+    \ std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
     \ RAQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            RAQRSQ.apply(l - 1,\
     \ r, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
     \          cout << RAQRSQ.prod(l - 1, r) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G\"\n#include\
     \ \"../../../other/template.hpp\"\n#define protected public\n#include \"../../../data-struct/segment/DynamicLazySegmentTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicMultiLazySegmentTree<Monoid::AddSum<ll>>\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
     \ RAQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            RAQRSQ.apply(l - 1,\
     \ r, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
@@ -396,8 +396,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 15:15:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-09 15:58:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -255,39 +255,179 @@ data:
     \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
     \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
     \ * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\n\n\
-    using M = Monoid::Max<ll>;\nusing T = typename M::value_type;\nusing Rand = Random32;\n\
-    constexpr int MAX_LEVEL = 30;\n\nclass SkipList {\n  protected:\n    struct Node;\n\
-    \    using Node_ptr = std::shared_ptr<Node>;\n    struct Node {\n        T val;\n\
-    \        int level;\n        std::vector<std::tuple<Node_ptr, int, T>> nxt, prv;\n\
-    \        Node(T x, Rand &rnd) : val(x) {\n            level = 1;\n           \
-    \ while (level < 30 && (rnd() & 1)) ++level;\n            nxt.assign(level, {Node_ptr{},\
-    \ -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1, M::id()});\n\
-    \        }\n        Node(int L) : level(L) {\n            nxt.assign(level, {Node_ptr{},\
-    \ -1, M::id()});\n            prv.assign(level, {Node_ptr{}, -1, M::id()});\n\
-    \        }\n    };\n    Rand rnd;\n    Node_ptr fptr, bptr;\n  public:\n    SkipList()\
-    \ : SkipList(Rand()) {}\n    SkipList(const Rand &rnd) : rnd(rnd)\n          \
-    \                    , fptr(std::make_shared<Node>(MAX_LEVEL))\n             \
-    \                 , bptr(std::make_shared<Node>(MAX_LEVEL)) {\n        rep(i,\
-    \ MAX_LEVEL) fptr->nxt[i] = {bptr, 0, M::id()};\n        rep(i, MAX_LEVEL) bptr->prv[i]\
-    \ = {fptr, 0, M::id()};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n\
-    \ */\n"
+    using M = Monoid::Max<ll>;\nusing Rand = Random32;\n\nclass SkipList {\n  protected:\n\
+    \    using T = typename M::value_type;\n    static inline int get_level(Rand&\
+    \ rnd) {\n        int level = 1;\n        while (rnd() & 1) ++level;\n       \
+    \ return level;\n    }\n    struct node;\n    using node_ptr = node*;\n    struct\
+    \ next_node {\n        node_ptr node;\n        int dist;\n        T sm;\n    };\n\
+    \    struct node {\n        std::vector<next_node> nxt, prv;\n        int level()\
+    \ const {\n            assert(nxt.size() == prv.size());\n            return nxt.size();\n\
+    \        }\n        node(Rand& rnd) : node(get_level(rnd)) {}\n        node(int\
+    \ lev) : nxt(lev, {nullptr, 0, M::id()}), prv(lev, {nullptr, 0, M::id()}) {}\n\
+    \    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n\
+    \    nodepair sl;\n    static inline void calc(const node_ptr& l, int k) {\n \
+    \       l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr ptr = l->nxt[k\
+    \ - 1].node; ptr != l->nxt[k].node; ptr = ptr->nxt[k - 1].node) {\n          \
+    \  l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n        }\n      \
+    \  l->nxt[k].node->prv[k].sm = l->nxt[k].sm;\n    }\n    static void match_level(nodepair&\
+    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
+    \        if (llv < rlv) {\n            lhs.first->prv.resize(rlv, next_node(lhs.first->prv.back()));\n\
+    \            lhs.first->nxt.resize(rlv, next_node(lhs.first->nxt.back()));\n \
+    \           lhs.second->prv.resize(rlv, next_node(lhs.second->prv.back()));\n\
+    \            lhs.second->nxt.resize(rlv, next_node(lhs.second->nxt.back()));\n\
+    \        }\n        else if (llv > rlv) {\n            rhs.first->prv.resize(llv,\
+    \ next_node(rhs.first->prv.back()));\n            rhs.first->nxt.resize(llv, next_node(rhs.first->nxt.back()));\n\
+    \            rhs.second->prv.resize(llv, next_node(rhs.second->prv.back()));\n\
+    \            rhs.second->nxt.resize(llv, next_node(rhs.second->nxt.back()));\n\
+    \        }\n    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand&\
+    \ rnd) {\n        assert(lhs.first != rhs.first);\n        assert(lhs.second !=\
+    \ rhs.second);\n        if (lhs.first == lhs.second) {\n            delete lhs.first;\n\
+    \            return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
+    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
+    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
+    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
+    \            l.node->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n\
+    \        }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
+    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \            const auto& l = std::move(rhs.first->prv.back()); rhs.first->prv.pop_back();\n\
+    \            const auto& r = std::move(rhs.first->nxt.back()); rhs.first->nxt.pop_back();\n\
+    \            T sm = M::op(l.sm, r.sm);\n            l.node->nxt[h - 1] = {r.node,\
+    \ l.dist + r.dist, sm};\n            r.node->prv[h - 1] = {l.node, l.dist + r.dist,\
+    \ std::move(sm)};\n        }\n        if (lev >= rhs.first->level()) {\n     \
+    \       lhs.first->prv.resize(lev + 1, next_node(lhs.first->prv.back()));\n  \
+    \          lhs.first->nxt.resize(lev, next_node(lhs.first->nxt.back()));\n   \
+    \         rhs.first->prv.resize(lev, next_node(rhs.first->prv.back()));\n    \
+    \        rhs.first->nxt.resize(lev, next_node(rhs.first->nxt.back()));\n     \
+    \       rhs.second->prv.resize(lev, next_node(rhs.second->prv.back()));\n    \
+    \        rhs.second->nxt.resize(lev + 1, next_node(rhs.second->nxt.back()));\n\
+    \            const auto& l = rhs.first->prv.back();\n            const auto& r\
+    \ = rhs.first->nxt.back();\n            T sm = M::op(l.sm, r.sm);\n          \
+    \  lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist, sm);\n           \
+    \ rhs.second->prv.emplace_back(lhs.first, l.dist + r.dist, std::move(sm));\n \
+    \       }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
+    \ np = new node(sl.first->level());\n            return {std::move(sl), {np, np}};\n\
+    \        }\n        if (k == 0) {\n            node_ptr np = new node(sl.first->level());\n\
+    \            return {{np, np}, std::move(sl)};\n        }\n        if (k == n)\
+    \ {\n            node_ptr np = new node(sl.first->level());\n            return\
+    \ {std::move(sl), {np, np}};\n        }\n        const int h = sl.first->level();\n\
+    \        std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n   \
+    \     lft[h - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1)\
+    \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
+    \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
+    \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
+    \      }\n        }\n        node_ptr npl = new node(h);\n        node_ptr npr\
+    \ = lft[0]->nxt[0].node;\n        rep (i, h) {\n            const auto& l = lft[i];\n\
+    \            const auto& r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n\
+    \            l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i]\
+    \ = {l, k - idx[i], l->nxt[i].sm};\n            if (i != 0) calc(l, i);\n    \
+    \        if (npr == r) {\n                r->prv[i] = {nullptr, 0, M::id()};\n\
+    \            }\n            else {\n                npr->nxt.emplace_back(r, d\
+    \ + idx[i] - k, M::id());\n                r->prv[i] = {npr, d + idx[i] - k, M::id()};\n\
+    \                calc(npr, i);\n            }\n        }\n        return {{sl.first,\
+    \ npl}, {npr, sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand&\
+    \ rnd) : sl(sl), rnd(rnd) {}\n  public:\n    SkipList() : SkipList(Rand()) {}\n\
+    \    SkipList(const Rand &rnd) : rnd(rnd) {\n        sl.first = sl.second = new\
+    \ node(1);\n    }\n    SkipList(const SkipList&) = delete;\n    SkipList(SkipList&&)\
+    \ = default;\n    SkipList& operator=(const SkipList&) = delete;\n    SkipList&\
+    \ operator=(SkipList&&) = default;\n    int size() const { return sl.first->nxt[0].dist;\
+    \ }\n    bool empty() const { return size() == 0; }\n    friend SkipList merge(SkipList\
+    \ lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
+    \ lhs.rnd), lhs.rnd};\n    }\n    friend SkipList merge(SkipList&& lhs, SkipList&&\
+    \ rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd),\
+    \ lhs.rnd};\n    }\n    friend SkipList merge(SkipList lhs, SkipList&& rhs) {\n\
+    \        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n\
+    \    }\n    friend SkipList merge(SkipList&& lhs, SkipList rhs) {\n        return\
+    \ {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n    }\n};\n\
+    \n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n#include \"../../random/Random.hpp\"\n\nusing M = Monoid::Max<ll>;\nusing T\
-    \ = typename M::value_type;\nusing Rand = Random32;\nconstexpr int MAX_LEVEL =\
-    \ 30;\n\nclass SkipList {\n  protected:\n    struct Node;\n    using Node_ptr\
-    \ = std::shared_ptr<Node>;\n    struct Node {\n        T val;\n        int level;\n\
-    \        std::vector<std::tuple<Node_ptr, int, T>> nxt, prv;\n        Node(T x,\
-    \ Rand &rnd) : val(x) {\n            level = 1;\n            while (level < 30\
-    \ && (rnd() & 1)) ++level;\n            nxt.assign(level, {Node_ptr{}, -1, M::id()});\n\
-    \            prv.assign(level, {Node_ptr{}, -1, M::id()});\n        }\n      \
-    \  Node(int L) : level(L) {\n            nxt.assign(level, {Node_ptr{}, -1, M::id()});\n\
-    \            prv.assign(level, {Node_ptr{}, -1, M::id()});\n        }\n    };\n\
-    \    Rand rnd;\n    Node_ptr fptr, bptr;\n  public:\n    SkipList() : SkipList(Rand())\
-    \ {}\n    SkipList(const Rand &rnd) : rnd(rnd)\n                             \
-    \ , fptr(std::make_shared<Node>(MAX_LEVEL))\n                              , bptr(std::make_shared<Node>(MAX_LEVEL))\
-    \ {\n        rep(i, MAX_LEVEL) fptr->nxt[i] = {bptr, 0, M::id()};\n        rep(i,\
-    \ MAX_LEVEL) bptr->prv[i] = {fptr, 0, M::id()};\n    }\n};\n\n/**\n * @brief SkipList\n\
-    \ * @docs docs/SkipList.md\n */\n"
+    \n#include \"../../random/Random.hpp\"\n\nusing M = Monoid::Max<ll>;\nusing Rand\
+    \ = Random32;\n\nclass SkipList {\n  protected:\n    using T = typename M::value_type;\n\
+    \    static inline int get_level(Rand& rnd) {\n        int level = 1;\n      \
+    \  while (rnd() & 1) ++level;\n        return level;\n    }\n    struct node;\n\
+    \    using node_ptr = node*;\n    struct next_node {\n        node_ptr node;\n\
+    \        int dist;\n        T sm;\n    };\n    struct node {\n        std::vector<next_node>\
+    \ nxt, prv;\n        int level() const {\n            assert(nxt.size() == prv.size());\n\
+    \            return nxt.size();\n        }\n        node(Rand& rnd) : node(get_level(rnd))\
+    \ {}\n        node(int lev) : nxt(lev, {nullptr, 0, M::id()}), prv(lev, {nullptr,\
+    \ 0, M::id()}) {}\n    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n\
+    \    Rand rnd;\n    nodepair sl;\n    static inline void calc(const node_ptr&\
+    \ l, int k) {\n        l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr\
+    \ ptr = l->nxt[k - 1].node; ptr != l->nxt[k].node; ptr = ptr->nxt[k - 1].node)\
+    \ {\n            l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n   \
+    \     }\n        l->nxt[k].node->prv[k].sm = l->nxt[k].sm;\n    }\n    static\
+    \ void match_level(nodepair& lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(),\
+    \ rlv = rhs.second->level();\n        if (llv < rlv) {\n            lhs.first->prv.resize(rlv,\
+    \ next_node(lhs.first->prv.back()));\n            lhs.first->nxt.resize(rlv, next_node(lhs.first->nxt.back()));\n\
+    \            lhs.second->prv.resize(rlv, next_node(lhs.second->prv.back()));\n\
+    \            lhs.second->nxt.resize(rlv, next_node(lhs.second->nxt.back()));\n\
+    \        }\n        else if (llv > rlv) {\n            rhs.first->prv.resize(llv,\
+    \ next_node(rhs.first->prv.back()));\n            rhs.first->nxt.resize(llv, next_node(rhs.first->nxt.back()));\n\
+    \            rhs.second->prv.resize(llv, next_node(rhs.second->prv.back()));\n\
+    \            rhs.second->nxt.resize(llv, next_node(rhs.second->nxt.back()));\n\
+    \        }\n    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand&\
+    \ rnd) {\n        assert(lhs.first != rhs.first);\n        assert(lhs.second !=\
+    \ rhs.second);\n        if (lhs.first == lhs.second) {\n            delete lhs.first;\n\
+    \            return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
+    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
+    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
+    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
+    \            l.node->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n\
+    \        }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
+    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \            const auto& l = std::move(rhs.first->prv.back()); rhs.first->prv.pop_back();\n\
+    \            const auto& r = std::move(rhs.first->nxt.back()); rhs.first->nxt.pop_back();\n\
+    \            T sm = M::op(l.sm, r.sm);\n            l.node->nxt[h - 1] = {r.node,\
+    \ l.dist + r.dist, sm};\n            r.node->prv[h - 1] = {l.node, l.dist + r.dist,\
+    \ std::move(sm)};\n        }\n        if (lev >= rhs.first->level()) {\n     \
+    \       lhs.first->prv.resize(lev + 1, next_node(lhs.first->prv.back()));\n  \
+    \          lhs.first->nxt.resize(lev, next_node(lhs.first->nxt.back()));\n   \
+    \         rhs.first->prv.resize(lev, next_node(rhs.first->prv.back()));\n    \
+    \        rhs.first->nxt.resize(lev, next_node(rhs.first->nxt.back()));\n     \
+    \       rhs.second->prv.resize(lev, next_node(rhs.second->prv.back()));\n    \
+    \        rhs.second->nxt.resize(lev + 1, next_node(rhs.second->nxt.back()));\n\
+    \            const auto& l = rhs.first->prv.back();\n            const auto& r\
+    \ = rhs.first->nxt.back();\n            T sm = M::op(l.sm, r.sm);\n          \
+    \  lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist, sm);\n           \
+    \ rhs.second->prv.emplace_back(lhs.first, l.dist + r.dist, std::move(sm));\n \
+    \       }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
+    \ np = new node(sl.first->level());\n            return {std::move(sl), {np, np}};\n\
+    \        }\n        if (k == 0) {\n            node_ptr np = new node(sl.first->level());\n\
+    \            return {{np, np}, std::move(sl)};\n        }\n        if (k == n)\
+    \ {\n            node_ptr np = new node(sl.first->level());\n            return\
+    \ {std::move(sl), {np, np}};\n        }\n        const int h = sl.first->level();\n\
+    \        std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n   \
+    \     lft[h - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1)\
+    \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
+    \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
+    \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
+    \      }\n        }\n        node_ptr npl = new node(h);\n        node_ptr npr\
+    \ = lft[0]->nxt[0].node;\n        rep (i, h) {\n            const auto& l = lft[i];\n\
+    \            const auto& r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n\
+    \            l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i]\
+    \ = {l, k - idx[i], l->nxt[i].sm};\n            if (i != 0) calc(l, i);\n    \
+    \        if (npr == r) {\n                r->prv[i] = {nullptr, 0, M::id()};\n\
+    \            }\n            else {\n                npr->nxt.emplace_back(r, d\
+    \ + idx[i] - k, M::id());\n                r->prv[i] = {npr, d + idx[i] - k, M::id()};\n\
+    \                calc(npr, i);\n            }\n        }\n        return {{sl.first,\
+    \ npl}, {npr, sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand&\
+    \ rnd) : sl(sl), rnd(rnd) {}\n  public:\n    SkipList() : SkipList(Rand()) {}\n\
+    \    SkipList(const Rand &rnd) : rnd(rnd) {\n        sl.first = sl.second = new\
+    \ node(1);\n    }\n    SkipList(const SkipList&) = delete;\n    SkipList(SkipList&&)\
+    \ = default;\n    SkipList& operator=(const SkipList&) = delete;\n    SkipList&\
+    \ operator=(SkipList&&) = default;\n    int size() const { return sl.first->nxt[0].dist;\
+    \ }\n    bool empty() const { return size() == 0; }\n    friend SkipList merge(SkipList\
+    \ lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
+    \ lhs.rnd), lhs.rnd};\n    }\n    friend SkipList merge(SkipList&& lhs, SkipList&&\
+    \ rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd),\
+    \ lhs.rnd};\n    }\n    friend SkipList merge(SkipList lhs, SkipList&& rhs) {\n\
+    \        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n\
+    \    }\n    friend SkipList merge(SkipList&& lhs, SkipList rhs) {\n        return\
+    \ {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n    }\n};\n\
+    \n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
@@ -295,7 +435,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
+  timestamp: '2022-07-09 15:58:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp
