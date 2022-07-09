@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -18,21 +18,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -245,54 +245,54 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ {\nprotected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
     \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        ++k;\n        while\
     \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
     \        }\n    }\n    T prod(int k) const {\n        assert(0 <= k && k <= n);\n\
     \        T res = M::id();\n        while (k) {\n            res = M::op(res, data[k]);\n\
     \            k -= k & -k;\n        }\n        return res;\n    }\n    template<bool\
-    \ AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n  protected:\n    using\
-    \ Base = BinaryIndexedTree<Monoid::Sum<T>>;\n  public:\n    using Base::Base;\n\
-    \    void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(l <= r);\n        return M::inv(prod(r),\
+    \ prod(l));\n    }\n    T get(int k) const { return prod(k, k + 1); }\n    void\
+    \ set(int k, T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\n\
+    class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n\
+    protected:\n    using Base = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n \
+    \   using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T\
+    \ sum(int k) const { return this->prod(k); }\n    T sum(int l, int r) const {\
+    \ return this->prod(l, r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ {\nprotected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
     \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        ++k;\n        while\
     \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
     \        }\n    }\n    T prod(int k) const {\n        assert(0 <= k && k <= n);\n\
     \        T res = M::id();\n        while (k) {\n            res = M::op(res, data[k]);\n\
     \            k -= k & -k;\n        }\n        return res;\n    }\n    template<bool\
-    \ AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n  protected:\n    using\
-    \ Base = BinaryIndexedTree<Monoid::Sum<T>>;\n  public:\n    using Base::Base;\n\
-    \    void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(l <= r);\n        return M::inv(prod(r),\
+    \ prod(l));\n    }\n    T get(int k) const { return prod(k, k + 1); }\n    void\
+    \ set(int k, T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\n\
+    class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n\
+    protected:\n    using Base = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n \
+    \   using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T\
+    \ sum(int k) const { return this->prod(k); }\n    T sum(int l, int r) const {\
+    \ return this->prod(l, r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-07-09 11:19:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-07-09 11:50:54+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp

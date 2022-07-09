@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
@@ -245,9 +245,12 @@ data:
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::is_action<A>::value> class DualSegmentTree\
-    \ {\n  protected:\n    using M = typename A::M;\n    using E = typename A::E;\n\
-    \    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
+    \n\ntemplate<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree\
+    \ {\n    static_assert(Monoid::is_semigroup<typename A::M>::value, \"M must be\
+    \ semigroup\");\n    static_assert(Monoid::is_semigroup<typename A::E>::value,\
+    \ \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value, \"A must\
+    \ have op\");\n  protected:\n    using M = typename A::M;\n    using E = typename\
+    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
     \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
     \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
     \    if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n      \
@@ -276,21 +279,21 @@ data:
     \ (!seen) break;\n        }\n\n        while (l != r) {\n            if (l & 1)\
     \ all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n            l\
     \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> class DualSegmentTree<E,\
-    \ false> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n  private:\n   \
-    \ using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n    using\
-    \ Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class\
-    \ T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified\
-    \ with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using RangeAddQuery\
-    \ = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T max_value = infinity<T>::max>\
-    \ using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
-    \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
-    \ RUQ(n, (1ull << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n       \
-    \ if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RUQ.apply(l,\
-    \ r + 1, x);\n        }\n        else {\n            int k; cin >> k;\n      \
-    \      cout << RUQ.get(k) << endl;\n        }\n    }\n}\n"
+    \ true> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n  private:\n    using\
+    \ Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n    using Base::Base;\n\
+    };\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
+    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
+    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
+    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery\
+    \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \ */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int> RUQ(n, (1ull\
+    \ << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
+    \            int l, r, x; cin >> l >> r >> x;\n            RUQ.apply(l, r + 1,\
+    \ x);\n        }\n        else {\n            int k; cin >> k;\n            cout\
+    \ << RUQ.get(k) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
@@ -306,8 +309,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 11:19:44+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-09 11:49:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 layout: document

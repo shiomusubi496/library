@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -230,29 +230,29 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ {\nprotected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
     \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        ++k;\n        while\
     \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
     \        }\n    }\n    T prod(int k) const {\n        assert(0 <= k && k <= n);\n\
     \        T res = M::id();\n        while (k) {\n            res = M::op(res, data[k]);\n\
     \            k -= k & -k;\n        }\n        return res;\n    }\n    template<bool\
-    \ AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type*\
-    \ = nullptr>\n    T prod(int l, int r) const {\n        assert(l <= r);\n    \
-    \    return M::inv(prod(r), prod(l));\n    }\n    T get(int k) const {\n     \
-    \   return prod(k, k + 1);\n    }\n    void set(int k, T x) {\n        apply(k,\
-    \ M::inv(x, prod(k)));\n    }\n};\n\ntemplate<class T> class BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n  protected:\n    using\
-    \ Base = BinaryIndexedTree<Monoid::Sum<T>>;\n  public:\n    using Base::Base;\n\
-    \    void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
-    \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-BIT.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int> BIT(n);\n\
-    \    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0)\
-    \ BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n    }\n\
-    }\n"
+    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(l <= r);\n        return M::inv(prod(r),\
+    \ prod(l));\n    }\n    T get(int k) const { return prod(k, k + 1); }\n    void\
+    \ set(int k, T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\n\
+    class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {\n\
+    protected:\n    using Base = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n \
+    \   using Base::Base;\n    void add(int k, T x) { this->apply(k, x); }\n    T\
+    \ sum(int k) const { return this->prod(k); }\n    T sum(int l, int r) const {\
+    \ return this->prod(l, r); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/BinaryIndexedTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_B-BIT.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int>\
+    \ BIT(n);\n    rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if\
+    \ (t == 0) BIT.add(a - 1, b);\n        else cout << BIT.sum(a - 1, b) << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    BinaryIndexedTree<int>\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 11:19:44+09:00'
+  timestamp: '2022-07-09 11:50:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-BIT.test.cpp
