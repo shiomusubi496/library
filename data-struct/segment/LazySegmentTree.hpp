@@ -182,38 +182,14 @@ protected:
     using E_ = typename A::E;
     using T_ = typename M_::value_type;
     using U_ = typename E_::value_type;
-    struct MultiA {
-        struct M {
-            struct value_type {
-                T_ val;
-                int len;
-                value_type() = default;
-                value_type(T_ v, int l) : val(v), len(l) {}
-                friend std::ostream& operator<<(std::ostream& ost,
-                                                const value_type& e) {
-                    return ost << e.val << '*' << e.len;
-                }
-            };
-            static value_type op(const value_type& a, const value_type& b) {
-                return {M_::op(a.val, b.val), a.len + b.len};
-            }
-            static value_type id() { return {M_::id(), 0}; }
-        };
-        using E = E_;
-        using T = typename M::value_type;
-        using U = typename E::value_type;
-        static T op(const U& a, const T& b) {
-            return {A::mul_op(a, b.len, b.val), b.len};
-        }
-    };
-    using elm = typename MultiA::M::value_type;
+    using elm = typename Monoid::MultiAction<A>::M::value_type;
     static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
         const int n = v.size();
         std::vector<elm> res(n);
         rep (i, n) res[i] = elm{v[i], 1};
         return res;
     }
-    LazySegmentTree<MultiA> seg;
+    LazySegmentTree<Monoid::MultiAction<A>> seg;
 
 public:
     LazySegmentTree() : LazySegmentTree(0) {}

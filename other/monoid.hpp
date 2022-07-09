@@ -176,4 +176,36 @@ template<class E_> struct AttachMonoid {
     static T op(const T& a, const T& b) { return E_::op(b, a); }
 };
 
+
+template<class A> struct MultiAction {
+    struct M {
+        struct value_type {
+        private:
+            using T_ = typename A::M::value_type;
+            T_ val;
+            ll len;
+            value_type() = default;
+            value_type(T_ v, ll l) : val(v), len(l) {}
+            friend std::ostream& operator<<(std::ostream& ost,
+                                            const value_type& e) {
+                return ost << e.val << '*' << e.len;
+            }
+        };
+        static value_type op(const value_type& a, const value_type& b) {
+            return {M_::op(a.val, b.val), a.len + b.len};
+        }
+        static value_type id() { return {M_::id(), 0}; }
+    };
+    using E = typename A::E;
+
+private:
+    using T = typename M::value_type;
+    using U = typename E::value_type;
+
+public:
+    static T op(const U& a, const T& b) {
+        return {A::mul_op(a, b.len, b.val), b.len};
+    }
+};
+
 } // namespace Monoid
