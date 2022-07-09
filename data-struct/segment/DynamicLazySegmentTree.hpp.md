@@ -12,7 +12,7 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/DynamicLazySegmentTree.md
     document_title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
@@ -343,9 +343,9 @@ data:
     \ <= r && r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n\
     \        assert(cond(sm));\n        return min_left(root, 0, n, h, r, cond, sm);\n\
     \    }\n    void reset(ll l, ll r) { reset(root, 0, n, l, r); }\n    void reset(ll\
-    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree\
-    \ {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
-    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
+    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
+    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    struct MultiA {\n        struct M {\n            struct value_type {\n  \
     \              T_ val;\n                ll len;\n                value_type()\
     \ = default;\n                value_type(T_ v, ll l) : val(v), len(l) {}\n   \
@@ -474,9 +474,9 @@ data:
     \ <= r && r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n\
     \        assert(cond(sm));\n        return min_left(root, 0, n, h, r, cond, sm);\n\
     \    }\n    void reset(ll l, ll r) { reset(root, 0, n, l, r); }\n    void reset(ll\
-    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree\
-    \ {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
-    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
+    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
+    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    struct MultiA {\n        struct M {\n            struct value_type {\n  \
     \              T_ val;\n                ll len;\n                value_type()\
     \ = default;\n                value_type(T_ v, ll l) : val(v), len(l) {}\n   \
@@ -513,8 +513,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-09 15:15:57+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp

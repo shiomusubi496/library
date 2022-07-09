@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
@@ -344,9 +344,9 @@ data:
     \ <= r && r <= ori);\n        if (0 == r) return 0;\n        T sm = M::id();\n\
     \        assert(cond(sm));\n        return min_left(root, 0, n, h, r, cond, sm);\n\
     \    }\n    void reset(ll l, ll r) { reset(root, 0, n, l, r); }\n    void reset(ll\
-    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree\
-    \ {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
-    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ k) { reset(root, 0, n, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
+    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
+    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    struct MultiA {\n        struct M {\n            struct value_type {\n  \
     \              T_ val;\n                ll len;\n                value_type()\
     \ = default;\n                value_type(T_ v, ll l) : val(v), len(l) {}\n   \
@@ -396,7 +396,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
+  timestamp: '2022-07-09 15:15:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
