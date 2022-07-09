@@ -4,11 +4,12 @@
 #include "../../other/monoid.hpp"
 
 template<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
-  protected:
+protected:
     using T = typename M::value_type;
     int n;
     std::vector<T> data;
-  public:
+
+public:
     BinaryIndexedTree() : BinaryIndexedTree(0) {}
     BinaryIndexedTree(int n_) { init(n_); }
     void init(int n_) {
@@ -31,23 +32,23 @@ template<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
         }
         return res;
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_inv<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_inv<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         assert(l <= r);
         return M::inv(prod(r), prod(l));
     }
-    T get(int k) const {
-        return prod(k, k + 1);
-    }
-    void set(int k, T x) {
-        apply(k, M::inv(x, prod(k)));
-    }
+    T get(int k) const { return prod(k, k + 1); }
+    void set(int k, T x) { apply(k, M::inv(x, prod(k))); }
 };
 
-template<class T> class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {
-  protected:
+template<class T>
+class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {
+protected:
     using Base = BinaryIndexedTree<Monoid::Sum<T>>;
-  public:
+
+public:
     using Base::Base;
     void add(int k, T x) { this->apply(k, x); }
     T sum(int k) const { return this->prod(k); }
