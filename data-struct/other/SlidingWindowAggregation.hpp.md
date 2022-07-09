@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SlidingWindowAggregation.md
     document_title: SlidingWindowAggregation(SWAG)
@@ -155,88 +155,77 @@ data:
     \ { return a - b; }\n    static constexpr T get_inv(const T& a) { return -a; }\n\
     };\n\ntemplate<class T, T max_value = infinity<T>::max> struct Min {\n    using\
     \ value_type = T;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ a > b ? b : a; }\n    static constexpr T id() { return max_value; }\n};\n\n\
+    \ a < b ? a : b; }\n    static constexpr T id() { return max_value; }\n};\n\n\
     template<class T, T min_value = infinity<T>::min> struct Max {\n    using value_type\
     \ = T;\n    static constexpr T op(const T& a, const T& b) { return a < b ? b :\
-    \ a;}\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
+    \ a; }\n    static constexpr T id() { return min_value; }\n};\n\ntemplate<class\
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
     \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, T max_value = infinity<T>::max>\
     \ struct AssignMin {\n    using M = Min<T, max_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min>\
-    \ struct AssignMax {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n\
-    \    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const\
-    \ T& a, const T&) { return a; }\n    static constexpr T mul(const T& a, int b)\
-    \ { return a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&)\
-    \ { return a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ AddMin {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return c + a; }\n};\n\ntemplate<class T, T min_value =\
-    \ infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct AssignMax {\n    using M = Max<T,\
+    \ min_value>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum {\n    using\
+    \ M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T op(const T& a,\
+    \ const T&) { return a; }\n    static constexpr T mul(const T& a, int b) { return\
+    \ a * b; }\n    static constexpr T mul_op(const T& a, int b, const T&) { return\
+    \ a * b; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct AddMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T, T min_value\
+    \ = infinity<T>::min> struct AddMax {\n    using M = Max<T, min_value>;\n    using\
     \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n    static constexpr T mul(const T& a, int) { return a; }\n    static\
-    \ constexpr T mul_op(const T& a, int, const T& c) { return c + a; }\n};\n\ntemplate<class\
-    \ T> struct AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return b + a; }\n    static constexpr\
-    \ T mul(const T& a, int b) { return a * b; }\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) { return c + a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChminMin {\n    using M = Min<T, max_value>;\n  \
-    \  using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
-    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::min(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChminMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Min<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::min(b, a); }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::min(c, a); }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct ChmaxMin {\n    using M = Min<T, max_value>;\n  \
-    \  using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n    static constexpr T mul(const T& a, int) { return a; }\n\
-    \    static constexpr T mul_op(const T& a, int, const T& c) { return std::max(c,\
-    \ a); }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct ChmaxMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n    static constexpr\
-    \ T mul(const T& a, int) { return a; }\n    static constexpr T mul_op(const T&\
-    \ a, int, const T& c) { return std::max(c, a); }\n};\n\n\ntemplate<class M> struct\
-    \ ReverseMonoid {\n    using value_type = typename M::value_type;\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        return M::op(b,\
-    \ a);\n    }\n    static value_type id() { return M::id(); }\n    static value_type\
-    \ get_inv(const value_type& a) { return M::get_inv(a); }\n};\n\ntemplate<class\
-    \ M_> struct AttachEffector {\n    using M = M_;\n    using E = M_;\n    using\
-    \ T = typename M_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ M_::op(b, a); }\n};\n\ntemplate<class E_> struct AttachMonoid {\n    using M\
-    \ = E_;\n    using E = E_;\n    using T = typename E_::value_type;\n    static\
-    \ T op(const T& a, const T& b) { return E_::op(b, a); }\n};\n\n\ntemplate<class\
-    \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\
-    \ class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\
-    \ class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M> class has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M> class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\n\ntemplate<class A, class = void> class has_mul : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul<A, decltype((void)A::mul)> : public std::true_type\
-    \ {};\n\ntemplate<class A, class = void> class has_mul_op : public std::false_type\
-    \ {};\ntemplate<class A> class has_mul_op<A, decltype((void)A::mul_op)> : public\
-    \ std::true_type {};\n\n\ntemplate<class T, class = void> class is_semigroup :\
-    \ public std::false_type {};\ntemplate<class T> class is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op)> : public std::true_type {};\n\ntemplate<class\
-    \ T, class = void> class is_monoid : public std::false_type {};;\ntemplate<class\
-    \ T> class is_monoid<T, decltype(std::declval<typename T::value_type>(), (void)T::op,\
-    \ (void)T::id)> : public std::true_type {};\n\ntemplate<class T, class = void>\
-    \ class is_group : public std::false_type {};;\ntemplate<class T> class is_group<T,\
-    \ decltype(std::declval<typename T::value_type>(), (void)T::op, (void)T::id, (void)T::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T> class is_action<T, typename\
-    \ std::enable_if<\n        is_semigroup<typename T::M>::value && is_semigroup<typename\
-    \ T::E>::value && has_op<T>::value>::type> : public std::true_type {};\n\n} //\
-    \ namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
+    \ a; }\n};\n\ntemplate<class T> struct AddSum {\n    using M = Sum<T>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n    static constexpr T mul(const T& a, int b) { return a * b; }\n    static\
+    \ constexpr T mul_op(const T& a, int b, const T& c) {\n        return c + a *\
+    \ b;\n    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin\
+    \ {\n    using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class M, class = void> class has_op : public\
+    \ std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul<A, decltype((void)A::mul)>\
+    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         has_op<T>::value>::type>\n    : public std::true_type\
+    \ {};\n\n} // namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
     \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
     \ T = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T>\
     \ lsm, rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n  \
@@ -290,8 +279,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-06-26 18:42:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-09 10:47:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp
 documentation_of: data-struct/other/SlidingWindowAggregation.hpp
