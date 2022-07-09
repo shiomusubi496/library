@@ -10,7 +10,7 @@
 - 写像は閉じている : 任意の $f, g \in U$ に対して、 $f \circ g \in U$
 - 分配則 : 任意の $A, B \in T$ と $f \in U$ に対して、 $f(A \cdot B) = f(A) \cdot f(B)$
 
-分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g$ を効率よく計算できるときは、 `MultiLazySegmentTree` を参照。
+分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g_{f, k} \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g_{f, k}$ を効率よく計算できるときは、 `mul_op` を定義することで使える。
 
 - コンストラクタ
   - `LazySegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
@@ -38,14 +38,7 @@
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
 
-分配則が成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g_{f, k} \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g_{f, k}$ を効率よく計算できるときは、 `MultiLazySegmentTree` を使う。
-
-- コンストラクタ
-  - `MultiLazySegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `MultiLazySegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `MultiLazySegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
-
-また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` や `MultiLazySegmentTree` のエイリアスとして作られている。
+また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` のエイリアスとして作られている。
 
 - `RangeUpdateQueryRangeSumQuery` : 区間代入クエリと区間和クエリを扱える。
 - `RangeUpdateQueryRangeMinimumQuery` : 区間代入クエリと区間最小値クエリを扱える。

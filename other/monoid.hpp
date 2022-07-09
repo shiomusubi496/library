@@ -20,10 +20,6 @@ template<class M, class = void> class has_get_inv : public std::false_type {};
 template<class M>
 class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type {};
 
-template<class A, class = void> class has_mul : public std::false_type {};
-template<class A>
-class has_mul<A, decltype((void)A::mul)> : public std::true_type {};
-
 template<class A, class = void> class has_mul_op : public std::false_type {};
 template<class A>
 class has_mul_op<A, decltype((void)A::mul_op)> : public std::true_type {};
@@ -50,9 +46,17 @@ template<class T, class = void> class is_action : public std::false_type {};
 template<class T>
 class is_action<T, typename std::enable_if<is_monoid<typename T::M>::value &&
                                            is_semigroup<typename T::E>::value &&
-                                           has_op<T>::value>::type>
+                                           (has_op<T>::value ||
+                                            has_mul_op<T>::value)>::type>
     : public std::true_type {};
 
+template<class T, class = void>
+class is_distributable_action : public std::false_type {};
+template<class T>
+class is_distributable_action<
+    T,
+    typename std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>
+    : public std::true_type {};
 
 template<class T> struct Sum {
     using value_type = T;
@@ -95,8 +99,6 @@ template<class T, T min_value = infinity<T>::min> struct AssignMax {
 template<class T> struct AssignSum {
     using M = Sum<T>;
     using E = Assign<T>;
-    static constexpr T op(const T& a, const T&) { return a; }
-    static constexpr T mul(const T& a, int b) { return a * b; }
     static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }
 };
 
@@ -115,8 +117,6 @@ template<class T, T min_value = infinity<T>::min> struct AddMax {
 template<class T> struct AddSum {
     using M = Sum<T>;
     using E = Sum<T>;
-    static constexpr T op(const T& a, const T& b) { return b + a; }
-    static constexpr T mul(const T& a, int b) { return a * b; }
     static constexpr T mul_op(const T& a, int b, const T& c) {
         return c + a * b;
     }

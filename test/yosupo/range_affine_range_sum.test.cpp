@@ -9,7 +9,7 @@ using PMM = pair<mint, mint>;
 int main() {
     int N, Q; cin >> N >> Q;
     vector<mint> A(N); cin >> A;
-    MultiLazySegmentTree<Monoid::AffineSum<mint>> seg(A);
+    LazySegmentTree<Monoid::AffineSum<mint>> seg(A);
     rep (Q) {
         int t; cin >> t;
         if (t == 0) {

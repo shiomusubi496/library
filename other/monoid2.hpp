@@ -62,8 +62,6 @@ template<class T> struct AffineSum {
     using M = Sum<T>;
     using E = Composite<T>;
     using U = typename E::value_type;
-    static T op(const U& a, const T& b) { return a.first * b + a.second; };
-    static U mul(const U& a, int b) { return U{a.first, a.second * b}; };
     static T mul_op(const U& a, int b, const T& c) {
         return a.first * c + a.second * b;
     }
@@ -73,11 +71,6 @@ template<class T> struct AddAssignSum {
     using M = Sum<T>;
     using E = AddAssign<T>;
     using U = typename E::value_type;
-    static T op(const U& a, const T& b) {
-        if (a.first) return a.second;
-        return b + a.second;
-    }
-    static U mul(const U& a, int b) { return U{a.first, a.second * b}; }
     static T mul_op(const U& a, int b, const T& c) {
         if (a.first) return a.second * b;
         return c + a.second * b;
