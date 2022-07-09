@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/ReRooting.md
     document_title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
@@ -268,7 +268,19 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
+    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
+    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
+    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
+    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\
     \n\ntemplate<class M, class T, class F>\nclass ReRooting {\n  protected:\n   \
     \ using U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
     \ G;\n    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n   \
@@ -357,8 +369,8 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-10 00:08:12+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
 documentation_of: graph/tree/ReRooting.hpp

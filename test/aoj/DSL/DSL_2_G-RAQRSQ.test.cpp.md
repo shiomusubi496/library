@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G
@@ -243,7 +243,19 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
+    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
+    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
+    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
+    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\ntemplate<class A,\n         bool = Monoid::has_mul_op<A>::value>\nclass LazySegmentTree\
     \ {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\");\n\n\
     protected:\n    using M = typename A::M;\n    using E = typename A::E;\n    using\
@@ -312,29 +324,17 @@ data:
     \ true> {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\"\
     );\n\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
     \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
-    \    struct MultiA {\n        struct M {\n            struct value_type {\n  \
-    \              T_ val;\n                int len;\n                value_type()\
-    \ = default;\n                value_type(T_ v, int l) : val(v), len(l) {}\n  \
-    \              friend std::ostream& operator<<(std::ostream& ost,\n          \
-    \                                      const value_type& e) {\n              \
-    \      return ost << e.val << '*' << e.len;\n                }\n            };\n\
-    \            static value_type op(const value_type& a, const value_type& b) {\n\
-    \                return {M_::op(a.val, b.val), a.len + b.len};\n            }\n\
-    \            static value_type id() { return {M_::id(), 0}; }\n        };\n  \
-    \      using E = E_;\n        using T = typename M::value_type;\n        using\
-    \ U = typename E::value_type;\n        static T op(const U& a, const T& b) {\n\
-    \            return {A::mul_op(a, b.len, b.val), b.len};\n        }\n    };\n\
-    \    using elm = typename MultiA::M::value_type;\n    static std::vector<elm>\
+    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
     \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
     \       std::vector<elm> res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n\
-    \        return res;\n    }\n    LazySegmentTree<MultiA> seg;\n\npublic:\n   \
-    \ LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int n_) : seg(n_,\
-    \ {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) : seg(n_, {v, 1})\
-    \ {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}\n\
-    \    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n    T_\
-    \ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) { return\
-    \ seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val; }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) {\n        seg.update(k,\
+    \        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>> seg;\n\
+    \npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    \ n_) : seg(n_, {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) :\
+    \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
+    \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
+    \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
+    \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        seg.update(k,\
     \ [&](const elm& a) -> elm { return {upd(a.val), a.len}; });\n    }\n    void\
     \ set(int k, T_ x) { seg.set(k, elm{x, 1}); }\n    void apply(int k, U_ x) { seg.apply(k,\
     \ x); }\n    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }\n    template<class\
@@ -380,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-10 00:08:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
 layout: document

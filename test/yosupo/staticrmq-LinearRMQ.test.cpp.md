@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -247,7 +247,19 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
+    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
+    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
+    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
+    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
     \n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class\
     \ SparseTable {\n  protected:\n    using T = typename M::value_type;\n    int\
     \ h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n\
@@ -323,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/staticrmq-LinearRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-09 13:37:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-10 00:08:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/staticrmq-LinearRMQ.test.cpp
 layout: document
