@@ -227,7 +227,7 @@ public:
 };
 
 
-template<class A> class DynamicLazySegmentTree {
+template<class A> class DynamicLazySegmentTree<A, true> {
 protected:
     using M_ = typename A::M;
     using E_ = typename A::E;
