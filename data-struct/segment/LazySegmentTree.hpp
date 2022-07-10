@@ -189,7 +189,7 @@ protected:
 
 public:
     LazySegmentTree() : LazySegmentTree(0) {}
-    LazySegmentTree(int n_) : seg(n_, {M_::id(), 1}) {}
+    LazySegmentTree(int n_) : seg(n_, {A::M::id(), 1}) {}
     LazySegmentTree(int n_, const T_& v) : seg(n_, {v, 1}) {}
     LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}
     void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }
