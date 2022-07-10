@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/LazySegmentTree.md
     document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
@@ -345,8 +345,8 @@ data:
     \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
     \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>>\
     \ seg;\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
-    \ n_) : seg(n_, {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) :\
-    \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
+    \ n_) : seg(n_, {A::M::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v)\
+    \ : seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
     \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
     \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
@@ -449,8 +449,8 @@ data:
     \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
     \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>>\
     \ seg;\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
-    \ n_) : seg(n_, {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) :\
-    \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
+    \ n_) : seg(n_, {A::M::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v)\
+    \ : seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
     \    T_ prod(int l, int r) { return seg.prod(l, r).val; }\n    T_ get(int k) {\
     \ return seg.get(k).val; }\n    T_ all_prod() const { return seg.all_prod().val;\
@@ -487,8 +487,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 18:39:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-10 18:55:38+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
