@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/DynamicLazySegmentTree.md
     document_title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
@@ -251,9 +251,9 @@ data:
     \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
     \                         const value_type& e) {\n                return ost <<\
     \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
     \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
     \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
     \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
@@ -525,8 +525,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 00:08:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-10 16:30:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp

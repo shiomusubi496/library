@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -9,22 +9,22 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/bitwise_and_convolution-or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/bitwise_and_convolution.test.cpp
     title: test/yosupo/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/lcm_convolution.test.cpp
     title: test/yosupo/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/yosupo/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -253,9 +253,9 @@ data:
     \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
     \                         const value_type& e) {\n                return ost <<\
     \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
     \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
     \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
     \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\
@@ -318,8 +318,8 @@ data:
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy: []
-  timestamp: '2022-07-10 00:08:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-10 16:30:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/point_set_range_composite.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp

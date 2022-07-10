@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
@@ -250,9 +250,9 @@ data:
     \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
     \                         const value_type& e) {\n                return ost <<\
     \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
     \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
     \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
     \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\
@@ -298,8 +298,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 00:08:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-10 16:30:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
 layout: document

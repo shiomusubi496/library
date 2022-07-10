@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -323,9 +323,9 @@ data:
     \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
     \                         const value_type& e) {\n                return ost <<\
     \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
     \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
     \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
     \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
@@ -458,7 +458,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LCARMQ.hpp
   requiredBy: []
-  timestamp: '2022-07-10 00:08:12+09:00'
+  timestamp: '2022-07-10 16:30:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/staticrmq-LCARMQ.test.cpp

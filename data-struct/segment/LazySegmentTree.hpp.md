@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -12,13 +12,13 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/yosupo/range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/LazySegmentTree.md
     document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
@@ -263,9 +263,9 @@ data:
     \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
     \                         const value_type& e) {\n                return ost <<\
     \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {M_::op(a.val,\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
     \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {M_::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
+    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
     \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
     \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
@@ -485,8 +485,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 00:08:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-10 16:30:40+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
