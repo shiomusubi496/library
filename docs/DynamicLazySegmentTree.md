@@ -27,5 +27,3 @@
 厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
     - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
     - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
-
-同様に `DynamicMultiLazySegmentTree` がある。
