@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -235,24 +235,37 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
-    \     static value_type op(const value_type& a, const value_type& b) {\n     \
-    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
-    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
+    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
+    \            using T_ = typename A::M::value_type;\n        public:\n        \
+    \    T_ val;\n            ll len;\n            value_type() = default;\n     \
+    \       value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                            const\
+    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
+    \         }\n        };\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
+    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
     \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
     \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprotected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
+    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
+    \        public:\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) {\n         \
+    \   return {A::M::init(l, r), r - l};\n        }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class M, bool\
+    \ = Monoid::is_monoid<M>::value> class BinaryIndexedTree {\nprotected:\n    using\
+    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
+    \    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
     \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        ++k;\n        while\
     \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
@@ -393,8 +406,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 18:39:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-10 23:06:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
 layout: document

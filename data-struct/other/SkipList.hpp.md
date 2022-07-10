@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -226,23 +226,36 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
-    \     static value_type op(const value_type& a, const value_type& b) {\n     \
-    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
-    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
+    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
+    \            using T_ = typename A::M::value_type;\n        public:\n        \
+    \    T_ val;\n            ll len;\n            value_type() = default;\n     \
+    \       value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                            const\
+    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
+    \         }\n        };\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
+    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
     \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
     \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\n} // namespace Monoid\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\
-    \n\ntemplate<class Engine> class Random {\n  protected:\n    Engine rnd;\n  public:\n\
-    \    using result_type = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
+    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
+    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
+    \        public:\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) {\n         \
+    \   return {A::M::init(l, r), r - l};\n        }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ Engine> class Random {\n  protected:\n    Engine rnd;\n  public:\n    using\
+    \ result_type = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
     \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
     \ {\n        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
     \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
@@ -450,7 +463,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-10 18:39:26+09:00'
+  timestamp: '2022-07-10 23:06:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp

@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -245,70 +245,82 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
-    \     static value_type op(const value_type& a, const value_type& b) {\n     \
-    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
-    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
+    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
+    \            using T_ = typename A::M::value_type;\n        public:\n        \
+    \    T_ val;\n            ll len;\n            value_type() = default;\n     \
+    \       value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                            const\
+    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
+    \         }\n        };\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
+    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
     \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
     \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree\
-    \ {\n    static_assert(Monoid::is_semigroup<typename A::M>::value, \"M must be\
-    \ semigroup\");\n    static_assert(Monoid::is_semigroup<typename A::E>::value,\
-    \ \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value, \"A must\
-    \ have op\");\n  protected:\n    using M = typename A::M;\n    using E = typename\
-    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
-    \    if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n      \
-    \      }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n        else if (k < n + ori) {\n       \
-    \     data[k - n] = A::op(x, data[k - n]);\n        }\n    }\n    void eval(int\
-    \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
-    \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
-    \        }\n    }\n  public:\n    DualSegmentTree() : DualSegmentTree(0) {}\n\
-    \    DualSegmentTree(int n) : DualSegmentTree(n, M::id()) {}\n    DualSegmentTree(int\
-    \ n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}\n    DualSegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
-    \ h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n, false);\n\
-    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
-    \ n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n    }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
-    \       data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x) {\n \
-    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, U\
-    \ x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n   \
-    \ void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \n        l += n; r += n;\n        rreps (i, h) {\n            bool seen = false;\n\
-    \            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n          \
-    \  if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n            if\
-    \ (!seen) break;\n        }\n\n        while (l != r) {\n            if (l & 1)\
-    \ all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n            l\
-    \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> class DualSegmentTree<E,\
-    \ true> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n  private:\n    using\
-    \ Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n    using Base::Base;\n\
-    };\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
-    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
-    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery\
-    \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
-    \ */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int> RUQ(n, (1ull\
-    \ << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
-    \            int l, r, x; cin >> l >> r >> x;\n            RUQ.apply(l, r + 1,\
-    \ x);\n        }\n        else {\n            int k; cin >> k;\n            cout\
-    \ << RUQ.get(k) << endl;\n        }\n    }\n}\n"
+    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
+    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
+    \        public:\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) {\n         \
+    \   return {A::M::init(l, r), r - l};\n        }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class A, bool\
+    \ = Monoid::is_semigroup<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
+    \ A::M>::value, \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename\
+    \ A::E>::value, \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value,\
+    \ \"A must have op\");\n  protected:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int k, U x) {\n \
+    \       if (k < n) {\n            if (lazyflag[k]) {\n                lazy[k]\
+    \ = E::op(lazy[k], x);\n            }\n            else {\n                lazy[k]\
+    \ = x;\n                lazyflag[k] = true;\n            }\n        }\n      \
+    \  else if (k < n + ori) {\n            data[k - n] = A::op(x, data[k - n]);\n\
+    \        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n      \
+    \      all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
+    \            lazyflag[k] = false;\n        }\n    }\n  public:\n    DualSegmentTree()\
+    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, M::id())\
+    \ {}\n    DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_,\
+    \ v)) {}\n    DualSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
+    \        n = 1 << h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ false);\n    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n \
+    \       k += n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n\
+    \    }\n    template<class Upd> void update(int k, const Upd& upd) {\n       \
+    \ assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >>\
+    \ i);\n        data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x)\
+    \ {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int\
+    \ k, U x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n\
+    \    void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <=\
+    \ ori);\n\n        l += n; r += n;\n        rreps (i, h) {\n            bool seen\
+    \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
+    \            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n    \
+    \        if (!seen) break;\n        }\n\n        while (l != r) {\n          \
+    \  if (l & 1) all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n\
+    \            l >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> class\
+    \ DualSegmentTree<E, true> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n\
+    \  private:\n    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n\
+    \    using Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\n\
+    template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\
+    \n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\ntemplate<class T> using\
+    \ RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\
+    \ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
+    \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
+    \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
+    \ RUQ(n, (1ull << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n       \
+    \ if (t == 0) {\n            int l, r, x; cin >> l >> r >> x;\n            RUQ.apply(l,\
+    \ r + 1, x);\n        }\n        else {\n            int k; cin >> k;\n      \
+    \      cout << RUQ.get(k) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DualSegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int>\
@@ -324,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 18:39:26+09:00'
+  timestamp: '2022-07-10 23:06:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp

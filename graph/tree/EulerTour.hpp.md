@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
@@ -33,21 +33,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/EulerTour.md
     document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -273,89 +273,101 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
-    \     static value_type op(const value_type& a, const value_type& b) {\n     \
-    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
-    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
+    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
+    \            using T_ = typename A::M::value_type;\n        public:\n        \
+    \    T_ val;\n            ll len;\n            value_type() = default;\n     \
+    \       value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                            const\
+    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
+    \         }\n        };\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
+    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
     \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
     \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\
-    \ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 2 \"\
-    graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct\
-    \ edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1),\
-    \ to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t),\
-    \ cost(std::move(c)), idx(i) {}\n    operator int() const { return to; }\n   \
-    \ friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n        return\
-    \ lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class\
-    \ T = int> using Edges = std::vector<edge<T>>;\ntemplate<class T = int> using\
-    \ GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T = int> class Graph\
-    \ : public std::vector<std::vector<edge<T>>> {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n\
-    \  public:\n    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const\
-    \ { return edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed\
-    \ = false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
-    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
-    \  rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx] ==\
-    \ -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n  \
-    \  return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n   \
-    \     each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
-    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
-    \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
-    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
+    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
+    \        public:\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) {\n         \
+    \   return {A::M::init(l, r), r - l};\n        }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
+    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
+    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\
+    \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
+    \  int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T&\
+    \ c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int\
+    \ t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
+    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
+    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
+    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace\
+    \ Monoid {\n    struct PairMinForEulerTour {\n        using value_type = std::pair<int,\
+    \ int>;\n        static value_type op(const value_type& a, const value_type& b)\
+    \ {\n            return a.first < b.first ? a : b;\n        }\n        static\
+    \ value_type id() {\n            return {infinity<int>::value, -1};\n        }\n\
+    \    };\n}\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
+    class EulerTour {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n\
+    \    const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
+    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -436,8 +448,8 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-07-10 18:39:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-10 23:06:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp

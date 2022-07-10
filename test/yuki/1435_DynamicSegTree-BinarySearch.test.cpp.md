@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/1435
@@ -245,53 +245,66 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
-    \     static value_type op(const value_type& a, const value_type& b) {\n     \
-    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
-    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
+    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
+    \            using T_ = typename A::M::value_type;\n        public:\n        \
+    \    T_ val;\n            ll len;\n            value_type() = default;\n     \
+    \       value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                            const\
+    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
+    \         }\n        };\n        static value_type op(const value_type& a, const\
+    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
+    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
     \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
     \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DynamicSegmentTree.hpp\"\
-    \n\nnamespace lib_shiomusubi {\n\ntemplate<class M> class DynamicSegmentTreeBase\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    struct node;\n \
-    \   using node_ptr = std::unique_ptr<node>;\n    struct node {\n        T val;\n\
-    \        node_ptr l, r;\n        node(const T& v) : val(v), l(nullptr), r(nullptr)\
-    \ {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll a, ll b, int t) const\
-    \ {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(a,\
+    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
+    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
+    \        public:\n            T_ val;\n            ll len;\n            value_type()\
+    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
+    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
+    \                         const value_type& e) {\n                return ost <<\
+    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
+    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
+    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) {\n         \
+    \   return {A::M::init(l, r), r - l};\n        }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\ntemplate<class M> class\
+    \ DynamicSegmentTree {\nprotected:\n    using T = typename M::value_type;\n  \
+    \  struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
+    \ {\n        T val;\n        node_ptr l, r;\n        node(const T& v) : val(v),\
+    \ l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll\
+    \ a, ll b, int t) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(a,\
     \ b, t));\n        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd,\
     \ ll a, ll b, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(a,\
     \ b, t));\n        return nd->r;\n    }\n    ll ori, h, n;\n    node_ptr root;\n\
-    \    template<class Upd> void update(node_ptr& nd, ll a, ll b, int t, ll k, const\
-    \ Upd& upd) {\n        if (nd == nullptr) nd = std::make_unique<node>(get_init(a,\
-    \ b, t));\n        if (a + 1 == b) {\n            nd->val = upd(nd->val);\n  \
-    \          return;\n        }\n        ll m = (a + b) >> 1;\n        if (k < m)\
-    \ update(nd->l, a, m, t - 1, k, upd);\n        else update(nd->r, m, b, t - 1,\
-    \ k, upd);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),\n\
-    \                        nd->r ? nd->r->val : get_init(m, b, t - 1));\n    }\n\
-    \    T prod(const node_ptr& nd, ll a, ll b, int t, ll l, ll r) const {\n     \
-    \   if (l <= a && b <= r) return nd->val;\n        if (r <= a || b <= l) return\
-    \ M::id();\n        ll m = (a + b) >> 1;\n        return M::op(prod(get_l(nd,\
-    \ a, m, t - 1), a, m, t - 1, l, r),\n                    prod(get_r(nd, m, b,\
-    \ t - 1), m, b, t - 1, l, r));\n    }\n    template<class Cond> ll max_right(const\
-    \ node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond, T& sm) const {\n  \
-    \      if (b <= l) return n;\n        if (l <= a && cond(M::op(sm, nd->val)))\
-    \ {\n            sm = M::op(sm, nd->val);\n            return n;\n        }\n\
-    \        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res\
-    \ = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);\n        if (res\
-    \ != n) return res;\n        return max_right(get_r(nd, m, b, t - 1), m, b, t\
-    \ - 1, l, cond, sm);\n    }\n    template<class Cond> ll min_left(const node_ptr&\
-    \ nd, ll a, ll b, int t, ll r, const Cond& cond, T& sm) const {\n        if (r\
-    \ <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n       \
-    \     sm = M::op(nd->val, sm);\n            return 0;\n        }\n        if (a\
-    \ + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(get_r(nd,\
+    \    std::vector<T> iv, iv2;\n    template<class Upd>\n    void update(node_ptr&\
+    \ nd, ll a, ll b, int t, ll k, const Upd& upd) {\n        if (nd == nullptr) nd\
+    \ = std::make_unique<node>(get_init(a, b, t));\n        if (a + 1 == b) {\n  \
+    \          nd->val = upd(nd->val);\n            return;\n        }\n        ll\
+    \ m = (a + b) >> 1;\n        if (k < m) update(nd->l, a, m, t - 1, k, upd);\n\
+    \        else update(nd->r, m, b, t - 1, k, upd);\n        nd->val = M::op(nd->l\
+    \ ? nd->l->val : get_init(a, m, t - 1),\n                        nd->r ? nd->r->val\
+    \ : get_init(m, b, t - 1));\n    }\n    T prod(const node_ptr& nd, ll a, ll b,\
+    \ int t, ll l, ll r) const {\n        if (l <= a && b <= r) return nd->val;\n\
+    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
+    \        return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),\n     \
+    \                prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));\n    }\n  \
+    \  template<class Cond>\n    ll max_right(const node_ptr& nd, ll a, ll b, int\
+    \ t, ll l, const Cond& cond,\n                 T& sm) const {\n        if (b <=\
+    \ l) return n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n          \
+    \  sm = M::op(sm, nd->val);\n            return n;\n        }\n        if (a +\
+    \ 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res = max_right(get_l(nd,\
+    \ a, m, t - 1), a, m, t - 1, l, cond, sm);\n        if (res != n) return res;\n\
+    \        return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);\n\
+    \    }\n    template<class Cond>\n    ll min_left(const node_ptr& nd, ll a, ll\
+    \ b, int t, ll r, const Cond& cond,\n                T& sm) const {\n        if\
+    \ (r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n    \
+    \        sm = M::op(nd->val, sm);\n            return 0;\n        }\n        if\
+    \ (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(get_r(nd,\
     \ m, b, t - 1), m, b, t - 1, r, cond, sm);\n        if (res != 0) return res;\n\
     \        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);\n\
     \    }\n    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n      \
@@ -304,17 +317,31 @@ data:
     \ 1));\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n     \
     \   if (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n\
     \        init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\
-    \    virtual void init_iv(const T& v) = 0;\n    virtual T get_init(ll l, ll r,\
-    \ int t) const = 0;\n  public:\n    DynamicSegmentTreeBase() = default;\n    DynamicSegmentTreeBase(const\
-    \ DynamicSegmentTreeBase& other)\n            : n(other.n), h(other.h), ori(other.ori),\n\
-    \            root(std::make_unique<node>(other.root->val)) {\n        init_copy(root,\
-    \ other.root);\n    }\n    DynamicSegmentTreeBase(DynamicSegmentTreeBase&&) =\
-    \ default;\n    DynamicSegmentTreeBase& operator=(const DynamicSegmentTreeBase&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicSegmentTreeBase(other);\n    }\n    DynamicSegmentTreeBase& operator=(DynamicSegmentTreeBase&&)\
-    \ = default;\n    void init(ll n_, const T& v = M::id()) {\n        ori = n_;\n\
-    \        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n        init_iv(v);\n\
-    \        root = std::make_unique<node>(get_init(0, n, h));\n    }\n    template<class\
+    \    template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!Monoid::has_init<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    void init_iv(const T& v) {\n        iv.reserve(this->h\
+    \ + 1);\n        iv.push_back(v);\n        rep (this->h) iv.push_back(M::op(iv.back(),\
+    \ iv.back()));\n        iv2.assign(this->h + 1, M::id());\n        rep (i, this->h)\
+    \ {\n            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n\
+    \            else iv2[i + 1] = iv2[i];\n        }\n    }\n    template<\n    \
+    \    bool AlwaysTrue = true,\n        typename std::enable_if<!Monoid::has_init<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T get_init(ll, ll r, int t) const {\n\
+    \        return r <= this->ori ? iv[t] : iv2[t];\n    }\n    template<\n     \
+    \   bool AlwaysTrue = true,\n        typename std::enable_if<Monoid::has_init<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    void init_iv(const T&) {}\n    template<\n\
+    \        bool AlwaysTrue = true,\n        typename std::enable_if<Monoid::has_init<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T get_init(ll l, ll r, int) const {\n\
+    \        return M::init(l, std::min(r, this->ori));\n    }\n\npublic:\n    DynamicSegmentTree()\
+    \ : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { init(n_); }\n\
+    \    DynamicSegmentTree(ll n_, const T& v) { init(n_, v); }\n    DynamicSegmentTree(const\
+    \ DynamicSegmentTree& other)\n        : n(other.n), h(other.h), ori(other.ori),\n\
+    \          root(std::make_unique<node>(other.root->val)) {\n        init_copy(root,\
+    \ other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&& other) = default;\n\
+    \    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {\n      \
+    \  if (this == &other) return *this;\n        return (*this) = DynamicSegmentTree(other);\n\
+    \    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&& other) = default;\n\
+    \    void init(ll n_, const T& v = M::id()) {\n        ori = n_;\n        h =\
+    \ bitop::ceil_log2(ori);\n        n = 1ull << h;\n        init_iv(v);\n      \
+    \  root = std::make_unique<node>(get_init(0, n, h));\n    }\n    template<class\
     \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
     \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
     \      update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll k, T x)\
@@ -329,40 +356,12 @@ data:
     \  assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n        T sm =\
     \ M::id();\n        assert(cond(sm));\n        return min_left(root, 0, n, h,\
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
-    \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n} // namespace\
-    \ lib_shiomusubi\n\n\ntemplate<class M, class F = void> class DynamicSegmentTree\
-    \ : public lib_shiomusubi::DynamicSegmentTreeBase<M> {\n  protected:\n    using\
-    \ Base = lib_shiomusubi::DynamicSegmentTreeBase<M>;\n    using T = typename Base::T;\n\
-    \    F f;\n    void init_iv(const T& v) override {}\n    T get_init(ll l, ll r,\
-    \ int t) const override {\n        return f(l, std::min(r, this->ori));\n    }\n\
-    \  public:\n    DynamicSegmentTree() = delete;\n    DynamicSegmentTree(const F&\
-    \ f) : DynamicSegmentTree(inf, f) {}\n    DynamicSegmentTree(ll n_, const F& f)\
-    \ : f(f) { this->init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree&\
-    \ other)\n            : f(other.iv2), Base(other) {}\n    DynamicSegmentTree(DynamicSegmentTree&&)\
-    \ = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree& other)\
-    \ {\n        if (this == &other) return *this;\n        return (*this) = DynamicSegmentTree(other);\n\
-    \    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&) = default;\n};\n\
-    \ntemplate<class M> class DynamicSegmentTree<M, void> : public lib_shiomusubi::DynamicSegmentTreeBase<M>\
-    \ {\n  protected:\n    using Base = lib_shiomusubi::DynamicSegmentTreeBase<M>;\n\
-    \    using T = typename Base::T;\n    std::vector<T> iv, iv2;\n    void init_iv(const\
-    \ T& v) override {\n        iv.reserve(this->h + 1); iv.push_back(v);\n      \
-    \  rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(this->h\
-    \ + 1, M::id());\n        rep (i, this->h) {\n            if ((this->ori >> i)\
-    \ & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n            else iv2[i + 1] = iv2[i];\n\
-    \        }\n    }\n    T get_init(ll l, ll r, int t) const override {\n      \
-    \  return r <= this->ori ? iv[t] : iv2[t];\n    }\n  public:\n    DynamicSegmentTree()\
-    \ : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll n_) { this->init(n_);\
-    \ }\n    DynamicSegmentTree(ll n_, const T& v) { this->init(n_, v); }\n    DynamicSegmentTree(const\
-    \ DynamicSegmentTree& other)\n            : iv(other.iv), iv2(other.iv2), Base(other)\
-    \ {}\n    DynamicSegmentTree(DynamicSegmentTree&&) = default;\n    DynamicSegmentTree&\
-    \ operator=(const DynamicSegmentTree& other) {\n        if (this == &other) return\
-    \ *this;\n        return (*this) = DynamicSegmentTree(other);\n    }\n    DynamicSegmentTree&\
-    \ operator=(DynamicSegmentTree&&) = default;\n};\n\n/**\n * @brief DynamicSegmentTree(\u52D5\
-    \u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DynamicSegmentTree.md\n\
-    \ */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    struct Mmm {\n        typedef struct value_type {\n\
-    \            int m1, m2, M;\n        } T;\n        static T op(T a, T b) {\n \
-    \           int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
+    \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
+    \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
+    \ docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    struct Mmm {\n        typedef struct\
+    \ value_type {\n            int m1, m2, M;\n        } T;\n        static T op(T\
+    \ a, T b) {\n            int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
     \            return {v[0], v[1], max(a.M, b.M)};\n        }\n        static T\
     \ id() {\n            return {infinity<int>::value, infinity<int>::value, infinity<int>::mvalue};\n\
     \        }\n    };\n    int N; cin >> N;\n    vector<int> A(N); cin >> A;\n  \
@@ -398,8 +397,8 @@ data:
   isVerificationFile: true
   path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 18:39:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-10 23:07:18+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
 layout: document
