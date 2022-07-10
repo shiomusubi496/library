@@ -182,6 +182,7 @@ template<class A> struct MultiAction {
         struct value_type {
         private:
             using T_ = typename A::M::value_type;
+        public:
             T_ val;
             ll len;
             value_type() = default;
