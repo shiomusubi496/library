@@ -20,6 +20,10 @@ template<class M, class = void> class has_get_inv : public std::false_type {};
 template<class M>
 class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type {};
 
+template<class M, class = void> class has_init : public std::false_type {};
+template<class M>
+class has_init<M, decltype((void)M::init)> : public std::true_type {};
+
 template<class A, class = void> class has_mul_op : public std::false_type {};
 template<class A>
 class has_mul_op<A, decltype((void)A::mul_op)> : public std::true_type {};
