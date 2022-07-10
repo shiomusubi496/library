@@ -226,20 +226,20 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
-    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class M> class CumulativeSumAnyOperation\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n  public:\n    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
     \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
@@ -270,7 +270,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum-CumulativeSum.test.cpp

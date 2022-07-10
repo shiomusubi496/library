@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':heavy_check_mark:'
@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
@@ -89,13 +89,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
@@ -134,13 +134,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':x:'
@@ -394,17 +394,17 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n"
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
     \ M, class = void> class has_op : public std::false_type {};\ntemplate<class M>\n\
     class has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
@@ -483,17 +483,17 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n"
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -517,7 +517,7 @@ data:
   - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp

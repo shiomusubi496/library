@@ -246,57 +246,57 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
-    \ {\nprotected:\n    using M = typename A::M;\n    using E = typename A::E;\n\
-    \    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        bool lazyflag;\n        node_ptr\
-    \ l, r;\n        node_ptr& get_l(const T& v) {\n            if (l == nullptr)\
-    \ l = std::make_unique<node>(v);\n            return l;\n        }\n        node_ptr&\
-    \ get_r(const T& v) {\n            if (r == nullptr) r = std::make_unique<node>(v);\n\
-    \            return r;\n        }\n        void update() {\n            val =\
-    \ M::id();\n            if (l != nullptr) val = M::op(val, l->val);\n        \
-    \    if (r != nullptr) val = M::op(val, r->val);\n        }\n        node(const\
-    \ T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr) {}\n        node(const\
-    \ T& v, const U& x)\n            : val(v), lazy(x), lazyflag(true), l(nullptr),\
-    \ r(nullptr) {}\n    };\n    void all_apply(node_ptr& p, int t, const U& x) {\n\
-    \        p->val = A::op(x, p->val);\n        if (t != 0) {\n            if (p->lazyflag)\
-    \ {\n                p->lazy = E::op(p->lazy, x);\n            }\n           \
-    \ else {\n                p->lazy = x;\n                p->lazyflag = true;\n\
-    \            }\n        }\n    }\n    void eval(node_ptr& p, ll a, ll b, int t)\
-    \ {\n        if (p->lazyflag) {\n            ll m = (a + b) >> 1;\n          \
-    \  all_apply(p->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), t - 1,\n           \
-    \           p->lazy);\n            all_apply(p->get_r(b <= ori ? iv[t - 1] : iv2[t\
-    \ - 1]), t - 1,\n                      p->lazy);\n            p->lazyflag = false;\n\
-    \        }\n    }\n    ll ori, h, n;\n    std::vector<T> iv, iv2;\n    node_ptr\
-    \ root;\n    template<class Upd>\n    void update(node_ptr& nd, ll a, ll b, int\
-    \ t, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n            nd->val =\
-    \ upd(nd->val);\n            return;\n        }\n        eval(nd, a, b, t);\n\
-    \        ll m = (a + b) >> 1;\n        if (k < m) {\n            update(nd->get_l(m\
-    \ <= ori ? iv[t - 1] : iv2[t - 1]), a, m, t - 1, k,\n                   upd);\n\
-    \        } else {\n            update(nd->get_r(b <= ori ? iv[t - 1] : iv2[t -\
-    \ 1]), m, b, t - 1, k,\n                   upd);\n        }\n        nd->update();\n\
-    \    }\n    T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n        if\
-    \ (nd == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
-    \        if (r <= a || b <= l) return M::id();\n        eval(nd, a, b, t);\n \
-    \       ll m = (a + b) >> 1;\n        return M::op(prod(nd->l, a, m, t - 1, l,\
-    \ r),\n                     prod(nd->r, m, b, t - 1, l, r));\n    }\n    void\
-    \ apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {\n        if\
-    \ (l <= a && b <= r) {\n            all_apply(nd, t, x);\n            return;\n\
-    \        }\n        if (r <= a || b <= l) return;\n        eval(nd, a, b, t);\n\
-    \        ll m = (a + b) >> 1;\n        apply(nd->get_l(m <= ori ? iv[t - 1] :\
-    \ iv2[t - 1]), a, m, t - 1, l, r,\n              x);\n        apply(nd->get_r(b\
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\n\ntemplate<class A,\
+    \ bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree {\nprotected:\n\
+    \    using M = typename A::M;\n    using E = typename A::E;\n    using T = typename\
+    \ M::value_type;\n    using U = typename E::value_type;\n    struct node;\n  \
+    \  using node_ptr = std::unique_ptr<node>;\n    struct node {\n        T val;\n\
+    \        U lazy;\n        bool lazyflag;\n        node_ptr l, r;\n        node_ptr&\
+    \ get_l(const T& v) {\n            if (l == nullptr) l = std::make_unique<node>(v);\n\
+    \            return l;\n        }\n        node_ptr& get_r(const T& v) {\n   \
+    \         if (r == nullptr) r = std::make_unique<node>(v);\n            return\
+    \ r;\n        }\n        void update() {\n            val = M::id();\n       \
+    \     if (l != nullptr) val = M::op(val, l->val);\n            if (r != nullptr)\
+    \ val = M::op(val, r->val);\n        }\n        node(const T& v) : val(v), lazyflag(false),\
+    \ l(nullptr), r(nullptr) {}\n        node(const T& v, const U& x)\n          \
+    \  : val(v), lazy(x), lazyflag(true), l(nullptr), r(nullptr) {}\n    };\n    void\
+    \ all_apply(node_ptr& p, int t, const U& x) {\n        p->val = A::op(x, p->val);\n\
+    \        if (t != 0) {\n            if (p->lazyflag) {\n                p->lazy\
+    \ = E::op(p->lazy, x);\n            }\n            else {\n                p->lazy\
+    \ = x;\n                p->lazyflag = true;\n            }\n        }\n    }\n\
+    \    void eval(node_ptr& p, ll a, ll b, int t) {\n        if (p->lazyflag) {\n\
+    \            ll m = (a + b) >> 1;\n            all_apply(p->get_l(m <= ori ? iv[t\
+    \ - 1] : iv2[t - 1]), t - 1,\n                      p->lazy);\n            all_apply(p->get_r(b\
+    \ <= ori ? iv[t - 1] : iv2[t - 1]), t - 1,\n                      p->lazy);\n\
+    \            p->lazyflag = false;\n        }\n    }\n    ll ori, h, n;\n    std::vector<T>\
+    \ iv, iv2;\n    node_ptr root;\n    template<class Upd>\n    void update(node_ptr&\
+    \ nd, ll a, ll b, int t, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n\
+    \            nd->val = upd(nd->val);\n            return;\n        }\n       \
+    \ eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n        if (k < m) {\n   \
+    \         update(nd->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), a, m, t - 1, k,\n\
+    \                   upd);\n        } else {\n            update(nd->get_r(b <=\
+    \ ori ? iv[t - 1] : iv2[t - 1]), m, b, t - 1, k,\n                   upd);\n \
+    \       }\n        nd->update();\n    }\n    T prod(node_ptr& nd, ll a, ll b,\
+    \ int t, ll l, ll r) {\n        if (nd == nullptr) return M::id();\n        if\
+    \ (l <= a && b <= r) return nd->val;\n        if (r <= a || b <= l) return M::id();\n\
+    \        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n        return M::op(prod(nd->l,\
+    \ a, m, t - 1, l, r),\n                     prod(nd->r, m, b, t - 1, l, r));\n\
+    \    }\n    void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x)\
+    \ {\n        if (l <= a && b <= r) {\n            all_apply(nd, t, x);\n     \
+    \       return;\n        }\n        if (r <= a || b <= l) return;\n        eval(nd,\
+    \ a, b, t);\n        ll m = (a + b) >> 1;\n        apply(nd->get_l(m <= ori ?\
+    \ iv[t - 1] : iv2[t - 1]), a, m, t - 1, l, r,\n              x);\n        apply(nd->get_r(b\
     \ <= ori ? iv[t - 1] : iv2[t - 1]), m, b, t - 1, l, r,\n              x);\n  \
     \      nd->update();\n    }\n    template<class Cond>\n    ll max_right(node_ptr&\
     \ nd, ll a, ll b, int t, ll l, const Cond& cond,\n                 T& sm) {\n\
@@ -525,7 +525,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp

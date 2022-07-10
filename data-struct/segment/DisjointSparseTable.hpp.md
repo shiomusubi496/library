@@ -12,7 +12,7 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -245,41 +245,41 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\
-    \n\ntemplate<class M> class DisjointSparseTable {\n  protected:\n    using T =\
-    \ typename M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n \
-    \   std::vector<T> v_;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        --r;\n\
-    \        if (l == r) return v_[l];\n        int d = logtable[l ^ r];\n       \
-    \ return M::op(data[d][l], data[d][r]);\n    }\n  public:\n    DisjointSparseTable()\
-    \ = default;\n    DisjointSparseTable(const std::vector<T>& v) { init(v); }\n\
-    \    void init(const std::vector<T>& v) {\n        v_ = v;\n        ori = v.size();\n\
-    \        h = bitop::ceil_log2(ori);\n        logtable.assign(1 << h, 0);\n   \
-    \     rep (i, 2, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h,\
-    \ std::vector<T>(ori));\n        rep (i, 0, h) {\n            int len = 1 << i;\n\
-    \            rep (j, len, ori, len << 1) {\n                data[i][j - 1] = v[j\
-    \ - 1];\n                rep (k, 1, len) data[i][j - k - 1] = M::op(v[j - k -\
-    \ 1], data[i][j - k]);\n                data[i][j] = v[j];\n                rep\
-    \ (k, 1, len) {\n                    if (j + k >= ori) break;\n              \
-    \      data[i][j + k] = M::op(data[i][j + k - 1], v[j + k]);\n               \
-    \ }\n            }\n        }\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n\
-    \ */\n"
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/DisjointSparseTable.hpp\"\n\ntemplate<class M> class\
+    \ DisjointSparseTable {\n  protected:\n    using T = typename M::value_type;\n\
+    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<T> v_;\n   \
+    \ std::vector<std::vector<T>> data;\n    T internal_prod(int l, int r) const {\n\
+    \        assert(0 <= l && l < r && r <= ori);\n        --r;\n        if (l ==\
+    \ r) return v_[l];\n        int d = logtable[l ^ r];\n        return M::op(data[d][l],\
+    \ data[d][r]);\n    }\n  public:\n    DisjointSparseTable() = default;\n    DisjointSparseTable(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        v_ = v;\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
+    \        logtable.assign(1 << h, 0);\n        rep (i, 2, 1 << h) logtable[i] =\
+    \ logtable[i >> 1] + 1;\n        data.assign(h, std::vector<T>(ori));\n      \
+    \  rep (i, 0, h) {\n            int len = 1 << i;\n            rep (j, len, ori,\
+    \ len << 1) {\n                data[i][j - 1] = v[j - 1];\n                rep\
+    \ (k, 1, len) data[i][j - k - 1] = M::op(v[j - k - 1], data[i][j - k]);\n    \
+    \            data[i][j] = v[j];\n                rep (k, 1, len) {\n         \
+    \           if (j + k >= ori) break;\n                    data[i][j + k] = M::op(data[i][j\
+    \ + k - 1], v[j + k]);\n                }\n            }\n        }\n    }\n \
+    \   template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ if (l == r) return M::id();\n        return internal_prod(l, r);\n    }\n  \
+    \  template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
+    \ * @docs docs/DisjointSparseTable.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DisjointSparseTable\
     \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
@@ -312,8 +312,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:30:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-07-10 16:49:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp

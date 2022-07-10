@@ -270,57 +270,57 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\
-    \n\ntemplate<class M, class T, class F>\nclass ReRooting {\n  protected:\n   \
-    \ using U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
-    \ G;\n    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n   \
-    \ std::vector<U> res;\n    std::vector<int> par;\n    void dfs1(int v, int p)\
-    \ {\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n  \
-    \          if (e.to == p) par[v] = i;\n            else dfs1(e.to, v);\n     \
-    \   }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
-    \            if (e.to == p) continue;\n            dp[v][par[v]] = M::op(dp[v][par[v]],\
-    \ f(dp[e.to][par[e.to]], edge<T>{e.to, v, e.cost, e.idx}));\n        }\n     \
-    \   if (p != -1 && G[v].size() == 1) {\n            dp[v][par[v]] = init_data[v];\n\
-    \        }\n    }\n    void dfs2(int v, int p, int v_id) {\n        std::vector<U>\
-    \ memo(G[v].size());\n        rep (i, G[v].size()) {\n            const auto&\
-    \ e = G[v][i];\n            memo[i] = f(dp[e.to][e.to == p ? v_id : par[e.to]],\
-    \ edge<T>{e.to, v, e.cost, e.idx});\n        }\n        dp[v][G[v].size() - 1]\
-    \ = M::id();\n        rrep (i, (int)G[v].size() - 1) {\n            dp[v][i] =\
-    \ M::op(memo[i + 1], dp[v][i + 1]);\n        }\n        U sml = M::id();\n   \
-    \     rep (i, G[v].size()) {\n            dp[v][i] = M::op(sml, dp[v][i]);\n \
-    \           sml = M::op(sml, std::move(memo[i]));\n        }\n        dp[v].back()\
-    \ = std::move(sml);\n        if (G[v].size() == 1) {\n            dp[v][p == -1\
-    \ ? 0 : par[v]] = std::move(init_data[v]);\n        }\n        rep (i, G[v].size())\
-    \ {\n            const auto& e = G[v][i];\n            if (e.to != p) dfs2(e.to,\
-    \ v, i);\n        }\n    }\n    void init() {\n        n = G.size();\n       \
-    \ if (n == 1) {\n            res = std::move(init_data);\n            dp.assign(1,\
-    \ std::vector<U>{});\n            return;\n        }\n        dp.resize(n);\n\
-    \        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n        par.resize(n);\
-    \ par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0, -1, -1);\n    \
-    \    res.resize(n);\n        rep (i, n) {\n            res[i] = std::move(dp[i].back());\n\
-    \            dp[i].pop_back();\n        }\n    }\n  public:\n    ReRooting(const\
-    \ Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(), M::id()))\
-    \ {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>& ind)\
-    \ : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>& G, const\
-    \ F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind)) { init();\
-    \ }\n    const std::vector<U>& get_res() const& { return res; }\n    std::vector<U>\
-    \ get_res() && { return std::move(res); }\n    const U& operator[](int v) const&\
-    \ { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]); }\n\
-    \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
-    \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
-    \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
-    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/ReRooting.md\n */\n"
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"graph/tree/ReRooting.hpp\"\n\ntemplate<class M, class T, class F>\n\
+    class ReRooting {\n  protected:\n    using U = typename M::value_type;\n    const\
+    \ F& f;\n    int n;\n    const Graph<T>& G;\n    std::vector<U> init_data;\n \
+    \   std::vector<std::vector<U>> dp;\n    std::vector<U> res;\n    std::vector<int>\
+    \ par;\n    void dfs1(int v, int p) {\n        rep (i, G[v].size()) {\n      \
+    \      const auto& e = G[v][i];\n            if (e.to == p) par[v] = i;\n    \
+    \        else dfs1(e.to, v);\n        }\n        rep (i, G[v].size()) {\n    \
+    \        const auto& e = G[v][i];\n            if (e.to == p) continue;\n    \
+    \        dp[v][par[v]] = M::op(dp[v][par[v]], f(dp[e.to][par[e.to]], edge<T>{e.to,\
+    \ v, e.cost, e.idx}));\n        }\n        if (p != -1 && G[v].size() == 1) {\n\
+    \            dp[v][par[v]] = init_data[v];\n        }\n    }\n    void dfs2(int\
+    \ v, int p, int v_id) {\n        std::vector<U> memo(G[v].size());\n        rep\
+    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            memo[i]\
+    \ = f(dp[e.to][e.to == p ? v_id : par[e.to]], edge<T>{e.to, v, e.cost, e.idx});\n\
+    \        }\n        dp[v][G[v].size() - 1] = M::id();\n        rrep (i, (int)G[v].size()\
+    \ - 1) {\n            dp[v][i] = M::op(memo[i + 1], dp[v][i + 1]);\n        }\n\
+    \        U sml = M::id();\n        rep (i, G[v].size()) {\n            dp[v][i]\
+    \ = M::op(sml, dp[v][i]);\n            sml = M::op(sml, std::move(memo[i]));\n\
+    \        }\n        dp[v].back() = std::move(sml);\n        if (G[v].size() ==\
+    \ 1) {\n            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);\n \
+    \       }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
+    \            if (e.to != p) dfs2(e.to, v, i);\n        }\n    }\n    void init()\
+    \ {\n        n = G.size();\n        if (n == 1) {\n            res = std::move(init_data);\n\
+    \            dp.assign(1, std::vector<U>{});\n            return;\n        }\n\
+    \        dp.resize(n);\n        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n\
+    \        par.resize(n); par[0] = G[0].size();\n        dfs1(0, -1);\n        dfs2(0,\
+    \ -1, -1);\n        res.resize(n);\n        rep (i, n) {\n            res[i] =\
+    \ std::move(dp[i].back());\n            dp[i].pop_back();\n        }\n    }\n\
+    \  public:\n    ReRooting(const Graph<T>& G, const F& f) : ReRooting(G, f, std::vector<U>(G.size(),\
+    \ M::id())) {}\n    ReRooting(const Graph<T>& G, const F& f, const std::vector<U>&\
+    \ ind) : f(f), G(G), init_data(ind) { init(); }\n    ReRooting(const Graph<T>&\
+    \ G, const F& f, std::vector<U>&& ind) : f(f), G(G), init_data(std::move(ind))\
+    \ { init(); }\n    const std::vector<U>& get_res() const& { return res; }\n  \
+    \  std::vector<U> get_res() && { return std::move(res); }\n    const U& operator[](int\
+    \ v) const& { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]);\
+    \ }\n    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n \
+    \   std::vector<std::vector<U>> get_dp() && { return std::move(dp); }\n    const\
+    \ U& get_dp(int v, int p_idx) const& { return dp[v][p_idx]; }\n    U get_dp(int\
+    \ v, int p_idx) && { return std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\
+    \u65B9\u4F4D\u6728DP)\n * @docs docs/ReRooting.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, class T, class F>\nclass ReRooting {\n  protected:\n   \
     \ using U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
@@ -369,7 +369,7 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

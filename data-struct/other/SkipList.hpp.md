@@ -226,49 +226,49 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 2 \"random/Random.hpp\"\
-    \n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\n \
-    \ protected:\n    Engine rnd;\n  public:\n    using result_type = typename Engine::result_type;\n\
-    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
-    \ : rnd(seed) {}\n    result_type operator()() {\n        return rnd();\n    }\n\
-    \    template<class IntType = ll> IntType uniform(IntType l, IntType r) {\n  \
-    \      static_assert(std::is_integral<IntType>::value, \"template argument must\
-    \ be an integral type\");\n        assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
-    \ r}(rnd);\n    }\n    template<class RealType = double> RealType uniform_real(RealType\
-    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\
-    \ \"template argument must be an floating point type\");\n        assert(l <=\
-    \ r);\n        return std::uniform_real_distribution<RealType>{l, r}(rnd);\n \
-    \   }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n    template<class\
-    \ T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n        assert(l < r);\n \
-    \       T a, b;\n        do {\n            a = uniform<T>(l, r);\n           \
-    \ b = uniform<T>(l, r);\n        } while (a == b);\n        if (a > b) swap(a,\
-    \ b);\n        return {a, b};\n    }\n    template<class T = ll> std::vector<T>\
-    \ choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n) <= (r\
-    \ - l + 1));\n        std::set<T> res;\n        while ((int)res.size() < n) res.insert(uniform<T>(l,\
-    \ r));\n        return {res.begin(), res.end()};\n    }\n    template<class Iter>\
-    \ void shuffle(const Iter& first, const Iter& last) {\n        std::shuffle(first,\
-    \ last, rnd);\n    }\n    template<class T> std::vector<T> permutation(T n) {\n\
-    \        std::vector<T> res(n);\n        rep (i, n) res[i] = i;\n        shuffle(all(res));\n\
-    \        return res;\n    }\n    template<class T = ll> std::vector<T> choice_shuffle(int\
-    \ n, T l, T r, bool sorted = true) {\n        assert(l <= r);\n        assert(T(n)\
-    \ <= (r - l + 1));\n        std::vector<T> res(r - l + 1);\n        rep (i, l,\
-    \ r + 1) res[i - l] = i;\n        shuffle(all(res));\n        res.erase(res.begin()\
-    \ + n, res.end());\n        if (sorted) sort(all(res));\n        return res;\n\
-    \    }\n};\n\nusing Random32 = Random<std::mt19937>;      Random32 rand32;\nusing\
-    \ Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\n/**\n * @brief Random\n\
-    \ * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\n\n\
-    using M = Monoid::Max<ll>;\nusing Rand = Random32;\n\nclass SkipList {\n  protected:\n\
-    \    using T = typename M::value_type;\n    static inline int get_level(Rand&\
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ Engine> class Random {\n  protected:\n    Engine rnd;\n  public:\n    using\
+    \ result_type = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
+    \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
+    \ {\n        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
+    template argument must be an integral type\");\n        assert(l <= r);\n    \
+    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
+    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
+    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
+    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
+    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
+    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
+    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
+    \n\nusing M = Monoid::Max<ll>;\nusing Rand = Random32;\n\nclass SkipList {\n \
+    \ protected:\n    using T = typename M::value_type;\n    static inline int get_level(Rand&\
     \ rnd) {\n        int level = 1;\n        while (rnd() & 1) ++level;\n       \
     \ return level;\n    }\n    struct node;\n    using node_ptr = node*;\n    struct\
     \ next_node {\n        node_ptr node;\n        int dist;\n        T sm;\n    };\n\
@@ -447,7 +447,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp

@@ -255,71 +255,71 @@ data:
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct MultiAction {\n    struct\
     \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
-    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
-    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
-    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
-    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
-    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"\
-    data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class PlusMinusOneRMQ\
-    \ {\n  protected:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int>\
-    \ ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n    struct PairMin\
-    \ {\n        using value_type = std::pair<T, int>;\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
-    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
-    \ {infinity<T>::value, -1};\n        }\n    };\n    SparseTable<PairMin> st;\n\
-    \  public:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const std::vector<T>&\
-    \ v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n        v = v_;\n\
-    \        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n        m = (n + b\
-    \ - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b, b, -1);\n       \
-    \ rep (i, 1 << (b - 1)) {\n            T now = 0;\n            rep (j, b) {\n\
-    \                T nw = now, mn = nw, id = j;\n                lookup[i][j][j]\
-    \ = j;\n                rep (k, j, b - 1) {\n                    nw += ((i >>\
-    \ k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw)) lookup[i][j][k + 1]\
-    \ = id = k + 1;\n                    else lookup[i][j][k + 1] = id;\n        \
-    \        }\n                now += ((i >> j) & 1) ? 1 : -1;\n            }\n \
-    \       }\n        ud.resize(m);\n        rep (i, m) {\n            rep (j, b\
-    \ - 1) {\n                if (i * b + j + 1 >= n) break;\n                if (v[i\
-    \ * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n            }\n      \
-    \  }\n        std::vector<std::pair<T, int>> stv(m);\n        rep (i, m) {\n \
-    \           stv[i] = {v[i * b], i * b};\n            rep (j, i * b + 1, (i + 1)\
-    \ * b) {\n                if (j >= n) break;\n                stv[i] = PairMin::op(stv[i],\
-    \ {v[j], j});\n            }\n        }\n        st.init(stv);\n    }\n    int\
-    \ prod_idx(int l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n\
-    \        --r;\n        int lb = l / b, rb = r / b;\n        int lp = l - lb *\
-    \ b, rp = r - rb * b;\n        if (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];\n\
-    \        if (lb + 1 == rb) {\n            int x = lb * b + lookup[ud[lb]][lp][b\
-    \ - 1], y = rb * b + lookup[ud[rb]][0][rp];\n            if (v[x] < v[y]) return\
-    \ x;\n            else return y;\n        }\n        int res = st.prod(lb + 1,\
-    \ rb).second;\n        {\n            int a = lb * b + lookup[ud[lb]][lp][b -\
-    \ 1];\n            if (v[a] < v[res]) res = a;\n        }\n        {\n       \
-    \     int a = rb * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res])\
-    \ res = a;\n        }\n        return res;\n    }\n    T prod(int l, int r) const\
-    \ { return v[prod(l, r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n\
-    \ * @docs docs/PlusMinusOneRMQ.md\n */\n"
+    \ A::M::value_type;\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
+    \     static value_type op(const value_type& a, const value_type& b) {\n     \
+    \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
+    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
+    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
+    #line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
+    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
+    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
+    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
+    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
+    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
+    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
+    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
+    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
+    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
+    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
+    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
+    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
+    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
+    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
+    \ docs/SparseTable.md\n */\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \n\ntemplate<class T> class PlusMinusOneRMQ {\n  protected:\n    int n, b, m;\n\
+    \    std::vector<T> v;\n    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>>\
+    \ lookup;\n    struct PairMin {\n        using value_type = std::pair<T, int>;\n\
+    \        static value_type op(const value_type& a, const value_type& b) {\n  \
+    \          return a.first < b.first ? a : b;\n        }\n        static value_type\
+    \ id() {\n            return {infinity<T>::value, -1};\n        }\n    };\n  \
+    \  SparseTable<PairMin> st;\n  public:\n    PlusMinusOneRMQ() = default;\n   \
+    \ PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const\
+    \ std::vector<T>& v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n)\
+    \ / 2 + 1;\n        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 <<\
+    \ (b - 1), b, b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n\
+    \            rep (j, b) {\n                T nw = now, mn = nw, id = j;\n    \
+    \            lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n     \
+    \               nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn,\
+    \ nw)) lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k\
+    \ + 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
+    \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
+    \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
+    \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
+    \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
+    \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
+    \ i * b + 1, (i + 1) * b) {\n                if (j >= n) break;\n            \
+    \    stv[i] = PairMin::op(stv[i], {v[j], j});\n            }\n        }\n    \
+    \    st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n        assert(0\
+    \ <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb = r / b;\n\
+    \        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb) return lb\
+    \ * b + lookup[ud[lb]][lp][rp];\n        if (lb + 1 == rb) {\n            int\
+    \ x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];\n\
+    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
+    \        int res = st.prod(lb + 1, rb).second;\n        {\n            int a =\
+    \ lb * b + lookup[ud[lb]][lp][b - 1];\n            if (v[a] < v[res]) res = a;\n\
+    \        }\n        {\n            int a = rb * b + lookup[ud[rb]][0][rp];\n \
+    \           if (v[a] < v[res]) res = a;\n        }\n        return res;\n    }\n\
+    \    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n/**\n * @brief\
+    \ PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"SparseTable.hpp\"\n\ntemplate<class T> class PlusMinusOneRMQ {\n\
     \  protected:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int> ud;\n\
@@ -366,7 +366,7 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-07-10 16:30:40+09:00'
+  timestamp: '2022-07-10 16:49:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/staticrmq-LCARMQ.test.cpp
