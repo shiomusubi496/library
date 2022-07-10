@@ -4,10 +4,8 @@
 #include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
-namespace lib_shiomusubi {
-
-template<class M> class DynamicSegmentTreeBase {
-  protected:
+template<class M> class DynamicSegmentTree {
+protected:
     using T = typename M::value_type;
     struct node;
     using node_ptr = std::unique_ptr<node>;
@@ -26,7 +24,9 @@ template<class M> class DynamicSegmentTreeBase {
     }
     ll ori, h, n;
     node_ptr root;
-    template<class Upd> void update(node_ptr& nd, ll a, ll b, int t, ll k, const Upd& upd) {
+    std::vector<T> iv, iv2;
+    template<class Upd>
+    void update(node_ptr& nd, ll a, ll b, int t, ll k, const Upd& upd) {
         if (nd == nullptr) nd = std::make_unique<node>(get_init(a, b, t));
         if (a + 1 == b) {
             nd->val = upd(nd->val);
@@ -43,9 +43,11 @@ template<class M> class DynamicSegmentTreeBase {
         if (r <= a || b <= l) return M::id();
         ll m = (a + b) >> 1;
         return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),
-                    prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));
+                     prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));
     }
-    template<class Cond> ll max_right(const node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond, T& sm) const {
+    template<class Cond>
+    ll max_right(const node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond,
+                 T& sm) const {
         if (b <= l) return n;
         if (l <= a && cond(M::op(sm, nd->val))) {
             sm = M::op(sm, nd->val);
@@ -57,7 +59,9 @@ template<class M> class DynamicSegmentTreeBase {
         if (res != n) return res;
         return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);
     }
-    template<class Cond> ll min_left(const node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond, T& sm) const {
+    template<class Cond>
+    ll min_left(const node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,
+                T& sm) const {
         if (r <= a) return 0;
         if (b <= r && cond(M::op(nd->val, sm))) {
             sm = M::op(nd->val, sm);
@@ -89,21 +93,51 @@ template<class M> class DynamicSegmentTreeBase {
         init_copy(nd->l, src->l);
         init_copy(nd->r, src->r);
     }
-    virtual void init_iv(const T& v) = 0;
-    virtual T get_init(ll l, ll r, int t) const = 0;
-  public:
-    DynamicSegmentTreeBase() = default;
-    DynamicSegmentTreeBase(const DynamicSegmentTreeBase& other)
-            : n(other.n), h(other.h), ori(other.ori),
-            root(std::make_unique<node>(other.root->val)) {
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    void init_iv(const T& v) {
+        iv.reserve(this->h + 1);
+        iv.push_back(v);
+        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));
+        iv2.assign(this->h + 1, M::id());
+        rep (i, this->h) {
+            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
+            else iv2[i + 1] = iv2[i];
+        }
+    }
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    T get_init(ll, ll r, int t) const {
+        return r <= this->ori ? iv[t] : iv2[t];
+    }
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    void init_iv(const T&) {}
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    T get_init(ll l, ll r, int) const {
+        return M::init(l, std::min(r, this->ori));
+    }
+
+public:
+    DynamicSegmentTree() : DynamicSegmentTree(inf) {}
+    DynamicSegmentTree(ll n_) { init(n_); }
+    DynamicSegmentTree(ll n_, const T& v) { init(n_, v); }
+    DynamicSegmentTree(const DynamicSegmentTree& other)
+        : n(other.n), h(other.h), ori(other.ori),
+          root(std::make_unique<node>(other.root->val)) {
         init_copy(root, other.root);
     }
-    DynamicSegmentTreeBase(DynamicSegmentTreeBase&&) = default;
-    DynamicSegmentTreeBase& operator=(const DynamicSegmentTreeBase& other) {
+    DynamicSegmentTree(DynamicSegmentTree&& other) = default;
+    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {
         if (this == &other) return *this;
-        return (*this) = DynamicSegmentTreeBase(other);
+        return (*this) = DynamicSegmentTree(other);
     }
-    DynamicSegmentTreeBase& operator=(DynamicSegmentTreeBase&&) = default;
+    DynamicSegmentTree& operator=(DynamicSegmentTree&& other) = default;
     void init(ll n_, const T& v = M::id()) {
         ori = n_;
         h = bitop::ceil_log2(ori);
@@ -143,63 +177,6 @@ template<class M> class DynamicSegmentTreeBase {
     }
     void reset(ll l, ll r) { reset(root, 0, n, h, l, r); }
     void reset(ll k) { reset(root, 0, n, h, k, k + 1); }
-};
-
-} // namespace lib_shiomusubi
-
-
-template<class M, class F = void> class DynamicSegmentTree : public lib_shiomusubi::DynamicSegmentTreeBase<M> {
-  protected:
-    using Base = lib_shiomusubi::DynamicSegmentTreeBase<M>;
-    using T = typename Base::T;
-    F f;
-    void init_iv(const T& v) override {}
-    T get_init(ll l, ll r, int t) const override {
-        return f(l, std::min(r, this->ori));
-    }
-  public:
-    DynamicSegmentTree() = delete;
-    DynamicSegmentTree(const F& f) : DynamicSegmentTree(inf, f) {}
-    DynamicSegmentTree(ll n_, const F& f) : f(f) { this->init(n_); }
-    DynamicSegmentTree(const DynamicSegmentTree& other)
-            : f(other.iv2), Base(other) {}
-    DynamicSegmentTree(DynamicSegmentTree&&) = default;
-    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {
-        if (this == &other) return *this;
-        return (*this) = DynamicSegmentTree(other);
-    }
-    DynamicSegmentTree& operator=(DynamicSegmentTree&&) = default;
-};
-
-template<class M> class DynamicSegmentTree<M, void> : public lib_shiomusubi::DynamicSegmentTreeBase<M> {
-  protected:
-    using Base = lib_shiomusubi::DynamicSegmentTreeBase<M>;
-    using T = typename Base::T;
-    std::vector<T> iv, iv2;
-    void init_iv(const T& v) override {
-        iv.reserve(this->h + 1); iv.push_back(v);
-        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));
-        iv2.assign(this->h + 1, M::id());
-        rep (i, this->h) {
-            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
-            else iv2[i + 1] = iv2[i];
-        }
-    }
-    T get_init(ll l, ll r, int t) const override {
-        return r <= this->ori ? iv[t] : iv2[t];
-    }
-  public:
-    DynamicSegmentTree() : DynamicSegmentTree(inf) {}
-    DynamicSegmentTree(ll n_) { this->init(n_); }
-    DynamicSegmentTree(ll n_, const T& v) { this->init(n_, v); }
-    DynamicSegmentTree(const DynamicSegmentTree& other)
-            : iv(other.iv), iv2(other.iv2), Base(other) {}
-    DynamicSegmentTree(DynamicSegmentTree&&) = default;
-    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {
-        if (this == &other) return *this;
-        return (*this) = DynamicSegmentTree(other);
-    }
-    DynamicSegmentTree& operator=(DynamicSegmentTree&&) = default;
 };
 
 /**

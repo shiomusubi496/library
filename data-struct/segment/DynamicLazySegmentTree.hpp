@@ -18,43 +18,36 @@ protected:
         U lazy;
         bool lazyflag;
         node_ptr l, r;
-        node_ptr& get_l(const T& v) {
-            if (l == nullptr) l = std::make_unique<node>(v);
-            return l;
-        }
-        node_ptr& get_r(const T& v) {
-            if (r == nullptr) r = std::make_unique<node>(v);
-            return r;
-        }
-        void update() {
-            val = M::id();
-            if (l != nullptr) val = M::op(val, l->val);
-            if (r != nullptr) val = M::op(val, r->val);
-        }
         node(const T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr) {}
         node(const T& v, const U& x)
             : val(v), lazy(x), lazyflag(true), l(nullptr), r(nullptr) {}
     };
-    void all_apply(node_ptr& p, int t, const U& x) {
-        p->val = A::op(x, p->val);
+    node_ptr& get_l(const node_ptr& nd, ll l, ll r, int t) const {
+        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l, r, t));
+        return nd->l;
+    }
+    node_ptr& get_r(const node_ptr& nd, ll l, ll r, int t) const {
+        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l, r, t));
+        return nd->r;
+    }
+    void all_apply(node_ptr& nd, int t, const U& x) {
+        nd->val = A::op(x, nd->val);
         if (t != 0) {
-            if (p->lazyflag) {
-                p->lazy = E::op(p->lazy, x);
+            if (nd->lazyflag) {
+                nd->lazy = E::op(nd->lazy, x);
             }
             else {
-                p->lazy = x;
-                p->lazyflag = true;
+                nd->lazy = x;
+                nd->lazyflag = true;
             }
         }
     }
-    void eval(node_ptr& p, ll a, ll b, int t) {
-        if (p->lazyflag) {
+    void eval(node_ptr& nd, ll a, ll b, int t) {
+        if (nd->lazyflag) {
             ll m = (a + b) >> 1;
-            all_apply(p->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), t - 1,
-                      p->lazy);
-            all_apply(p->get_r(b <= ori ? iv[t - 1] : iv2[t - 1]), t - 1,
-                      p->lazy);
-            p->lazyflag = false;
+            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy);
+            all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy);
+            nd->lazyflag = false;
         }
     }
     ll ori, h, n;
@@ -68,23 +61,18 @@ protected:
         }
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        if (k < m) {
-            update(nd->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), a, m, t - 1, k,
-                   upd);
-        } else {
-            update(nd->get_r(b <= ori ? iv[t - 1] : iv2[t - 1]), m, b, t - 1, k,
-                   upd);
-        }
-        nd->update();
+        if (k < m) update(get_l(nd, a, m, t - 1), a, m, t - 1, k, upd);
+        else update(get_r(nd, m, b, t - 1), m, b, t - 1, k, upd);
+        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
+                        nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
-        if (nd == nullptr) return M::id();
         if (l <= a && b <= r) return nd->val;
         if (r <= a || b <= l) return M::id();
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        return M::op(prod(nd->l, a, m, t - 1, l, r),
-                     prod(nd->r, m, b, t - 1, l, r));
+        return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),
+                     prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));
     }
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
         if (l <= a && b <= r) {
@@ -94,16 +82,15 @@ protected:
         if (r <= a || b <= l) return;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        apply(nd->get_l(m <= ori ? iv[t - 1] : iv2[t - 1]), a, m, t - 1, l, r,
-              x);
-        apply(nd->get_r(b <= ori ? iv[t - 1] : iv2[t - 1]), m, b, t - 1, l, r,
-              x);
-        nd->update();
+        apply(get_l(nd, a, m, t - 1), a, m, t - 1, l, r, x);
+        apply(get_r(nd, m, b, t - 1), m, b, t - 1, l, r, x);
+        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
+                        nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     template<class Cond>
     ll max_right(node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond,
                  T& sm) {
-        if (nd == nullptr || b <= l) return n;
+        if (b <= l) return n;
         if (l <= a && cond(M::op(sm, nd->val))) {
             sm = M::op(sm, nd->val);
             return n;
@@ -111,14 +98,14 @@ protected:
         eval(nd, a, b, t);
         if (a + 1 == b) return a;
         ll m = (a + b) >> 1;
-        ll res = max_right(nd->l, a, m, t - 1, l, cond, sm);
+        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);
         if (res != n) return res;
-        return max_right(nd->r, m, b, t - 1, l, cond, sm);
+        return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);
     }
     template<class Cond>
     ll min_left(node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,
                 T& sm) {
-        if (nd == nullptr || r <= a) return 0;
+        if (r <= a) return 0;
         if (b <= r && cond(M::op(nd->val, sm))) {
             sm = M::op(nd->val, sm);
             return 0;
@@ -126,11 +113,11 @@ protected:
         eval(nd, a, b, t);
         if (a + 1 == b) return b;
         ll m = (a + b) >> 1;
-        ll res = min_left(nd->r, m, b, t - 1, r, cond, sm);
+        ll res = min_left(get_r(nd, m, b, t - 1), m, b, t - 1, r, cond, sm);
         if (res != 0) return res;
-        return min_left(nd->l, a, m, t - 1, r, cond, sm);
+        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);
     }
-    void reset(node_ptr& nd, ll a, ll b, ll l, ll r) {
+    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
         if (nd == nullptr) return;
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
@@ -139,9 +126,10 @@ protected:
             return;
         }
         ll m = (a + b) >> 1;
-        reset(nd->l, a, m, l, r);
-        reset(nd->r, m, b, l, r);
-        nd->update();
+        reset(nd->l, a, m, t - 1, l, r);
+        reset(nd->r, m, b, t - 1, l, r);
+        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
+                        nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     void init_copy(node_ptr& nd, const node_ptr& src) {
         if (src == nullptr) return;
@@ -149,6 +137,27 @@ protected:
         else nd = std::make_unique<node>(src->val);
         init_copy(nd->l, src->l);
         init_copy(nd->r, src->r);
+    }
+    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    void init_iv(const T& v) {
+        iv.reserve(this->h + 1);
+        iv.push_back(v);
+        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));
+        iv2.assign(this->h + 1, M::id());
+        rep (i, this->h) {
+            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
+            else iv2[i + 1] = iv2[i];
+        }
+    }
+    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    T get_init(ll, ll r, int t) const {
+        return r <= this->ori ? iv[t] : iv2[t];
+    }
+    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    void init_iv(const T&) {}
+    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    T get_init(ll l, ll r, int) const {
+        return M::init(l, std::min(r, this->ori));
     }
 
 public:
@@ -160,33 +169,18 @@ public:
           root(std::make_unique<node>(other.root->val)) {
         init_copy(root, other.root);
     }
-    DynamicLazySegmentTree(DynamicLazySegmentTree&&) = default;
+    DynamicLazySegmentTree(DynamicLazySegmentTree&& other) = default;
     DynamicLazySegmentTree& operator=(const DynamicLazySegmentTree& other) {
         if (this == &other) return *this;
-        n = other.n;
-        h = other.h;
-        ori = other.ori;
-        iv = other.iv;
-        iv2 = other.iv2;
-        root = std::make_unique<node>(other.root->val);
-        init_copy(root, other.root);
-        return *this;
+        return (*this) = DynamicLazySegmentTree(other);
     }
-    DynamicLazySegmentTree& operator=(DynamicLazySegmentTree&&) = default;
+    DynamicLazySegmentTree& operator=(DynamicLazySegmentTree&& other) = default;
     void init(ll n_, const T& v = M::id()) {
         ori = n_;
         h = bitop::ceil_log2(ori);
         n = 1ull << h;
-        iv.reserve(h + 1);
-        iv.push_back(v);
-        rep (h) iv.push_back(M::op(iv.back(), iv.back()));
-        iv2.assign(h + 1, M::id());
-        rep (i, h) {
-            if ((ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
-            else iv2[i + 1] = iv2[i];
-        }
-        if (ori == n) iv2[h] = M::op(iv2[h], iv[h]);
-        root = std::make_unique<node>(iv2[h]);
+        init_iv(v);
+        root = std::make_unique<node>(get_init(0, n, h));
     }
     template<class Upd> void update(ll k, const Upd& upd) {
         assert(0 <= k && k < ori);
@@ -222,8 +216,8 @@ public:
         assert(cond(sm));
         return min_left(root, 0, n, h, r, cond, sm);
     }
-    void reset(ll l, ll r) { reset(root, 0, n, l, r); }
-    void reset(ll k) { reset(root, 0, n, k, k + 1); }
+    void reset(ll l, ll r) { reset(root, 0, n, h, l, r); }
+    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }
 };
 
 
@@ -233,36 +227,13 @@ protected:
     using E_ = typename A::E;
     using T_ = typename M_::value_type;
     using U_ = typename E_::value_type;
-    struct MultiA {
-        struct M {
-            struct value_type {
-                T_ val;
-                ll len;
-                value_type() = default;
-                value_type(T_ v, ll l) : val(v), len(l) {}
-                friend std::ostream& operator<<(std::ostream& ost,
-                                                const value_type& e) {
-                    return ost << e.val << '*' << e.len;
-                }
-            };
-            static value_type op(const value_type& a, const value_type& b) {
-                return {M_::op(a.val, b.val), a.len + b.len};
-            }
-            static value_type id() { return {M_::id(), 0}; }
-        };
-        using E = E_;
-        using T = typename M::value_type;
-        using U = typename E::value_type;
-        static T op(const U& a, const T& b) {
-            return {A::mul_op(a, b.len, b.val), b.len};
-        }
-    };
-    using elm = typename MultiA::M::value_type;
-    DynamicLazySegmentTree<MultiA> seg;
+    using elm = typename Monoid::MultiAction<A>::M::value_type;
+    DynamicLazySegmentTree<Monoid::MultiAction<A>> seg;
 
 public:
     DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}
     DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}
+    DynamicLazySegmentTree(ll n_, const T_& v) : seg(n_, {v, 1}) {}
     void init(ll n_, const T_& v = M_::id()) { seg.init(n_, {v, 1}); }
     T_ prod(ll l, ll r) { return seg.prod(l, r).val; }
     T_ get(ll k) { return seg.get(k).val; }
@@ -281,6 +252,8 @@ public:
         return seg.min_left(r,
                             [&](const elm& a) -> bool { return cond(a.val); });
     }
+    void reset(ll l, ll r) { seg.reset(l, r); }
+    void reset(ll k) { seg.reset(k); }
 };
 
 /**
