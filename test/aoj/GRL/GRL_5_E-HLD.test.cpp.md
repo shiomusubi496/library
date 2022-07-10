@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -264,8 +264,8 @@ data:
     \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
     \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
     \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A,\n   \
-    \      bool = Monoid::has_mul_op<A>::value>\nclass LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    #line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A, bool\
+    \ = Monoid::has_mul_op<A>::value> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
     \ \"A must be action\");\n\nprotected:\n    using M = typename A::M;\n    using\
     \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
     \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
@@ -491,7 +491,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:08:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp
