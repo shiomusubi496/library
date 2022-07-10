@@ -176,10 +176,8 @@ template<class A> class LazySegmentTree<A, true> {
     static_assert(Monoid::is_action<A>::value, "A must be action");
 
 protected:
-    using M_ = typename A::M;
-    using E_ = typename A::E;
-    using T_ = typename M_::value_type;
-    using U_ = typename E_::value_type;
+    using T_ = typename A::M::value_type;
+    using U_ = typename A::E::value_type;
     using elm = typename Monoid::MultiAction<A>::M::value_type;
     static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
         const int n = v.size();

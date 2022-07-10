@@ -200,6 +200,9 @@ template<class A> struct MultiAction {
             return {A::M::op(a.val, b.val), a.len + b.len};
         }
         static value_type id() { return {A::M::id(), 0}; }
+        static value_type init(ll l, ll r) {
+            return {A::M::init(l, r), r - l};
+        }
     };
     using E = typename A::E;
 
