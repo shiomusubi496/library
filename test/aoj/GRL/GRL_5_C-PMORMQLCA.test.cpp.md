@@ -4,25 +4,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -307,38 +307,40 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class SparseTable\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int h, ori;\n  \
-    \  std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T internal_prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l < r && r <= ori);\n        int\
-    \ d = logtable[r - l];\n        return M::op(data[d][l], data[d][r - (1 << d)]);\n\
-    \    }\n  public:\n    SparseTable() = default;\n    SparseTable(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
-    \        h = bitop::ceil_log2(ori);\n        logtable.assign((1 << h) + 1, 0);\n\
-    \        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] + 1;\n        data.assign(h\
-    \ + 1, std::vector<T>(1 << h));\n        rep (i, ori) data[0][i] = v[i];\n   \
-    \     rep (i, h) {\n            rep (j, (1 << h) - (1 << i)) {\n             \
-    \   data[i + 1][j] = M::op(data[i][j], data[i][j + (1 << i)]);\n            }\n\
-    \        }\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<\
-    \ Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n    T prod(int l,\
-    \ int r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
-    \ r);\n    }\n    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value\
-    \ && AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const {\n       \
-    \ return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief SparseTable\n * @docs\
-    \ docs/SparseTable.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace\
-    \ Monoid {\n    struct PairMinForEulerTour {\n        using value_type = std::pair<int,\
-    \ int>;\n        static value_type op(const value_type& a, const value_type& b)\
-    \ {\n            return a.first < b.first ? a : b;\n        }\n        static\
-    \ value_type id() {\n            return {infinity<int>::value, -1};\n        }\n\
-    \    };\n}\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
-    class EulerTour {\n  protected:\n    int n, cnt;\n    std::vector<int> root;\n\
-    \    const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
-    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
-    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\
+    \ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
+    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
+    \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
+    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
+    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
+    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
+    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
+    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
+    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\
+    \ typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        if (l == r) return M::id();\n     \
+    \   return internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true, typename\
+    \ std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>\n\
+    \    T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n\
+    };\n\n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"\
+    graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\n    struct PairMinForEulerTour\
+    \ {\n        using value_type = std::pair<int, int>;\n        static value_type\
+    \ op(const value_type& a, const value_type& b) {\n            return a.first <\
+    \ b.first ? a : b;\n        }\n        static value_type id() {\n            return\
+    \ {infinity<int>::value, -1};\n        }\n    };\n}\n\ntemplate<class T, class\
+    \ StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour {\n \
+    \ protected:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
+    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
+    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
+    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -438,7 +440,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:39:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

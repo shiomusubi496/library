@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -254,30 +254,31 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class SegmentTree\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int n, ori;\n  \
-    \  std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0) {}\n  \
-    \  SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int\
-    \ n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
-    \ << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i,\
-    \ n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
-    \ = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n\
-    \        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
-    \ x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n   \
-    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        l += n; r += n;\n        T lsm = M::id(), rsm = M::id();\n        while\
-    \ (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n           \
-    \ if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>= 1;\n   \
-    \     }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const { return\
-    \ data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\
+    \ntemplate<class M> class SegmentTree {\n  protected:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree()\
+    \ : SegmentTree(0) {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n,\
+    \ M::id())) {}\n    SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const\
+    \ std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
+    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
+    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
+    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
+    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
+    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
+    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
+    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
     \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
     \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
     \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
@@ -318,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:39:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-RSQ.test.cpp

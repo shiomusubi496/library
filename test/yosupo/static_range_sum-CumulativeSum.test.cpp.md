@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -238,13 +238,15 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class M> class CumulativeSumAnyOperation\
-    \ {\n  protected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n  public:\n    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class M> class CumulativeSumAnyOperation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n  public:\n\
+    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
     \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
@@ -270,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:39:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/static_range_sum-CumulativeSum.test.cpp

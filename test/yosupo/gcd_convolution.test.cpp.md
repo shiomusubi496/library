@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,13 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -247,30 +247,31 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n    static\
-    \ T op(const T& a, const T& b) {\n        return a * b;\n    }\n    static T id()\
-    \ {\n        return T{1};\n    }\n    static T inv(const T& a, const T& b) {\n\
-    \        return a / b;\n    }\n    static T get_inv(const T& a) {\n        return\
-    \ T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() {\n        return {T{1}, T{0}};\n    }\n   \
-    \ static value_type get_inv(const value_type& a) {\n        return {T{1} / a.first,\
-    \ - a.second / a.first};\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class\
-    \ T> struct GCD {\n    using value_type = T;\n    static T op(T a, T b) { return\
-    \ gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct\
-    \ LCM {\n    using value_type = T;\n    static T op(T a, T b) { return lcm(a,\
-    \ b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign\
-    \ {\n    using value_type = std::pair<bool, T>; // false: add, true: assign\n\
-    \    static value_type op(const value_type& a, const value_type& b) {\n      \
-    \  if (b.first) return b;\n        return {a.first, a.second + b.second};\n  \
-    \  }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\n#line 5 \"other/monoid2.hpp\"\
+    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) {\n        return a * b;\n   \
+    \ }\n    static T id() {\n        return T{1};\n    }\n    static T inv(const\
+    \ T& a, const T& b) {\n        return a / b;\n    }\n    static T get_inv(const\
+    \ T& a) {\n        return T{1} / a;\n    }\n};\n\ntemplate<class T> struct Composite\
+    \ {\n    using value_type = std::pair<T, T>;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return {b.first * a.first, b.first * a.second\
+    \ + b.second};\n    }\n    static value_type id() {\n        return {T{1}, T{0}};\n\
+    \    }\n    static value_type get_inv(const value_type& a) {\n        return {T{1}\
+    \ / a.first, - a.second / a.first};\n    }\n    static value_type inv(const value_type&\
+    \ a, const value_type& b) {\n        return op(a, get_inv(b));\n    }\n};\n\n\
+    template<class T> struct GCD {\n    using value_type = T;\n    static T op(T a,\
+    \ T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\ntemplate<class\
+    \ T> struct LCM {\n    using value_type = T;\n    static T op(T a, T b) { return\
+    \ lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class T> struct\
+    \ AddAssign {\n    using value_type = std::pair<bool, T>; // false: add, true:\
+    \ assign\n    static value_type op(const value_type& a, const value_type& b) {\n\
+    \        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
     \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
     \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
     \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
@@ -414,7 +415,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:39:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/gcd_convolution.test.cpp

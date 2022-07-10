@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/LazySegmentTree.md
     document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
@@ -267,24 +267,26 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 6 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A, bool\
-    \ = Monoid::has_mul_op<A>::value> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
-    \ \"A must be action\");\n\nprotected:\n    using M = typename A::M;\n    using\
-    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int k, const U& x)\
-    \ {\n        data[k] = A::op(x, data[k]);\n        if (k < n) {\n            if\
-    \ (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n            }\n\
-    \            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n    }\n    void eval(int k) {\n        if\
-    \ (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  \
-    \  void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]); }\n\npublic:\n\
-    \    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value> class LazySegmentTree\
+    \ {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\");\n\n\
+    protected:\n    using M = typename A::M;\n    using E = typename A::E;\n    using\
+    \ T = typename M::value_type;\n    using U = typename E::value_type;\n    int\
+    \ h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
+    \ lazyflag;\n    void all_apply(int k, const U& x) {\n        data[k] = A::op(x,\
+    \ data[k]);\n        if (k < n) {\n            if (lazyflag[k]) {\n          \
+    \      lazy[k] = E::op(lazy[k], x);\n            }\n            else {\n     \
+    \           lazy[k] = x;\n                lazyflag[k] = true;\n            }\n\
+    \        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n      \
+    \      all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
+    \            lazyflag[k] = false;\n        }\n    }\n    void calc(int k) { data[k]\
+    \ = M::op(data[k << 1], data[k << 1 ^ 1]); }\n\npublic:\n    LazySegmentTree()\
+    \ : LazySegmentTree(0) {}\n    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
     \ M::id())) {}\n    LazySegmentTree(int n, const T& v)\n        : LazySegmentTree(std::vector<T>(n,\
     \ v)) {}\n    LazySegmentTree(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
@@ -337,13 +339,12 @@ data:
     \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
     \ != r);\n        return 0;\n    }\n};\n\ntemplate<class A> class LazySegmentTree<A,\
     \ true> {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\"\
-    );\n\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
-    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
-    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
-    \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
-    \       std::vector<elm> res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n\
-    \        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>> seg;\n\
-    \npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    );\n\nprotected:\n    using T_ = typename A::M::value_type;\n    using U_ = typename\
+    \ A::E::value_type;\n    using elm = typename Monoid::MultiAction<A>::M::value_type;\n\
+    \    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {\n       \
+    \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
+    \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>>\
+    \ seg;\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
     \ n_) : seg(n_, {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) :\
     \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
@@ -442,13 +443,12 @@ data:
     \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
     \ != r);\n        return 0;\n    }\n};\n\ntemplate<class A> class LazySegmentTree<A,\
     \ true> {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\"\
-    );\n\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
-    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
-    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
-    \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
-    \       std::vector<elm> res(n);\n        rep (i, n) res[i] = elm{v[i], 1};\n\
-    \        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>> seg;\n\
-    \npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    );\n\nprotected:\n    using T_ = typename A::M::value_type;\n    using U_ = typename\
+    \ A::E::value_type;\n    using elm = typename Monoid::MultiAction<A>::M::value_type;\n\
+    \    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {\n       \
+    \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
+    \ res[i] = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<Monoid::MultiAction<A>>\
+    \ seg;\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
     \ n_) : seg(n_, {M_::id(), 1}) {}\n    LazySegmentTree(int n_, const T_& v) :\
     \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v))\
     \ {}\n    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }\n\
@@ -487,8 +487,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 18:08:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-10 18:39:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp

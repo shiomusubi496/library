@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
@@ -34,26 +34,26 @@ data:
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -130,14 +130,14 @@ data:
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -164,7 +164,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -201,13 +201,13 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
@@ -307,19 +307,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -370,7 +370,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
@@ -445,7 +445,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -463,10 +463,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/staticrmq-SparseTable.test.cpp
     title: test/yosupo/staticrmq-SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -484,31 +484,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_set_path_composite.test.cpp
     title: test/yosupo/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/zalgorithm.test.cpp
     title: test/yosupo/zalgorithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -517,12 +517,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef\
@@ -858,7 +858,7 @@ data:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1469-RunLength.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -235,21 +235,22 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\n\ntemplate<class M>\
-    \ class SlidingWindowAggregation {\n  protected:\n    using T = typename M::value_type;\n\
-    \    std::stack<T> lst, rst;\n    std::stack<T> lsm, rsm;\n    T internal_all_prod()\
-    \ const {\n        assert(!empty());\n        if (lst.empty()) return rsm.top();\n\
-    \        if (rst.empty()) return lsm.top();\n        return M::op(lsm.top(), rsm.top());\n\
-    \    }\n  public:\n    SlidingWindowAggregation() = default;\n    int size() const\
-    \ {\n        return lst.size() + rst.size();\n    }\n    bool empty() const {\n\
-    \        return lst.empty() && rst.empty();\n    }\n    void push(const T& x)\
-    \ {\n        rst.push(x);\n        if (rsm.empty()) rsm.push(rst.top());\n   \
-    \     else rsm.push(M::op(rsm.top(), rst.top()));\n    }\n    template<class...\
-    \ Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
+    \n\ntemplate<class M> class SlidingWindowAggregation {\n  protected:\n    using\
+    \ T = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T>\
+    \ lsm, rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n  \
+    \      if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
+    \        return M::op(lsm.top(), rsm.top());\n    }\n  public:\n    SlidingWindowAggregation()\
+    \ = default;\n    int size() const {\n        return lst.size() + rst.size();\n\
+    \    }\n    bool empty() const {\n        return lst.empty() && rst.empty();\n\
+    \    }\n    void push(const T& x) {\n        rst.push(x);\n        if (rsm.empty())\
+    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \    }\n    template<class... Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
     \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
     \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
     \ (lst.empty()) {\n            lst.push(rst.top()); lsm.push(rst.top());\n   \
@@ -293,7 +294,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
+  timestamp: '2022-07-10 18:39:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/queue_operate_all_composite.test.cpp

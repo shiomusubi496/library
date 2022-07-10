@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -18,21 +18,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_path_sum.test.cpp
     title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
@@ -253,14 +253,15 @@ data:
     \        return ost << e.val << '*' << e.len;\n            }\n        };\n   \
     \     static value_type op(const value_type& a, const value_type& b) {\n     \
     \       return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n    };\n    using E = typename\
-    \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
-    \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class M, bool\
-    \ = Monoid::is_monoid<M>::value> class BinaryIndexedTree {\nprotected:\n    using\
-    \ T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
-    \    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ value_type id() { return {A::M::id(), 0}; }\n        static value_type init(ll\
+    \ l, ll r) {\n            return {A::M::init(l, r), r - l};\n        }\n    };\n\
+    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
+    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
+    };\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
+    \ {\nprotected:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
     \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
     \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        ++k;\n        while\
     \ (k <= n) {\n            data[k] = M::op(data[k], x);\n            k += k & -k;\n\
@@ -305,8 +306,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 17:47:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-10 18:39:26+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
