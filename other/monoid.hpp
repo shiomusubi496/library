@@ -192,9 +192,9 @@ template<class A> struct MultiAction {
             }
         };
         static value_type op(const value_type& a, const value_type& b) {
-            return {M_::op(a.val, b.val), a.len + b.len};
+            return {A::M::op(a.val, b.val), a.len + b.len};
         }
-        static value_type id() { return {M_::id(), 0}; }
+        static value_type id() { return {A::M::id(), 0}; }
     };
     using E = typename A::E;
 
