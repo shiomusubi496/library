@@ -17,6 +17,7 @@ public:
         data.assign(n + 1, M::id());
     }
     void apply(int k, T x) {
+        assert(0 <= k && k < n);
         ++k;
         while (k <= n) {
             data[k] = M::op(data[k], x);
