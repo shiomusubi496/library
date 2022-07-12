@@ -67,19 +67,19 @@ protected:
                         nd->r ? nd->r->val : get_init(m, b, t - 1));
     }
     T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
-        if (l <= a && b <= r) return nd->val;
         if (r <= a || b <= l) return M::id();
+        if (l <= a && b <= r) return nd->val;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),
-                     prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));
+        return M::op(r > a && m > l ? prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r) : M::id(),
+                     r > m && b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r) : M::id());
     }
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
+        if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
             all_apply(nd, t, x);
             return;
         }
-        if (r <= a || b <= l) return;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
         apply(get_l(nd, a, m, t - 1), a, m, t - 1, l, r, x);
@@ -95,8 +95,8 @@ protected:
             sm = M::op(sm, nd->val);
             return n;
         }
-        eval(nd, a, b, t);
         if (a + 1 == b) return a;
+        eval(nd, a, b, t);
         ll m = (a + b) >> 1;
         ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);
         if (res != n) return res;
@@ -110,8 +110,8 @@ protected:
             sm = M::op(nd->val, sm);
             return 0;
         }
-        eval(nd, a, b, t);
         if (a + 1 == b) return b;
+        eval(nd, a, b, t);
         ll m = (a + b) >> 1;
         ll res = min_left(get_r(nd, m, b, t - 1), m, b, t - 1, r, cond, sm);
         if (res != 0) return res;
@@ -121,7 +121,7 @@ protected:
         if (nd == nullptr) return;
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
-            if (nd == root) nd = std::make_unique<node>(iv2[h]);
+            if (nd == root) nd = std::make_unique<node>(get_init(0, n, h));
             else nd.reset();
             return;
         }
@@ -195,6 +195,9 @@ public:
     void apply(ll l, ll r, const U& x) {
         assert(0 <= l && l <= r && r <= ori);
         apply(root, 0, n, h, l, r, x);
+    }
+    void all_apply(const U& x) {
+        apply(root, 0, n, h, 0, n, x);
     }
     T prod(ll l, ll r) {
         assert(0 <= l && l <= r && r <= ori);

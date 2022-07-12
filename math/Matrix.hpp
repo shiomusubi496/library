@@ -31,6 +31,7 @@ template<class T> class Matrix : public std::vector<std::vector<T>> {
         return *this;
     }
     Matrix& operator*=(const Matrix& other) {
+        assert(this->width() == other.height());
         Matrix res(this->size(), other[0].size());
         rep (i, this->size()) {
             rep (k, other.size()) {
