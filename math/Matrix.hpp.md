@@ -158,22 +158,22 @@ data:
     \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
     \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
     \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        Matrix res(this->size(), other[0].size());\n     \
-    \   rep (i, this->size()) {\n            rep (k, other.size()) {\n           \
-    \     rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n   \
-    \         }\n        }\n        *this = std::move(res);\n        return *this;\n\
-    \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
-    \       rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return\
-    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
-    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
-    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
-    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
-    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
-    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n"
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
+    \            rep (k, other.size()) {\n                rep (j, other[0].size())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
     \ Matrix : public std::vector<std::vector<T>> {\n  protected:\n    using Base\
     \ = std::vector<std::vector<T>>;\n  public:\n    Matrix() = default;\n    Matrix(int\
@@ -188,27 +188,28 @@ data:
     \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
     \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
     \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
-    \ {\n        Matrix res(this->size(), other[0].size());\n        rep (i, this->size())\
-    \ {\n            rep (k, other.size()) {\n                rep (j, other[0].size())\
-    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  *this = std::move(res);\n        return *this;\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
-    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ Matrix(\u884C\u5217)\n * @docs docs/Matrix.md\n */\n"
+    \ {\n        assert(this->width() == other.height());\n        Matrix res(this->size(),\
+    \ other[0].size());\n        rep (i, this->size()) {\n            rep (k, other.size())\
+    \ {\n                rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];\n\
+    \            }\n        }\n        *this = std::move(res);\n        return *this;\n\
+    \    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n     \
+    \       rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
+    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
+    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
+    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
+    \u5217)\n * @docs docs/Matrix.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/Matrix.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-07-12 23:11:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix_product.test.cpp
