@@ -40,7 +40,7 @@ template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
     }
   public:
     DualSegmentTree() : DualSegmentTree(0) {}
-    DualSegmentTree(int n) : DualSegmentTree(n, M::id()) {}
+    DualSegmentTree(int n) : DualSegmentTree(n, T{}) {}
     DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}
     DualSegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
