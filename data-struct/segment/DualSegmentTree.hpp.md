@@ -288,7 +288,7 @@ data:
     \        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n      \
     \      all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
     \            lazyflag[k] = false;\n        }\n    }\n  public:\n    DualSegmentTree()\
-    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, M::id())\
+    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, T{})\
     \ {}\n    DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_,\
     \ v)) {}\n    DualSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
@@ -333,7 +333,7 @@ data:
     \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
     \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
     \        }\n    }\n  public:\n    DualSegmentTree() : DualSegmentTree(0) {}\n\
-    \    DualSegmentTree(int n) : DualSegmentTree(n, M::id()) {}\n    DualSegmentTree(int\
+    \    DualSegmentTree(int n) : DualSegmentTree(n, T{}) {}\n    DualSegmentTree(int\
     \ n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}\n    DualSegmentTree(const\
     \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
@@ -369,7 +369,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-07-10 23:06:05+09:00'
+  timestamp: '2022-07-16 15:45:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp

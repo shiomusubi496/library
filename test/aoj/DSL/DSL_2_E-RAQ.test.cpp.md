@@ -287,7 +287,7 @@ data:
     \        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n      \
     \      all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
     \            lazyflag[k] = false;\n        }\n    }\n  public:\n    DualSegmentTree()\
-    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, M::id())\
+    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, T{})\
     \ {}\n    DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_,\
     \ v)) {}\n    DualSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
     \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 23:06:05+09:00'
+  timestamp: '2022-07-16 15:45:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
