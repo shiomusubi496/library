@@ -214,8 +214,8 @@ protected:
         }
         return {{sl.first, npl}, {npr, sl.second}};
     }
-    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl), rnd(rnd) {}
-    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)), rnd(rnd) {}
+    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd), sl(sl) {}
+    SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl)) {}
     static node_ptr get_ptr(const nodepair& sl, int k) {
         int cnt = 0;
         node_ptr nw = sl.first;
@@ -350,6 +350,7 @@ public:
     }
     template<class C> int max_right(int l, const C& cond) const {
         assert(0 <= l && l <= size());
+        assert(cond(M::id()));
         if (l == size()) return size();
         all_eval(sl, l);
         auto np = get_ptr(sl, l);
@@ -369,6 +370,7 @@ public:
     }
     template<class C> int min_left(int r, const C& cond) const {
         assert(0 <= r && r <= size());
+        assert(cond(M::id()));
         if (r == 0) return 0;
         all_eval(sl, r - 1);
         auto np = get_ptr(sl, r);
@@ -442,15 +444,17 @@ public:
     T_ get(int k) const { return sl.get(k).val; }
     void apply(int l, int r, const U_& x) { sl.apply(l, r, x); }
     template<class Upd> void update(int k, const Upd& upd) {
-        sl.update(k, [&](const elm& e) { return {upd(e.val), e.len}; });
+        sl.update(k, [&](const elm& e) -> elm { return {upd(e.val), e.len}; });
     }
     void set(int k, const T_& x) { sl.set(k, {x, 1}); }
     void apply(int k, const U_& x) { sl.apply(k, x); }
     template<class C> int max_right(int l, const C& cond) const {
-        return sl.max_right(l, [&](const elm& e) { return cond(e.val); });
+        return sl.max_right(l,
+                            [&](const elm& e) -> bool { return cond(e.val); });
     }
     template<class C> int min_left(int r, const C& cond) const {
-        return sl.min_left(r, [&](const elm& e) { return cond(e.val); });
+        return sl.min_left(r,
+                           [&](const elm& e) -> bool { return cond(e.val); });
     }
     std::vector<T_> get_data() const {
         std::vector<elm> d = sl.get_data();
