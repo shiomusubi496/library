@@ -61,6 +61,7 @@
 "test/yosupo/bitwise_and_convolution.test.cpp": "2022-07-10 23:06:05 +0900",
 "test/yosupo/cartesian_tree.test.cpp": "2022-05-14 15:03:37 +0900",
 "test/yosupo/cycle_detection.test.cpp": "2022-05-14 15:03:37 +0900",
+"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp": "2022-07-26 01:53:08 +0900",
 "test/yosupo/gcd_convolution.test.cpp": "2022-07-10 23:06:05 +0900",
 "test/yosupo/kth_root_integer.test.cpp": "2022-05-01 15:10:58 +0900",
 "test/yosupo/lca-HLD.test.cpp": "2022-05-14 15:03:37 +0900",
