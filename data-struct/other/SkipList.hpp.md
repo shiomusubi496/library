@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/SkipList.md
     document_title: SkipList
@@ -384,21 +384,21 @@ data:
     \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
     \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
     \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
-    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl),\
-    \ rnd(rnd) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)),\
-    \ rnd(rnd) {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n    \
-    \    int cnt = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level())\
-    \ {\n            while (cnt + nw->nxt[i].dist <= k) {\n                cnt +=\
-    \ nw->nxt[i].dist;\n                nw = nw->nxt[i].node;\n            }\n   \
-    \     }\n        return nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand())\
-    \ {}\n    SkipList(const Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1);\
-    \ }\n    SkipList(const std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd)\
-    \ {\n        init(v);\n    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(),\
-    \ other.rnd) {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const\
-    \ SkipList& other) {\n        if (this == &other) return *this;\n        return\
-    \ *this = SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n\
-    \    void init(const std::vector<T>& v) {\n        const int n = v.size();\n \
-    \       std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
+    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
+    \ sl(sl) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl))\
+    \ {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n        int cnt\
+    \ = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level()) {\n\
+    \            while (cnt + nw->nxt[i].dist <= k) {\n                cnt += nw->nxt[i].dist;\n\
+    \                nw = nw->nxt[i].node;\n            }\n        }\n        return\
+    \ nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand()) {}\n    SkipList(const\
+    \ Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1); }\n    SkipList(const\
+    \ std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd) {\n        init(v);\n\
+    \    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(), other.rnd)\
+    \ {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const SkipList&\
+    \ other) {\n        if (this == &other) return *this;\n        return *this =\
+    \ SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n  \
+    \  void init(const std::vector<T>& v) {\n        const int n = v.size();\n   \
+    \     std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
     \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
     \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
     \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
@@ -448,16 +448,17 @@ data:
     \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
     \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
     \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
-    \        if (l == size()) return size();\n        all_eval(sl, l);\n        auto\
-    \ np = get_ptr(sl, l);\n        T sm = M::id();\n        rrep (i, sl.first->level())\
-    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
-    \ - 1);\n                if (t != np->level() - 1) eval(np, t + 1);\n        \
-    \        if (!cond(M::op(sm, np->nxt[t].sm))) break;\n                sm = M::op(sm,\
-    \ np->nxt[t].sm);\n                l += np->nxt[t].dist;\n                np =\
-    \ np->nxt[t].node;\n                if (np == sl.second) return size();\n    \
-    \        }\n        }\n        return l;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) const {\n        assert(0 <= r && r <= size());\n        if\
-    \ (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \        assert(cond(M::id()));\n        if (l == size()) return size();\n   \
+    \     all_eval(sl, l);\n        auto np = get_ptr(sl, l);\n        T sm = M::id();\n\
+    \        rrep (i, sl.first->level()) {\n            while (1) {\n            \
+    \    int t = std::min((int)i, np->level() - 1);\n                if (t != np->level()\
+    \ - 1) eval(np, t + 1);\n                if (!cond(M::op(sm, np->nxt[t].sm)))\
+    \ break;\n                sm = M::op(sm, np->nxt[t].sm);\n                l +=\
+    \ np->nxt[t].dist;\n                np = np->nxt[t].node;\n                if\
+    \ (np == sl.second) return size();\n            }\n        }\n        return l;\n\
+    \    }\n    template<class C> int min_left(int r, const C& cond) const {\n   \
+    \     assert(0 <= r && r <= size());\n        assert(cond(M::id()));\n       \
+    \ if (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
     \ r);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
     \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
     \                if (t != np->level() - 1) eval(np->prv[t], t + 1);\n        \
@@ -492,14 +493,15 @@ data:
     \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
     \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
     \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
-    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) { return {upd(e.val),\
-    \ e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k, {x, 1}); }\n\
-    \    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class C>\
-    \ int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\
-    \ [&](const elm& e) { return cond(e.val); });\n    }\n    template<class C> int\
-    \ min_left(int r, const C& cond) const {\n        return sl.min_left(r, [&](const\
-    \ elm& e) { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const\
-    \ {\n        std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
+    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) -> elm { return\
+    \ {upd(e.val), e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k,\
+    \ {x, 1}); }\n    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class\
+    \ C> int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\n\
+    \                            [&](const elm& e) -> bool { return cond(e.val); });\n\
+    \    }\n    template<class C> int min_left(int r, const C& cond) const {\n   \
+    \     return sl.min_left(r,\n                           [&](const elm& e) -> bool\
+    \ { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const {\n \
+    \       std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
     \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
     \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
     \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
@@ -606,21 +608,21 @@ data:
     \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
     \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
     \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
-    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl),\
-    \ rnd(rnd) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)),\
-    \ rnd(rnd) {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n    \
-    \    int cnt = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level())\
-    \ {\n            while (cnt + nw->nxt[i].dist <= k) {\n                cnt +=\
-    \ nw->nxt[i].dist;\n                nw = nw->nxt[i].node;\n            }\n   \
-    \     }\n        return nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand())\
-    \ {}\n    SkipList(const Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1);\
-    \ }\n    SkipList(const std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd)\
-    \ {\n        init(v);\n    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(),\
-    \ other.rnd) {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const\
-    \ SkipList& other) {\n        if (this == &other) return *this;\n        return\
-    \ *this = SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n\
-    \    void init(const std::vector<T>& v) {\n        const int n = v.size();\n \
-    \       std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
+    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
+    \ sl(sl) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl))\
+    \ {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n        int cnt\
+    \ = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level()) {\n\
+    \            while (cnt + nw->nxt[i].dist <= k) {\n                cnt += nw->nxt[i].dist;\n\
+    \                nw = nw->nxt[i].node;\n            }\n        }\n        return\
+    \ nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand()) {}\n    SkipList(const\
+    \ Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1); }\n    SkipList(const\
+    \ std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd) {\n        init(v);\n\
+    \    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(), other.rnd)\
+    \ {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const SkipList&\
+    \ other) {\n        if (this == &other) return *this;\n        return *this =\
+    \ SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n  \
+    \  void init(const std::vector<T>& v) {\n        const int n = v.size();\n   \
+    \     std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
     \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
     \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
     \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
@@ -670,16 +672,17 @@ data:
     \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
     \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
     \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
-    \        if (l == size()) return size();\n        all_eval(sl, l);\n        auto\
-    \ np = get_ptr(sl, l);\n        T sm = M::id();\n        rrep (i, sl.first->level())\
-    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
-    \ - 1);\n                if (t != np->level() - 1) eval(np, t + 1);\n        \
-    \        if (!cond(M::op(sm, np->nxt[t].sm))) break;\n                sm = M::op(sm,\
-    \ np->nxt[t].sm);\n                l += np->nxt[t].dist;\n                np =\
-    \ np->nxt[t].node;\n                if (np == sl.second) return size();\n    \
-    \        }\n        }\n        return l;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) const {\n        assert(0 <= r && r <= size());\n        if\
-    \ (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \        assert(cond(M::id()));\n        if (l == size()) return size();\n   \
+    \     all_eval(sl, l);\n        auto np = get_ptr(sl, l);\n        T sm = M::id();\n\
+    \        rrep (i, sl.first->level()) {\n            while (1) {\n            \
+    \    int t = std::min((int)i, np->level() - 1);\n                if (t != np->level()\
+    \ - 1) eval(np, t + 1);\n                if (!cond(M::op(sm, np->nxt[t].sm)))\
+    \ break;\n                sm = M::op(sm, np->nxt[t].sm);\n                l +=\
+    \ np->nxt[t].dist;\n                np = np->nxt[t].node;\n                if\
+    \ (np == sl.second) return size();\n            }\n        }\n        return l;\n\
+    \    }\n    template<class C> int min_left(int r, const C& cond) const {\n   \
+    \     assert(0 <= r && r <= size());\n        assert(cond(M::id()));\n       \
+    \ if (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
     \ r);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
     \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
     \                if (t != np->level() - 1) eval(np->prv[t], t + 1);\n        \
@@ -714,14 +717,15 @@ data:
     \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
     \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
     \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
-    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) { return {upd(e.val),\
-    \ e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k, {x, 1}); }\n\
-    \    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class C>\
-    \ int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\
-    \ [&](const elm& e) { return cond(e.val); });\n    }\n    template<class C> int\
-    \ min_left(int r, const C& cond) const {\n        return sl.min_left(r, [&](const\
-    \ elm& e) { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const\
-    \ {\n        std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
+    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) -> elm { return\
+    \ {upd(e.val), e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k,\
+    \ {x, 1}); }\n    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class\
+    \ C> int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\n\
+    \                            [&](const elm& e) -> bool { return cond(e.val); });\n\
+    \    }\n    template<class C> int min_left(int r, const C& cond) const {\n   \
+    \     return sl.min_left(r,\n                           [&](const elm& e) -> bool\
+    \ { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const {\n \
+    \       std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
     \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
     \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
     \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
@@ -735,8 +739,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-26 01:33:52+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-26 01:53:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: data-struct/other/SkipList.hpp
@@ -746,3 +750,37 @@ redirect_from:
 - /library/data-struct/other/SkipList.hpp.html
 title: SkipList
 ---
+## 概要
+
+セグ木の各区切り目の高さをルーラー関数ではなくランダムにした感じのデータ構造。なので insert や erase ができる。
+
+- コンストラクタ
+  - `SkipList()` : 長さ $0$ に初期化する。 $\Theta(1)$ 。
+  - `SkipList(Rand rnd)` : 乱数生成器を `rnd` で初期化する。 $\Theta(1)$ 。
+  - `SkipList(vector<T> , Rand rnd = Rand())` : 列 `v` で初期化する。期待 $\Theta(N)$ 。
+  - `void init(vector<T> v)` : 列 `v` で初期化する。期待 $\Theta(N)$ 。
+- 取得クエリ
+  - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。期待 $\Theta(\log N)$ 。
+  - `T get(int k)` : `a[k]` を返す。期待 $\Theta(\log N)$ 。
+  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 
+  - `int size()` : 列の長さを返す。 $\Theta(1)$ 。
+  - `bool empty()` : 列が空であるかを返す。 $\Theta(1)$ 。
+- 追加/削除クエリ
+  - `void insert(int k, T x)` : `k` 番目に `x` を挿入する。期待 $\Theta(\log N)$ 。
+  - `void erase(int k)` : `k` 番目の要素を削除する。期待 $\Theta(\log N)$ 。
+- 更新クエリ
+  - `void set(int k, T x)` : `a[k]` に `x` を代入する。期待 $\Theta(\log N)$ 。
+  - `void apply(int k, U f)` : `a[k]` に `mp(f, a[k])` を代入する。期待 $\Theta(\log N)$ 。
+  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。期待 $\Theta(\log N)$ 。
+  - `void apply(int l, int r, U f)` : `a[l], a[l+1], ..., a[r-1]` に `mp(f, a[l]), mp(f, a[l+1]), ..., mp(f, a[r-1])` を代入する。期待 $\Theta(\log N)$ 。
+- セグメント木上の二分探索
+  - `int max_right(int l, bool f(T))` :  
+`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。期待 $\Theta(\log N)$ 。  
+厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
+    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
+    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
+  - `int min_left(int r, bool f(T))` :  
+`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。期待 $\Theta(\log N)$ 。  
+厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
+    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
+    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
