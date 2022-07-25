@@ -368,7 +368,7 @@ data:
     \ 125000001, 111111112, 700000005};\n    static constexpr unsigned int inv998244353\
     \ [] = {0, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
     \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
     \ = nullptr> StaticModInt(T v) {\n        v %= (long long)mod;\n        if (v\
     \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
     \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
@@ -414,93 +414,94 @@ data:
     \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
     \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
     \ {\n  protected:\n    unsigned int val;\n    static unsigned int mod;\n  public:\n\
-    \    DynamicModInt() : DynamicModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \    DynamicModInt() : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
     \ = nullptr> DynamicModInt(T v) {\n        v %= (long long)mod;\n        if (v\
     \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
     \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
-    \ void set_mod(unsigned int v) { mod = v; }\n    static DynamicModInt raw(unsigned\
-    \ int v) {\n        DynamicModInt res;\n        res.val = v;\n        return res;\n\
-    \    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n    DynamicModInt&\
-    \ operator++() {\n        ++val;\n        if (val == mod) val = 0;\n        return\
-    \ *this;\n    }\n    DynamicModInt operator++(int) {\n        DynamicModInt res\
-    \ = *this;\n        ++ *this;\n        return res;\n    }\n    DynamicModInt&\
-    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
-    \ *this;\n    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res\
-    \ = *this;\n        -- *this;\n        return res;\n    }\n    DynamicModInt&\
-    \ operator+=(const DynamicModInt& other) {\n        val += other.val;\n      \
-    \  if (val >= mod) val -= mod;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator-=(const DynamicModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator*=(const DynamicModInt& other) {\n        unsigned long long a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt& other) {\n\
-    \        *this *= other.inv();\n        return *this;\n    }\n    friend DynamicModInt\
-    \ operator+(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
-    \ DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ void set_mod(unsigned int v) {\n        assert(v > 0);\n        mod = v;\n \
+    \   }\n    static DynamicModInt raw(unsigned int v) {\n        DynamicModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    DynamicModInt inv() const\
+    \ { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n        ++val;\n\
+    \        if (val == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator++(int) {\n        DynamicModInt res = *this;\n        ++ *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator--() {\n        if (val\
+    \ == 0) val = mod;\n        --val;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator--(int) {\n        DynamicModInt res = *this;\n        -- *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator+=(const DynamicModInt&\
+    \ other) {\n        val += other.val;\n        if (val >= mod) val -= mod;\n \
+    \       return *this;\n    }\n    DynamicModInt& operator-=(const DynamicModInt&\
+    \ other) {\n        if (val < other.val) val += mod;\n        val -= other.val;\n\
+    \        return *this;\n    }\n    DynamicModInt& operator*=(const DynamicModInt&\
+    \ other) {\n        unsigned long long a = val;\n        a *= other.val;\n   \
+    \     a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
     \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ -= rhs;\n    }\n    friend DynamicModInt operator*(const DynamicModInt& lhs,\
-    \ const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n   \
-    \ }\n    friend DynamicModInt operator/(const DynamicModInt& lhs, const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n    DynamicModInt\
-    \ operator+() const {\n        return DynamicModInt(*this);\n    }\n    DynamicModInt\
-    \ operator-() const {\n        return DynamicModInt::raw(0) - *this;\n    }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend\
-    \ std::ostream& operator<<(std::ostream& ost, const DynamicModInt& dm) {\n   \
-    \     return ost << dm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& dm) {\n        ll v; ist >> v;\n        dm = v;\n      \
-    \  return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\
-    \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
-    \  int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T&\
-    \ c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int\
-    \ t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0,\n        [](int a, const\
-    \ std::vector<edge<T>>& v) -> int { return a + v.size(); }\n    );\n    Edges<T>\
-    \ Ed(G.edge_size()); Ed.reserve(E);\n    rep (i, V) {\n        each_const (e :\
-    \ G[i]) {\n            if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2\
-    \ \"data-struct/segment/SparseTable.hpp\"\n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\n  protected:\n    using T = typename\
-    \ M::value_type;\n    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt::raw(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c),\
+    \ idx(i) {}\n    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\n  private:\n    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0,\n        [](int a, const std::vector<edge<T>>& v) -> int { return\
+    \ a + v.size(); }\n    );\n    Edges<T> Ed(G.edge_size()); Ed.reserve(E);\n  \
+    \  rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx] ==\
+    \ -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n  \
+    \  return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n   \
+    \     each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
+    \n\n#line 6 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class\
+    \ SparseTable {\n  protected:\n    using T = typename M::value_type;\n    int\
+    \ h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n\
+    \    T internal_prod(int l, int r) const {\n        assert(0 <= l && l < r &&\
+    \ r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
     \ data[d][r - (1 << d)]);\n    }\n  public:\n    SparseTable() = default;\n  \
     \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
     \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
@@ -609,7 +610,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-07-26 02:52:42+09:00'
+  timestamp: '2022-07-26 07:52:54+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/vertex_set_path_composite.test.cpp

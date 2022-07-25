@@ -161,7 +161,7 @@ data:
     \ 125000001, 111111112, 700000005};\n    static constexpr unsigned int inv998244353\
     \ [] = {0, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
     \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
     \ = nullptr> StaticModInt(T v) {\n        v %= (long long)mod;\n        if (v\
     \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
     \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
@@ -207,74 +207,74 @@ data:
     \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
     \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
     \ {\n  protected:\n    unsigned int val;\n    static unsigned int mod;\n  public:\n\
-    \    DynamicModInt() : DynamicModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \    DynamicModInt() : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
     \ = nullptr> DynamicModInt(T v) {\n        v %= (long long)mod;\n        if (v\
     \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
     \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
-    \ void set_mod(unsigned int v) { mod = v; }\n    static DynamicModInt raw(unsigned\
-    \ int v) {\n        DynamicModInt res;\n        res.val = v;\n        return res;\n\
-    \    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n    DynamicModInt&\
-    \ operator++() {\n        ++val;\n        if (val == mod) val = 0;\n        return\
-    \ *this;\n    }\n    DynamicModInt operator++(int) {\n        DynamicModInt res\
-    \ = *this;\n        ++ *this;\n        return res;\n    }\n    DynamicModInt&\
-    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
-    \ *this;\n    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res\
-    \ = *this;\n        -- *this;\n        return res;\n    }\n    DynamicModInt&\
-    \ operator+=(const DynamicModInt& other) {\n        val += other.val;\n      \
-    \  if (val >= mod) val -= mod;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator-=(const DynamicModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator*=(const DynamicModInt& other) {\n        unsigned long long a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt& other) {\n\
-    \        *this *= other.inv();\n        return *this;\n    }\n    friend DynamicModInt\
-    \ operator+(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
-    \ DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ void set_mod(unsigned int v) {\n        assert(v > 0);\n        mod = v;\n \
+    \   }\n    static DynamicModInt raw(unsigned int v) {\n        DynamicModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    DynamicModInt inv() const\
+    \ { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n        ++val;\n\
+    \        if (val == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator++(int) {\n        DynamicModInt res = *this;\n        ++ *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator--() {\n        if (val\
+    \ == 0) val = mod;\n        --val;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator--(int) {\n        DynamicModInt res = *this;\n        -- *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator+=(const DynamicModInt&\
+    \ other) {\n        val += other.val;\n        if (val >= mod) val -= mod;\n \
+    \       return *this;\n    }\n    DynamicModInt& operator-=(const DynamicModInt&\
+    \ other) {\n        if (val < other.val) val += mod;\n        val -= other.val;\n\
+    \        return *this;\n    }\n    DynamicModInt& operator*=(const DynamicModInt&\
+    \ other) {\n        unsigned long long a = val;\n        a *= other.val;\n   \
+    \     a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
     \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ -= rhs;\n    }\n    friend DynamicModInt operator*(const DynamicModInt& lhs,\
-    \ const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n   \
-    \ }\n    friend DynamicModInt operator/(const DynamicModInt& lhs, const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n    DynamicModInt\
-    \ operator+() const {\n        return DynamicModInt(*this);\n    }\n    DynamicModInt\
-    \ operator-() const {\n        return DynamicModInt::raw(0) - *this;\n    }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend\
-    \ std::ostream& operator<<(std::ostream& ost, const DynamicModInt& dm) {\n   \
-    \     return ost << dm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& dm) {\n        ll v; ist >> v;\n        dm = v;\n      \
-    \  return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"\
-    math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics {\n  protected:\n\
-    \    static std::vector<T> factorial;\n  public:\n    static void init(ll n) {\n\
-    \        const int b = factorial.size();\n        if (n < b) return;\n       \
-    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ T(0);\n        init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
-    \    }\n    static T homo(ll n, ll r) {\n        return comb(n + r - 1, r);\n\
-    \    }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        chmin(r, n - r);\n        T res = 1;\n        reps (i, r) res *=\
-    \ n - r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r)\
-    \ {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n       \
-    \ init(r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n      \
-    \  return res / factorial[r];\n    }\n    static T small_homo(ll n, ll r) {\n\
-    \        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T>\
-    \ IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\ntemplate<class T>\
-    \ class Combinatorics {\n  protected:\n    static std::vector<T> factorial;\n\
-    \    static std::vector<T> factinv;\n  public:\n    static void init(ll n) {\n\
-    \        chmax(n, 1000000);\n        const int b = factorial.size();\n       \
-    \ if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i, b, n +\
-    \ 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n  \
-    \      factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i -\
-    \ 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n \
-    \       return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt::raw(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
+    \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
+    \ void init(ll n) {\n        const int b = factorial.size();\n        if (n <\
+    \ b) return;\n        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i]\
+    \ = factorial[i - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n      \
+    \  if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
+    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
+    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
+    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
+    \ comb(n + r - 1, r);\n    }\n    static T small_perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n \
+    \       reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
+    \ T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
+    \ n - r);\n        init(r);\n        T res = 1;\n        reps (i, r) res *= n\
+    \ - r + i;\n        return res / factorial[r];\n    }\n    static T small_homo(ll\
+    \ n, ll r) {\n        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class\
+    \ T> std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\n\
+    template<class T> class Combinatorics {\n  protected:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n  public:\n    static void init(ll\
+    \ n) {\n        chmax(n, 1000000);\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
     \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
     \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
     \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
@@ -305,7 +305,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-07-26 02:52:42+09:00'
+  timestamp: '2022-07-26 07:52:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_E.test.cpp
