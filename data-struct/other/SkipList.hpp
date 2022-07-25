@@ -320,11 +320,12 @@ public:
         all_eval(sl, l);
         all_eval(sl, r - 1);
         auto np = get_ptr(sl, l);
+        int idx = l;
         rrep (i, sl.first->level()) {
             while (1) {
                 int t = std::min((int)i, np->level() - 1);
-                if (l + np->nxt[t].dist > r) break;
-                l += np->nxt[t].dist;
+                if (idx + np->nxt[t].dist > r) break;
+                idx += np->nxt[t].dist;
                 all_apply(np, t, x);
                 np = np->nxt[t].node;
             }
