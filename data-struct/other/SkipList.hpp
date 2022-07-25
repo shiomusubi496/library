@@ -13,7 +13,7 @@ protected:
     using U = typename E::value_type;
     static inline int get_level(Rand& rnd) {
         int level = 1;
-        while (rnd() & 1) ++level;
+        while ((rnd() & 1) == 0) ++level;
         return level;
     }
     struct node;
