@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -290,10 +290,10 @@ data:
     class SkipList {\nprotected:\n    using M = typename A::M;\n    using E = typename\
     \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
     \    static inline int get_level(Rand& rnd) {\n        int level = 1;\n      \
-    \  while (rnd() & 1) ++level;\n        return level;\n    }\n    struct node;\n\
-    \    using node_ptr = node*;\n    struct next_node {\n        node_ptr node;\n\
-    \        int dist;\n        T sm;\n        U lazy;\n        bool lazyflag;\n \
-    \       next_node(node_ptr n, int d, const T& s)\n            : node(n), dist(d),\
+    \  while ((rnd() & 1) == 0) ++level;\n        return level;\n    }\n    struct\
+    \ node;\n    using node_ptr = node*;\n    struct next_node {\n        node_ptr\
+    \ node;\n        int dist;\n        T sm;\n        U lazy;\n        bool lazyflag;\n\
+    \        next_node(node_ptr n, int d, const T& s)\n            : node(n), dist(d),\
     \ sm(s), lazyflag(false) {}\n        next_node(node_ptr n, int d, const T& s,\
     \ const U& l)\n            : node(n), dist(d), sm(s), lazy(l), lazyflag(true)\
     \ {}\n    };\n    struct node {\n        std::vector<next_node> nxt;\n       \
@@ -513,46 +513,46 @@ data:
     \ bool = Monoid::has_mul_op<A>::value>\nclass SkipList {\nprotected:\n    using\
     \ M = typename A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
     \    using U = typename E::value_type;\n    static inline int get_level(Rand&\
-    \ rnd) {\n        int level = 1;\n        while (rnd() & 1) ++level;\n       \
-    \ return level;\n    }\n    struct node;\n    using node_ptr = node*;\n    struct\
-    \ next_node {\n        node_ptr node;\n        int dist;\n        T sm;\n    \
-    \    U lazy;\n        bool lazyflag;\n        next_node(node_ptr n, int d, const\
-    \ T& s)\n            : node(n), dist(d), sm(s), lazyflag(false) {}\n        next_node(node_ptr\
-    \ n, int d, const T& s, const U& l)\n            : node(n), dist(d), sm(s), lazy(l),\
-    \ lazyflag(true) {}\n    };\n    struct node {\n        std::vector<next_node>\
-    \ nxt;\n        std::vector<node_ptr> prv;\n        int level() const {\n    \
-    \        assert(nxt.size() == prv.size());\n            return nxt.size();\n \
-    \       }\n        node(Rand& rnd) : node(get_level(rnd)) {}\n        node(int\
-    \ lev) : nxt(lev, {nullptr, 1, M::id()}), prv(lev, nullptr) {}\n    };\n    using\
-    \ nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n    nodepair sl;\n\
-    \    static inline void all_apply(const node_ptr& nd, int k, const U& x) {\n \
-    \       assert(0 <= k && k < nd->level());\n        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);\n\
-    \        if (k != 0) {\n            if (nd->nxt[k].lazyflag) {\n             \
-    \   nd->nxt[k].lazy = E::op(nd->nxt[k].lazy, x);\n            }\n            else\
-    \ {\n                nd->nxt[k].lazy = x;\n                nd->nxt[k].lazyflag\
-    \ = true;\n            }\n        }\n    }\n    static inline void eval(const\
-    \ node_ptr& nd, int k) {\n        assert(0 <= k && k < nd->level());\n       \
-    \ if (k != 0 && nd->nxt[k].lazyflag) {\n            for (auto ptr = nd; ptr !=\
-    \ nd->nxt[k].node;\n                 ptr = ptr->nxt[k - 1].node) {\n         \
-    \       all_apply(ptr, k - 1, nd->nxt[k].lazy);\n            }\n            nd->nxt[k].lazyflag\
-    \ = false;\n        }\n    }\n    static inline void all_eval(const nodepair&\
-    \ sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n        rrep\
-    \ (i, sl.first->level(), 1) {\n            while (cnt + nd->nxt[i].dist <= k)\
-    \ {\n                cnt += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n\
-    \            }\n            eval(nd, i);\n        }\n    }\n    static inline\
-    \ void calc(const node_ptr& l, int k) {\n        assert(1 <= k && k < l->level());\n\
-    \        l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr ptr = l->nxt[k\
-    \ - 1].node; ptr != l->nxt[k].node;\n             ptr = ptr->nxt[k - 1].node)\
-    \ {\n            l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n   \
-    \     }\n    }\n    static inline void all_calc(const nodepair& sl, int k) {\n\
-    \        auto nd = sl.first;\n        int cnt = 0;\n        std::vector<node_ptr>\
-    \ nds(sl.first->level());\n        rrep (i, sl.first->level(), 1) {\n        \
-    \    while (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n\
-    \                nd = nd->nxt[i].node;\n            }\n            nds[i] = nd;\n\
-    \        }\n        rep (i, 1, sl.first->level()) calc(nds[i], i);\n    }\n  \
-    \  static void match_level(nodepair& lhs, nodepair& rhs) {\n        const int\
-    \ llv = lhs.first->level(), rlv = rhs.second->level();\n        if (llv < rlv)\
-    \ {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
+    \ rnd) {\n        int level = 1;\n        while ((rnd() & 1) == 0) ++level;\n\
+    \        return level;\n    }\n    struct node;\n    using node_ptr = node*;\n\
+    \    struct next_node {\n        node_ptr node;\n        int dist;\n        T\
+    \ sm;\n        U lazy;\n        bool lazyflag;\n        next_node(node_ptr n,\
+    \ int d, const T& s)\n            : node(n), dist(d), sm(s), lazyflag(false) {}\n\
+    \        next_node(node_ptr n, int d, const T& s, const U& l)\n            : node(n),\
+    \ dist(d), sm(s), lazy(l), lazyflag(true) {}\n    };\n    struct node {\n    \
+    \    std::vector<next_node> nxt;\n        std::vector<node_ptr> prv;\n       \
+    \ int level() const {\n            assert(nxt.size() == prv.size());\n       \
+    \     return nxt.size();\n        }\n        node(Rand& rnd) : node(get_level(rnd))\
+    \ {}\n        node(int lev) : nxt(lev, {nullptr, 1, M::id()}), prv(lev, nullptr)\
+    \ {}\n    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n\
+    \    nodepair sl;\n    static inline void all_apply(const node_ptr& nd, int k,\
+    \ const U& x) {\n        assert(0 <= k && k < nd->level());\n        nd->nxt[k].sm\
+    \ = A::op(x, nd->nxt[k].sm);\n        if (k != 0) {\n            if (nd->nxt[k].lazyflag)\
+    \ {\n                nd->nxt[k].lazy = E::op(nd->nxt[k].lazy, x);\n          \
+    \  }\n            else {\n                nd->nxt[k].lazy = x;\n             \
+    \   nd->nxt[k].lazyflag = true;\n            }\n        }\n    }\n    static inline\
+    \ void eval(const node_ptr& nd, int k) {\n        assert(0 <= k && k < nd->level());\n\
+    \        if (k != 0 && nd->nxt[k].lazyflag) {\n            for (auto ptr = nd;\
+    \ ptr != nd->nxt[k].node;\n                 ptr = ptr->nxt[k - 1].node) {\n  \
+    \              all_apply(ptr, k - 1, nd->nxt[k].lazy);\n            }\n      \
+    \      nd->nxt[k].lazyflag = false;\n        }\n    }\n    static inline void\
+    \ all_eval(const nodepair& sl, int k) {\n        auto nd = sl.first;\n       \
+    \ int cnt = 0;\n        rrep (i, sl.first->level(), 1) {\n            while (cnt\
+    \ + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n       \
+    \         nd = nd->nxt[i].node;\n            }\n            eval(nd, i);\n   \
+    \     }\n    }\n    static inline void calc(const node_ptr& l, int k) {\n    \
+    \    assert(1 <= k && k < l->level());\n        l->nxt[k].sm = l->nxt[k - 1].sm;\n\
+    \        for (node_ptr ptr = l->nxt[k - 1].node; ptr != l->nxt[k].node;\n    \
+    \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
+    \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
+    \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
+    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, sl.first->level(),\
+    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
+    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
+    \            nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
+    \ i);\n    }\n    static void match_level(nodepair& lhs, nodepair& rhs) {\n  \
+    \      const int llv = lhs.first->level(), rlv = rhs.second->level();\n      \
+    \  if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
     \ {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv, {lhs.first->nxt.back()});\n\
     \            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n        \
     \    lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n     \
@@ -739,7 +739,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-26 01:53:08+09:00'
+  timestamp: '2022-07-26 02:18:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
