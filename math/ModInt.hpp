@@ -19,7 +19,7 @@ template<unsigned int mod> class StaticModInt : StaticModIntBase {
     static constexpr unsigned int inv998244353 [] = {0, 1, 499122177, 332748118, 748683265,
             598946612, 166374059, 855638017, 873463809, 443664157, 299473306};
   public:
-    StaticModInt() : StaticModInt(0) {}
+    StaticModInt() : val(0) {}
     template<class T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T v) {
         v %= (long long)mod;
         if (v < 0) v += (long long)mod;
@@ -138,7 +138,7 @@ template<int id> class DynamicModInt : DynamicModIntBase {
     unsigned int val;
     static unsigned int mod;
   public:
-    DynamicModInt() : DynamicModInt(0) {}
+    DynamicModInt() : val(0) {}
     template<class T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> DynamicModInt(T v) {
         v %= (long long)mod;
         if (v < 0) v += (long long)mod;
@@ -146,7 +146,10 @@ template<int id> class DynamicModInt : DynamicModIntBase {
     }
     unsigned int get() const { return val; }
     static unsigned int get_mod() { return mod; }
-    static void set_mod(unsigned int v) { mod = v; }
+    static void set_mod(unsigned int v) {
+        assert(v > 0);
+        mod = v;
+    }
     static DynamicModInt raw(unsigned int v) {
         DynamicModInt res;
         res.val = v;
