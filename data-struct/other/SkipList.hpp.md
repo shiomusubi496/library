@@ -322,16 +322,18 @@ data:
     \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
     \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
     \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
-    \        rrep (i, sl.first->level(), 1) {\n            while (cnt + nd->nxt[i].dist\
-    \ <= k) {\n                cnt += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n\
-    \            }\n            calc(nd, i);\n        }\n    }\n    static void match_level(nodepair&\
-    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
-    \        if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n           \
-    \ lhs.first->prv.resize(rlv, {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv,\
-    \ {lhs.first->nxt.back()});\n            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n\
-    \            lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n\
-    \        else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n     \
-    \       rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
+    \        std::vector<node_ptr> nds(sl.first->level());\n        rrep (i, sl.first->level(),\
+    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
+    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
+    \            nds[i] = nd;\n        }\n        rep (i, 1, sl.first->level()) calc(nds[i],\
+    \ i);\n    }\n    static void match_level(nodepair& lhs, nodepair& rhs) {\n  \
+    \      const int llv = lhs.first->level(), rlv = rhs.second->level();\n      \
+    \  if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
+    \ {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv, {lhs.first->nxt.back()});\n\
+    \            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n        \
+    \    lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n     \
+    \   else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n          \
+    \  rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
     \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(llv, {rhs.second->prv.back()});\n\
     \            rhs.second->nxt.resize(llv, {rhs.second->nxt.back()});\n        }\n\
     \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
@@ -438,7 +440,7 @@ data:
     \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
     \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
     \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
-    \     all_calc(sl, l);\n        all_eval(sl, r - 1);\n        all_calc(sl, r -\
+    \     all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl, r -\
     \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
     \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
     \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
@@ -541,17 +543,19 @@ data:
     \ - 1].node; ptr != l->nxt[k].node;\n             ptr = ptr->nxt[k - 1].node)\
     \ {\n            l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n   \
     \     }\n    }\n    static inline void all_calc(const nodepair& sl, int k) {\n\
-    \        auto nd = sl.first;\n        int cnt = 0;\n        rrep (i, sl.first->level(),\
-    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
-    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
-    \            calc(nd, i);\n        }\n    }\n    static void match_level(nodepair&\
-    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
-    \        if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n           \
-    \ lhs.first->prv.resize(rlv, {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv,\
-    \ {lhs.first->nxt.back()});\n            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n\
-    \            lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n\
-    \        else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n     \
-    \       rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
+    \        auto nd = sl.first;\n        int cnt = 0;\n        std::vector<node_ptr>\
+    \ nds(sl.first->level());\n        rrep (i, sl.first->level(), 1) {\n        \
+    \    while (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n\
+    \                nd = nd->nxt[i].node;\n            }\n            nds[i] = nd;\n\
+    \        }\n        rep (i, 1, sl.first->level()) calc(nds[i], i);\n    }\n  \
+    \  static void match_level(nodepair& lhs, nodepair& rhs) {\n        const int\
+    \ llv = lhs.first->level(), rlv = rhs.second->level();\n        if (llv < rlv)\
+    \ {\n            eval(lhs.first, llv - 1);\n            lhs.first->prv.resize(rlv,\
+    \ {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv, {lhs.first->nxt.back()});\n\
+    \            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n        \
+    \    lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n     \
+    \   else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n          \
+    \  rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
     \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(llv, {rhs.second->prv.back()});\n\
     \            rhs.second->nxt.resize(llv, {rhs.second->nxt.back()});\n        }\n\
     \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
@@ -658,7 +662,7 @@ data:
     \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
     \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
     \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
-    \     all_calc(sl, l);\n        all_eval(sl, r - 1);\n        all_calc(sl, r -\
+    \     all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl, r -\
     \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
     \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
     \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
@@ -731,7 +735,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-25 23:14:55+09:00'
+  timestamp: '2022-07-26 00:38:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
