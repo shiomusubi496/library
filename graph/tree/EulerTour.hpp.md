@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -446,17 +446,17 @@ data:
   isVerificationFile: false
   path: graph/tree/EulerTour.hpp
   requiredBy:
-  - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-07-10 23:06:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/EulerTour.hpp
 layout: document

@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -380,8 +380,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
-  - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-07-10 23:06:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

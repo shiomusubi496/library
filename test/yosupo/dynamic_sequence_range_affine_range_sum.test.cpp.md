@@ -1,15 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':x:'
+    path: data-struct/other/SkipList.hpp
+    title: SkipList
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
-    path: other/bitop.hpp
-    title: other/bitop.hpp
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -19,19 +16,22 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':question:'
+    path: random/Random.hpp
+    title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"test/yosupo/point_set_range_composite.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
+  bundledCode: "#line 1 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
     \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
@@ -386,95 +386,311 @@ data:
     \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
     \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
     \ id> ll DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
-    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
-    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
-    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
-    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
-    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
-    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 6 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class\
-    \ M> class SegmentTree {\n  protected:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n  public:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
-    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n; r += n;\n        T lsm = M::id(), rsm =\
-    \ M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1; r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const\
-    \ { return data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
-    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
-    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
-    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
-    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
-    \            while (l < n) {\n                    l <<= 1;\n                 \
-    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
-    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
-    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
-    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
-    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
-    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
-    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
-    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
-    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeMaximumQuery\
-    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
-    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
-    \ */\n#line 6 \"test/yosupo/point_set_range_composite.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main()\
-    \ {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    SegmentTree<Monoid::Composite<mint>>\
-    \ seg(A);\n    rep (Q) {\n        int t, a, b, c; cin >> t >> a >> b >> c;\n \
-    \       if (t == 0) seg.set(a, PMM{b, c});\n        else {\n            PMM p\
-    \ = seg.prod(a, b);\n            cout << p.first * c + p.second << endl;\n   \
-    \     }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/other/SkipList.hpp\"\
+    \n\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ Engine> class Random {\n  protected:\n    Engine rnd;\n  public:\n    using\
+    \ result_type = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
+    \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
+    \ {\n        return rnd();\n    }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value, \"\
+    template argument must be an integral type\");\n        assert(l <= r);\n    \
+    \    return std::uniform_int_distribution<IntType>{l, r}(rnd);\n    }\n    template<class\
+    \ RealType = double> RealType uniform_real(RealType l, RealType r) {\n       \
+    \ static_assert(std::is_floating_point<RealType>::value, \"template argument must\
+    \ be an floating point type\");\n        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {\n\
+    \        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
+    \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
+    \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
+    \n\ntemplate<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>\n\
+    class SkipList {\nprotected:\n    using M = typename A::M;\n    using E = typename\
+    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
+    \    static inline int get_level(Rand& rnd) {\n        int level = 1;\n      \
+    \  while (rnd() & 1) ++level;\n        return level;\n    }\n    struct node;\n\
+    \    using node_ptr = node*;\n    struct next_node {\n        node_ptr node;\n\
+    \        int dist;\n        T sm;\n        U lazy;\n        bool lazyflag;\n \
+    \       next_node(node_ptr n, int d, const T& s)\n            : node(n), dist(d),\
+    \ sm(s), lazyflag(false) {}\n        next_node(node_ptr n, int d, const T& s,\
+    \ const U& l)\n            : node(n), dist(d), sm(s), lazy(l), lazyflag(true)\
+    \ {}\n    };\n    struct node {\n        std::vector<next_node> nxt;\n       \
+    \ std::vector<node_ptr> prv;\n        int level() const {\n            assert(nxt.size()\
+    \ == prv.size());\n            return nxt.size();\n        }\n        node(Rand&\
+    \ rnd) : node(get_level(rnd)) {}\n        node(int lev) : nxt(lev, {nullptr, 1,\
+    \ M::id()}), prv(lev, nullptr) {}\n    };\n    using nodepair = std::pair<node_ptr,\
+    \ node_ptr>;\n    Rand rnd;\n    nodepair sl;\n    static inline void all_apply(const\
+    \ node_ptr& nd, int k, const U& x) {\n        assert(0 <= k && k < nd->level());\n\
+    \        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);\n        if (k != 0) {\n   \
+    \         if (nd->nxt[k].lazyflag) {\n                nd->nxt[k].lazy = E::op(nd->nxt[k].lazy,\
+    \ x);\n            }\n            else {\n                nd->nxt[k].lazy = x;\n\
+    \                nd->nxt[k].lazyflag = true;\n            }\n        }\n    }\n\
+    \    static inline void eval(const node_ptr& nd, int k) {\n        assert(0 <=\
+    \ k && k < nd->level());\n        if (k != 0 && nd->nxt[k].lazyflag) {\n     \
+    \       for (auto ptr = nd; ptr != nd->nxt[k].node;\n                 ptr = ptr->nxt[k\
+    \ - 1].node) {\n                all_apply(ptr, k - 1, nd->nxt[k].lazy);\n    \
+    \        }\n            nd->nxt[k].lazyflag = false;\n        }\n    }\n    static\
+    \ inline void all_eval(const nodepair& sl, int k) {\n        auto nd = sl.first;\n\
+    \        int cnt = 0;\n        rrep (i, sl.first->level(), 1) {\n            while\
+    \ (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n  \
+    \              nd = nd->nxt[i].node;\n            }\n            eval(nd, i);\n\
+    \        }\n    }\n    static inline void calc(const node_ptr& l, int k) {\n \
+    \       assert(1 <= k && k < l->level());\n        l->nxt[k].sm = l->nxt[k - 1].sm;\n\
+    \        for (node_ptr ptr = l->nxt[k - 1].node; ptr != l->nxt[k].node;\n    \
+    \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
+    \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
+    \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
+    \        rrep (i, sl.first->level(), 1) {\n            while (cnt + nd->nxt[i].dist\
+    \ <= k) {\n                cnt += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n\
+    \            }\n            calc(nd, i);\n        }\n    }\n    static void match_level(nodepair&\
+    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
+    \        if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n           \
+    \ lhs.first->prv.resize(rlv, {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv,\
+    \ {lhs.first->nxt.back()});\n            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n\
+    \            lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n\
+    \        else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n     \
+    \       rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(llv, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(llv, {rhs.second->nxt.back()});\n        }\n\
+    \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
+    \        assert(lhs.first != rhs.first);\n        assert(lhs.second != rhs.second);\n\
+    \        if (lhs.first == lhs.second) {\n            delete lhs.first;\n     \
+    \       return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
+    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
+    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
+    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
+    \            l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n    \
+    \    }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
+    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \            const auto lp = std::move(rhs.first->prv.back());\n            const\
+    \ auto l = lp->nxt[h - 1];\n            const auto r = std::move(rhs.first->nxt.back());\n\
+    \            eval(lp, h - 1);\n            eval(rhs.first, h - 1);\n         \
+    \   rhs.first->prv.pop_back();\n            rhs.first->nxt.pop_back();\n     \
+    \       lp->nxt[h - 1] = {r.node, l.dist + r.dist, M::op(l.sm, r.sm)};\n     \
+    \       r.node->prv[h - 1] = lp;\n        }\n        if (lev >= lhs.first->level())\
+    \ {\n            eval(lhs.first, lhs.first->level() - 1);\n            eval(rhs.first,\
+    \ lhs.first->level() - 1);\n            lhs.first->prv.resize(lev + 1, {lhs.first->prv.back()});\n\
+    \            lhs.first->nxt.resize(lev, {lhs.first->nxt.back()});\n          \
+    \  rhs.first->prv.resize(lev, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(lev,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(lev, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(lev + 1, {rhs.second->nxt.back()});\n    \
+    \        const auto& lp = rhs.first->prv.back();\n            const auto& l =\
+    \ lp->nxt[lev - 1];\n            const auto& r = rhs.first->nxt.back();\n    \
+    \        lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist,\n          \
+    \                              M::op(l.sm, r.sm));\n            rhs.second->prv.push_back(lhs.first);\n\
+    \        }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        if (k == 0) {\n            node_ptr np = new node(1);\n            return\
+    \ {{np, np}, std::move(sl)};\n        }\n        if (k == n) {\n            node_ptr\
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
+    \        std::vector<int> idx(h);\n        lft[h - 1] = sl.first;\n        idx[h\
+    \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
+    \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
+    \ < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n                lft[i]\
+    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, h, 1) eval(lft[i],\
+    \ i);\n        node_ptr npl = new node(h);\n        node_ptr npr = lft[0]->nxt[0].node;\n\
+    \        rep (i, h) {\n            const auto l = lft[i];\n            const auto\
+    \ r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n      \
+    \      l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i] =\
+    \ l;\n            if (i != 0) calc(l, i);\n            if (npr == r) {\n     \
+    \           r->prv[i] = nullptr;\n            }\n            else {\n        \
+    \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
+    \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
+    \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
+    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl),\
+    \ rnd(rnd) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)),\
+    \ rnd(rnd) {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n    \
+    \    int cnt = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level())\
+    \ {\n            while (cnt + nw->nxt[i].dist <= k) {\n                cnt +=\
+    \ nw->nxt[i].dist;\n                nw = nw->nxt[i].node;\n            }\n   \
+    \     }\n        return nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand())\
+    \ {}\n    SkipList(const Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1);\
+    \ }\n    SkipList(const std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd)\
+    \ {\n        init(v);\n    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(),\
+    \ other.rnd) {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const\
+    \ SkipList& other) {\n        if (this == &other) return *this;\n        return\
+    \ *this = SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n\
+    \    void init(const std::vector<T>& v) {\n        const int n = v.size();\n \
+    \       std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
+    \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
+    \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
+    \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
+    \ 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n        nd[0]->prv[0]\
+    \ = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n        rep (i,\
+    \ 1, lev[0]) {\n            std::vector<int> idx;\n            rep (j, n + 1)\
+    \ {\n                if (lev[j] > i) idx.push_back(j);\n            }\n      \
+    \      const int m = idx.size();\n            rep (j, m - 1) {\n             \
+    \   nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n             \
+    \                         nd[idx[j]]->nxt[i - 1].sm};\n                for (node_ptr\
+    \ ptr = nd[idx[j]]->nxt[i - 1].node;\n                     ptr != nd[idx[j + 1]];\
+    \ ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm =\n\
+    \                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n \
+    \               }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n    \
+    \        }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
+    \ 1]]->nxt[i] = {nullptr, 1, M::id()};\n        }\n        sl = {nd[0], nd[n]};\n\
+    \    }\n    int size() const { return sl.first->nxt.back().dist; }\n    bool empty()\
+    \ const { return size() == 0; }\n    void insert(int k, const T& sm) {\n     \
+    \   assert(0 <= k && k <= size());\n        auto s = split(std::move(sl), k);\n\
+    \        nodepair p{new node(1), new node(1)};\n        p.first->nxt[0] = {p.second,\
+    \ 1, sm};\n        p.second->prv[0] = p.first;\n        sl = merge(merge(std::move(s.first),\
+    \ std::move(p), rnd),\n                   std::move(s.second), rnd);\n    }\n\
+    \    void erase(int k) {\n        assert(0 <= k && k < size());\n        auto\
+    \ s = split(std::move(sl), k);\n        auto s2 = split(std::move(s.second), 1);\n\
+    \        sl = merge(std::move(s.first), std::move(s2.second), rnd);\n    }\n \
+    \   T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
+    \        all_eval(sl, l);\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ l);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (l + np->nxt[t].dist > r) break;\n                l += np->nxt[t].dist;\n\
+    \                sm = M::op(sm, np->nxt[t].sm);\n                np = np->nxt[t].node;\n\
+    \            }\n        }\n        return sm;\n    }\n    T all_prod() const {\
+    \ return sl.first->nxt.back().sm; }\n    T get(int k) const {\n        assert(0\
+    \ <= k && k < size());\n        all_eval(sl, k);\n        return get_ptr(sl, k)->nxt[0].sm;\n\
+    \    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l\
+    \ <= r && r <= size());\n        all_eval(sl, l);\n        all_eval(sl, r - 1);\n\
+    \        auto np = get_ptr(sl, l);\n        rrep (i, sl.first->level()) {\n  \
+    \          while (1) {\n                int t = std::min((int)i, np->level() -\
+    \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
+    \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
+    \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
+    \     all_calc(sl, l);\n        all_eval(sl, r - 1);\n        all_calc(sl, r -\
+    \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
+    \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
+    \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
+    \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
+    \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
+    \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
+    \        if (l == size()) return size();\n        all_eval(sl, l);\n        auto\
+    \ np = get_ptr(sl, l);\n        T sm = M::id();\n        rrep (i, sl.first->level())\
+    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
+    \ - 1);\n                if (t != np->level() - 1) eval(np, t + 1);\n        \
+    \        if (!cond(M::op(sm, np->nxt[t].sm))) break;\n                sm = M::op(sm,\
+    \ np->nxt[t].sm);\n                l += np->nxt[t].dist;\n                np =\
+    \ np->nxt[t].node;\n                if (np == sl.second) return size();\n    \
+    \        }\n        }\n        return l;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) const {\n        assert(0 <= r && r <= size());\n        if\
+    \ (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ r);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (t != np->level() - 1) eval(np->prv[t], t + 1);\n        \
+    \        if (!cond(M::op(sm, np->prv[t]->nxt[t].sm))) break;\n               \
+    \ sm = M::op(sm, np->prv[t]->nxt[t].sm);\n                r -= np->prv[t]->nxt[t].dist;\n\
+    \                np = np->prv[t];\n                if (np == sl.first) return\
+    \ 0;\n            }\n        }\n        return r;\n    }\n    std::vector<T> get_data()\
+    \ const {\n        rrep (i, sl.first->level(), 1) {\n            for (node_ptr\
+    \ ptr = sl.first; ptr != sl.second;\n                 ptr = ptr->nxt[i].node)\
+    \ {\n                eval(ptr, i);\n            }\n        }\n        std::vector<T>\
+    \ res;\n        res.reserve(size());\n        for (node_ptr ptr = sl.first; ptr\
+    \ != sl.second;\n             ptr = ptr->nxt[0].node) {\n            res.push_back(ptr->nxt[0].sm);\n\
+    \        }\n        return res;\n    }\n    friend SkipList merge(SkipList lhs,\
+    \ SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
+    \ lhs.rnd), lhs.rnd};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first),\
+    \ sl.rnd},\n                SkipList{std::move(s.second), sl.rnd}};\n    }\n};\n\
+    \ntemplate<class A, class Rand> class SkipList<A, Rand, true> {\nprotected:\n\
+    \    using Base = SkipList<Monoid::MultiAction<A>, Rand>;\n    using T_ = typename\
+    \ A::M::value_type;\n    using U_ = typename A::E::value_type;\n    Base sl;\n\
+    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
+    \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
+    \       std::vector<elm> res(n);\n        rep (i, n) res[i] = {v[i], 1};\n   \
+    \     return res;\n    }\n    SkipList(const Base& other) : sl(other) {}\n   \
+    \ SkipList(Base&& other) : sl(std::move(other)) {}\n\npublic:\n    SkipList()\
+    \ : SkipList(Rand()) {}\n    SkipList(const Rand& rnd) : sl(rnd) {}\n    SkipList(const\
+    \ std::vector<T_>& v, const Rand& rnd = Rand())\n        : sl(get_elm_vec(v),\
+    \ rnd) {}\n    void init(const std::vector<T_>& v) { sl.init(get_elm_vec(v));\
+    \ }\n    int size() const { return sl.size(); }\n    bool empty() const { return\
+    \ sl.empty(); }\n    void insert(int k, const T_& sm) { sl.insert(k, {sm, 1});\
+    \ }\n    void erase(int k) { sl.erase(k); }\n    T_ prod(int l, int r) const {\
+    \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
+    \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
+    \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
+    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) { return {upd(e.val),\
+    \ e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k, {x, 1}); }\n\
+    \    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class C>\
+    \ int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\
+    \ [&](const elm& e) { return cond(e.val); });\n    }\n    template<class C> int\
+    \ min_left(int r, const C& cond) const {\n        return sl.min_left(r, [&](const\
+    \ elm& e) { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const\
+    \ {\n        std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
+    \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
+    \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
+    \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
+    \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
+    \ docs/SkipList.md\n */\n#line 6 \"test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    SkipList<Monoid::AffineSum<mint>>\
+    \ sl(A), slrev(vector<mint>(rall(A)));\n    rep (Q) {\n        int t; cin >> t;\n\
+    \        if (t == 0) {\n            int k; cin >> k;\n            mint x; cin\
+    \ >> x;\n            sl.insert(k, x);\n            slrev.insert(slrev.size() -\
+    \ k, x);\n        }\n        else if (t == 1) {\n            int k; cin >> k;\n\
+    \            sl.erase(k);\n            slrev.erase(slrev.size() - k - 1);\n  \
+    \      }\n        else if (t == 2) {\n            int l, r; cin >> l >> r;\n \
+    \           auto s11 = split(std::move(sl), l);\n            auto s12 = split(std::move(s11.second),\
+    \ r - l);\n            int n = slrev.size();\n            auto s21 = split(std::move(slrev),\
+    \ n - r);\n            auto s22 = split(std::move(s21.second), r - l);\n     \
+    \       sl = merge(merge(std::move(s11.first), std::move(s22.first)), std::move(s12.second));\n\
+    \            slrev = merge(merge(std::move(s21.first), std::move(s12.first)),\
+    \ std::move(s22.second));\n        }\n        else if (t == 3) {\n           \
+    \ int l, r; cin >> l >> r;\n            mint b, c; cin >> b >> c;\n          \
+    \  sl.apply(l, r, {b, c});\n            slrev.apply(slrev.size() - r, slrev.size()\
+    \ - l, {b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
+    \ r;\n            cout << sl.prod(l, r) << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
     \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid2.hpp\"\n\
-    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/segment/SegmentTree.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
-    \ >> A;\n    SegmentTree<Monoid::Composite<mint>> seg(A);\n    rep (Q) {\n   \
-    \     int t, a, b, c; cin >> t >> a >> b >> c;\n        if (t == 0) seg.set(a,\
-    \ PMM{b, c});\n        else {\n            PMM p = seg.prod(a, b);\n         \
-    \   cout << p.first * c + p.second << endl;\n        }\n    }\n}\n"
+    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/other/SkipList.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    SkipList<Monoid::AffineSum<mint>>\
+    \ sl(A), slrev(vector<mint>(rall(A)));\n    rep (Q) {\n        int t; cin >> t;\n\
+    \        if (t == 0) {\n            int k; cin >> k;\n            mint x; cin\
+    \ >> x;\n            sl.insert(k, x);\n            slrev.insert(slrev.size() -\
+    \ k, x);\n        }\n        else if (t == 1) {\n            int k; cin >> k;\n\
+    \            sl.erase(k);\n            slrev.erase(slrev.size() - k - 1);\n  \
+    \      }\n        else if (t == 2) {\n            int l, r; cin >> l >> r;\n \
+    \           auto s11 = split(std::move(sl), l);\n            auto s12 = split(std::move(s11.second),\
+    \ r - l);\n            int n = slrev.size();\n            auto s21 = split(std::move(slrev),\
+    \ n - r);\n            auto s22 = split(std::move(s21.second), r - l);\n     \
+    \       sl = merge(merge(std::move(s11.first), std::move(s22.first)), std::move(s12.second));\n\
+    \            slrev = merge(merge(std::move(s21.first), std::move(s12.first)),\
+    \ std::move(s22.second));\n        }\n        else if (t == 3) {\n           \
+    \ int l, r; cin >> l >> r;\n            mint b, c; cin >> b >> c;\n          \
+    \  sl.apply(l, r, {b, c});\n            slrev.apply(slrev.size() - r, slrev.size()\
+    \ - l, {b, c});\n        }\n        else {\n            int l, r; cin >> l >>\
+    \ r;\n            cout << sl.prod(l, r) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - other/monoid2.hpp
   - other/monoid.hpp
   - math/ModInt.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - other/bitop.hpp
+  - data-struct/other/SkipList.hpp
+  - random/Random.hpp
   isVerificationFile: true
-  path: test/yosupo/point_set_range_composite.test.cpp
+  path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-25 23:14:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/point_set_range_composite.test.cpp
+documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/point_set_range_composite.test.cpp
-- /verify/test/yosupo/point_set_range_composite.test.cpp.html
-title: test/yosupo/point_set_range_composite.test.cpp
+- /verify/test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+- /verify/test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp.html
+title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 ---

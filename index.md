@@ -15,7 +15,7 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
     - icon: ':heavy_check_mark:'
@@ -185,7 +185,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -229,18 +229,18 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':warning:'
@@ -460,6 +460,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cycle_detection.test.cpp
       title: test/yosupo/cycle_detection.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp

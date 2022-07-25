@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -244,8 +244,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/yosupo/shortest_path.test.cpp
   - test/yosupo/tree_diameter.test.cpp
+  - test/yosupo/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document
 redirect_from:

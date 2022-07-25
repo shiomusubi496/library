@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SkipList.md
     document_title: SkipList
@@ -283,179 +286,444 @@ data:
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;    \
     \  Random32 rand32;\nusing Random64 = Random<std::mt19937_64>;   Random64 rand64;\n\
     \n/**\n * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
-    \n\nusing M = Monoid::Max<ll>;\nusing Rand = Random32;\n\nclass SkipList {\n \
-    \ protected:\n    using T = typename M::value_type;\n    static inline int get_level(Rand&\
-    \ rnd) {\n        int level = 1;\n        while (rnd() & 1) ++level;\n       \
-    \ return level;\n    }\n    struct node;\n    using node_ptr = node*;\n    struct\
-    \ next_node {\n        node_ptr node;\n        int dist;\n        T sm;\n    };\n\
-    \    struct node {\n        std::vector<next_node> nxt, prv;\n        int level()\
-    \ const {\n            assert(nxt.size() == prv.size());\n            return nxt.size();\n\
-    \        }\n        node(Rand& rnd) : node(get_level(rnd)) {}\n        node(int\
-    \ lev) : nxt(lev, {nullptr, 0, M::id()}), prv(lev, {nullptr, 0, M::id()}) {}\n\
-    \    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n\
-    \    nodepair sl;\n    static inline void calc(const node_ptr& l, int k) {\n \
-    \       l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr ptr = l->nxt[k\
-    \ - 1].node; ptr != l->nxt[k].node; ptr = ptr->nxt[k - 1].node) {\n          \
-    \  l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n        }\n      \
-    \  l->nxt[k].node->prv[k].sm = l->nxt[k].sm;\n    }\n    static void match_level(nodepair&\
-    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
-    \        if (llv < rlv) {\n            lhs.first->prv.resize(rlv, next_node(lhs.first->prv.back()));\n\
-    \            lhs.first->nxt.resize(rlv, next_node(lhs.first->nxt.back()));\n \
-    \           lhs.second->prv.resize(rlv, next_node(lhs.second->prv.back()));\n\
-    \            lhs.second->nxt.resize(rlv, next_node(lhs.second->nxt.back()));\n\
-    \        }\n        else if (llv > rlv) {\n            rhs.first->prv.resize(llv,\
-    \ next_node(rhs.first->prv.back()));\n            rhs.first->nxt.resize(llv, next_node(rhs.first->nxt.back()));\n\
-    \            rhs.second->prv.resize(llv, next_node(rhs.second->prv.back()));\n\
-    \            rhs.second->nxt.resize(llv, next_node(rhs.second->nxt.back()));\n\
-    \        }\n    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand&\
-    \ rnd) {\n        assert(lhs.first != rhs.first);\n        assert(lhs.second !=\
-    \ rhs.second);\n        if (lhs.first == lhs.second) {\n            delete lhs.first;\n\
-    \            return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
-    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
-    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
-    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
-    \            l.node->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n\
-    \        }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
-    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
-    \            const auto& l = std::move(rhs.first->prv.back()); rhs.first->prv.pop_back();\n\
-    \            const auto& r = std::move(rhs.first->nxt.back()); rhs.first->nxt.pop_back();\n\
-    \            T sm = M::op(l.sm, r.sm);\n            l.node->nxt[h - 1] = {r.node,\
-    \ l.dist + r.dist, sm};\n            r.node->prv[h - 1] = {l.node, l.dist + r.dist,\
-    \ std::move(sm)};\n        }\n        if (lev >= rhs.first->level()) {\n     \
-    \       lhs.first->prv.resize(lev + 1, next_node(lhs.first->prv.back()));\n  \
-    \          lhs.first->nxt.resize(lev, next_node(lhs.first->nxt.back()));\n   \
-    \         rhs.first->prv.resize(lev, next_node(rhs.first->prv.back()));\n    \
-    \        rhs.first->nxt.resize(lev, next_node(rhs.first->nxt.back()));\n     \
-    \       rhs.second->prv.resize(lev, next_node(rhs.second->prv.back()));\n    \
-    \        rhs.second->nxt.resize(lev + 1, next_node(rhs.second->nxt.back()));\n\
-    \            const auto& l = rhs.first->prv.back();\n            const auto& r\
-    \ = rhs.first->nxt.back();\n            T sm = M::op(l.sm, r.sm);\n          \
-    \  lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist, sm);\n           \
-    \ rhs.second->prv.emplace_back(lhs.first, l.dist + r.dist, std::move(sm));\n \
-    \       }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
-    \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
-    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
-    \ np = new node(sl.first->level());\n            return {std::move(sl), {np, np}};\n\
-    \        }\n        if (k == 0) {\n            node_ptr np = new node(sl.first->level());\n\
-    \            return {{np, np}, std::move(sl)};\n        }\n        if (k == n)\
-    \ {\n            node_ptr np = new node(sl.first->level());\n            return\
-    \ {std::move(sl), {np, np}};\n        }\n        const int h = sl.first->level();\n\
-    \        std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n   \
-    \     lft[h - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1)\
-    \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
-    \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
-    \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
-    \      }\n        }\n        node_ptr npl = new node(h);\n        node_ptr npr\
-    \ = lft[0]->nxt[0].node;\n        rep (i, h) {\n            const auto& l = lft[i];\n\
-    \            const auto& r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n\
-    \            l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i]\
-    \ = {l, k - idx[i], l->nxt[i].sm};\n            if (i != 0) calc(l, i);\n    \
-    \        if (npr == r) {\n                r->prv[i] = {nullptr, 0, M::id()};\n\
-    \            }\n            else {\n                npr->nxt.emplace_back(r, d\
-    \ + idx[i] - k, M::id());\n                r->prv[i] = {npr, d + idx[i] - k, M::id()};\n\
-    \                calc(npr, i);\n            }\n        }\n        return {{sl.first,\
-    \ npl}, {npr, sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand&\
-    \ rnd) : sl(sl), rnd(rnd) {}\n  public:\n    SkipList() : SkipList(Rand()) {}\n\
-    \    SkipList(const Rand &rnd) : rnd(rnd) {\n        sl.first = sl.second = new\
-    \ node(1);\n    }\n    SkipList(const SkipList&) = delete;\n    SkipList(SkipList&&)\
-    \ = default;\n    SkipList& operator=(const SkipList&) = delete;\n    SkipList&\
-    \ operator=(SkipList&&) = default;\n    int size() const { return sl.first->nxt[0].dist;\
-    \ }\n    bool empty() const { return size() == 0; }\n    friend SkipList merge(SkipList\
-    \ lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
-    \ lhs.rnd), lhs.rnd};\n    }\n    friend SkipList merge(SkipList&& lhs, SkipList&&\
-    \ rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd),\
-    \ lhs.rnd};\n    }\n    friend SkipList merge(SkipList lhs, SkipList&& rhs) {\n\
-    \        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n\
-    \    }\n    friend SkipList merge(SkipList&& lhs, SkipList rhs) {\n        return\
-    \ {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n    }\n};\n\
-    \n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n#include \"../../random/Random.hpp\"\n\nusing M = Monoid::Max<ll>;\nusing Rand\
-    \ = Random32;\n\nclass SkipList {\n  protected:\n    using T = typename M::value_type;\n\
+    \n\ntemplate<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>\n\
+    class SkipList {\nprotected:\n    using M = typename A::M;\n    using E = typename\
+    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
     \    static inline int get_level(Rand& rnd) {\n        int level = 1;\n      \
     \  while (rnd() & 1) ++level;\n        return level;\n    }\n    struct node;\n\
     \    using node_ptr = node*;\n    struct next_node {\n        node_ptr node;\n\
-    \        int dist;\n        T sm;\n    };\n    struct node {\n        std::vector<next_node>\
-    \ nxt, prv;\n        int level() const {\n            assert(nxt.size() == prv.size());\n\
-    \            return nxt.size();\n        }\n        node(Rand& rnd) : node(get_level(rnd))\
-    \ {}\n        node(int lev) : nxt(lev, {nullptr, 0, M::id()}), prv(lev, {nullptr,\
-    \ 0, M::id()}) {}\n    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n\
-    \    Rand rnd;\n    nodepair sl;\n    static inline void calc(const node_ptr&\
-    \ l, int k) {\n        l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr\
-    \ ptr = l->nxt[k - 1].node; ptr != l->nxt[k].node; ptr = ptr->nxt[k - 1].node)\
-    \ {\n            l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n   \
-    \     }\n        l->nxt[k].node->prv[k].sm = l->nxt[k].sm;\n    }\n    static\
-    \ void match_level(nodepair& lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(),\
-    \ rlv = rhs.second->level();\n        if (llv < rlv) {\n            lhs.first->prv.resize(rlv,\
-    \ next_node(lhs.first->prv.back()));\n            lhs.first->nxt.resize(rlv, next_node(lhs.first->nxt.back()));\n\
-    \            lhs.second->prv.resize(rlv, next_node(lhs.second->prv.back()));\n\
-    \            lhs.second->nxt.resize(rlv, next_node(lhs.second->nxt.back()));\n\
-    \        }\n        else if (llv > rlv) {\n            rhs.first->prv.resize(llv,\
-    \ next_node(rhs.first->prv.back()));\n            rhs.first->nxt.resize(llv, next_node(rhs.first->nxt.back()));\n\
-    \            rhs.second->prv.resize(llv, next_node(rhs.second->prv.back()));\n\
-    \            rhs.second->nxt.resize(llv, next_node(rhs.second->nxt.back()));\n\
-    \        }\n    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand&\
-    \ rnd) {\n        assert(lhs.first != rhs.first);\n        assert(lhs.second !=\
-    \ rhs.second);\n        if (lhs.first == lhs.second) {\n            delete lhs.first;\n\
-    \            return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
+    \        int dist;\n        T sm;\n        U lazy;\n        bool lazyflag;\n \
+    \       next_node(node_ptr n, int d, const T& s)\n            : node(n), dist(d),\
+    \ sm(s), lazyflag(false) {}\n        next_node(node_ptr n, int d, const T& s,\
+    \ const U& l)\n            : node(n), dist(d), sm(s), lazy(l), lazyflag(true)\
+    \ {}\n    };\n    struct node {\n        std::vector<next_node> nxt;\n       \
+    \ std::vector<node_ptr> prv;\n        int level() const {\n            assert(nxt.size()\
+    \ == prv.size());\n            return nxt.size();\n        }\n        node(Rand&\
+    \ rnd) : node(get_level(rnd)) {}\n        node(int lev) : nxt(lev, {nullptr, 1,\
+    \ M::id()}), prv(lev, nullptr) {}\n    };\n    using nodepair = std::pair<node_ptr,\
+    \ node_ptr>;\n    Rand rnd;\n    nodepair sl;\n    static inline void all_apply(const\
+    \ node_ptr& nd, int k, const U& x) {\n        assert(0 <= k && k < nd->level());\n\
+    \        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);\n        if (k != 0) {\n   \
+    \         if (nd->nxt[k].lazyflag) {\n                nd->nxt[k].lazy = E::op(nd->nxt[k].lazy,\
+    \ x);\n            }\n            else {\n                nd->nxt[k].lazy = x;\n\
+    \                nd->nxt[k].lazyflag = true;\n            }\n        }\n    }\n\
+    \    static inline void eval(const node_ptr& nd, int k) {\n        assert(0 <=\
+    \ k && k < nd->level());\n        if (k != 0 && nd->nxt[k].lazyflag) {\n     \
+    \       for (auto ptr = nd; ptr != nd->nxt[k].node;\n                 ptr = ptr->nxt[k\
+    \ - 1].node) {\n                all_apply(ptr, k - 1, nd->nxt[k].lazy);\n    \
+    \        }\n            nd->nxt[k].lazyflag = false;\n        }\n    }\n    static\
+    \ inline void all_eval(const nodepair& sl, int k) {\n        auto nd = sl.first;\n\
+    \        int cnt = 0;\n        rrep (i, sl.first->level(), 1) {\n            while\
+    \ (cnt + nd->nxt[i].dist <= k) {\n                cnt += nd->nxt[i].dist;\n  \
+    \              nd = nd->nxt[i].node;\n            }\n            eval(nd, i);\n\
+    \        }\n    }\n    static inline void calc(const node_ptr& l, int k) {\n \
+    \       assert(1 <= k && k < l->level());\n        l->nxt[k].sm = l->nxt[k - 1].sm;\n\
+    \        for (node_ptr ptr = l->nxt[k - 1].node; ptr != l->nxt[k].node;\n    \
+    \         ptr = ptr->nxt[k - 1].node) {\n            l->nxt[k].sm = M::op(l->nxt[k].sm,\
+    \ ptr->nxt[k - 1].sm);\n        }\n    }\n    static inline void all_calc(const\
+    \ nodepair& sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n\
+    \        rrep (i, sl.first->level(), 1) {\n            while (cnt + nd->nxt[i].dist\
+    \ <= k) {\n                cnt += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n\
+    \            }\n            calc(nd, i);\n        }\n    }\n    static void match_level(nodepair&\
+    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
+    \        if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n           \
+    \ lhs.first->prv.resize(rlv, {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv,\
+    \ {lhs.first->nxt.back()});\n            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n\
+    \            lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n\
+    \        else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n     \
+    \       rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(llv, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(llv, {rhs.second->nxt.back()});\n        }\n\
+    \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
+    \        assert(lhs.first != rhs.first);\n        assert(lhs.second != rhs.second);\n\
+    \        if (lhs.first == lhs.second) {\n            delete lhs.first;\n     \
+    \       return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
     \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
     \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
     \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
-    \            l.node->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n\
-    \        }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
+    \            l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n    \
+    \    }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
     \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
-    \            const auto& l = std::move(rhs.first->prv.back()); rhs.first->prv.pop_back();\n\
-    \            const auto& r = std::move(rhs.first->nxt.back()); rhs.first->nxt.pop_back();\n\
-    \            T sm = M::op(l.sm, r.sm);\n            l.node->nxt[h - 1] = {r.node,\
-    \ l.dist + r.dist, sm};\n            r.node->prv[h - 1] = {l.node, l.dist + r.dist,\
-    \ std::move(sm)};\n        }\n        if (lev >= rhs.first->level()) {\n     \
-    \       lhs.first->prv.resize(lev + 1, next_node(lhs.first->prv.back()));\n  \
-    \          lhs.first->nxt.resize(lev, next_node(lhs.first->nxt.back()));\n   \
-    \         rhs.first->prv.resize(lev, next_node(rhs.first->prv.back()));\n    \
-    \        rhs.first->nxt.resize(lev, next_node(rhs.first->nxt.back()));\n     \
-    \       rhs.second->prv.resize(lev, next_node(rhs.second->prv.back()));\n    \
-    \        rhs.second->nxt.resize(lev + 1, next_node(rhs.second->nxt.back()));\n\
-    \            const auto& l = rhs.first->prv.back();\n            const auto& r\
-    \ = rhs.first->nxt.back();\n            T sm = M::op(l.sm, r.sm);\n          \
-    \  lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist, sm);\n           \
-    \ rhs.second->prv.emplace_back(lhs.first, l.dist + r.dist, std::move(sm));\n \
-    \       }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \            const auto lp = std::move(rhs.first->prv.back());\n            const\
+    \ auto l = lp->nxt[h - 1];\n            const auto r = std::move(rhs.first->nxt.back());\n\
+    \            eval(lp, h - 1);\n            eval(rhs.first, h - 1);\n         \
+    \   rhs.first->prv.pop_back();\n            rhs.first->nxt.pop_back();\n     \
+    \       lp->nxt[h - 1] = {r.node, l.dist + r.dist, M::op(l.sm, r.sm)};\n     \
+    \       r.node->prv[h - 1] = lp;\n        }\n        if (lev >= lhs.first->level())\
+    \ {\n            eval(lhs.first, lhs.first->level() - 1);\n            eval(rhs.first,\
+    \ lhs.first->level() - 1);\n            lhs.first->prv.resize(lev + 1, {lhs.first->prv.back()});\n\
+    \            lhs.first->nxt.resize(lev, {lhs.first->nxt.back()});\n          \
+    \  rhs.first->prv.resize(lev, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(lev,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(lev, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(lev + 1, {rhs.second->nxt.back()});\n    \
+    \        const auto& lp = rhs.first->prv.back();\n            const auto& l =\
+    \ lp->nxt[lev - 1];\n            const auto& r = rhs.first->nxt.back();\n    \
+    \        lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist,\n          \
+    \                              M::op(l.sm, r.sm));\n            rhs.second->prv.push_back(lhs.first);\n\
+    \        }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
     \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
     \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
-    \ np = new node(sl.first->level());\n            return {std::move(sl), {np, np}};\n\
-    \        }\n        if (k == 0) {\n            node_ptr np = new node(sl.first->level());\n\
-    \            return {{np, np}, std::move(sl)};\n        }\n        if (k == n)\
-    \ {\n            node_ptr np = new node(sl.first->level());\n            return\
-    \ {std::move(sl), {np, np}};\n        }\n        const int h = sl.first->level();\n\
-    \        std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n   \
-    \     lft[h - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1)\
-    \ {\n            lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n    \
-    \        while (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] +=\
-    \ lft[i]->nxt[i].dist;\n                lft[i] = lft[i]->nxt[i].node;\n      \
-    \      }\n        }\n        node_ptr npl = new node(h);\n        node_ptr npr\
-    \ = lft[0]->nxt[0].node;\n        rep (i, h) {\n            const auto& l = lft[i];\n\
-    \            const auto& r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n\
-    \            l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i]\
-    \ = {l, k - idx[i], l->nxt[i].sm};\n            if (i != 0) calc(l, i);\n    \
-    \        if (npr == r) {\n                r->prv[i] = {nullptr, 0, M::id()};\n\
-    \            }\n            else {\n                npr->nxt.emplace_back(r, d\
-    \ + idx[i] - k, M::id());\n                r->prv[i] = {npr, d + idx[i] - k, M::id()};\n\
-    \                calc(npr, i);\n            }\n        }\n        return {{sl.first,\
-    \ npl}, {npr, sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand&\
-    \ rnd) : sl(sl), rnd(rnd) {}\n  public:\n    SkipList() : SkipList(Rand()) {}\n\
-    \    SkipList(const Rand &rnd) : rnd(rnd) {\n        sl.first = sl.second = new\
-    \ node(1);\n    }\n    SkipList(const SkipList&) = delete;\n    SkipList(SkipList&&)\
-    \ = default;\n    SkipList& operator=(const SkipList&) = delete;\n    SkipList&\
-    \ operator=(SkipList&&) = default;\n    int size() const { return sl.first->nxt[0].dist;\
-    \ }\n    bool empty() const { return size() == 0; }\n    friend SkipList merge(SkipList\
-    \ lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
-    \ lhs.rnd), lhs.rnd};\n    }\n    friend SkipList merge(SkipList&& lhs, SkipList&&\
-    \ rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd),\
-    \ lhs.rnd};\n    }\n    friend SkipList merge(SkipList lhs, SkipList&& rhs) {\n\
-    \        return {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n\
-    \    }\n    friend SkipList merge(SkipList&& lhs, SkipList rhs) {\n        return\
-    \ {merge(std::move(lhs.sl), std::move(rhs.sl), lhs.rnd), lhs.rnd};\n    }\n};\n\
-    \n/**\n * @brief SkipList\n * @docs docs/SkipList.md\n */\n"
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        if (k == 0) {\n            node_ptr np = new node(1);\n            return\
+    \ {{np, np}, std::move(sl)};\n        }\n        if (k == n) {\n            node_ptr\
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
+    \        std::vector<int> idx(h);\n        lft[h - 1] = sl.first;\n        idx[h\
+    \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
+    \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
+    \ < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n                lft[i]\
+    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, h, 1) eval(lft[i],\
+    \ i);\n        node_ptr npl = new node(h);\n        node_ptr npr = lft[0]->nxt[0].node;\n\
+    \        rep (i, h) {\n            const auto l = lft[i];\n            const auto\
+    \ r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n      \
+    \      l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i] =\
+    \ l;\n            if (i != 0) calc(l, i);\n            if (npr == r) {\n     \
+    \           r->prv[i] = nullptr;\n            }\n            else {\n        \
+    \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
+    \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
+    \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
+    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl),\
+    \ rnd(rnd) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)),\
+    \ rnd(rnd) {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n    \
+    \    int cnt = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level())\
+    \ {\n            while (cnt + nw->nxt[i].dist <= k) {\n                cnt +=\
+    \ nw->nxt[i].dist;\n                nw = nw->nxt[i].node;\n            }\n   \
+    \     }\n        return nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand())\
+    \ {}\n    SkipList(const Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1);\
+    \ }\n    SkipList(const std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd)\
+    \ {\n        init(v);\n    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(),\
+    \ other.rnd) {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const\
+    \ SkipList& other) {\n        if (this == &other) return *this;\n        return\
+    \ *this = SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n\
+    \    void init(const std::vector<T>& v) {\n        const int n = v.size();\n \
+    \       std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
+    \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
+    \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
+    \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
+    \ 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n        nd[0]->prv[0]\
+    \ = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n        rep (i,\
+    \ 1, lev[0]) {\n            std::vector<int> idx;\n            rep (j, n + 1)\
+    \ {\n                if (lev[j] > i) idx.push_back(j);\n            }\n      \
+    \      const int m = idx.size();\n            rep (j, m - 1) {\n             \
+    \   nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n             \
+    \                         nd[idx[j]]->nxt[i - 1].sm};\n                for (node_ptr\
+    \ ptr = nd[idx[j]]->nxt[i - 1].node;\n                     ptr != nd[idx[j + 1]];\
+    \ ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm =\n\
+    \                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n \
+    \               }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n    \
+    \        }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
+    \ 1]]->nxt[i] = {nullptr, 1, M::id()};\n        }\n        sl = {nd[0], nd[n]};\n\
+    \    }\n    int size() const { return sl.first->nxt.back().dist; }\n    bool empty()\
+    \ const { return size() == 0; }\n    void insert(int k, const T& sm) {\n     \
+    \   assert(0 <= k && k <= size());\n        auto s = split(std::move(sl), k);\n\
+    \        nodepair p{new node(1), new node(1)};\n        p.first->nxt[0] = {p.second,\
+    \ 1, sm};\n        p.second->prv[0] = p.first;\n        sl = merge(merge(std::move(s.first),\
+    \ std::move(p), rnd),\n                   std::move(s.second), rnd);\n    }\n\
+    \    void erase(int k) {\n        assert(0 <= k && k < size());\n        auto\
+    \ s = split(std::move(sl), k);\n        auto s2 = split(std::move(s.second), 1);\n\
+    \        sl = merge(std::move(s.first), std::move(s2.second), rnd);\n    }\n \
+    \   T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
+    \        all_eval(sl, l);\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ l);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (l + np->nxt[t].dist > r) break;\n                l += np->nxt[t].dist;\n\
+    \                sm = M::op(sm, np->nxt[t].sm);\n                np = np->nxt[t].node;\n\
+    \            }\n        }\n        return sm;\n    }\n    T all_prod() const {\
+    \ return sl.first->nxt.back().sm; }\n    T get(int k) const {\n        assert(0\
+    \ <= k && k < size());\n        all_eval(sl, k);\n        return get_ptr(sl, k)->nxt[0].sm;\n\
+    \    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l\
+    \ <= r && r <= size());\n        all_eval(sl, l);\n        all_eval(sl, r - 1);\n\
+    \        auto np = get_ptr(sl, l);\n        rrep (i, sl.first->level()) {\n  \
+    \          while (1) {\n                int t = std::min((int)i, np->level() -\
+    \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
+    \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
+    \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
+    \     all_calc(sl, l);\n        all_eval(sl, r - 1);\n        all_calc(sl, r -\
+    \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
+    \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
+    \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
+    \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
+    \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
+    \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
+    \        if (l == size()) return size();\n        all_eval(sl, l);\n        auto\
+    \ np = get_ptr(sl, l);\n        T sm = M::id();\n        rrep (i, sl.first->level())\
+    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
+    \ - 1);\n                if (t != np->level() - 1) eval(np, t + 1);\n        \
+    \        if (!cond(M::op(sm, np->nxt[t].sm))) break;\n                sm = M::op(sm,\
+    \ np->nxt[t].sm);\n                l += np->nxt[t].dist;\n                np =\
+    \ np->nxt[t].node;\n                if (np == sl.second) return size();\n    \
+    \        }\n        }\n        return l;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) const {\n        assert(0 <= r && r <= size());\n        if\
+    \ (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ r);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (t != np->level() - 1) eval(np->prv[t], t + 1);\n        \
+    \        if (!cond(M::op(sm, np->prv[t]->nxt[t].sm))) break;\n               \
+    \ sm = M::op(sm, np->prv[t]->nxt[t].sm);\n                r -= np->prv[t]->nxt[t].dist;\n\
+    \                np = np->prv[t];\n                if (np == sl.first) return\
+    \ 0;\n            }\n        }\n        return r;\n    }\n    std::vector<T> get_data()\
+    \ const {\n        rrep (i, sl.first->level(), 1) {\n            for (node_ptr\
+    \ ptr = sl.first; ptr != sl.second;\n                 ptr = ptr->nxt[i].node)\
+    \ {\n                eval(ptr, i);\n            }\n        }\n        std::vector<T>\
+    \ res;\n        res.reserve(size());\n        for (node_ptr ptr = sl.first; ptr\
+    \ != sl.second;\n             ptr = ptr->nxt[0].node) {\n            res.push_back(ptr->nxt[0].sm);\n\
+    \        }\n        return res;\n    }\n    friend SkipList merge(SkipList lhs,\
+    \ SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
+    \ lhs.rnd), lhs.rnd};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first),\
+    \ sl.rnd},\n                SkipList{std::move(s.second), sl.rnd}};\n    }\n};\n\
+    \ntemplate<class A, class Rand> class SkipList<A, Rand, true> {\nprotected:\n\
+    \    using Base = SkipList<Monoid::MultiAction<A>, Rand>;\n    using T_ = typename\
+    \ A::M::value_type;\n    using U_ = typename A::E::value_type;\n    Base sl;\n\
+    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
+    \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
+    \       std::vector<elm> res(n);\n        rep (i, n) res[i] = {v[i], 1};\n   \
+    \     return res;\n    }\n    SkipList(const Base& other) : sl(other) {}\n   \
+    \ SkipList(Base&& other) : sl(std::move(other)) {}\n\npublic:\n    SkipList()\
+    \ : SkipList(Rand()) {}\n    SkipList(const Rand& rnd) : sl(rnd) {}\n    SkipList(const\
+    \ std::vector<T_>& v, const Rand& rnd = Rand())\n        : sl(get_elm_vec(v),\
+    \ rnd) {}\n    void init(const std::vector<T_>& v) { sl.init(get_elm_vec(v));\
+    \ }\n    int size() const { return sl.size(); }\n    bool empty() const { return\
+    \ sl.empty(); }\n    void insert(int k, const T_& sm) { sl.insert(k, {sm, 1});\
+    \ }\n    void erase(int k) { sl.erase(k); }\n    T_ prod(int l, int r) const {\
+    \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
+    \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
+    \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
+    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) { return {upd(e.val),\
+    \ e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k, {x, 1}); }\n\
+    \    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class C>\
+    \ int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\
+    \ [&](const elm& e) { return cond(e.val); });\n    }\n    template<class C> int\
+    \ min_left(int r, const C& cond) const {\n        return sl.min_left(r, [&](const\
+    \ elm& e) { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const\
+    \ {\n        std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
+    \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
+    \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
+    \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
+    \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
+    \ docs/SkipList.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n#include \"../../random/Random.hpp\"\n\ntemplate<class A, class Rand = Random32,\
+    \ bool = Monoid::has_mul_op<A>::value>\nclass SkipList {\nprotected:\n    using\
+    \ M = typename A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    static inline int get_level(Rand&\
+    \ rnd) {\n        int level = 1;\n        while (rnd() & 1) ++level;\n       \
+    \ return level;\n    }\n    struct node;\n    using node_ptr = node*;\n    struct\
+    \ next_node {\n        node_ptr node;\n        int dist;\n        T sm;\n    \
+    \    U lazy;\n        bool lazyflag;\n        next_node(node_ptr n, int d, const\
+    \ T& s)\n            : node(n), dist(d), sm(s), lazyflag(false) {}\n        next_node(node_ptr\
+    \ n, int d, const T& s, const U& l)\n            : node(n), dist(d), sm(s), lazy(l),\
+    \ lazyflag(true) {}\n    };\n    struct node {\n        std::vector<next_node>\
+    \ nxt;\n        std::vector<node_ptr> prv;\n        int level() const {\n    \
+    \        assert(nxt.size() == prv.size());\n            return nxt.size();\n \
+    \       }\n        node(Rand& rnd) : node(get_level(rnd)) {}\n        node(int\
+    \ lev) : nxt(lev, {nullptr, 1, M::id()}), prv(lev, nullptr) {}\n    };\n    using\
+    \ nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n    nodepair sl;\n\
+    \    static inline void all_apply(const node_ptr& nd, int k, const U& x) {\n \
+    \       assert(0 <= k && k < nd->level());\n        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);\n\
+    \        if (k != 0) {\n            if (nd->nxt[k].lazyflag) {\n             \
+    \   nd->nxt[k].lazy = E::op(nd->nxt[k].lazy, x);\n            }\n            else\
+    \ {\n                nd->nxt[k].lazy = x;\n                nd->nxt[k].lazyflag\
+    \ = true;\n            }\n        }\n    }\n    static inline void eval(const\
+    \ node_ptr& nd, int k) {\n        assert(0 <= k && k < nd->level());\n       \
+    \ if (k != 0 && nd->nxt[k].lazyflag) {\n            for (auto ptr = nd; ptr !=\
+    \ nd->nxt[k].node;\n                 ptr = ptr->nxt[k - 1].node) {\n         \
+    \       all_apply(ptr, k - 1, nd->nxt[k].lazy);\n            }\n            nd->nxt[k].lazyflag\
+    \ = false;\n        }\n    }\n    static inline void all_eval(const nodepair&\
+    \ sl, int k) {\n        auto nd = sl.first;\n        int cnt = 0;\n        rrep\
+    \ (i, sl.first->level(), 1) {\n            while (cnt + nd->nxt[i].dist <= k)\
+    \ {\n                cnt += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n\
+    \            }\n            eval(nd, i);\n        }\n    }\n    static inline\
+    \ void calc(const node_ptr& l, int k) {\n        assert(1 <= k && k < l->level());\n\
+    \        l->nxt[k].sm = l->nxt[k - 1].sm;\n        for (node_ptr ptr = l->nxt[k\
+    \ - 1].node; ptr != l->nxt[k].node;\n             ptr = ptr->nxt[k - 1].node)\
+    \ {\n            l->nxt[k].sm = M::op(l->nxt[k].sm, ptr->nxt[k - 1].sm);\n   \
+    \     }\n    }\n    static inline void all_calc(const nodepair& sl, int k) {\n\
+    \        auto nd = sl.first;\n        int cnt = 0;\n        rrep (i, sl.first->level(),\
+    \ 1) {\n            while (cnt + nd->nxt[i].dist <= k) {\n                cnt\
+    \ += nd->nxt[i].dist;\n                nd = nd->nxt[i].node;\n            }\n\
+    \            calc(nd, i);\n        }\n    }\n    static void match_level(nodepair&\
+    \ lhs, nodepair& rhs) {\n        const int llv = lhs.first->level(), rlv = rhs.second->level();\n\
+    \        if (llv < rlv) {\n            eval(lhs.first, llv - 1);\n           \
+    \ lhs.first->prv.resize(rlv, {lhs.first->prv.back()});\n            lhs.first->nxt.resize(rlv,\
+    \ {lhs.first->nxt.back()});\n            lhs.second->prv.resize(rlv, {lhs.second->prv.back()});\n\
+    \            lhs.second->nxt.resize(rlv, {lhs.second->nxt.back()});\n        }\n\
+    \        else if (llv > rlv) {\n            eval(rhs.second, rlv - 1);\n     \
+    \       rhs.first->prv.resize(llv, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(llv,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(llv, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(llv, {rhs.second->nxt.back()});\n        }\n\
+    \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
+    \        assert(lhs.first != rhs.first);\n        assert(lhs.second != rhs.second);\n\
+    \        if (lhs.first == lhs.second) {\n            delete lhs.first;\n     \
+    \       return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
+    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
+    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
+    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
+    \            l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n    \
+    \    }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
+    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \            const auto lp = std::move(rhs.first->prv.back());\n            const\
+    \ auto l = lp->nxt[h - 1];\n            const auto r = std::move(rhs.first->nxt.back());\n\
+    \            eval(lp, h - 1);\n            eval(rhs.first, h - 1);\n         \
+    \   rhs.first->prv.pop_back();\n            rhs.first->nxt.pop_back();\n     \
+    \       lp->nxt[h - 1] = {r.node, l.dist + r.dist, M::op(l.sm, r.sm)};\n     \
+    \       r.node->prv[h - 1] = lp;\n        }\n        if (lev >= lhs.first->level())\
+    \ {\n            eval(lhs.first, lhs.first->level() - 1);\n            eval(rhs.first,\
+    \ lhs.first->level() - 1);\n            lhs.first->prv.resize(lev + 1, {lhs.first->prv.back()});\n\
+    \            lhs.first->nxt.resize(lev, {lhs.first->nxt.back()});\n          \
+    \  rhs.first->prv.resize(lev, {rhs.first->prv.back()});\n            rhs.first->nxt.resize(lev,\
+    \ {rhs.first->nxt.back()});\n            rhs.second->prv.resize(lev, {rhs.second->prv.back()});\n\
+    \            rhs.second->nxt.resize(lev + 1, {rhs.second->nxt.back()});\n    \
+    \        const auto& lp = rhs.first->prv.back();\n            const auto& l =\
+    \ lp->nxt[lev - 1];\n            const auto& r = rhs.first->nxt.back();\n    \
+    \        lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist,\n          \
+    \                              M::op(l.sm, r.sm));\n            rhs.second->prv.push_back(lhs.first);\n\
+    \        }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        if (k == 0) {\n            node_ptr np = new node(1);\n            return\
+    \ {{np, np}, std::move(sl)};\n        }\n        if (k == n) {\n            node_ptr\
+    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
+    \        const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
+    \        std::vector<int> idx(h);\n        lft[h - 1] = sl.first;\n        idx[h\
+    \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
+    \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
+    \ < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n                lft[i]\
+    \ = lft[i]->nxt[i].node;\n            }\n        }\n        rrep (i, h, 1) eval(lft[i],\
+    \ i);\n        node_ptr npl = new node(h);\n        node_ptr npr = lft[0]->nxt[0].node;\n\
+    \        rep (i, h) {\n            const auto l = lft[i];\n            const auto\
+    \ r = lft[i]->nxt[i].node;\n            const int d = l->nxt[i].dist;\n      \
+    \      l->nxt[i] = {npl, k - idx[i], l->nxt[i].sm};\n            npl->prv[i] =\
+    \ l;\n            if (i != 0) calc(l, i);\n            if (npr == r) {\n     \
+    \           r->prv[i] = nullptr;\n            }\n            else {\n        \
+    \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
+    \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
+    \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
+    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : sl(sl),\
+    \ rnd(rnd) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : sl(std::move(sl)),\
+    \ rnd(rnd) {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n    \
+    \    int cnt = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level())\
+    \ {\n            while (cnt + nw->nxt[i].dist <= k) {\n                cnt +=\
+    \ nw->nxt[i].dist;\n                nw = nw->nxt[i].node;\n            }\n   \
+    \     }\n        return nw;\n    }\n\npublic:\n    SkipList() : SkipList(Rand())\
+    \ {}\n    SkipList(const Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1);\
+    \ }\n    SkipList(const std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd)\
+    \ {\n        init(v);\n    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(),\
+    \ other.rnd) {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const\
+    \ SkipList& other) {\n        if (this == &other) return *this;\n        return\
+    \ *this = SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n\
+    \    void init(const std::vector<T>& v) {\n        const int n = v.size();\n \
+    \       std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
+    \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
+    \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
+    \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
+    \ 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n        nd[0]->prv[0]\
+    \ = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n        rep (i,\
+    \ 1, lev[0]) {\n            std::vector<int> idx;\n            rep (j, n + 1)\
+    \ {\n                if (lev[j] > i) idx.push_back(j);\n            }\n      \
+    \      const int m = idx.size();\n            rep (j, m - 1) {\n             \
+    \   nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n             \
+    \                         nd[idx[j]]->nxt[i - 1].sm};\n                for (node_ptr\
+    \ ptr = nd[idx[j]]->nxt[i - 1].node;\n                     ptr != nd[idx[j + 1]];\
+    \ ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm =\n\
+    \                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n \
+    \               }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n    \
+    \        }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
+    \ 1]]->nxt[i] = {nullptr, 1, M::id()};\n        }\n        sl = {nd[0], nd[n]};\n\
+    \    }\n    int size() const { return sl.first->nxt.back().dist; }\n    bool empty()\
+    \ const { return size() == 0; }\n    void insert(int k, const T& sm) {\n     \
+    \   assert(0 <= k && k <= size());\n        auto s = split(std::move(sl), k);\n\
+    \        nodepair p{new node(1), new node(1)};\n        p.first->nxt[0] = {p.second,\
+    \ 1, sm};\n        p.second->prv[0] = p.first;\n        sl = merge(merge(std::move(s.first),\
+    \ std::move(p), rnd),\n                   std::move(s.second), rnd);\n    }\n\
+    \    void erase(int k) {\n        assert(0 <= k && k < size());\n        auto\
+    \ s = split(std::move(sl), k);\n        auto s2 = split(std::move(s.second), 1);\n\
+    \        sl = merge(std::move(s.first), std::move(s2.second), rnd);\n    }\n \
+    \   T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
+    \        all_eval(sl, l);\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ l);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (l + np->nxt[t].dist > r) break;\n                l += np->nxt[t].dist;\n\
+    \                sm = M::op(sm, np->nxt[t].sm);\n                np = np->nxt[t].node;\n\
+    \            }\n        }\n        return sm;\n    }\n    T all_prod() const {\
+    \ return sl.first->nxt.back().sm; }\n    T get(int k) const {\n        assert(0\
+    \ <= k && k < size());\n        all_eval(sl, k);\n        return get_ptr(sl, k)->nxt[0].sm;\n\
+    \    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l\
+    \ <= r && r <= size());\n        all_eval(sl, l);\n        all_eval(sl, r - 1);\n\
+    \        auto np = get_ptr(sl, l);\n        rrep (i, sl.first->level()) {\n  \
+    \          while (1) {\n                int t = std::min((int)i, np->level() -\
+    \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
+    \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
+    \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
+    \     all_calc(sl, l);\n        all_eval(sl, r - 1);\n        all_calc(sl, r -\
+    \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
+    \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
+    \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
+    \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
+    \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
+    \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
+    \        if (l == size()) return size();\n        all_eval(sl, l);\n        auto\
+    \ np = get_ptr(sl, l);\n        T sm = M::id();\n        rrep (i, sl.first->level())\
+    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
+    \ - 1);\n                if (t != np->level() - 1) eval(np, t + 1);\n        \
+    \        if (!cond(M::op(sm, np->nxt[t].sm))) break;\n                sm = M::op(sm,\
+    \ np->nxt[t].sm);\n                l += np->nxt[t].dist;\n                np =\
+    \ np->nxt[t].node;\n                if (np == sl.second) return size();\n    \
+    \        }\n        }\n        return l;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) const {\n        assert(0 <= r && r <= size());\n        if\
+    \ (r == 0) return 0;\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
+    \ r);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
+    \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
+    \                if (t != np->level() - 1) eval(np->prv[t], t + 1);\n        \
+    \        if (!cond(M::op(sm, np->prv[t]->nxt[t].sm))) break;\n               \
+    \ sm = M::op(sm, np->prv[t]->nxt[t].sm);\n                r -= np->prv[t]->nxt[t].dist;\n\
+    \                np = np->prv[t];\n                if (np == sl.first) return\
+    \ 0;\n            }\n        }\n        return r;\n    }\n    std::vector<T> get_data()\
+    \ const {\n        rrep (i, sl.first->level(), 1) {\n            for (node_ptr\
+    \ ptr = sl.first; ptr != sl.second;\n                 ptr = ptr->nxt[i].node)\
+    \ {\n                eval(ptr, i);\n            }\n        }\n        std::vector<T>\
+    \ res;\n        res.reserve(size());\n        for (node_ptr ptr = sl.first; ptr\
+    \ != sl.second;\n             ptr = ptr->nxt[0].node) {\n            res.push_back(ptr->nxt[0].sm);\n\
+    \        }\n        return res;\n    }\n    friend SkipList merge(SkipList lhs,\
+    \ SkipList rhs) {\n        return {merge(std::move(lhs.sl), std::move(rhs.sl),\
+    \ lhs.rnd), lhs.rnd};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first),\
+    \ sl.rnd},\n                SkipList{std::move(s.second), sl.rnd}};\n    }\n};\n\
+    \ntemplate<class A, class Rand> class SkipList<A, Rand, true> {\nprotected:\n\
+    \    using Base = SkipList<Monoid::MultiAction<A>, Rand>;\n    using T_ = typename\
+    \ A::M::value_type;\n    using U_ = typename A::E::value_type;\n    Base sl;\n\
+    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    static std::vector<elm>\
+    \ get_elm_vec(const std::vector<T_>& v) {\n        const int n = v.size();\n \
+    \       std::vector<elm> res(n);\n        rep (i, n) res[i] = {v[i], 1};\n   \
+    \     return res;\n    }\n    SkipList(const Base& other) : sl(other) {}\n   \
+    \ SkipList(Base&& other) : sl(std::move(other)) {}\n\npublic:\n    SkipList()\
+    \ : SkipList(Rand()) {}\n    SkipList(const Rand& rnd) : sl(rnd) {}\n    SkipList(const\
+    \ std::vector<T_>& v, const Rand& rnd = Rand())\n        : sl(get_elm_vec(v),\
+    \ rnd) {}\n    void init(const std::vector<T_>& v) { sl.init(get_elm_vec(v));\
+    \ }\n    int size() const { return sl.size(); }\n    bool empty() const { return\
+    \ sl.empty(); }\n    void insert(int k, const T_& sm) { sl.insert(k, {sm, 1});\
+    \ }\n    void erase(int k) { sl.erase(k); }\n    T_ prod(int l, int r) const {\
+    \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
+    \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
+    \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
+    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) { return {upd(e.val),\
+    \ e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k, {x, 1}); }\n\
+    \    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class C>\
+    \ int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\
+    \ [&](const elm& e) { return cond(e.val); });\n    }\n    template<class C> int\
+    \ min_left(int r, const C& cond) const {\n        return sl.min_left(r, [&](const\
+    \ elm& e) { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const\
+    \ {\n        std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
+    \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
+    \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
+    \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
+    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
+    \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
+    \ docs/SkipList.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
@@ -463,9 +731,10 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-07-25 23:14:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: data-struct/other/SkipList.hpp
 layout: document
 redirect_from:

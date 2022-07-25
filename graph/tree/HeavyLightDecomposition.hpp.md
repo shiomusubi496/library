@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -309,9 +309,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/lca-HLD.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
 documentation_of: graph/tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:
