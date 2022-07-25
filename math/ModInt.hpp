@@ -140,8 +140,8 @@ template<int id> class DynamicModInt : DynamicModIntBase {
   public:
     DynamicModInt() : DynamicModInt(0) {}
     template<class T, typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> DynamicModInt(T v) {
-        v %= mod;
-        if (v < 0) v += mod;
+        v %= (long long)mod;
+        if (v < 0) v += (long long)mod;
         val = v;
     }
     unsigned int get() const { return val; }
