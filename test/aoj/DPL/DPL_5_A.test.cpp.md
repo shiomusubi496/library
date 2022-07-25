@@ -159,43 +159,43 @@ data:
     \ [] = {0, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
     \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
     \ : StaticModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> StaticModInt(T v) {\n        v %= mod;\n        if (v < 0) v += mod;\n\
-    \        val = v;\n    }\n    unsigned int get() const { return val; }\n    static\
-    \ unsigned int get_mod() { return mod; }\n    static StaticModInt raw(unsigned\
-    \ int v) {\n        StaticModInt res;\n        res.val = v;\n        return res;\n\
-    \    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR (mod == 1000000007)\
-    \ {\n            if (val <= 10) return inv1000000007[val];\n        }\n      \
-    \  else if IF_CONSTEXPR (mod == 998244353) {\n            if (val <= 10) return\
-    \ inv998244353[val];\n        }\n        return mod_inv(val, mod);\n    }\n  \
-    \  StaticModInt& operator++() {\n        ++val;\n        if (val == mod) val =\
-    \ 0;\n        return *this;\n    }\n    StaticModInt operator++(int) {\n     \
-    \   StaticModInt res = *this;\n        ++ *this;\n        return res;\n    }\n\
-    \    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n        --val;\n\
-    \        return *this;\n    }\n    StaticModInt operator--(int) {\n        StaticModInt\
-    \ res = *this;\n        -- *this;\n        return res;\n    }\n    StaticModInt&\
-    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator*=(const StaticModInt& other) {\n        unsigned long long a = val;\n\
-    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
-    \ *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other) {\n \
-    \       *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt\
-    \ operator/(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const {\n   \
-    \     return StaticModInt(*this);\n    }\n    StaticModInt operator-() const {\n\
-    \        return StaticModInt::raw(0) - *this;\n    }\n    friend bool operator==(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val == rhs.val;\n\
-    \    }\n    friend bool operator!=(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt pow(ll a)\
-    \ const {\n        StaticModInt v = *this, res = 1;\n        while (a) {\n   \
-    \         if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n  \
-    \      }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ = nullptr> StaticModInt(T v) {\n        v %= (long long)mod;\n        if (v\
+    \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
+    \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(unsigned int v) {\n        StaticModInt res;\n        res.val\
+    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
+    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        unsigned\
+    \ long long a = val;\n        a *= other.val;\n        a %= mod;\n        val\
+    \ = a;\n        return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt&\
+    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
+    \ StaticModInt operator+(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) += rhs;\n    }\n    friend StaticModInt operator-(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ -= rhs;\n    }\n    friend StaticModInt operator*(const StaticModInt& lhs, const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n    }\n    friend\
+    \ StaticModInt operator/(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
+    \        return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+()\
+    \ const {\n        return StaticModInt(*this);\n    }\n    StaticModInt operator-()\
+    \ const {\n        return StaticModInt::raw(0) - *this;\n    }\n    friend bool\
+    \ operator==(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ lhs.val == rhs.val;\n    }\n    friend bool operator!=(const StaticModInt& lhs,\
+    \ const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt\
+    \ pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n        while (a)\
+    \ {\n            if (a & 1) res *= v;\n            a >>= 1;\n            v *=\
+    \ v;\n        }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
     \ std::istream& operator>>(std::istream& ist, StaticModInt& sm) {\n        ll\
     \ v; ist >> v;\n        sm = v;\n        return ist;\n    }\n};\n\n#if __cplusplus\
@@ -205,48 +205,49 @@ data:
     \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
     \ {\n  protected:\n    unsigned int val;\n    static unsigned int mod;\n  public:\n\
     \    DynamicModInt() : DynamicModInt(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> DynamicModInt(T v) {\n        v %= mod;\n        if (v < 0) v +=\
-    \ mod;\n        val = v;\n    }\n    unsigned int get() const { return val; }\n\
-    \    static unsigned int get_mod() { return mod; }\n    static void set_mod(unsigned\
-    \ int v) { mod = v; }\n    static DynamicModInt raw(unsigned int v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++ *this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        -- *this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        unsigned long long a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
-    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
-    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ = nullptr> DynamicModInt(T v) {\n        v %= (long long)mod;\n        if (v\
+    \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
+    \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
+    \ void set_mod(unsigned int v) { mod = v; }\n    static DynamicModInt raw(unsigned\
+    \ int v) {\n        DynamicModInt res;\n        res.val = v;\n        return res;\n\
+    \    }\n    DynamicModInt inv() const { return mod_inv(val, mod); }\n    DynamicModInt&\
+    \ operator++() {\n        ++val;\n        if (val == mod) val = 0;\n        return\
+    \ *this;\n    }\n    DynamicModInt operator++(int) {\n        DynamicModInt res\
+    \ = *this;\n        ++ *this;\n        return res;\n    }\n    DynamicModInt&\
+    \ operator--() {\n        if (val == 0) val = mod;\n        --val;\n        return\
+    \ *this;\n    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res\
+    \ = *this;\n        -- *this;\n        return res;\n    }\n    DynamicModInt&\
+    \ operator+=(const DynamicModInt& other) {\n        val += other.val;\n      \
+    \  if (val >= mod) val -= mod;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator-=(const DynamicModInt& other) {\n        if (val < other.val) val +=\
+    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator*=(const DynamicModInt& other) {\n        unsigned long long a = val;\n\
+    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
+    \ *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt& other) {\n\
+    \        *this *= other.inv();\n        return *this;\n    }\n    friend DynamicModInt\
+    \ operator+(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
     \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
-    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt::raw(0)\
-    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
-    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
-    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
-    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
-    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
-    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
-    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
-    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
-    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
-    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
-    \ id> unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 4 \"test/aoj/DPL/DPL_5_A.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n,\
-    \ k; cin >> n >> k;\n    cout << mint(k).pow(n) << endl;\n}\n"
+    \ -= rhs;\n    }\n    friend DynamicModInt operator*(const DynamicModInt& lhs,\
+    \ const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n   \
+    \ }\n    friend DynamicModInt operator/(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n    DynamicModInt\
+    \ operator+() const {\n        return DynamicModInt(*this);\n    }\n    DynamicModInt\
+    \ operator-() const {\n        return DynamicModInt::raw(0) - *this;\n    }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    friend\
+    \ std::ostream& operator<<(std::ostream& ost, const DynamicModInt& dm) {\n   \
+    \     return ost << dm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, DynamicModInt& dm) {\n        ll v; ist >> v;\n        dm = v;\n      \
+    \  return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
+    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ * @docs docs/ModInt.md\n */\n#line 4 \"test/aoj/DPL/DPL_5_A.test.cpp\"\nusing\
+    \ namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n, k; cin\
+    \ >> n >> k;\n    cout << mint(k).pow(n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\nusing\
     \ namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n, k; cin\
@@ -257,7 +258,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2022-07-26 02:18:28+09:00'
+  timestamp: '2022-07-26 02:52:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_A.test.cpp

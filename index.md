@@ -170,7 +170,7 @@ data:
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -304,7 +304,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_B.test.cpp
       title: test/aoj/DPL/DPL_5_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_C.test.cpp
       title: test/aoj/DPL/DPL_5_C.test.cpp
     - icon: ':heavy_check_mark:'
