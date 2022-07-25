@@ -435,14 +435,14 @@ data:
     \ <= k && k < size());\n        all_eval(sl, k);\n        return get_ptr(sl, k)->nxt[0].sm;\n\
     \    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l\
     \ <= r && r <= size());\n        all_eval(sl, l);\n        all_eval(sl, r - 1);\n\
-    \        auto np = get_ptr(sl, l);\n        rrep (i, sl.first->level()) {\n  \
-    \          while (1) {\n                int t = std::min((int)i, np->level() -\
-    \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
-    \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
-    \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
-    \     all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl, r -\
-    \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
-    \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
+    \        auto np = get_ptr(sl, l);\n        int idx = l;\n        rrep (i, sl.first->level())\
+    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
+    \ - 1);\n                if (idx + np->nxt[t].dist > r) break;\n             \
+    \   idx += np->nxt[t].dist;\n                all_apply(np, t, x);\n          \
+    \      np = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n\
+    \        all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl,\
+    \ r - 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n\
+    \        assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
     \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
     \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
     \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
@@ -657,14 +657,14 @@ data:
     \ <= k && k < size());\n        all_eval(sl, k);\n        return get_ptr(sl, k)->nxt[0].sm;\n\
     \    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l\
     \ <= r && r <= size());\n        all_eval(sl, l);\n        all_eval(sl, r - 1);\n\
-    \        auto np = get_ptr(sl, l);\n        rrep (i, sl.first->level()) {\n  \
-    \          while (1) {\n                int t = std::min((int)i, np->level() -\
-    \ 1);\n                if (l + np->nxt[t].dist > r) break;\n                l\
-    \ += np->nxt[t].dist;\n                all_apply(np, t, x);\n                np\
-    \ = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n   \
-    \     all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl, r -\
-    \ 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
-    \       assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
+    \        auto np = get_ptr(sl, l);\n        int idx = l;\n        rrep (i, sl.first->level())\
+    \ {\n            while (1) {\n                int t = std::min((int)i, np->level()\
+    \ - 1);\n                if (idx + np->nxt[t].dist > r) break;\n             \
+    \   idx += np->nxt[t].dist;\n                all_apply(np, t, x);\n          \
+    \      np = np->nxt[t].node;\n            }\n        }\n        all_eval(sl, l);\n\
+    \        all_eval(sl, r - 1);\n        all_calc(sl, l);\n        all_calc(sl,\
+    \ r - 1);\n    }\n    template<class Upd> void update(int k, const Upd& upd) {\n\
+    \        assert(0 <= k && k < size());\n        all_eval(sl, k);\n        auto\
     \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
     \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
     \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
@@ -735,7 +735,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-26 00:38:15+09:00'
+  timestamp: '2022-07-26 01:33:52+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
