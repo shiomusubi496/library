@@ -87,13 +87,15 @@ protected:
     static inline void all_calc(const nodepair& sl, int k) {
         auto nd = sl.first;
         int cnt = 0;
+        std::vector<node_ptr> nds(sl.first->level());
         rrep (i, sl.first->level(), 1) {
             while (cnt + nd->nxt[i].dist <= k) {
                 cnt += nd->nxt[i].dist;
                 nd = nd->nxt[i].node;
             }
-            calc(nd, i);
+            nds[i] = nd;
         }
+        rep (i, 1, sl.first->level()) calc(nds[i], i);
     }
     static void match_level(nodepair& lhs, nodepair& rhs) {
         const int llv = lhs.first->level(), rlv = rhs.second->level();
@@ -328,8 +330,8 @@ public:
             }
         }
         all_eval(sl, l);
-        all_calc(sl, l);
         all_eval(sl, r - 1);
+        all_calc(sl, l);
         all_calc(sl, r - 1);
     }
     template<class Upd> void update(int k, const Upd& upd) {
