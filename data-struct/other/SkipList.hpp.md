@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/SkipList.md
     document_title: SkipList
@@ -489,11 +489,11 @@ data:
     \ k) {\n        const int n = size();\n        assert(0 <= k && k < n);\n    \
     \    if (n == 1) {\n            delete sl.first;\n            delete sl.second;\n\
     \            sl.first = sl.second = new node(1);\n            return;\n      \
-    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            rep (i,\
-    \ sl.first->level()) {\n                if (sl.first->nxt[i].dist == 1) {\n  \
-    \                  const auto l = sl.first;\n                    const auto m\
-    \ = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n    \
-    \                l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
+    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            all_eval(sl,\
+    \ 1);\n            rep (i, sl.first->level()) {\n                if (sl.first->nxt[i].dist\
+    \ == 1) {\n                    const auto l = sl.first;\n                    const\
+    \ auto m = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n\
+    \                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
     \                    r->prv[i] = l;\n                }\n                else {\n\
     \                    sl.first->nxt[i].dist--;\n                }\n           \
     \ }\n            rep (i, 1, sl.first->level()) calc(sl.first, i);\n          \
@@ -795,11 +795,11 @@ data:
     \ k) {\n        const int n = size();\n        assert(0 <= k && k < n);\n    \
     \    if (n == 1) {\n            delete sl.first;\n            delete sl.second;\n\
     \            sl.first = sl.second = new node(1);\n            return;\n      \
-    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            rep (i,\
-    \ sl.first->level()) {\n                if (sl.first->nxt[i].dist == 1) {\n  \
-    \                  const auto l = sl.first;\n                    const auto m\
-    \ = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n    \
-    \                l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
+    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            all_eval(sl,\
+    \ 1);\n            rep (i, sl.first->level()) {\n                if (sl.first->nxt[i].dist\
+    \ == 1) {\n                    const auto l = sl.first;\n                    const\
+    \ auto m = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n\
+    \                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
     \                    r->prv[i] = l;\n                }\n                else {\n\
     \                    sl.first->nxt[i].dist--;\n                }\n           \
     \ }\n            rep (i, 1, sl.first->level()) calc(sl.first, i);\n          \
@@ -903,8 +903,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-29 21:48:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-07-29 22:49:32+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: data-struct/other/SkipList.hpp

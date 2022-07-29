@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
@@ -625,11 +625,11 @@ data:
     \ k) {\n        const int n = size();\n        assert(0 <= k && k < n);\n    \
     \    if (n == 1) {\n            delete sl.first;\n            delete sl.second;\n\
     \            sl.first = sl.second = new node(1);\n            return;\n      \
-    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            rep (i,\
-    \ sl.first->level()) {\n                if (sl.first->nxt[i].dist == 1) {\n  \
-    \                  const auto l = sl.first;\n                    const auto m\
-    \ = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n    \
-    \                l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
+    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            all_eval(sl,\
+    \ 1);\n            rep (i, sl.first->level()) {\n                if (sl.first->nxt[i].dist\
+    \ == 1) {\n                    const auto l = sl.first;\n                    const\
+    \ auto m = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n\
+    \                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
     \                    r->prv[i] = l;\n                }\n                else {\n\
     \                    sl.first->nxt[i].dist--;\n                }\n           \
     \ }\n            rep (i, 1, sl.first->level()) calc(sl.first, i);\n          \
@@ -775,8 +775,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-07-29 21:48:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-07-29 22:49:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 layout: document
