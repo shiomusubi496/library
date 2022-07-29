@@ -100,6 +100,9 @@ data:
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/range_affine_point_get.test.cpp
+    title: test/yosupo/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -344,6 +347,7 @@ data:
   - test/yosupo/vertex_add_path_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp

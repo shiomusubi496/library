@@ -52,6 +52,9 @@ data:
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/range_affine_point_get.test.cpp
+    title: test/yosupo/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -415,6 +418,7 @@ data:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/vertex_set_path_composite.test.cpp
   - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/lcm_convolution.test.cpp
   - test/yosupo/queue_operate_all_composite.test.cpp
   - test/yosupo/gcd_convolution.test.cpp

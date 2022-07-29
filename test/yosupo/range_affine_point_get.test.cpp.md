@@ -2,43 +2,44 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/DualSegmentTree.hpp
+    title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-    title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-    title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_point_get.test.cpp
-    title: test/yosupo/range_affine_point_get.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/DualSegmentTree.md
-    document_title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
-      )"
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_point_get
+    links:
+    - https://judge.yosupo.jp/problem/range_affine_point_get
+  bundledCode: "#line 1 \"test/yosupo/range_affine_point_get.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/range_affine_point_get\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -158,32 +159,20 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
-    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
-    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
-    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
-    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
-    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
-    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\
-    \nnamespace Monoid {\n\ntemplate<class M, class = void> class has_op : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ }\n};\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
+    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
+    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -276,8 +265,148 @@ data:
     \ A::E;\n\nprivate:\n    using T = typename M::value_type;\n    using U = typename\
     \ E::value_type;\n\npublic:\n    static T op(const U& a, const T& b) {\n     \
     \   return {A::mul_op(a, b.len, b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n\
-    #line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class A, bool\
-    \ = Monoid::is_semigroup<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
+    #line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Product {\n    using value_type = T;\n    static T op(const T& a, const T& b)\
+    \ {\n        return a * b;\n    }\n    static T id() {\n        return T{1};\n\
+    \    }\n    static T inv(const T& a, const T& b) {\n        return a / b;\n  \
+    \  }\n    static T get_inv(const T& a) {\n        return T{1} / a;\n    }\n};\n\
+    \ntemplate<class T> struct Composite {\n    using value_type = std::pair<T, T>;\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  return {b.first * a.first, b.first * a.second + b.second};\n    }\n    static\
+    \ value_type id() {\n        return {T{1}, T{0}};\n    }\n    static value_type\
+    \ get_inv(const value_type& a) {\n        return {T{1} / a.first, - a.second /\
+    \ a.first};\n    }\n    static value_type inv(const value_type& a, const value_type&\
+    \ b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct\
+    \ GCD {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a,\
+    \ b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n\
+    \    using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n\
+    \    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n\
+    \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
+    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
+    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
+    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
+    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
+    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\
+    \n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase {};\nclass StaticModIntBase\
+    \ : ModIntBase {};\nclass DynamicModIntBase : ModIntBase {};\n\ntemplate<class\
+    \ T> using is_ModInt = std::is_base_of<ModIntBase, T>;\ntemplate<class T> using\
+    \ is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\ntemplate<class T> using\
+    \ is_DynamicModInt = std::is_base_of<DynamicModIntBase, T>;\n\ntemplate<unsigned\
+    \ int mod> class StaticModInt : StaticModIntBase {\n    static_assert(mod > 0,\
+    \ \"mod must be greater than 0\");\n  protected:\n    unsigned int val;\n    static\
+    \ constexpr unsigned int inv1000000007[] = {0, 1, 500000004, 333333336, 250000002,\n\
+    \            400000003, 166666668, 142857144, 125000001, 111111112, 700000005};\n\
+    \    static constexpr unsigned int inv998244353 [] = {0, 1, 499122177, 332748118,\
+    \ 748683265,\n            598946612, 166374059, 855638017, 873463809, 443664157,\
+    \ 299473306};\n  public:\n    StaticModInt() : val(0) {}\n    template<class T,\
+    \ typename std::enable_if<std::is_integral<T>::value>::type* = nullptr> StaticModInt(T\
+    \ v) {\n        v %= (long long)mod;\n        if (v < 0) v += (long long)mod;\n\
+    \        val = v;\n    }\n    unsigned int get() const { return val; }\n    static\
+    \ unsigned int get_mod() { return mod; }\n    static StaticModInt raw(unsigned\
+    \ int v) {\n        StaticModInt res;\n        res.val = v;\n        return res;\n\
+    \    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR (mod == 1000000007)\
+    \ {\n            if (val <= 10) return inv1000000007[val];\n        }\n      \
+    \  else if IF_CONSTEXPR (mod == 998244353) {\n            if (val <= 10) return\
+    \ inv998244353[val];\n        }\n        return mod_inv(val, mod);\n    }\n  \
+    \  StaticModInt& operator++() {\n        ++val;\n        if (val == mod) val =\
+    \ 0;\n        return *this;\n    }\n    StaticModInt operator++(int) {\n     \
+    \   StaticModInt res = *this;\n        ++ *this;\n        return res;\n    }\n\
+    \    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n        --val;\n\
+    \        return *this;\n    }\n    StaticModInt operator--(int) {\n        StaticModInt\
+    \ res = *this;\n        -- *this;\n        return res;\n    }\n    StaticModInt&\
+    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
+    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    StaticModInt&\
+    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
+    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    StaticModInt&\
+    \ operator*=(const StaticModInt& other) {\n        unsigned long long a = val;\n\
+    \        a *= other.val;\n        a %= mod;\n        val = a;\n        return\
+    \ *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other) {\n \
+    \       *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt\
+    \ operator/(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const {\n   \
+    \     return StaticModInt(*this);\n    }\n    StaticModInt operator-() const {\n\
+    \        return StaticModInt::raw(0) - *this;\n    }\n    friend bool operator==(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val == rhs.val;\n\
+    \    }\n    friend bool operator!=(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt pow(ll a)\
+    \ const {\n        StaticModInt v = *this, res = 1;\n        while (a) {\n   \
+    \         if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n  \
+    \      }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, StaticModInt& sm) {\n        ll\
+    \ v; ist >> v;\n        sm = v;\n        return ist;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<unsigned int mod> constexpr unsigned int StaticModInt<mod>::inv1000000007[];\n\
+    template<unsigned int mod> constexpr unsigned int StaticModInt<mod>::inv998244353\
+    \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
+    \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
+    \ {\n  protected:\n    unsigned int val;\n    static unsigned int mod;\n  public:\n\
+    \    DynamicModInt() : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
+    \ = nullptr> DynamicModInt(T v) {\n        v %= (long long)mod;\n        if (v\
+    \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
+    \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
+    \ void set_mod(unsigned int v) {\n        assert(v > 0);\n        mod = v;\n \
+    \   }\n    static DynamicModInt raw(unsigned int v) {\n        DynamicModInt res;\n\
+    \        res.val = v;\n        return res;\n    }\n    DynamicModInt inv() const\
+    \ { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n        ++val;\n\
+    \        if (val == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator++(int) {\n        DynamicModInt res = *this;\n        ++ *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator--() {\n        if (val\
+    \ == 0) val = mod;\n        --val;\n        return *this;\n    }\n    DynamicModInt\
+    \ operator--(int) {\n        DynamicModInt res = *this;\n        -- *this;\n \
+    \       return res;\n    }\n    DynamicModInt& operator+=(const DynamicModInt&\
+    \ other) {\n        val += other.val;\n        if (val >= mod) val -= mod;\n \
+    \       return *this;\n    }\n    DynamicModInt& operator-=(const DynamicModInt&\
+    \ other) {\n        if (val < other.val) val += mod;\n        val -= other.val;\n\
+    \        return *this;\n    }\n    DynamicModInt& operator*=(const DynamicModInt&\
+    \ other) {\n        unsigned long long a = val;\n        a *= other.val;\n   \
+    \     a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
+    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
+    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt::raw(0)\
+    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
+    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
+    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
+    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
+    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
+    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
+    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
+    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
+    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
+    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
+    \ id> unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
+    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
+    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
+    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 6 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class\
+    \ A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
     \ A::M>::value, \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename\
     \ A::E>::value, \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value,\
     \ \"A must have op\");\n  protected:\n    using M = typename A::M;\n    using\
@@ -319,96 +448,45 @@ data:
     \ = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;\n\
     \ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T,\
     \ min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../../other/monoid.hpp\"\n\ntemplate<class A, bool = Monoid::is_semigroup<A>::value>\
-    \ class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename A::M>::value,\
-    \ \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename A::E>::value,\
-    \ \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value, \"A must\
-    \ have op\");\n  protected:\n    using M = typename A::M;\n    using E = typename\
-    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n    void all_apply(int k, U x) {\n        if (k < n) {\n        \
-    \    if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n      \
-    \      }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n        else if (k < n + ori) {\n       \
-    \     data[k - n] = A::op(x, data[k - n]);\n        }\n    }\n    void eval(int\
-    \ k) {\n        if (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n\
-    \            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n\
-    \        }\n    }\n  public:\n    DualSegmentTree() : DualSegmentTree(0) {}\n\
-    \    DualSegmentTree(int n) : DualSegmentTree(n, T{}) {}\n    DualSegmentTree(int\
-    \ n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}\n    DualSegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
-    \ h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n, false);\n\
-    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
-    \ n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n    }\n\
-    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
-    \       data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x) {\n \
-    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, U\
-    \ x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n   \
-    \ void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \n        l += n; r += n;\n        rreps (i, h) {\n            bool seen = false;\n\
-    \            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n          \
-    \  if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n            if\
-    \ (!seen) break;\n        }\n\n        while (l != r) {\n            if (l & 1)\
-    \ all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n            l\
-    \ >>= 1; r >>= 1;\n        }\n    }\n};\n\ntemplate<class E> class DualSegmentTree<E,\
-    \ true> : public DualSegmentTree<Monoid::AttachMonoid<E>> {\n  private:\n    using\
-    \ Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n  public:\n    using Base::Base;\n\
-    };\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\ntemplate<class T> using\
-    \ RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\n// verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp\n\
-    template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min> using RangeChmaxQuery\
-    \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
-    \ */\n"
+    \u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n */\n#line 6 \"test/yosupo/range_affine_point_get.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nstruct Action {\n    using\
+    \ M = Monoid::Sum<mint>;\n    using E = Monoid::Composite<mint>;\n    static mint\
+    \ op(const pair<mint, mint>& a, const mint& b) {\n        return a.first * b +\
+    \ a.second;\n    }\n};\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint>\
+    \ A(N); cin >> A;\n    DualSegmentTree<Action> seg(A);\n    rep (Q) {\n      \
+    \  int t; cin >> t;\n        if (t == 0) {\n            int l, r; cin >> l >>\
+    \ r;\n            mint a, b; cin >> a >> b;\n            seg.apply(l, r, {a, b});\n\
+    \        }\n        else {\n            int k; cin >> k;\n            cout <<\
+    \ seg.get(k) << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_point_get\"\
+    \n#include \"../../other/template.hpp\"\n#include \"../../other/monoid2.hpp\"\n\
+    #include \"../../math/ModInt.hpp\"\n#include \"../../data-struct/segment/DualSegmentTree.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nstruct Action {\n    using\
+    \ M = Monoid::Sum<mint>;\n    using E = Monoid::Composite<mint>;\n    static mint\
+    \ op(const pair<mint, mint>& a, const mint& b) {\n        return a.first * b +\
+    \ a.second;\n    }\n};\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint>\
+    \ A(N); cin >> A;\n    DualSegmentTree<Action> seg(A);\n    rep (Q) {\n      \
+    \  int t; cin >> t;\n        if (t == 0) {\n            int l, r; cin >> l >>\
+    \ r;\n            mint a, b; cin >> a >> b;\n            seg.apply(l, r, {a, b});\n\
+    \        }\n        else {\n            int k; cin >> k;\n            cout <<\
+    \ seg.get(k) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - other/bitop.hpp
+  - other/monoid2.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/DualSegmentTree.hpp
+  - math/ModInt.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - other/bitop.hpp
+  isVerificationFile: true
+  path: test/yosupo/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2022-07-16 15:45:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/yosupo/range_affine_point_get.test.cpp
-documentation_of: data-struct/segment/DualSegmentTree.hpp
+  timestamp: '2022-07-29 23:10:03+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/range_affine_point_get.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/DualSegmentTree.hpp
-- /library/data-struct/segment/DualSegmentTree.hpp.html
-title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+- /verify/test/yosupo/range_affine_point_get.test.cpp
+- /verify/test/yosupo/range_affine_point_get.test.cpp.html
+title: test/yosupo/range_affine_point_get.test.cpp
 ---
-## 概要
-
-モノイド $T$ と、 $T$ から $T$ への写像 $U$ のうち、
-
-- 写像は閉じている : 任意の $f, g \in U$ に対して、 $f \circ g \in U$
-
-を満たすものを扱える。
-
-- コンストラクタ
-  - `DualSegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `DualSegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `DualSegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
-  - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
-- 取得クエリ
-  - `T get(int k)` : `a[k]` を返す。 $\Theta(\log N)$ 。
-- 更新クエリ
-  - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int k, U f)` : `a[k]` に `mp(f, a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int l, int r, U f)` : `a[l], a[l+1], ..., a[r-1]` に `mp(f, a[l]), mp(f, a[l+1]), ..., mp(f, a[r-1])` を代入する。 $\Theta(\log N)$ 。
-
-また、以下のクエリに対する双対セグメント木が `DualSegmentTree` のエイリアスとして作られている。
-
-- `RangeUpdateQuery` : 区間代入クエリを扱える。
-- `RangeAddQuery` : 区間加算クエリを扱える。
-- `RangeChminQuery` : 区間chminクエリを扱える。
-- `RangeChmaxQuery` : 区間chmaxクエリを扱える。

@@ -449,6 +449,9 @@ data:
     path: test/yosupo/queue_operate_all_composite.test.cpp
     title: test/yosupo/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/range_affine_point_get.test.cpp
+    title: test/yosupo/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -941,6 +944,7 @@ data:
   - test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/zalgorithm.test.cpp
+  - test/yosupo/range_affine_point_get.test.cpp
   - test/yosupo/unionfind.test.cpp
   - test/yosupo/unionfind-Dynamic.test.cpp
   - test/yosupo/vertex_add_subtree_sum-2.test.cpp
