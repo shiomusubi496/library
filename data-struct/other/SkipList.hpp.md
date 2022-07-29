@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/SkipList.md
     document_title: SkipList
@@ -339,13 +339,15 @@ data:
     \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
     \        assert(lhs.first != rhs.first);\n        assert(lhs.second != rhs.second);\n\
     \        if (lhs.first == lhs.second) {\n            delete lhs.first;\n     \
-    \       return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
-    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
-    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
-    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
-    \            l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n    \
-    \    }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
-    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \       auto res = std::move(rhs);\n            lhs = rhs = {nullptr, nullptr};\n\
+    \            return res;\n        }\n        if (rhs.first == rhs.second) {\n\
+    \            delete rhs.first;\n            auto res = std::move(lhs);\n     \
+    \       lhs = rhs = {nullptr, nullptr};\n            return res;\n        }\n\
+    \        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n     \
+    \       auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n  \
+    \          l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n      \
+    \  }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n  \
+    \      while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
     \            const auto lp = std::move(rhs.first->prv.back());\n            const\
     \ auto l = lp->nxt[h - 1];\n            const auto r = std::move(rhs.first->nxt.back());\n\
     \            eval(lp, h - 1);\n            eval(rhs.first, h - 1);\n         \
@@ -362,14 +364,16 @@ data:
     \ lp->nxt[lev - 1];\n            const auto& r = rhs.first->nxt.back();\n    \
     \        lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist,\n          \
     \                              M::op(l.sm, r.sm));\n            rhs.second->prv.push_back(lhs.first);\n\
-    \        }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \        }\n        nodepair res{lhs.first, rhs.second};\n        lhs = rhs =\
+    \ {nullptr, nullptr};\n        return res;\n    }\n    static std::pair<nodepair,\
     \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
-    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
-    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
-    \        if (k == 0) {\n            node_ptr np = new node(1);\n            return\
-    \ {{np, np}, std::move(sl)};\n        }\n        if (k == n) {\n            node_ptr\
-    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
-    \        const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0 || k == 0) {\n        \
+    \    node_ptr np = new node(1);\n            auto res = std::make_pair(nodepair{np,\
+    \ np}, std::move(sl));\n            sl = {nullptr, nullptr};\n            return\
+    \ res;\n        }\n        if (k == n) {\n            node_ptr np = new node(1);\n\
+    \            auto res = std::make_pair(std::move(sl), nodepair{np, np});\n   \
+    \         sl = {nullptr, nullptr};\n            return res;\n        }\n     \
+    \   const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
     \        std::vector<int> idx(h);\n        lft[h - 1] = sl.first;\n        idx[h\
     \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
     \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
@@ -383,8 +387,9 @@ data:
     \           r->prv[i] = nullptr;\n            }\n            else {\n        \
     \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
     \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
-    \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
-    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
+    \  calc(npr, i);\n            }\n        }\n        auto res = std::make_pair(nodepair{sl.first,\
+    \ npl}, nodepair{npr, sl.second});\n        sl = {nullptr, nullptr};\n       \
+    \ return res;\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
     \ sl(sl) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl))\
     \ {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n        int cnt\
     \ = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level()) {\n\
@@ -394,37 +399,114 @@ data:
     \ Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1); }\n    SkipList(const\
     \ std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd) {\n        init(v);\n\
     \    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(), other.rnd)\
-    \ {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const SkipList&\
-    \ other) {\n        if (this == &other) return *this;\n        return *this =\
-    \ SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n  \
-    \  void init(const std::vector<T>& v) {\n        const int n = v.size();\n   \
-    \     std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
-    \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
-    \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
-    \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
-    \ 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n        nd[0]->prv[0]\
-    \ = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n        rep (i,\
-    \ 1, lev[0]) {\n            std::vector<int> idx;\n            rep (j, n + 1)\
-    \ {\n                if (lev[j] > i) idx.push_back(j);\n            }\n      \
-    \      const int m = idx.size();\n            rep (j, m - 1) {\n             \
-    \   nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n             \
-    \                         nd[idx[j]]->nxt[i - 1].sm};\n                for (node_ptr\
-    \ ptr = nd[idx[j]]->nxt[i - 1].node;\n                     ptr != nd[idx[j + 1]];\
-    \ ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm =\n\
-    \                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n \
-    \               }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n    \
-    \        }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
+    \ {}\n    SkipList(SkipList&& other) : rnd(other.rnd), sl(std::move(other.sl))\
+    \ {\n        other.sl = {nullptr, nullptr};\n    }\n    ~SkipList() {\n      \
+    \  for (node_ptr ptr = sl.first; ptr; ) {\n            node_ptr nxt = ptr->nxt[0].node;\n\
+    \            delete ptr;\n            ptr = nxt;\n        }\n        sl = {nullptr,\
+    \ nullptr};\n    }\n    SkipList& operator=(const SkipList& other) {\n       \
+    \ if (this == &other) return *this;\n        init(other.get_data());\n       \
+    \ return *this;\n    }\n    SkipList& operator=(SkipList&& other) {\n        if\
+    \ (this == &other) return *this;\n        sl = std::move(other.sl);\n        other.sl\
+    \ = {nullptr, nullptr};\n        return *this;\n    }\n    void init(const std::vector<T>&\
+    \ v) {\n        if (sl.first) {\n            for (node_ptr ptr = sl.first; ptr;\
+    \ ) {\n                node_ptr nxt = ptr->nxt[0].node;\n                delete\
+    \ ptr;\n                ptr = nxt;\n            }\n        }\n        const int\
+    \ n = v.size();\n        std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i]\
+    \ = get_level(rnd);\n        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end()\
+    \ - 1) + 1;\n        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1)\
+    \ nd[i] = new node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] =\
+    \ {nd[i + 1], 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n \
+    \       nd[0]->prv[0] = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n\
+    \        rep (i, 1, lev[0]) {\n            std::vector<int> idx;\n           \
+    \ rep (j, n + 1) {\n                if (lev[j] > i) idx.push_back(j);\n      \
+    \      }\n            const int m = idx.size();\n            rep (j, m - 1) {\n\
+    \                nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n\
+    \                                      nd[idx[j]]->nxt[i - 1].sm};\n         \
+    \       for (node_ptr ptr = nd[idx[j]]->nxt[i - 1].node;\n                   \
+    \  ptr != nd[idx[j + 1]]; ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm\
+    \ =\n                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n\
+    \                }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n   \
+    \         }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
     \ 1]]->nxt[i] = {nullptr, 1, M::id()};\n        }\n        sl = {nd[0], nd[n]};\n\
-    \    }\n    int size() const { return sl.first->nxt.back().dist; }\n    bool empty()\
-    \ const { return size() == 0; }\n    void insert(int k, const T& sm) {\n     \
-    \   assert(0 <= k && k <= size());\n        auto s = split(std::move(sl), k);\n\
-    \        nodepair p{new node(1), new node(1)};\n        p.first->nxt[0] = {p.second,\
-    \ 1, sm};\n        p.second->prv[0] = p.first;\n        sl = merge(merge(std::move(s.first),\
-    \ std::move(p), rnd),\n                   std::move(s.second), rnd);\n    }\n\
-    \    void erase(int k) {\n        assert(0 <= k && k < size());\n        auto\
-    \ s = split(std::move(sl), k);\n        auto s2 = split(std::move(s.second), 1);\n\
-    \        sl = merge(std::move(s.first), std::move(s2.second), rnd);\n    }\n \
-    \   T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
+    \    }\n    int size() const { assert(sl.first); return sl.first == sl.second\
+    \ ? 0 : sl.first->nxt.back().dist; }\n    bool empty() const { return sl.first\
+    \ == sl.second; }\n    void insert(int k, const T& x) {\n        const int n =\
+    \ size();\n        assert(0 <= k && k <= n);\n        if (n == 0) {\n        \
+    \    delete sl.first;\n            sl.first = new node(1);\n            sl.second\
+    \ = new node(1);\n            sl.first->nxt[0] = {sl.second, 1, x};\n        \
+    \    sl.second->prv[0] = sl.first;\n            return;\n        }\n        if\
+    \ (k == 0) {\n            /*\n            if (lev < sl.first->level()) {\n   \
+    \             node_ptr ptr = new node(lev);\n                rep (i, lev) {\n\
+    \                    ptr->nxt[i] = sl.first->nxt[i];\n                    sl.first->nxt[i].node->prv[i]\
+    \ = ptr;\n                    sl.first->nxt[i] = {ptr, 1, x};\n              \
+    \      ptr->prv[i] = sl.first;\n                }\n                rep (i, lev,\
+    \ sl.first->level()) {\n                    ++sl.first->nxt[i].dist;\n       \
+    \             sl.first->nxt[i].sm = M::op(x, sl.first->nxt[i].sm);\n         \
+    \       }\n            }\n            else {\n                node_ptr ptr = new\
+    \ node(lev);\n                rep (i, sl.first->level()) {\n                 \
+    \   ptr->nxt[i] = sl.first->nxt[i];\n                    sl.first->nxt[i].node->prv[i]\
+    \ = ptr;\n                    sl.first->nxt[i] = {ptr, 1, x};\n              \
+    \      ptr->prv[i] = sl.first;\n                }\n                rep (i, sl.first->level(),\
+    \ lev) {\n                    sl.first->nxt[i] = sl.first->nxt[i - 1];\n     \
+    \               sl.first->prv[i] = sl.first->prv[i - 1];\n                }\n\
+    \                sl.first->prv.resize(lev + 1, {sl.first->prv.back()});\n    \
+    \            sl.first->nxt.resize(lev + 1, {sl.first->nxt.back()});\n        \
+    \        sl.second->prv.resize(lev + 1, {sl.second->prv.back()});\n          \
+    \      sl.second->nxt.resize(lev + 1, {sl.second->nxt.back()});\n            \
+    \    sl.first->nxt.back() = {sl.second, sl.first->nxt.back().dist + 1, M::op(x,\
+    \ sl.first->nxt.back().sm)};\n                sl.second->prv.back() = sl.first;\n\
+    \            }\n            */\n\n\n            nodepair p{new node(1), new node(1)};\n\
+    \            p.first->nxt[0] = {p.second, 1, x};\n            p.second->prv[0]\
+    \ = p.first;\n            sl = merge(std::move(p), std::move(sl), rnd);\n    \
+    \        return;\n        }\n        const int h = sl.first->level();\n      \
+    \  std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n        lft[h\
+    \ - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1) {\n     \
+    \       lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n            while\
+    \ (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n\
+    \                lft[i] = lft[i]->nxt[i].node;\n            }\n        }\n   \
+    \     rrep (i, h, 1) eval(lft[i], i);\n        const int lev = get_level(rnd);\n\
+    \        node_ptr np = new node(lev);\n        if (lev < h) {\n            rep\
+    \ (i, lev) {\n                const auto l = lft[i];\n                const auto\
+    \ r = lft[i]->nxt[i].node;\n                np->nxt[i] = {r, idx[i] + l->nxt[i].dist\
+    \ - k + 1, x};\n                r->prv[i] = np;\n                l->nxt[i] = {np,\
+    \ k - idx[i], l->nxt[i].sm};\n                np->prv[i] = l;\n            }\n\
+    \            rep (i, lev, h) ++lft[i]->nxt[i].dist;\n            rep (i, 1, h)\
+    \ {\n                calc(lft[i], i);\n                if (i < lev) calc(lft[i]->nxt[i].node,\
+    \ i);\n            }\n        }\n        else {\n            rep (i, h) {\n  \
+    \              const auto l = lft[i];\n                const auto r = lft[i]->nxt[i].node;\n\
+    \                np->nxt[i] = {r, idx[i] + l->nxt[i].dist - k + 1, x};\n     \
+    \           r->prv[i] = np;\n                l->nxt[i] = {np, k - idx[i], l->nxt[i].sm};\n\
+    \                np->prv[i] = l;\n            }\n            rep (i, 1, h) {\n\
+    \                calc(lft[i], i);\n                if (i < lev) calc(lft[i]->nxt[i].node,\
+    \ i);\n            }\n            sl.first->prv.resize(lev + 1, {sl.first->prv.back()});\n\
+    \            sl.first->nxt.resize(lev + 1, {sl.second, n + 1, x});\n         \
+    \   sl.second->prv.resize(lev + 1, sl.first);\n            sl.second->nxt.resize(lev\
+    \ + 1, {sl.second->nxt.back()});\n            rep (i, h, lev) {\n            \
+    \    sl.first->nxt[i] = {np, k, x};\n                np->prv[i] = sl.first;\n\
+    \                np->nxt[i] = {sl.second, n - k + 1, x};\n                sl.second->prv[i]\
+    \ = np;\n                calc(sl.first, i);\n                calc(np, i);\n  \
+    \          }\n            calc(sl.first, lev);\n        }\n    }\n    void erase(int\
+    \ k) {\n        const int n = size();\n        assert(0 <= k && k < n);\n    \
+    \    if (n == 1) {\n            delete sl.first;\n            delete sl.second;\n\
+    \            sl.first = sl.second = new node(1);\n            return;\n      \
+    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            rep (i,\
+    \ sl.first->level()) {\n                if (sl.first->nxt[i].dist == 1) {\n  \
+    \                  const auto l = sl.first;\n                    const auto m\
+    \ = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n    \
+    \                l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
+    \                    r->prv[i] = l;\n                }\n                else {\n\
+    \                    sl.first->nxt[i].dist--;\n                }\n           \
+    \ }\n            rep (i, 1, sl.first->level()) calc(sl.first, i);\n          \
+    \  return;\n        }\n        all_eval(sl, k - 1);\n        all_eval(sl, k);\n\
+    \        node_ptr np = sl.first;\n        int cnt = 0;\n        rrep (i, sl.first->level())\
+    \ {\n            while (cnt + np->nxt[i].dist <= k) {\n                cnt +=\
+    \ np->nxt[i].dist;\n                np = np->nxt[i].node;\n            }\n   \
+    \         if (cnt == k) {\n                const auto l = np->prv[i];\n      \
+    \          const auto r = np->nxt[i].node;\n                r->prv[i] = l;\n \
+    \               l->nxt[i] = {r, l->nxt[i].dist + np->nxt[i].dist - 1, l->nxt[i].sm};\n\
+    \            }\n            else {\n                np->nxt[i].dist--;\n     \
+    \       }\n        }\n        delete np;\n        all_calc(sl, k - 1);\n    }\n\
+    \    T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
     \        all_eval(sl, l);\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
     \ l);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
     \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
@@ -563,13 +645,15 @@ data:
     \    }\n    static nodepair merge(nodepair&& lhs, nodepair&& rhs, Rand& rnd) {\n\
     \        assert(lhs.first != rhs.first);\n        assert(lhs.second != rhs.second);\n\
     \        if (lhs.first == lhs.second) {\n            delete lhs.first;\n     \
-    \       return std::move(rhs);\n        }\n        if (rhs.first == rhs.second)\
-    \ {\n            delete rhs.first;\n            return std::move(lhs);\n     \
-    \   }\n        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n\
-    \            auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n\
-    \            l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n    \
-    \    }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n\
-    \        while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
+    \       auto res = std::move(rhs);\n            lhs = rhs = {nullptr, nullptr};\n\
+    \            return res;\n        }\n        if (rhs.first == rhs.second) {\n\
+    \            delete rhs.first;\n            auto res = std::move(lhs);\n     \
+    \       lhs = rhs = {nullptr, nullptr};\n            return res;\n        }\n\
+    \        match_level(lhs, rhs);\n        rep (i, lhs.first->level()) {\n     \
+    \       auto&& l = lhs.second->prv[i];\n            auto&& r = rhs.first;\n  \
+    \          l->nxt[i].node = r;\n            r->prv[i] = std::move(l);\n      \
+    \  }\n        delete lhs.second;\n        const int lev = get_level(rnd);\n  \
+    \      while (lev < rhs.first->level()) {\n            const int h = rhs.first->level();\n\
     \            const auto lp = std::move(rhs.first->prv.back());\n            const\
     \ auto l = lp->nxt[h - 1];\n            const auto r = std::move(rhs.first->nxt.back());\n\
     \            eval(lp, h - 1);\n            eval(rhs.first, h - 1);\n         \
@@ -586,14 +670,16 @@ data:
     \ lp->nxt[lev - 1];\n            const auto& r = rhs.first->nxt.back();\n    \
     \        lhs.first->nxt.emplace_back(rhs.second, l.dist + r.dist,\n          \
     \                              M::op(l.sm, r.sm));\n            rhs.second->prv.push_back(lhs.first);\n\
-    \        }\n        return {lhs.first, rhs.second};\n    }\n    static std::pair<nodepair,\
+    \        }\n        nodepair res{lhs.first, rhs.second};\n        lhs = rhs =\
+    \ {nullptr, nullptr};\n        return res;\n    }\n    static std::pair<nodepair,\
     \ nodepair> split(nodepair&& sl, int k) {\n        const int n = sl.first->nxt.back().dist;\n\
-    \        assert(0 <= k && k <= n);\n        if (n == 0) {\n            node_ptr\
-    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
-    \        if (k == 0) {\n            node_ptr np = new node(1);\n            return\
-    \ {{np, np}, std::move(sl)};\n        }\n        if (k == n) {\n            node_ptr\
-    \ np = new node(1);\n            return {std::move(sl), {np, np}};\n        }\n\
-    \        const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
+    \        assert(0 <= k && k <= n);\n        if (n == 0 || k == 0) {\n        \
+    \    node_ptr np = new node(1);\n            auto res = std::make_pair(nodepair{np,\
+    \ np}, std::move(sl));\n            sl = {nullptr, nullptr};\n            return\
+    \ res;\n        }\n        if (k == n) {\n            node_ptr np = new node(1);\n\
+    \            auto res = std::make_pair(std::move(sl), nodepair{np, np});\n   \
+    \         sl = {nullptr, nullptr};\n            return res;\n        }\n     \
+    \   const int h = sl.first->level();\n        std::vector<node_ptr> lft(h);\n\
     \        std::vector<int> idx(h);\n        lft[h - 1] = sl.first;\n        idx[h\
     \ - 1] = 0;\n        rrep (i, h - 1) {\n            lft[i] = lft[i + 1];\n   \
     \         idx[i] = idx[i + 1];\n            while (idx[i] + lft[i]->nxt[i].dist\
@@ -607,8 +693,9 @@ data:
     \           r->prv[i] = nullptr;\n            }\n            else {\n        \
     \        npr->prv.push_back(nullptr);\n                npr->nxt.emplace_back(r,\
     \ d + idx[i] - k, M::id());\n                r->prv[i] = npr;\n              \
-    \  calc(npr, i);\n            }\n        }\n        return {{sl.first, npl}, {npr,\
-    \ sl.second}};\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
+    \  calc(npr, i);\n            }\n        }\n        auto res = std::make_pair(nodepair{sl.first,\
+    \ npl}, nodepair{npr, sl.second});\n        sl = {nullptr, nullptr};\n       \
+    \ return res;\n    }\n    SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd),\
     \ sl(sl) {}\n    SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl))\
     \ {}\n    static node_ptr get_ptr(const nodepair& sl, int k) {\n        int cnt\
     \ = 0;\n        node_ptr nw = sl.first;\n        rrep (i, sl.first->level()) {\n\
@@ -618,37 +705,114 @@ data:
     \ Rand& rnd) : rnd(rnd) { sl.first = sl.second = new node(1); }\n    SkipList(const\
     \ std::vector<T>& v, const Rand& rnd = Rand()) : rnd(rnd) {\n        init(v);\n\
     \    }\n    SkipList(const SkipList& other) : SkipList(other.get_data(), other.rnd)\
-    \ {}\n    SkipList(SkipList&&) = default;\n    SkipList& operator=(const SkipList&\
-    \ other) {\n        if (this == &other) return *this;\n        return *this =\
-    \ SkipList(other);\n    }\n    SkipList& operator=(SkipList&&) = default;\n  \
-    \  void init(const std::vector<T>& v) {\n        const int n = v.size();\n   \
-    \     std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i] = get_level(rnd);\n\
-    \        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end() - 1) + 1;\n\
-    \        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1) nd[i] = new\
-    \ node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] = {nd[i + 1],\
-    \ 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n        nd[0]->prv[0]\
-    \ = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n        rep (i,\
-    \ 1, lev[0]) {\n            std::vector<int> idx;\n            rep (j, n + 1)\
-    \ {\n                if (lev[j] > i) idx.push_back(j);\n            }\n      \
-    \      const int m = idx.size();\n            rep (j, m - 1) {\n             \
-    \   nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n             \
-    \                         nd[idx[j]]->nxt[i - 1].sm};\n                for (node_ptr\
-    \ ptr = nd[idx[j]]->nxt[i - 1].node;\n                     ptr != nd[idx[j + 1]];\
-    \ ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm =\n\
-    \                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n \
-    \               }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n    \
-    \        }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
+    \ {}\n    SkipList(SkipList&& other) : rnd(other.rnd), sl(std::move(other.sl))\
+    \ {\n        other.sl = {nullptr, nullptr};\n    }\n    ~SkipList() {\n      \
+    \  for (node_ptr ptr = sl.first; ptr; ) {\n            node_ptr nxt = ptr->nxt[0].node;\n\
+    \            delete ptr;\n            ptr = nxt;\n        }\n        sl = {nullptr,\
+    \ nullptr};\n    }\n    SkipList& operator=(const SkipList& other) {\n       \
+    \ if (this == &other) return *this;\n        init(other.get_data());\n       \
+    \ return *this;\n    }\n    SkipList& operator=(SkipList&& other) {\n        if\
+    \ (this == &other) return *this;\n        sl = std::move(other.sl);\n        other.sl\
+    \ = {nullptr, nullptr};\n        return *this;\n    }\n    void init(const std::vector<T>&\
+    \ v) {\n        if (sl.first) {\n            for (node_ptr ptr = sl.first; ptr;\
+    \ ) {\n                node_ptr nxt = ptr->nxt[0].node;\n                delete\
+    \ ptr;\n                ptr = nxt;\n            }\n        }\n        const int\
+    \ n = v.size();\n        std::vector<int> lev(n + 1);\n        rep (i, 1, n) lev[i]\
+    \ = get_level(rnd);\n        lev[0] = lev[n] = *max_element(lev.begin() + 1, lev.end()\
+    \ - 1) + 1;\n        std::vector<node_ptr> nd(n + 1);\n        rep (i, n + 1)\
+    \ nd[i] = new node(lev[i]);\n        rep (i, n) {\n            nd[i]->nxt[0] =\
+    \ {nd[i + 1], 1, v[i]};\n            nd[i + 1]->prv[0] = nd[i];\n        }\n \
+    \       nd[0]->prv[0] = nullptr;\n        nd[n]->nxt[0] = {nullptr, 1, M::id()};\n\
+    \        rep (i, 1, lev[0]) {\n            std::vector<int> idx;\n           \
+    \ rep (j, n + 1) {\n                if (lev[j] > i) idx.push_back(j);\n      \
+    \      }\n            const int m = idx.size();\n            rep (j, m - 1) {\n\
+    \                nd[idx[j]]->nxt[i] = {nd[idx[j + 1]], idx[j + 1] - idx[j],\n\
+    \                                      nd[idx[j]]->nxt[i - 1].sm};\n         \
+    \       for (node_ptr ptr = nd[idx[j]]->nxt[i - 1].node;\n                   \
+    \  ptr != nd[idx[j + 1]]; ptr = ptr->nxt[i - 1].node) {\n                    nd[idx[j]]->nxt[i].sm\
+    \ =\n                        M::op(nd[idx[j]]->nxt[i].sm, ptr->nxt[i - 1].sm);\n\
+    \                }\n                nd[idx[j + 1]]->prv[i] = nd[idx[j]];\n   \
+    \         }\n            nd[idx[0]]->prv[i] = nullptr;\n            nd[idx[m -\
     \ 1]]->nxt[i] = {nullptr, 1, M::id()};\n        }\n        sl = {nd[0], nd[n]};\n\
-    \    }\n    int size() const { return sl.first->nxt.back().dist; }\n    bool empty()\
-    \ const { return size() == 0; }\n    void insert(int k, const T& sm) {\n     \
-    \   assert(0 <= k && k <= size());\n        auto s = split(std::move(sl), k);\n\
-    \        nodepair p{new node(1), new node(1)};\n        p.first->nxt[0] = {p.second,\
-    \ 1, sm};\n        p.second->prv[0] = p.first;\n        sl = merge(merge(std::move(s.first),\
-    \ std::move(p), rnd),\n                   std::move(s.second), rnd);\n    }\n\
-    \    void erase(int k) {\n        assert(0 <= k && k < size());\n        auto\
-    \ s = split(std::move(sl), k);\n        auto s2 = split(std::move(s.second), 1);\n\
-    \        sl = merge(std::move(s.first), std::move(s2.second), rnd);\n    }\n \
-    \   T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
+    \    }\n    int size() const { assert(sl.first); return sl.first == sl.second\
+    \ ? 0 : sl.first->nxt.back().dist; }\n    bool empty() const { return sl.first\
+    \ == sl.second; }\n    void insert(int k, const T& x) {\n        const int n =\
+    \ size();\n        assert(0 <= k && k <= n);\n        if (n == 0) {\n        \
+    \    delete sl.first;\n            sl.first = new node(1);\n            sl.second\
+    \ = new node(1);\n            sl.first->nxt[0] = {sl.second, 1, x};\n        \
+    \    sl.second->prv[0] = sl.first;\n            return;\n        }\n        if\
+    \ (k == 0) {\n            /*\n            if (lev < sl.first->level()) {\n   \
+    \             node_ptr ptr = new node(lev);\n                rep (i, lev) {\n\
+    \                    ptr->nxt[i] = sl.first->nxt[i];\n                    sl.first->nxt[i].node->prv[i]\
+    \ = ptr;\n                    sl.first->nxt[i] = {ptr, 1, x};\n              \
+    \      ptr->prv[i] = sl.first;\n                }\n                rep (i, lev,\
+    \ sl.first->level()) {\n                    ++sl.first->nxt[i].dist;\n       \
+    \             sl.first->nxt[i].sm = M::op(x, sl.first->nxt[i].sm);\n         \
+    \       }\n            }\n            else {\n                node_ptr ptr = new\
+    \ node(lev);\n                rep (i, sl.first->level()) {\n                 \
+    \   ptr->nxt[i] = sl.first->nxt[i];\n                    sl.first->nxt[i].node->prv[i]\
+    \ = ptr;\n                    sl.first->nxt[i] = {ptr, 1, x};\n              \
+    \      ptr->prv[i] = sl.first;\n                }\n                rep (i, sl.first->level(),\
+    \ lev) {\n                    sl.first->nxt[i] = sl.first->nxt[i - 1];\n     \
+    \               sl.first->prv[i] = sl.first->prv[i - 1];\n                }\n\
+    \                sl.first->prv.resize(lev + 1, {sl.first->prv.back()});\n    \
+    \            sl.first->nxt.resize(lev + 1, {sl.first->nxt.back()});\n        \
+    \        sl.second->prv.resize(lev + 1, {sl.second->prv.back()});\n          \
+    \      sl.second->nxt.resize(lev + 1, {sl.second->nxt.back()});\n            \
+    \    sl.first->nxt.back() = {sl.second, sl.first->nxt.back().dist + 1, M::op(x,\
+    \ sl.first->nxt.back().sm)};\n                sl.second->prv.back() = sl.first;\n\
+    \            }\n            */\n\n\n            nodepair p{new node(1), new node(1)};\n\
+    \            p.first->nxt[0] = {p.second, 1, x};\n            p.second->prv[0]\
+    \ = p.first;\n            sl = merge(std::move(p), std::move(sl), rnd);\n    \
+    \        return;\n        }\n        const int h = sl.first->level();\n      \
+    \  std::vector<node_ptr> lft(h);\n        std::vector<int> idx(h);\n        lft[h\
+    \ - 1] = sl.first;\n        idx[h - 1] = 0;\n        rrep (i, h - 1) {\n     \
+    \       lft[i] = lft[i + 1];\n            idx[i] = idx[i + 1];\n            while\
+    \ (idx[i] + lft[i]->nxt[i].dist < k) {\n                idx[i] += lft[i]->nxt[i].dist;\n\
+    \                lft[i] = lft[i]->nxt[i].node;\n            }\n        }\n   \
+    \     rrep (i, h, 1) eval(lft[i], i);\n        const int lev = get_level(rnd);\n\
+    \        node_ptr np = new node(lev);\n        if (lev < h) {\n            rep\
+    \ (i, lev) {\n                const auto l = lft[i];\n                const auto\
+    \ r = lft[i]->nxt[i].node;\n                np->nxt[i] = {r, idx[i] + l->nxt[i].dist\
+    \ - k + 1, x};\n                r->prv[i] = np;\n                l->nxt[i] = {np,\
+    \ k - idx[i], l->nxt[i].sm};\n                np->prv[i] = l;\n            }\n\
+    \            rep (i, lev, h) ++lft[i]->nxt[i].dist;\n            rep (i, 1, h)\
+    \ {\n                calc(lft[i], i);\n                if (i < lev) calc(lft[i]->nxt[i].node,\
+    \ i);\n            }\n        }\n        else {\n            rep (i, h) {\n  \
+    \              const auto l = lft[i];\n                const auto r = lft[i]->nxt[i].node;\n\
+    \                np->nxt[i] = {r, idx[i] + l->nxt[i].dist - k + 1, x};\n     \
+    \           r->prv[i] = np;\n                l->nxt[i] = {np, k - idx[i], l->nxt[i].sm};\n\
+    \                np->prv[i] = l;\n            }\n            rep (i, 1, h) {\n\
+    \                calc(lft[i], i);\n                if (i < lev) calc(lft[i]->nxt[i].node,\
+    \ i);\n            }\n            sl.first->prv.resize(lev + 1, {sl.first->prv.back()});\n\
+    \            sl.first->nxt.resize(lev + 1, {sl.second, n + 1, x});\n         \
+    \   sl.second->prv.resize(lev + 1, sl.first);\n            sl.second->nxt.resize(lev\
+    \ + 1, {sl.second->nxt.back()});\n            rep (i, h, lev) {\n            \
+    \    sl.first->nxt[i] = {np, k, x};\n                np->prv[i] = sl.first;\n\
+    \                np->nxt[i] = {sl.second, n - k + 1, x};\n                sl.second->prv[i]\
+    \ = np;\n                calc(sl.first, i);\n                calc(np, i);\n  \
+    \          }\n            calc(sl.first, lev);\n        }\n    }\n    void erase(int\
+    \ k) {\n        const int n = size();\n        assert(0 <= k && k < n);\n    \
+    \    if (n == 1) {\n            delete sl.first;\n            delete sl.second;\n\
+    \            sl.first = sl.second = new node(1);\n            return;\n      \
+    \  }\n        if (k == 0) {\n            all_eval(sl, 0);\n            rep (i,\
+    \ sl.first->level()) {\n                if (sl.first->nxt[i].dist == 1) {\n  \
+    \                  const auto l = sl.first;\n                    const auto m\
+    \ = l->nxt[i].node;\n                    const auto r = m->nxt[i].node;\n    \
+    \                l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};\n\
+    \                    r->prv[i] = l;\n                }\n                else {\n\
+    \                    sl.first->nxt[i].dist--;\n                }\n           \
+    \ }\n            rep (i, 1, sl.first->level()) calc(sl.first, i);\n          \
+    \  return;\n        }\n        all_eval(sl, k - 1);\n        all_eval(sl, k);\n\
+    \        node_ptr np = sl.first;\n        int cnt = 0;\n        rrep (i, sl.first->level())\
+    \ {\n            while (cnt + np->nxt[i].dist <= k) {\n                cnt +=\
+    \ np->nxt[i].dist;\n                np = np->nxt[i].node;\n            }\n   \
+    \         if (cnt == k) {\n                const auto l = np->prv[i];\n      \
+    \          const auto r = np->nxt[i].node;\n                r->prv[i] = l;\n \
+    \               l->nxt[i] = {r, l->nxt[i].dist + np->nxt[i].dist - 1, l->nxt[i].sm};\n\
+    \            }\n            else {\n                np->nxt[i].dist--;\n     \
+    \       }\n        }\n        delete np;\n        all_calc(sl, k - 1);\n    }\n\
+    \    T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= size());\n\
     \        all_eval(sl, l);\n        all_eval(sl, r - 1);\n        auto np = get_ptr(sl,\
     \ l);\n        T sm = M::id();\n        rrep (i, sl.first->level()) {\n      \
     \      while (1) {\n                int t = std::min((int)i, np->level() - 1);\n\
@@ -739,8 +903,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-07-26 02:18:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-07-29 21:48:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: data-struct/other/SkipList.hpp

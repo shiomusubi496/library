@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'

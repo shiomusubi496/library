@@ -15,7 +15,7 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
     - icon: ':heavy_check_mark:'
@@ -55,10 +55,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
@@ -77,7 +77,7 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -149,14 +149,14 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -226,7 +226,7 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
     - icon: ':question:'
@@ -240,7 +240,7 @@ data:
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':warning:'
@@ -460,7 +460,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/cycle_detection.test.cpp
       title: test/yosupo/cycle_detection.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -547,10 +547,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/vertex_set_path_composite.test.cpp
       title: test/yosupo/vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
