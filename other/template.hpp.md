@@ -419,6 +419,9 @@ data:
     path: test/yosupo/gcd_convolution.test.cpp
     title: test/yosupo/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/jump_on_tree.test.cpp
+    title: test/yosupo/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/kth_root_integer.test.cpp
     title: test/yosupo/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
@@ -961,6 +964,7 @@ data:
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/cartesian_tree.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/jump_on_tree.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp

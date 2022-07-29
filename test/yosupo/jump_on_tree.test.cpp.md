@@ -5,37 +5,36 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
+    path: graph/tree/DoublingLowestCommonAncestor.hpp
+    title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
+      \u308BLCA)"
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/jump_on_tree.test.cpp
-    title: test/yosupo/jump_on_tree.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/DoublingLowestCommonAncestor.md
-    document_title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
-      \u3088\u308BLCA)"
-    links: []
-  bundledCode: "#line 2 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\n#line 2\
-    \ \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ##\
-    \ c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
+    links:
+    - https://judge.yosupo.jp/problem/jump_on_tree
+  bundledCode: "#line 1 \"test/yosupo/jump_on_tree.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/jump_on_tree\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
+    \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
+    \ (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
+    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
+    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a) - 1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
     \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
     \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
@@ -155,30 +154,17 @@ data:
     \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace\
-    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
-    \ (k))\n\n    inline ull next_combination(int n, ull x) {\n        if (n == 0)\
-    \ return 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x\
-    \ & ~b) / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull <<\
-    \ (k)) - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline\
-    \ CONSTEXPR int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
-    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
-    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
-    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
-    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
-    \ 0;\n    }\n}\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\n\
-    template<class T = int> struct edge {\n    int from, to;\n    T cost;\n    int\
-    \ idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T& c =\
-    \ 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t,\
-    \ T&& c, int i = -1) : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
+    \ }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1) :\
+    \ from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\
+    \ : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator int() const {\
+    \ return to; }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs)\
+    \ {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n \
+    \   }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\n  private:\n\
     \    using Base = std::vector<std::vector<edge<T>>>;\n  public:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
@@ -208,30 +194,44 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
-    \n\ntemplate<class T> class DoublingLCA {\n  protected:\n    int root, n, h;\n\
-    \    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n   \
-    \ std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int\
-    \ v, int p) {\n        each_const (e : G[v]) {\n            if (e.to != p) {\n\
-    \                par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n         \
-    \       dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n       \
-    \     }\n        }\n    }\n    void init() {\n        n = G.size();\n        h\
-    \ = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
-    \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
-    \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
-    \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
-    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
-    \ Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&&\
-    \ G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int\
-    \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
-    \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
-    \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    int next_vertex(int s, int t) const {\n\
-    \        assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n  \
-    \      int u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(u)\
-    \ == s ? u : parent(s);\n    }\n    int kth_next_vertext(int s, int t, int k)\
-    \ const {\n        int l = lca(s, t);\n        int d = dep[s] + dep[t] - 2 * dep[l];\n\
-    \        if (d < k) return -1;\n        if (dep[s] - dep[l] >= k) return kth_ancestor(s,\
+    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \n    inline ull next_combination(int n, ull x) {\n        if (n == 0) return\
+    \ 1;\n        ull a = x & -x;\n        ull b = x + a;\n        return (x & ~b)\
+    \ / a >> 1 | b;\n    }\n\n#define rep_comb(i, n, k) for (ull i = (1ull << (k))\
+    \ - 1; i < (1ull << (n)); i = bitop::next_combination((n), i))\n\n    inline CONSTEXPR\
+    \ int msb(ull x) {\n        int res = x ? 0 : -1;\n        if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n        if (x & 0xFFFF0000FFFF0000) x &=\
+    \ 0xFFFF0000FFFF0000, res += 16;\n        if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res +=  8;\n        if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res\
+    \ +=  4;\n        if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res +=\
+    \  2;\n        return res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n    }\n\n   \
+    \ inline CONSTEXPR int ceil_log2(ull x) {\n        return x ? msb(x - 1) + 1 :\
+    \ 0;\n    }\n}\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\ntemplate<class\
+    \ T> class DoublingLCA {\n  protected:\n    int root, n, h;\n    Graph<T> G_;\n\
+    \    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int> dep;\n\
+    \    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int p) {\n\
+    \        each_const (e : G[v]) {\n            if (e.to != p) {\n             \
+    \   par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n                dep[e.to]\
+    \ = dep[v] + 1;\n                dfs_build(e.to, v);\n            }\n        }\n\
+    \    }\n    void init() {\n        n = G.size();\n        h = bitop::ceil_log2(n)\
+    \ + 1;\n        par.resize(n); par[root] = edge<T>{};\n        dep.resize(n);\
+    \ dep[root] = 0;\n        dfs_build(root, -1);\n        dbl.assign(n, std::vector<int>(h,\
+    \ -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n        rep (i, h - 1) {\n\
+    \            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ? -1 : dbl[ dbl[j][i]\
+    \ ][i];\n        }\n    }\n  public:\n    DoublingLCA(const Graph<T>& G, int r\
+    \ = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&& G, int r = 0)\
+    \ : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int v) const {\
+    \ return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
+    \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
+    \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
+    \        return v;\n    }\n    int next_vertex(int s, int t) const {\n       \
+    \ assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n        int\
+    \ u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(u) == s ? u\
+    \ : parent(s);\n    }\n    int kth_next_vertext(int s, int t, int k) const {\n\
+    \        int l = lca(s, t);\n        int d = dep[s] + dep[t] - 2 * dep[l];\n \
+    \       if (d < k) return -1;\n        if (dep[s] - dep[l] >= k) return kth_ancestor(s,\
     \ k);\n        return kth_ancestor(t, d - k);\n    }\n    Edges<T> path(int s,\
     \ int t) const {\n        Edges<T> pre, suf;\n        while (dep[s] > dep[t])\
     \ pre.push_back(par[s]), s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]),\
@@ -246,76 +246,34 @@ data:
     \        }\n        return parent(u);\n    }\n    int dist(int u, int v) const\
     \ {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n/**\n\
     \ * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-    \u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
-    \n#include \"../Graph.hpp\"\n\ntemplate<class T> class DoublingLCA {\n  protected:\n\
-    \    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>>\
-    \ par;\n    std::vector<int> dep;\n    std::vector<std::vector<int>> dbl;\n  \
-    \  void dfs_build(int v, int p) {\n        each_const (e : G[v]) {\n         \
-    \   if (e.to != p) {\n                par[e.to] = edge<T>(e.to, e.from, e.cost,\
-    \ e.idx);\n                dep[e.to] = dep[v] + 1;\n                dfs_build(e.to,\
-    \ v);\n            }\n        }\n    }\n    void init() {\n        n = G.size();\n\
-    \        h = bitop::ceil_log2(n) + 1;\n        par.resize(n); par[root] = edge<T>{};\n\
-    \        dep.resize(n); dep[root] = 0;\n        dfs_build(root, -1);\n       \
-    \ dbl.assign(n, std::vector<int>(h, -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n\
-    \        rep (i, h - 1) {\n            rep (j, n) dbl[j][i + 1] = dbl[j][i] ==\
-    \ -1 ? -1 : dbl[ dbl[j][i] ][i];\n        }\n    }\n  public:\n    DoublingLCA(const\
-    \ Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }\n    DoublingLCA(Graph<T>&&\
-    \ G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }\n    int depth(int\
-    \ v) const { return dep[v]; }\n    int parent(int v) const { return par[v].to;\
-    \ }\n    int kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return\
-    \ -1;\n        rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n \
-    \       }\n        return v;\n    }\n    int next_vertex(int s, int t) const {\n\
-    \        assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n  \
-    \      int u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(u)\
-    \ == s ? u : parent(s);\n    }\n    int kth_next_vertext(int s, int t, int k)\
-    \ const {\n        int l = lca(s, t);\n        int d = dep[s] + dep[t] - 2 * dep[l];\n\
-    \        if (d < k) return -1;\n        if (dep[s] - dep[l] >= k) return kth_ancestor(s,\
-    \ k);\n        return kth_ancestor(t, d - k);\n    }\n    Edges<T> path(int s,\
-    \ int t) const {\n        Edges<T> pre, suf;\n        while (dep[s] > dep[t])\
-    \ pre.push_back(par[s]), s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]),\
-    \ t = par[t].to;\n        while (s != t) {\n            pre.push_back(par[s]),\
-    \ s = par[s].to;\n            suf.push_back(par[t]), t = par[t].to;\n        }\n\
-    \        rrep (i, suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost,\
-    \ suf[i].idx);\n        return pre;\n    }\n    int lca(int u, int v) const {\n\
-    \        if (dep[u] > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n        if\
-    \ (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] - dep[u]);\n        if (u == v)\
-    \ return u;\n        rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i]) {\n\
-    \                u = dbl[u][i];\n                v = dbl[v][i];\n            }\n\
-    \        }\n        return parent(u);\n    }\n    int dist(int u, int v) const\
-    \ {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n/**\n\
-    \ * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-    \u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n */\n"
+    \u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n */\n#line 5 \"test/yosupo/jump_on_tree.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    Graph<int>\
+    \ G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
+    \ b);\n    }\n    DoublingLCA<int> dlca(G);\n    rep (Q) {\n        int s, t,\
+    \ k; cin >> s >> t >> k;\n        cout << dlca.kth_next_vertext(s, t, k) << endl;\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
+    ../../graph/tree/DoublingLowestCommonAncestor.hpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, Q; cin >> N >> Q;\n    Graph<int> G(N);\n    rep (N - 1)\
+    \ {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    DoublingLCA<int>\
+    \ dlca(G);\n    rep (Q) {\n        int s, t, k; cin >> s >> t >> k;\n        cout\
+    \ << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - other/bitop.hpp
   - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/tree/DoublingLowestCommonAncestor.hpp
+  - graph/tree/DoublingLowestCommonAncestor.hpp
+  - other/bitop.hpp
+  isVerificationFile: true
+  path: test/yosupo/jump_on_tree.test.cpp
   requiredBy: []
   timestamp: '2022-07-29 23:18:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/yosupo/jump_on_tree.test.cpp
-documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/jump_on_tree.test.cpp
 layout: document
 redirect_from:
-- /library/graph/tree/DoublingLowestCommonAncestor.hpp
-- /library/graph/tree/DoublingLowestCommonAncestor.hpp.html
-title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308B\
-  LCA)"
+- /verify/test/yosupo/jump_on_tree.test.cpp
+- /verify/test/yosupo/jump_on_tree.test.cpp.html
+title: test/yosupo/jump_on_tree.test.cpp
 ---
-## 概要
-
-木に対してダブリングによって LCA などを求める。空間計算量は $\Theta(E + V \log V)$ であるため注意。
-
-- `DoublingLCA(Graph<T> G, int r = 0)` : 頂点 `r` を根としてグラフ `G` で初期化する。ここで、 `G` は木である必要がある。 $\Theta(V \log V)$ 。
-- `int depth(int v)` : 頂点 `v` の深さ(根からの距離)を返す。 $\Theta(1)$ 。
-- `int parent(int v)` : 頂点 `v` の親を返す。ただし頂点 `v` が根である場合 $-1$ が返る。 $\Theta(1)$ 。
-- `int lca(int s, int t)` : 頂点 `s` と頂点 `t` の最小共通祖先(Lowest Common Ancestor)を返す。 $\Theta(\log V)$ 。
-- `int dist(int s, int t)` : 頂点 `s` と頂点 `t` の距離を返す。 $\Theta(\log V)$ 。
-- `int kth_parent(int v, int k)` : 頂点 `v` の `k` 番目に近い祖先を返す。存在しない場合 $-1$ が返る。 $\Theta(\log V)$ 。
-- `int next_vertex(int v, int u)` : 頂点 `s` から頂点 `t` へのパスにおいて、 `s` の次の頂点を返す。 $\Theta(\log V)$ 。
-- `int kth_next_vertex(int v, int u)` : 頂点 `s` から頂点 `t` へのパスにおいて、 `s` の `k` 個先の頂点を返す。 $\Theta(\log V)$ 。
-- `Edges<T> path(int s, int t)` : 頂点 `s` から頂点 `t` へのパスに含まれる辺を返す。パスの長さを $P$ として $\Theta(P)$ 。

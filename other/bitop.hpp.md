@@ -97,6 +97,9 @@ data:
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/jump_on_tree.test.cpp
+    title: test/yosupo/jump_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_set_range_composite.test.cpp
     title: test/yosupo/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +354,7 @@ data:
   - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/staticrmq-LinearRMQ.test.cpp
   - test/yosupo/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/jump_on_tree.test.cpp
   - test/yosupo/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/range_affine_range_sum.test.cpp
   - test/yosupo/point_set_range_composite.test.cpp

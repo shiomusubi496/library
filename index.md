@@ -467,6 +467,9 @@ data:
       path: test/yosupo/gcd_convolution.test.cpp
       title: test/yosupo/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/jump_on_tree.test.cpp
+      title: test/yosupo/jump_on_tree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/kth_root_integer.test.cpp
       title: test/yosupo/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
