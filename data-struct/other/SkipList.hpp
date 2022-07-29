@@ -432,6 +432,7 @@ public:
         }
         if (k == 0) {
             all_eval(sl, 0);
+            all_eval(sl, 1);
             rep (i, sl.first->level()) {
                 if (sl.first->nxt[i].dist == 1) {
                     const auto l = sl.first;
