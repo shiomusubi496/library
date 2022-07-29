@@ -73,6 +73,7 @@
 "test/yosupo/point_add_range_sum.test.cpp": "2022-07-11 19:56:58 +0900",
 "test/yosupo/point_set_range_composite.test.cpp": "2022-07-26 07:52:54 +0900",
 "test/yosupo/queue_operate_all_composite.test.cpp": "2022-07-26 07:52:54 +0900",
+"test/yosupo/range_affine_point_get.test.cpp": "2022-07-29 23:10:03 +0900",
 "test/yosupo/range_affine_range_sum.test.cpp": "2022-07-26 07:52:54 +0900",
 "test/yosupo/shortest_path.test.cpp": "2022-05-28 12:03:49 +0900",
 "test/yosupo/static_range_sum-CumulativeSum.test.cpp": "2022-07-10 23:06:05 +0900",
