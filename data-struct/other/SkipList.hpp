@@ -119,11 +119,15 @@ protected:
         assert(lhs.second != rhs.second);
         if (lhs.first == lhs.second) {
             delete lhs.first;
-            return std::move(rhs);
+            auto res = std::move(rhs);
+            lhs = rhs = {nullptr, nullptr};
+            return res;
         }
         if (rhs.first == rhs.second) {
             delete rhs.first;
-            return std::move(lhs);
+            auto res = std::move(lhs);
+            lhs = rhs = {nullptr, nullptr};
+            return res;
         }
         match_level(lhs, rhs);
         rep (i, lhs.first->level()) {
@@ -162,22 +166,24 @@ protected:
                                         M::op(l.sm, r.sm));
             rhs.second->prv.push_back(lhs.first);
         }
-        return {lhs.first, rhs.second};
+        nodepair res{lhs.first, rhs.second};
+        lhs = rhs = {nullptr, nullptr};
+        return res;
     }
     static std::pair<nodepair, nodepair> split(nodepair&& sl, int k) {
         const int n = sl.first->nxt.back().dist;
         assert(0 <= k && k <= n);
-        if (n == 0) {
+        if (n == 0 || k == 0) {
             node_ptr np = new node(1);
-            return {std::move(sl), {np, np}};
-        }
-        if (k == 0) {
-            node_ptr np = new node(1);
-            return {{np, np}, std::move(sl)};
+            auto res = std::make_pair(nodepair{np, np}, std::move(sl));
+            sl = {nullptr, nullptr};
+            return res;
         }
         if (k == n) {
             node_ptr np = new node(1);
-            return {std::move(sl), {np, np}};
+            auto res = std::make_pair(std::move(sl), nodepair{np, np});
+            sl = {nullptr, nullptr};
+            return res;
         }
         const int h = sl.first->level();
         std::vector<node_ptr> lft(h);
@@ -212,7 +218,9 @@ protected:
                 calc(npr, i);
             }
         }
-        return {{sl.first, npl}, {npr, sl.second}};
+        auto res = std::make_pair(nodepair{sl.first, npl}, nodepair{npr, sl.second});
+        sl = {nullptr, nullptr};
+        return res;
     }
     SkipList(const nodepair& sl, const Rand& rnd) : rnd(rnd), sl(sl) {}
     SkipList(nodepair&& sl, const Rand& rnd) : rnd(rnd), sl(std::move(sl)) {}
@@ -235,13 +243,36 @@ public:
         init(v);
     }
     SkipList(const SkipList& other) : SkipList(other.get_data(), other.rnd) {}
-    SkipList(SkipList&&) = default;
+    SkipList(SkipList&& other) : rnd(other.rnd), sl(std::move(other.sl)) {
+        other.sl = {nullptr, nullptr};
+    }
+    ~SkipList() {
+        for (node_ptr ptr = sl.first; ptr; ) {
+            node_ptr nxt = ptr->nxt[0].node;
+            delete ptr;
+            ptr = nxt;
+        }
+        sl = {nullptr, nullptr};
+    }
     SkipList& operator=(const SkipList& other) {
         if (this == &other) return *this;
-        return *this = SkipList(other);
+        init(other.get_data());
+        return *this;
     }
-    SkipList& operator=(SkipList&&) = default;
+    SkipList& operator=(SkipList&& other) {
+        if (this == &other) return *this;
+        sl = std::move(other.sl);
+        other.sl = {nullptr, nullptr};
+        return *this;
+    }
     void init(const std::vector<T>& v) {
+        if (sl.first) {
+            for (node_ptr ptr = sl.first; ptr; ) {
+                node_ptr nxt = ptr->nxt[0].node;
+                delete ptr;
+                ptr = nxt;
+            }
+        }
         const int n = v.size();
         std::vector<int> lev(n + 1);
         rep (i, 1, n) lev[i] = get_level(rnd);
@@ -275,22 +306,168 @@ public:
         }
         sl = {nd[0], nd[n]};
     }
-    int size() const { return sl.first->nxt.back().dist; }
-    bool empty() const { return size() == 0; }
-    void insert(int k, const T& sm) {
-        assert(0 <= k && k <= size());
-        auto s = split(std::move(sl), k);
-        nodepair p{new node(1), new node(1)};
-        p.first->nxt[0] = {p.second, 1, sm};
-        p.second->prv[0] = p.first;
-        sl = merge(merge(std::move(s.first), std::move(p), rnd),
-                   std::move(s.second), rnd);
+    int size() const { assert(sl.first); return sl.first == sl.second ? 0 : sl.first->nxt.back().dist; }
+    bool empty() const { return sl.first == sl.second; }
+    void insert(int k, const T& x) {
+        const int n = size();
+        assert(0 <= k && k <= n);
+        if (n == 0) {
+            delete sl.first;
+            sl.first = new node(1);
+            sl.second = new node(1);
+            sl.first->nxt[0] = {sl.second, 1, x};
+            sl.second->prv[0] = sl.first;
+            return;
+        }
+        if (k == 0) {
+            /*
+            if (lev < sl.first->level()) {
+                node_ptr ptr = new node(lev);
+                rep (i, lev) {
+                    ptr->nxt[i] = sl.first->nxt[i];
+                    sl.first->nxt[i].node->prv[i] = ptr;
+                    sl.first->nxt[i] = {ptr, 1, x};
+                    ptr->prv[i] = sl.first;
+                }
+                rep (i, lev, sl.first->level()) {
+                    ++sl.first->nxt[i].dist;
+                    sl.first->nxt[i].sm = M::op(x, sl.first->nxt[i].sm);
+                }
+            }
+            else {
+                node_ptr ptr = new node(lev);
+                rep (i, sl.first->level()) {
+                    ptr->nxt[i] = sl.first->nxt[i];
+                    sl.first->nxt[i].node->prv[i] = ptr;
+                    sl.first->nxt[i] = {ptr, 1, x};
+                    ptr->prv[i] = sl.first;
+                }
+                rep (i, sl.first->level(), lev) {
+                    sl.first->nxt[i] = sl.first->nxt[i - 1];
+                    sl.first->prv[i] = sl.first->prv[i - 1];
+                }
+                sl.first->prv.resize(lev + 1, {sl.first->prv.back()});
+                sl.first->nxt.resize(lev + 1, {sl.first->nxt.back()});
+                sl.second->prv.resize(lev + 1, {sl.second->prv.back()});
+                sl.second->nxt.resize(lev + 1, {sl.second->nxt.back()});
+                sl.first->nxt.back() = {sl.second, sl.first->nxt.back().dist + 1, M::op(x, sl.first->nxt.back().sm)};
+                sl.second->prv.back() = sl.first;
+            }
+            */
+
+
+            nodepair p{new node(1), new node(1)};
+            p.first->nxt[0] = {p.second, 1, x};
+            p.second->prv[0] = p.first;
+            sl = merge(std::move(p), std::move(sl), rnd);
+            return;
+        }
+        const int h = sl.first->level();
+        std::vector<node_ptr> lft(h);
+        std::vector<int> idx(h);
+        lft[h - 1] = sl.first;
+        idx[h - 1] = 0;
+        rrep (i, h - 1) {
+            lft[i] = lft[i + 1];
+            idx[i] = idx[i + 1];
+            while (idx[i] + lft[i]->nxt[i].dist < k) {
+                idx[i] += lft[i]->nxt[i].dist;
+                lft[i] = lft[i]->nxt[i].node;
+            }
+        }
+        rrep (i, h, 1) eval(lft[i], i);
+        const int lev = get_level(rnd);
+        node_ptr np = new node(lev);
+        if (lev < h) {
+            rep (i, lev) {
+                const auto l = lft[i];
+                const auto r = lft[i]->nxt[i].node;
+                np->nxt[i] = {r, idx[i] + l->nxt[i].dist - k + 1, x};
+                r->prv[i] = np;
+                l->nxt[i] = {np, k - idx[i], l->nxt[i].sm};
+                np->prv[i] = l;
+            }
+            rep (i, lev, h) ++lft[i]->nxt[i].dist;
+            rep (i, 1, h) {
+                calc(lft[i], i);
+                if (i < lev) calc(lft[i]->nxt[i].node, i);
+            }
+        }
+        else {
+            rep (i, h) {
+                const auto l = lft[i];
+                const auto r = lft[i]->nxt[i].node;
+                np->nxt[i] = {r, idx[i] + l->nxt[i].dist - k + 1, x};
+                r->prv[i] = np;
+                l->nxt[i] = {np, k - idx[i], l->nxt[i].sm};
+                np->prv[i] = l;
+            }
+            rep (i, 1, h) {
+                calc(lft[i], i);
+                if (i < lev) calc(lft[i]->nxt[i].node, i);
+            }
+            sl.first->prv.resize(lev + 1, {sl.first->prv.back()});
+            sl.first->nxt.resize(lev + 1, {sl.second, n + 1, x});
+            sl.second->prv.resize(lev + 1, sl.first);
+            sl.second->nxt.resize(lev + 1, {sl.second->nxt.back()});
+            rep (i, h, lev) {
+                sl.first->nxt[i] = {np, k, x};
+                np->prv[i] = sl.first;
+                np->nxt[i] = {sl.second, n - k + 1, x};
+                sl.second->prv[i] = np;
+                calc(sl.first, i);
+                calc(np, i);
+            }
+            calc(sl.first, lev);
+        }
     }
     void erase(int k) {
-        assert(0 <= k && k < size());
-        auto s = split(std::move(sl), k);
-        auto s2 = split(std::move(s.second), 1);
-        sl = merge(std::move(s.first), std::move(s2.second), rnd);
+        const int n = size();
+        assert(0 <= k && k < n);
+        if (n == 1) {
+            delete sl.first;
+            delete sl.second;
+            sl.first = sl.second = new node(1);
+            return;
+        }
+        if (k == 0) {
+            all_eval(sl, 0);
+            rep (i, sl.first->level()) {
+                if (sl.first->nxt[i].dist == 1) {
+                    const auto l = sl.first;
+                    const auto m = l->nxt[i].node;
+                    const auto r = m->nxt[i].node;
+                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};
+                    r->prv[i] = l;
+                }
+                else {
+                    sl.first->nxt[i].dist--;
+                }
+            }
+            rep (i, 1, sl.first->level()) calc(sl.first, i);
+            return;
+        }
+        all_eval(sl, k - 1);
+        all_eval(sl, k);
+        node_ptr np = sl.first;
+        int cnt = 0;
+        rrep (i, sl.first->level()) {
+            while (cnt + np->nxt[i].dist <= k) {
+                cnt += np->nxt[i].dist;
+                np = np->nxt[i].node;
+            }
+            if (cnt == k) {
+                const auto l = np->prv[i];
+                const auto r = np->nxt[i].node;
+                r->prv[i] = l;
+                l->nxt[i] = {r, l->nxt[i].dist + np->nxt[i].dist - 1, l->nxt[i].sm};
+            }
+            else {
+                np->nxt[i].dist--;
+            }
+        }
+        delete np;
+        all_calc(sl, k - 1);
     }
     T prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= size());
