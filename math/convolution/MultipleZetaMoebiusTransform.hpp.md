@@ -5,16 +5,16 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/GcdConvolution.hpp
     title: GCDConvolution
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/gcd_convolution.test.cpp
-    title: test/yosupo/convolution/gcd_convolution.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/new/gcd_convolution.test.cpp
+    title: test/yosupo/new/gcd_convolution.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/MultipleZetaMoebiusTransform.md
     document_title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB\
@@ -181,9 +181,9 @@ data:
   requiredBy:
   - math/convolution/GcdConvolution.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/new/gcd_convolution.test.cpp
 documentation_of: math/convolution/MultipleZetaMoebiusTransform.hpp
 layout: document
 redirect_from:

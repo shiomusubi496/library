@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/GcdConvolution.hpp
     title: GCDConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
@@ -22,16 +22,16 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
     links:
     - https://judge.yosupo.jp/problem/gcd_convolution
-  bundledCode: "#line 1 \"test/yosupo/convolution/gcd_convolution.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 1 \"test/yosupo/new/gcd_convolution.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#line 2 \"other/template.hpp\"\
     \n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c) for (ll REP_COUNTER_ ## c = 0; REP_COUNTER_ ## c <\
@@ -410,11 +410,11 @@ data:
     \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
     \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
-    \ */\n#line 7 \"test/yosupo/convolution/gcd_convolution.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int N; cin >> N;\n  \
-    \  vector<mint> A(N + 1), B(N + 1);\n    reps (i, N) cin >> A[i];\n    reps (i,\
-    \ N) cin >> B[i];\n    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) cout << v[i] << \" \\n\"[i == N];\n}\n"
+    \ */\n#line 7 \"test/yosupo/new/gcd_convolution.test.cpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint>\
+    \ A(N + 1), B(N + 1);\n    reps (i, N) cin >> A[i];\n    reps (i, N) cin >> B[i];\n\
+    \    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A, B);\n\
+    \    reps (i, N) cout << v[i] << \" \\n\"[i == N];\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\n#include\
     \ \"../../../other/monoid2.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
@@ -431,15 +431,15 @@ data:
   - math/convolution/GcdConvolution.hpp
   - math/convolution/MultipleZetaMoebiusTransform.hpp
   isVerificationFile: true
-  path: test/yosupo/convolution/gcd_convolution.test.cpp
+  path: test/yosupo/new/gcd_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-07-30 18:11:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-07-30 18:32:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/convolution/gcd_convolution.test.cpp
+documentation_of: test/yosupo/new/gcd_convolution.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/convolution/gcd_convolution.test.cpp
-- /verify/test/yosupo/convolution/gcd_convolution.test.cpp.html
-title: test/yosupo/convolution/gcd_convolution.test.cpp
+- /verify/test/yosupo/new/gcd_convolution.test.cpp
+- /verify/test/yosupo/new/gcd_convolution.test.cpp.html
+title: test/yosupo/new/gcd_convolution.test.cpp
 ---

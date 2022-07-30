@@ -34,12 +34,6 @@ data:
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/gcd_convolution.test.cpp
-    title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/lcm_convolution.test.cpp
-    title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,15 +45,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':x:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/gcd_convolution.test.cpp
+    title: test/yosupo/new/gcd_convolution.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/lcm_convolution.test.cpp
+    title: test/yosupo/new/lcm_convolution.test.cpp
   - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
@@ -415,9 +415,9 @@ data:
   - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
