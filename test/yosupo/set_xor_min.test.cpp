@@ -3,7 +3,7 @@
 #include "../../data-struct/other/BinaryTrie.hpp"
 using namespace std;
 int main() {
-    BinaryTrie BT;
+    BinaryTrie<30> BT;
     int Q; cin >> Q;
     rep (Q) {
         int t; cin >> t;
