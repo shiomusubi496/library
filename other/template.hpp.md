@@ -9,6 +9,9 @@ data:
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/BinaryTrie.hpp
+    title: BinaryTrie
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -458,6 +461,9 @@ data:
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/set_xor_min.test.cpp
+    title: test/yosupo/set_xor_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/shortest_path.test.cpp
     title: test/yosupo/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -864,6 +870,7 @@ data:
   - data-struct/other/SkipList.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/RangeSet.hpp
+  - data-struct/other/BinaryTrie.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
@@ -964,6 +971,7 @@ data:
   - test/yosupo/staticrmq-LCARMQ.test.cpp
   - test/yosupo/cartesian_tree.test.cpp
   - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/set_xor_min.test.cpp
   - test/yosupo/jump_on_tree.test.cpp
   - test/yosupo/bitwise_and_convolution.test.cpp
   - test/yosupo/persistent_unionfind-Undo.test.cpp
