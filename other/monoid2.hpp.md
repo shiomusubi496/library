@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/bitwise_and_convolution-or.test.cpp
+    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/bitwise_and_convolution.test.cpp
-    title: test/yosupo/bitwise_and_convolution.test.cpp
+    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
+    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    path: test/yosupo/convolution/gcd_convolution.test.cpp
+    title: test/yosupo/convolution/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/gcd_convolution.test.cpp
-    title: test/yosupo/gcd_convolution.test.cpp
+    path: test/yosupo/convolution/lcm_convolution.test.cpp
+    title: test/yosupo/convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/lcm_convolution.test.cpp
-    title: test/yosupo/lcm_convolution.test.cpp
+    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.test.cpp
-    title: test/yosupo/point_set_range_composite.test.cpp
+    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/queue_operate_all_composite.test.cpp
-    title: test/yosupo/queue_operate_all_composite.test.cpp
+    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_point_get.test.cpp
-    title: test/yosupo/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_range_sum.test.cpp
-    title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/range_affine_point_get.test.cpp
+    title: test/yosupo/new/range_affine_point_get.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -342,19 +342,19 @@ data:
   path: other/monoid2.hpp
   requiredBy: []
   timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/range_affine_point_get.test.cpp
-  - test/yosupo/lcm_convolution.test.cpp
-  - test/yosupo/queue_operate_all_composite.test.cpp
-  - test/yosupo/gcd_convolution.test.cpp
-  - test/yosupo/bitwise_and_convolution.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/convolution/lcm_convolution.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:

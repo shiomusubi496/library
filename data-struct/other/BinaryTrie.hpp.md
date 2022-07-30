@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/set_xor_min.test.cpp
-    title: test/yosupo/set_xor_min.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/data_structure/set_xor_min.test.cpp
+    title: test/yosupo/data_structure/set_xor_min.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/BinaryTrie.md
     document_title: BinaryTrie
@@ -225,9 +225,9 @@ data:
   path: data-struct/other/BinaryTrie.hpp
   requiredBy: []
   timestamp: '2022-07-30 17:45:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/set_xor_min.test.cpp
+  - test/yosupo/data_structure/set_xor_min.test.cpp
 documentation_of: data-struct/other/BinaryTrie.hpp
 layout: document
 redirect_from:

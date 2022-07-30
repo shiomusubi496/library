@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -906,7 +906,7 @@ data:
   timestamp: '2022-07-29 22:49:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: data-struct/other/SkipList.hpp
 layout: document
 redirect_from:

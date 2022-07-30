@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -18,33 +18,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
@@ -97,44 +97,44 @@ data:
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/jump_on_tree.test.cpp
-    title: test/yosupo/jump_on_tree.test.cpp
+    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.test.cpp
-    title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_point_get.test.cpp
-    title: test/yosupo/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_range_sum.test.cpp
-    title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-LCARMQ.test.cpp
-    title: test/yosupo/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-LinearRMQ.test.cpp
-    title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-SparseTable.test.cpp
-    title: test/yosupo/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_path_sum.test.cpp
-    title: test/yosupo/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
+    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+    title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+    title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+    title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+    title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+    title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/jump_on_tree.test.cpp
+    title: test/yosupo/new/jump_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/range_affine_point_get.test.cpp
+    title: test/yosupo/new/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
@@ -144,9 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -324,7 +324,7 @@ data:
   - data-struct/segment/DynamicLazySegmentTree.hpp
   - data-struct/segment/DualSegmentTree.hpp
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
@@ -345,19 +345,19 @@ data:
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yosupo/staticrmq-SparseTable.test.cpp
-  - test/yosupo/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/vertex_add_path_sum.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/range_affine_point_get.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/jump_on_tree.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/new/jump_on_tree.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
 documentation_of: other/bitop.hpp
 layout: document
 redirect_from:

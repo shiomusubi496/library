@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+    title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
@@ -287,9 +287,9 @@ data:
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
   timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
 documentation_of: data-struct/segment/CumulativeSum.hpp
 layout: document
 redirect_from:

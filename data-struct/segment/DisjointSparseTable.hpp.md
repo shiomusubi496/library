@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+    title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+    title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/DisjointSparseTable.md
     document_title: DisjointSparseTable
@@ -329,10 +329,10 @@ data:
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
   timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: data-struct/segment/DisjointSparseTable.hpp
 layout: document
 redirect_from:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -28,8 +28,8 @@ data:
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/range_affine_range_sum.test.cpp
-    title: test/yosupo/range_affine_range_sum.test.cpp
+    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -507,7 +507,7 @@ data:
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/yosupo/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
 documentation_of: data-struct/segment/LazySegmentTree.hpp
 layout: document
 redirect_from:

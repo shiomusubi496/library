@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/shortest_path.test.cpp
-    title: test/yosupo/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree_diameter.test.cpp
-    title: test/yosupo/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/graph/shortest_path.test.cpp
+    title: test/yosupo/graph/shortest_path.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/tree/tree_diameter.test.cpp
+    title: test/yosupo/tree/tree_diameter.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -241,11 +241,11 @@ data:
   requiredBy:
   - graph/tree/TreeDiameter.hpp
   timestamp: '2022-05-28 12:03:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/yosupo/tree_diameter.test.cpp
-  - test/yosupo/shortest_path.test.cpp
+  - test/yosupo/tree/tree_diameter.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document
 redirect_from:

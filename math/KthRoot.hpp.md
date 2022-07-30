@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/kth_root_integer.test.cpp
-    title: test/yosupo/kth_root_integer.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/math/kth_root_integer.test.cpp
+    title: test/yosupo/math/kth_root_integer.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/KthRoot.md
     document_title: "KthRoot(k\u4E57\u6839)"
@@ -166,9 +166,9 @@ data:
   path: math/KthRoot.hpp
   requiredBy: []
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/kth_root_integer.test.cpp
+  - test/yosupo/math/kth_root_integer.test.cpp
 documentation_of: math/KthRoot.hpp
 layout: document
 redirect_from:

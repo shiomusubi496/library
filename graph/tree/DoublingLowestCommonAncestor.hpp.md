@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/jump_on_tree.test.cpp
-    title: test/yosupo/jump_on_tree.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/new/jump_on_tree.test.cpp
+    title: test/yosupo/new/jump_on_tree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/DoublingLowestCommonAncestor.md
     document_title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
@@ -294,10 +294,10 @@ data:
   path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
   timestamp: '2022-07-29 23:18:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/yosupo/jump_on_tree.test.cpp
+  - test/yosupo/new/jump_on_tree.test.cpp
 documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp
 layout: document
 redirect_from:

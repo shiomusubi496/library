@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/cycle_detection.test.cpp
-    title: test/yosupo/cycle_detection.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/graph/cycle_detection.test.cpp
+    title: test/yosupo/graph/cycle_detection.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/GraphCycle.md
     document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
@@ -231,10 +231,10 @@ data:
   path: graph/other/GraphCycle.hpp
   requiredBy: []
   timestamp: '2022-05-14 15:03:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/yosupo/cycle_detection.test.cpp
+  - test/yosupo/graph/cycle_detection.test.cpp
 documentation_of: graph/other/GraphCycle.hpp
 layout: document
 redirect_from:

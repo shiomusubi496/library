@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/line_add_get_min.test.cpp
-    title: test/yosupo/line_add_get_min.test.cpp
+    path: test/yosupo/data_structure/line_add_get_min.test.cpp
+    title: test/yosupo/data_structure/line_add_get_min.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
   timestamp: '2022-05-28 12:29:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/line_add_get_min.test.cpp
+  - test/yosupo/data_structure/line_add_get_min.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrick.hpp
 layout: document
 redirect_from:

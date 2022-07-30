@@ -5,14 +5,14 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/gcd_convolution.test.cpp
-    title: test/yosupo/gcd_convolution.test.cpp
+    path: test/yosupo/convolution/gcd_convolution.test.cpp
+    title: test/yosupo/convolution/gcd_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -184,7 +184,7 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
 documentation_of: math/convolution/GcdConvolution.hpp
 layout: document
 redirect_from:

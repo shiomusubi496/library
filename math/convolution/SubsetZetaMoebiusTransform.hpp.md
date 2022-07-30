@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -10,8 +10,8 @@ data:
     title: BitwiseOrConvolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/bitwise_and_convolution-or.test.cpp
+    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -178,7 +178,7 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
 documentation_of: math/convolution/SubsetZetaMoebiusTransform.hpp
 layout: document
 redirect_from:

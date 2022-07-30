@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/unionfind-Dynamic.test.cpp
-    title: test/yosupo/unionfind-Dynamic.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+    title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/DynamicUnionFind.md
     document_title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
@@ -185,9 +185,9 @@ data:
   path: data-struct/unionfind/DynamicUnionFind.hpp
   requiredBy: []
   timestamp: '2022-05-01 15:10:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/unionfind-Dynamic.test.cpp
+  - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
 documentation_of: data-struct/unionfind/DynamicUnionFind.hpp
 layout: document
 redirect_from:

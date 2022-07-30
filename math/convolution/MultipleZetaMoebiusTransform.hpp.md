@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -10,8 +10,8 @@ data:
     title: GCDConvolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/gcd_convolution.test.cpp
-    title: test/yosupo/gcd_convolution.test.cpp
+    path: test/yosupo/convolution/gcd_convolution.test.cpp
+    title: test/yosupo/convolution/gcd_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
   timestamp: '2022-05-01 15:10:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/gcd_convolution.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
 documentation_of: math/convolution/MultipleZetaMoebiusTransform.hpp
 layout: document
 redirect_from:

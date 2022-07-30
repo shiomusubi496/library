@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -19,20 +19,20 @@ data:
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/point_set_range_composite.test.cpp
-    title: test/yosupo/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/vertex_set_path_composite.test.cpp
-    title: test/yosupo/vertex_set_path_composite.test.cpp
+    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -378,14 +378,14 @@ data:
   path: data-struct/segment/SegmentTree.hpp
   requiredBy: []
   timestamp: '2022-07-10 23:06:05+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yosupo/vertex_set_path_composite.test.cpp
-  - test/yosupo/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:

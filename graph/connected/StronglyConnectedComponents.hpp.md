@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TwoSatisfiablitity.hpp
     title: TwoSatisfiability(2-SAT)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/two_sat.test.cpp
-    title: test/yosupo/two_sat.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/math/two_sat.test.cpp
+    title: test/yosupo/math/two_sat.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -253,10 +253,10 @@ data:
   requiredBy:
   - graph/other/TwoSatisfiablitity.hpp
   timestamp: '2022-05-14 15:03:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/yosupo/two_sat.test.cpp
+  - test/yosupo/math/two_sat.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:

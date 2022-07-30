@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy:
@@ -16,8 +16,8 @@ data:
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -225,7 +225,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: random/Random.hpp
 layout: document
 redirect_from:

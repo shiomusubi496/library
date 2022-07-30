@@ -11,7 +11,7 @@ data:
       title: ConvexHullTrickAddMonotone
   - name: data-struct/other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
     - icon: ':heavy_check_mark:'
@@ -26,16 +26,16 @@ data:
       title: SlidingWindowAggregation(SWAG)
   - name: data-struct/segment
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/CumulativeSum.hpp
       title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -45,31 +45,31 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/segment/LinearRMQ.hpp
       title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\\
         Theta(1)$\u306ERMQ)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -88,11 +88,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/connected/TwoEdgeConnectedComponents.hpp
       title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
         \u89E3)"
@@ -109,17 +109,17 @@ data:
     - icon: ':warning:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/other/TwoSatisfiablitity.hpp
       title: TwoSatisfiability(2-SAT)
   - name: graph/shortest-path
@@ -130,10 +130,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/BreadthFirstSearch.hpp
       title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     - icon: ':heavy_check_mark:'
@@ -145,30 +145,30 @@ data:
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
@@ -182,13 +182,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -229,16 +229,16 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -257,7 +257,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/ZAlgorithm.hpp
       title: Z-Algorithm
   verificationCategories:
@@ -446,128 +446,144 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/other/2945-01BFS.test.cpp
       title: test/aoj/other/2945-01BFS.test.cpp
-  - name: test/yosupo
+  - name: test/yosupo/convolution
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/aplusb.test.cpp
-      title: test/yosupo/aplusb.test.cpp
+      path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+      title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/bitwise_and_convolution-or.test.cpp
-      title: test/yosupo/bitwise_and_convolution-or.test.cpp
+      path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
+      title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/bitwise_and_convolution.test.cpp
-      title: test/yosupo/bitwise_and_convolution.test.cpp
+      path: test/yosupo/convolution/gcd_convolution.test.cpp
+      title: test/yosupo/convolution/gcd_convolution.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/cartesian_tree.test.cpp
-      title: test/yosupo/cartesian_tree.test.cpp
+      path: test/yosupo/convolution/lcm_convolution.test.cpp
+      title: test/yosupo/convolution/lcm_convolution.test.cpp
+  - name: test/yosupo/data_structure
+    pages:
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/cycle_detection.test.cpp
-      title: test/yosupo/cycle_detection.test.cpp
+      path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+      title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
-      title: test/yosupo/dynamic_sequence_range_affine_range_sum.test.cpp
+      path: test/yosupo/data_structure/line_add_get_min.test.cpp
+      title: test/yosupo/data_structure/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/gcd_convolution.test.cpp
-      title: test/yosupo/gcd_convolution.test.cpp
+      path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+      title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/jump_on_tree.test.cpp
-      title: test/yosupo/jump_on_tree.test.cpp
+      path: test/yosupo/data_structure/point_add_range_sum.test.cpp
+      title: test/yosupo/data_structure/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/kth_root_integer.test.cpp
-      title: test/yosupo/kth_root_integer.test.cpp
+      path: test/yosupo/data_structure/point_set_range_composite.test.cpp
+      title: test/yosupo/data_structure/point_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/lca-HLD.test.cpp
-      title: test/yosupo/lca-HLD.test.cpp
+      path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+      title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/lcm_convolution.test.cpp
-      title: test/yosupo/lcm_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/line_add_get_min.test.cpp
-      title: test/yosupo/line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/many_aplusb.test.cpp
-      title: test/yosupo/many_aplusb.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/matrix_product.test.cpp
-      title: test/yosupo/matrix_product.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/persistent_unionfind-Undo.test.cpp
-      title: test/yosupo/persistent_unionfind-Undo.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/point_add_range_sum.test.cpp
-      title: test/yosupo/point_add_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/point_set_range_composite.test.cpp
-      title: test/yosupo/point_set_range_composite.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/queue_operate_all_composite.test.cpp
-      title: test/yosupo/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/range_affine_point_get.test.cpp
-      title: test/yosupo/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/range_affine_range_sum.test.cpp
-      title: test/yosupo/range_affine_range_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/set_xor_min.test.cpp
-      title: test/yosupo/set_xor_min.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/shortest_path.test.cpp
-      title: test/yosupo/shortest_path.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-      title: test/yosupo/static_range_sum-CumulativeSum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-      title: test/yosupo/static_range_sum-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-      title: test/yosupo/staticrmq-DisjointSparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/staticrmq-LCARMQ.test.cpp
-      title: test/yosupo/staticrmq-LCARMQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/staticrmq-LinearRMQ.test.cpp
-      title: test/yosupo/staticrmq-LinearRMQ.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/staticrmq-SparseTable.test.cpp
-      title: test/yosupo/staticrmq-SparseTable.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/tree_diameter.test.cpp
-      title: test/yosupo/tree_diameter.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/two_edge_connected_components.test.cpp
-      title: test/yosupo/two_edge_connected_components.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/two_sat.test.cpp
-      title: test/yosupo/two_sat.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/unionfind-Dynamic.test.cpp
-      title: test/yosupo/unionfind-Dynamic.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/unionfind.test.cpp
-      title: test/yosupo/unionfind.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_add_path_sum.test.cpp
-      title: test/yosupo/vertex_add_path_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-      title: test/yosupo/vertex_add_subtree_sum-2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-      title: test/yosupo/vertex_add_subtree_sum-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_add_subtree_sum.test.cpp
-      title: test/yosupo/vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-      title: test/yosupo/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/vertex_set_path_composite.test.cpp
-      title: test/yosupo/vertex_set_path_composite.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/zalgorithm.test.cpp
-      title: test/yosupo/zalgorithm.test.cpp
+      path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+      title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/set_xor_min.test.cpp
+      title: test/yosupo/data_structure/set_xor_min.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+      title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+      title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+      title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+      title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+      title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+      title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+      title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/unionfind.test.cpp
+      title: test/yosupo/data_structure/unionfind.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+      title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+      title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
+      title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+      title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+      title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+      title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - name: test/yosupo/graph
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/graph/cycle_detection.test.cpp
+      title: test/yosupo/graph/cycle_detection.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/graph/shortest_path.test.cpp
+      title: test/yosupo/graph/shortest_path.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/graph/two_edge_connected_components.test.cpp
+      title: test/yosupo/graph/two_edge_connected_components.test.cpp
+  - name: test/yosupo/math
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/math/kth_root_integer.test.cpp
+      title: test/yosupo/math/kth_root_integer.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/math/two_sat.test.cpp
+      title: test/yosupo/math/two_sat.test.cpp
+  - name: test/yosupo/matrix
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/matrix/matrix_product.test.cpp
+      title: test/yosupo/matrix/matrix_product.test.cpp
+  - name: test/yosupo/new
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/new/jump_on_tree.test.cpp
+      title: test/yosupo/new/jump_on_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/new/range_affine_point_get.test.cpp
+      title: test/yosupo/new/range_affine_point_get.test.cpp
+  - name: test/yosupo/sample
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/sample/aplusb.test.cpp
+      title: test/yosupo/sample/aplusb.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/sample/many_aplusb.test.cpp
+      title: test/yosupo/sample/many_aplusb.test.cpp
+  - name: test/yosupo/string
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/string/zalgorithm.test.cpp
+      title: test/yosupo/string/zalgorithm.test.cpp
+  - name: test/yosupo/tree
+    pages:
+    - icon: ':x:'
+      path: test/yosupo/tree/cartesian_tree.test.cpp
+      title: test/yosupo/tree/cartesian_tree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree/lca-HLD.test.cpp
+      title: test/yosupo/tree/lca-HLD.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/tree/tree_diameter.test.cpp
+      title: test/yosupo/tree/tree_diameter.test.cpp
   - name: test/yuki
     pages:
     - icon: ':heavy_check_mark:'

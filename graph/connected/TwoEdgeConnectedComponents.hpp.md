@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/two_edge_connected_components.test.cpp
-    title: test/yosupo/two_edge_connected_components.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/graph/two_edge_connected_components.test.cpp
+    title: test/yosupo/graph/two_edge_connected_components.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/TwoEdgeConnectedComponents.md
     document_title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\
@@ -257,9 +257,9 @@ data:
   path: graph/connected/TwoEdgeConnectedComponents.hpp
   requiredBy: []
   timestamp: '2022-05-14 15:03:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
 documentation_of: graph/connected/TwoEdgeConnectedComponents.hpp
 layout: document
 redirect_from:
