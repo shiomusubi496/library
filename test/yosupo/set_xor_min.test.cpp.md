@@ -184,19 +184,19 @@ data:
     \    }\n    ll get_index(ull k) const {\n        return get_index(root, k ^ xall,\
     \ height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/BinaryTrie.md\n\
     \ */\n#line 4 \"test/yosupo/set_xor_min.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    BinaryTrie BT;\n    int Q; cin >> Q;\n    rep (Q) {\n        int\
-    \ t; cin >> t;\n        ull x; cin >> x;\n        if (t == 0) {\n            if\
-    \ (BT.count(x) == 0) BT.insert(x);\n        }\n        else if (t == 1) {\n  \
-    \          if (BT.count(x) == 1) BT.erase(x);\n        }\n        else {\n   \
-    \         BT.xor_all(x);\n            cout << BT.kth_element(0) << endl;\n   \
-    \         BT.xor_all(x);\n        }\n    }\n}\n"
+    \ main() {\n    BinaryTrie<30> BT;\n    int Q; cin >> Q;\n    rep (Q) {\n    \
+    \    int t; cin >> t;\n        ull x; cin >> x;\n        if (t == 0) {\n     \
+    \       if (BT.count(x) == 0) BT.insert(x);\n        }\n        else if (t ==\
+    \ 1) {\n            if (BT.count(x) == 1) BT.erase(x);\n        }\n        else\
+    \ {\n            BT.xor_all(x);\n            cout << BT.kth_element(0) << endl;\n\
+    \            BT.xor_all(x);\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/other/BinaryTrie.hpp\"\
-    \nusing namespace std;\nint main() {\n    BinaryTrie BT;\n    int Q; cin >> Q;\n\
-    \    rep (Q) {\n        int t; cin >> t;\n        ull x; cin >> x;\n        if\
-    \ (t == 0) {\n            if (BT.count(x) == 0) BT.insert(x);\n        }\n   \
-    \     else if (t == 1) {\n            if (BT.count(x) == 1) BT.erase(x);\n   \
-    \     }\n        else {\n            BT.xor_all(x);\n            cout << BT.kth_element(0)\
+    \nusing namespace std;\nint main() {\n    BinaryTrie<30> BT;\n    int Q; cin >>\
+    \ Q;\n    rep (Q) {\n        int t; cin >> t;\n        ull x; cin >> x;\n    \
+    \    if (t == 0) {\n            if (BT.count(x) == 0) BT.insert(x);\n        }\n\
+    \        else if (t == 1) {\n            if (BT.count(x) == 1) BT.erase(x);\n\
+    \        }\n        else {\n            BT.xor_all(x);\n            cout << BT.kth_element(0)\
     \ << endl;\n            BT.xor_all(x);\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
@@ -204,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-07-30 17:45:57+09:00'
+  timestamp: '2022-07-30 17:49:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/set_xor_min.test.cpp
