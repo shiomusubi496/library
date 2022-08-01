@@ -224,6 +224,9 @@ data:
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
   - icon: ':heavy_check_mark:'
+    path: string/Manacher.hpp
+    title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   - icon: ':heavy_check_mark:'
@@ -515,6 +518,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/many_aplusb.test.cpp
     title: test/yosupo/sample/many_aplusb.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/enumerate_palindromes.test.cpp
+    title: test/yosupo/string/enumerate_palindromes.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
@@ -856,6 +862,7 @@ data:
   - string/LongestIncreasingSubsequence.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
+  - string/Manacher.hpp
   - other/monoid.hpp
   - other/monoid2.hpp
   - other/bitop.hpp
@@ -962,6 +969,7 @@ data:
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
+  - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp

@@ -256,6 +256,9 @@ data:
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
     - icon: ':heavy_check_mark:'
+      path: string/Manacher.hpp
+      title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
+    - icon: ':heavy_check_mark:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
     - icon: ':heavy_check_mark:'
@@ -577,6 +580,9 @@ data:
       title: test/yosupo/sample/many_aplusb.test.cpp
   - name: test/yosupo/string
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/string/enumerate_palindromes.test.cpp
+      title: test/yosupo/string/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp
