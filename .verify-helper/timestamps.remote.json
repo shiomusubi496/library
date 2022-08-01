@@ -93,6 +93,7 @@
 "test/yosupo/new/range_affine_point_get.test.cpp": "2022-07-30 18:11:13 +0900",
 "test/yosupo/sample/aplusb.test.cpp": "2022-07-30 18:11:13 +0900",
 "test/yosupo/sample/many_aplusb.test.cpp": "2022-07-30 18:11:13 +0900",
+"test/yosupo/string/enumerate_palindromes.test.cpp": "2022-08-01 13:01:32 +0900",
 "test/yosupo/string/zalgorithm.test.cpp": "2022-07-30 18:11:13 +0900",
 "test/yosupo/tree/cartesian_tree.test.cpp": "2022-07-30 18:11:13 +0900",
 "test/yosupo/tree/lca-HLD.test.cpp": "2022-07-30 18:11:13 +0900",
