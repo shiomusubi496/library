@@ -186,9 +186,6 @@ data:
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
     - icon: ':heavy_check_mark:'
-      path: math/Matrix.hpp
-      title: "Matrix(\u884C\u5217)"
-    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -227,6 +224,14 @@ data:
       path: math/convolution/SupersetZetaMoebiusTransform.hpp
       title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
+  - name: math/matrix
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: math/matrix/Determinant.hpp
+      title: "Determinant(\u884C\u5217\u5F0F)"
+    - icon: ':heavy_check_mark:'
+      path: math/matrix/Matrix.hpp
+      title: "Matrix(\u884C\u5217)"
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -550,6 +555,9 @@ data:
       title: test/yosupo/math/two_sat.test.cpp
   - name: test/yosupo/matrix
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix/matrix_det.test.cpp
+      title: test/yosupo/matrix/matrix_det.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp

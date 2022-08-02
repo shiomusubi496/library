@@ -165,9 +165,6 @@ data:
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
   - icon: ':heavy_check_mark:'
-    path: math/Matrix.hpp
-    title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -204,6 +201,12 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Determinant.hpp
+    title: "Determinant(\u884C\u5217\u5F0F)"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
@@ -494,6 +497,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_det.test.cpp
+    title: test/yosupo/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
@@ -819,7 +825,6 @@ data:
   - random/Timer.hpp
   - math/Combinatorics.hpp
   - math/ModInt.hpp
-  - math/Matrix.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/DivisorZetaMoebiusTransform.hpp
   - math/convolution/LcmConvolution.hpp
@@ -832,6 +837,8 @@ data:
   - math/Rational.hpp
   - math/Divisor.hpp
   - math/KthRoot.hpp
+  - math/matrix/Determinant.hpp
+  - math/matrix/Matrix.hpp
   - math/PrimeFactor.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/ReRooting.hpp
@@ -995,6 +1002,7 @@ data:
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/sample/many_aplusb.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
 documentation_of: other/template.hpp
 layout: document
 redirect_from:

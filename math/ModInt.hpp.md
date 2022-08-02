@@ -52,6 +52,9 @@ data:
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_det.test.cpp
+    title: test/yosupo/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,6 +429,7 @@ data:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:
