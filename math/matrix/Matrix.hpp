@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../other/template.hpp"
+#include "../../other/template.hpp"
 
 template<class T> class Matrix : public std::vector<std::vector<T>> {
   protected:
