@@ -102,6 +102,6 @@
 "test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp": "2022-07-10 23:07:18 +0900",
 "test/yuki/1435_SegTree-BinarySearch.test.cpp": "2022-07-10 23:06:05 +0900",
 "test/yuki/1469-RunLength.test.cpp": "2022-05-01 15:10:58 +0900",
-"test/yuki/1601-RangeSet.test.cpp": "2022-05-01 15:10:58 +0900",
+"test/yuki/1601-RangeSet.test.cpp": "2022-08-05 11:29:51 +0900",
 "test/yuki/855_DynamicSegTree.test.cpp": "2022-07-10 23:07:18 +0900"
 }
