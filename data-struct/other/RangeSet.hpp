@@ -5,7 +5,7 @@
 class RangeSet {
   protected:
     using iterator = typename std::set<std::pair<ll, ll>>::iterator;
-    int sz;
+    ll sz;
     std::set<std::pair<ll, ll>> st;
     iterator st_emplace_hint(const iterator& itr, ll l, ll r) {
         sz += r - l;
