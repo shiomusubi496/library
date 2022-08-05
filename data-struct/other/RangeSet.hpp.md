@@ -147,7 +147,7 @@ data:
     \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 4 \"data-struct/other/RangeSet.hpp\"\n\nclass RangeSet {\n  protected:\n\
-    \    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n    int\
+    \    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n    ll\
     \ sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
     \ iterator& itr, ll l, ll r) {\n        sz += r - l;\n        return st.emplace_hint(itr,\
     \ l, r);\n    }\n    iterator st_erase(const iterator& itr) {\n        sz -= itr->second\
@@ -208,7 +208,7 @@ data:
     \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     \  protected:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
-    \    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
+    \    ll sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
     \ iterator& itr, ll l, ll r) {\n        sz += r - l;\n        return st.emplace_hint(itr,\
     \ l, r);\n    }\n    iterator st_erase(const iterator& itr) {\n        sz -= itr->second\
     \ - itr->first;\n        return st.erase(itr);\n    }\n  public:\n    RangeSet()\
@@ -271,7 +271,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-08-05 11:29:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601-RangeSet.test.cpp

@@ -149,7 +149,7 @@ data:
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
     \ }\n};\n#line 2 \"data-struct/other/RangeSet.hpp\"\n\n#line 4 \"data-struct/other/RangeSet.hpp\"\
     \n\nclass RangeSet {\n  protected:\n    using iterator = typename std::set<std::pair<ll,\
-    \ ll>>::iterator;\n    int sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator\
+    \ ll>>::iterator;\n    ll sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator\
     \ st_emplace_hint(const iterator& itr, ll l, ll r) {\n        sz += r - l;\n \
     \       return st.emplace_hint(itr, l, r);\n    }\n    iterator st_erase(const\
     \ iterator& itr) {\n        sz -= itr->second - itr->first;\n        return st.erase(itr);\n\
@@ -223,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1601-RangeSet.test.cpp
   requiredBy: []
-  timestamp: '2022-05-01 15:10:58+09:00'
+  timestamp: '2022-08-05 11:29:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/1601-RangeSet.test.cpp
