@@ -22,9 +22,10 @@ class PrimeFactor {
         reverse(all(res));
         return res;
     }
-    std::vector<ll> get_primes(ll m) {
+    std::vector<ll> get_primes(ll m = -1) {
+        if (m < 0) m = MAX;
         std::vector<ll> res;
-        reps (i, MAX) {
+        reps (i, m) {
             if (era[i] == i) res.push_back(i);
         }
         return res;
@@ -46,9 +47,10 @@ class IsPrime {
     bool is_prime(ll x) {
         return era[x];
     }
-    std::vector<ll> get_primes(ll m) {
+    std::vector<ll> get_primes(ll m = -1) {
+        if (m < 0) m = MAX;
         std::vector<ll> res;
-        reps (i, MAX) {
+        reps (i, m) {
             if (era[i]) res.push_back(i);
         }
         return res;
