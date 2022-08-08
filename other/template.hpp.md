@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
+  - icon: ':warning:'
+    path: data-struct/other/DefaultMap.hpp
+    title: DefaultMap
   - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
@@ -893,6 +896,7 @@ data:
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/RangeSet.hpp
   - data-struct/other/BinaryTrie.hpp
+  - data-struct/other/DefaultMap.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   timestamp: '2022-05-01 15:10:58+09:00'

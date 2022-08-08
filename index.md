@@ -14,6 +14,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
+    - icon: ':warning:'
+      path: data-struct/other/DefaultMap.hpp
+      title: DefaultMap
     - icon: ':heavy_check_mark:'
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
