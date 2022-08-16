@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -173,7 +173,7 @@ data:
   path: test/yosupo/math/kth_root_integer.test.cpp
   requiredBy: []
   timestamp: '2022-08-16 22:53:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/kth_root_integer.test.cpp
 layout: document

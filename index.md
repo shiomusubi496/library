@@ -29,7 +29,7 @@ data:
       title: SlidingWindowAggregation(SWAG)
   - name: data-struct/segment
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':heavy_check_mark:'
@@ -64,15 +64,15 @@ data:
     - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
   - name: data-struct/unionfind
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -91,11 +91,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/TwoEdgeConnectedComponents.hpp
       title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
         \u89E3)"
@@ -112,17 +112,17 @@ data:
     - icon: ':warning:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/TwoSatisfiablitity.hpp
       title: TwoSatisfiability(2-SAT)
   - name: graph/shortest-path
@@ -133,7 +133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/BreadthFirstSearch.hpp
       title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     - icon: ':question:'
@@ -155,10 +155,10 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
@@ -185,7 +185,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
     - icon: ':question:'
@@ -209,13 +209,13 @@ data:
       path: math/convolution/DivisorZetaMoebiusTransform.hpp
       title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/GcdConvolution.hpp
       title: GCDConvolution
     - icon: ':x:'
       path: math/convolution/LcmConvolution.hpp
       title: LCMConvolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -229,10 +229,10 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Determinant.hpp
       title: "Determinant(\u884C\u5217\u5F0F)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: other
@@ -510,63 +510,63 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
       title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
       title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
       title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/unionfind.test.cpp
       title: test/yosupo/data_structure/unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - name: test/yosupo/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/shortest_path.test.cpp
       title: test/yosupo/graph/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/two_edge_connected_components.test.cpp
       title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - name: test/yosupo/math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/two_sat.test.cpp
       title: test/yosupo/math/two_sat.test.cpp
   - name: test/yosupo/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_det.test.cpp
       title: test/yosupo/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp
   - name: test/yosupo/new
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/gcd_convolution.test.cpp
       title: test/yosupo/new/gcd_convolution.test.cpp
     - icon: ':x:'
