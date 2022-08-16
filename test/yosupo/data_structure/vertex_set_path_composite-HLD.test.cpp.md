@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
