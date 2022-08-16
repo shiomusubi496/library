@@ -3,7 +3,7 @@
 #include "../Graph.hpp"
 
 template<class T> class LowLink {
-  protected:
+protected:
     int n, cnt;
     const Graph<T>& G;
     std::vector<int> ord, low;
@@ -32,13 +32,15 @@ template<class T> class LowLink {
     }
     void init() {
         n = G.size();
-        ord.assign(n, -1); low.assign(n, n + 1);
+        ord.assign(n, -1);
+        low.assign(n, n + 1);
         cnt = 0;
         rep (i, n) {
             if (ord[i] == -1) dfs(i, -1);
         }
     }
-  public:
+
+public:
     LowLink(const Graph<T>& G) : G(G) { init(); }
     const std::vector<int>& articulation_points() const& { return aps; }
     std::vector<int> articulation_points() && { return std::move(aps); }

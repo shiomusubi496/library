@@ -3,13 +3,16 @@
 #include "../../other/template.hpp"
 
 template<class T = ll> class DynamicUnionFind {
-  protected:
+private:
     std::map<T, T> data;
-  public:
+
+public:
     DynamicUnionFind() = default;
     T find(T x) {
         auto itr = data.find(x);
-        return itr == data.end() || itr->second < 0 ? x : itr->second = find(itr->second);
+        return itr == data.end() || itr->second < 0
+                   ? x
+                   : itr->second = find(itr->second);
     }
     std::pair<T, T> merge(T x, T y) {
         x = find(x);
@@ -23,9 +26,7 @@ template<class T = ll> class DynamicUnionFind {
         itry->second = x;
         return {x, y};
     }
-    bool same(T x, T y) {
-        return find(x) == find(y);
-    }
+    bool same(T x, T y) { return find(x) == find(y); }
     int size(T x) {
         x = find(x);
         auto itr = data.find(x);
@@ -35,7 +36,7 @@ template<class T = ll> class DynamicUnionFind {
     bool is_root(T x) {
         auto itr = data.find(x);
         if (itr == data.end() || itr->second < 0) return true;
-        return false; 
+        return false;
     }
 };
 

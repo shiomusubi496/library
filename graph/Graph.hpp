@@ -7,8 +7,10 @@ template<class T = int> struct edge {
     T cost;
     int idx;
     edge() : from(-1), to(-1) {}
-    edge(int f, int t, const T& c = 1, int i = -1) : from(f), to(t), cost(c), idx(i) {}
-    edge(int f, int t, T&& c, int i = -1) : from(f), to(t), cost(std::move(c)), idx(i) {}
+    edge(int f, int t, const T& c = 1, int i = -1)
+        : from(f), to(t), cost(c), idx(i) {}
+    edge(int f, int t, T&& c, int i = -1)
+        : from(f), to(t), cost(std::move(c)), idx(i) {}
     operator int() const { return to; }
     friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {
         return lhs.cost < rhs.cost;
@@ -22,9 +24,10 @@ template<class T = int> using Edges = std::vector<edge<T>>;
 template<class T = int> using GMatrix = std::vector<std::vector<T>>;
 
 template<class T = int> class Graph : public std::vector<std::vector<edge<T>>> {
-  private:
+private:
     using Base = std::vector<std::vector<edge<T>>>;
-  public:
+
+public:
     int edge_id = 0;
     using Base::Base;
     int edge_size() const { return edge_id; }
@@ -67,10 +70,11 @@ template<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {
 template<class T> Edges<T> DirectedListToEdges(const Graph<T>& G) {
     const int V = G.size();
     const int E = std::accumulate(
-        all(G), 0,
-        [](int a, const std::vector<edge<T>>& v) -> int { return a + v.size(); }
-    );
-    Edges<T> Ed(G.edge_size()); Ed.reserve(E);
+        all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {
+            return a + v.size();
+        });
+    Edges<T> Ed(G.edge_size());
+    Ed.reserve(E);
     rep (i, V) {
         each_const (e : G[i]) {
             if (Ed[e.idx] == -1) Ed[e.idx] = e;

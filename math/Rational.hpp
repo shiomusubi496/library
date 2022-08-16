@@ -3,15 +3,18 @@
 #include "../other/template.hpp"
 
 template<class T> class Rational {
-  protected:
+private:
     T num, den;
-  public:
+
+public:
     static void norm(T& a, T& b) {
         assert(b != 0);
         T g = gcd(abs(a), abs(b));
-        a /= g; b /= g;
+        a /= g;
+        b /= g;
         if (b < 0) {
-            a = -a; b = -b;
+            a = -a;
+            b = -b;
         }
     }
     void normalize() { norm(num, den); }
@@ -27,7 +30,7 @@ template<class T> class Rational {
     }
     Rational operator++(int) {
         Rational res = *this;
-        ++ *this;
+        ++*this;
         return res;
     }
     Rational& operator--() {
@@ -36,7 +39,7 @@ template<class T> class Rational {
     }
     Rational operator--(int) {
         Rational res = *this;
-        -- *this;
+        --*this;
         return res;
     }
     Rational& operator+=(const Rational& other) {
@@ -75,12 +78,8 @@ template<class T> class Rational {
     friend Rational operator/(const Rational& lhs, const Rational& rhs) {
         return Rational(lhs) /= rhs;
     }
-    Rational operator+() {
-        return Rational(*this);
-    }
-    Rational operator-() {
-        return Rational(-num, den);
-    }
+    Rational operator+() { return Rational(*this); }
+    Rational operator-() { return Rational(-num, den); }
     friend bool operator==(const Rational& lhs, const Rational& rhs) {
         return lhs.num == rhs.num && lhs.den == rhs.den;
     }

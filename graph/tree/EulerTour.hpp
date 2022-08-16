@@ -5,20 +5,18 @@
 #include "../Graph.hpp"
 
 namespace Monoid {
-    struct PairMinForEulerTour {
-        using value_type = std::pair<int, int>;
-        static value_type op(const value_type& a, const value_type& b) {
-            return a.first < b.first ? a : b;
-        }
-        static value_type id() {
-            return {infinity<int>::value, -1};
-        }
-    };
-}
+struct PairMinForEulerTour {
+    using value_type = std::pair<int, int>;
+    static value_type op(const value_type& a, const value_type& b) {
+        return a.first < b.first ? a : b;
+    }
+    static value_type id() { return {infinity<int>::value, -1}; }
+};
+} // namespace Monoid
 
 template<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>
 class EulerTour {
-  protected:
+private:
     int n, cnt;
     std::vector<int> root;
     const Graph<T>& G;
@@ -54,17 +52,21 @@ class EulerTour {
         }
         RMQ.init(rmqvec);
     }
-  public:
+
+public:
     EulerTour(const Graph<T>& G, int root = 0) : root({root}), G(G) { init(); }
-    EulerTour(const Graph<T>& G, const std::vector<int>& root) : root(root), G(G) { init(); }
+    EulerTour(const Graph<T>& G, const std::vector<int>& root)
+        : root(root), G(G) {
+        init();
+    }
     const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }
     std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }
     int get_par(int a, int b) const { return dep[a] < dep[b] ? a : b; }
     int lca(int u, int v) const {
-        return RMQ.prod(
-            std::min(idx[u].first, idx[v].first),
-            std::max(idx[u].second, idx[v].second)
-        ).second;
+        return RMQ
+            .prod(std::min(idx[u].first, idx[v].first),
+                  std::max(idx[u].second, idx[v].second))
+            .second;
     }
     template<class F> void each_vertex_subtree(int v, const F& f) const {
         f(idx[v].first, idx[v].second + 1);
@@ -72,14 +74,20 @@ class EulerTour {
     template<class F> void each_edge_subtree(int v, const F& f) const {
         f(idx[v].first + 1, idx[v].second + 1);
     }
-    template<class F> void each_vertex(int u, int v, const F& f) const { each_vertex(u, v, f, f); }
-    template<class F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {
+    template<class F> void each_vertex(int u, int v, const F& f) const {
+        each_vertex(u, v, f, f);
+    }
+    template<class F, class G>
+    void each_vertex(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         g(idx[l].first, idx[u].first + 1);
         f(idx[l].first + 1, idx[v].first + 1);
     }
-    template<class F> void each_edge(int u, int v, const F& f) const { each_edge(u, v, f, f); }
-    template<class F, class G> void each_edge(int u, int v, const F& f, const G& g) const {
+    template<class F> void each_edge(int u, int v, const F& f) const {
+        each_edge(u, v, f, f);
+    }
+    template<class F, class G>
+    void each_edge(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         g(idx[l].first + 1, idx[u].first + 1);
         f(idx[l].first + 1, idx[v].first + 1);

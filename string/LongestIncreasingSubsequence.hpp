@@ -3,9 +3,8 @@
 #include "../other/template.hpp"
 
 template<class Cont>
-// using Cont = std::string;
 class LongestIncreasingSubsequence {
-protected:
+private:
     using T = typename Cont::value_type;
     std::vector<int> lis;
 

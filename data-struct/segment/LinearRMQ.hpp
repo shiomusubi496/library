@@ -6,7 +6,7 @@
 #include "SparseTable.hpp"
 
 template<class M> class LinearRMQ {
-  protected:
+private:
     using T = typename M::value_type;
     int n, b, m;
     std::vector<T> v;
@@ -25,7 +25,8 @@ template<class M> class LinearRMQ {
         int lp = l - lb * b, rp = r - rb * b;
         if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];
         if (lb + 1 == rb) {
-            int x = lb * b + prod_in_backet(lb, lp, b - 1), y = rb * b + prod_in_backet(rb, 0, rp);
+            int x = lb * b + prod_in_backet(lb, lp, b - 1),
+                y = rb * b + prod_in_backet(rb, 0, rp);
             return M::op(v[x], v[y]);
         }
         T res = st.prod(lb + 1, rb);
@@ -39,7 +40,8 @@ template<class M> class LinearRMQ {
         }
         return res;
     }
-  public:
+
+public:
     LinearRMQ() = default;
     LinearRMQ(const std::vector<T>& v_) { init(v_); }
     void init(const std::vector<T>& v_) {
@@ -48,11 +50,14 @@ template<class M> class LinearRMQ {
         b = bitop::msb(n) / 2 + 1;
         m = (n + b - 1) / b;
         bt.assign(m, std::vector<int>(b, 0));
-        std::vector<int> sta; sta.reserve(b);
+        std::vector<int> sta;
+        sta.reserve(b);
         rep (i, m) {
             rep (j, b) {
                 if (i * b + j >= n) break;
-                while (!sta.empty() && M::op(v[i * b + sta.back()], v[i * b + j]) == v[i * b + j]) sta.pop_back();
+                while (!sta.empty() && M::op(v[i * b + sta.back()],
+                                             v[i * b + j]) == v[i * b + j])
+                    sta.pop_back();
                 if (!sta.empty()) {
                     int t = sta.back();
                     bt[i][j] = bt[i][t] | (1 << t);
@@ -75,12 +80,16 @@ template<class M> class LinearRMQ {
             rep (j, 1 << i, 1 << b, 1 << (i + 1)) lsbtable[j] = i;
         }
     }
-    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         if (l == r) return M::id();
         return internal_prod(l, r);
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         return internal_prod(l, r);
     }

@@ -14,7 +14,7 @@ ull kth_root(ull n, ull k) {
     };
     ll res = pow(n, 1.0 / k);
     while (!is_over(res + 1)) ++res;
-    while ( is_over(res)) --res;
+    while (is_over(res)) --res;
     return res;
 }
 

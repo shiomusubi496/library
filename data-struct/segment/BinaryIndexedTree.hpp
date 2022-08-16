@@ -4,7 +4,7 @@
 #include "../../other/monoid.hpp"
 
 template<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree {
-protected:
+private:
     using T = typename M::value_type;
     int n;
     std::vector<T> data;
@@ -46,7 +46,7 @@ public:
 
 template<class T>
 class BinaryIndexedTree<T, false> : public BinaryIndexedTree<Monoid::Sum<T>> {
-protected:
+private:
     using Base = BinaryIndexedTree<Monoid::Sum<T>>;
 
 public:

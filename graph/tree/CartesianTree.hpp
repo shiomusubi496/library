@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T, class Comp = std::less<T>> class CartesianTree {
-  protected:
+private:
     int n;
     const std::vector<T>& v;
     std::vector<int> par;
@@ -23,9 +23,12 @@ template<class T, class Comp = std::less<T>> class CartesianTree {
             par[i] = p;
         }
     }
-  public:
+
+public:
     CartesianTree(const std::vector<T>& v) : v(v), cmp(Comp()) { init(); }
-    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v), cmp(cmp) { init(); }
+    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v), cmp(cmp) {
+        init();
+    }
     const std::vector<int>& get_vec() const& { return par; }
     std::vector<int> get_vec() && { return std::move(par); }
     template<class U = int> std::pair<Graph<U>, int> get_graph() {

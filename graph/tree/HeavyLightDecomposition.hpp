@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class HeavyLightDecomposition {
-  protected:
+private:
     int n, root, cnt;
     std::vector<int> ssz, head, vin, vout, par;
     const Graph<T>& G;
@@ -45,8 +45,10 @@ template<class T> class HeavyLightDecomposition {
             if (ssz[i] == -1) szdfs(i, -1);
         }
         cnt = 0;
-        head.assign(n, -1); head[root] = root;
-        vin.resize(n); vout.resize(n);
+        head.assign(n, -1);
+        head[root] = root;
+        vin.resize(n);
+        vout.resize(n);
         par.resize(n);
         bldfs(root, -1);
         rep (i, n) {
@@ -56,8 +58,12 @@ template<class T> class HeavyLightDecomposition {
             }
         }
     }
-  public:
-    HeavyLightDecomposition(const Graph<T>& G, int root = 0) : root(root), G(G) { init(); }
+
+public:
+    HeavyLightDecomposition(const Graph<T>& G, int root = 0)
+        : root(root), G(G) {
+        init();
+    }
     int get_size(int k) const { return ssz[k]; }
     std::pair<int, int> get_idx(int k) const { return {vin[k], vout[k]}; }
     std::pair<int, int> get_pach(int a, int b) const {
@@ -86,8 +92,11 @@ template<class T> class HeavyLightDecomposition {
         std::reverse(all(res));
         return res;
     }
-    template<class F> void each_vertex(int u, int v, const F& f) const { return each_vertex(u, v, f, f); }
-    template<class F, class G> void each_vertex(int u, int v, const F& f, const G& g) const {
+    template<class F> void each_vertex(int u, int v, const F& f) const {
+        return each_vertex(u, v, f, f);
+    }
+    template<class F, class G>
+    void each_vertex(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         auto func = [&](int a, int b) {
             if (a <= b) f(a, b + 1);
@@ -97,8 +106,11 @@ template<class T> class HeavyLightDecomposition {
         func(vin[l], vin[l]);
         each_const (p : down_path(l, v)) func(p.first, p.second);
     }
-    template<class F> void each_edge(int u, int v, const F& f) const { return each_edge(u, v, f, f); }
-    template<class F, class G> void each_edge(int u, int v, const F& f, const G& g) const {
+    template<class F> void each_edge(int u, int v, const F& f) const {
+        return each_edge(u, v, f, f);
+    }
+    template<class F, class G>
+    void each_edge(int u, int v, const F& f, const G& g) const {
         int l = lca(u, v);
         auto func = [&](int a, int b) {
             if (a <= b) f(a, b + 1);

@@ -3,22 +3,24 @@
 #include "../other/template.hpp"
 
 template<class Engine> class Random {
-  protected:
+private:
     Engine rnd;
-  public:
+
+public:
     using result_type = typename Engine::result_type;
     Random() : Random(std::random_device{}()) {}
     Random(result_type seed) : rnd(seed) {}
-    result_type operator()() {
-        return rnd();
-    }
+    result_type operator()() { return rnd(); }
     template<class IntType = ll> IntType uniform(IntType l, IntType r) {
-        static_assert(std::is_integral<IntType>::value, "template argument must be an integral type");
+        static_assert(std::is_integral<IntType>::value,
+                      "template argument must be an integral type");
         assert(l <= r);
         return std::uniform_int_distribution<IntType>{l, r}(rnd);
     }
-    template<class RealType = double> RealType uniform_real(RealType l, RealType r) {
-        static_assert(std::is_floating_point<RealType>::value, "template argument must be an floating point type");
+    template<class RealType = double>
+    RealType uniform_real(RealType l, RealType r) {
+        static_assert(std::is_floating_point<RealType>::value,
+                      "template argument must be an floating point type");
         assert(l <= r);
         return std::uniform_real_distribution<RealType>{l, r}(rnd);
     }
@@ -49,7 +51,8 @@ template<class Engine> class Random {
         shuffle(all(res));
         return res;
     }
-    template<class T = ll> std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {
+    template<class T = ll>
+    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true) {
         assert(l <= r);
         assert(T(n) <= (r - l + 1));
         std::vector<T> res(r - l + 1);
@@ -61,8 +64,10 @@ template<class Engine> class Random {
     }
 };
 
-using Random32 = Random<std::mt19937>;      Random32 rand32;
-using Random64 = Random<std::mt19937_64>;   Random64 rand64;
+using Random32 = Random<std::mt19937>;
+Random32 rand32;
+using Random64 = Random<std::mt19937_64>;
+Random64 rand64;
 
 /**
  * @brief Random

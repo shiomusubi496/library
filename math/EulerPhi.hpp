@@ -15,10 +15,11 @@ ll euler_phi(ll n) {
 }
 
 class EulerPhi {
-  protected:
+private:
     ll MAX;
     std::vector<ll> data;
-  public:
+
+public:
     EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {
         rep (i, MAX + 1) data[i] = i;
         rep (i, 2, MAX + 1) {
@@ -28,9 +29,7 @@ class EulerPhi {
             }
         }
     }
-    ll phi(ll x) {
-        return data[x];
-    }
+    ll phi(ll x) { return data[x]; }
 };
 
 /**

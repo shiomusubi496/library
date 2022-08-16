@@ -5,11 +5,12 @@
 #include "../../data-struct/segment/PlusMinusOneRMQ.hpp"
 
 class PMORMQForLCA {
-  protected:
+private:
     int n;
     std::vector<std::pair<int, int>> v;
     PlusMinusOneRMQ<int> RMQ;
-  public:
+
+public:
     PMORMQForLCA() = default;
     PMORMQForLCA(const std::vector<std::pair<int, int>>& v_) { init(v_); }
     void init(const std::vector<std::pair<int, int>>& v_) {

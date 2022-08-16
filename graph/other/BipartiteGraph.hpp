@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class BipartiteGraph {
-  private:
+private:
     int n;
     bool is_bip;
     const Graph<T>& G;
@@ -22,7 +22,8 @@ template<class T> class BipartiteGraph {
             }
         }
     }
-  public:
+
+public:
     BipartiteGraph(const Graph<T>& G) : G(G) {
         n = G.size();
         is_bip = true;

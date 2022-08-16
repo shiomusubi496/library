@@ -3,9 +3,10 @@
 #include "../../other/template.hpp"
 
 template<class T> class Matrix : public std::vector<std::vector<T>> {
-  protected:
+private:
     using Base = std::vector<std::vector<T>>;
-  public:
+
+public:
     Matrix() = default;
     Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}
     Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}
@@ -35,7 +36,8 @@ template<class T> class Matrix : public std::vector<std::vector<T>> {
         Matrix res(this->size(), other[0].size());
         rep (i, this->size()) {
             rep (k, other.size()) {
-                rep (j, other[0].size()) res[i][j] += (*this)[i][k] * other[k][j];
+                rep (j, other[0].size())
+                    res[i][j] += (*this)[i][k] * other[k][j];
             }
         }
         *this = std::move(res);

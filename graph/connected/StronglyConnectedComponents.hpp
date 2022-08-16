@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class StronglyConnectedComponents {
-  protected:
+private:
     int n, sz, cnt;
     Graph<T> G_;
     const Graph<T>& G;
@@ -23,7 +23,8 @@ template<class T> class StronglyConnectedComponents {
         }
         if (low[v] == ord[v]) {
             while (1) {
-                int u = st.back(); st.pop_back();
+                int u = st.back();
+                st.pop_back();
                 cmp[u] = sz;
                 ord[u] = n;
                 if (u == v) break;
@@ -35,17 +36,21 @@ template<class T> class StronglyConnectedComponents {
         n = G.size();
         sz = 0;
         cnt = 0;
-        ord.assign(n, -1); low.assign(n, -1);
+        ord.assign(n, -1);
+        low.assign(n, -1);
         cmp.assign(n, -1);
         st.reserve(n);
         rep (i, n) {
             if (ord[i] == -1) dfs(i);
         }
-        each_for(i : cmp) i = sz - i - 1;
+        each_for (i : cmp) i = sz - i - 1;
     }
-  public:
+
+public:
     StronglyConnectedComponents(const Graph<T>& G) : G(G) { init(); }
-    StronglyConnectedComponents(Graph<T>&& G) : G_(std::move(G)), G(G_) { init(); }
+    StronglyConnectedComponents(Graph<T>&& G) : G_(std::move(G)), G(G_) {
+        init();
+    }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }
     std::vector<std::vector<int>> groups() const {
@@ -57,7 +62,8 @@ template<class T> class StronglyConnectedComponents {
         Graph<T> res(sz);
         rep (i, n) {
             each_const (e : G[i]) {
-                if (cmp[i] != cmp[e.to]) res.add_edge(cmp[i], cmp[e.to], e.cost, true);
+                if (cmp[i] != cmp[e.to])
+                    res.add_edge(cmp[i], cmp[e.to], e.cost, true);
             }
         }
         return res;

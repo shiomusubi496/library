@@ -8,24 +8,9 @@ $y = ax + b$ の形の $x$ の一次関数に関するクエリを扱える。
 
 ### Template Arguments
 
-```cpp
-template<class T = ll, bool is_max = false, class LargeT = __int128_t>
-class ConvexHullTrick;
-```
-
 - `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
 - `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
 - `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `__int128_t` 。
-
-### Inner Class
-
-```cpp
-struct Line {
-    T a, b;
-    int idx;
-    T get(T x) const { return a * x + b; }
-}
-```
 
 ### Member Function
 

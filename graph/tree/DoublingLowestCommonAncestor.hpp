@@ -5,7 +5,7 @@
 #include "../Graph.hpp"
 
 template<class T> class DoublingLCA {
-  protected:
+private:
     int root, n, h;
     Graph<T> G_;
     const Graph<T>& G;
@@ -24,18 +24,23 @@ template<class T> class DoublingLCA {
     void init() {
         n = G.size();
         h = bitop::ceil_log2(n) + 1;
-        par.resize(n); par[root] = edge<T>{};
-        dep.resize(n); dep[root] = 0;
+        par.resize(n);
+        par[root] = edge<T>{};
+        dep.resize(n);
+        dep[root] = 0;
         dfs_build(root, -1);
         dbl.assign(n, std::vector<int>(h, -1));
         rep (i, n) dbl[i][0] = par[i].to;
         rep (i, h - 1) {
-            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ? -1 : dbl[ dbl[j][i] ][i];
+            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ? -1 : dbl[dbl[j][i]][i];
         }
     }
-  public:
-    DoublingLCA(const Graph<T>& G, int r = 0) : root(r), G(G)  { init(); }
-    DoublingLCA(Graph<T>&& G, int r = 0) : root(r), G_(std::move(G)), G(G_) { init(); }
+
+public:
+    DoublingLCA(const Graph<T>& G, int r = 0) : root(r), G(G) { init(); }
+    DoublingLCA(Graph<T>&& G, int r = 0) : root(r), G_(std::move(G)), G(G_) {
+        init();
+    }
     int depth(int v) const { return dep[v]; }
     int parent(int v) const { return par[v].to; }
     int kth_ancestor(int v, int k) const {
@@ -66,7 +71,8 @@ template<class T> class DoublingLCA {
             pre.push_back(par[s]), s = par[s].to;
             suf.push_back(par[t]), t = par[t].to;
         }
-        rrep (i, suf.size()) pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);
+        rrep (i, suf.size())
+            pre.emplace_back(suf[i].to, suf[i].from, suf[i].cost, suf[i].idx);
         return pre;
     }
     int lca(int u, int v) const {

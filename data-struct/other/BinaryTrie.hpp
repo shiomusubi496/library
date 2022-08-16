@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 
 template<unsigned int height = 64> class BinaryTrie {
-protected:
+private:
     struct node;
     using node_ptr = std::unique_ptr<node>;
     struct node {
@@ -49,7 +49,8 @@ protected:
 
 public:
     BinaryTrie() : root(std::make_unique<node>()), xall(0) {}
-    BinaryTrie(const BinaryTrie& other) : xall(other.xall), root(std::make_unique<node>()) {
+    BinaryTrie(const BinaryTrie& other)
+        : xall(other.xall), root(std::make_unique<node>()) {
         copy(root, other.root);
     }
     BinaryTrie(BinaryTrie&& other) = default;

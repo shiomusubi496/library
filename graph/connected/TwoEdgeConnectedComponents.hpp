@@ -5,13 +5,15 @@
 #include "../other/LowLink.hpp"
 
 template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
-  protected:
+public:
     int sz;
     std::vector<int> cmp;
     void dcmp(int v) {
         each_const (e : this->G[v]) {
             if (cmp[e.to] != -1) continue;
-            if (this->ord[v] < this->low[e.to] || this->ord[e.to] < this->low[v]) continue;
+            if (this->ord[v] < this->low[e.to] ||
+                this->ord[e.to] < this->low[v])
+                continue;
             cmp[e.to] = cmp[v];
             dcmp(e.to);
         }
@@ -26,7 +28,8 @@ template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
             }
         }
     }
-  public:
+
+public:
     TwoEdgeConnectedComponents(const Graph<T>& G) : LowLink<T>(G) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }

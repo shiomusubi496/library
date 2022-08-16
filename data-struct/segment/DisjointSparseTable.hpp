@@ -5,7 +5,7 @@
 #include "../../other/monoid.hpp"
 
 template<class M> class DisjointSparseTable {
-  protected:
+private:
     using T = typename M::value_type;
     int h, ori;
     std::vector<int> logtable;
@@ -18,7 +18,8 @@ template<class M> class DisjointSparseTable {
         int d = logtable[l ^ r];
         return M::op(data[d][l], data[d][r]);
     }
-  public:
+
+public:
     DisjointSparseTable() = default;
     DisjointSparseTable(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
@@ -32,7 +33,8 @@ template<class M> class DisjointSparseTable {
             int len = 1 << i;
             rep (j, len, ori, len << 1) {
                 data[i][j - 1] = v[j - 1];
-                rep (k, 1, len) data[i][j - k - 1] = M::op(v[j - k - 1], data[i][j - k]);
+                rep (k, 1, len)
+                    data[i][j - k - 1] = M::op(v[j - k - 1], data[i][j - k]);
                 data[i][j] = v[j];
                 rep (k, 1, len) {
                     if (j + k >= ori) break;
@@ -41,12 +43,16 @@ template<class M> class DisjointSparseTable {
             }
         }
     }
-    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         if (l == r) return M::id();
         return internal_prod(l, r);
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         return internal_prod(l, r);
     }

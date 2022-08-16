@@ -3,11 +3,12 @@
 #include "../../other/template.hpp"
 
 class UnionFindUndo {
-  protected:
+private:
     int n;
     std::vector<int> par_vec;
     std::stack<std::pair<int, int>> hist;
-  public:
+
+public:
     UnionFindUndo() : UnionFindUndo(0) {}
     UnionFindUndo(int n) : n(n), par_vec(n, -1) {}
     int find(int x) const {
@@ -25,19 +26,15 @@ class UnionFindUndo {
         par_vec[y] = x;
         return {x, y};
     }
-    bool same(int x, int y) const {
-        return find(x) == find(y);
-    }
-    int size(int x) const {
-        return -par_vec[find(x)];
-    }
+    bool same(int x, int y) const { return find(x) == find(y); }
+    int size(int x) const { return -par_vec[find(x)]; }
     std::vector<std::vector<int>> groups() const {
         std::vector<std::vector<int>> res(n);
         rep (i, n) res[find(i)].push_back(i);
         res.erase(
-            remove_if(all(res), [](const std::vector<int>& v) { return v.empty(); }),
-            res.end()
-        );
+            remove_if(all(res),
+                      [](const std::vector<int>& v) { return v.empty(); }),
+            res.end());
         return res;
     }
     bool is_root(int x) const {
@@ -45,8 +42,10 @@ class UnionFindUndo {
         return par_vec[x] < 0;
     }
     void undo() {
-        par_vec[hist.top().first] = hist.top().second; hist.pop();
-        par_vec[hist.top().first] = hist.top().second; hist.pop();
+        par_vec[hist.top().first] = hist.top().second;
+        hist.pop();
+        par_vec[hist.top().first] = hist.top().second;
+        hist.pop();
     }
     void snapshot() {
         while (!hist.empty()) hist.pop();

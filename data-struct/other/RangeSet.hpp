@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 
 class RangeSet {
-  protected:
+private:
     using iterator = typename std::set<std::pair<ll, ll>>::iterator;
     ll sz;
     std::set<std::pair<ll, ll>> st;
@@ -15,7 +15,8 @@ class RangeSet {
         sz -= itr->second - itr->first;
         return st.erase(itr);
     }
-  public:
+
+public:
     RangeSet() : sz(0) {}
     RangeSet(const std::set<std::pair<ll, ll>>& st_) : sz(0) {
         each_const (p : st_) insert(p.first, p.second);
@@ -33,7 +34,8 @@ class RangeSet {
         if (l == r) return {st.end(), false};
         auto itr = st.lower_bound({l, r});
         if (itr != st.end() && itr->first == l) return {itr, false};
-        if (itr != st.begin() && prev(itr)->first != l && r <= prev(itr)->second) {
+        if (itr != st.begin() && prev(itr)->first != l &&
+            r <= prev(itr)->second) {
             return {prev(itr), false};
         }
         itr = st_emplace_hint(itr, l, r);
@@ -41,14 +43,16 @@ class RangeSet {
             if (next(itr)->second <= itr->second) st_erase(next(itr));
             else {
                 itr = st_emplace_hint(next(itr), itr->first, next(itr)->second);
-                st_erase(prev(itr)); st_erase(next(itr));
+                st_erase(prev(itr));
+                st_erase(next(itr));
             }
         }
         while (itr != st.begin() && itr->first <= prev(itr)->second) {
             if (itr->first == prev(itr)->first) st_erase(prev(itr));
             else {
                 itr = st_emplace_hint(itr, prev(itr)->first, itr->second);
-                st_erase(prev(itr)); st_erase(next(itr));
+                st_erase(prev(itr));
+                st_erase(next(itr));
             }
         }
         return {itr, true};

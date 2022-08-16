@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class ConnectedComponents {
-  protected:
+private:
     int n, sz;
     const Graph<T>& G;
     std::vector<int> cmp;
@@ -25,7 +25,8 @@ template<class T> class ConnectedComponents {
             dfs(i);
         }
     }
-  public:
+
+public:
     ConnectedComponents(const Graph<T>& G) : G(G) { init(); }
     int size() const { return sz; }
     int operator[](int k) const { return cmp[k]; }

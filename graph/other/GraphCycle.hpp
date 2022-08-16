@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class GraphCycle {
-  protected:
+private:
     const Graph<T>& G;
     std::vector<bool> visited, seen;
     Edges<T> cycle;
@@ -35,7 +35,8 @@ template<class T> class GraphCycle {
             }
         }
     }
-  public:
+
+public:
     GraphCycle(const Graph<T>& G) : G(G) { init(); }
     bool has_cycle() const { return !cycle.empty(); }
     const Edges<T>& get_cycle() const& { return cycle; }

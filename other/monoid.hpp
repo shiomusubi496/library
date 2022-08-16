@@ -186,6 +186,7 @@ template<class A, bool = has_init<typename A::M>::value> struct MultiAction {
         struct value_type {
         private:
             using T_ = typename A::M::value_type;
+
         public:
             T_ val;
             ll len;
@@ -218,6 +219,7 @@ template<class A> struct MultiAction<A, true> {
         struct value_type {
         private:
             using T_ = typename A::M::value_type;
+
         public:
             T_ val;
             ll len;
@@ -232,9 +234,7 @@ template<class A> struct MultiAction<A, true> {
             return {A::M::op(a.val, b.val), a.len + b.len};
         }
         static value_type id() { return {A::M::id(), 0}; }
-        static value_type init(ll l, ll r) {
-            return {A::M::init(l, r), r - l};
-        }
+        static value_type init(ll l, ll r) { return {A::M::init(l, r), r - l}; }
     };
     using E = typename A::E;
 

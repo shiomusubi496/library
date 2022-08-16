@@ -5,7 +5,7 @@
 #include "../../other/monoid.hpp"
 
 template<class M> class SparseTable {
-  protected:
+private:
     using T = typename M::value_type;
     int h, ori;
     std::vector<int> logtable;
@@ -15,7 +15,8 @@ template<class M> class SparseTable {
         int d = logtable[r - l];
         return M::op(data[d][l], data[d][r - (1 << d)]);
     }
-  public:
+
+public:
     SparseTable() = default;
     SparseTable(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
@@ -31,12 +32,16 @@ template<class M> class SparseTable {
             }
         }
     }
-    template<bool AlwaysTrue = true, typename std::enable_if< Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         if (l == r) return M::id();
         return internal_prod(l, r);
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_id<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_id<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T prod(int l, int r) const {
         return internal_prod(l, r);
     }

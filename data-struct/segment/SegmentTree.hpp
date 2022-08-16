@@ -5,11 +5,12 @@
 #include "../../other/monoid.hpp"
 
 template<class M> class SegmentTree {
-  protected:
+private:
     using T = typename M::value_type;
     int n, ori;
     std::vector<T> data;
-  public:
+
+public:
     SegmentTree() : SegmentTree(0) {}
     SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}
     SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}
@@ -35,12 +36,14 @@ template<class M> class SegmentTree {
     }
     T prod(int l, int r) const {
         assert(0 <= l && l <= r && r <= ori);
-        l += n; r += n;
+        l += n;
+        r += n;
         T lsm = M::id(), rsm = M::id();
         while (l < r) {
             if (l & 1) lsm = M::op(lsm, data[l++]);
             if (r & 1) rsm = M::op(data[--r], rsm);
-            l >>= 1; r >>= 1;
+            l >>= 1;
+            r >>= 1;
         }
         return M::op(lsm, rsm);
     }
@@ -88,9 +91,11 @@ template<class M> class SegmentTree {
 };
 
 // verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-template<class T, T max_value = infinity<T>::max> using RangeMinimumQuery = SegmentTree<Monoid::Min<T, max_value>>;
+template<class T, T max_value = infinity<T>::max>
+using RangeMinimumQuery = SegmentTree<Monoid::Min<T, max_value>>;
 
-template<class T, T min_value = infinity<T>::min> using RangeMaximumQuery = SegmentTree<Monoid::Max<T, min_value>>;
+template<class T, T min_value = infinity<T>::min>
+using RangeMaximumQuery = SegmentTree<Monoid::Max<T, min_value>>;
 
 // verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp
 template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;

@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "Matrix.hpp"
 
-template<class T>
-T determinant(Matrix<T> mat) {
+template<class T> T determinant(Matrix<T> mat) {
     assert(mat.height() == mat.width());
     const int n = mat.height();
     T res = 1;

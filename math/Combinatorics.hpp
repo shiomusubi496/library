@@ -4,9 +4,10 @@
 #include "ModInt.hpp"
 
 template<class T> class IntCombinatorics {
-  protected:
+private:
     static std::vector<T> factorial;
-  public:
+
+public:
     static void init(ll n) {
         const int b = factorial.size();
         if (n < b) return;
@@ -27,9 +28,7 @@ template<class T> class IntCombinatorics {
         init(n);
         return factorial[n] / factorial[n - r] / factorial[r];
     }
-    static T homo(ll n, ll r) {
-        return comb(n + r - 1, r);
-    }
+    static T homo(ll n, ll r) { return comb(n + r - 1, r); }
     static T small_perm(ll n, ll r) {
         if (r < 0 || r > n) return 0;
         chmin(r, n - r);
@@ -45,18 +44,18 @@ template<class T> class IntCombinatorics {
         reps (i, r) res *= n - r + i;
         return res / factorial[r];
     }
-    static T small_homo(ll n, ll r) {
-        return small_comb(n + r - 1, r);
-    }
+    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }
 };
 
-template<class T> std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);
+template<class T>
+std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);
 
 template<class T> class Combinatorics {
-  protected:
+private:
     static std::vector<T> factorial;
     static std::vector<T> factinv;
-  public:
+
+public:
     static void init(ll n) {
         chmax(n, 1000000);
         const int b = factorial.size();
@@ -85,9 +84,7 @@ template<class T> class Combinatorics {
         init(n);
         return factorial[n] * factinv[n - r] * factinv[r];
     }
-    static T homo(ll n, ll r) {
-        return comb(n + r - 1, r);
-    }
+    static T homo(ll n, ll r) { return comb(n + r - 1, r); }
     static T small_perm(ll n, ll r) {
         if (r < 0 || r > n) return 0;
         chmin(r, n - r);
@@ -103,13 +100,13 @@ template<class T> class Combinatorics {
         reps (i, r) res *= n - r + i;
         return res;
     }
-    static T small_homo(ll n, ll r) {
-        return small_comb(n + r - 1, r);
-    }
+    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }
 };
 
-template<class T> std::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);
-template<class T> std::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);
+template<class T>
+std::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);
+template<class T>
+std::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);
 
 /**
  * @brief Combinatorics

@@ -5,10 +5,13 @@
 #include "../../other/monoid.hpp"
 
 template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
-    static_assert(Monoid::is_semigroup<typename A::M>::value, "M must be semigroup");
-    static_assert(Monoid::is_semigroup<typename A::E>::value, "E must be semigroup");
+    static_assert(Monoid::is_semigroup<typename A::M>::value,
+                  "M must be semigroup");
+    static_assert(Monoid::is_semigroup<typename A::E>::value,
+                  "E must be semigroup");
     static_assert(Monoid::has_op<A>::value, "A must have op");
-  protected:
+
+private:
     using M = typename A::M;
     using E = typename A::E;
     using T = typename M::value_type;
@@ -38,10 +41,12 @@ template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
             lazyflag[k] = false;
         }
     }
-  public:
+
+public:
     DualSegmentTree() : DualSegmentTree(0) {}
     DualSegmentTree(int n) : DualSegmentTree(n, T{}) {}
-    DualSegmentTree(int n_, const T& v) : DualSegmentTree(std::vector<T>(n_, v)) {}
+    DualSegmentTree(int n_, const T& v)
+        : DualSegmentTree(std::vector<T>(n_, v)) {}
     DualSegmentTree(const std::vector<T>& v) { init(v); }
     void init(const std::vector<T>& v) {
         ori = v.size();
@@ -74,7 +79,8 @@ template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
     void apply(int l, int r, U x) {
         assert(0 <= l && l <= r && r <= ori);
 
-        l += n; r += n;
+        l += n;
+        r += n;
         rreps (i, h) {
             bool seen = false;
             if (((l >> i) << i) != l) eval(l >> i), seen = true;
@@ -85,15 +91,19 @@ template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
         while (l != r) {
             if (l & 1) all_apply(l++, x);
             if (r & 1) all_apply(--r, x);
-            l >>= 1; r >>= 1;
+            l >>= 1;
+            r >>= 1;
         }
     }
 };
 
-template<class E> class DualSegmentTree<E, true> : public DualSegmentTree<Monoid::AttachMonoid<E>> {
-  private:
+template<class E>
+class DualSegmentTree<E, true>
+    : public DualSegmentTree<Monoid::AttachMonoid<E>> {
+private:
     using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;
-  public:
+
+public:
     using Base::Base;
 };
 
@@ -103,9 +113,11 @@ template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
 // verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;
 
-template<class T, T max_value = infinity<T>::max> using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;
+template<class T, T max_value = infinity<T>::max>
+using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;
 
-template<class T, T min_value = infinity<T>::min> using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, min_value>>;
+template<class T, T min_value = infinity<T>::min>
+using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, min_value>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)

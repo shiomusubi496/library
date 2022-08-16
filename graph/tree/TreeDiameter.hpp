@@ -5,7 +5,7 @@
 #include "../shortest-path/Restore.hpp"
 
 template<class T> class TreeDiameter {
-  protected:
+private:
     const Graph<T>& G;
     int s, t;
     std::vector<T> dist;
@@ -17,14 +17,16 @@ template<class T> class TreeDiameter {
         }
     }
     void init() {
-        dist.resize(G.size()); dist[0] = 0;
+        dist.resize(G.size());
+        dist[0] = 0;
         dfs(0, -1);
         s = std::max_element(all(dist)) - dist.begin();
         dist[s] = 0;
         dfs(s, -1);
         t = std::max_element(all(dist)) - dist.begin();
     }
-  public:
+
+public:
     TreeDiameter(const Graph<T>& G) : G(G) { init(); }
     T diameter() const { return dist[t]; }
     std::pair<int, int> get_pair() const { return {s, t}; }

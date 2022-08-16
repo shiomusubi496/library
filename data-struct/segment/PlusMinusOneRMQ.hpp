@@ -5,7 +5,7 @@
 #include "SparseTable.hpp"
 
 template<class T> class PlusMinusOneRMQ {
-  protected:
+private:
     int n, b, m;
     std::vector<T> v;
     std::vector<int> ud;
@@ -15,12 +15,11 @@ template<class T> class PlusMinusOneRMQ {
         static value_type op(const value_type& a, const value_type& b) {
             return a.first < b.first ? a : b;
         }
-        static value_type id() {
-            return {infinity<T>::value, -1};
-        }
+        static value_type id() { return {infinity<T>::value, -1}; }
     };
     SparseTable<PairMin> st;
-  public:
+
+public:
     PlusMinusOneRMQ() = default;
     PlusMinusOneRMQ(const std::vector<T>& v_) { init(v_); }
     void init(const std::vector<T>& v_) {
@@ -66,7 +65,8 @@ template<class T> class PlusMinusOneRMQ {
         int lp = l - lb * b, rp = r - rb * b;
         if (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];
         if (lb + 1 == rb) {
-            int x = lb * b + lookup[ud[lb]][lp][b - 1], y = rb * b + lookup[ud[rb]][0][rp];
+            int x = lb * b + lookup[ud[lb]][lp][b - 1],
+                y = rb * b + lookup[ud[rb]][0][rp];
             if (v[x] < v[y]) return x;
             else return y;
         }

@@ -6,7 +6,7 @@
 
 template<class A, bool = Monoid::has_mul_op<A>::value>
 class DynamicLazySegmentTree {
-protected:
+private:
     using M = typename A::M;
     using E = typename A::E;
     using T = typename M::value_type;
@@ -71,8 +71,11 @@ protected:
         if (l <= a && b <= r) return nd->val;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        return M::op(r > a && m > l ? prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r) : M::id(),
-                     r > m && b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r) : M::id());
+        return M::op(
+            r > a && m > l ? prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r)
+                           : M::id(),
+            r > m && b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r)
+                           : M::id());
     }
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
         if (r <= a || b <= l) return;
@@ -138,7 +141,9 @@ protected:
         init_copy(nd->l, src->l);
         init_copy(nd->r, src->r);
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     void init_iv(const T& v) {
         iv.reserve(this->h + 1);
         iv.push_back(v);
@@ -149,13 +154,19 @@ protected:
             else iv2[i + 1] = iv2[i];
         }
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T get_init(ll, ll r, int t) const {
         return r <= this->ori ? iv[t] : iv2[t];
     }
-    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     void init_iv(const T&) {}
-    template<bool AlwaysTrue = true, typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T get_init(ll l, ll r, int) const {
         return M::init(l, std::min(r, this->ori));
     }
@@ -196,9 +207,7 @@ public:
         assert(0 <= l && l <= r && r <= ori);
         apply(root, 0, n, h, l, r, x);
     }
-    void all_apply(const U& x) {
-        apply(root, 0, n, h, 0, n, x);
-    }
+    void all_apply(const U& x) { apply(root, 0, n, h, 0, n, x); }
     T prod(ll l, ll r) {
         assert(0 <= l && l <= r && r <= ori);
         return prod(root, 0, n, h, l, r);

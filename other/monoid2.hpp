@@ -7,18 +7,10 @@ namespace Monoid {
 
 template<class T> struct Product {
     using value_type = T;
-    static T op(const T& a, const T& b) {
-        return a * b;
-    }
-    static T id() {
-        return T{1};
-    }
-    static T inv(const T& a, const T& b) {
-        return a / b;
-    }
-    static T get_inv(const T& a) {
-        return T{1} / a;
-    }
+    static T op(const T& a, const T& b) { return a * b; }
+    static T id() { return T{1}; }
+    static T inv(const T& a, const T& b) { return a / b; }
+    static T get_inv(const T& a) { return T{1} / a; }
 };
 
 template<class T> struct Composite {
@@ -26,11 +18,9 @@ template<class T> struct Composite {
     static value_type op(const value_type& a, const value_type& b) {
         return {b.first * a.first, b.first * a.second + b.second};
     }
-    static value_type id() {
-        return {T{1}, T{0}};
-    }
+    static value_type id() { return {T{1}, T{0}}; }
     static value_type get_inv(const value_type& a) {
-        return {T{1} / a.first, - a.second / a.first};
+        return {T{1} / a.first, -a.second / a.first};
     }
     static value_type inv(const value_type& a, const value_type& b) {
         return op(a, get_inv(b));

@@ -6,7 +6,7 @@
 
 template<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>
 class SkipList {
-protected:
+private:
     using M = typename A::M;
     using E = typename A::E;
     using T = typename M::value_type;
@@ -218,7 +218,8 @@ protected:
                 calc(npr, i);
             }
         }
-        auto res = std::make_pair(nodepair{sl.first, npl}, nodepair{npr, sl.second});
+        auto res =
+            std::make_pair(nodepair{sl.first, npl}, nodepair{npr, sl.second});
         sl = {nullptr, nullptr};
         return res;
     }
@@ -247,7 +248,7 @@ public:
         other.sl = {nullptr, nullptr};
     }
     ~SkipList() {
-        for (node_ptr ptr = sl.first; ptr; ) {
+        for (node_ptr ptr = sl.first; ptr;) {
             node_ptr nxt = ptr->nxt[0].node;
             delete ptr;
             ptr = nxt;
@@ -267,7 +268,7 @@ public:
     }
     void init(const std::vector<T>& v) {
         if (sl.first) {
-            for (node_ptr ptr = sl.first; ptr; ) {
+            for (node_ptr ptr = sl.first; ptr;) {
                 node_ptr nxt = ptr->nxt[0].node;
                 delete ptr;
                 ptr = nxt;
@@ -306,7 +307,10 @@ public:
         }
         sl = {nd[0], nd[n]};
     }
-    int size() const { assert(sl.first); return sl.first == sl.second ? 0 : sl.first->nxt.back().dist; }
+    int size() const {
+        assert(sl.first);
+        return sl.first == sl.second ? 0 : sl.first->nxt.back().dist;
+    }
     bool empty() const { return sl.first == sl.second; }
     void insert(int k, const T& x) {
         const int n = size();
@@ -350,8 +354,9 @@ public:
                 sl.first->nxt.resize(lev + 1, {sl.first->nxt.back()});
                 sl.second->prv.resize(lev + 1, {sl.second->prv.back()});
                 sl.second->nxt.resize(lev + 1, {sl.second->nxt.back()});
-                sl.first->nxt.back() = {sl.second, sl.first->nxt.back().dist + 1, M::op(x, sl.first->nxt.back().sm)};
-                sl.second->prv.back() = sl.first;
+                sl.first->nxt.back() = {sl.second, sl.first->nxt.back().dist +
+            1, M::op(x, sl.first->nxt.back().sm)}; sl.second->prv.back() =
+            sl.first;
             }
             */
 
@@ -438,7 +443,8 @@ public:
                     const auto l = sl.first;
                     const auto m = l->nxt[i].node;
                     const auto r = m->nxt[i].node;
-                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1, m->nxt[i].sm};
+                    l->nxt[i] = {r, l->nxt[i].dist + m->nxt[i].dist - 1,
+                                 m->nxt[i].sm};
                     r->prv[i] = l;
                 }
                 else {
@@ -461,7 +467,8 @@ public:
                 const auto l = np->prv[i];
                 const auto r = np->nxt[i].node;
                 r->prv[i] = l;
-                l->nxt[i] = {r, l->nxt[i].dist + np->nxt[i].dist - 1, l->nxt[i].sm};
+                l->nxt[i] = {r, l->nxt[i].dist + np->nxt[i].dist - 1,
+                             l->nxt[i].sm};
             }
             else {
                 np->nxt[i].dist--;
@@ -592,7 +599,7 @@ public:
 };
 
 template<class A, class Rand> class SkipList<A, Rand, true> {
-protected:
+private:
     using Base = SkipList<Monoid::MultiAction<A>, Rand>;
     using T_ = typename A::M::value_type;
     using U_ = typename A::E::value_type;

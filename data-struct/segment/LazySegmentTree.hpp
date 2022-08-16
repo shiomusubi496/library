@@ -7,7 +7,7 @@
 template<class A, bool = Monoid::has_mul_op<A>::value> class LazySegmentTree {
     static_assert(Monoid::is_action<A>::value, "A must be action");
 
-protected:
+private:
     using M = typename A::M;
     using E = typename A::E;
     using T = typename M::value_type;

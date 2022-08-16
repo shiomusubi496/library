@@ -3,7 +3,8 @@
 #include "../other/template.hpp"
 
 template<class Cont, class Comp>
-std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont& str, const Comp& cmp) {
+std::vector<std::pair<typename Cont::value_type, int>>
+RunLength(const Cont& str, const Comp& cmp) {
     std::vector<std::pair<typename Cont::value_type, int>> res;
     if (str.size() == 0) return res;
     res.emplace_back(str[0], 1);
@@ -14,7 +15,9 @@ std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont& str
     return res;
 }
 
-template<class Cont> std::vector<std::pair<typename Cont::value_type, int>> RunLength(const Cont& str) {
+template<class Cont>
+std::vector<std::pair<typename Cont::value_type, int>>
+RunLength(const Cont& str) {
     return RunLength(str, std::equal_to<typename Cont::value_type>());
 }
 

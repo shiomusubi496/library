@@ -4,7 +4,7 @@
 #include "../Graph.hpp"
 
 template<class T> class TopologicalSort {
-  protected:
+private:
     int n;
     const Graph<T>& G;
     std::vector<int> ord;
@@ -27,7 +27,8 @@ template<class T> class TopologicalSort {
         }
         std::reverse(all(ord));
     }
-  public:
+
+public:
     TopologicalSort(const Graph<T>& G) : G(G) { init(); }
     const std::vector<int>& get() const& { return ord; }
     std::vector<int> get() && { return std::move(ord); }

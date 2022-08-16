@@ -5,7 +5,7 @@
 #include "../../other/monoid.hpp"
 
 template<class M> class DynamicSegmentTree {
-protected:
+private:
     using T = typename M::value_type;
     struct node;
     using node_ptr = std::unique_ptr<node>;
@@ -93,9 +93,9 @@ protected:
         init_copy(nd->l, src->l);
         init_copy(nd->r, src->r);
     }
-    template<
-        bool AlwaysTrue = true,
-        typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     void init_iv(const T& v) {
         iv.reserve(this->h + 1);
         iv.push_back(v);
@@ -106,19 +106,19 @@ protected:
             else iv2[i + 1] = iv2[i];
         }
     }
-    template<
-        bool AlwaysTrue = true,
-        typename std::enable_if<!Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T get_init(ll, ll r, int t) const {
         return r <= this->ori ? iv[t] : iv2[t];
     }
-    template<
-        bool AlwaysTrue = true,
-        typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     void init_iv(const T&) {}
-    template<
-        bool AlwaysTrue = true,
-        typename std::enable_if<Monoid::has_init<M>::value && AlwaysTrue>::type* = nullptr>
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_init<M>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     T get_init(ll l, ll r, int) const {
         return M::init(l, std::min(r, this->ori));
     }
