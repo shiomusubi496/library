@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -21,278 +21,282 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_E
   bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_E.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_E\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include<bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c) for (ll REP_COUNTER_\
-    \ ## c = 0; REP_COUNTER_ ## c < (ll)(b); ++ REP_COUNTER_ ## c)\n#define REP1(b)\
-    \ REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n\
-    #define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i,\
-    \ a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1) (__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)\
-    \ - 1; i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a) - 1; i >= (ll)(b);\
-    \ --i)\n#define RREP4(i, a, b, c) for (ll i = (ll)(a) - 1; i >= (ll)(b); i -=\
-    \ (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2) (__VA_ARGS__)\n\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
+    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
+    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
+    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
+    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
+    \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
     #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
     \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
     \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2) (__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
     \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
     #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2) (__VA_ARGS__)\n\
-    \n#define each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for\
-    \ (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define\
-    \ rall(v) std::rbegin(v), std::rend(v)\n\n#if __cplusplus >= 201402L\n#define\
-    \ CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll\
-    \ = long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
-    \ PLL = std::pair<ll, ll>;\ntemplate<class T> using prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\n  public:\n\
-    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cplusplus >= 201402L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n\
-    #endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\n\
-    constexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class T, class U> std::ostream&\
-    \ operator<<(std::ostream& ost, const std::pair<T, U>& p) {\n    return ost <<\
-    \ p.first << ' ' << p.second;\n}\ntemplate<class T, class U> std::istream& operator>>(std::istream&\
-    \ ist, std::pair<T, U>& p) {\n    return ist >> p.first >> p.second;\n}\n\ntemplate<class\
-    \ Container,\n        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    \
-    \    -> decltype(cont.begin(), cont.end(), ost)\n{\n    for (auto itr = cont.begin();\
+    \ rreps(...)                                                             \\\n\
+    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cplusplus >= 201402L\n#define CONSTEXPR constexpr\n#else\n\
+    #define CONSTEXPR\n#endif\n\n#ifdef __cpp_if_constexpr\n#define IF_CONSTEXPR constexpr\n\
+    #else\n#define IF_CONSTEXPR\n#endif\n\nusing ll = long long;\nusing ull = unsigned\
+    \ long long;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> class infinity {\npublic:\n    static constexpr T value =\
+    \ std::numeric_limits<T>::max() / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::min()\
+    \ / 2;\n    static constexpr T max = std::numeric_limits<T>::max();\n    static\
+    \ constexpr T min = std::numeric_limits<T>::min();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cplusplus >= 201402L\ntemplate<class\
+    \ T> constexpr T INF = infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\n\
+    constexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
+    \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
+    \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
+    \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
+    \    return ist >> p.first >> p.second;\n}\n\ntemplate<class Container, typename\
+    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
+    \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    ->\
+    \ decltype(cont.begin(), cont.end(), ost) {\n    for (auto itr = cont.begin();\
     \ itr != cont.end(); ++itr) {\n        if (itr != cont.begin()) ost << ' ';\n\
-    \        ost << *itr;\n    }\n    return ost;\n}\ntemplate<class Container,\n\
-    \        typename std::enable_if<!std::is_same<Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator>>(std::istream& ist, Container& cont)\n        ->\
-    \ decltype(cont.begin(), cont.end(), ist)\n{\n    for (auto itr = cont.begin();\
-    \ itr != cont.end(); ++itr) ist >> *itr;\n    return ist;\n}\n\ntemplate<class\
-    \ T, class U> inline constexpr bool chmin(T &a, const U &b) noexcept {\n    return\
-    \ a > b ? a = b, true : false;\n}\ntemplate<class T, class U> inline constexpr\
-    \ bool chmax(T &a, const U &b) noexcept {\n    return a < b ? a = b, true : false;\n\
-    }\n\ninline CONSTEXPR ll gcd(ll a, ll b) noexcept {\n    while (b) {\n       \
-    \ const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return a;\n\
-    }\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept {\n    return a / gcd(a, b) *\
-    \ b;\n}\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1) return\
-    \ false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return\
-    \ false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll N)\
-    \ noexcept {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n\
-    \        while (N % i == 0) {\n            res.push_back(i);\n            N /=\
-    \ i;\n        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\
-    \ninline CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while\
-    \ (b) {\n        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n   \
-    \ }\n    return res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept\
-    \ {\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
-    \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
-    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m =\
-    \ b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n       \
-    \ t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u,\
-    \ u);\n        std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x +=\
-    \ m;\n        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll\
-    \ mod) noexcept {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while\
-    \ (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x\
-    \ -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return\
-    \ x;\n}\ninline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {\n\
-    \    const PLL p = extGCD(m1, m2);\n    const ll g = p.first * m1 + p.second *\
-    \ m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g != 0) return PLL{-1,\
-    \ -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n    return {(x *\
-    \ m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>& b, const\
-    \ std::vector<ll>& m) noexcept {\n    PLL res{0, 1};\n    rep (i, b.size()) {\n\
-    \        res = ChineseRemainder(res.first, res.second, b[i], m[i]);\n        if\
-    \ (res.first == -1) return res;\n    }\n    return res;\n}\n\ntemplate<class F>\
-    \ class RecLambda {\n  private:\n    F f;\n  public:\n    explicit constexpr RecLambda(F&&\
-    \ f_) : f(std::forward<F>(f_)) {}\n    template<class... Args> constexpr auto\
-    \ operator()(Args&&... args) const\n            -> decltype(f(*this, std::forward<Args>(args)...))\
-    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
-    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
-    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
-    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
-    \ T> struct multi_dim_vector<T> {\n    using type = T;\n};\n\ntemplate<class T,\
-    \ class Arg> constexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \        ost << *itr;\n    }\n    return ost;\n}\ntemplate<class Container, typename\
+    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
+    \ = nullptr>\nauto operator>>(std::istream& ist, Container& cont)\n    -> decltype(cont.begin(),\
+    \ cont.end(), ist) {\n    for (auto itr = cont.begin(); itr != cont.end(); ++itr)\
+    \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
+    \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
+    }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
+    \ {\n    return a < b ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
+    \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
+    \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
+    \ N) noexcept {\n    if (N <= 1) return false;\n    for (ll i = 2; i * i <= N;\
+    \ ++i) {\n        if (N % i == 0) return false;\n    }\n    return true;\n}\n\
+    inline std::vector<ll> prime_factor(ll N) noexcept {\n    std::vector<ll> res;\n\
+    \    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n       \
+    \     res.push_back(i);\n            N /= i;\n        }\n    }\n    if (N != 1)\
+    \ res.push_back(N);\n    return res;\n}\n\ninline CONSTEXPR ll my_pow(ll a, ll\
+    \ b) noexcept {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n\
+    \        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR\
+    \ ll mod_pow(ll a, ll b, ll mod) noexcept {\n    assert(mod > 0);\n    if (mod\
+    \ == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if\
+    \ (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n   \
+    \ }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) noexcept {\n    const\
+    \ ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b)\
+    \ {\n        t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x\
+    \ -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n\
+    \        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll\
+    \ a, ll mod) noexcept {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n  \
+    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
+    \  std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a ==\
+    \ 1);\n    return x;\n}\ninline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2)\
+    \ noexcept {\n    const PLL p = extGCD(m1, m2);\n    const ll g = p.first * m1\
+    \ + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2 - b1) % g != 0)\
+    \ return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first % (m2 / g);\n\
+    \    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const std::vector<ll>&\
+    \ b,\n                      const std::vector<ll>& m) noexcept {\n    PLL res{0,\
+    \ 1};\n    rep (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second,\
+    \ b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n\
+    }\n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
+    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    \ Args>\n    constexpr auto operator()(Args&&... args) const\n        -> decltype(f(*this,\
+    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
+    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
     \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n, Args&&...\
-    \ args) {\n    return typename multi_dim_vector<Args..., T>::type (n, make_vec<T>(std::forward<Args>(args)...));\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
+    \                                                         Args&&... args) {\n\
+    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ninline CONSTEXPR int popcnt(ull x) {\n#if __cplusplus >= 202002L\n    return\
-    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1 ) & 0x5555555555555555);\n\
-    \    x = (x & 0x3333333333333333) + ((x >> 2 ) & 0x3333333333333333);\n    x =\
-    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4 ) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
-    \ + ((x >> 8 ) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x\
-    \ >> 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >>\
-    \ 32) & 0x00000000ffffffff);\n}\n\ntemplate<class T, class Comp = std::less<T>>\
-    \ class presser {\n  protected:\n    std::vector<T> dat;\n    Comp cmp;\n    bool\
-    \ sorted = false;\n  public:\n    presser() : presser(Comp()) {}\n    presser(const\
-    \ Comp& cmp) : cmp(cmp) {}\n    presser(const std::vector<T>& vec, const Comp&\
-    \ cmp = Comp()) : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&& vec, const\
-    \ Comp& cmp = Comp()) : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp()) : dat(il.begin(), il.end()), cmp(cmp) {}\n   \
-    \ void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n \
-    \   }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \ std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >>\
+    \ 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32)\
+    \ & 0x00000000ffffffff);\n}\n\ntemplate<class T, class Comp = std::less<T>> class\
+    \ presser {\nprivate:\n    std::vector<T> dat;\n    Comp cmp;\n    bool sorted\
+    \ = false;\n\npublic:\n    presser() : presser(Comp()) {}\n    presser(const Comp&\
+    \ cmp) : cmp(cmp) {}\n    presser(const std::vector<T>& vec, const Comp& cmp =\
+    \ Comp())\n        : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&& vec,\
+    \ const Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
+    \ il, const Comp& cmp = Comp())\n        : dat(il.begin(), il.end()), cmp(cmp)\
+    \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
-    \    assert(!sorted); sorted = true;\n        std::sort(all(dat), cmp);\n    \
-    \    dat.erase(std::unique(all(dat), [&](const T& a, const T& b) -> bool {\n \
-    \           return !cmp(a, b) && !cmp(b, a);\n        }), dat.end());\n      \
-    \  return dat.size();\n    }\n    const T& operator[](int k) const& {\n      \
-    \  assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n        return\
-    \ dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n    \
-    \    assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
+    \    assert(!sorted);\n        sorted = true;\n        std::sort(all(dat), cmp);\n\
+    \        dat.erase(std::unique(all(dat),\n                              [&](const\
+    \ T& a, const T& b) -> bool {\n                                  return !cmp(a,\
+    \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
     \    }\n    int get_index(const T& val) const {\n        assert(sorted);\n   \
-    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) - dat.begin());\n\
-    \    }\n    std::vector<int> pressed(const std::vector<T>& vec) const {\n    \
-    \    assert(sorted);\n        std::vector<int> res(vec.size());\n        rep (i,\
-    \ vec.size()) res[i] = get_index(vec[i]);\n        return res;\n    }\n    void\
-    \ press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\
-    \ \"template argument must be convertible from int type\");\n        assert(sorted);\n\
-    \        each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n\
-    \        assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
+    \     return static_cast<int>(std::lower_bound(all(dat), val, cmp) -\n       \
+    \                         dat.begin());\n    }\n    std::vector<int> pressed(const\
+    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
+    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get_index(vec[i]);\n\
+    \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
+    \     static_assert(std::is_integral<T>::value,\n                      \"template\
+    \ argument must be convertible from int type\");\n        assert(sorted);\n  \
+    \      each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n \
+    \       assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\nclass ModIntBase\
-    \ {};\nclass StaticModIntBase : ModIntBase {};\nclass DynamicModIntBase : ModIntBase\
-    \ {};\n\ntemplate<class T> using is_ModInt = std::is_base_of<ModIntBase, T>;\n\
-    template<class T> using is_StaticModInt = std::is_base_of<StaticModIntBase, T>;\n\
-    template<class T> using is_DynamicModInt = std::is_base_of<DynamicModIntBase,\
-    \ T>;\n\ntemplate<unsigned int mod> class StaticModInt : StaticModIntBase {\n\
-    \    static_assert(mod > 0, \"mod must be greater than 0\");\n  protected:\n \
-    \   unsigned int val;\n    static constexpr unsigned int inv1000000007[] = {0,\
-    \ 1, 500000004, 333333336, 250000002,\n            400000003, 166666668, 142857144,\
-    \ 125000001, 111111112, 700000005};\n    static constexpr unsigned int inv998244353\
-    \ [] = {0, 1, 499122177, 332748118, 748683265,\n            598946612, 166374059,\
-    \ 855638017, 873463809, 443664157, 299473306};\n  public:\n    StaticModInt()\
-    \ : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> StaticModInt(T v) {\n        v %= (long long)mod;\n        if (v\
-    \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
-    \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(unsigned int v) {\n        StaticModInt res;\n        res.val\
-    \ = v;\n        return res;\n    }\n    StaticModInt inv() const {\n        if\
-    \ IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++ *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        -- *this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        unsigned\
-    \ long long a = val;\n        a *= other.val;\n        a %= mod;\n        val\
-    \ = a;\n        return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt&\
-    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
-    \ StaticModInt operator+(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) += rhs;\n    }\n    friend StaticModInt operator-(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ -= rhs;\n    }\n    friend StaticModInt operator*(const StaticModInt& lhs, const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n    }\n    friend\
-    \ StaticModInt operator/(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+()\
-    \ const {\n        return StaticModInt(*this);\n    }\n    StaticModInt operator-()\
-    \ const {\n        return StaticModInt::raw(0) - *this;\n    }\n    friend bool\
-    \ operator==(const StaticModInt& lhs, const StaticModInt& rhs) {\n        return\
-    \ lhs.val == rhs.val;\n    }\n    friend bool operator!=(const StaticModInt& lhs,\
-    \ const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt\
-    \ pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n        while (a)\
-    \ {\n            if (a & 1) res *= v;\n            a >>= 1;\n            v *=\
-    \ v;\n        }\n        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<unsigned\
+    \ int mod> class StaticModInt {\n    static_assert(mod > 0, \"mod must be greater\
+    \ than 0\");\n\nprivate:\n    unsigned int val;\n    static constexpr unsigned\
+    \ int inv1000000007[] = {\n        0,         1,         500000004, 333333336,\
+    \ 250000002, 400000003,\n        166666668, 142857144, 125000001, 111111112, 700000005};\n\
+    \    static constexpr unsigned int inv998244353[] = {\n        0,         1, \
+    \        499122177, 332748118, 748683265, 598946612,\n        166374059, 855638017,\
+    \ 873463809, 443664157, 299473306};\n\npublic:\n    StaticModInt() : val(0) {}\n\
+    \    template<class T, typename std::enable_if<\n                          std::is_integral<T>::value>::type*\
+    \ = nullptr>\n    StaticModInt(T v) {\n        v %= (long long)mod;\n        if\
+    \ (v < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get()\
+    \ const { return val; }\n    static unsigned int get_mod() { return mod; }\n \
+    \   static StaticModInt raw(unsigned int v) {\n        StaticModInt res;\n   \
+    \     res.val = v;\n        return res;\n    }\n    StaticModInt inv() const {\n\
+    \        if IF_CONSTEXPR (mod == 1000000007) {\n            if (val <= 10) return\
+    \ inv1000000007[val];\n        }\n        else if IF_CONSTEXPR (mod == 998244353)\
+    \ {\n            if (val <= 10) return inv998244353[val];\n        }\n       \
+    \ return mod_inv(val, mod);\n    }\n    StaticModInt& operator++() {\n       \
+    \ ++val;\n        if (val == mod) val = 0;\n        return *this;\n    }\n   \
+    \ StaticModInt operator++(int) {\n        StaticModInt res = *this;\n        ++*this;\n\
+    \        return res;\n    }\n    StaticModInt& operator--() {\n        if (val\
+    \ == 0) val = mod;\n        --val;\n        return *this;\n    }\n    StaticModInt\
+    \ operator--(int) {\n        StaticModInt res = *this;\n        --*this;\n   \
+    \     return res;\n    }\n    StaticModInt& operator+=(const StaticModInt& other)\
+    \ {\n        val += other.val;\n        if (val >= mod) val -= mod;\n        return\
+    \ *this;\n    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n \
+    \       if (val < other.val) val += mod;\n        val -= other.val;\n        return\
+    \ *this;\n    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n \
+    \       unsigned long long a = val;\n        a *= other.val;\n        a %= mod;\n\
+    \        val = a;\n        return *this;\n    }\n    StaticModInt& operator/=(const\
+    \ StaticModInt& other) {\n        *this *= other.inv();\n        return *this;\n\
+    \    }\n    friend StaticModInt operator+(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ += rhs;\n    }\n    friend StaticModInt operator-(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) -= rhs;\n    }\n    friend StaticModInt operator*(const StaticModInt&\
+    \ lhs,\n                                  const StaticModInt& rhs) {\n       \
+    \ return StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const\
+    \ StaticModInt& lhs,\n                                  const StaticModInt& rhs)\
+    \ {\n        return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+()\
+    \ const { return StaticModInt(*this); }\n    StaticModInt operator-() const {\
+    \ return StaticModInt::raw(0) - *this; }\n    friend bool operator==(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n\
+    \    friend bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt pow(ll a) const\
+    \ {\n        StaticModInt v = *this, res = 1;\n        while (a) {\n         \
+    \   if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n\
+    \        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    friend\
     \ std::istream& operator>>(std::istream& ist, StaticModInt& sm) {\n        ll\
-    \ v; ist >> v;\n        sm = v;\n        return ist;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<unsigned int mod> constexpr unsigned int StaticModInt<mod>::inv1000000007[];\n\
-    template<unsigned int mod> constexpr unsigned int StaticModInt<mod>::inv998244353\
-    \ [];\n#endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
-    \  = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt : DynamicModIntBase\
-    \ {\n  protected:\n    unsigned int val;\n    static unsigned int mod;\n  public:\n\
-    \    DynamicModInt() : val(0) {}\n    template<class T, typename std::enable_if<std::is_integral<T>::value>::type*\
-    \ = nullptr> DynamicModInt(T v) {\n        v %= (long long)mod;\n        if (v\
-    \ < 0) v += (long long)mod;\n        val = v;\n    }\n    unsigned int get() const\
-    \ { return val; }\n    static unsigned int get_mod() { return mod; }\n    static\
-    \ void set_mod(unsigned int v) {\n        assert(v > 0);\n        mod = v;\n \
-    \   }\n    static DynamicModInt raw(unsigned int v) {\n        DynamicModInt res;\n\
-    \        res.val = v;\n        return res;\n    }\n    DynamicModInt inv() const\
-    \ { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n        ++val;\n\
-    \        if (val == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt\
-    \ operator++(int) {\n        DynamicModInt res = *this;\n        ++ *this;\n \
-    \       return res;\n    }\n    DynamicModInt& operator--() {\n        if (val\
-    \ == 0) val = mod;\n        --val;\n        return *this;\n    }\n    DynamicModInt\
-    \ operator--(int) {\n        DynamicModInt res = *this;\n        -- *this;\n \
-    \       return res;\n    }\n    DynamicModInt& operator+=(const DynamicModInt&\
-    \ other) {\n        val += other.val;\n        if (val >= mod) val -= mod;\n \
-    \       return *this;\n    }\n    DynamicModInt& operator-=(const DynamicModInt&\
-    \ other) {\n        if (val < other.val) val += mod;\n        val -= other.val;\n\
-    \        return *this;\n    }\n    DynamicModInt& operator*=(const DynamicModInt&\
-    \ other) {\n        unsigned long long a = val;\n        a *= other.val;\n   \
-    \     a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) += rhs;\n\
-    \    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs, const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
-    \ DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt operator/(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const {\n        return DynamicModInt(*this);\n\
-    \    }\n    DynamicModInt operator-() const {\n        return DynamicModInt::raw(0)\
-    \ - *this;\n    }\n    friend bool operator==(const DynamicModInt& lhs, const\
-    \ DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend\
-    \ bool operator!=(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n    \
-    \    return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll a) const {\n\
-    \        DynamicModInt v = *this, res = 1;\n        while (a) {\n            if\
-    \ (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n  \
-    \      return res;\n    }\n    friend std::ostream& operator<<(std::ostream& ost,\
-    \ const DynamicModInt& dm) {\n        return ost << dm.val;\n    }\n    friend\
-    \ std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {\n        ll\
-    \ v; ist >> v;\n        dm = v;\n        return ist;\n    }\n};\n\ntemplate<int\
-    \ id> unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
-    \ {\n  protected:\n    static std::vector<T> factorial;\n  public:\n    static\
-    \ void init(ll n) {\n        const int b = factorial.size();\n        if (n <\
-    \ b) return;\n        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i]\
-    \ = factorial[i - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T perm(ll n, ll r) {\n      \
-    \  if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r <\
-    \ 0 || r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) {\n        return\
-    \ comb(n + r - 1, r);\n    }\n    static T small_perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n \
-    \       reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
-    \ T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
-    \ n - r);\n        init(r);\n        T res = 1;\n        reps (i, r) res *= n\
-    \ - r + i;\n        return res / factorial[r];\n    }\n    static T small_homo(ll\
-    \ n, ll r) {\n        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class\
-    \ T> std::vector<T> IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\n\
-    template<class T> class Combinatorics {\n  protected:\n    static std::vector<T>\
-    \ factorial;\n    static std::vector<T> factinv;\n  public:\n    static void init(ll\
-    \ n) {\n        chmax(n, 1000000);\n        const int b = factorial.size();\n\
-    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
-    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
-    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
-    \ - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) {\n        return comb(n\
-    \ + r - 1, r);\n    }\n    static T small_perm(ll n, ll r) {\n        if (r <\
-    \ 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n      \
-    \  reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
+    \ v;\n        ist >> v;\n        sm = v;\n        return ist;\n    }\n};\n\n#if\
+    \ __cplusplus < 201703L\ntemplate<unsigned int mod>\nconstexpr unsigned int StaticModInt<mod>::inv1000000007[];\n\
+    template<unsigned int mod>\nconstexpr unsigned int StaticModInt<mod>::inv998244353[];\n\
+    #endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
+    \ = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt {\nprivate:\n\
+    \    unsigned int val;\n    static unsigned int mod;\n\npublic:\n    DynamicModInt()\
+    \ : val(0) {}\n    template<class T, typename std::enable_if<\n              \
+    \            std::is_integral<T>::value>::type* = nullptr>\n    DynamicModInt(T\
+    \ v) {\n        v %= (long long)mod;\n        if (v < 0) v += (long long)mod;\n\
+    \        val = v;\n    }\n    unsigned int get() const { return val; }\n    static\
+    \ unsigned int get_mod() { return mod; }\n    static void set_mod(unsigned int\
+    \ v) {\n        assert(v > 0);\n        mod = v;\n    }\n    static DynamicModInt\
+    \ raw(unsigned int v) {\n        DynamicModInt res;\n        res.val = v;\n  \
+    \      return res;\n    }\n    DynamicModInt inv() const { return mod_inv(val,\
+    \ mod); }\n    DynamicModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int)\
+    \ {\n        DynamicModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n\
+    \        --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        unsigned\
+    \ long long a = val;\n        a *= other.val;\n        a %= mod;\n        val\
+    \ = a;\n        return *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt&\
+    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
+    \ DynamicModInt operator+(const DynamicModInt& lhs,\n                        \
+    \           const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) +=\
+    \ rhs;\n    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs,\n\
+    \                                   const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt operator*(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt\
+    \ operator/(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n  \
+    \  DynamicModInt operator+() const { return DynamicModInt(*this); }\n    DynamicModInt\
+    \ operator-() const { return DynamicModInt::raw(0) - *this; }\n    friend bool\
+    \ operator==(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ lhs.val == rhs.val;\n    }\n    friend bool operator!=(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n\
+    \    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this, res = 1;\n\
+    \        while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                    const DynamicModInt&\
+    \ dm) {\n        return ost << dm.val;\n    }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
+    \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
+    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"\
+    math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics {\nprivate:\n\
+    \    static std::vector<T> factorial;\n\npublic:\n    static void init(ll n) {\n\
+    \        const int b = factorial.size();\n        if (n < b) return;\n       \
+    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
+    \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
+    \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
+    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (r < 0 || r > n) return\
+    \ T(0);\n        init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
+    \ n - r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n       \
+    \ return res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res\
+    \ = 1;\n        reps (i, r) res *= n - r + i;\n        return res / factorial[r];\n\
+    \    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r);\
+    \ }\n};\n\ntemplate<class T>\nstd::vector<T> IntCombinatorics<T>::factorial =\
+    \ std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\nprivate:\n\
+    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n\n\
+    public:\n    static void init(ll n) {\n        chmax(n, 1000000);\n        const\
+    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
+    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
+    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
+    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
+    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
+    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
+    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
+    \ {\n        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
+    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
+    \ < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n    \
+    \    reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
     \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
     \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) {\n\
-    \        return small_comb(n + r - 1, r);\n    }\n};\n\ntemplate<class T> std::vector<T>\
-    \ Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class T> std::vector<T>\
-    \ Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n\
-    \ * @docs docs/Combinatorics.md\n */\n#line 5 \"test/aoj/DPL/DPL_5_E.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint1000000007;\nusing comb = Combinatorics<mint>;\n\
-    int main() {\n    ll n, k; cin >> n >> k;\n    cout << comb::comb(k, n) << endl;\n\
-    }\n"
+    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
+    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
+    \ */\n#line 5 \"test/aoj/DPL/DPL_5_E.test.cpp\"\nusing namespace std;\nusing mint\
+    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
+    \ n, k; cin >> n >> k;\n    cout << comb::comb(k, n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_E\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
@@ -305,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2022-07-26 07:52:54+09:00'
+  timestamp: '2022-08-16 21:43:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_E.test.cpp
