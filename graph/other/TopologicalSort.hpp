@@ -36,5 +36,5 @@ public:
 
 /**
  * @brief TopologicalSort(トポロジカルソート)
- * @docs docs/TopologicalSort.md
+ * @docs docs/graph/other/TopologicalSort.md
  */

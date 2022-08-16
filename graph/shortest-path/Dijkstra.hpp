@@ -23,5 +23,5 @@ template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {
 
 /**
  * @brief Dijkstra(ダイクストラ法)
- * @docs docs/Dijkstra.md
+ * @docs docs/graph/shortest-path/Dijkstra.md
  */

@@ -44,5 +44,5 @@ public:
 
 /**
  * @brief CartesianTree
- * @docs docs/CartesianTree.md
+ * @docs docs/graph/tree/CartesianTree.md
  */

@@ -94,5 +94,5 @@ public:
 
 /**
  * @brief DoublingLowestCommonAncestor(ダブリングによるLCA)
- * @docs docs/DoublingLowestCommonAncestor.md
+ * @docs docs/graph/tree/DoublingLowestCommonAncestor.md
  */

@@ -121,5 +121,5 @@ public:
 
 /**
  * @brief ConvexHullTrickAddMonotone
- * @docs docs/ConvexHullTrickAddMonotone.md
+ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md
  */

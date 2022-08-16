@@ -62,5 +62,5 @@ public:
 
 /**
  * @brief RollingHash(ロリハ)
- * @docs docs/RollingHash.md
+ * @docs docs/string/RollingHash.md
  */

@@ -57,5 +57,5 @@ public:
 
 /**
  * @brief PrimeFactor(エラトステネスの篩)
- * @docs docs/PrimeFactor.md
+ * @docs docs/math/PrimeFactor.md
  */

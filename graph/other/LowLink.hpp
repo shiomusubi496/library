@@ -50,5 +50,5 @@ public:
 
 /**
  * @brief Lowlink(関節点・橋検出)
- * @docs docs/LowLink.md
+ * @docs docs/graph/other/LowLink.md
  */

@@ -53,5 +53,5 @@ public:
 
 /**
  * @brief LongestIncreasingSubsequence(LIS,最長増加部分列)
- * @docs docs/LongestIncreasingSubsequence.md
+ * @docs docs/string/LongestIncreasingSubsequence.md
  */

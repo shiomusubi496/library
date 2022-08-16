@@ -49,5 +49,5 @@ public:
 
 /**
  * @brief EulerTourSubtree(オイラーツアー部分木クエリ)
- * @docs docs/EulerTourSubtree.md
+ * @docs docs/graph/tree/EulerTourSubtree.md
  */

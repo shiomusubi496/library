@@ -106,5 +106,5 @@ using UnweightedGraph = Graph<unweighted_edge>;
 
 /**
  * @brief Graph-template
- * @docs docs/Graph.md
+ * @docs docs/graph/Graph.md
  */

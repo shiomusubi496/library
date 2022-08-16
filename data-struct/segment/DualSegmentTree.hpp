@@ -121,5 +121,5 @@ using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, min_value>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)
- * @docs docs/DualSegmentTree.md
+ * @docs docs/data-struct/segment/DualSegmentTree.md
  */

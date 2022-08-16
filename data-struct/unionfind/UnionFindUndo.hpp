@@ -57,5 +57,5 @@ public:
 
 /**
  * @brief UnionFindUndo(Undo可能UnionFind)
- * @docs docs/UnionFindUndo.md
+ * @docs docs/data-struct/unionfind/UnionFindUndo.md
  */

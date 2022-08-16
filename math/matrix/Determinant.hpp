@@ -38,5 +38,5 @@ template<class T> T determinant(Matrix<T> mat) {
 
 /**
  * @brief Determinant(行列式)
- * @docs docs/Determinant.md
+ * @docs docs/math/matrix/Determinant.md
  */

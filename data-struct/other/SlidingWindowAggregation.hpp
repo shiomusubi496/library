@@ -63,5 +63,5 @@ public:
 
 /**
  * @brief SlidingWindowAggregation(SWAG)
- * @docs docs/SlidingWindowAggregation.md
+ * @docs docs/data-struct/other/SlidingWindowAggregation.md
  */

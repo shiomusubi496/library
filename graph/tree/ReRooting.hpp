@@ -99,5 +99,5 @@ public:
 
 /**
  * @brief ReRooting(全方位木DP)
- * @docs docs/ReRooting.md
+ * @docs docs/graph/tree/ReRooting.md
  */

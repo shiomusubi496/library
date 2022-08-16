@@ -42,5 +42,5 @@ public:
 
 /**
  * @brief UnionFind
- * @docs docs/UnionFind.md
+ * @docs docs/data-struct/unionfind/UnionFind.md
  */

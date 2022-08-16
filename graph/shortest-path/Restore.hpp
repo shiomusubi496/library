@@ -49,5 +49,5 @@ Edges<T> RestorePath(const Graph<T>& G, const std::vector<T>& dist, int s,
 
 /**
  * @brief Restore(経路復元)
- * @docs docs/Restore.md
+ * @docs docs/graph/shortest-path/Restore.md
  */

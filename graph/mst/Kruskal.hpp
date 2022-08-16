@@ -26,5 +26,5 @@ template<class T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {
 
 /**
  * @brief Kruskal(クラスカル法)
- * @docs docs/Kruskal.md
+ * @docs docs/graph/mst/Kruskal.md
  */

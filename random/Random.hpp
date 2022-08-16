@@ -71,5 +71,5 @@ Random64 rand64;
 
 /**
  * @brief Random
- * @docs docs/Random.md
+ * @docs docs/random/Random.md
  */

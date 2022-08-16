@@ -49,5 +49,5 @@ public:
 
 /**
  * @brief SparseTable
- * @docs docs/SparseTable.md
+ * @docs docs/data-struct/segment/SparseTable.md
  */

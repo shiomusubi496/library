@@ -79,5 +79,5 @@ public:
 
 /**
  * @brief BinaryTrie
- * @docs docs/BinaryTrie.md
+ * @docs docs/data-struct/other/BinaryTrie.md
  */

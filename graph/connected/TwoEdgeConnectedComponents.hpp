@@ -49,5 +49,5 @@ public:
 
 /**
  * @brief TwoEdgeConnectedComponents(二辺連結成分分解)
- * @docs docs/TwoEdgeConnectedComponents.md
+ * @docs docs/graph/connected/TwoEdgeConnectedComponents.md
  */

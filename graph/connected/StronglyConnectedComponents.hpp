@@ -72,5 +72,5 @@ public:
 
 /**
  * @brief StronglyConnectedComponents(強連結成分分解)
- * @docs docs/StronglyConnectedComponents.md
+ * @docs docs/graph/connected/StronglyConnectedComponents.md
  */

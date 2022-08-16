@@ -96,5 +96,5 @@ public:
 
 /**
  * @brief EulerTour(オイラーツアー)
- * @docs docs/EulerTour.md
+ * @docs docs/graph/tree/EulerTour.md
  */

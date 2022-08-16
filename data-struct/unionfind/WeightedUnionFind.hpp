@@ -58,5 +58,5 @@ public:
 
 /**
  * @brief WeightedUnionFind(重み付きUF)
- * @docs docs/WeightedUnionFind.md
+ * @docs docs/data-struct/unionfind/WeightedUnionFind.md
  */

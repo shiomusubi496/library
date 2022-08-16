@@ -24,5 +24,5 @@ public:
 
 /**
  * @brief LCARMQ
- * @docs docs/LCARMQ.md
+ * @docs docs/data-struct/segment/LCARMQ.md
  */

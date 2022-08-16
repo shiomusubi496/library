@@ -42,5 +42,5 @@ public:
 
 /**
  * @brief DynamicUnionFind(動的UnionFind)
- * @docs docs/DynamicUnionFind.md
+ * @docs docs/data-struct/unionfind/DynamicUnionFind.md
  */

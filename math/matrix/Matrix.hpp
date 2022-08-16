@@ -74,5 +74,5 @@ public:
 
 /**
  * @brief Matrix(行列)
- * @docs docs/Matrix.md
+ * @docs docs/math/matrix/Matrix.md
  */

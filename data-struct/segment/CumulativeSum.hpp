@@ -33,5 +33,5 @@ using CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;
 
 /**
  * @brief CumulativeSum(累積和)
- * @docs docs/CumulativeSum.md
+ * @docs docs/data-struct/segment/CumulativeSum.md
  */

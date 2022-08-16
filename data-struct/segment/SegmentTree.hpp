@@ -102,5 +102,5 @@ template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;
 
 /**
  * @brief SegmentTree(セグメント木)
- * @docs docs/SegmentTree.md
+ * @docs docs/data-struct/segment/SegmentTree.md
  */

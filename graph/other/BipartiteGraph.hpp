@@ -41,5 +41,5 @@ public:
 
 /**
  * @brief BipartiteGraph(二部グラフ判定)
- * @docs docs/BipartiteGraph.md
+ * @docs docs/graph/other/BipartiteGraph.md
  */

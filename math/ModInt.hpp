@@ -252,5 +252,5 @@ using modint = DynamicModInt<-1>;
 
 /**
  * @brief ModInt
- * @docs docs/ModInt.md
+ * @docs docs/math/ModInt.md
  */

@@ -21,5 +21,5 @@ public:
 
 /**
  * @brief Timer
- * @docs docs/Timer.md
+ * @docs docs/random/Timer.md
  */

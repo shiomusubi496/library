@@ -24,5 +24,5 @@ void subset_moebius_transform(std::vector<typename Sum::value_type>& v) {
 
 /**
  * @brief SubsetZeta/MoebiusTransform(ゼータ変換/メビウス変換)
- * @docs docs/SubsetZetaMoebiusTransform.md
+ * @docs docs/math/convolution/SubsetZetaMoebiusTransform.md
  */

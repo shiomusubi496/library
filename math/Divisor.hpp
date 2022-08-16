@@ -17,5 +17,5 @@ std::vector<ll> divisors(ll n) {
 
 /**
  * @brief Divisors(約数列挙)
- * @docs docs/Divisors.md
+ * @docs docs/math/Divisor.md
  */

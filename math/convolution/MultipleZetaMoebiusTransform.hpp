@@ -30,5 +30,5 @@ void multiple_moebius_transform(std::vector<typename Sum::value_type>& v) {
 
 /**
  * @brief MultipleZeta/MoebiusTransform(ゼータ変換/メビウス変換)
- * @docs docs/MultipleZetaMoebiusTransform.md
+ * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md
  */

@@ -57,5 +57,5 @@ public:
 
 /**
  * @brief DefaultMap
- * @docs docs/DefaultMap.md
+ * @docs docs/data-struct/other/DefaultMap.md
  */

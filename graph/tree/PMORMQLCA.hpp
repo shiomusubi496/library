@@ -29,5 +29,5 @@ template<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;
 
 /**
  * @brief PMORMQLCA($\pm1$RMQによるLCA)
- * @docs docs/PMORMQLCA.md
+ * @docs docs/graph/tree/PMORMQLCA.md
  */

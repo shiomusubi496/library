@@ -97,5 +97,5 @@ public:
 
 /**
  * @brief LinearRMQ(前計算$\Theta(N)$クエリ毎$\Theta(1)$のRMQ)
- * @docs docs/LinearRMQ.md
+ * @docs docs/data-struct/segment/LinearRMQ.md
  */

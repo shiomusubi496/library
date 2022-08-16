@@ -86,5 +86,5 @@ public:
 
 /**
  * @brief PlusMinusOneRMQ($\pm1$RMQ)
- * @docs docs/PlusMinusOneRMQ.md
+ * @docs docs/data-struct/segment/PlusMinusOneRMQ.md
  */

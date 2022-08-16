@@ -16,5 +16,5 @@ lcm_convolution(std::vector<typename Sum::value_type> a,
 
 /**
  * @brief LCMConvolution
- * @docs docs/LcmConvolution.md
+ * @docs docs/math/convolution/LcmConvolution.md
  */

@@ -23,5 +23,5 @@ RunLength(const Cont& str) {
 
 /**
  * @brief RunLength(ランレングス圧縮)
- * @docs docs/RunLength.md
+ * @docs docs/string/RunLength.md
  */

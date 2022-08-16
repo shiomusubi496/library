@@ -110,5 +110,5 @@ std::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);
 
 /**
  * @brief Combinatorics
- * @docs docs/Combinatorics.md
+ * @docs docs/math/Combinatorics.md
  */

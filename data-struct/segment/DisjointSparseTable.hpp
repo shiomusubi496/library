@@ -60,5 +60,5 @@ public:
 
 /**
  * @brief DisjointSparseTable
- * @docs docs/DisjointSparseTable.md
+ * @docs docs/data-struct/segment/DisjointSparseTable.md
  */

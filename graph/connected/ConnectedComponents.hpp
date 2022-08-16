@@ -39,5 +39,5 @@ public:
 
 /**
  * @brief ConnectedComponents(連結成分分解)
- * @docs docs/ConnectedComponents.md
+ * @docs docs/graph/connected/ConnectedComponents.md
  */

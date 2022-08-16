@@ -34,5 +34,5 @@ public:
 
 /**
  * @brief Euler's-Phi(オイラーのφ関数)
- * @docs docs/EulerPhi.md
+ * @docs docs/math/EulerPhi.md
  */

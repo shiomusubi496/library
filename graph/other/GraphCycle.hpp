@@ -45,5 +45,5 @@ public:
 
 /**
  * @brief GraphCycle(閉路検出)
- * @docs docs/GraphCycle.md
+ * @docs docs/graph/other/GraphCycle.md
  */

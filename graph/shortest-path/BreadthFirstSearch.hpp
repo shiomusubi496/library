@@ -43,5 +43,5 @@ template<class T> std::vector<T> BFSedge(const Graph<T>& G, int start = 0) {
 
 /**
  * @brief BFS(幅優先探索)
- * @docs docs/BreadthFirstSearch.md
+ * @docs docs/graph/shortest-path/BreadthFirstSearch.md
  */

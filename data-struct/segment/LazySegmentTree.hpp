@@ -252,5 +252,5 @@ using RangeChmaxQueryRangeMaximumQuery =
 
 /**
  * @brief LazySegmentTree(遅延セグメント木)
- * @docs docs/LazySegmentTree.md
+ * @docs docs/data-struct/segment/LazySegmentTree.md
  */

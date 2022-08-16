@@ -16,5 +16,5 @@ gcd_convolution(std::vector<typename Sum::value_type> a,
 
 /**
  * @brief GCDConvolution
- * @docs docs/GcdConvolution.md
+ * @docs docs/math/convolution/GcdConvolution.md
  */

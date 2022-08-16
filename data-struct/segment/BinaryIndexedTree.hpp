@@ -58,5 +58,5 @@ public:
 
 /**
  * @brief BinaryIndexedTree(FenwickTree, BIT)
- * @docs docs/BinaryIndexedTree.md
+ * @docs docs/data-struct/segment/BinaryIndexedTree.md
  */

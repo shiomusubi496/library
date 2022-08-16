@@ -39,5 +39,5 @@ std::vector<T> BellmanFord(int V, const Edges<T>& Ed, int start = 0) {
 
 /**
  * @brief Bellman-Ford(ベルマンフォード法)
- * @docs docs/BellmanFord.md
+ * @docs docs/graph/shortest-path/BellmanFord.md
  */

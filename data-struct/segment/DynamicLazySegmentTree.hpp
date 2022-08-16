@@ -270,5 +270,5 @@ public:
 
 /**
  * @brief DynamicLazySegmentTree(動的遅延セグメント木)
- * @docs docs/DynamicLazySegmentTree.md
+ * @docs docs/data-struct/segment/DynamicLazySegmentTree.md
  */

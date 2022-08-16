@@ -53,5 +53,5 @@ public:
 
 /**
  * @brief TwoSatisfiability(2-SAT)
- * @docs docs/TwoSatisfiability.md
+ * @docs docs/graph/other/TwoSatisfiablitity.md
  */

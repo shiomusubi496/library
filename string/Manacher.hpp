@@ -46,5 +46,5 @@ std::vector<int> ManacherEven(const Cont& str,
 
 /**
  * @brief Manacher's Algortihm(最長回文長検出)
- * @docs docs/Manacher.md
+ * @docs docs/string/Manacher.md
  */

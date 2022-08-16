@@ -28,5 +28,5 @@ template<class Cont> std::vector<int> ZAlgorithm(const Cont& str) {
 
 /**
  * @brief Z-Algorithm
- * @docs docs/ZAlgorithm.md
+ * @docs docs/string/ZAlgorithm.md
  */

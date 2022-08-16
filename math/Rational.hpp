@@ -110,5 +110,5 @@ using Fraction = Rational<ll>;
 
 /**
  * @brief Rational(有理数型)
- * @docs docs/Rational.md
+ * @docs docs/math/Rational.md
  */

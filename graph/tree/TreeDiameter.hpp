@@ -35,5 +35,5 @@ public:
 
 /**
  * @brief TreeDiameter(木の直径)
- * @docs docs/TreeDiameter.md
+ * @docs docs/graph/tree/TreeDiameter.md
  */

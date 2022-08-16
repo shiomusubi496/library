@@ -129,5 +129,5 @@ public:
 
 /**
  * @brief HeavyLightDecomposition(HL分解)
- * @docs docs/HeavyLightDecomposition.md
+ * @docs docs/graph/tree/HeavyLightDecomposition.md
  */

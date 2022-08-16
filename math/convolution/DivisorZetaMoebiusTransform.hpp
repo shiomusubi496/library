@@ -30,5 +30,5 @@ void divisor_moebius_transform(std::vector<typename Sum::value_type>& v) {
 
 /**
  * @brief DivisorZeta/MoebiusTransform(ゼータ変換/メビウス変換)
- * @docs docs/DivisorZetaMoebiusTransform.md
+ * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md
  */

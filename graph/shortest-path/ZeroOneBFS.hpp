@@ -30,5 +30,5 @@ template<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start = 0) {
 
 /**
  * @brief ZeroOneBFS(01-BFS)
- * @docs docs/ZeroOneBFS.md
+ * @docs docs/graph/shortest-path/ZeroOneBFS.md
  */

@@ -181,5 +181,5 @@ public:
 
 /**
  * @brief DynamicSegmentTree(動的セグメント木)
- * @docs docs/DynamicSegmentTree.md
+ * @docs docs/data-struct/segment/DynamicSegmentTree.md
  */

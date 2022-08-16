@@ -24,5 +24,5 @@ void superset_moebius_transform(std::vector<typename Sum::value_type>& v) {
 
 /**
  * @brief SupersetZeta/MoebiusTransform(ゼータ変換/メビウス変換)
- * @docs docs/SupersetZetaMoebiusTransform.md
+ * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md
  */

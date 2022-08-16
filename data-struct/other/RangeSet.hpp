@@ -126,5 +126,5 @@ public:
 
 /**
  * @brief RangeSet(区間をstd::setで管理する例のやつ)
- * @docs docs/RangeSet.md
+ * @docs docs/data-struct/other/RangeSet.md
  */

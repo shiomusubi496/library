@@ -16,5 +16,5 @@ bitwise_and_convolution(std::vector<typename Sum::value_type> a,
 
 /**
  * @brief BitwiseAndConvolution
- * @docs docs/BitwiseAndConvolution.md
+ * @docs docs/math/convolution/BitwiseAndConvolution.md
  */

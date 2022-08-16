@@ -658,5 +658,5 @@ public:
 
 /**
  * @brief SkipList
- * @docs docs/SkipList.md
+ * @docs docs/data-struct/other/SkipList.md
  */
