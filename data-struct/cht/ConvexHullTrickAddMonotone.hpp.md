@@ -6,12 +6,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
     document_title: ConvexHullTrickAddMonotone
@@ -154,7 +154,7 @@ data:
     \ T = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
     \ {\nprivate:\n    struct Line {\n    public:\n        T a, b;\n        int idx;\n\
     \        T get(T x) const { return a * x + b; }\n        Line() = default;\n \
-    \       Line(T a, T b, int id)\n            : a(a), idx(id), is_query(false),\
+    \       Line(T a, T b, int id)\n            : a(a), b(b), idx(id), is_query(false),\
     \ has_nxt(false) {}\n\n        friend class ConvexHullTrickAddMonotone;\n\n  \
     \  private:\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
     \  mutable bool has_nxt;\n        T get_nxt(T x) const { return nxt_a * x + nxt_b;\
@@ -209,7 +209,7 @@ data:
     \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
     \ {\nprivate:\n    struct Line {\n    public:\n        T a, b;\n        int idx;\n\
     \        T get(T x) const { return a * x + b; }\n        Line() = default;\n \
-    \       Line(T a, T b, int id)\n            : a(a), idx(id), is_query(false),\
+    \       Line(T a, T b, int id)\n            : a(a), b(b), idx(id), is_query(false),\
     \ has_nxt(false) {}\n\n        friend class ConvexHullTrickAddMonotone;\n\n  \
     \  private:\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
     \  mutable bool has_nxt;\n        T get_nxt(T x) const { return nxt_a * x + nxt_b;\
@@ -265,8 +265,8 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-17 02:01:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp
