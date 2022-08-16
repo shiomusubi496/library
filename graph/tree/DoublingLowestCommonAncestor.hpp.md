@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/DoublingLowestCommonAncestor.md
+    _deprecated_at_docs: docs/graph/tree/DoublingLowestCommonAncestor.md
     document_title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
       \u3088\u308BLCA)"
     links: []
@@ -214,7 +214,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 6 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
     \n\ntemplate<class T> class DoublingLCA {\nprivate:\n    int root, n, h;\n   \
     \ Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int>\
     \ dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int\
@@ -252,7 +252,7 @@ data:
     \    }\n        }\n        return parent(u);\n    }\n    int dist(int u, int v)\
     \ const {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n\
     /**\n * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
-    \u3088\u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n */\n"
+    \u3088\u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../Graph.hpp\"\n\ntemplate<class T> class DoublingLCA {\nprivate:\n\
     \    int root, n, h;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>>\
@@ -292,7 +292,7 @@ data:
     \        }\n        return parent(u);\n    }\n    int dist(int u, int v) const\
     \ {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n/**\n\
     \ * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-    \u308BLCA)\n * @docs docs/DoublingLowestCommonAncestor.md\n */\n"
+    \u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -300,7 +300,7 @@ data:
   isVerificationFile: false
   path: graph/tree/DoublingLowestCommonAncestor.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/jump_on_tree.test.cpp

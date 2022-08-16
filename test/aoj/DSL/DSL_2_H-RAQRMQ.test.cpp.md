@@ -378,7 +378,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
     \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int n, q; cin >> n >> q;\n    RangeAddQueryRangeMinimumQuery<int>\
     \ RAQRMQ(n, 0);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0)\
@@ -400,7 +400,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp

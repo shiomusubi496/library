@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/ZeroOneBFS.md
+    _deprecated_at_docs: docs/graph/shortest-path/ZeroOneBFS.md
     document_title: ZeroOneBFS(01-BFS)
     links: []
   bundledCode: "#line 2 \"graph/shortest-path/ZeroOneBFS.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -193,9 +193,9 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/ZeroOneBFS.hpp\"\n\
-    \ntemplate<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start = 0)\
-    \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/shortest-path/ZeroOneBFS.hpp\"\
+    \n\ntemplate<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start =\
+    \ 0) {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value);\n    dist[start] = 0;\n    std::deque<std::pair<T, int>>\
     \ que;\n    que.emplace_front(0, start);\n    while (!que.empty()) {\n       \
     \ T c = std::move(que.front().first);\n        int v = que.front().second;\n \
@@ -205,7 +205,7 @@ data:
     \         }\n            else {\n                if (chmin(dist[e.to], c + e.cost))\n\
     \                    que.emplace_back(dist[e.to], e.to);\n            }\n    \
     \    }\n    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs\
-    \ docs/ZeroOneBFS.md\n */\n"
+    \ docs/graph/shortest-path/ZeroOneBFS.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> ZeroOneBFS(const Graph<T>& G, int start =\
     \ 0) {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
@@ -218,14 +218,14 @@ data:
     \         }\n            else {\n                if (chmin(dist[e.to], c + e.cost))\n\
     \                    que.emplace_back(dist[e.to], e.to);\n            }\n    \
     \    }\n    }\n    return dist;\n}\n\n/**\n * @brief ZeroOneBFS(01-BFS)\n * @docs\
-    \ docs/ZeroOneBFS.md\n */"
+    \ docs/graph/shortest-path/ZeroOneBFS.md\n */"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/ZeroOneBFS.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2945-01BFS.test.cpp

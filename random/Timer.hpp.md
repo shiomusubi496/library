@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/Timer.md
+    _deprecated_at_docs: docs/random/Timer.md
     document_title: Timer
     links: []
   bundledCode: "#line 2 \"random/Timer.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -155,7 +155,7 @@ data:
     \        std::chrono::system_clock::now() - start_time)\n            .count();\n\
     \    }\n    auto get_start_time() const { return start_time; }\n    auto get_now_time()\
     \ const { return std::chrono::system_clock::now(); }\n} timer;\n\n/**\n * @brief\
-    \ Timer\n * @docs docs/Timer.md\n */\n"
+    \ Timer\n * @docs docs/random/Timer.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass Timer {\nprivate:\n\
     \    std::chrono::system_clock::time_point start_time;\n\npublic:\n    Timer()\
     \ : start_time(std::chrono::system_clock::now()) {}\n    void restart() { start_time\
@@ -164,13 +164,13 @@ data:
     \                   std::chrono::system_clock::now() - start_time)\n         \
     \   .count();\n    }\n    auto get_start_time() const { return start_time; }\n\
     \    auto get_now_time() const { return std::chrono::system_clock::now(); }\n\
-    } timer;\n\n/**\n * @brief Timer\n * @docs docs/Timer.md\n */\n"
+    } timer;\n\n/**\n * @brief Timer\n * @docs docs/random/Timer.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: random/Timer.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: random/Timer.hpp

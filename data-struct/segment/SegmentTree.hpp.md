@@ -34,7 +34,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/SegmentTree.md
+    _deprecated_at_docs: docs/data-struct/segment/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     links: []
   bundledCode: "#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -330,7 +330,7 @@ data:
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
     template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class SegmentTree {\n\
@@ -374,7 +374,7 @@ data:
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
     template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -383,7 +383,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp

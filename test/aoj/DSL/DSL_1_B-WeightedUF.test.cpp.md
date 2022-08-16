@@ -174,13 +174,14 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\
-    \u307F\u4ED8\u304DUF)\n * @docs docs/WeightedUnionFind.md\n */\n#line 4 \"test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    WeightedUnionFind<ll>\
-    \ WUF(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n  \
-    \          int x, y, z; cin >> x >> y >> z;\n            WUF.merge(x, y, z);\n\
-    \        }\n        else {\n            int x, y; cin >> x >> y;\n           \
-    \ if (WUF.same(x, y)) cout << WUF.diff(x, y) << endl;\n            else puts(\"\
-    ?\");\n        }\n    }\n}\n"
+    \u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
+    \ */\n#line 4 \"test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int n, q; cin >> n >> q;\n    WeightedUnionFind<ll> WUF(n);\n\
+    \    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n            int\
+    \ x, y, z; cin >> x >> y >> z;\n            WUF.merge(x, y, z);\n        }\n \
+    \       else {\n            int x, y; cin >> x >> y;\n            if (WUF.same(x,\
+    \ y)) cout << WUF.diff(x, y) << endl;\n            else puts(\"?\");\n       \
+    \ }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/unionfind/WeightedUnionFind.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    WeightedUnionFind<ll>\
@@ -195,7 +196,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp

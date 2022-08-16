@@ -195,8 +195,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n\
-    #line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
     \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value);\n\
     \    dist[start] = 0;\n    prique<std::pair<T, int>> que;\n    que.emplace(0,\
@@ -205,9 +205,9 @@ data:
     \ c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
     }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n   \
-    \ Graph<int> G(V);\n    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n\
+    \ docs/graph/shortest-path/Dijkstra.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
+    \   Graph<int> G(V);\n    rep (E) {\n        int s, t, d; cin >> s >> t >> d;\n\
     \        G.add_edge(s, t, d, true);\n    }\n    vector<int> dist = Dijkstra(G,\
     \ r);\n    rep (i, V) {\n        if (dist[i] == infinity<int>::value) puts(\"\
     INF\");\n        else cout << dist[i] << endl;\n    }\n}\n"
@@ -226,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp

@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/BinaryTrie.md
+    _deprecated_at_docs: docs/data-struct/other/BinaryTrie.md
     document_title: BinaryTrie
     links: []
   bundledCode: "#line 2 \"data-struct/other/BinaryTrie.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -185,7 +185,7 @@ data:
     \ k) const { return get_ptr(root, k ^ xall, height)->sz; }\n    ull kth_element(ll\
     \ k) const {\n        assert(0 <= k && k < root->sz);\n        return kth_element(root,\
     \ k, height, xall);\n    }\n    ll get_index(ull k) const {\n        return get_index(root,\
-    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/BinaryTrie.md\n\
+    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/data-struct/other/BinaryTrie.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<unsigned\
     \ int height = 64> class BinaryTrie {\nprivate:\n    struct node;\n    using node_ptr\
@@ -222,14 +222,14 @@ data:
     \ k) const { return get_ptr(root, k ^ xall, height)->sz; }\n    ull kth_element(ll\
     \ k) const {\n        assert(0 <= k && k < root->sz);\n        return kth_element(root,\
     \ k, height, xall);\n    }\n    ll get_index(ull k) const {\n        return get_index(root,\
-    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/BinaryTrie.md\n\
+    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/data-struct/other/BinaryTrie.md\n\
     \ */"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/other/BinaryTrie.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/set_xor_min.test.cpp

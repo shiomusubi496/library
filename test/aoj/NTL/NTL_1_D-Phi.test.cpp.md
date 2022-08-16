@@ -162,9 +162,9 @@ data:
     \ {\n            if (data[i] != i) continue;\n            rep (j, i, MAX + 1,\
     \ i) {\n                data[j] = data[j] / i * (i - 1);\n            }\n    \
     \    }\n    }\n    ll phi(ll x) { return data[x]; }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\
-    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n\
-    #line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n}\n"
+    \u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)\n * @docs docs/math/EulerPhi.md\n\
+    \ */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    ll N; cin >> N;\n    cout << euler_phi(N) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/EulerPhi.hpp\"\nusing\
     \ namespace std;\nint main() {\n    ll N; cin >> N;\n    cout << euler_phi(N)\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp

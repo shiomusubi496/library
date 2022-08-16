@@ -200,7 +200,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
     \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
     \ T> class StronglyConnectedComponents {\nprivate:\n    int n, sz, cnt;\n    Graph<T>\
     \ G_;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int>\
@@ -225,7 +225,7 @@ data:
     \ (e : G[i]) {\n                if (cmp[i] != cmp[e.to])\n                   \
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
-    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
     \ */\n#line 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
     \ : TwoSatisfiability(0) {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n\
@@ -245,7 +245,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/TwoSatisfiability.md\n */\n#line 4 \"test/yosupo/math/two_sat.test.cpp\"\
+    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n#line 4 \"test/yosupo/math/two_sat.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    cin >>\
     \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
     \ a, b; cin >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
@@ -270,7 +270,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/two_sat.test.cpp

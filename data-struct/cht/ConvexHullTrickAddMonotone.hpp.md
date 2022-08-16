@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/ConvexHullTrickAddMonotone.md
+    _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
     document_title: ConvexHullTrickAddMonotone
     links: []
   bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\n#line\
@@ -204,7 +204,7 @@ data:
     \        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;\n        return\
     \ res;\n    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n\
     \    bool empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/ConvexHullTrickAddMonotone.md\n */\n"
+    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
     \ {\nprivate:\n    struct Line {\n    public:\n        T a, b;\n        int idx;\n\
@@ -259,13 +259,13 @@ data:
     \        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;\n        return\
     \ res;\n    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n\
     \    bool empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/ConvexHullTrickAddMonotone.md\n */\n"
+    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp
@@ -276,13 +276,23 @@ redirect_from:
 - /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp.html
 title: ConvexHullTrickAddMonotone
 ---
-## 概要
+## Overview
 
 Convex Hull Trick のうち、追加クエリで与えられる直線の傾きが単調増加あるいは単調減少であるような場合に使える。
 
 通常の Convex Hull Trick は `std::set` などを使う必要があるのに対して、単調増加あるいは単調減少の場合は `std::deque` を用いればよいため、二分探索をしない追加クエリの計算量が落ちる。
 
-さらに、取得クエリの `x` が単調増加あるいは単調減少のときは二分探索をせず要らなくなった直線を消していけばいいので、取得クエリの計算量も落ちる。当然、 `get_min` `inc_get_min` `dec_get_min` を同時に使ってはいけない。
+さらに、取得クエリの `x` が単調増加あるいは単調減少のときは二分探索をせず要らなくなった直線を消していけばいいので、取得クエリの計算量も落ちる。当然、 `get_min` `inc_get_min` `dec_get_min` のうち 2 つを同時に使ってはいけない。
+
+## Usage
+
+### Template Arguments
+
+- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
+- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
+- `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `__int128_t` 。
+
+### Member Function
 
 - `ConvexHullTrickAddMonotone()` : `ConvexHullTrick` を作成する。ここで、関数集合を $s$ と表す。 $\Theta(1)$ 。
 - `void add_line(T a, T b)` : $s$ に `f(x) = ax + b` を追加する。 $\Theta(1)$ 。

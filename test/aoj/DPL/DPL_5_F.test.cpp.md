@@ -254,11 +254,11 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"\
-    math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics {\nprivate:\n\
-    \    static std::vector<T> factorial;\n\npublic:\n    static void init(ll n) {\n\
-    \        const int b = factorial.size();\n        if (n < b) return;\n       \
-    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line\
+    \ 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics {\n\
+    private:\n    static std::vector<T> factorial;\n\npublic:\n    static void init(ll\
+    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
+    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
     \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
     \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
@@ -293,7 +293,7 @@ data:
     \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
     \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
     \ */\n#line 5 \"test/aoj/DPL/DPL_5_F.test.cpp\"\nusing namespace std;\nusing mint\
     \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
     \ n, k; cin >> n >> k;\n    cout << comb::comb(n - 1, k - 1) << endl;\n}\n"
@@ -309,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_F.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_F.test.cpp

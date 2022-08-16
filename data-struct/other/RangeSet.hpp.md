@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/RangeSet.md
+    _deprecated_at_docs: docs/data-struct/other/RangeSet.md
     document_title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\
       \u4F8B\u306E\u3084\u3064)"
     links: []
@@ -210,7 +210,7 @@ data:
     \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
     \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
     \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
+    \u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     private:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
     \    ll sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
@@ -270,13 +270,13 @@ data:
     \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
     \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
     \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/RangeSet.md\n */\n"
+    \u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1601-RangeSet.test.cpp

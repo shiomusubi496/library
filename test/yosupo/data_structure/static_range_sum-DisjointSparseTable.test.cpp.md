@@ -301,8 +301,8 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n */\n\
-    #line 4 \"test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp\"\
+    \n/**\n * @brief DisjointSparseTable\n * @docs docs/data-struct/segment/DisjointSparseTable.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    DisjointSparseTable<Monoid::Sum<ll>> DST(A);\n    rep (Q)\
     \ {\n        int l, r; cin >> l >> r;\n        cout << DST.prod(l, r) << endl;\n\
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp

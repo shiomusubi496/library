@@ -34,7 +34,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/LazySegmentTree.md
+    _deprecated_at_docs: docs/data-struct/segment/LazySegmentTree.md
     document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
       )"
     links: []
@@ -392,7 +392,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
     \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\
@@ -496,7 +496,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
     \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -505,7 +505,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

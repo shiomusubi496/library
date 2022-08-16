@@ -158,7 +158,7 @@ data:
     \        for (int b = k; b; b >>= 1, a *= a) {\n            if (b & 1) res *=\
     \ a;\n        }\n        return res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n\
     \    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n    return\
-    \ res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/KthRoot.md\n\
+    \ res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n\
     \ */\n#line 4 \"test/yosupo/math/kth_root_integer.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int T; cin >> T;\n    rep (T) {\n        ull a, k; cin\
     \ >> a >> k;\n        cout << kth_root(a, k) << endl;\n    }\n}\n"
@@ -172,7 +172,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/kth_root_integer.test.cpp

@@ -396,7 +396,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\
     \n\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
     math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
     \ superset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
@@ -406,13 +406,13 @@ data:
     \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
     \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
     \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
     \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
     \ */\n#line 7 \"test/yosupo/convolution/bitwise_and_convolution.test.cpp\"\nusing\
     \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N; cin\
     \ >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    cin >> a >> b;\n    auto\
@@ -435,7 +435,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/convolution/bitwise_and_convolution.test.cpp

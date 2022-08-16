@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/EulerPhi.md
+    _deprecated_at_docs: docs/math/EulerPhi.md
     document_title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     links: []
   bundledCode: "#line 2 \"math/EulerPhi.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -160,7 +160,7 @@ data:
     \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
     \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
     \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
-    \u6570)\n * @docs docs/EulerPhi.md\n */\n"
+    \u6570)\n * @docs docs/math/EulerPhi.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nll euler_phi(ll n)\
     \ {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i) {\n        if (n % i\
     \ == 0) {\n            res = res / i * (i - 1);\n            while (n % i == 0)\
@@ -171,13 +171,13 @@ data:
     \ != i) continue;\n            rep (j, i, MAX + 1, i) {\n                data[j]\
     \ = data[j] / i * (i - 1);\n            }\n        }\n    }\n    ll phi(ll x)\
     \ { return data[x]; }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\
-    \u306E\u03C6\u95A2\u6570)\n * @docs docs/EulerPhi.md\n */\n"
+    \u306E\u03C6\u95A2\u6570)\n * @docs docs/math/EulerPhi.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/EulerPhi.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp

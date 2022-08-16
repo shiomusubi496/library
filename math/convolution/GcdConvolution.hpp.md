@@ -17,7 +17,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/GcdConvolution.md
+    _deprecated_at_docs: docs/math/convolution/GcdConvolution.md
     document_title: GCDConvolution
     links: []
   bundledCode: "#line 2 \"math/convolution/GcdConvolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -165,20 +165,20 @@ data:
     \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
     \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
     \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/MultipleZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/GcdConvolution.hpp\"\n\ntemplate<class Sum, class\
     \ Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
     \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/math/convolution/GcdConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"MultipleZetaMoebiusTransform.hpp\"\
     \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
     \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/GcdConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/math/convolution/GcdConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -186,7 +186,7 @@ data:
   isVerificationFile: false
   path: math/convolution/GcdConvolution.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/gcd_convolution.test.cpp

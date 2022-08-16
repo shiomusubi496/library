@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/TopologicalSort.md
+    _deprecated_at_docs: docs/graph/other/TopologicalSort.md
     document_title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
       \u30C8)"
     links: []
@@ -194,18 +194,18 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\n\n\
-    template<class T> class TopologicalSort {\nprivate:\n    int n;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void dfs(int\
-    \ v) {\n        seen[v] = true;\n        each_const (e : G[v]) {\n           \
-    \ if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n        ord.push_back(v);\n\
-    \    }\n    void init() {\n        n = G.size();\n        ord.reserve(n);\n  \
-    \      seen.assign(n, false);\n        rep (i, n) {\n            if (seen[i])\
-    \ continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/TopologicalSort.hpp\"\
+    \n\ntemplate<class T> class TopologicalSort {\nprivate:\n    int n;\n    const\
+    \ Graph<T>& G;\n    std::vector<int> ord;\n    std::vector<bool> seen;\n    void\
+    \ dfs(int v) {\n        seen[v] = true;\n        each_const (e : G[v]) {\n   \
+    \         if (seen[e.to]) continue;\n            dfs(e.to);\n        }\n     \
+    \   ord.push_back(v);\n    }\n    void init() {\n        n = G.size();\n     \
+    \   ord.reserve(n);\n        seen.assign(n, false);\n        rep (i, n) {\n  \
+    \          if (seen[i]) continue;\n            dfs(i);\n        }\n        std::reverse(all(ord));\n\
     \    }\n\npublic:\n    TopologicalSort(const Graph<T>& G) : G(G) { init(); }\n\
     \    const std::vector<int>& get() const& { return ord; }\n    std::vector<int>\
     \ get() && { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\
-    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
+    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/graph/other/TopologicalSort.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class TopologicalSort {\nprivate:\n    int n;\n    const\
@@ -218,7 +218,7 @@ data:
     \    }\n\npublic:\n    TopologicalSort(const Graph<T>& G) : G(G) { init(); }\n\
     \    const std::vector<int>& get() const& { return ord; }\n    std::vector<int>\
     \ get() && { return std::move(ord); }\n};\n\n/**\n * @brief TopologicalSort(\u30C8\
-    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/TopologicalSort.md\n\
+    \u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8)\n * @docs docs/graph/other/TopologicalSort.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -226,7 +226,7 @@ data:
   isVerificationFile: false
   path: graph/other/TopologicalSort.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_4_B-Toposo.test.cpp

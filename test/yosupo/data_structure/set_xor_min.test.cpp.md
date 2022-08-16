@@ -188,7 +188,7 @@ data:
     \ return get_ptr(root, k ^ xall, height)->sz; }\n    ull kth_element(ll k) const\
     \ {\n        assert(0 <= k && k < root->sz);\n        return kth_element(root,\
     \ k, height, xall);\n    }\n    ll get_index(ull k) const {\n        return get_index(root,\
-    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/BinaryTrie.md\n\
+    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/data-struct/other/BinaryTrie.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/set_xor_min.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    BinaryTrie<30> BT;\n    int Q; cin >> Q;\n    rep (Q)\
     \ {\n        int t; cin >> t;\n        ull x; cin >> x;\n        if (t == 0) {\n\
@@ -210,7 +210,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/set_xor_min.test.cpp

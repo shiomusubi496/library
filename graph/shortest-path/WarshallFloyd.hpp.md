@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/WarshallFloyd.md
+    _deprecated_at_docs: docs/graph/shortest-path/WarshallFloyd.md
     document_title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
       \u30C9\u6CD5)"
     links: []
@@ -194,14 +194,14 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\
     \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
     \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
     \     rep (j, N) {\n                if (G[i][k] != infinity<T>::value &&\n   \
     \                 G[k][j] != infinity<T>::value) {\n                    chmin(G[i][j],\
     \ G[i][k] + G[k][j]);\n                }\n            }\n        }\n    }\n}\n\
     \n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
-    \u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
+    \u30C9\u6CD5)\n * @docs docs/graph/shortest-path/WarshallFloyd.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> void WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n\
     \    rep (i, N) G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n       \
@@ -209,14 +209,14 @@ data:
     \                 G[k][j] != infinity<T>::value) {\n                    chmin(G[i][j],\
     \ G[i][k] + G[k][j]);\n                }\n            }\n        }\n    }\n}\n\
     \n/**\n * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\
-    \u30C9\u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n"
+    \u30C9\u6CD5)\n * @docs docs/graph/shortest-path/WarshallFloyd.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/WarshallFloyd.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

@@ -185,7 +185,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
     \n\nclass RollingHash {\nprivate:\n    static constexpr ull MOD = (1ull << 61)\
     \ - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
     \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
@@ -210,7 +210,7 @@ data:
     \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
     \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
     \ const { return BASE; }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
-    )\n * @docs docs/RollingHash.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp\"\
+    )\n * @docs docs/string/RollingHash.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string T, P; cin >> T >> P;\n    RollingHash\
     \ RH;\n    auto tr = RH.get_hash(T);\n    auto pr = RH.get_hash(P);\n    rep (i,\
     \ T.size() - P.size() + 1) {\n        if (tr.get_hash(i, i + P.size()) == pr.get_all())\
@@ -228,7 +228,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

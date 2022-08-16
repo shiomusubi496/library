@@ -273,7 +273,7 @@ data:
     \ M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data() const&\
     \ { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
     \ }\n};\n\ntemplate<class T>\nusing CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/data-struct/segment/CumulativeSum.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    CumulativeSum<ll> CS(A);\n    rep (Q) {\n        int l,\
@@ -290,7 +290,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp

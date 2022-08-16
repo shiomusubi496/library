@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/ConnectedComponents.md
+    _deprecated_at_docs: docs/graph/connected/ConnectedComponents.md
     document_title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
     links: []
   bundledCode: "#line 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 2 \"\
@@ -193,7 +193,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
     \n\ntemplate<class T> class ConnectedComponents {\nprivate:\n    int n, sz;\n\
     \    const Graph<T>& G;\n    std::vector<int> cmp;\n    void dfs(int v) {\n  \
     \      each_const (e : G[v]) {\n            if (cmp[e.to] != -1) continue;\n \
@@ -205,7 +205,7 @@ data:
     \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
     \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n\n/**\n *\
-    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n\
+    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class ConnectedComponents {\nprivate:\n    int n, sz;\n\
@@ -219,7 +219,7 @@ data:
     \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
     \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
     \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n\n/**\n *\
-    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n\
+    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -227,7 +227,7 @@ data:
   isVerificationFile: false
   path: graph/connected/ConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp

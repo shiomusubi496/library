@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/EulerTourSubtree.md
+    _deprecated_at_docs: docs/graph/tree/EulerTourSubtree.md
     document_title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\
       \u5206\u6728\u30AF\u30A8\u30EA)"
     links: []
@@ -194,26 +194,26 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\n\
-    template<class T> class EulerTourSubtree {\nprivate:\n    int n, cnt;\n    std::vector<int>\
-    \ root;\n    const Graph<T>& G;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n        }\n        idx[v].second\
-    \ = cnt;\n    }\n    void init() {\n        n = G.size();\n        idx.assign(n,\
-    \ {-1, -1});\n        cnt = 0;\n        each_const (r : root) dfs(r, -1);\n  \
-    \      rep (i, n) {\n            if (idx[i].first == -1) dfs(i, -1);\n       \
-    \ }\n    }\n\npublic:\n    EulerTourSubtree(const Graph<T>& G, int root = 0) :\
-    \ root({root}), G(G) {\n        init();\n    }\n    EulerTourSubtree(const Graph<T>&\
-    \ G, const std::vector<int>& root)\n        : root(root), G(G) {\n        init();\n\
-    \    }\n    const std::pair<int, int>& get_idx(int k) const& { return idx[k];\
-    \ }\n    std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n\
-    \    int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\
+    \n\ntemplate<class T> class EulerTourSubtree {\nprivate:\n    int n, cnt;\n  \
+    \  std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n  \
+    \      each_const (e : G[v]) {\n            if (e.to != p) dfs(e.to, v);\n   \
+    \     }\n        idx[v].second = cnt;\n    }\n    void init() {\n        n = G.size();\n\
+    \        idx.assign(n, {-1, -1});\n        cnt = 0;\n        each_const (r : root)\
+    \ dfs(r, -1);\n        rep (i, n) {\n            if (idx[i].first == -1) dfs(i,\
+    \ -1);\n        }\n    }\n\npublic:\n    EulerTourSubtree(const Graph<T>& G, int\
+    \ root = 0) : root({root}), G(G) {\n        init();\n    }\n    EulerTourSubtree(const\
+    \ Graph<T>& G, const std::vector<int>& root)\n        : root(root), G(G) {\n \
+    \       init();\n    }\n    const std::pair<int, int>& get_idx(int k) const& {\
+    \ return idx[k]; }\n    std::pair<int, int> get_idx(int k) && { return std::move(idx[k]);\
+    \ }\n    int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
     \ ? a : b;\n    }\n    template<class F> void each_vertex_subtree(int v, const\
     \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
     \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
     \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
     \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/EulerTourSubtree.md\n */\n"
+    \ docs/graph/tree/EulerTourSubtree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class EulerTourSubtree {\nprivate:\n    int n, cnt;\n  \
     \  std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
@@ -233,14 +233,14 @@ data:
     \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
     \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
     \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/EulerTourSubtree.md\n */\n"
+    \ docs/graph/tree/EulerTourSubtree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/EulerTourSubtree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp

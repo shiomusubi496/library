@@ -17,7 +17,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/BitwiseOrConvolution.md
+    _deprecated_at_docs: docs/math/convolution/BitwiseOrConvolution.md
     document_title: BitwiseOrConvolution
     links: []
   bundledCode: "#line 2 \"math/convolution/BitwiseOrConvolution.hpp\"\n\n#line 2 \"\
@@ -163,20 +163,20 @@ data:
     \ v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
     \ (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j ^ i]);\n        }\n\
     \    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\
-    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SubsetZetaMoebiusTransform.md\n\
+    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SubsetZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/BitwiseOrConvolution.hpp\"\n\ntemplate<class\
     \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_or_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
     \ b) {\n    subset_zeta_transform<Sum>(a);\n    subset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    subset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/BitwiseOrConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/math/convolution/BitwiseOrConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"SubsetZetaMoebiusTransform.hpp\"\
     \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_or_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
     \ b) {\n    subset_zeta_transform<Sum>(a);\n    subset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    subset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/BitwiseOrConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/math/convolution/BitwiseOrConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -184,7 +184,7 @@ data:
   isVerificationFile: false
   path: math/convolution/BitwiseOrConvolution.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp

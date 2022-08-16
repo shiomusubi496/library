@@ -17,7 +17,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/LcmConvolution.md
+    _deprecated_at_docs: docs/math/convolution/LcmConvolution.md
     document_title: LCMConvolution
     links: []
   bundledCode: "#line 2 \"math/convolution/LcmConvolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -165,20 +165,20 @@ data:
     \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
     \        rreps (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n\
     \            is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/DivisorZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/LcmConvolution.hpp\"\n\ntemplate<class Sum, class\
     \ Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
     \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/LcmConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"DivisorZetaMoebiusTransform.hpp\"\
     \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
     \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/LcmConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -186,7 +186,7 @@ data:
   isVerificationFile: false
   path: math/convolution/LcmConvolution.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/lcm_convolution.test.cpp

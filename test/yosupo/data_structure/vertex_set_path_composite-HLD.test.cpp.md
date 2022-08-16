@@ -355,7 +355,7 @@ data:
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
     template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
     \ */\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<unsigned\
     \ int mod> class StaticModInt {\n    static_assert(mod > 0, \"mod must be greater\
     \ than 0\");\n\nprivate:\n    unsigned int val;\n    static constexpr unsigned\
@@ -456,11 +456,11 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\
-    \n\ntemplate<class T = int> struct edge {\n    int from, to;\n    T cost;\n  \
-    \  int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f, int t, const T&\
-    \ c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i) {}\n    edge(int\
-    \ f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"\
+    graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from, to;\n\
+    \    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f,\
+    \ int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
     \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
     \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
     \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
@@ -496,7 +496,7 @@ data:
     \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
     \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/Graph.md\n\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
     \ */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
     \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
     \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
@@ -547,13 +547,14 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n#line 8 \"test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
-    \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
-    \ >> A;\n    Graph<int> G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >>\
-    \ b;\n        G.add_edge(a, b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
-    \    SegmentTree<Monoid::Composite<mint>> seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Monoid::Composite<mint>>>\
-    \ segrev(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n#line 8 \"\
+    test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin >> A;\n    Graph<int>\
+    \ G(N);\n    rep (N - 1) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
+    \ b);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n    SegmentTree<Monoid::Composite<mint>>\
+    \ seg(N);\n    SegmentTree<Monoid::ReverseMonoid<Monoid::Composite<mint>>> segrev(N);\n\
+    \    rep (i, N) {\n        auto p = HLD.get_idx(i);\n        seg.set(p.first,\
     \ A[i]);\n        segrev.set(p.first, A[i]);\n    }\n    rep (i, Q) {\n      \
     \  int t; cin >> t;\n        if (t == 0) {\n            int p; mint c, d; cin\
     \ >> p >> c >> d;\n            auto idx = HLD.get_idx(p);\n            seg.set(idx.first,\
@@ -598,7 +599,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp

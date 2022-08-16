@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/BellmanFord.md
+    _deprecated_at_docs: docs/graph/shortest-path/BellmanFord.md
     document_title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\
       \u6CD5)"
     links: []
@@ -194,8 +194,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\n\
-    \ntemplate<class T>\nstd::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\
+    \n\ntemplate<class T>\nstd::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
     \ start = 0) {\n    assert(0 <= start && start < V);\n    std::vector<T> dist(V,\
     \ infinity<T>::value);\n    dist[start] = 0;\n    rep (i, V) {\n        bool changed\
     \ = false;\n        each_const (e : Ed) {\n            if (dist[e.from] != infinity<T>::value\
@@ -208,7 +208,8 @@ data:
     \ == -infinity<T>::value) {\n                dist[e.to] = -infinity<T>::value;\n\
     \                changed = true;\n            }\n        }\n        if (!changed)\
     \ break;\n    }\n    return dist;\n}\n\n/**\n * @brief Bellman-Ford(\u30D9\u30EB\
-    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n"
+    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/graph/shortest-path/BellmanFord.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T>\nstd::vector<T> BellmanFord(int V, const Edges<T>& Ed, int\
     \ start = 0) {\n    assert(0 <= start && start < V);\n    std::vector<T> dist(V,\
@@ -223,14 +224,15 @@ data:
     \ == -infinity<T>::value) {\n                dist[e.to] = -infinity<T>::value;\n\
     \                changed = true;\n            }\n        }\n        if (!changed)\
     \ break;\n    }\n    return dist;\n}\n\n/**\n * @brief Bellman-Ford(\u30D9\u30EB\
-    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n"
+    \u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/graph/shortest-path/BellmanFord.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/BellmanFord.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

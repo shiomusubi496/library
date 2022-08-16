@@ -395,8 +395,8 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/other/SkipList.hpp\"\n\n\
-    #line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/other/SkipList.hpp\"\
+    \n\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
     \ Engine> class Random {\nprivate:\n    Engine rnd;\n\npublic:\n    using result_type\
     \ = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
     \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
@@ -426,7 +426,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
     \n\ntemplate<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>\n\
     class SkipList {\nprivate:\n    using M = typename A::M;\n    using E = typename\
     \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
@@ -732,7 +732,7 @@ data:
     \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
     \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
     \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
-    \ docs/SkipList.md\n */\n#line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \ docs/data-struct/other/SkipList.md\n */\n#line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
     \ Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n    SkipList<Monoid::AffineSum<mint>>\
     \ sl(A), slrev(vector<mint>(rall(A)));\n    rep (Q) {\n        int t; cin >> t;\n\
@@ -782,7 +782,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp

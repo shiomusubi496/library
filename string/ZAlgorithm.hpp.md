@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/ZAlgorithm.md
+    _deprecated_at_docs: docs/string/ZAlgorithm.md
     document_title: Z-Algorithm
     links: []
   bundledCode: "#line 2 \"string/ZAlgorithm.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -159,7 +159,7 @@ data:
     \        if (i + cur > lst) {\n            frm = i;\n            lst = i + cur;\n\
     \        }\n    }\n    res[0] = n;\n    return res;\n}\n\ntemplate<class Cont>\
     \ std::vector<int> ZAlgorithm(const Cont& str) {\n    return ZAlgorithm(str, std::equal_to<typename\
-    \ Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n * @docs docs/ZAlgorithm.md\n\
+    \ Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n * @docs docs/string/ZAlgorithm.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont,\
     \ class Comp>\nstd::vector<int> ZAlgorithm(const Cont& str, const Comp& cmp) {\n\
@@ -170,14 +170,14 @@ data:
     \        if (i + cur > lst) {\n            frm = i;\n            lst = i + cur;\n\
     \        }\n    }\n    res[0] = n;\n    return res;\n}\n\ntemplate<class Cont>\
     \ std::vector<int> ZAlgorithm(const Cont& str) {\n    return ZAlgorithm(str, std::equal_to<typename\
-    \ Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n * @docs docs/ZAlgorithm.md\n\
+    \ Cont::value_type>());\n}\n\n/**\n * @brief Z-Algorithm\n * @docs docs/string/ZAlgorithm.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/ZAlgorithm.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/string/zalgorithm.test.cpp

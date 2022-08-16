@@ -210,8 +210,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line 2\
-    \ \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line\
+    \ 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
     \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
@@ -349,16 +349,16 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\
-    \n\nnamespace Monoid {\nstruct PairMinForEulerTour {\n    using value_type = std::pair<int,\
-    \ int>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        return a.first < b.first ? a : b;\n    }\n    static value_type id()\
-    \ { return {infinity<int>::value, -1}; }\n};\n} // namespace Monoid\n\ntemplate<class\
-    \ T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour\
-    \ {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
+    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\nstruct PairMinForEulerTour\
+    \ {\n    using value_type = std::pair<int, int>;\n    static value_type op(const\
+    \ value_type& a, const value_type& b) {\n        return a.first < b.first ? a\
+    \ : b;\n    }\n    static value_type id() { return {infinity<int>::value, -1};\
+    \ }\n};\n} // namespace Monoid\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
+    class EulerTour {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n   \
+    \ const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
+    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -388,7 +388,7 @@ data:
     \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
     \    g(idx[l].first + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first\
     \ + 1);\n    }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \u30FC)\n * @docs docs/graph/tree/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
     \n\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
     \ PlusMinusOneRMQ {\nprivate:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int>\
     \ ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n    struct PairMin\
@@ -423,7 +423,7 @@ data:
     \    if (v[a] < v[res]) res = a;\n        }\n        {\n            int a = rb\
     \ * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res]) res = a;\n    \
     \    }\n        return res;\n    }\n    T prod(int l, int r) const { return v[prod(l,\
-    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/data-struct/segment/PlusMinusOneRMQ.md\n\
     \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\nprivate:\n\
     \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
     \ RMQ;\n\npublic:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
@@ -432,7 +432,7 @@ data:
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
     \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
-    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/graph/tree/PMORMQLCA.md\n\
     \ */\n#line 5 \"test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (i, N) {\n \
     \       int k; cin >> k;\n        rep (k) {\n            int t; cin >> t;\n  \
@@ -459,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Rational.md
+    _deprecated_at_docs: docs/math/Rational.md
     document_title: "Rational(\u6709\u7406\u6570\u578B)"
     links: []
   bundledCode: "#line 2 \"math/Rational.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -194,7 +194,7 @@ data:
     \ ost, const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n  \
     \  friend std::istream& operator>>(std::istream& ist, Rational& rat) {\n     \
     \   return ist >> rat.num >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
-    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/Rational.md\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
     \ Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T& a,\
@@ -240,14 +240,14 @@ data:
     \ ost, const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n  \
     \  friend std::istream& operator>>(std::istream& ist, Rational& rat) {\n     \
     \   return ist >> rat.num >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
-    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/Rational.md\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/Rational.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp

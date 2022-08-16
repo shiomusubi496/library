@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/CumulativeSum.md
+    _deprecated_at_docs: docs/data-struct/segment/CumulativeSum.md
     document_title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
     links: []
   bundledCode: "#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -270,7 +270,7 @@ data:
     \ M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data() const&\
     \ { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
     \ }\n};\n\ntemplate<class T>\nusing CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/data-struct/segment/CumulativeSum.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class CumulativeSumAnyOperation {\nprivate:\n    using T\
@@ -285,7 +285,7 @@ data:
     \ M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data() const&\
     \ { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
     \ }\n};\n\ntemplate<class T>\nusing CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/CumulativeSum.md\n\
+    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/data-struct/segment/CumulativeSum.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -293,7 +293,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp

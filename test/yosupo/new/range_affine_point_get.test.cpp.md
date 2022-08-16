@@ -395,7 +395,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
     \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
@@ -453,7 +453,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQuery\
     \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DualSegmentTree.md\n\
     \ */\n#line 6 \"test/yosupo/new/range_affine_point_get.test.cpp\"\nusing namespace\
     \ std;\nusing mint = modint998244353;\nstruct Action {\n    using M = Monoid::Sum<mint>;\n\
     \    using E = Monoid::Composite<mint>;\n    static mint op(const pair<mint, mint>&\
@@ -486,7 +486,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/range_affine_point_get.test.cpp

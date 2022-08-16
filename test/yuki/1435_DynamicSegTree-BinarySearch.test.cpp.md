@@ -366,7 +366,7 @@ data:
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
     \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
     \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
+    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
     \nusing namespace std;\nint main() {\n    struct Mmm {\n        typedef struct\
     \ value_type {\n            int m1, m2, M;\n        } T;\n        static T op(T\
     \ a, T b) {\n            int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
@@ -405,7 +405,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp

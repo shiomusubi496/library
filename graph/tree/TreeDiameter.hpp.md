@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/TreeDiameter.md
+    _deprecated_at_docs: docs/graph/tree/TreeDiameter.md
     document_title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
     links: []
   bundledCode: "#line 2 \"graph/tree/TreeDiameter.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -199,15 +199,15 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n\
-    #line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T>\nEdges<T> Restore(const\
-    \ Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n    const int N =\
-    \ G.size();\n    Edges<T> res(N, edge<T>{-2, -2});\n    res[start] = {-1, start};\n\
-    \    std::queue<int> que;\n    que.push(start);\n    while (!que.empty()) {\n\
-    \        int v = que.front();\n        que.pop();\n        each_const (e : G[v])\
-    \ {\n            if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost) {\n\
-    \                res[e.to] = e;\n                que.push(e.to);\n           \
-    \ }\n        }\n    }\n    return res;\n}\n\ntemplate<class T>\nEdges<T> RestorePath(const\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T>\nEdges<T>\
+    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
+    \  const int N = G.size();\n    Edges<T> res(N, edge<T>{-2, -2});\n    res[start]\
+    \ = {-1, start};\n    std::queue<int> que;\n    que.push(start);\n    while (!que.empty())\
+    \ {\n        int v = que.front();\n        que.pop();\n        each_const (e :\
+    \ G[v]) {\n            if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                res[e.to] = e;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return res;\n}\n\ntemplate<class T>\nEdges<T> RestorePath(const\
     \ Graph<T>& G, const std::vector<T>& dist, int s,\n                     int t)\
     \ {\n    const Graph<T> RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(),\
     \ false);\n    seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n    \
@@ -217,19 +217,19 @@ data:
     \              t = e.to;\n                flg = true;\n                break;\n\
     \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
     \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n#line 6 \"graph/tree/TreeDiameter.hpp\"\n\ntemplate<class\
-    \ T> class TreeDiameter {\nprivate:\n    const Graph<T>& G;\n    int s, t;\n \
-    \   std::vector<T> dist;\n    void dfs(int v, int p) {\n        each_const (e\
-    \ : G[v]) {\n            if (e.to == p) continue;\n            dist[e.to] = dist[v]\
-    \ + e.cost;\n            dfs(e.to, v);\n        }\n    }\n    void init() {\n\
-    \        dist.resize(G.size());\n        dist[0] = 0;\n        dfs(0, -1);\n \
-    \       s = std::max_element(all(dist)) - dist.begin();\n        dist[s] = 0;\n\
-    \        dfs(s, -1);\n        t = std::max_element(all(dist)) - dist.begin();\n\
-    \    }\n\npublic:\n    TreeDiameter(const Graph<T>& G) : G(G) { init(); }\n  \
-    \  T diameter() const { return dist[t]; }\n    std::pair<int, int> get_pair()\
-    \ const { return {s, t}; }\n    Edges<T> get_path() const { return RestorePath(G,\
-    \ dist, s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\u76F4\u5F84)\n\
-    \ * @docs docs/TreeDiameter.md\n */\n"
+    \ docs/graph/shortest-path/Restore.md\n */\n#line 6 \"graph/tree/TreeDiameter.hpp\"\
+    \n\ntemplate<class T> class TreeDiameter {\nprivate:\n    const Graph<T>& G;\n\
+    \    int s, t;\n    std::vector<T> dist;\n    void dfs(int v, int p) {\n     \
+    \   each_const (e : G[v]) {\n            if (e.to == p) continue;\n          \
+    \  dist[e.to] = dist[v] + e.cost;\n            dfs(e.to, v);\n        }\n    }\n\
+    \    void init() {\n        dist.resize(G.size());\n        dist[0] = 0;\n   \
+    \     dfs(0, -1);\n        s = std::max_element(all(dist)) - dist.begin();\n \
+    \       dist[s] = 0;\n        dfs(s, -1);\n        t = std::max_element(all(dist))\
+    \ - dist.begin();\n    }\n\npublic:\n    TreeDiameter(const Graph<T>& G) : G(G)\
+    \ { init(); }\n    T diameter() const { return dist[t]; }\n    std::pair<int,\
+    \ int> get_pair() const { return {s, t}; }\n    Edges<T> get_path() const { return\
+    \ RestorePath(G, dist, s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\
+    \u76F4\u5F84)\n * @docs docs/graph/tree/TreeDiameter.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../shortest-path/Restore.hpp\"\n\ntemplate<class T> class TreeDiameter\
     \ {\nprivate:\n    const Graph<T>& G;\n    int s, t;\n    std::vector<T> dist;\n\
@@ -242,7 +242,7 @@ data:
     \ { init(); }\n    T diameter() const { return dist[t]; }\n    std::pair<int,\
     \ int> get_pair() const { return {s, t}; }\n    Edges<T> get_path() const { return\
     \ RestorePath(G, dist, s, t); }\n};\n\n/**\n * @brief TreeDiameter(\u6728\u306E\
-    \u76F4\u5F84)\n * @docs docs/TreeDiameter.md\n */\n"
+    \u76F4\u5F84)\n * @docs docs/graph/tree/TreeDiameter.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -250,7 +250,7 @@ data:
   isVerificationFile: false
   path: graph/tree/TreeDiameter.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/tree_diameter.test.cpp

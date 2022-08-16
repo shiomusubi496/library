@@ -317,7 +317,7 @@ data:
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
     template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_B-RSQ.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    RangeSumQuery<int> RSQ(n);\n   \
     \ rep (q) {\n        int t, a, b; cin >> t >> a >> b;\n        if (t == 0) RSQ.apply(a\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_B-RSQ.test.cpp

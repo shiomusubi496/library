@@ -411,9 +411,9 @@ data:
     \      [&](const elm& a) -> bool { return cond(a.val); });\n    }\n    void reset(ll\
     \ l, ll r) { seg.reset(l, r); }\n    void reset(ll k) { seg.reset(k); }\n};\n\n\
     /**\n * @brief DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
-    \u30F3\u30C8\u6728)\n * @docs docs/DynamicLazySegmentTree.md\n */\n#line 5 \"\
-    test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
+    \u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DynamicLazySegmentTree.md\n\
+    \ */\n#line 5 \"test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
     \ RAQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            RAQRSQ.apply(l - 1,\
     \ r, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
@@ -433,7 +433,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp

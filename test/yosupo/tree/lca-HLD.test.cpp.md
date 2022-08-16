@@ -195,7 +195,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
     \n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\n\ntemplate<class T> class\
     \ HeavyLightDecomposition {\nprivate:\n    int n, root, cnt;\n    std::vector<int>\
     \ ssz, head, vin, vout, par;\n    const Graph<T>& G;\n    int szdfs(int v, int\
@@ -246,12 +246,12 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n#line 5 \"test/yosupo/tree/lca-HLD.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    UnweightedGraph\
-    \ G(N);\n    reps (i, N - 1) {\n        int p; cin >> p;\n        G.add_edge(i,\
-    \ p);\n    }\n    HeavyLightDecomposition<unweighted_edge> HLD(G);\n    rep (Q)\
-    \ {\n        int a, b; cin >> a >> b;\n        cout << HLD.lca(a, b) << endl;\n\
-    \    }\n}\n"
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n#line 5 \"\
+    test/yosupo/tree/lca-HLD.test.cpp\"\nusing namespace std;\nint main() {\n    int\
+    \ N, Q; cin >> N >> Q;\n    UnweightedGraph G(N);\n    reps (i, N - 1) {\n   \
+    \     int p; cin >> p;\n        G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<unweighted_edge>\
+    \ HLD(G);\n    rep (Q) {\n        int a, b; cin >> a >> b;\n        cout << HLD.lca(a,\
+    \ b) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"../../../other/template.hpp\"\
     \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/HeavyLightDecomposition.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    UnweightedGraph\
@@ -266,7 +266,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/lca-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/lca-HLD.test.cpp

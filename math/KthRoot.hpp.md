@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/KthRoot.md
+    _deprecated_at_docs: docs/math/KthRoot.md
     document_title: "KthRoot(k\u4E57\u6839)"
     links: []
   bundledCode: "#line 2 \"math/KthRoot.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -156,21 +156,21 @@ data:
     \ b = k; b; b >>= 1, a *= a) {\n            if (b & 1) res *= a;\n        }\n\
     \        return res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res\
     \ + 1)) ++res;\n    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n *\
-    \ @brief KthRoot(k\u4E57\u6839)\n * @docs docs/KthRoot.md\n */\n"
+    \ @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\null kth_root(ull n,\
     \ ull k) {\n    if (n <= 1 || k == 1) return n;\n    if (k >= 65) return 1;\n\
     \    auto is_over = [&](ull x) -> bool {\n        __uint128_t res = 1, a = x;\n\
     \        for (int b = k; b; b >>= 1, a *= a) {\n            if (b & 1) res *=\
     \ a;\n        }\n        return res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n\
     \    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n    return\
-    \ res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/KthRoot.md\n\
+    \ res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/KthRoot.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/math/kth_root_integer.test.cpp

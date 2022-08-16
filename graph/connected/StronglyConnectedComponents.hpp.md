@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/StronglyConnectedComponents.md
+    _deprecated_at_docs: docs/graph/connected/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
       \u89E3)"
     links: []
@@ -200,7 +200,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\
     \n\ntemplate<class T> class StronglyConnectedComponents {\nprivate:\n    int n,\
     \ sz, cnt;\n    Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<int> ord,\
     \ low;\n    std::vector<int> st;\n    std::vector<int> cmp;\n    void dfs(int\
@@ -224,7 +224,7 @@ data:
     \ (e : G[i]) {\n                if (cmp[i] != cmp[e.to])\n                   \
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
-    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class StronglyConnectedComponents {\nprivate:\n    int n,\
@@ -250,7 +250,7 @@ data:
     \ (e : G[i]) {\n                if (cmp[i] != cmp[e.to])\n                   \
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
-    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -259,7 +259,7 @@ data:
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy:
   - graph/other/TwoSatisfiablitity.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/math/two_sat.test.cpp

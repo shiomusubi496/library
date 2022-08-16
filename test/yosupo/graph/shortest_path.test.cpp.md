@@ -198,8 +198,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n\
-    #line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\ntemplate<class T> std::vector<T>\
     \ Dijkstra(const Graph<T>& G, int start = 0) {\n    assert(0 <= start && start\
     \ < (int)G.size());\n    std::vector<T> dist(G.size(), infinity<T>::value);\n\
     \    dist[start] = 0;\n    prique<std::pair<T, int>> que;\n    que.emplace(0,\
@@ -208,15 +208,15 @@ data:
     \ c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
     }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line\
-    \ 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T>\nEdges<T> Restore(const\
-    \ Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n    const int N =\
-    \ G.size();\n    Edges<T> res(N, edge<T>{-2, -2});\n    res[start] = {-1, start};\n\
-    \    std::queue<int> que;\n    que.push(start);\n    while (!que.empty()) {\n\
-    \        int v = que.front();\n        que.pop();\n        each_const (e : G[v])\
-    \ {\n            if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost) {\n\
-    \                res[e.to] = e;\n                que.push(e.to);\n           \
-    \ }\n        }\n    }\n    return res;\n}\n\ntemplate<class T>\nEdges<T> RestorePath(const\
+    \ docs/graph/shortest-path/Dijkstra.md\n */\n#line 2 \"graph/shortest-path/Restore.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\ntemplate<class T>\nEdges<T>\
+    \ Restore(const Graph<T>& G, const std::vector<T>& dist, int start = 0) {\n  \
+    \  const int N = G.size();\n    Edges<T> res(N, edge<T>{-2, -2});\n    res[start]\
+    \ = {-1, start};\n    std::queue<int> que;\n    que.push(start);\n    while (!que.empty())\
+    \ {\n        int v = que.front();\n        que.pop();\n        each_const (e :\
+    \ G[v]) {\n            if (res[e.to].to == -2 && dist[e.to] == dist[v] + e.cost)\
+    \ {\n                res[e.to] = e;\n                que.push(e.to);\n       \
+    \     }\n        }\n    }\n    return res;\n}\n\ntemplate<class T>\nEdges<T> RestorePath(const\
     \ Graph<T>& G, const std::vector<T>& dist, int s,\n                     int t)\
     \ {\n    const Graph<T> RG = ReverseGraph(G);\n    std::vector<bool> seen(G.size(),\
     \ false);\n    seen[t] = true;\n    Edges<T> res;\n    while (s != t) {\n    \
@@ -226,8 +226,8 @@ data:
     \              t = e.to;\n                flg = true;\n                break;\n\
     \            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
     \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n#line 6 \"test/yosupo/graph/shortest_path.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
+    \ docs/graph/shortest-path/Restore.md\n */\n#line 6 \"test/yosupo/graph/shortest_path.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M, s, t; cin >> N >> M >> s >>\
     \ t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; cin >> a >> b >>\
     \ c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
     \ s);\n    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n       \
@@ -252,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/shortest_path.test.cpp

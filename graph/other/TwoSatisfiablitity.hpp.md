@@ -20,7 +20,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/TwoSatisfiability.md
+    _deprecated_at_docs: docs/graph/other/TwoSatisfiablitity.md
     document_title: TwoSatisfiability(2-SAT)
     links: []
   bundledCode: "#line 2 \"graph/other/TwoSatisfiablitity.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -197,7 +197,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/connected/StronglyConnectedComponents.hpp\"\
     \n\n#line 5 \"graph/connected/StronglyConnectedComponents.hpp\"\n\ntemplate<class\
     \ T> class StronglyConnectedComponents {\nprivate:\n    int n, sz, cnt;\n    Graph<T>\
     \ G_;\n    const Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int>\
@@ -222,7 +222,7 @@ data:
     \ (e : G[i]) {\n                if (cmp[i] != cmp[e.to])\n                   \
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
-    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/StronglyConnectedComponents.md\n\
+    \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
     \ */\n#line 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
     \ : TwoSatisfiability(0) {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n\
@@ -242,7 +242,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/TwoSatisfiability.md\n */\n"
+    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../connected/StronglyConnectedComponents.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
@@ -263,7 +263,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/TwoSatisfiability.md\n */\n"
+    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -271,7 +271,7 @@ data:
   isVerificationFile: false
   path: graph/other/TwoSatisfiablitity.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/math/two_sat.test.cpp
@@ -282,22 +282,3 @@ redirect_from:
 - /library/graph/other/TwoSatisfiablitity.hpp.html
 title: TwoSatisfiability(2-SAT)
 ---
-## 概要
-
-SAT(Satisfiability) は、論理式が与えられたとき、それを真にするような変数の割り当てが存在するかを判定する問題。
-
-$(a \lor b) \land (c \lor d) \land \cdots$ というように、高々 2 個のリテラルが $\lor$ で結ばれた形のクローズを $\land$ で結んだ形の論理式に対する SAT は 2-SAT と呼ばれる。
-
-一般の SAT は多項式時間の解法が知られていないが、 2-SAT はグラフを使うことでクローズの数に対し線形時間で解ける。
-
-- `TwoSatisfiability(int n)` : `n` 変数 $x_0, x_1, \ldots, x_{n-1}$ からなる 2-SAT を作成する。 $\Theta(n)$ 。
-- `int neg(int k)` : 変数 `k` の否定の変数の index を返す。 $\Theta(1)$ 。
-- `void add_clause(int i, bool f, int j, bool g)` : $(x_i = j) \lor (x_j = g)$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_if(int a, int b)` : $a \Rightarrow b$ 、つまり $\lnot a \lor b$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_or(int a, int b)` : $a \lor b$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_nand(int a, int b)` : $\lnot (a \land b)$ 、つまり $\lnot a \lor \lnot b$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_eq(int a, int b)` : $a \Leftrightarrow b$ 、つまり $(\lnot a \lor b) \land (\lnot b \lor a)$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_neq(int a, int b)` : $a \not\Leftrightarrow b$ 、つまり $(a \lor b) \land (\lnot b \lor \lnot a)$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_true(int a)` : $a$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `void add_false(int a)` : $\lnot a$ の形のクローズを作成する。 $\Theta(1)$ 。
-- `vector<bool> sat()` : 現在の論理式が充足可能ならその割り当ての一例を、充足不可能なら空のリストを返す。追加されたクローズの数を $m$ として $\Theta(n + m)$ 。

@@ -28,7 +28,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Combinatorics.md
+    _deprecated_at_docs: docs/math/Combinatorics.md
     document_title: Combinatorics
     links: []
   bundledCode: "#line 2 \"math/Combinatorics.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -265,7 +265,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
+    \ * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
     \ T> class IntCombinatorics {\nprivate:\n    static std::vector<T> factorial;\n\
     \npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
     \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
@@ -304,7 +304,7 @@ data:
     \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
     \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
     \n\ntemplate<class T> class IntCombinatorics {\nprivate:\n    static std::vector<T>\
@@ -345,7 +345,7 @@ data:
     \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
     \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/Combinatorics.md\n\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -353,7 +353,7 @@ data:
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_C.test.cpp

@@ -19,7 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/ReRooting.md
+    _deprecated_at_docs: docs/graph/tree/ReRooting.md
     document_title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
     links: []
   bundledCode: "#line 2 \"graph/tree/ReRooting.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
@@ -196,8 +196,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 4 \"graph/tree/ReRooting.hpp\"\n\n#line 2\
-    \ \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 4 \"graph/tree/ReRooting.hpp\"\n\n#line\
+    \ 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\
     \ntemplate<class M, class = void> class has_op : public std::false_type {};\n\
     template<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
@@ -342,7 +342,7 @@ data:
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
     \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/ReRooting.md\n */\n"
+    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, class T, class F> class ReRooting {\nprivate:\n    using\
     \ U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
@@ -384,7 +384,7 @@ data:
     \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
     \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
     \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
-    \u6728DP)\n * @docs docs/ReRooting.md\n */\n"
+    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -392,7 +392,7 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

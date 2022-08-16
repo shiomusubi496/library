@@ -196,8 +196,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/other/TopologicalSort.hpp\"\n\n\
-    #line 5 \"graph/other/TopologicalSort.hpp\"\n\ntemplate<class T> class TopologicalSort\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/TopologicalSort.hpp\"\
+    \n\n#line 5 \"graph/other/TopologicalSort.hpp\"\n\ntemplate<class T> class TopologicalSort\
     \ {\nprivate:\n    int n;\n    const Graph<T>& G;\n    std::vector<int> ord;\n\
     \    std::vector<bool> seen;\n    void dfs(int v) {\n        seen[v] = true;\n\
     \        each_const (e : G[v]) {\n            if (seen[e.to]) continue;\n    \
@@ -208,7 +208,7 @@ data:
     \ Graph<T>& G) : G(G) { init(); }\n    const std::vector<int>& get() const& {\
     \ return ord; }\n    std::vector<int> get() && { return std::move(ord); }\n};\n\
     \n/**\n * @brief TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\
-    \u30C8)\n * @docs docs/TopologicalSort.md\n */\n#line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\
+    \u30C8)\n * @docs docs/graph/other/TopologicalSort.md\n */\n#line 5 \"test/aoj/GRL/GRL_4_B-Toposo.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    Graph<int>\
     \ G(n);\n    rep (m) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
     \ b, true);\n    }\n    each_const (i : TopologicalSort<int>(G).get()) cout <<\
@@ -226,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_4_B-Toposo.test.cpp

@@ -13,7 +13,7 @@ data:
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - icon: ':x:'
@@ -24,9 +24,9 @@ data:
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/LowLink.md
+    _deprecated_at_docs: docs/graph/other/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
     links: []
   bundledCode: "#line 2 \"graph/other/LowLink.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
@@ -203,7 +203,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class\
+    \ * @docs docs/graph/Graph.md\n */\n#line 4 \"graph/other/LowLink.hpp\"\n\ntemplate<class\
     \ T> class LowLink {\nprotected:\n    int n, cnt;\n    const Graph<T>& G;\n  \
     \  std::vector<int> ord, low;\n    std::vector<int> aps;\n    Edges<T> brd;\n\
     \    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n        int deg\
@@ -222,7 +222,7 @@ data:
     \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
     \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
     \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
-    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/LowLink.md\n */\n"
+    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/graph/other/LowLink.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n\ntemplate<class T> class LowLink\
     \ {\nprotected:\n    int n, cnt;\n    const Graph<T>& G;\n    std::vector<int>\
     \ ord, low;\n    std::vector<int> aps;\n    Edges<T> brd;\n    void dfs(int v,\
@@ -242,7 +242,7 @@ data:
     \ articulation_points() && { return std::move(aps); }\n    const Edges<T>& bridges()\
     \ const& { return brd; }\n    Edges<T> bridges() && { return std::move(brd); }\n\
     };\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)\n * @docs\
-    \ docs/LowLink.md\n */\n"
+    \ docs/graph/other/LowLink.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -250,8 +250,8 @@ data:
   path: graph/other/LowLink.hpp
   requiredBy:
   - graph/connected/TwoEdgeConnectedComponents.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-16 22:53:46+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp

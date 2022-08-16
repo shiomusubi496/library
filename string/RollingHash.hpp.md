@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/RollingHash.md
+    _deprecated_at_docs: docs/string/RollingHash.md
     document_title: "RollingHash(\u30ED\u30EA\u30CF)"
     links: []
   bundledCode: "#line 2 \"string/RollingHash.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -183,7 +183,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
     \n\nclass RollingHash {\nprivate:\n    static constexpr ull MOD = (1ull << 61)\
     \ - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
     \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
@@ -208,7 +208,7 @@ data:
     \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
     \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
     \ const { return BASE; }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
-    )\n * @docs docs/RollingHash.md\n */\n"
+    )\n * @docs docs/string/RollingHash.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
     \n\nclass RollingHash {\nprivate:\n    static constexpr ull MOD = (1ull << 61)\
     \ - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
@@ -234,14 +234,14 @@ data:
     \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
     \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
     \ const { return BASE; }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
-    )\n * @docs docs/RollingHash.md\n */\n"
+    )\n * @docs docs/string/RollingHash.md\n */\n"
   dependsOn:
   - other/template.hpp
   - random/Random.hpp
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

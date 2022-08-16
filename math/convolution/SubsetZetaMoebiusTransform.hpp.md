@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SubsetZetaMoebiusTransform.md
+    _deprecated_at_docs: docs/math/convolution/SubsetZetaMoebiusTransform.md
     document_title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\
       \u30D3\u30A6\u30B9\u5909\u63DB)"
     links: []
@@ -162,7 +162,7 @@ data:
     \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j\
     \ ^ i]);\n        }\n    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SubsetZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SubsetZetaMoebiusTransform.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Sum>\n\
     void subset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
@@ -172,7 +172,7 @@ data:
     \ v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
     \ (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j ^ i]);\n        }\n\
     \    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\
-    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SubsetZetaMoebiusTransform.md\n\
+    \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SubsetZetaMoebiusTransform.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -180,7 +180,7 @@ data:
   path: math/convolution/SubsetZetaMoebiusTransform.hpp
   requiredBy:
   - math/convolution/BitwiseOrConvolution.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp

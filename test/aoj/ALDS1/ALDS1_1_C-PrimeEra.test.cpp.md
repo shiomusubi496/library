@@ -170,10 +170,10 @@ data:
     \ = -1) {\n        if (m < 0) m = MAX;\n        std::vector<ll> res;\n       \
     \ reps (i, m) {\n            if (era[i]) res.push_back(i);\n        }\n      \
     \  return res;\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n#line 4 \"\
-    test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans = 0;\n\
-    \    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n\
+    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n */\n#line\
+    \ 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n; cin >> n;\n    PrimeFactor PF(100000000);\n    int ans\
+    \ = 0;\n    rep (n) {\n        int a; cin >> a;\n        if (PF.is_prime(a)) ans++;\n\
     \    }\n    cout << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
@@ -186,7 +186,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

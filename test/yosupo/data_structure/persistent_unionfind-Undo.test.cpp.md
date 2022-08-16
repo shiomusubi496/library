@@ -195,7 +195,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\
     \n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\nclass UnionFindUndo\
     \ {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
     \ int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
@@ -217,10 +217,11 @@ data:
     \ = hist.top().second;\n        hist.pop();\n    }\n    void snapshot() {\n  \
     \      while (!hist.empty()) hist.pop();\n    }\n    void rollback() {\n     \
     \   while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\
-    \u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n */\n#line 5 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL>\
-    \ G(Q + 1);\n    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n \
-    \       int t, k, u, v; cin >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k\
+    \u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n */\n\
+    #line 5 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    Graph<PLL> G(Q\
+    \ + 1);\n    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n     \
+    \   int t, k, u, v; cin >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k\
     \ + 1, i + 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n\
     \    }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n\
     \        Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
@@ -252,7 +253,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp

@@ -19,7 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/Matrix.md
+    _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
     links: []
   bundledCode: "#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -185,7 +185,7 @@ data:
     \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
     \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
     \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n"
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
     \ class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using Base\
     \ = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n    Matrix(int\
@@ -215,14 +215,14 @@ data:
     \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
     \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
     \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n"
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
   - math/matrix/Determinant.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/matrix_product.test.cpp

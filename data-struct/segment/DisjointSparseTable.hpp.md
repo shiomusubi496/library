@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/DisjointSparseTable.md
+    _deprecated_at_docs: docs/data-struct/segment/DisjointSparseTable.md
     document_title: DisjointSparseTable
     links: []
   bundledCode: "#line 2 \"data-struct/segment/DisjointSparseTable.hpp\"\n\n#line 2\
@@ -301,7 +301,8 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief DisjointSparseTable\n * @docs docs/DisjointSparseTable.md\n */\n"
+    \n/**\n * @brief DisjointSparseTable\n * @docs docs/data-struct/segment/DisjointSparseTable.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DisjointSparseTable\
     \ {\nprivate:\n    using T = typename M::value_type;\n    int h, ori;\n    std::vector<int>\
@@ -327,7 +328,7 @@ data:
     \     typename std::enable_if<!Monoid::has_id<M>::value &&\n                 \
     \                    AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const\
     \ {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief DisjointSparseTable\n\
-    \ * @docs docs/DisjointSparseTable.md\n */\n"
+    \ * @docs docs/data-struct/segment/DisjointSparseTable.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -335,7 +336,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DisjointSparseTable.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp

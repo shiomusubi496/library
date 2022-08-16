@@ -176,10 +176,11 @@ data:
     \ get_str(const Cont& str) const {\n        std::vector<T> res(size());\n    \
     \    rep (i, size()) res[i] = str[lis[i]];\n        return res;\n    }\n};\n\n\
     /**\n * @brief LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\
-    \u5206\u5217)\n * @docs docs/LongestIncreasingSubsequence.md\n */\n#line 4 \"\
-    test/yosupo/new/longest_increasing_subsequence.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int n; cin >> n;\n    vector<int> a(n); cin >> a;\n    LongestIncreasingSubsequence<vector<int>>\
-    \ lis(a);\n    cout << lis.size() << endl;\n    cout << lis.get() << endl;\n}\n"
+    \u5206\u5217)\n * @docs docs/string/LongestIncreasingSubsequence.md\n */\n#line\
+    \ 4 \"test/yosupo/new/longest_increasing_subsequence.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n); cin >> a;\n\
+    \    LongestIncreasingSubsequence<vector<int>> lis(a);\n    cout << lis.size()\
+    \ << endl;\n    cout << lis.get() << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../string/LongestIncreasingSubsequence.hpp\"\
     \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\
@@ -191,7 +192,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/longest_increasing_subsequence.test.cpp

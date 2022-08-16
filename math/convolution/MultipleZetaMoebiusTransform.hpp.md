@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/MultipleZetaMoebiusTransform.md
+    _deprecated_at_docs: docs/math/convolution/MultipleZetaMoebiusTransform.md
     document_title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB\
       /\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)"
     links: []
@@ -165,7 +165,7 @@ data:
     \ (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        reps\
     \ (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n            is_prime[j\
     \ * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/MultipleZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Sum>\n\
     void multiple_zeta_transform(std::vector<typename Sum::value_type>& v) {\n   \
@@ -177,7 +177,7 @@ data:
     \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
     \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
     \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/MultipleZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -185,7 +185,7 @@ data:
   path: math/convolution/MultipleZetaMoebiusTransform.hpp
   requiredBy:
   - math/convolution/GcdConvolution.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/gcd_convolution.test.cpp

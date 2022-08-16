@@ -31,7 +31,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/PlusMinusOneRMQ.md
+    _deprecated_at_docs: docs/data-struct/segment/PlusMinusOneRMQ.md
     document_title: PlusMinusOneRMQ($\pm1$RMQ)
     links: []
   bundledCode: "#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\n#line 2 \"\
@@ -305,42 +305,43 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
-    \n\ntemplate<class T> class PlusMinusOneRMQ {\nprivate:\n    int n, b, m;\n  \
-    \  std::vector<T> v;\n    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>>\
-    \ lookup;\n    struct PairMin {\n        using value_type = std::pair<T, int>;\n\
-    \        static value_type op(const value_type& a, const value_type& b) {\n  \
-    \          return a.first < b.first ? a : b;\n        }\n        static value_type\
-    \ id() { return {infinity<T>::value, -1}; }\n    };\n    SparseTable<PairMin>\
-    \ st;\n\npublic:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const\
-    \ std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n\
-    \        v = v_;\n        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n\
-    \        m = (n + b - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b,\
-    \ b, -1);\n        rep (i, 1 << (b - 1)) {\n            T now = 0;\n         \
-    \   rep (j, b) {\n                T nw = now, mn = nw, id = j;\n             \
-    \   lookup[i][j][j] = j;\n                rep (k, j, b - 1) {\n              \
-    \      nw += ((i >> k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw))\
-    \ lookup[i][j][k + 1] = id = k + 1;\n                    else lookup[i][j][k +\
-    \ 1] = id;\n                }\n                now += ((i >> j) & 1) ? 1 : -1;\n\
-    \            }\n        }\n        ud.resize(m);\n        rep (i, m) {\n     \
-    \       rep (j, b - 1) {\n                if (i * b + j + 1 >= n) break;\n   \
-    \             if (v[i * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n \
-    \           }\n        }\n        std::vector<std::pair<T, int>> stv(m);\n   \
-    \     rep (i, m) {\n            stv[i] = {v[i * b], i * b};\n            rep (j,\
-    \ i * b + 1, (i + 1) * b) {\n                if (j >= n) break;\n            \
-    \    stv[i] = PairMin::op(stv[i], {v[j], j});\n            }\n        }\n    \
-    \    st.init(stv);\n    }\n    int prod_idx(int l, int r) const {\n        assert(0\
-    \ <= l && l < r && r <= n);\n        --r;\n        int lb = l / b, rb = r / b;\n\
-    \        int lp = l - lb * b, rp = r - rb * b;\n        if (lb == rb) return lb\
-    \ * b + lookup[ud[lb]][lp][rp];\n        if (lb + 1 == rb) {\n            int\
-    \ x = lb * b + lookup[ud[lb]][lp][b - 1],\n                y = rb * b + lookup[ud[rb]][0][rp];\n\
-    \            if (v[x] < v[y]) return x;\n            else return y;\n        }\n\
-    \        int res = st.prod(lb + 1, rb).second;\n        {\n            int a =\
-    \ lb * b + lookup[ud[lb]][lp][b - 1];\n            if (v[a] < v[res]) res = a;\n\
-    \        }\n        {\n            int a = rb * b + lookup[ud[rb]][0][rp];\n \
-    \           if (v[a] < v[res]) res = a;\n        }\n        return res;\n    }\n\
-    \    T prod(int l, int r) const { return v[prod(l, r)]; }\n};\n\n/**\n * @brief\
-    \ PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n */\n"
+    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
+    \ */\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T>\
+    \ class PlusMinusOneRMQ {\nprivate:\n    int n, b, m;\n    std::vector<T> v;\n\
+    \    std::vector<int> ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n\
+    \    struct PairMin {\n        using value_type = std::pair<T, int>;\n       \
+    \ static value_type op(const value_type& a, const value_type& b) {\n         \
+    \   return a.first < b.first ? a : b;\n        }\n        static value_type id()\
+    \ { return {infinity<T>::value, -1}; }\n    };\n    SparseTable<PairMin> st;\n\
+    \npublic:\n    PlusMinusOneRMQ() = default;\n    PlusMinusOneRMQ(const std::vector<T>&\
+    \ v_) { init(v_); }\n    void init(const std::vector<T>& v_) {\n        v = v_;\n\
+    \        n = v.size();\n        b = bitop::msb(n) / 2 + 1;\n        m = (n + b\
+    \ - 1) / b;\n        lookup = make_vec<int>(1 << (b - 1), b, b, -1);\n       \
+    \ rep (i, 1 << (b - 1)) {\n            T now = 0;\n            rep (j, b) {\n\
+    \                T nw = now, mn = nw, id = j;\n                lookup[i][j][j]\
+    \ = j;\n                rep (k, j, b - 1) {\n                    nw += ((i >>\
+    \ k) & 1) ? 1 : -1;\n                    if (chmin(mn, nw)) lookup[i][j][k + 1]\
+    \ = id = k + 1;\n                    else lookup[i][j][k + 1] = id;\n        \
+    \        }\n                now += ((i >> j) & 1) ? 1 : -1;\n            }\n \
+    \       }\n        ud.resize(m);\n        rep (i, m) {\n            rep (j, b\
+    \ - 1) {\n                if (i * b + j + 1 >= n) break;\n                if (v[i\
+    \ * b + j] + 1 == v[i * b + j + 1]) ud[i] |= (1 << j);\n            }\n      \
+    \  }\n        std::vector<std::pair<T, int>> stv(m);\n        rep (i, m) {\n \
+    \           stv[i] = {v[i * b], i * b};\n            rep (j, i * b + 1, (i + 1)\
+    \ * b) {\n                if (j >= n) break;\n                stv[i] = PairMin::op(stv[i],\
+    \ {v[j], j});\n            }\n        }\n        st.init(stv);\n    }\n    int\
+    \ prod_idx(int l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n\
+    \        --r;\n        int lb = l / b, rb = r / b;\n        int lp = l - lb *\
+    \ b, rp = r - rb * b;\n        if (lb == rb) return lb * b + lookup[ud[lb]][lp][rp];\n\
+    \        if (lb + 1 == rb) {\n            int x = lb * b + lookup[ud[lb]][lp][b\
+    \ - 1],\n                y = rb * b + lookup[ud[rb]][0][rp];\n            if (v[x]\
+    \ < v[y]) return x;\n            else return y;\n        }\n        int res =\
+    \ st.prod(lb + 1, rb).second;\n        {\n            int a = lb * b + lookup[ud[lb]][lp][b\
+    \ - 1];\n            if (v[a] < v[res]) res = a;\n        }\n        {\n     \
+    \       int a = rb * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res])\
+    \ res = a;\n        }\n        return res;\n    }\n    T prod(int l, int r) const\
+    \ { return v[prod(l, r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n\
+    \ * @docs docs/data-struct/segment/PlusMinusOneRMQ.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"SparseTable.hpp\"\n\ntemplate<class T> class PlusMinusOneRMQ {\n\
     private:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int> ud;\n\
@@ -376,7 +377,7 @@ data:
     \    if (v[a] < v[res]) res = a;\n        }\n        {\n            int a = rb\
     \ * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res]) res = a;\n    \
     \    }\n        return res;\n    }\n    T prod(int l, int r) const { return v[prod(l,\
-    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/data-struct/segment/PlusMinusOneRMQ.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -388,7 +389,7 @@ data:
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

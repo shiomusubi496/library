@@ -384,7 +384,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
     \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
@@ -425,7 +425,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
     \n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\n\ntemplate<class T> class\
     \ HeavyLightDecomposition {\nprivate:\n    int n, root, cnt;\n    std::vector<int>\
     \ ssz, head, vin, vout, par;\n    const Graph<T>& G;\n    int szdfs(int v, int\
@@ -476,17 +476,18 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_E-HLD.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n\
-    \    rep (i, n) {\n        int k; cin >> k;\n        rep (k) {\n            int\
-    \ a; cin >> a;\n            G.add_edge(i, a);\n        }\n    }\n    HeavyLightDecomposition<int>\
-    \ HLD(G);\n    RangeAddQueryRangeSumQuery<ll> seg(n);\n    int q; cin >> q;\n\
-    \    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n            int\
-    \ v; ll w; cin >> v >> w;\n            HLD.each_edge(0, v, [&](int l, int r) {\n\
-    \                seg.apply(l, r, w);\n            });\n        }\n        else\
-    \ {\n            int u; cin >> u;\n            ll ans = 0;\n            HLD.each_edge(0,\
-    \ u, [&](int l, int r) {\n                ans += seg.prod(l, r);\n           \
-    \ });\n            cout << ans << endl;\n        }\n    }\n}\n"
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n#line 6 \"\
+    test/aoj/GRL/GRL_5_E-HLD.test.cpp\"\nusing namespace std;\nint main() {\n    int\
+    \ n; cin >> n;\n    Graph<int> G(n);\n    rep (i, n) {\n        int k; cin >>\
+    \ k;\n        rep (k) {\n            int a; cin >> a;\n            G.add_edge(i,\
+    \ a);\n        }\n    }\n    HeavyLightDecomposition<int> HLD(G);\n    RangeAddQueryRangeSumQuery<ll>\
+    \ seg(n);\n    int q; cin >> q;\n    rep (q) {\n        int t; cin >> t;\n   \
+    \     if (t == 0) {\n            int v; ll w; cin >> v >> w;\n            HLD.each_edge(0,\
+    \ v, [&](int l, int r) {\n                seg.apply(l, r, w);\n            });\n\
+    \        }\n        else {\n            int u; cin >> u;\n            ll ans =\
+    \ 0;\n            HLD.each_edge(0, u, [&](int l, int r) {\n                ans\
+    \ += seg.prod(l, r);\n            });\n            cout << ans << endl;\n    \
+    \    }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_5_E\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
     \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/HeavyLightDecomposition.hpp\"\
@@ -510,7 +511,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp

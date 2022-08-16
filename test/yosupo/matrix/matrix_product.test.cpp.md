@@ -255,8 +255,8 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 4 \"\
-    math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line\
+    \ 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
     \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
     \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
     \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
@@ -284,7 +284,7 @@ data:
     \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
     \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
     \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
     int main() {\n    int N, M, K; cin >> N >> M >> K;\n    Mat A(N, M); cin >> A;\n\
     \    Mat B(M, K); cin >> B;\n    Mat C = A * B;\n    each_const (v : C) cout <<\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_product.test.cpp

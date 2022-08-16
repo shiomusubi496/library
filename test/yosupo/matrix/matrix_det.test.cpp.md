@@ -258,8 +258,8 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 4 \"\
-    math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line\
+    \ 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
     \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
     \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
     \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
@@ -287,7 +287,7 @@ data:
     \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
     \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
     \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n#line 2 \"math/matrix/Determinant.hpp\"\
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 2 \"math/matrix/Determinant.hpp\"\
     \n\n#line 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
     \ mat) {\n    assert(mat.height() == mat.width());\n    const int n = mat.height();\n\
     \    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n           \
@@ -299,7 +299,7 @@ data:
     \        }\n        rep (j, n) {\n            if (j == i) continue;\n        \
     \    const T s = mat[j][i];\n            rep (k, n) mat[j][k] -= mat[i][k] * s;\n\
     \        }\n    }\n    T res2 = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return\
-    \ res * res2;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/Determinant.md\n\
+    \ res * res2;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
     \ */\n#line 6 \"test/yosupo/matrix/matrix_det.test.cpp\"\nusing namespace std;\n\
     using mint = modint998244353;\nusing Mat = Matrix<mint>;\nint main() {\n    int\
     \ n; cin >> n;\n    Mat a(n, n); cin >> a;\n    cout << determinant(a) << endl;\n\
@@ -318,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_det.test.cpp

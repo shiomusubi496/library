@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SlidingWindowAggregation.md
+    _deprecated_at_docs: docs/data-struct/other/SlidingWindowAggregation.md
     document_title: SlidingWindowAggregation(SWAG)
     links: []
   bundledCode: "#line 2 \"data-struct/other/SlidingWindowAggregation.hpp\"\n\n#line\
@@ -281,7 +281,7 @@ data:
     \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
+    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/data-struct/other/SlidingWindowAggregation.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M> class SlidingWindowAggregation {\nprivate:\n    using T\
@@ -307,7 +307,7 @@ data:
     \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
+    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/data-struct/other/SlidingWindowAggregation.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -315,7 +315,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlidingWindowAggregation.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp

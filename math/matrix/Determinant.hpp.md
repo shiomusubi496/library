@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/Determinant.md
+    _deprecated_at_docs: docs/math/matrix/Determinant.md
     document_title: "Determinant(\u884C\u5217\u5F0F)"
     links: []
   bundledCode: "#line 2 \"math/matrix/Determinant.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -182,7 +182,7 @@ data:
     \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
     \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
     \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.height()\
     \ == mat.width());\n    const int n = mat.height();\n    T res = 1;\n    rep (i,\
     \ n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n     \
@@ -194,7 +194,8 @@ data:
     \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
     \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    T res2\
     \ = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return res * res2;\n}\n\n/**\n\
-    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/Determinant.md\n */\n"
+    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.height()\
     \ == mat.width());\n    const int n = mat.height();\n    T res = 1;\n    rep (i,\
@@ -207,14 +208,15 @@ data:
     \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
     \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    T res2\
     \ = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return res * res2;\n}\n\n/**\n\
-    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/Determinant.md\n */\n"
+    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - math/matrix/Matrix.hpp
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/matrix_det.test.cpp

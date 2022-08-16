@@ -25,7 +25,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/HeavyLightDecomposition.md
+    _deprecated_at_docs: docs/graph/tree/HeavyLightDecomposition.md
     document_title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     links: []
   bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -202,7 +202,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
     \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
     \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
     \    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e : G[v])\
@@ -252,7 +252,7 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n"
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
     \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
@@ -303,14 +303,14 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n"
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/lca-HLD.test.cpp

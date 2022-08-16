@@ -167,11 +167,12 @@ data:
     \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
     \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
     \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/UnionFind.md\n */\n#line\
-    \ 4 \"test/yosupo/data_structure/unionfind.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n    rep\
-    \ (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if (t == 0)\
-    \ UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n    }\n}\n"
+    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/unionfind.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind UF(N);\n\
+    \    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n        if\
+    \ (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     ../../../other/template.hpp\"\n#include \"../../../data-struct/unionfind/UnionFind.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    UnionFind\
@@ -184,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/unionfind.test.cpp

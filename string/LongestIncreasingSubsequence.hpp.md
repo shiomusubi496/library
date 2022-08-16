@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/LongestIncreasingSubsequence.md
+    _deprecated_at_docs: docs/string/LongestIncreasingSubsequence.md
     document_title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\
       \u5206\u5217)"
     links: []
@@ -173,7 +173,7 @@ data:
     \ }\n    std::vector<T> get_str(const Cont& str) const {\n        std::vector<T>\
     \ res(size());\n        rep (i, size()) res[i] = str[lis[i]];\n        return\
     \ res;\n    }\n};\n\n/**\n * @brief LongestIncreasingSubsequence(LIS,\u6700\u9577\
-    \u5897\u52A0\u90E8\u5206\u5217)\n * @docs docs/LongestIncreasingSubsequence.md\n\
+    \u5897\u52A0\u90E8\u5206\u5217)\n * @docs docs/string/LongestIncreasingSubsequence.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Cont>\n\
     class LongestIncreasingSubsequence {\nprivate:\n    using T = typename Cont::value_type;\n\
@@ -197,14 +197,14 @@ data:
     \ }\n    std::vector<T> get_str(const Cont& str) const {\n        std::vector<T>\
     \ res(size());\n        rep (i, size()) res[i] = str[lis[i]];\n        return\
     \ res;\n    }\n};\n\n/**\n * @brief LongestIncreasingSubsequence(LIS,\u6700\u9577\
-    \u5897\u52A0\u90E8\u5206\u5217)\n * @docs docs/LongestIncreasingSubsequence.md\n\
+    \u5897\u52A0\u90E8\u5206\u5217)\n * @docs docs/string/LongestIncreasingSubsequence.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/LongestIncreasingSubsequence.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/longest_increasing_subsequence.test.cpp

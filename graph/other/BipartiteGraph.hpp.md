@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/BipartiteGraph.md
+    _deprecated_at_docs: docs/graph/other/BipartiteGraph.md
     document_title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     links: []
   bundledCode: "#line 2 \"graph/other/BipartiteGraph.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -190,21 +190,21 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/other/BipartiteGraph.hpp\"\n\ntemplate<class\
-    \ T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n    const\
-    \ Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int v) {\n  \
-    \      used[v] = true;\n        each_const (e : G[v]) {\n            if (!used[e.to])\
-    \ {\n                used[e.to] = true;\n                label[e.to] = !label[v];\n\
-    \                dfs(e.to);\n            }\n            else if (label[e.to] ==\
-    \ label[v]) {\n                is_bip = false;\n            }\n        }\n   \
-    \ }\n\npublic:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n        n = G.size();\n\
-    \        is_bip = true;\n        label.assign(n, false);\n        used.assign(n,\
-    \ false);\n        rep (i, n) {\n            if (!used[i]) dfs(i);\n        }\n\
-    \    }\n    bool is_bipartite() const { return is_bip; }\n    bool get_label(int\
-    \ k) const { return label[k]; }\n    const std::vector<bool>& labels() const&\
-    \ { return label; }\n    std::vector<bool> labels() && { return std::move(label);\
-    \ }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A\
-    )\n * @docs docs/BipartiteGraph.md\n */\n"
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/BipartiteGraph.hpp\"\
+    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
+    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
+    \ v) {\n        used[v] = true;\n        each_const (e : G[v]) {\n           \
+    \ if (!used[e.to]) {\n                used[e.to] = true;\n                label[e.to]\
+    \ = !label[v];\n                dfs(e.to);\n            }\n            else if\
+    \ (label[e.to] == label[v]) {\n                is_bip = false;\n            }\n\
+    \        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n\
+    \        n = G.size();\n        is_bip = true;\n        label.assign(n, false);\n\
+    \        used.assign(n, false);\n        rep (i, n) {\n            if (!used[i])\
+    \ dfs(i);\n        }\n    }\n    bool is_bipartite() const { return is_bip; }\n\
+    \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
+    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
+    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
+    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
     \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
@@ -219,14 +219,14 @@ data:
     \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
     \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
     \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u5224\u5B9A)\n * @docs docs/BipartiteGraph.md\n */\n"
+    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/other/BipartiteGraph.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/other/BipartiteGraph.hpp

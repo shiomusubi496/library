@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/Kruskal.md
+    _deprecated_at_docs: docs/graph/mst/Kruskal.md
     document_title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
     links: []
   bundledCode: "#line 2 \"graph/mst/Kruskal.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -199,8 +199,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\
-    \n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\nprivate:\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\nprivate:\n\
     \    int n;\n    std::vector<int> par_vec;\n\npublic:\n    UnionFind() : UnionFind(0)\
     \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
     \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
@@ -215,14 +215,15 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
-    \ * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class\
-    \ T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
-    \    T res = 0;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second\
-    \ >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ Kruskal_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
-    \    Edges<T> res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second\
-    \ >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\
-    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/Kruskal.md\n */\n"
+    \ * @docs docs/data-struct/unionfind/UnionFind.md\n */\n#line 6 \"graph/mst/Kruskal.hpp\"\
+    \n\ntemplate<class T> T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n\
+    \    UnionFind UF(N);\n    T res = 0;\n    each_const (e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).second >= 0) res += e.cost;\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> Edges<T> Kruskal_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n   \
+    \ UnionFind UF(N);\n    Edges<T> res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).second >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief\
+    \ Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
     \ T Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
@@ -231,7 +232,7 @@ data:
     \ Kruskal_vec(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
     \    Edges<T> res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second\
     \ >= 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\
-    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/Kruskal.md\n */\n"
+    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -239,7 +240,7 @@ data:
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp

@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/PrimeFactor.md
+    _deprecated_at_docs: docs/math/PrimeFactor.md
     document_title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
       )"
     links: []
@@ -169,7 +169,7 @@ data:
     \        std::vector<ll> res;\n        reps (i, m) {\n            if (era[i])\
     \ res.push_back(i);\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
     \ PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs\
-    \ docs/PrimeFactor.md\n */\n"
+    \ docs/math/PrimeFactor.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass PrimeFactor {\n\
     private:\n    ll MAX;\n    std::vector<ll> era;\n\npublic:\n    PrimeFactor(ll\
     \ MAX) : MAX(MAX), era(MAX + 1, -1) {\n        rep (i, 2, MAX + 1) {\n       \
@@ -188,13 +188,13 @@ data:
     \ if (m < 0) m = MAX;\n        std::vector<ll> res;\n        reps (i, m) {\n \
     \           if (era[i]) res.push_back(i);\n        }\n        return res;\n  \
     \  }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
-    \u306E\u7BE9)\n * @docs docs/PrimeFactor.md\n */\n"
+    \u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/PrimeFactor.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

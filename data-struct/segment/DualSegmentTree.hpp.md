@@ -25,7 +25,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/DualSegmentTree.md
+    _deprecated_at_docs: docs/data-struct/segment/DualSegmentTree.md
     document_title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
       )"
     links: []
@@ -325,7 +325,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQuery\
     \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DualSegmentTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class A, bool = Monoid::is_semigroup<A>::value>\
@@ -371,7 +371,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQuery\
     \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DualSegmentTree.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -380,7 +380,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/range_affine_point_get.test.cpp

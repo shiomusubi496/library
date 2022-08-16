@@ -392,7 +392,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/other/SlidingWindowAggregation.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/other/SlidingWindowAggregation.hpp\"\
     \n\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\n\ntemplate<class\
     \ M> class SlidingWindowAggregation {\nprivate:\n    using T = typename M::value_type;\n\
     \    std::stack<T> lst, rst;\n    std::stack<T> lsm, rsm;\n    T internal_all_prod()\
@@ -417,7 +417,7 @@ data:
     \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/SlidingWindowAggregation.md\n\
+    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/data-struct/other/SlidingWindowAggregation.md\n\
     \ */\n#line 6 \"test/yosupo/data_structure/queue_operate_all_composite.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
     \ cin >> Q;\n    SlidingWindowAggregation<Monoid::Composite<mint>> SWAG;\n   \
@@ -445,7 +445,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/queue_operate_all_composite.test.cpp

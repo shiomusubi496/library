@@ -17,7 +17,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/BitwiseAndConvolution.md
+    _deprecated_at_docs: docs/math/convolution/BitwiseAndConvolution.md
     document_title: BitwiseAndConvolution
     links: []
   bundledCode: "#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\n\n#line 2\
@@ -163,20 +163,20 @@ data:
     \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
     \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
     \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
     \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"SupersetZetaMoebiusTransform.hpp\"\
     \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
     \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/BitwiseAndConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -184,7 +184,7 @@ data:
   isVerificationFile: false
   path: math/convolution/BitwiseAndConvolution.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/DefaultMap.md
+    _deprecated_at_docs: docs/data-struct/other/DefaultMap.md
     document_title: DefaultMap
     links: []
   bundledCode: "#line 2 \"data-struct/other/DefaultMap.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -175,7 +175,7 @@ data:
     \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
     \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
     key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/DefaultMap.md\n */\n"
+    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Key,\
     \ class T, class Comp = std::less<Key>,\n         class Alloc = std::allocator<std::pair<const\
     \ Key, T>>>\nclass default_map : public std::map<Key, T, Comp, Alloc> {\nprivate:\n\
@@ -204,13 +204,13 @@ data:
     \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
     \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
     key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/DefaultMap.md\n */\n"
+    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/other/DefaultMap.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/other/DefaultMap.hpp

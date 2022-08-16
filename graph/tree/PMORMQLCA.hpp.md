@@ -37,7 +37,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/PMORMQLCA.md
+    _deprecated_at_docs: docs/graph/tree/PMORMQLCA.md
     document_title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
     links: []
   bundledCode: "#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -312,19 +312,19 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
-    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
-    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
-    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
-    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
+    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
     \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
     \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
     \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
@@ -353,7 +353,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace\
+    \ * @docs docs/graph/Graph.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace\
     \ Monoid {\nstruct PairMinForEulerTour {\n    using value_type = std::pair<int,\
     \ int>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
     \        return a.first < b.first ? a : b;\n    }\n    static value_type id()\
@@ -392,7 +392,7 @@ data:
     \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
     \    g(idx[l].first + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first\
     \ + 1);\n    }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
+    \u30FC)\n * @docs docs/graph/tree/EulerTour.md\n */\n#line 2 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\
     \n\n#line 6 \"data-struct/segment/PlusMinusOneRMQ.hpp\"\n\ntemplate<class T> class\
     \ PlusMinusOneRMQ {\nprivate:\n    int n, b, m;\n    std::vector<T> v;\n    std::vector<int>\
     \ ud;\n    std::vector<std::vector<std::vector<int>>> lookup;\n    struct PairMin\
@@ -427,7 +427,7 @@ data:
     \    if (v[a] < v[res]) res = a;\n        }\n        {\n            int a = rb\
     \ * b + lookup[ud[rb]][0][rp];\n            if (v[a] < v[res]) res = a;\n    \
     \    }\n        return res;\n    }\n    T prod(int l, int r) const { return v[prod(l,\
-    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/PlusMinusOneRMQ.md\n\
+    \ r)]; }\n};\n\n/**\n * @brief PlusMinusOneRMQ($\\pm1$RMQ)\n * @docs docs/data-struct/segment/PlusMinusOneRMQ.md\n\
     \ */\n#line 6 \"graph/tree/PMORMQLCA.hpp\"\n\nclass PMORMQForLCA {\nprivate:\n\
     \    int n;\n    std::vector<std::pair<int, int>> v;\n    PlusMinusOneRMQ<int>\
     \ RMQ;\n\npublic:\n    PMORMQForLCA() = default;\n    PMORMQForLCA(const std::vector<std::pair<int,\
@@ -436,7 +436,7 @@ data:
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
     \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
-    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/graph/tree/PMORMQLCA.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"EulerTour.hpp\"\
     \n#include \"../../data-struct/segment/PlusMinusOneRMQ.hpp\"\n\nclass PMORMQForLCA\
@@ -447,7 +447,7 @@ data:
     \        rep (i, n) rmqvec[i] = v[i].first;\n        RMQ.init(rmqvec);\n    }\n\
     \    std::pair<int, int> prod(int l, int r) const {\n        return v[RMQ.prod_idx(l,\
     \ r)];\n    }\n};\n\ntemplate<class T> using PMORMQLCA = EulerTour<T, PMORMQForLCA>;\n\
-    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/PMORMQLCA.md\n\
+    \n/**\n * @brief PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)\n * @docs docs/graph/tree/PMORMQLCA.md\n\
     \ */"
   dependsOn:
   - other/template.hpp
@@ -461,7 +461,7 @@ data:
   path: graph/tree/PMORMQLCA.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

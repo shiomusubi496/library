@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':question:'
@@ -198,42 +198,43 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\n\nclass UnionFind {\nprivate:\n\
-    \    int n;\n    std::vector<int> par_vec;\n\npublic:\n    UnionFind() : UnionFind(0)\
-    \ {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int x) {\n\
-    \        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x : par_vec[x]\
-    \ = find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) return {x, -1};\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] +=\
-    \ par_vec[y];\n        par_vec[y] = x;\n        return {x, y};\n    }\n    bool\
-    \ same(int x, int y) { return find(x) == find(y); }\n    int size(int x) { return\
-    \ -par_vec[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n       \
-    \ std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
-    \ * @docs docs/UnionFind.md\n */\n#line 6 \"graph/mst/Prim.hpp\"\n\ntemplate<class\
-    \ T> T Prim(const Graph<T>& G) {\n    const int N = G.size();\n    std::vector<bool>\
-    \ seen(N, false);\n    seen[0] = true;\n    prique<edge<T>> que;\n    each_const\
-    \ (e : G[0]) que.emplace(e);\n    T res = 0;\n    while (!que.empty()) {\n   \
-    \     const edge<T> cre = que.top();\n        que.pop();\n        if (seen[cre.to])\
-    \ continue;\n        res += cre.cost;\n        seen[cre.to] = true;\n        each_const\
-    \ (e : G[cre.to]) {\n            if (seen[e.to]) continue;\n            que.emplace(e);\n\
-    \        }\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n\
-    \    seen[0] = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2\
+    \ \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n\n\
+    public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
+    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
+    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
+    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
+    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
+    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
+    \    int size(int x) { return -par_vec[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
+    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 6 \"graph/mst/Prim.hpp\"\n\ntemplate<class T> T Prim(const Graph<T>&\
+    \ G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n \
+    \   seen[0] = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
+    \    T res = 0;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
+    \        que.pop();\n        if (seen[cre.to]) continue;\n        res += cre.cost;\n\
+    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
+    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
+    \    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(const Graph<T>& G)\
+    \ {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n    seen[0]\
+    \ = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
     \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
     \        que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
     \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
     \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
     \    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs\
-    \ docs/Prim.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n \
-    \   rep (i, n) {\n        rep (j, n) {\n            int a; cin >> a;\n       \
-    \     if (a != -1) {\n                G.add_edge(i, j, a, true);\n           \
-    \ }\n        }\n    }\n    cout << Prim(G) << endl;\n}\n"
+    \ docs/graph/mst/Prim.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    Graph<int> G(n);\n\
+    \    rep (i, n) {\n        rep (j, n) {\n            int a; cin >> a;\n      \
+    \      if (a != -1) {\n                G.add_edge(i, j, a, true);\n          \
+    \  }\n        }\n    }\n    cout << Prim(G) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_A\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/mst/Prim.hpp\"\nusing namespace std;\nint main() {\n\
@@ -249,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

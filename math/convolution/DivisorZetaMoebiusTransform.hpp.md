@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/DivisorZetaMoebiusTransform.md
+    _deprecated_at_docs: docs/math/convolution/DivisorZetaMoebiusTransform.md
     document_title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\
       \u30D3\u30A6\u30B9\u5909\u63DB)"
     links: []
@@ -165,7 +165,7 @@ data:
     \ (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps\
     \ (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n           \
     \ is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/DivisorZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Sum>\n\
     void divisor_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
@@ -177,7 +177,7 @@ data:
     \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
     \        rreps (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n\
     \            is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/DivisorZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -185,7 +185,7 @@ data:
   path: math/convolution/DivisorZetaMoebiusTransform.hpp
   requiredBy:
   - math/convolution/LcmConvolution.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/new/lcm_convolution.test.cpp

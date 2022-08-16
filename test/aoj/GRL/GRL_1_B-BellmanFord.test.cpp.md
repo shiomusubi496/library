@@ -195,8 +195,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BellmanFord.hpp\"\n\
-    \n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\n\ntemplate<class T>\nstd::vector<T>\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/BellmanFord.hpp\"\
+    \n\n#line 5 \"graph/shortest-path/BellmanFord.hpp\"\n\ntemplate<class T>\nstd::vector<T>\
     \ BellmanFord(int V, const Edges<T>& Ed, int start = 0) {\n    assert(0 <= start\
     \ && start < V);\n    std::vector<T> dist(V, infinity<T>::value);\n    dist[start]\
     \ = 0;\n    rep (i, V) {\n        bool changed = false;\n        each_const (e\
@@ -210,13 +210,14 @@ data:
     \ {\n                dist[e.to] = -infinity<T>::value;\n                changed\
     \ = true;\n            }\n        }\n        if (!changed) break;\n    }\n   \
     \ return dist;\n}\n\n/**\n * @brief Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\
-    \u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/BellmanFord.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int V, E, r; cin >> V >> E >> r;\n \
-    \   Edges<int> Ed(E);\n    each_for (e : Ed) cin >> e.from >> e.to >> e.cost;\n\
-    \    auto dist = BellmanFord(V, Ed, r);\n    if (count(all(dist), -infinity<int>::value))\
-    \ {\n        puts(\"NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i,\
-    \ V) {\n        if (dist[i] == infinity<int>::value) puts(\"INF\");\n        else\
-    \ cout << dist[i] << endl;\n    }\n}\n"
+    \u30A9\u30FC\u30C9\u6CD5)\n * @docs docs/graph/shortest-path/BellmanFord.md\n\
+    \ */\n#line 5 \"test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int V, E, r; cin >> V >> E >> r;\n    Edges<int> Ed(E);\n  \
+    \  each_for (e : Ed) cin >> e.from >> e.to >> e.cost;\n    auto dist = BellmanFord(V,\
+    \ Ed, r);\n    if (count(all(dist), -infinity<int>::value)) {\n        puts(\"\
+    NEGATIVE CYCLE\");\n        return 0;\n    }\n    rep (i, V) {\n        if (dist[i]\
+    \ == infinity<int>::value) puts(\"INF\");\n        else cout << dist[i] << endl;\n\
+    \    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/BellmanFord.hpp\"\nusing namespace std;\nint\
@@ -233,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp

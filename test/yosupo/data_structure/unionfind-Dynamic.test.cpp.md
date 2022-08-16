@@ -169,7 +169,7 @@ data:
     \ -itr->second;\n    }\n    bool is_root(T x) {\n        auto itr = data.find(x);\n\
     \        if (itr == data.end() || itr->second < 0) return true;\n        return\
     \ false;\n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\u7684UnionFind)\n\
-    \ * @docs docs/DynamicUnionFind.md\n */\n#line 4 \"test/yosupo/data_structure/unionfind-Dynamic.test.cpp\"\
+    \ * @docs docs/data-struct/unionfind/DynamicUnionFind.md\n */\n#line 4 \"test/yosupo/data_structure/unionfind-Dynamic.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q;\n    cin >> N >> Q;\n    DynamicUnionFind\
     \ UF;\n    rep (Q) {\n        int t, u, v;\n        cin >> t >> u >> v;\n    \
     \    if (t == 0) UF.merge(u, v);\n        else cout << UF.same(u, v) << endl;\n\
@@ -186,7 +186,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/unionfind-Dynamic.test.cpp

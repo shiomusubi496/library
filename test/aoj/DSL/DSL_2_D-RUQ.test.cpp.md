@@ -320,7 +320,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChminQuery = DualSegmentTree<Monoid::Min<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQuery\
     \ = DualSegmentTree<Monoid::Max<T, min_value>>;\n\n/**\n * @brief DualSegmentTree(\u53CC\
-    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/DualSegmentTree.md\n\
+    \u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DualSegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_D-RUQ.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int n, q; cin >> n >> q;\n    RangeUpdateQuery<int> RUQ(n, (1ull\
     \ << 31) - 1);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
@@ -342,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp

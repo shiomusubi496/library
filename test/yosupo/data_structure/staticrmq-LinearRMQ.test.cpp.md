@@ -300,23 +300,24 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 7 \"data-struct/segment/LinearRMQ.hpp\"\
-    \n\ntemplate<class M> class LinearRMQ {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, b, m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n\
-    \    SparseTable<M> st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int\
-    \ k, int l, int r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n    \
-    \    if (a == 0) return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n\
-    \        int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb\
-    \ * b;\n        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n\
-    \        if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb,\
-    \ lp, b - 1),\n                y = rb * b + prod_in_backet(rb, 0, rp);\n     \
-    \       return M::op(v[x], v[y]);\n        }\n        T res = st.prod(lb + 1,\
-    \ rb);\n        {\n            int a = lb * b + prod_in_backet(lb, lp, b - 1);\n\
-    \            res = M::op(v[a], res);\n        }\n        {\n            int a\
-    \ = rb * b + prod_in_backet(rb, 0, rp);\n            res = M::op(res, v[a]);\n\
-    \        }\n        return res;\n    }\n\npublic:\n    LinearRMQ() = default;\n\
-    \    LinearRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>&\
+    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
+    \ */\n#line 7 \"data-struct/segment/LinearRMQ.hpp\"\n\ntemplate<class M> class\
+    \ LinearRMQ {\nprivate:\n    using T = typename M::value_type;\n    int n, b,\
+    \ m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n    SparseTable<M>\
+    \ st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int k, int l, int\
+    \ r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n        if (a == 0)\
+    \ return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int l, int\
+    \ r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n     \
+    \   int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n\
+    \        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n      \
+    \  if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb, lp, b\
+    \ - 1),\n                y = rb * b + prod_in_backet(rb, 0, rp);\n           \
+    \ return M::op(v[x], v[y]);\n        }\n        T res = st.prod(lb + 1, rb);\n\
+    \        {\n            int a = lb * b + prod_in_backet(lb, lp, b - 1);\n    \
+    \        res = M::op(v[a], res);\n        }\n        {\n            int a = rb\
+    \ * b + prod_in_backet(rb, 0, rp);\n            res = M::op(res, v[a]);\n    \
+    \    }\n        return res;\n    }\n\npublic:\n    LinearRMQ() = default;\n  \
+    \  LinearRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>&\
     \ v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n) / 2\
     \ + 1;\n        m = (n + b - 1) / b;\n        bt.assign(m, std::vector<int>(b,\
     \ 0));\n        std::vector<int> sta;\n        sta.reserve(b);\n        rep (i,\
@@ -340,7 +341,7 @@ data:
     \                    AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const\
     \ {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief LinearRMQ(\u524D\
     \u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs\
-    \ docs/LinearRMQ.md\n */\n#line 4 \"test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp\"\
+    \ docs/data-struct/segment/LinearRMQ.md\n */\n#line 4 \"test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
     \ A(N); cin >> A;\n    LinearRMQ<Monoid::Min<int>> RMQ(A);\n    rep (Q) {\n  \
     \      int l, r; cin >> l >> r;\n        cout << RMQ.prod(l, r) << endl;\n   \
@@ -360,7 +361,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp

@@ -196,7 +196,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/WarshallFloyd.hpp\"\
     \n\n#line 5 \"graph/shortest-path/WarshallFloyd.hpp\"\n\ntemplate<class T> void\
     \ WarshallFloyd(GMatrix<T>& G) {\n    const int N = G.size();\n    rep (i, N)\
     \ G[i][i] = 0;\n    rep (k, N) {\n        rep (i, N) {\n            rep (j, N)\
@@ -204,7 +204,7 @@ data:
     \  G[k][j] != infinity<T>::value) {\n                    chmin(G[i][j], G[i][k]\
     \ + G[k][j]);\n                }\n            }\n        }\n    }\n}\n\n/**\n\
     \ * @brief Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
-    \u6CD5)\n * @docs docs/WarshallFloyd.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\
+    \u6CD5)\n * @docs docs/graph/shortest-path/WarshallFloyd.md\n */\n#line 5 \"test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int V, E; cin >> V >> E;\n    auto D\
     \ = make_vec<ll>(V, V, infinity<ll>::value);\n    rep (E) {\n        int s, t,\
     \ d; cin >> s >> t >> d;\n        D[s][t] = d;\n    }\n    WarshallFloyd(D);\n\
@@ -230,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

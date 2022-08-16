@@ -366,7 +366,7 @@ data:
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
     \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
     \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/855_DynamicSegTree.test.cpp\"\
+    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/855_DynamicSegTree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll H, W, N; cin >> H >> W >> N;\n  \
     \  DynamicSegmentTree<Monoid::Max<ll>> segl(H + 2), segu(W + 2);\n    DynamicSegmentTree<Monoid::Min<ll>>\
     \ segr(H + 2), segd(W + 2);\n    map<ll, ll> mpl, mpr, mpu, mpd;\n    rep (N)\
@@ -464,7 +464,7 @@ data:
   isVerificationFile: true
   path: test/yuki/855_DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/855_DynamicSegTree.test.cpp

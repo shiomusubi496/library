@@ -192,7 +192,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 4 \"test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
     \    rep (i, N) {\n        int v, k; cin >> v >> k;\n        --v;\n        rep\
     \ (k) {\n            int u; cin >> u;\n            G.add_edge(v, u - 1, true);\n\
@@ -215,7 +215,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp

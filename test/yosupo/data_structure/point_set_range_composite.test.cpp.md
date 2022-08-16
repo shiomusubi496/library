@@ -395,7 +395,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
     \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
@@ -450,7 +450,7 @@ data:
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
     template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
-    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/SegmentTree.md\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
     \ */\n#line 6 \"test/yosupo/data_structure/point_set_range_composite.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
     \ mint>;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<PMM> A(N); cin\
@@ -477,7 +477,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/point_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/point_set_range_composite.test.cpp

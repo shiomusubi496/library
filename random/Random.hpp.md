@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/Random.md
+    _deprecated_at_docs: docs/random/Random.md
     document_title: Random
     links: []
   bundledCode: "#line 2 \"random/Random.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -188,7 +188,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n"
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class Engine>\
     \ class Random {\nprivate:\n    Engine rnd;\n\npublic:\n    using result_type\
     \ = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
@@ -219,7 +219,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n"
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -227,7 +227,7 @@ data:
   requiredBy:
   - data-struct/other/SkipList.hpp
   - string/RollingHash.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp

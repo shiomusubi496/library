@@ -287,7 +287,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
@@ -328,8 +328,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\n\n\
-    #line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\
+    \n\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
     \ {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
     \ G;\n    std::vector<std::pair<int, int>> idx;\n    void dfs(int v, int p) {\n\
     \        idx[v].first = cnt++;\n        each_const (e : G[v]) {\n            if\
@@ -348,7 +348,7 @@ data:
     \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
     \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
     \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\
+    \ docs/graph/tree/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
     \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
     \ >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
@@ -381,7 +381,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp

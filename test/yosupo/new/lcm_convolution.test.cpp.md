@@ -396,7 +396,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"math/convolution/LcmConvolution.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/LcmConvolution.hpp\"\
     \n\n#line 2 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
     math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
     \ divisor_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
@@ -408,13 +408,13 @@ data:
     \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
     \        rreps (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n\
     \            is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/DivisorZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/LcmConvolution.hpp\"\n\ntemplate<class Sum, class\
     \ Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
     \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
     \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/LcmConvolution.md\n\
+    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
     \ */\n#line 7 \"test/yosupo/new/lcm_convolution.test.cpp\"\nusing namespace std;\n\
     using mint = modint998244353;\nint main() {\n    int N; cin >> N;\n    vector<mint>\
     \ A(N + 1), B(N + 1);\n    reps (i, N) cin >> A[i];\n    reps (i, N) cin >> B[i];\n\
@@ -438,7 +438,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/lcm_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/lcm_convolution.test.cpp

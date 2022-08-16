@@ -195,7 +195,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/shortest-path/BreadthFirstSearch.hpp\"\
     \n\n#line 5 \"graph/shortest-path/BreadthFirstSearch.hpp\"\n\ntemplate<class T>\
     \ std::vector<T> BFS(const Graph<T>& G, int start = 0) {\n    assert(0 <= start\
     \ && start < (int)G.size());\n    std::vector<T> dist(G.size(), -1);\n    dist[start]\
@@ -210,12 +210,13 @@ data:
     \        each_const (e : G[v]) {\n            if (dist[e.to] == -1) {\n      \
     \          dist[e.to] = dist[v] + 1;\n                que.push(e.to);\n      \
     \      }\n        }\n    }\n    return dist;\n}\n\n/**\n * @brief BFS(\u5E45\u512A\
-    \u5148\u63A2\u7D22)\n * @docs docs/BreadthFirstSearch.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
-    \    rep (N) {\n        int u; cin >> u;\n        int k; cin >> k;\n        rep\
-    \ (j, k) {\n            int v; cin >> v;\n            G.add_edge(u - 1 , v - 1\
-    \ , true);\n        }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n\
-    \        cout << i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
+    \u5148\u63A2\u7D22)\n * @docs docs/graph/shortest-path/BreadthFirstSearch.md\n\
+    \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n    rep (N) {\n    \
+    \    int u; cin >> u;\n        int k; cin >> k;\n        rep (j, k) {\n      \
+    \      int v; cin >> v;\n            G.add_edge(u - 1 , v - 1 , true);\n     \
+    \   }\n    }\n    vector<int> dist = BFS(G);\n    rep (i, N) {\n        cout <<\
+    \ i + 1 << ' ' << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/shortest-path/BreadthFirstSearch.hpp\"\nusing namespace\
@@ -231,7 +232,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp

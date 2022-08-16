@@ -286,7 +286,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
@@ -327,7 +327,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\
     \n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\n\ntemplate<class T> class\
     \ HeavyLightDecomposition {\nprivate:\n    int n, root, cnt;\n    std::vector<int>\
     \ ssz, head, vin, vout, par;\n    const Graph<T>& G;\n    int szdfs(int v, int\
@@ -378,11 +378,12 @@ data:
     \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
     \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
     \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/HeavyLightDecomposition.md\n */\n#line 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll>\
-    \ A(N); cin >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin\
-    \ >> p;\n        G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n\
-    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n\
+    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n#line 6 \"\
+    test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<ll> A(N); cin >>\
+    \ A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; cin >> p;\n  \
+    \      G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<int> HLD(G);\n  \
+    \  BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = HLD.get_idx(i);\n\
     \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; cin\
     \ >> t;\n        if (t == 0) {\n            int p; ll x; cin >> p >> x;\n    \
     \        auto idx = HLD.get_idx(p);\n            BIT.add(idx.first, x);\n    \
@@ -411,7 +412,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp

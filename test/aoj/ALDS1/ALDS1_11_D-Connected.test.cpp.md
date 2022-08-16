@@ -195,7 +195,7 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/connected/ConnectedComponents.hpp\"\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/connected/ConnectedComponents.hpp\"\
     \n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\n\ntemplate<class T> class\
     \ ConnectedComponents {\nprivate:\n    int n, sz;\n    const Graph<T>& G;\n  \
     \  std::vector<int> cmp;\n    void dfs(int v) {\n        each_const (e : G[v])\
@@ -208,13 +208,13 @@ data:
     \ const { return cmp[k]; }\n    std::vector<std::vector<int>> groups() const {\n\
     \        std::vector<std::vector<int>> res(sz);\n        rep (i, n) res[cmp[i]].push_back(i);\n\
     \        return res;\n    }\n};\n\n/**\n * @brief ConnectedComponents(\u9023\u7D50\
-    \u6210\u5206\u5206\u89E3)\n * @docs docs/ConnectedComponents.md\n */\n#line 5\
-    \ \"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n    rep (m) {\n\
-    \        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n    }\n    ConnectedComponents<int>\
-    \ CC(G);\n    int q; cin >> q;\n    rep (q) {\n        int a, b; cin >> a >> b;\n\
-    \        if (CC[a] == CC[b]) puts(\"yes\");\n        else puts(\"no\");\n    }\n\
-    }\n"
+    \u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n\
+    \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n, m; cin >> n >> m;\n    Graph<int> G(n);\n   \
+    \ rep (m) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a, b);\n   \
+    \ }\n    ConnectedComponents<int> CC(G);\n    int q; cin >> q;\n    rep (q) {\n\
+    \        int a, b; cin >> a >> b;\n        if (CC[a] == CC[b]) puts(\"yes\");\n\
+    \        else puts(\"no\");\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_D\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/connected/ConnectedComponents.hpp\"\nusing namespace\
@@ -230,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp

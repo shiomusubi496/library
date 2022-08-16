@@ -16,7 +16,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SupersetZetaMoebiusTransform.md
+    _deprecated_at_docs: docs/math/convolution/SupersetZetaMoebiusTransform.md
     document_title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB\
       /\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)"
     links: []
@@ -162,7 +162,7 @@ data:
     \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
     \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Sum>\n\
     void superset_zeta_transform(std::vector<typename Sum::value_type>& v) {\n   \
@@ -172,7 +172,7 @@ data:
     \ Sum::value_type>& v) {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<=\
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
     \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/SupersetZetaMoebiusTransform.md\n\
+    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -180,7 +180,7 @@ data:
   path: math/convolution/SupersetZetaMoebiusTransform.hpp
   requiredBy:
   - math/convolution/BitwiseAndConvolution.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

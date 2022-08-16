@@ -251,9 +251,9 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 4 \"test/aoj/DPL/DPL_5_A.test.cpp\"\nusing\
-    \ namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n, k; cin\
-    \ >> n >> k;\n    cout << mint(k).pow(n) << endl;\n}\n"
+    \ * @docs docs/math/ModInt.md\n */\n#line 4 \"test/aoj/DPL/DPL_5_A.test.cpp\"\n\
+    using namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n,\
+    \ k; cin >> n >> k;\n    cout << mint(k).pow(n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\nusing\
     \ namespace std;\nusing mint = modint1000000007;\nint main() {\n    ll n, k; cin\
@@ -264,7 +264,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_A.test.cpp

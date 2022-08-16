@@ -197,7 +197,7 @@ data:
     \ ost, const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n  \
     \  friend std::istream& operator>>(std::istream& ist, Rational& rat) {\n     \
     \   return ist >> rat.num >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
-    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/Rational.md\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
     \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace std;\nint\
     \ main() {\n    int N, W; cin >> N >> W;\n    vector<Fraction> A(N); cin >> A;\n\
     \    sort(all(A), greater<Fraction>());\n    Fraction ans;\n    each_const (f\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp

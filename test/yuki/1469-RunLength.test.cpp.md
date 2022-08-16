@@ -161,9 +161,10 @@ data:
     \ return res;\n}\n\ntemplate<class Cont>\nstd::vector<std::pair<typename Cont::value_type,\
     \ int>>\nRunLength(const Cont& str) {\n    return RunLength(str, std::equal_to<typename\
     \ Cont::value_type>());\n}\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\
-    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/RunLength.md\n */\n#line 4 \"test/yuki/1469-RunLength.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    string S; cin >> S;\n    each_const\
-    \ (p : RunLength(S)) cout << p.first;\n    cout << endl;\n}\n"
+    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/string/RunLength.md\n */\n#line 4 \"\
+    test/yuki/1469-RunLength.test.cpp\"\nusing namespace std;\nint main() {\n    string\
+    \ S; cin >> S;\n    each_const (p : RunLength(S)) cout << p.first;\n    cout <<\
+    \ endl;\n}\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/1469\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../string/RunLength.hpp\"\nusing namespace std;\nint main() {\n\
     \    string S; cin >> S;\n    each_const (p : RunLength(S)) cout << p.first;\n\
@@ -174,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1469-RunLength.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/1469-RunLength.test.cpp

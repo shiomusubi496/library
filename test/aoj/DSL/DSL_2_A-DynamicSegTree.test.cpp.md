@@ -366,7 +366,7 @@ data:
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
     \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
     \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DynamicSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\
+    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 4 \"test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicSegmentTree<Monoid::Min<int,\
     \ (1ull << 31) - 1>> seg(n);\n    rep (q) {\n        int t, a, b; cin >> t >>\
     \ a >> b;\n        if (t == 0) seg.set(a, b);\n        else cout << seg.prod(a,\
@@ -385,7 +385,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp

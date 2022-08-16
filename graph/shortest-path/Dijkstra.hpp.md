@@ -25,7 +25,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/Dijkstra.md
+    _deprecated_at_docs: docs/graph/shortest-path/Dijkstra.md
     document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     links: []
   bundledCode: "#line 2 \"graph/shortest-path/Dijkstra.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -202,16 +202,16 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\n\n\
-    template<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0) {\n\
-    \    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/shortest-path/Dijkstra.hpp\"\
+    \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
+    \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
     \ infinity<T>::value);\n    dist[start] = 0;\n    prique<std::pair<T, int>> que;\n\
     \    que.emplace(0, start);\n    while (!que.empty()) {\n        T c = std::move(que.top().first);\n\
     \        int v = que.top().second;\n        que.pop();\n        if (dist[v] !=\
     \ c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
     }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n"
+    \ docs/graph/shortest-path/Dijkstra.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> std::vector<T> Dijkstra(const Graph<T>& G, int start = 0)\
     \ {\n    assert(0 <= start && start < (int)G.size());\n    std::vector<T> dist(G.size(),\
@@ -221,14 +221,14 @@ data:
     \ c) continue;\n        each_const (e : G[v]) {\n            if (chmin(dist[e.to],\
     \ c + e.cost)) que.emplace(dist[e.to], e.to);\n        }\n    }\n    return dist;\n\
     }\n\n/**\n * @brief Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)\n * @docs\
-    \ docs/Dijkstra.md\n */\n"
+    \ docs/graph/shortest-path/Dijkstra.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
   isVerificationFile: false
   path: graph/shortest-path/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/shortest_path.test.cpp

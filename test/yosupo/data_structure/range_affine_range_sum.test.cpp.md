@@ -395,7 +395,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
     \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
     \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
@@ -511,7 +511,7 @@ data:
     \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
     \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/LazySegmentTree.md\n\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n#line 6 \"test/yosupo/data_structure/range_affine_range_sum.test.cpp\"\n\
     using namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint, mint>;\n\
     int main() {\n    int N, Q; cin >> N >> Q;\n    vector<mint> A(N); cin >> A;\n\
@@ -540,7 +540,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_affine_range_sum.test.cpp

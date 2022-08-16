@@ -25,7 +25,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/Restore.md
+    _deprecated_at_docs: docs/graph/shortest-path/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     links: []
   bundledCode: "#line 2 \"graph/shortest-path/Restore.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -202,9 +202,9 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\n\n\
-    template<class T>\nEdges<T> Restore(const Graph<T>& G, const std::vector<T>& dist,\
-    \ int start = 0) {\n    const int N = G.size();\n    Edges<T> res(N, edge<T>{-2,\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/shortest-path/Restore.hpp\"\
+    \n\ntemplate<class T>\nEdges<T> Restore(const Graph<T>& G, const std::vector<T>&\
+    \ dist, int start = 0) {\n    const int N = G.size();\n    Edges<T> res(N, edge<T>{-2,\
     \ -2});\n    res[start] = {-1, start};\n    std::queue<int> que;\n    que.push(start);\n\
     \    while (!que.empty()) {\n        int v = que.front();\n        que.pop();\n\
     \        each_const (e : G[v]) {\n            if (res[e.to].to == -2 && dist[e.to]\
@@ -219,7 +219,7 @@ data:
     \ e.idx);\n                t = e.to;\n                flg = true;\n          \
     \      break;\n            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
     \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n"
+    \ docs/graph/shortest-path/Restore.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T>\nEdges<T> Restore(const Graph<T>& G, const std::vector<T>&\
     \ dist, int start = 0) {\n    const int N = G.size();\n    Edges<T> res(N, edge<T>{-2,\
@@ -237,7 +237,7 @@ data:
     \ e.idx);\n                t = e.to;\n                flg = true;\n          \
     \      break;\n            }\n        }\n        assert(flg);\n    }\n    std::reverse(all(res));\n\
     \    return res;\n}\n\n/**\n * @brief Restore(\u7D4C\u8DEF\u5FA9\u5143)\n * @docs\
-    \ docs/Restore.md\n */\n"
+    \ docs/graph/shortest-path/Restore.md\n */\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
@@ -245,7 +245,7 @@ data:
   path: graph/shortest-path/Restore.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/tree_diameter.test.cpp

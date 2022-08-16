@@ -280,7 +280,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/point_add_range_sum.test.cpp\"\nusing\
     \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    BinaryIndexedTree<ll>\
     \ BIT(N);\n    rep (i, N) {\n        int a; cin >> a;\n        BIT.add(i, a);\n\
@@ -299,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/point_add_range_sum.test.cpp

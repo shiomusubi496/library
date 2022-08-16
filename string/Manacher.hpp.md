@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/Manacher.md
+    _deprecated_at_docs: docs/string/Manacher.md
     document_title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA\
       )"
     links: []
@@ -170,7 +170,7 @@ data:
     \                              const typename Cont::value_type dummy = '$') {\n\
     \    return ManacherEven(str, std::equal_to<typename Cont::value_type>(), dummy);\n\
     }\n\n/**\n * @brief Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA\
-    )\n * @docs docs/Manacher.md\n */\n"
+    )\n * @docs docs/string/Manacher.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\n\ntemplate<class Cont,\
     \ class Comp>\nstd::vector<int> Manacher(const Cont& str, const Comp& cmp) {\n\
     \    const int n = str.size();\n    std::vector<int> res(n);\n    res[0] = 1;\n\
@@ -190,13 +190,13 @@ data:
     \ ManacherEven(const Cont& str,\n                              const typename\
     \ Cont::value_type dummy = '$') {\n    return ManacherEven(str, std::equal_to<typename\
     \ Cont::value_type>(), dummy);\n}\n\n/**\n * @brief Manacher's Algortihm(\u6700\
-    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/Manacher.md\n */\n"
+    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/string/Manacher.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: string/Manacher.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/string/enumerate_palindromes.test.cpp

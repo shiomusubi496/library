@@ -34,7 +34,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/BinaryIndexedTree.md
+    _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
     document_title: BinaryIndexedTree(FenwickTree, BIT)
     links: []
   bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
@@ -295,7 +295,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
@@ -317,7 +317,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -325,7 +325,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/point_add_range_sum.test.cpp

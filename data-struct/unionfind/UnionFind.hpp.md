@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':x:'
@@ -34,7 +34,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/UnionFind.md
+    _deprecated_at_docs: docs/data-struct/unionfind/UnionFind.md
     document_title: UnionFind
     links: []
   bundledCode: "#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -186,7 +186,7 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
-    \ * @docs docs/UnionFind.md\n */\n"
+    \ * @docs docs/data-struct/unionfind/UnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFind\
     \ {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n\npublic:\n    UnionFind()\
     \ : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n, -1) {}\n    int find(int\
@@ -202,7 +202,7 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n\
-    \ * @docs docs/UnionFind.md\n */\n"
+    \ * @docs docs/data-struct/unionfind/UnionFind.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
@@ -210,7 +210,7 @@ data:
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/unionfind.test.cpp

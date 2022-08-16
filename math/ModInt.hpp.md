@@ -70,7 +70,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/ModInt.md
+    _deprecated_at_docs: docs/math/ModInt.md
     document_title: ModInt
     links: []
   bundledCode: "#line 2 \"math/ModInt.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -307,7 +307,7 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n"
+    \ * @docs docs/math/ModInt.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<unsigned int\
     \ mod> class StaticModInt {\n    static_assert(mod > 0, \"mod must be greater\
     \ than 0\");\n\nprivate:\n    unsigned int val;\n    static constexpr unsigned\
@@ -408,14 +408,14 @@ data:
     \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
     \        return ist;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
     \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
-    \ * @docs docs/ModInt.md\n */\n"
+    \ * @docs docs/math/ModInt.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: math/ModInt.hpp
   requiredBy:
   - math/Combinatorics.hpp
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/lcm_convolution.test.cpp

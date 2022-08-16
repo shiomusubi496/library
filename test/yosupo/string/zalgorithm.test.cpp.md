@@ -162,7 +162,7 @@ data:
     \            lst = i + cur;\n        }\n    }\n    res[0] = n;\n    return res;\n\
     }\n\ntemplate<class Cont> std::vector<int> ZAlgorithm(const Cont& str) {\n   \
     \ return ZAlgorithm(str, std::equal_to<typename Cont::value_type>());\n}\n\n/**\n\
-    \ * @brief Z-Algorithm\n * @docs docs/ZAlgorithm.md\n */\n#line 4 \"test/yosupo/string/zalgorithm.test.cpp\"\
+    \ * @brief Z-Algorithm\n * @docs docs/string/ZAlgorithm.md\n */\n#line 4 \"test/yosupo/string/zalgorithm.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string S; cin >> S;\n    cout << ZAlgorithm(S)\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
@@ -175,7 +175,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/string/zalgorithm.test.cpp

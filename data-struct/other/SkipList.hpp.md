@@ -19,7 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/SkipList.md
+    _deprecated_at_docs: docs/data-struct/other/SkipList.md
     document_title: SkipList
     links: []
   bundledCode: "#line 2 \"data-struct/other/SkipList.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -290,7 +290,7 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
     \n\ntemplate<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>\n\
     class SkipList {\nprivate:\n    using M = typename A::M;\n    using E = typename\
     \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
@@ -596,7 +596,7 @@ data:
     \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
     \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
     \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
-    \ docs/SkipList.md\n */\n"
+    \ docs/data-struct/other/SkipList.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../../random/Random.hpp\"\n\ntemplate<class A, class Rand = Random32,\
     \ bool = Monoid::has_mul_op<A>::value>\nclass SkipList {\nprivate:\n    using\
@@ -904,7 +904,7 @@ data:
     \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
     \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
     \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
-    \ docs/SkipList.md\n */\n"
+    \ docs/data-struct/other/SkipList.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
@@ -912,7 +912,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/SkipList.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp

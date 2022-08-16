@@ -292,7 +292,7 @@ data:
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/BinaryIndexedTree.md\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
     \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
@@ -333,10 +333,10 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2\
-    \ \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\n\n#line\
-    \ 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >>\
-    \ (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line\
+    \ 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/bitop.hpp\"\n\n\
+    #line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b)\
+    \ >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
     \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
     \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
     \                                                \\\n    for (ull i = (1ull <<\
@@ -366,16 +366,16 @@ data:
     \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/SparseTable.md\n */\n#line 6 \"graph/tree/EulerTour.hpp\"\
-    \n\nnamespace Monoid {\nstruct PairMinForEulerTour {\n    using value_type = std::pair<int,\
-    \ int>;\n    static value_type op(const value_type& a, const value_type& b) {\n\
-    \        return a.first < b.first ? a : b;\n    }\n    static value_type id()\
-    \ { return {infinity<int>::value, -1}; }\n};\n} // namespace Monoid\n\ntemplate<class\
-    \ T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\nclass EulerTour\
-    \ {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> dep;\n    std::vector<std::pair<int, int>> idx;\n \
-    \   std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n    void dfs(int\
-    \ v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
+    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
+    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\nstruct PairMinForEulerTour\
+    \ {\n    using value_type = std::pair<int, int>;\n    static value_type op(const\
+    \ value_type& a, const value_type& b) {\n        return a.first < b.first ? a\
+    \ : b;\n    }\n    static value_type id() { return {infinity<int>::value, -1};\
+    \ }\n};\n} // namespace Monoid\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
+    class EulerTour {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n   \
+    \ const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
+    \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
+    \    void dfs(int v, int p) {\n        idx[v].first = cnt++;\n        rmqvec.emplace_back(dep[v],\
     \ v);\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
     \            dep[e.to] = dep[v] + 1;\n            dfs(e.to, v);\n            rmqvec.emplace_back(dep[v],\
     \ v);\n        }\n        idx[v].second = cnt++;\n    }\n    void init() {\n \
@@ -405,7 +405,7 @@ data:
     \ u, int v, const F& f, const G& g) const {\n        int l = lca(u, v);\n    \
     \    g(idx[l].first + 1, idx[u].first + 1);\n        f(idx[l].first + 1, idx[v].first\
     \ + 1);\n    }\n};\n\n/**\n * @brief EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\
-    \u30FC)\n * @docs docs/EulerTour.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_D-EulerTour.test.cpp\"\
+    \u30FC)\n * @docs docs/graph/tree/EulerTour.md\n */\n#line 6 \"test/aoj/GRL/GRL_5_D-EulerTour.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    Graph<int> G(N);\n\
     \    rep (i, N) {\n        int k; cin >> k;\n        rep (k) {\n            int\
     \ a; cin >> a;\n            G.add_edge(i, a);\n        }\n    }\n    EulerTour<int>\
@@ -440,7 +440,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp

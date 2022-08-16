@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/UnionFindUndo.md
+    _deprecated_at_docs: docs/data-struct/unionfind/UnionFindUndo.md
     document_title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
     links: []
   bundledCode: "#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\n#line 2 \"\
@@ -171,7 +171,7 @@ data:
     \ = hist.top().second;\n        hist.pop();\n    }\n    void snapshot() {\n  \
     \      while (!hist.empty()) hist.pop();\n    }\n    void rollback() {\n     \
     \   while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\
-    \u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n */\n"
+    \u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFindUndo\
     \ {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
     \ int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
@@ -193,13 +193,13 @@ data:
     \ = hist.top().second;\n        hist.pop();\n    }\n    void snapshot() {\n  \
     \      while (!hist.empty()) hist.pop();\n    }\n    void rollback() {\n     \
     \   while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\
-    \u80FDUnionFind)\n * @docs docs/UnionFindUndo.md\n */\n"
+    \u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp

@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/WeightedUnionFind.md
+    _deprecated_at_docs: docs/data-struct/unionfind/WeightedUnionFind.md
     document_title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
     links: []
   bundledCode: "#line 2 \"data-struct/unionfind/WeightedUnionFind.hpp\"\n\n#line 2\
@@ -171,7 +171,8 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\
-    \u307F\u4ED8\u304DUF)\n * @docs docs/WeightedUnionFind.md\n */\n"
+    \u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\n\ntemplate<class\
     \ T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
     \ par_vec;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
@@ -193,13 +194,14 @@ data:
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
     \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\
-    \u307F\u4ED8\u304DUF)\n * @docs docs/WeightedUnionFind.md\n */\n"
+    \u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp

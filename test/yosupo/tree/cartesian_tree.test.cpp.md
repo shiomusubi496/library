@@ -195,8 +195,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/tree/CartesianTree.hpp\"\n\n#line\
-    \ 5 \"graph/tree/CartesianTree.hpp\"\n\ntemplate<class T, class Comp = std::less<T>>\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/CartesianTree.hpp\"\n\
+    \n#line 5 \"graph/tree/CartesianTree.hpp\"\n\ntemplate<class T, class Comp = std::less<T>>\
     \ class CartesianTree {\nprivate:\n    int n;\n    const std::vector<T>& v;\n\
     \    std::vector<int> par;\n    Comp cmp;\n    void init() {\n        n = v.size();\n\
     \        par.assign(n, -1);\n        rep (i, 1, n) {\n            int p = i -\
@@ -211,7 +211,7 @@ data:
     \    Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n         \
     \   if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n \
     \       }\n        return {res, root};\n    }\n};\n\n/**\n * @brief CartesianTree\n\
-    \ * @docs docs/CartesianTree.md\n */\n#line 5 \"test/yosupo/tree/cartesian_tree.test.cpp\"\
+    \ * @docs docs/graph/tree/CartesianTree.md\n */\n#line 5 \"test/yosupo/tree/cartesian_tree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    vector<int> A(N);\
     \ cin >> A;\n    auto v = CartesianTree<int>(A).get_vec();\n    rep (i, N) {\n\
     \        if (v[i] == -1) v[i] = i;\n    }\n    cout << v << endl;\n}\n"
@@ -228,7 +228,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/cartesian_tree.test.cpp

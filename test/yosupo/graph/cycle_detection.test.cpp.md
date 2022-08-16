@@ -195,23 +195,23 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line\
-    \ 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle {\nprivate:\n\
-    \    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n    Edges<T> cycle;\n\
-    \    int dfs(int v, int k) {\n        if (seen[v]) return v;\n        if (visited[v])\
-    \ return -1;\n        visited[v] = seen[v] = true;\n        each_const (e : G[v])\
-    \ {\n            int d = dfs(e.to, v);\n            if (d != -1) {\n         \
-    \       if (d == -2) return -2;\n                cycle.push_back(e);\n       \
-    \         if (d == v) return -2;\n                return d;\n            }\n \
-    \       }\n        seen[v] = false;\n        return -1;\n    }\n    void init()\
-    \ {\n        const int N = G.size();\n        visited.assign(N, false);\n    \
-    \    seen.assign(N, false);\n        rep (i, N) {\n            if (dfs(i, -1)\
-    \ == -2) {\n                std::reverse(all(cycle));\n                break;\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/GraphCycle.hpp\"\n\n\
+    #line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle {\n\
+    private:\n    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n    Edges<T>\
+    \ cycle;\n    int dfs(int v, int k) {\n        if (seen[v]) return v;\n      \
+    \  if (visited[v]) return -1;\n        visited[v] = seen[v] = true;\n        each_const\
+    \ (e : G[v]) {\n            int d = dfs(e.to, v);\n            if (d != -1) {\n\
+    \                if (d == -2) return -2;\n                cycle.push_back(e);\n\
+    \                if (d == v) return -2;\n                return d;\n         \
+    \   }\n        }\n        seen[v] = false;\n        return -1;\n    }\n    void\
+    \ init() {\n        const int N = G.size();\n        visited.assign(N, false);\n\
+    \        seen.assign(N, false);\n        rep (i, N) {\n            if (dfs(i,\
+    \ -1) == -2) {\n                std::reverse(all(cycle));\n                break;\n\
     \            }\n        }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G)\
     \ : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty(); }\n\
     \    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
     \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/GraphCycle.md\n */\n#line 5 \"test/yosupo/graph/cycle_detection.test.cpp\"\
+    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n#line 5 \"test/yosupo/graph/cycle_detection.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    Graph<int>\
     \ G(N);\n    rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a,\
     \ b, true);\n    }\n    GraphCycle<int> GC(G);\n    if (!GC.has_cycle()) puts(\"\
@@ -233,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/cycle_detection.test.cpp

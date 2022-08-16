@@ -13,7 +13,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/DynamicUnionFind.md
+    _deprecated_at_docs: docs/data-struct/unionfind/DynamicUnionFind.md
     document_title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
     links: []
   bundledCode: "#line 2 \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\n#line 2\
@@ -166,7 +166,7 @@ data:
     \ return 1;\n        else return -itr->second;\n    }\n    bool is_root(T x) {\n\
     \        auto itr = data.find(x);\n        if (itr == data.end() || itr->second\
     \ < 0) return true;\n        return false;\n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\
-    \u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n */\n"
+    \u7684UnionFind)\n * @docs docs/data-struct/unionfind/DynamicUnionFind.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll> class DynamicUnionFind {\nprivate:\n    std::map<T, T> data;\n\npublic:\n\
     \    DynamicUnionFind() = default;\n    T find(T x) {\n        auto itr = data.find(x);\n\
@@ -183,13 +183,13 @@ data:
     \ return 1;\n        else return -itr->second;\n    }\n    bool is_root(T x) {\n\
     \        auto itr = data.find(x);\n        if (itr == data.end() || itr->second\
     \ < 0) return true;\n        return false;\n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\
-    \u7684UnionFind)\n * @docs docs/DynamicUnionFind.md\n */\n"
+    \u7684UnionFind)\n * @docs docs/data-struct/unionfind/DynamicUnionFind.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/DynamicUnionFind.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp

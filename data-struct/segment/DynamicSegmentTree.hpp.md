@@ -25,7 +25,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/DynamicSegmentTree.md
+    _deprecated_at_docs: docs/data-struct/segment/DynamicSegmentTree.md
     document_title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
       \u6728)"
     links: []
@@ -370,7 +370,7 @@ data:
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
     \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
     \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DynamicSegmentTree.md\n */\n"
+    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
     \n#include \"../../other/monoid.hpp\"\n\ntemplate<class M> class DynamicSegmentTree\
     \ {\nprivate:\n    using T = typename M::value_type;\n    struct node;\n    using\
@@ -460,7 +460,7 @@ data:
     \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
     \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
     \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/DynamicSegmentTree.md\n */\n"
+    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/bitop.hpp
@@ -468,7 +468,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp

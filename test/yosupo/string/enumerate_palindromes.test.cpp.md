@@ -171,10 +171,10 @@ data:
     \ ManacherEven(const Cont& str,\n                              const typename\
     \ Cont::value_type dummy = '$') {\n    return ManacherEven(str, std::equal_to<typename\
     \ Cont::value_type>(), dummy);\n}\n\n/**\n * @brief Manacher's Algortihm(\u6700\
-    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/Manacher.md\n */\n#line 4\
-    \ \"test/yosupo/string/enumerate_palindromes.test.cpp\"\nusing namespace std;\n\
-    int main() {\n    string S; cin >> S;\n    cout << ManacherEven(S) << endl;\n\
-    }\n"
+    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/string/Manacher.md\n */\n\
+    #line 4 \"test/yosupo/string/enumerate_palindromes.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    string S; cin >> S;\n    cout << ManacherEven(S) <<\
+    \ endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../string/Manacher.hpp\"\
     \nusing namespace std;\nint main() {\n    string S; cin >> S;\n    cout << ManacherEven(S)\
@@ -185,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/string/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/string/enumerate_palindromes.test.cpp

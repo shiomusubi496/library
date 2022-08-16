@@ -19,7 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/GraphCycle.md
+    _deprecated_at_docs: docs/graph/other/GraphCycle.md
     document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     links: []
   bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -196,8 +196,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/Graph.md\n */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class\
-    \ T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool>\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\n\
+    template<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool>\
     \ visited, seen;\n    Edges<T> cycle;\n    int dfs(int v, int k) {\n        if\
     \ (seen[v]) return v;\n        if (visited[v]) return -1;\n        visited[v]\
     \ = seen[v] = true;\n        each_const (e : G[v]) {\n            int d = dfs(e.to,\
@@ -211,7 +211,7 @@ data:
     \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
     \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
     \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/GraphCycle.md\n */\n"
+    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n \
     \   std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
@@ -227,7 +227,7 @@ data:
     \       }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
     \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
     \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/GraphCycle.md\n\
+    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -235,7 +235,7 @@ data:
   isVerificationFile: false
   path: graph/other/GraphCycle.hpp
   requiredBy: []
-  timestamp: '2022-08-16 21:43:51+09:00'
+  timestamp: '2022-08-16 22:53:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/graph/cycle_detection.test.cpp
