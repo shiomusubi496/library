@@ -12,7 +12,7 @@ private:
         T get(T x) const { return a * x + b; }
         Line() = default;
         Line(T a, T b, int id)
-            : a(a), idx(id), is_query(false), has_nxt(false) {}
+            : a(a), b(b), idx(id), is_query(false), has_nxt(false) {}
 
         friend class ConvexHullTrickAddMonotone;
 
