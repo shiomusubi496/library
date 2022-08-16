@@ -17,7 +17,7 @@ data:
     - icon: ':warning:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
@@ -38,14 +38,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicLazySegmentTree.hpp
       title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -61,7 +61,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -83,7 +83,7 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -136,7 +136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
     - icon: ':heavy_check_mark:'
@@ -148,10 +148,10 @@ data:
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -162,7 +162,7 @@ data:
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
@@ -188,7 +188,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -205,14 +205,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/DivisorZetaMoebiusTransform.hpp
       title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
     - icon: ':heavy_check_mark:'
       path: math/convolution/GcdConvolution.hpp
       title: GCDConvolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/LcmConvolution.hpp
       title: LCMConvolution
     - icon: ':heavy_check_mark:'
@@ -237,16 +237,16 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/bitop.hpp
       title: other/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -259,20 +259,20 @@ data:
       title: Timer
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/LongestIncreasingSubsequence.hpp
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/Manacher.hpp
       title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/ZAlgorithm.hpp
       title: Z-Algorithm
   verificationCategories:
@@ -569,60 +569,60 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/gcd_convolution.test.cpp
       title: test/yosupo/new/gcd_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/jump_on_tree.test.cpp
       title: test/yosupo/new/jump_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/lcm_convolution.test.cpp
       title: test/yosupo/new/lcm_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/longest_increasing_subsequence.test.cpp
       title: test/yosupo/new/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/range_affine_point_get.test.cpp
       title: test/yosupo/new/range_affine_point_get.test.cpp
   - name: test/yosupo/sample
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/aplusb.test.cpp
       title: test/yosupo/sample/aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/many_aplusb.test.cpp
       title: test/yosupo/sample/many_aplusb.test.cpp
   - name: test/yosupo/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/enumerate_palindromes.test.cpp
       title: test/yosupo/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp
   - name: test/yosupo/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/cartesian_tree.test.cpp
       title: test/yosupo/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/lca-HLD.test.cpp
       title: test/yosupo/tree/lca-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/tree_diameter.test.cpp
       title: test/yosupo/tree/tree_diameter.test.cpp
   - name: test/yuki
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
       title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1435_SegTree-BinarySearch.test.cpp
       title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1469-RunLength.test.cpp
       title: test/yuki/1469-RunLength.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1601-RangeSet.test.cpp
       title: test/yuki/1601-RangeSet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/855_DynamicSegTree.test.cpp
       title: test/yuki/855_DynamicSegTree.test.cpp
 layout: toppage
