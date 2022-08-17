@@ -1,6 +1,5 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G"
 #include "../../../other/template.hpp"
-#define protected public
 #include "../../../data-struct/segment/DynamicLazySegmentTree.hpp"
 using namespace std;
 int main() {

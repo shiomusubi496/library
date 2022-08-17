@@ -175,7 +175,7 @@ public:
 template<class A> class LazySegmentTree<A, true> {
     static_assert(Monoid::is_action<A>::value, "A must be action");
 
-protected:
+private:
     using T_ = typename A::M::value_type;
     using U_ = typename A::E::value_type;
     using elm = typename Monoid::MultiAction<A>::M::value_type;

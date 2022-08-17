@@ -234,7 +234,7 @@ public:
 
 
 template<class A> class DynamicLazySegmentTree<A, true> {
-protected:
+private:
     using M_ = typename A::M;
     using E_ = typename A::E;
     using T_ = typename M_::value_type;
