@@ -151,6 +151,9 @@ data:
     path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
+    title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -593,6 +596,7 @@ data:
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

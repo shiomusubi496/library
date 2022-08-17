@@ -2,52 +2,36 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/Mo.hpp
+    title: Mo's Algorithm
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-    title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
-    document_title: BinaryIndexedTree(FenwickTree, BIT)
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define\
-    \ __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n\
-    #define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                      \
-    \                                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c\
-    \ < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define\
-    \ REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i\
-    \ = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
+    links:
+    - https://judge.yosupo.jp/problem/static_range_inversions_query
+  bundledCode: "#line 1 \"test/yosupo/data_structure/static_range_inversions_query.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
+    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
+    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
+    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
+    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
     \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
     \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
     \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
@@ -174,19 +158,20 @@ data:
     \      each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n \
     \       assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -299,73 +284,67 @@ data:
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
     \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
     };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
+    \ */\n#line 2 \"data-struct/other/Mo.hpp\"\n\n#line 4 \"data-struct/other/Mo.hpp\"\
+    \n\nclass Mo {\nprivate:\n    int n;\n    std::vector<std::pair<int, int>> data;\n\
+    public:\n    Mo(int n) : n(n) {}\n    Mo(int n, const std::vector<std::pair<int,\
+    \ int>>& a) : n(n), data(a) {}\n    Mo(int n, std::vector<std::pair<int, int>>&&\
+    \ a) : n(n), data(std::move(a)) {}\n    void push(int l, int r) { data.emplace_back(l,\
+    \ r); }\n    template<class AL, class AR, class DL, class DR, class REM>\n   \
+    \ void build(const AL& add_left, const AR& add_right, const DL& delete_left, const\
+    \ DR& delete_right, const REM& rem) const {\n        if (data.empty()) return;\n\
+    \        int q = data.size();\n        const int w = std::max<int>(1, 1.0 * n\
+    \ / sqrt(2.0 * q / 3.0));\n        std::vector<int> idx(q);\n        rep (i, q)\
+    \ idx[i] = i;\n        std::sort(all(idx), [&](int a, int b) -> bool {\n     \
+    \       const int ab = data[a].first / w, bb = data[b].first / w;\n          \
+    \  if (ab != bb) return ab < bb;\n            return ab & 1 ? data[a].second <\
+    \ data[b].second : data[a].second > data[b].second;\n        });\n        int\
+    \ l = 0, r = 0;\n        each_const (i : idx) {\n            while (data[i].first\
+    \ < l) add_left(--l);\n            while (data[i].second > r) add_right(r++);\n\
+    \            while (data[i].first > l) delete_left(l++);\n            while (data[i].second\
+    \ < r) delete_right(--r);\n            rem(i);\n        }\n    }\n    template<class\
+    \ A, class D, class REM>\n    void build(const A& add, const D& del, const REM&\
+    \ rem) const {\n        build(add, add, del, del, rem);\n    }\n};\n\n/**\n *\
+    \ @brief Mo's Algorithm\n * @docs docs/data-struct/other/Mo.md\n * @see https://nyaannyaan.github.io/library/misc/mo.hpp\n\
+    \ */\n#line 5 \"test/yosupo/data_structure/static_range_inversions_query.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
+    \ A(N); cin >> A;\n    presser<int> ps(A); ps.build();\n    ps.press(A);\n   \
+    \ int M = ps.size();\n    vector<pair<int, int>> B(Q); cin >> B;\n    Mo mo(N,\
+    \ move(B));\n    BinaryIndexedTree<int> bit(M);\n    vector<ll> ans(Q);\n    ll\
+    \ cur = 0;\n    mo.build([&](int k) -> void {\n        cur += bit.sum(0, A[k]);\n\
+    \        bit.add(A[k], 1);\n    }, [&](int k) -> void {\n        cur += bit.sum(A[k]\
+    \ + 1, M);\n        bit.add(A[k], 1);\n    }, [&](int k) -> void {\n        cur\
+    \ -= bit.sum(0, A[k]);\n        bit.add(A[k], -1);\n    }, [&](int k) -> void\
+    \ {\n        cur -= bit.sum(A[k] + 1, M);\n        bit.add(A[k], -1);\n    },\
+    \ [&](int k) -> void {\n        ans[k] = cur;\n    });\n    each_const (i : ans)\
+    \ cout << i << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n#include \"../../../data-struct/other/Mo.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N); cin >> A;\n    presser<int>\
+    \ ps(A); ps.build();\n    ps.press(A);\n    int M = ps.size();\n    vector<pair<int,\
+    \ int>> B(Q); cin >> B;\n    Mo mo(N, move(B));\n    BinaryIndexedTree<int> bit(M);\n\
+    \    vector<ll> ans(Q);\n    ll cur = 0;\n    mo.build([&](int k) -> void {\n\
+    \        cur += bit.sum(0, A[k]);\n        bit.add(A[k], 1);\n    }, [&](int k)\
+    \ -> void {\n        cur += bit.sum(A[k] + 1, M);\n        bit.add(A[k], 1);\n\
+    \    }, [&](int k) -> void {\n        cur -= bit.sum(0, A[k]);\n        bit.add(A[k],\
+    \ -1);\n    }, [&](int k) -> void {\n        cur -= bit.sum(A[k] + 1, M);\n  \
+    \      bit.add(A[k], -1);\n    }, [&](int k) -> void {\n        ans[k] = cur;\n\
+    \    });\n    each_const (i : ans) cout << i << endl;\n}\n"
   dependsOn:
   - other/template.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
   - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/other/Mo.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-documentation_of: data-struct/segment/BinaryIndexedTree.hpp
+  timestamp: '2022-08-18 01:36:53+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/data_structure/static_range_inversions_query.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/BinaryIndexedTree.hpp
-- /library/data-struct/segment/BinaryIndexedTree.hpp.html
-title: BinaryIndexedTree(FenwickTree, BIT)
+- /verify/test/yosupo/data_structure/static_range_inversions_query.test.cpp
+- /verify/test/yosupo/data_structure/static_range_inversions_query.test.cpp.html
+title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
 ---
-## 概要
-
-モノイド $(T, \cdot : T \times T \to T)$ 、つまり
-
-- 結合則 : 任意の $A, B, C \in T$ に対して $(A \cdot B) \cdot C = A \cdot (B \cdot C)$
-- 単位元の存在 : ある $e \in T$ が存在して、任意の $A \in T$ に対して $A \cdot e = e \cdot A = A$
-
-を満たす構造の列を扱えるデータ構造。 min/max などが扱える。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log n)$ 。
-- `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $\Theta(\log n)$ 。
-
-また、以下の条件を満たすと、さらに多くのことができる。
-
-- 任意の $A, B, C \in T$ に対して $B \neq C$ ならば $A \cdot B \neq A \cdot C$
-
-足し算や bitwise xor などはこれを満たす。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
-- `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
-- `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。
