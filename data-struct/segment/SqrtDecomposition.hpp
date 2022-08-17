@@ -154,5 +154,5 @@ public:
 
 /**
  * @brief SqrtDecomposition(平方分割)
- * @docs docs/data-structure/segment/SqrtDecomposition.md
+ * @docs docs/data-struct/segment/SqrtDecomposition.md
  */
