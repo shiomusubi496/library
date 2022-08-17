@@ -63,6 +63,9 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SqrtDecomposition.hpp
+    title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
   - icon: ':heavy_check_mark:'
@@ -219,6 +222,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/type_traits.hpp
+    title: other/type_traits.hpp
   - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
@@ -438,8 +444,14 @@ data:
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_kth_smallest.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/set_xor_min.test.cpp
     title: test/yosupo/data_structure/set_xor_min.test.cpp
@@ -869,6 +881,7 @@ data:
   - data-struct/cht/ConvexHullTrick.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/CumulativeSum.hpp
@@ -906,6 +919,7 @@ data:
   - string/RollingHash.hpp
   - string/RunLength.hpp
   - string/ZAlgorithm.hpp
+  - other/type_traits.hpp
   - other/monoid2.hpp
   - other/bitop.hpp
   - other/monoid.hpp
@@ -930,6 +944,7 @@ data:
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/set_xor_min.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -949,6 +964,7 @@ data:
   - test/yosupo/data_structure/line_add_get_min.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp

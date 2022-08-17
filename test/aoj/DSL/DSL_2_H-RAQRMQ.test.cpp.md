@@ -343,7 +343,7 @@ data:
     \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
     \ != r);\n        return 0;\n    }\n};\n\ntemplate<class A> class LazySegmentTree<A,\
     \ true> {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\"\
-    );\n\nprotected:\n    using T_ = typename A::M::value_type;\n    using U_ = typename\
+    );\n\nprivate:\n    using T_ = typename A::M::value_type;\n    using U_ = typename\
     \ A::E::value_type;\n    using elm = typename Monoid::MultiAction<A>::M::value_type;\n\
     \    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {\n       \
     \ const int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n)\
@@ -400,7 +400,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
+  timestamp: '2022-08-17 23:53:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp

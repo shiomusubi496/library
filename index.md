@@ -67,6 +67,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
+    - icon: ':heavy_check_mark:'
+      path: data-struct/segment/SqrtDecomposition.hpp
+      title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
   - name: data-struct/unionfind
     pages:
     - icon: ':heavy_check_mark:'
@@ -249,6 +252,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
+    - icon: ':heavy_check_mark:'
+      path: other/type_traits.hpp
+      title: other/type_traits.hpp
   - name: random
     pages:
     - icon: ':heavy_check_mark:'
@@ -490,8 +496,14 @@ data:
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+      title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_kth_smallest.test.cpp
+      title: test/yosupo/data_structure/range_kth_smallest.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/set_xor_min.test.cpp
       title: test/yosupo/data_structure/set_xor_min.test.cpp

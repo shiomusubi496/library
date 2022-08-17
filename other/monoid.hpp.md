@@ -50,6 +50,9 @@ data:
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SqrtDecomposition.hpp
+    title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -132,8 +135,14 @@ data:
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_kth_smallest.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
@@ -547,6 +556,7 @@ data:
   - graph/tree/EulerTour.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/CumulativeSum.hpp
@@ -569,6 +579,7 @@ data:
   - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
@@ -584,6 +595,7 @@ data:
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

@@ -391,8 +391,8 @@ data:
     \        return min_left(root, 0, n, h, r, cond, sm);\n    }\n    void reset(ll\
     \ l, ll r) { reset(root, 0, n, h, l, r); }\n    void reset(ll k) { reset(root,\
     \ 0, n, h, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
-    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
-    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ true> {\nprivate:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
+    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::MultiAction<A>>\
     \ seg;\n\npublic:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf)\
     \ {}\n    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}\n    DynamicLazySegmentTree(ll\
@@ -526,8 +526,8 @@ data:
     \        return min_left(root, 0, n, h, r, cond, sm);\n    }\n    void reset(ll\
     \ l, ll r) { reset(root, 0, n, h, l, r); }\n    void reset(ll k) { reset(root,\
     \ 0, n, h, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
-    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
-    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ true> {\nprivate:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
+    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::MultiAction<A>>\
     \ seg;\n\npublic:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf)\
     \ {}\n    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}\n    DynamicLazySegmentTree(ll\
@@ -554,7 +554,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
+  timestamp: '2022-08-17 23:53:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp

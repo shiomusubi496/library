@@ -159,17 +159,16 @@ data:
     \      each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n \
     \       assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 3 \"test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\n#define\
-    \ protected public\n#line 2 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
-    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
-    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
-    \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
-    \ ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n\
-    #define rep_comb(i, n, k)                                                    \
-    \  \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));                \
-    \         \\\n         i = bitop::next_combination((n), i))\n\ninline CONSTEXPR\
-    \ int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ }\n};\n#line 2 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\n\n#line 2\
+    \ \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n\
+    #define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline\
+    \ ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n    ull a =\
+    \ x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define\
+    \ rep_comb(i, n, k)                                                      \\\n\
+    \    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));                      \
+    \   \\\n         i = bitop::next_combination((n), i))\n\ninline CONSTEXPR int\
+    \ msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000) x &=\
+    \ 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
     \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
     \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
     \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
@@ -392,8 +391,8 @@ data:
     \        return min_left(root, 0, n, h, r, cond, sm);\n    }\n    void reset(ll\
     \ l, ll r) { reset(root, 0, n, h, l, r); }\n    void reset(ll k) { reset(root,\
     \ 0, n, h, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
-    \ true> {\nprotected:\n    using M_ = typename A::M;\n    using E_ = typename\
-    \ A::E;\n    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
+    \ true> {\nprivate:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
+    \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
     \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::MultiAction<A>>\
     \ seg;\n\npublic:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf)\
     \ {}\n    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}\n    DynamicLazySegmentTree(ll\
@@ -412,14 +411,14 @@ data:
     \ l, ll r) { seg.reset(l, r); }\n    void reset(ll k) { seg.reset(k); }\n};\n\n\
     /**\n * @brief DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
     \u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DynamicLazySegmentTree.md\n\
-    \ */\n#line 5 \"test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\nusing namespace\
+    \ */\n#line 4 \"test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
     \ RAQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            RAQRSQ.apply(l - 1,\
     \ r, x);\n        }\n        else {\n            int l, r; cin >> l >> r;\n  \
     \          cout << RAQRSQ.prod(l - 1, r) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_G\"\n#include\
-    \ \"../../../other/template.hpp\"\n#define protected public\n#include \"../../../data-struct/segment/DynamicLazySegmentTree.hpp\"\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/DynamicLazySegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; cin >> n >> q;\n    DynamicLazySegmentTree<Monoid::AddSum<ll>>\
     \ RAQRSQ(n);\n    rep (q) {\n        int t; cin >> t;\n        if (t == 0) {\n\
     \            int l, r, x; cin >> l >> r >> x;\n            RAQRSQ.apply(l - 1,\
@@ -433,7 +432,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
+  timestamp: '2022-08-17 23:53:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
