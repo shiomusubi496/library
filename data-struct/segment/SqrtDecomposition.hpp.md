@@ -22,7 +22,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-structure/segment/SqrtDecomposition.md
+    _deprecated_at_docs: docs/data-struct/segment/SqrtDecomposition.md
     document_title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     links: []
   bundledCode: "#line 2 \"data-struct/segment/SqrtDecomposition.hpp\"\n\n#line 2 \"\
@@ -358,7 +358,7 @@ data:
     \ + rb * this->b,\n                              this->v.begin() + (rb + 1) *\
     \ this->b);\n            this->data[rb] = this->f(std::move(v2));\n        }\n\
     \    }\n};\n\n/**\n * @brief SqrtDecomposition(\u5E73\u65B9\u5206\u5272)\n * @docs\
-    \ docs/data-structure/segment/SqrtDecomposition.md\n */\n"
+    \ docs/data-struct/segment/SqrtDecomposition.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"../../other/type_traits.hpp\"\n\ntemplate<class T, class F, class\
     \ G = void, class A = void> class SqrtDecomposition;\n\ntemplate<class T, class\
@@ -430,7 +430,7 @@ data:
     \ + rb * this->b,\n                              this->v.begin() + (rb + 1) *\
     \ this->b);\n            this->data[rb] = this->f(std::move(v2));\n        }\n\
     \    }\n};\n\n/**\n * @brief SqrtDecomposition(\u5E73\u65B9\u5206\u5272)\n * @docs\
-    \ docs/data-structure/segment/SqrtDecomposition.md\n */\n"
+    \ docs/data-struct/segment/SqrtDecomposition.md\n */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
@@ -438,7 +438,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SqrtDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-08-17 23:53:57+09:00'
+  timestamp: '2022-08-18 00:21:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest.test.cpp
@@ -450,3 +450,11 @@ redirect_from:
 - /library/data-struct/segment/SqrtDecomposition.hpp.html
 title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
 ---
+## 概要
+
+いわゆるバケット法の平方分割。
+
+- `SqrtDecomposition(vector<T> a, F f)` : 列 `a` と各バケットに持たせるデータを返す `f(vector<T>)` で初期化。バケットサイズは $\sqrt{n}$ 。 $\Theta(n)$ 。
+- `SqrtDecomposition(vector<T> a, int b, F f)` : バケットの大きさ `b` を指定して初期化。 $\Theta(n)$ 。
+- `S prod(int l, int r, G g, H h)` : `T` から値を得る `S g(T)` 、各バケットのデータから値を得る `S h(U)` を使って `M::op(a[l], a[l+1], ..., a[r-1])` を返す。
+- `void apply(int l, int r, G g, H h)` : `T` を変更する `void g(T&)` 、各バケットのデータを更新する `void h(U&)` を使って `M::op(a[l], a[l+1], ..., a[r-1])` を返す。

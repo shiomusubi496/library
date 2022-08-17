@@ -358,7 +358,7 @@ data:
     \ + rb * this->b,\n                              this->v.begin() + (rb + 1) *\
     \ this->b);\n            this->data[rb] = this->f(std::move(v2));\n        }\n\
     \    }\n};\n\n/**\n * @brief SqrtDecomposition(\u5E73\u65B9\u5206\u5272)\n * @docs\
-    \ docs/data-structure/segment/SqrtDecomposition.md\n */\n#line 5 \"test/yosupo/data_structure/range_kth_smallest.test.cpp\"\
+    \ docs/data-struct/segment/SqrtDecomposition.md\n */\n#line 5 \"test/yosupo/data_structure/range_kth_smallest.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
     \ A(N); cin >> A;\n    presser<int> ps(A); ps.build();\n    ps.press(A);\n   \
     \ auto f = [&](vector<int>&& v) -> vector<int> {\n        vector<int> A(ps.size());\n\
@@ -395,7 +395,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 23:53:57+09:00'
+  timestamp: '2022-08-18 00:21:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest.test.cpp

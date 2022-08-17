@@ -491,7 +491,7 @@ data:
     \ + rb * this->b,\n                              this->v.begin() + (rb + 1) *\
     \ this->b);\n            this->data[rb] = this->f(std::move(v2));\n        }\n\
     \    }\n};\n\n/**\n * @brief SqrtDecomposition(\u5E73\u65B9\u5206\u5272)\n * @docs\
-    \ docs/data-structure/segment/SqrtDecomposition.md\n */\n#line 6 \"test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp\"\
+    \ docs/data-struct/segment/SqrtDecomposition.md\n */\n#line 6 \"test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing PMM = pair<mint,\
     \ mint>;\nstruct CompositeAction {\n    using M = Monoid::Sum<mint>;\n    using\
     \ E = Monoid::Composite<mint>;\n    static mint op(const PMM& a, const mint& b)\
@@ -537,7 +537,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   requiredBy: []
-  timestamp: '2022-08-17 23:53:57+09:00'
+  timestamp: '2022-08-18 00:21:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
