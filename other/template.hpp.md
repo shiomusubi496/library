@@ -66,6 +66,9 @@ data:
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/StaticRangeFrequency.hpp
+    title: StaticRangeFrequency
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
   - icon: ':heavy_check_mark:'
@@ -455,6 +458,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/set_xor_min.test.cpp
     title: test/yosupo/data_structure/set_xor_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_range_frequency.test.cpp
+    title: test/yosupo/data_structure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
@@ -881,6 +887,7 @@ data:
   - data-struct/cht/ConvexHullTrick.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/StaticRangeFrequency.hpp
   - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/LinearRMQ.hpp
@@ -951,6 +958,7 @@ data:
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/static_range_frequency.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
