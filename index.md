@@ -62,6 +62,10 @@ data:
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/SSegmentTree.hpp
+      title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\
+        \u7279\u6B8A\u306A\u30BB\u30B0\u6728)"
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -505,8 +509,11 @@ data:
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/data_structure/range_kth_smallest.test.cpp
-      title: test/yosupo/data_structure/range_kth_smallest.test.cpp
+      path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+      title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+      title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/set_xor_min.test.cpp
       title: test/yosupo/data_structure/set_xor_min.test.cpp

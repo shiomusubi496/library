@@ -2,17 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SqrtDecomposition.hpp
-    title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
+    path: data-struct/segment/SSegmentTree.hpp
+    title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
+      \u6B8A\u306A\u30BB\u30B0\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/type_traits.hpp
-    title: other/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,7 +24,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
     links:
     - https://judge.yosupo.jp/problem/range_kth_smallest
-  bundledCode: "#line 1 \"test/yosupo/data_structure/range_kth_smallest.test.cpp\"\
+  bundledCode: "#line 1 \"test/yosupo/data_structure/range_kth_smallest-seg.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
     \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
@@ -158,19 +159,33 @@ data:
     \      each_for (i : vec) i = get_index(i);\n    }\n    int size() const {\n \
     \       assert(sorted);\n        return dat.size();\n    }\n    const std::vector<T>&\
     \ data() const& { return dat; }\n    std::vector<T> data() && { return std::move(dat);\
-    \ }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)>\
-    \ : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ }\n};\n#line 2 \"data-struct/segment/SSegmentTree.hpp\"\n\n#line 2 \"other/bitop.hpp\"\
+    \n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k)\
+    \ (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
+    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
+    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
+    \                                                \\\n    for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
+    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
+    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
+    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
+    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
+    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n} // namespace bitop\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -262,146 +277,92 @@ data:
     \ r), r - l}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using T\
     \ = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SqrtDecomposition.hpp\"\
-    \n\n#line 2 \"other/type_traits.hpp\"\n\n#line 4 \"other/type_traits.hpp\"\n\n\
-    template<class T, class... Args> struct function_traits_impl {\n    using result_type\
-    \ = T;\n    template<std::size_t idx>\n    using argument_type =\n        typename\
-    \ std::tuple_element<idx, std::tuple<Args...>>::type;\n    using argument_tuple\
-    \ = std::tuple<Args...>;\n    static constexpr std::size_t arg_size() { return\
-    \ sizeof...(Args); }\n};\n\ntemplate<class>\nstruct function_traits_helper;\n\n\
-    template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
-    \ (Tp::*) (Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
-    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
-    \ (Tp::*) (Args...) &> {\n    using type = function_traits_impl<Res, Args...>;\n\
-    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
-    \ (Tp::*) (Args...) const> {\n    using type = function_traits_impl<Res, Args...>;\n\
-    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
-    \ (Tp::*) (Args...) const&> {\n    using type = function_traits_impl<Res, Args...>;\n\
-    };\n\n#if __cplusplus >= 201703L\ntemplate<class Res, class Tp, class... Args>\n\
-    struct function_traits_helper<Res (Tp::*) (Args...) noexcept> {\n    using type\
-    \ = function_traits_impl<Res, Args...>;\n};\ntemplate<class Res, class Tp, class...\
-    \ Args>\nstruct function_traits_helper<Res (Tp::*) (Args...) & noexcept> {\n \
-    \   using type = function_traits_impl<Res, Args...>;\n};\ntemplate<class Res,\
-    \ class Tp, class... Args>\nstruct function_traits_helper<Res (Tp::*) (Args...)\
-    \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
-    template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
-    \ (Tp::*) (Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
-    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits = typename\
-    \ function_traits_helper<decltype(&F::operator())>::type;\n#line 6 \"data-struct/segment/SqrtDecomposition.hpp\"\
-    \n\ntemplate<class T, class F, class G = void, class A = void> class SqrtDecomposition;\n\
-    \ntemplate<class T, class F> class SqrtDecomposition<T, F, void, void> {\n   \
-    \ static_assert(std::is_same<typename function_traits<F>::argument_tuple,\n  \
-    \                             std::tuple<std::vector<T>&&>>::value,\n        \
-    \          \"F must take a single argument of type vector<T>&&\");\n\nprotected:\n\
-    \    using U = typename function_traits<F>::result_type;\n    int n, b, nb;\n\
-    \    F f;\n    std::vector<T> v;\n    std::vector<U> data;\n    virtual void eval(int)\
-    \ { return; }\n\npublic:\n    SqrtDecomposition(const std::vector<T>& v_, const\
-    \ F& f) : f(f) { init(v_); }\n    SqrtDecomposition(const std::vector<T>& v_,\
-    \ int b_, const F& f) : f(f) {\n        init(v_, b_);\n    }\n    void init(const\
-    \ std::vector<T>& v_, int b_ = -1) {\n        v = v_;\n        n = v.size();\n\
-    \        if (b_ == -1) b_ = sqrt(n);\n        b = b_;\n        nb = n / b;\n \
-    \       data.reserve(nb);\n        rep (i, nb) {\n            std::vector<T> v2(v.begin()\
-    \ + i * b, v.begin() + (i + 1) * b);\n            data.push_back(f(std::move(v2)));\n\
-    \        }\n    }\n    template<class M, class G, class H>\n    auto prod(int\
-    \ l, int r, const G& g, const H& h) ->\n        typename std::enable_if<\n   \
-    \         Monoid::is_monoid<M>::value &&\n                std::is_same<decltype(g(std::declval<T>())),\n\
-    \                             typename M::value_type>::value &&\n            \
-    \    std::is_same<decltype(h(std::declval<U>())),\n                          \
-    \   typename M::value_type>::value,\n            typename M::value_type>::type\
-    \ {\n        using S = typename M::value_type;\n        assert(0 <= l && l <=\
-    \ r && r <= n);\n        const int lb = l / b, rb = r / b;\n        if (lb ==\
-    \ rb) {\n            if (lb < nb) eval(lb);\n            S res = M::id();\n  \
-    \          rep (i, l, r) res = M::op(res, g(v[i]));\n            return res;\n\
-    \        }\n        eval(lb);\n        if (rb < nb) eval(rb);\n        S res =\
-    \ M::id();\n        rep (i, l, b * (lb + 1)) res = M::op(res, g(v[i]));\n    \
-    \    rep (i, lb + 1, rb) res = M::op(res, h(data[i]));\n        rep (i, rb * b,\
-    \ r) res = M::op(res, g(v[i]));\n        return res;\n    }\n    template<class\
-    \ G>\n    auto update(int k, const G& g) -> typename std::enable_if<\n       \
-    \ std::is_same<decltype(g(std::declval<T&>())), void>::value>::type {\n      \
-    \  assert(0 <= k && k < n);\n        const int bk = k / b;\n        if (bk < nb)\
-    \ eval(bk);\n        g(v[k]);\n        if (bk < nb) {\n            std::vector<T>\
-    \ v2(v.begin() + bk * b, v.begin() + (bk + 1) * b);\n            data[bk] = f(std::move(v2));\n\
-    \        }\n    }\n    void set(int k, const T& x) {\n        update(k, [&](T&\
-    \ y) -> void { y = x; });\n    }\n};\n\ntemplate<class T, class F, class G, class\
-    \ A>\nclass SqrtDecomposition : public SqrtDecomposition<T, F, void> {\nprivate:\n\
-    \    using Base = SqrtDecomposition<T, F, void>;\n    using E = typename A::E;\n\
-    \    using U = typename Base::U;\n    using S = typename E::value_type;\n\n  \
-    \  static_assert(std::is_same<typename A::M::value_type, T>::value,\n        \
-    \          \"A::M::value_type and T must be same\");\n\n    G g;\n    std::vector<S>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n    void eval(int i) override {\n  \
-    \      if (lazyflag[i]) {\n            rep (j, this->b)\n                this->v[i\
-    \ * this->b + j] =\n                    A::op(lazy[i], this->v[i * this->b + j]);\n\
-    \            lazyflag[i] = false;\n        }\n    }\n    void all_apply(const\
-    \ S& x, int i) {\n        g(x, this->data[i]);\n        if (lazyflag[i]) {\n \
-    \           lazy[i] = E::op(lazy[i], x);\n        }\n        else {\n        \
-    \    lazy[i] = x;\n            lazyflag[i] = true;\n        }\n    }\n\npublic:\n\
-    \    SqrtDecomposition(const std::vector<T>& v_, const F& f, const G& g)\n   \
-    \     : Base(v_, f), g(g), lazy(this->nb), lazyflag(this->nb, false) {}\n    SqrtDecomposition(const\
-    \ std::vector<T>& v_, int b_, const F& f, const G& g)\n        : Base(v_, b_,\
-    \ f), g(g), lazy(this->nb), lazyflag(this->nb, false) {}\n    void apply(int k,\
-    \ const S& x) {\n        this->update(k, [&](T& y) -> void { y = A::op(x, y);\
-    \ });\n    }\n    auto apply(int l, int r, const S& x) -> typename std::enable_if<\n\
-    \        std::is_same<decltype(g(x, std::declval<U&>())), void>::value>::type\
-    \ {\n        assert(0 <= l && l <= r && r <= this->n);\n        const int lb =\
-    \ l / this->b, rb = r / this->b;\n        if (lb == rb) {\n            if (lb\
-    \ < this->nb) eval(lb);\n            rep (i, l, r) this->v[i] = A::op(x, this->v[i]);\n\
-    \            if (lb < this->nb) {\n                std::vector<T> v2(this->v.begin()\
-    \ + lb * this->b,\n                                  this->v.begin() + (lb + 1)\
-    \ * this->b);\n                this->data[lb] = this->f(std::move(v2));\n    \
-    \        }\n            return;\n        }\n        eval(lb);\n        if (rb\
-    \ < this->nb) eval(rb);\n        rep (i, l, this->b * (lb + 1)) this->v[i] = A::op(x,\
-    \ this->v[i]);\n        rep (i, lb + 1, rb) all_apply(x, i);\n        rep (i,\
-    \ rb * this->b, r) this->v[i] = A::op(x, this->v[i]);\n        {\n           \
-    \ std::vector<T> v2(this->v.begin() + lb * this->b,\n                        \
-    \      this->v.begin() + (lb + 1) * this->b);\n            this->data[lb] = this->f(std::move(v2));\n\
-    \        }\n        if (rb < this->nb) {\n            std::vector<T> v2(this->v.begin()\
-    \ + rb * this->b,\n                              this->v.begin() + (rb + 1) *\
-    \ this->b);\n            this->data[rb] = this->f(std::move(v2));\n        }\n\
-    \    }\n};\n\n/**\n * @brief SqrtDecomposition(\u5E73\u65B9\u5206\u5272)\n * @docs\
-    \ docs/data-struct/segment/SqrtDecomposition.md\n */\n#line 5 \"test/yosupo/data_structure/range_kth_smallest.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int>\
-    \ A(N); cin >> A;\n    presser<int> ps(A); ps.build();\n    ps.press(A);\n   \
-    \ auto f = [&](vector<int>&& v) -> vector<int> {\n        vector<int> A(ps.size());\n\
-    \        each_const (i : v) ++A[i];\n        rep (i, ps.size() - 1) A[i + 1] +=\
-    \ A[i];\n        return A;\n    };\n    SqrtDecomposition<int, decltype(f)> sd(A,\
-    \ f);\n    rep (Q) {\n        int l, r, k; cin >> l >> r >> k;\n        int ok\
-    \ = ps.size() - 1, ng = -1;\n        while (ok - ng > 1) {\n            int mid\
-    \ = (ok + ng) / 2;\n            auto g = [&](int x) -> int {\n               \
-    \ return x <= mid;\n            };\n            auto h = [&](const vector<int>&\
-    \ v) -> int {\n                return v[mid];\n            };\n            int\
-    \ cnt = sd.prod<Monoid::Sum<int>>(l, r, g, h);\n            if (cnt > k) ok =\
-    \ mid;\n            else ng = mid;\n        }\n        cout << ps[ok] << endl;\n\
-    \    }\n}\n"
+    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 6 \"data-struct/segment/SSegmentTree.hpp\"\
+    \n\ntemplate<class M> class SSegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
+    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SSegmentTree() : SSegmentTree(0)\
+    \ {}\n    SSegmentTree(int n_) { init(n_); }\n    SSegmentTree(int n, const T&\
+    \ v) : SSegmentTree(std::vector<T>(n, v)) {}\n    SSegmentTree(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(int n_) {\n        ori = n_;\n        n = 1 <<\
+    \ bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n    }\n    void\
+    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        upd(data[k]);\n        while (k\
+    \ >>= 1) upd(data[k]);\n    }\n    T prod(int l, int r) const {\n        assert(0\
+    \ <= l && l <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm\
+    \ = M::id(), rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm\
+    \ = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n\
+    \            l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm,\
+    \ rsm);\n    }\n    template<class M2, class F>\n    typename M2::value_type prod(int\
+    \ l, int r, const F& f) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        l += n;\n        r += n;\n        typename M2::value_type lsm = M2::id(),\
+    \ rsm = M2::id();\n        while (l < r) {\n            if (l & 1) lsm = M2::op(lsm,\
+    \ f(data[l++]));\n            if (r & 1) rsm = M2::op(f(data[--r]), rsm);\n  \
+    \          l >>= 1;\n            r >>= 1;\n        }\n        return M2::op(lsm,\
+    \ rsm);\n    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const\
+    \ { return data[k + n]; }\n    template<class Cond> int max_right(int l, const\
+    \ Cond& cond) const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
+    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
+    \                }\n                return l - n;\n            }\n           \
+    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
+    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
+    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
+    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
+    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
+    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
+    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
+    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
+    \u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\u6B8A\u306A\u30BB\u30B0\
+    \u6728)\n * @docs docs/data-struct/segment/SSegmentTree.md\n */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-seg.test.cpp\"\
+    \nusing namespace std;\nstruct Merge {\n    using value_type = vector<int>;\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  value_type c; c.reserve(a.size() + b.size());\n        merge(all(a), all(b),\
+    \ back_inserter(c));\n        return c;\n    }\n    static value_type id() { return\
+    \ {}; }\n};\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\
+    \ cin >> A;\n    SSegmentTree<Merge> seg([&] {\n        vector<vector<int>> B(N);\n\
+    \        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n    rep (Q)\
+    \ {\n        int l, r, k; cin >> l >> r >> k;\n        int ok = 1e9, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n       \
+    \     int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>& v) ->\
+    \ int {\n                return upper_bound(all(v), mid) - v.begin();\n      \
+    \      });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n \
+    \       }\n        cout << ok << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\
-    \n#include \"../../../data-struct/segment/SqrtDecomposition.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N); cin\
-    \ >> A;\n    presser<int> ps(A); ps.build();\n    ps.press(A);\n    auto f = [&](vector<int>&&\
-    \ v) -> vector<int> {\n        vector<int> A(ps.size());\n        each_const (i\
-    \ : v) ++A[i];\n        rep (i, ps.size() - 1) A[i + 1] += A[i];\n        return\
-    \ A;\n    };\n    SqrtDecomposition<int, decltype(f)> sd(A, f);\n    rep (Q) {\n\
-    \        int l, r, k; cin >> l >> r >> k;\n        int ok = ps.size() - 1, ng\
-    \ = -1;\n        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n\
-    \            auto g = [&](int x) -> int {\n                return x <= mid;\n\
-    \            };\n            auto h = [&](const vector<int>& v) -> int {\n   \
-    \             return v[mid];\n            };\n            int cnt = sd.prod<Monoid::Sum<int>>(l,\
-    \ r, g, h);\n            if (cnt > k) ok = mid;\n            else ng = mid;\n\
-    \        }\n        cout << ps[ok] << endl;\n    }\n}\n"
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SSegmentTree.hpp\"\
+    \nusing namespace std;\nstruct Merge {\n    using value_type = vector<int>;\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  value_type c; c.reserve(a.size() + b.size());\n        merge(all(a), all(b),\
+    \ back_inserter(c));\n        return c;\n    }\n    static value_type id() { return\
+    \ {}; }\n};\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<int> A(N);\
+    \ cin >> A;\n    SSegmentTree<Merge> seg([&] {\n        vector<vector<int>> B(N);\n\
+    \        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n    rep (Q)\
+    \ {\n        int l, r, k; cin >> l >> r >> k;\n        int ok = 1e9, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n       \
+    \     int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>& v) ->\
+    \ int {\n                return upper_bound(all(v), mid) - v.begin();\n      \
+    \      });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n \
+    \       }\n        cout << ok << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
+  - data-struct/segment/SSegmentTree.hpp
+  - other/bitop.hpp
   - other/monoid.hpp
-  - data-struct/segment/SqrtDecomposition.hpp
-  - other/type_traits.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/range_kth_smallest.test.cpp
+  path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 00:21:05+09:00'
+  timestamp: '2022-08-18 00:57:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/range_kth_smallest.test.cpp
+documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/range_kth_smallest.test.cpp
-- /verify/test/yosupo/data_structure/range_kth_smallest.test.cpp.html
-title: test/yosupo/data_structure/range_kth_smallest.test.cpp
+- /verify/test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+- /verify/test/yosupo/data_structure/range_kth_smallest-seg.test.cpp.html
+title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
 ---

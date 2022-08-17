@@ -13,8 +13,8 @@ data:
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest.test.cpp
+    path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -211,7 +211,7 @@ data:
   timestamp: '2022-08-17 23:53:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/range_kth_smallest.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
 documentation_of: other/type_traits.hpp
 layout: document

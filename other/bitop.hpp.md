@@ -32,6 +32,10 @@ data:
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SSegmentTree.hpp
+    title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
+      \u6B8A\u306A\u30BB\u30B0\u6728)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -102,6 +106,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
@@ -321,6 +328,7 @@ data:
   - data-struct/segment/DynamicLazySegmentTree.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
   - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/SSegmentTree.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/SegmentTree.hpp
@@ -336,6 +344,7 @@ data:
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yosupo/new/jump_on_tree.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
