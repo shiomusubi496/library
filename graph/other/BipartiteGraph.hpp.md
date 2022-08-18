@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
+    path: test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
+    title: test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -235,7 +235,7 @@ data:
   timestamp: '2022-08-18 19:11:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
 documentation_of: graph/other/BipartiteGraph.hpp
 layout: document
 redirect_from:
