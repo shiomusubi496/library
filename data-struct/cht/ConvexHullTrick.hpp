@@ -6,22 +6,16 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t>
 class ConvexHullTrick {
 private:
     struct Line {
-    public:
         T a, b;
         int idx;
-        T get(T x) const { return a * x + b; }
-        Line() = default;
-        Line(T a, T b, int id) : a(a), b(b), idx(id), has_nxt(false) {}
-
-        friend class ConvexHullTrick;
-
-    private:
         bool is_query;
         mutable ll nxt_a, nxt_b;
         mutable bool has_nxt;
-        Line(T a, T b, int id, bool i)
-            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}
+        T get(T x) const { return a * x + b; }
         T get_nxt(T x) const { return nxt_a * x + nxt_b; }
+        Line() = default;
+        Line(T a, T b, int id, bool i = false)
+            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}
         friend bool operator<(const Line& lhs, const Line& rhs) {
             assert(!lhs.is_query || !rhs.is_query);
             if (lhs.is_query) {
@@ -50,8 +44,8 @@ private:
 public:
     ConvexHullTrick() = default;
     int add_line(T a, T b) {
-        if IF_CONSTEXPR (is_max) a = -a, b = -b;
-        auto itr = st.emplace(a, b, line_count).first;
+        auto itr =
+            st.emplace(is_max ? -a : a, is_max ? -b : b, line_count).first;
         if (!is_necessary(itr)) {
             st.erase(itr);
             return line_count++;
@@ -73,16 +67,17 @@ public:
         else itr->has_nxt = false;
         return line_count++;
     }
-    Line get_min_line(T x) const {
+    struct line {
+        T a, b;
+        int idx;
+    };
+    line get_min_line(T x) const {
         auto itr = st.lower_bound(Line{x, 0, -1, true});
         Line res{*itr};
-        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;
-        return res;
+        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
     T get_min(T x) const { return get_min_line(x).get(x); }
     bool empty() const { return st.empty(); }
-    const std::set<Line>& get_data() const& { return st; }
-    std::set<Line> get_data() && { return std::move(st); }
 };
 
 /**

@@ -6,22 +6,15 @@ template<class T = ll, bool is_max = false, class LargeT = __int128_t>
 class ConvexHullTrickAddMonotone {
 private:
     struct Line {
-    public:
         T a, b;
         int idx;
-        T get(T x) const { return a * x + b; }
-        Line() = default;
-        Line(T a, T b, int id)
-            : a(a), b(b), idx(id), is_query(false), has_nxt(false) {}
-
-        friend class ConvexHullTrickAddMonotone;
-
-    private:
         bool is_query;
         mutable ll nxt_a, nxt_b;
         mutable bool has_nxt;
+        T get(T x) const { return a * x + b; }
         T get_nxt(T x) const { return nxt_a * x + nxt_b; }
-        Line(T a, T b, int id, bool i)
+        Line() = default;
+        Line(T a, T b, int id, bool i = false)
             : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}
         friend bool operator<(const Line& lhs, const Line& rhs) {
             assert(!lhs.is_query || !rhs.is_query);
@@ -91,29 +84,30 @@ public:
         else itr->has_nxt = false;
         return line_count++;
     }
-    Line get_min_line(T x) const {
+    struct line {
+        T a, b;
+        int idx;
+    };
+    line get_min_line(T x) const {
         auto itr = lower_bound(all(que), Line{x, 0, -1, true});
         Line res{*itr};
-        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;
-        return res;
+        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
     T get_min(T x) const { return get_min_line(x).get(x); }
-    Line dec_get_min_line(T x) {
+    line dec_get_min_line(T x) {
         while (que.size() > 1 &&
                que.begin()->get(x) > next(que.begin())->get(x))
             que.pop_front();
         Line res{que.front()};
-        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;
-        return res;
+        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
     T dec_get_min(T x) { return dec_get_min_line(x).get(x); }
-    Line inc_get_min_line(T x) {
+    line inc_get_min_line(T x) {
         while (que.size() > 1 &&
                prev(que.end())->get(x) > prev(que.end(), 2)->get(x))
             que.pop_back();
         Line res{que.back()};
-        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;
-        return res;
+        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
     T inc_get_min(T x) { return inc_get_min_line(x).get(x); }
     bool empty() const { return que.empty(); }
