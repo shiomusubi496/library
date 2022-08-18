@@ -93,7 +93,10 @@ public:
         Line res{*itr};
         return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
-    T get_min(T x) const { return get_min_line(x).get(x); }
+    T get_min(T x) const {
+        const auto& l = get_min_line(x);
+        return l.a * x + l.b;
+    }
     line dec_get_min_line(T x) {
         while (que.size() > 1 &&
                que.begin()->get(x) > next(que.begin())->get(x))
@@ -101,7 +104,10 @@ public:
         Line res{que.front()};
         return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
-    T dec_get_min(T x) { return dec_get_min_line(x).get(x); }
+    T dec_get_min(T x) {
+        const auto& l = dec_get_min_line(x);
+        return l.a * x + l.b;
+    }
     line inc_get_min_line(T x) {
         while (que.size() > 1 &&
                prev(que.end())->get(x) > prev(que.end(), 2)->get(x))
@@ -109,7 +115,10 @@ public:
         Line res{que.back()};
         return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
-    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }
+    T inc_get_min(T x) {
+        const auto& l = inc_get_min_line(x);
+        return l.a * x + l.b;
+    }
     bool empty() const { return que.empty(); }
 };
 
