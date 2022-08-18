@@ -1,25 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/cht/ConvexHullTrick.hpp
-    title: ConvexHullTrick
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
-    links:
-    - https://judge.yosupo.jp/problem/line_add_get_min
-  bundledCode: "#line 1 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    _deprecated_at_docs: docs/data-struct/other/PartialPersistentArray.md
+    document_title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
+    links: []
+  bundledCode: "#line 2 \"data-struct/other/PartialPersistentArray.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
     \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
@@ -155,74 +150,54 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\n\ntemplate<class T = ll,\
-    \ bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick {\nprivate:\n\
-    \    struct Line {\n    public:\n        T a, b;\n        int idx;\n        T\
-    \ get(T x) const { return a * x + b; }\n        Line() = default;\n        Line(T\
-    \ a, T b, int id) : a(a), b(b), idx(id), has_nxt(false) {}\n\n        friend class\
-    \ ConvexHullTrick;\n\n    private:\n        bool is_query;\n        mutable ll\
-    \ nxt_a, nxt_b;\n        mutable bool has_nxt;\n        Line(T a, T b, int id,\
-    \ bool i)\n            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n\
-    \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        friend bool\
-    \ operator<(const Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query\
-    \ || !rhs.is_query);\n            if (lhs.is_query) {\n                if (!rhs.has_nxt)\
-    \ return true;\n                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n\
-    \            }\n            if (rhs.is_query) {\n                if (!lhs.has_nxt)\
-    \ return false;\n                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n\
-    \            }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
-    \        }\n    };\n    int line_count = 0;\n    std::set<Line> st;\n    bool\
-    \ is_necessary(const typename std::set<Line>::iterator& itr) {\n        if (itr\
-    \ != st.begin() && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n\
-    \        if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T\
-    \ a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n        auto itr\
-    \ = st.emplace(a, b, line_count).first;\n        if (!is_necessary(itr)) {\n \
-    \           st.erase(itr);\n            return line_count++;\n        }\n    \
-    \    while (itr != st.begin() && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n\
-    \        while (itr != prev(st.end()) && !is_necessary(next(itr)))\n         \
-    \   st.erase(next(itr));\n        if (itr != st.begin()) {\n            prev(itr)->has_nxt\
-    \ = true;\n            prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b\
-    \ = itr->b;\n        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt\
-    \ = true;\n            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    Line get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        if IF_CONSTEXPR (is_max) res.a\
-    \ = -res.a, res.b = -res.b;\n        return res;\n    }\n    T get_min(T x) const\
-    \ { return get_min_line(x).get(x); }\n    bool empty() const { return st.empty();\
-    \ }\n    const std::set<Line>& get_data() const& { return st; }\n    std::set<Line>\
-    \ get_data() && { return std::move(st); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
-    \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
-    \      CHT.add_line(a, b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n \
-    \       if (t == 0) {\n            ll a, b; cin >> a >> b;\n            CHT.add_line(a,\
-    \ b);\n        }\n        else {\n            ll p; cin >> p;\n            cout\
-    \ << CHT.get_min(p) << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/ConvexHullTrick.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
-    \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
-    \      CHT.add_line(a, b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n \
-    \       if (t == 0) {\n            ll a, b; cin >> a >> b;\n            CHT.add_line(a,\
-    \ b);\n        }\n        else {\n            ll p; cin >> p;\n            cout\
-    \ << CHT.get_min(p) << endl;\n        }\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/PartialPersistentArray.hpp\"\
+    \n\ntemplate<class T>\nclass PartialPersistentArray {\nprivate:\n    int n;\n\
+    \    std::vector<std::vector<int>> tim;\n    std::vector<std::vector<T>> val;\n\
+    \    int last_time;\npublic:\n    PartialPersistentArray(const std::vector<T>&\
+    \ a) { init(a); }\n    int now() const { return last_time; }\n    void init(const\
+    \ std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n      \
+    \  val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
+    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
+    \    void set(int k, const T& x) {\n        assert(0 <= k && k < n);\n       \
+    \ tim[k].push_back(last_time++);\n        val[k].push_back(x);\n    }\n    T get(int\
+    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
+    \ && t < now());\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
+    \ - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
+    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\n\
+    class PartialPersistentArray {\nprivate:\n    int n;\n    std::vector<std::vector<int>>\
+    \ tim;\n    std::vector<std::vector<T>> val;\n    int last_time;\npublic:\n  \
+    \  PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    int now()\
+    \ const { return last_time; }\n    void init(const std::vector<T>& a) {\n    \
+    \    n = a.size();\n        tim.resize(n);\n        val.resize(n);\n        for\
+    \ (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n            val[i].push_back(a[i]);\n\
+    \        }\n        last_time = 0;\n    }\n    void set(int k, const T& x) {\n\
+    \        assert(0 <= k && k < n);\n        tim[k].push_back(last_time++);\n  \
+    \      val[k].push_back(x);\n    }\n    T get(int k, int t) const {\n        assert(0\
+    \ <= k && k < n);\n        assert(-1 <= t && t < now());\n        int id = std::upper_bound(all(tim[k]),\
+    \ t) - tim[k].begin() - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief\
+    \ PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/cht/ConvexHullTrick.hpp
-  isVerificationFile: true
-  path: test/yosupo/data_structure/line_add_get_min.test.cpp
+  isVerificationFile: false
+  path: data-struct/other/PartialPersistentArray.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-19 00:08:04+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/line_add_get_min.test.cpp
+documentation_of: data-struct/other/PartialPersistentArray.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/line_add_get_min.test.cpp
-- /verify/test/yosupo/data_structure/line_add_get_min.test.cpp.html
-title: test/yosupo/data_structure/line_add_get_min.test.cpp
+- /library/data-struct/other/PartialPersistentArray.hpp
+- /library/data-struct/other/PartialPersistentArray.hpp.html
+title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
 ---
+## 概要
+
+部分永続配列。
+
+- `PartialPersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(N)$ 。
+- `void set(int k, T x)` : これが $i$ 回目(0-indexed)の `set` 呼び出しのとき、 $a_{i-1}[k]$ を $x$ に更新した配列を $a_i$ とする。 $\Theta(1)$ 。
+- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log Q)$ 。

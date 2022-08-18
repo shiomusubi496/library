@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':question:'
@@ -163,6 +163,9 @@ data:
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':x:'
+    path: test/atcoder/arc099_c-Bipartite.test.cpp
+    title: test/atcoder/arc099_c-Bipartite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - icon: ':x:'
@@ -509,6 +512,7 @@ data:
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
+  - test/atcoder/arc099_c-Bipartite.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document
 redirect_from:

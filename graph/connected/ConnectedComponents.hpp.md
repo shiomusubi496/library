@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/atcoder/arc099_c-Bipartite.test.cpp
+    title: test/atcoder/arc099_c-Bipartite.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/connected/ConnectedComponents.md
     document_title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
@@ -232,9 +235,10 @@ data:
   path: graph/connected/ConnectedComponents.hpp
   requiredBy: []
   timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
+  - test/atcoder/arc099_c-Bipartite.test.cpp
 documentation_of: graph/connected/ConnectedComponents.hpp
 layout: document
 redirect_from:

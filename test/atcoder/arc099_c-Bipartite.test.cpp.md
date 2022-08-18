@@ -2,21 +2,29 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':question:'
+    path: graph/connected/ConnectedComponents.hpp
+    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
+  - icon: ':x:'
+    path: graph/other/BipartiteGraph.hpp
+    title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/set_xor_min.test.cpp
-    title: test/yosupo/data_structure/set_xor_min.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/BinaryTrie.md
-    document_title: BinaryTrie
-    links: []
-  bundledCode: "#line 2 \"data-struct/other/BinaryTrie.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/arc099/tasks/arc099_c
+    links:
+    - https://atcoder.jp/contests/arc099/tasks/arc099_c
+  bundledCode: "#line 1 \"test/atcoder/arc099_c-Bipartite.test.cpp\"\n#define PROBLEM\
+    \ \"https://atcoder.jp/contests/arc099/tasks/arc099_c\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c)                                                   \
@@ -152,107 +160,124 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/BinaryTrie.hpp\"\
-    \n\ntemplate<unsigned int height = 64> class BinaryTrie {\nprivate:\n    struct\
-    \ node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node {\n    \
-    \    std::array<node_ptr, 2> ch;\n        ll sz;\n        node() : ch{nullptr,\
-    \ nullptr}, sz(0) {}\n    };\n    static const node_ptr& get(const node_ptr& nd,\
-    \ int i) {\n        if (nd->ch[i]) return nd->ch[i];\n        return nd->ch[i]\
-    \ = std::make_unique<node>();\n    }\n    node_ptr root;\n    ull xall;\n    static\
-    \ void insert(const node_ptr& nd, ull k, int h, ll x) {\n        nd->sz += x;\n\
-    \        if (h == 0) return;\n        insert(get(nd, (k >> (h - 1)) & 1), k, h\
-    \ - 1, x);\n    }\n    static const node_ptr& get_ptr(const node_ptr& nd, ull\
-    \ k, int h) {\n        if (h == 0) return nd;\n        return get_ptr(get(nd,\
-    \ (k >> (h - 1)) & 1), k, h - 1);\n    }\n    static ull kth_element(const node_ptr&\
-    \ nd, ll k, int h, ull x) {\n        if (h == 0) return 0;\n        int t = (x\
-    \ >> (h - 1)) & 1;\n        ll sz = nd->ch[t] ? nd->ch[t]->sz : 0;\n        if\
-    \ (sz > k) return kth_element(nd->ch[t], k, h - 1, x);\n        return kth_element(nd->ch[t\
-    \ ^ 1], k - sz, h - 1, x) | (1 << (h - 1));\n    }\n    static ll get_index(const\
-    \ node_ptr& nd, ull k, int h, ull x) {\n        if (h == 0) return 0;\n      \
-    \  int t = (k >> (h - 1)) & 1;\n        int u = (x >> (h - 1)) & 1;\n        ll\
-    \ sz = nd->ch[t] ? get_index(nd->ch[t], k, h - 1, x) : 0;\n        if (t ^ u)\
-    \ return sz + (nd->ch[u] ? nd->ch[u]->sz : 0);\n        return sz;\n    }\n  \
-    \  static void copy(const node_ptr& nd, const node_ptr& nd2) {\n        nd->sz\
-    \ = nd2->sz;\n        if (nd2->ch[0]) copy(get(nd, 0), nd2->ch[0]);\n        if\
-    \ (nd2->ch[1]) copy(get(nd, 1), nd2->ch[1]);\n    }\n\npublic:\n    BinaryTrie()\
-    \ : root(std::make_unique<node>()), xall(0) {}\n    BinaryTrie(const BinaryTrie&\
-    \ other)\n        : xall(other.xall), root(std::make_unique<node>()) {\n     \
-    \   copy(root, other.root);\n    }\n    BinaryTrie(BinaryTrie&& other) = default;\n\
-    \    BinaryTrie& operator=(const BinaryTrie& other) {\n        if (this == &other)\
-    \ return *this;\n        xall = other.xall;\n        copy(root, other.root);\n\
-    \        return *this;\n    }\n    BinaryTrie& operator=(BinaryTrie&& other) =\
-    \ default;\n    ll size() const { return root->sz; }\n    bool empty() const {\
-    \ return size() == 0; }\n    void insert(ull k) { insert(k, 1); }\n    void insert(ull\
-    \ k, ll x) { insert(root, k ^ xall, height, x); }\n    void erase(ull k) { insert(k,\
-    \ -1); }\n    void xor_all(ull x) { xall ^= x; }\n    ll count(ull k) const {\
-    \ return get_ptr(root, k ^ xall, height)->sz; }\n    ull kth_element(ll k) const\
-    \ {\n        assert(0 <= k && k < root->sz);\n        return kth_element(root,\
-    \ k, height, xall);\n    }\n    ll get_index(ull k) const {\n        return get_index(root,\
-    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/data-struct/other/BinaryTrie.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<unsigned\
-    \ int height = 64> class BinaryTrie {\nprivate:\n    struct node;\n    using node_ptr\
-    \ = std::unique_ptr<node>;\n    struct node {\n        std::array<node_ptr, 2>\
-    \ ch;\n        ll sz;\n        node() : ch{nullptr, nullptr}, sz(0) {}\n    };\n\
-    \    static const node_ptr& get(const node_ptr& nd, int i) {\n        if (nd->ch[i])\
-    \ return nd->ch[i];\n        return nd->ch[i] = std::make_unique<node>();\n  \
-    \  }\n    node_ptr root;\n    ull xall;\n    static void insert(const node_ptr&\
-    \ nd, ull k, int h, ll x) {\n        nd->sz += x;\n        if (h == 0) return;\n\
-    \        insert(get(nd, (k >> (h - 1)) & 1), k, h - 1, x);\n    }\n    static\
-    \ const node_ptr& get_ptr(const node_ptr& nd, ull k, int h) {\n        if (h ==\
-    \ 0) return nd;\n        return get_ptr(get(nd, (k >> (h - 1)) & 1), k, h - 1);\n\
-    \    }\n    static ull kth_element(const node_ptr& nd, ll k, int h, ull x) {\n\
-    \        if (h == 0) return 0;\n        int t = (x >> (h - 1)) & 1;\n        ll\
-    \ sz = nd->ch[t] ? nd->ch[t]->sz : 0;\n        if (sz > k) return kth_element(nd->ch[t],\
-    \ k, h - 1, x);\n        return kth_element(nd->ch[t ^ 1], k - sz, h - 1, x) |\
-    \ (1 << (h - 1));\n    }\n    static ll get_index(const node_ptr& nd, ull k, int\
-    \ h, ull x) {\n        if (h == 0) return 0;\n        int t = (k >> (h - 1)) &\
-    \ 1;\n        int u = (x >> (h - 1)) & 1;\n        ll sz = nd->ch[t] ? get_index(nd->ch[t],\
-    \ k, h - 1, x) : 0;\n        if (t ^ u) return sz + (nd->ch[u] ? nd->ch[u]->sz\
-    \ : 0);\n        return sz;\n    }\n    static void copy(const node_ptr& nd, const\
-    \ node_ptr& nd2) {\n        nd->sz = nd2->sz;\n        if (nd2->ch[0]) copy(get(nd,\
-    \ 0), nd2->ch[0]);\n        if (nd2->ch[1]) copy(get(nd, 1), nd2->ch[1]);\n  \
-    \  }\n\npublic:\n    BinaryTrie() : root(std::make_unique<node>()), xall(0) {}\n\
-    \    BinaryTrie(const BinaryTrie& other)\n        : xall(other.xall), root(std::make_unique<node>())\
-    \ {\n        copy(root, other.root);\n    }\n    BinaryTrie(BinaryTrie&& other)\
-    \ = default;\n    BinaryTrie& operator=(const BinaryTrie& other) {\n        if\
-    \ (this == &other) return *this;\n        xall = other.xall;\n        copy(root,\
-    \ other.root);\n        return *this;\n    }\n    BinaryTrie& operator=(BinaryTrie&&\
-    \ other) = default;\n    ll size() const { return root->sz; }\n    bool empty()\
-    \ const { return size() == 0; }\n    void insert(ull k) { insert(k, 1); }\n  \
-    \  void insert(ull k, ll x) { insert(root, k ^ xall, height, x); }\n    void erase(ull\
-    \ k) { insert(k, -1); }\n    void xor_all(ull x) { xall ^= x; }\n    ll count(ull\
-    \ k) const { return get_ptr(root, k ^ xall, height)->sz; }\n    ull kth_element(ll\
-    \ k) const {\n        assert(0 <= k && k < root->sz);\n        return kth_element(root,\
-    \ k, height, xall);\n    }\n    ll get_index(ull k) const {\n        return get_index(root,\
-    \ k ^ xall, height, xall);\n    }\n};\n\n/**\n * @brief BinaryTrie\n * @docs docs/data-struct/other/BinaryTrie.md\n\
-    \ */"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
+    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
+    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
+    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
+    \n\ntemplate<class T> class ConnectedComponents {\nprivate:\n    int n, sz;\n\
+    \    const Graph<T>& G;\n    std::vector<int> cmp;\n    void dfs(int v) {\n  \
+    \      each_const (e : G[v]) {\n            if (cmp[e.to] != -1) continue;\n \
+    \           cmp[e.to] = cmp[v];\n            dfs(e.to);\n        }\n    }\n  \
+    \  void init() {\n        n = G.size();\n        cmp.assign(n, -1);\n        sz\
+    \ = 0;\n        rep (i, n) {\n            if (cmp[i] != -1) continue;\n      \
+    \      cmp[i] = sz++;\n            dfs(i);\n        }\n    }\n\npublic:\n    ConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n\n/**\n *\
+    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n\
+    \ */\n#line 2 \"graph/other/BipartiteGraph.hpp\"\n\n#line 5 \"graph/other/BipartiteGraph.hpp\"\
+    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
+    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
+    \ v) {\n        used[v] = true;\n        each_const (e : G[v]) {\n           \
+    \ if (!used[e.to]) {\n                used[e.to] = true;\n                label[e.to]\
+    \ = !label[v];\n                dfs(e.to);\n            }\n            else if\
+    \ (label[e.to] == label[v]) {\n                is_bip = false;\n            }\n\
+    \        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n\
+    \        n = G.size();\n        is_bip = true;\n        label.assign(n, false);\n\
+    \        used.assign(n, false);\n        rep (i, n) {\n            if (!used[i])\
+    \ dfs(i);\n        }\n    }\n    bool is_bipartite() const { return is_bip; }\n\
+    \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
+    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
+    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
+    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n#line 6\
+    \ \"test/atcoder/arc099_c-Bipartite.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, M; cin >> N >> M;\n    vector<vector<bool>> A(N, vector<bool>(N,\
+    \ true));\n    rep (M) {\n        int a, b; cin >> a >> b;\n        A[a - 1][b\
+    \ - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph G(N);\n    rep (i,\
+    \ N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n    }\n    ConnectedComponents<unweighted_edge>\
+    \ CC(G);\n    auto g = CC.groups();\n    vector<int> B(N);\n    each_const (v\
+    \ : g) {\n        rep (i, v.size()) B[v[i]] = i;\n    }\n    vector<UnweightedGraph>\
+    \ C(CC.size());\n    rep (i, CC.size()) C[i] = UnweightedGraph(g[i].size());\n\
+    \    each_const (e : UndirectedListToEdges(G)) {\n        C[CC[e.from]].add_edge(B[e.from],\
+    \ B[e.to]);\n    }\n    bitset<701> bs(1);\n    each_const (g : C) {\n       \
+    \ int n = g.size();\n        BipartiteGraph<unweighted_edge> BG(g);\n        if\
+    \ (!BG.is_bipartite()) {\n            puts(\"-1\");\n            return 0;\n \
+    \       }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i)) ++a;\n\
+    \        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n    rep (i,\
+    \ N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n    cout << N\
+    \ * (N - 1) / 2 - ans << endl;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc099/tasks/arc099_c\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
+    ../../graph/connected/ConnectedComponents.hpp\"\n#include \"../../graph/other/BipartiteGraph.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    vector<vector<bool>>\
+    \ A(N, vector<bool>(N, true));\n    rep (M) {\n        int a, b; cin >> a >> b;\n\
+    \        A[a - 1][b - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph\
+    \ G(N);\n    rep (i, N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n\
+    \    }\n    ConnectedComponents<unweighted_edge> CC(G);\n    auto g = CC.groups();\n\
+    \    vector<int> B(N);\n    each_const (v : g) {\n        rep (i, v.size()) B[v[i]]\
+    \ = i;\n    }\n    vector<UnweightedGraph> C(CC.size());\n    rep (i, CC.size())\
+    \ C[i] = UnweightedGraph(g[i].size());\n    each_const (e : UndirectedListToEdges(G))\
+    \ {\n        C[CC[e.from]].add_edge(B[e.from], B[e.to]);\n    }\n    bitset<701>\
+    \ bs(1);\n    each_const (g : C) {\n        int n = g.size();\n        BipartiteGraph<unweighted_edge>\
+    \ BG(g);\n        if (!BG.is_bipartite()) {\n            puts(\"-1\");\n     \
+    \       return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
+    \ ++a;\n        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n \
+    \   rep (i, N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n   \
+    \ cout << N * (N - 1) / 2 - ans << endl;\n}\n"
   dependsOn:
   - other/template.hpp
-  isVerificationFile: false
-  path: data-struct/other/BinaryTrie.hpp
+  - graph/Graph.hpp
+  - graph/connected/ConnectedComponents.hpp
+  - graph/other/BipartiteGraph.hpp
+  isVerificationFile: true
+  path: test/atcoder/arc099_c-Bipartite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/set_xor_min.test.cpp
-documentation_of: data-struct/other/BinaryTrie.hpp
+  timestamp: '2022-08-19 00:08:04+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/atcoder/arc099_c-Bipartite.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/other/BinaryTrie.hpp
-- /library/data-struct/other/BinaryTrie.hpp.html
-title: BinaryTrie
+- /verify/test/atcoder/arc099_c-Bipartite.test.cpp
+- /verify/test/atcoder/arc099_c-Bipartite.test.cpp.html
+title: test/atcoder/arc099_c-Bipartite.test.cpp
 ---
-## 概要
-
-0/1 の trie 木で整数の多重集合 $s$ を管理する。以下 bit 数を $B$ とする。
-
-- `BinaryTrie()` : $s := \emptyset$ で初期化する。 $\Theta(1)$ 。
-- `int size()` :  $\lvert s \rvert$ を返す。 $\Theta(1)$ 。
-- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。
-- `void insert(ull x)` : `x` を追加する。 $\Theta(B)$ 。
-- `void erase(ull x)` : `x` を一つ削除する。 $\Theta(B)$ 。
-- `int count(ull x)` : `x` の個数を返す。 $\Theta(B)$ 。
-- `void xor_all(ull x)` : $s := \{i \oplus x \mid i \in s\}$ とする。 $\Theta(1)$ 。
-- `void kth_element(ll k)` : `k` 番目に小さい値を返す。 $\Theta(B)$ 。
-- `void get_index(ull x)` : `x` 未満の値の個数を返す。 $\Theta(B)$ 。
