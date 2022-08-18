@@ -2,12 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
+  - icon: ':heavy_check_mark:'
+    path: data-struct/cht/LiChaoTree.hpp
+    title: LiChaoTree
   - icon: ':heavy_check_mark:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
@@ -20,7 +23,7 @@ data:
   - icon: ':warning:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -46,7 +49,7 @@ data:
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -66,7 +69,7 @@ data:
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -93,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -138,7 +141,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -148,7 +151,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':heavy_check_mark:'
@@ -162,7 +165,7 @@ data:
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -171,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
@@ -229,10 +232,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/bitop.hpp
     title: other/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -257,7 +260,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
@@ -429,7 +432,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
   - icon: ':heavy_check_mark:'
@@ -447,7 +450,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/line_add_get_min.test.cpp
     title: test/yosupo/data_structure/line_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -477,6 +480,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/segment_add_get_min.test.cpp
+    title: test/yosupo/data_structure/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/set_xor_min.test.cpp
     title: test/yosupo/data_structure/set_xor_min.test.cpp
@@ -576,28 +582,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
@@ -915,6 +921,7 @@ data:
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  - data-struct/cht/LiChaoTree.hpp
   - data-struct/cht/ConvexHullTrick.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
@@ -991,6 +998,7 @@ data:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/set_xor_min.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/segment_add_get_min.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp

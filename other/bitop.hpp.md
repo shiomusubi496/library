@@ -6,6 +6,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/cht/LiChaoTree.hpp
+    title: LiChaoTree
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':heavy_check_mark:'
@@ -15,7 +18,7 @@ data:
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -35,7 +38,7 @@ data:
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -116,6 +119,9 @@ data:
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/segment_add_get_min.test.cpp
+    title: test/yosupo/data_structure/segment_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -148,18 +154,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/bitop.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -334,6 +340,7 @@ data:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/EulerTour.hpp
+  - data-struct/cht/LiChaoTree.hpp
   - data-struct/segment/DynamicLazySegmentTree.hpp
   - data-struct/segment/SegmentTree2D.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
@@ -347,7 +354,7 @@ data:
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
@@ -357,6 +364,7 @@ data:
   - test/yosupo/data_structure/rectangle_sum.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/segment_add_get_min.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

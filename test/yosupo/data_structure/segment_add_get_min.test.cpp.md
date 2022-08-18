@@ -1,25 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
-    path: data-struct/cht/ConvexHullTrick.hpp
-    title: ConvexHullTrick
+  - icon: ':heavy_check_mark:'
+    path: data-struct/cht/LiChaoTree.hpp
+    title: LiChaoTree
+  - icon: ':heavy_check_mark:'
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
+    PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
     links:
-    - https://judge.yosupo.jp/problem/line_add_get_min
-  bundledCode: "#line 1 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    - https://judge.yosupo.jp/problem/segment_add_get_min
+  bundledCode: "#line 1 \"test/yosupo/data_structure/segment_add_get_min.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
     \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
@@ -155,72 +158,99 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\n\ntemplate<class T = ll,\
-    \ bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick {\nprivate:\n\
-    \    struct Line {\n        T a, b;\n        int idx;\n        bool is_query;\n\
-    \        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T\
-    \ x) const { return a * x + b; }\n        T get_nxt(T x) const { return nxt_a\
-    \ * x + nxt_b; }\n        Line() = default;\n        Line(T a, T b, int id, bool\
-    \ i = false)\n            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n\
-    \        friend bool operator<(const Line& lhs, const Line& rhs) {\n         \
-    \   assert(!lhs.is_query || !rhs.is_query);\n            if (lhs.is_query) {\n\
-    \                if (!rhs.has_nxt) return true;\n                return rhs.get(lhs.a)\
-    \ < rhs.get_nxt(lhs.a);\n            }\n            if (rhs.is_query) {\n    \
-    \            if (!lhs.has_nxt) return false;\n                return lhs.get(rhs.a)\
-    \ > lhs.get_nxt(rhs.a);\n            }\n            return lhs.a == rhs.a ? lhs.b\
-    \ < rhs.b : lhs.a < rhs.a;\n        }\n    };\n    int line_count = 0;\n    std::set<Line>\
-    \ st;\n    bool is_necessary(const typename std::set<Line>::iterator& itr) {\n\
-    \        if (itr != st.begin() && itr->a == prev(itr)->a)\n            return\
-    \ itr->b < prev(itr)->b;\n        if (itr != prev(st.end()) && itr->a == next(itr)->a)\n\
-    \            return itr->b < next(itr)->b;\n        if (itr == st.begin() || itr\
-    \ == prev(st.end())) return true;\n        return (LargeT)(itr->b - prev(itr)->b)\
-    \ * (next(itr)->a - itr->a) <\n               (LargeT)(itr->b - next(itr)->b)\
-    \ * (prev(itr)->a - itr->a);\n    }\n\npublic:\n    ConvexHullTrick() = default;\n\
-    \    int add_line(T a, T b) {\n        auto itr =\n            st.emplace(is_max\
-    \ ? -a : a, is_max ? -b : b, line_count).first;\n        if (!is_necessary(itr))\
-    \ {\n            st.erase(itr);\n            return line_count++;\n        }\n\
-    \        while (itr != st.begin() && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n\
-    \        while (itr != prev(st.end()) && !is_necessary(next(itr)))\n         \
-    \   st.erase(next(itr));\n        if (itr != st.begin()) {\n            prev(itr)->has_nxt\
-    \ = true;\n            prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b\
-    \ = itr->b;\n        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt\
-    \ = true;\n            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
-    \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const { return\
-    \ get_min_line(x).get(x); }\n    bool empty() const { return st.empty(); }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
-    \ */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
-    \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
-    \      CHT.add_line(a, b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n \
-    \       if (t == 0) {\n            ll a, b; cin >> a >> b;\n            CHT.add_line(a,\
-    \ b);\n        }\n        else {\n            ll p; cin >> p;\n            cout\
-    \ << CHT.get_min(p) << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/ConvexHullTrick.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
-    \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
-    \      CHT.add_line(a, b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n \
-    \       if (t == 0) {\n            ll a, b; cin >> a >> b;\n            CHT.add_line(a,\
-    \ b);\n        }\n        else {\n            ll p; cin >> p;\n            cout\
-    \ << CHT.get_min(p) << endl;\n        }\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/LiChaoTree.hpp\"\
+    \n\n#line 2 \"other/bitop.hpp\"\n\n#line 4 \"other/bitop.hpp\"\n\nnamespace bitop\
+    \ {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\
+    \ninline ull next_combination(int n, ull x) {\n    if (n == 0) return 1;\n   \
+    \ ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n\
+    #define rep_comb(i, n, k)                                                    \
+    \  \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));                \
+    \         \\\n         i = bitop::next_combination((n), i))\n\ninline CONSTEXPR\
+    \ int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
+    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
+    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n} // namespace bitop\n#line 5 \"data-struct/cht/LiChaoTree.hpp\"\
+    \n\ntemplate<class T = ll, bool is_max = false> class LiChaoTree {\nprivate:\n\
+    \    struct Line {\n        T a, b;\n        int idx;\n        T get(T x) const\
+    \ { return a * x + b; }\n        Line() = default;\n        Line(T a, T b, int\
+    \ id) : a(a), b(b), idx(id) {}\n    };\n    int line_count = 0;\n    int ori,\
+    \ n;\n    std::vector<T> xs;\n    std::vector<Line> lns;\n    void add_line(int\
+    \ k, int a, int b, const Line& line) {\n        if (a + 1 == b) {\n          \
+    \  if (line.get(xs[a]) < lns[k].get(xs[a])) lns[k] = line;\n            return;\n\
+    \        }\n        int m = (a + b) >> 1;\n        T x1 = lns[k].get(xs[a]), x2\
+    \ = line.get(xs[a]);\n        T y1 = lns[k].get(xs[b - 1]), y2 = line.get(xs[b\
+    \ - 1]);\n        if (x1 <= x2 && y1 <= y2) return;\n        if (x2 <= x1 && y2\
+    \ <= y1) {\n            lns[k] = line;\n            return;\n        }\n     \
+    \   if (lns[k].get(xs[m]) <= line.get(xs[m])) {\n            if (y1 < y2) add_line(k\
+    \ << 1, a, m, line);\n            else add_line(k << 1 | 1, m, b, line);\n   \
+    \     }\n        else {\n            if (y1 < y2) add_line(k << 1 | 1, m, b, lns[k]);\n\
+    \            else add_line(k << 1, a, m, lns[k]);\n            lns[k] = line;\n\
+    \        }\n    }\n    void add_segment(int k, int a, int b, int l, int r, const\
+    \ Line& line) {\n        if (l <= a && b <= r) {\n            add_line(k, a, b,\
+    \ line);\n            return;\n        }\n        if (r <= a || b <= l) return;\n\
+    \        int m = (a + b) >> 1;\n        add_segment(k << 1, a, m, l, r, line);\n\
+    \        add_segment(k << 1 | 1, m, b, l, r, line);\n    }\n\npublic:\n    LiChaoTree()\
+    \ : LiChaoTree({0}) {}\n    LiChaoTree(const std::vector<T>& xs_) { init(xs_);\
+    \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
+    \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
+    \ 1);\n        lns.assign(n << 1,\n                   Line{0, is_max ? infinity<T>::min\
+    \ : infinity<T>::max, -1});\n    }\n    int add_segment(int l, int r, T x, T y)\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1, 0,\
+    \ n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
+    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
+    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
+    \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
+    \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
+    \  }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
+    \ k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n    \
+    \    Line res = lns[x];\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            if (chmin(mn, is_max ? -y : y)) res = lns[x];\n        }\n      \
+    \  return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n \
+    \   }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/segment_add_get_min.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<array<ll,\
+    \ 4>> A(N); cin >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
+    \ d, e] : B) {\n        cin >> a;\n        if (a == 0) cin >> b >> c >> d >> e;\n\
+    \        else cin >> b;\n    }\n    presser<ll> ps;\n    each_const ([a, b, c,\
+    \ d, e] : B) {\n        if (a == 1) ps.push_back(b);\n    }\n    ps.build();\n\
+    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct(ps.data());\n    each_const\
+    \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
+    \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
+    \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
+    \            if (res == infinity<ll>::max) puts(\"INFINITY\");\n            else\
+    \ cout << res << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/LiChaoTree.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    vector<array<ll,\
+    \ 4>> A(N); cin >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
+    \ d, e] : B) {\n        cin >> a;\n        if (a == 0) cin >> b >> c >> d >> e;\n\
+    \        else cin >> b;\n    }\n    presser<ll> ps;\n    each_const ([a, b, c,\
+    \ d, e] : B) {\n        if (a == 1) ps.push_back(b);\n    }\n    ps.build();\n\
+    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct(ps.data());\n    each_const\
+    \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
+    \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
+    \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
+    \            if (res == infinity<ll>::max) puts(\"INFINITY\");\n            else\
+    \ cout << res << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/cht/ConvexHullTrick.hpp
+  - data-struct/cht/LiChaoTree.hpp
+  - other/bitop.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/line_add_get_min.test.cpp
+  path: test/yosupo/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
   timestamp: '2022-08-19 03:53:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/line_add_get_min.test.cpp
+documentation_of: test/yosupo/data_structure/segment_add_get_min.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/line_add_get_min.test.cpp
-- /verify/test/yosupo/data_structure/line_add_get_min.test.cpp.html
-title: test/yosupo/data_structure/line_add_get_min.test.cpp
+- /verify/test/yosupo/data_structure/segment_add_get_min.test.cpp
+- /verify/test/yosupo/data_structure/segment_add_get_min.test.cpp.html
+title: test/yosupo/data_structure/segment_add_get_min.test.cpp
 ---

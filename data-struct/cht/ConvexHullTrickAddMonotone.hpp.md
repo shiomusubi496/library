@@ -6,12 +6,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
     document_title: ConvexHullTrickAddMonotone
@@ -155,71 +155,14 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
     \n\ntemplate<class T = ll, bool is_max = false, class LargeT = __int128_t>\nclass\
-    \ ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n    public:\n   \
-    \     T a, b;\n        int idx;\n        T get(T x) const { return a * x + b;\
-    \ }\n        Line() = default;\n        Line(T a, T b, int id)\n            :\
-    \ a(a), b(b), idx(id), is_query(false), has_nxt(false) {}\n\n        friend class\
-    \ ConvexHullTrickAddMonotone;\n\n    private:\n        bool is_query;\n      \
-    \  mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get_nxt(T\
-    \ x) const { return nxt_a * x + nxt_b; }\n        Line(T a, T b, int id, bool\
-    \ i)\n            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n    \
-    \    friend bool operator<(const Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query\
-    \ || !rhs.is_query);\n            if (lhs.is_query) {\n                if (!rhs.has_nxt)\
-    \ return true;\n                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n\
-    \            }\n            if (rhs.is_query) {\n                if (!lhs.has_nxt)\
-    \ return false;\n                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n\
-    \            }\n            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n\
-    \        }\n    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool\
-    \ is_necessary(const typename std::deque<Line>::iterator& itr) {\n        if (itr\
-    \ != que.begin() && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n\
-    \        if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    Line get_min_line(T x) const {\n        auto itr = lower_bound(all(que),\
-    \ Line{x, 0, -1, true});\n        Line res{*itr};\n        if IF_CONSTEXPR (is_max)\
-    \ res.a = -res.a, res.b = -res.b;\n        return res;\n    }\n    T get_min(T\
-    \ x) const { return get_min_line(x).get(x); }\n    Line dec_get_min_line(T x)\
-    \ {\n        while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
-    \            que.pop_front();\n        Line res{que.front()};\n        if IF_CONSTEXPR\
-    \ (is_max) res.a = -res.a, res.b = -res.b;\n        return res;\n    }\n    T\
-    \ dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    Line inc_get_min_line(T\
-    \ x) {\n        while (que.size() > 1 &&\n               prev(que.end())->get(x)\
-    \ > prev(que.end(), 2)->get(x))\n            que.pop_back();\n        Line res{que.back()};\n\
-    \        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;\n        return\
-    \ res;\n    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n\
-    \    bool empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
-    \ {\nprivate:\n    struct Line {\n    public:\n        T a, b;\n        int idx;\n\
-    \        T get(T x) const { return a * x + b; }\n        Line() = default;\n \
-    \       Line(T a, T b, int id)\n            : a(a), b(b), idx(id), is_query(false),\
-    \ has_nxt(false) {}\n\n        friend class ConvexHullTrickAddMonotone;\n\n  \
-    \  private:\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
-    \  mutable bool has_nxt;\n        T get_nxt(T x) const { return nxt_a * x + nxt_b;\
-    \ }\n        Line(T a, T b, int id, bool i)\n            : a(a), b(b), idx(id),\
-    \ is_query(i), has_nxt(false) {}\n        friend bool operator<(const Line& lhs,\
-    \ const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n  \
-    \          if (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n\
+    \ ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a, b;\n\
+    \        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
+    \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
+    \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() =\
+    \ default;\n        Line(T a, T b, int id, bool i = false)\n            : a(a),\
+    \ b(b), idx(id), is_query(i), has_nxt(false) {}\n        friend bool operator<(const\
+    \ Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n\
+    \            if (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n\
     \                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n\
     \            if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n\
     \                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n\
@@ -249,27 +192,82 @@ data:
     \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
     \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
     \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    Line get_min_line(T x) const {\n        auto itr = lower_bound(all(que),\
-    \ Line{x, 0, -1, true});\n        Line res{*itr};\n        if IF_CONSTEXPR (is_max)\
-    \ res.a = -res.a, res.b = -res.b;\n        return res;\n    }\n    T get_min(T\
-    \ x) const { return get_min_line(x).get(x); }\n    Line dec_get_min_line(T x)\
-    \ {\n        while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
-    \            que.pop_front();\n        Line res{que.front()};\n        if IF_CONSTEXPR\
-    \ (is_max) res.a = -res.a, res.b = -res.b;\n        return res;\n    }\n    T\
-    \ dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    Line inc_get_min_line(T\
+    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
+    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
+    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
+    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
+    \ { return get_min_line(x).get(x); }\n    line dec_get_min_line(T x) {\n     \
+    \   while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
+    \            que.pop_front();\n        Line res{que.front()};\n        return\
+    \ line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n  \
+    \  T dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    line inc_get_min_line(T\
     \ x) {\n        while (que.size() > 1 &&\n               prev(que.end())->get(x)\
     \ > prev(que.end(), 2)->get(x))\n            que.pop_back();\n        Line res{que.back()};\n\
-    \        if IF_CONSTEXPR (is_max) res.a = -res.a, res.b = -res.b;\n        return\
-    \ res;\n    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n\
-    \    bool empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
+    \        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n\
+    \    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n    bool\
+    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
+    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
+    \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
+    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
+    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
+    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
+    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
+    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
+    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
+    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
+    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
+    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
+    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
+    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
+    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
+    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
+    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
+    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
+    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
+    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
+    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
+    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
+    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
+    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
+    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
+    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
+    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
+    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
+    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
+    \         que.erase(itr);\n            return line_count++;\n        }\n     \
+    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
+    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
+    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
+    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
+    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
+    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
+    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
+    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
+    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
+    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
+    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
+    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
+    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
+    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
+    \ { return get_min_line(x).get(x); }\n    line dec_get_min_line(T x) {\n     \
+    \   while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
+    \            que.pop_front();\n        Line res{que.front()};\n        return\
+    \ line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n  \
+    \  T dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    line inc_get_min_line(T\
+    \ x) {\n        while (que.size() > 1 &&\n               prev(que.end())->get(x)\
+    \ > prev(que.end(), 2)->get(x))\n            que.pop_back();\n        Line res{que.back()};\n\
+    \        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n\
+    \    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n    bool\
+    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
     \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-19 03:53:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp

@@ -2,31 +2,25 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFind.hpp
-    title: UnionFind
-  - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
+    path: other/bitop.hpp
+    title: other/bitop.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+    path: test/yosupo/data_structure/segment_add_get_min.test.cpp
+    title: test/yosupo/data_structure/segment_add_get_min.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/mst/Prim.md
-    document_title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+    _deprecated_at_docs: docs/data-struct/cht/LiChaoTree.md
+    document_title: LiChaoTree
     links: []
-  bundledCode: "#line 2 \"graph/mst/Prim.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
-    \n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+  bundledCode: "#line 2 \"data-struct/cht/LiChaoTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c)                                                   \
     \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
@@ -161,118 +155,138 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
-    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n\n\
-    public:\n    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par_vec(n,\
-    \ -1) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n        return\
-    \ par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);\n    }\n    std::pair<int,\
-    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
-    \     if (x == y) return {x, -1};\n        if (par_vec[x] > par_vec[y]) std::swap(x,\
-    \ y);\n        par_vec[x] += par_vec[y];\n        par_vec[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
-    \    int size(int x) { return -par_vec[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 6 \"graph/mst/Prim.hpp\"\n\ntemplate<class T> T Prim(const Graph<T>&\
-    \ G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n \
-    \   seen[0] = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
-    \    T res = 0;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
-    \        que.pop();\n        if (seen[cre.to]) continue;\n        res += cre.cost;\n\
-    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
-    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
-    \    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(const Graph<T>& G)\
-    \ {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n    seen[0]\
-    \ = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
-    \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
-    \        que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
-    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
-    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs\
-    \ docs/graph/mst/Prim.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n#include \"../../data-struct/unionfind/UnionFind.hpp\"\n\ntemplate<class T>\
-    \ T Prim(const Graph<T>& G) {\n    const int N = G.size();\n    std::vector<bool>\
-    \ seen(N, false);\n    seen[0] = true;\n    prique<edge<T>> que;\n    each_const\
-    \ (e : G[0]) que.emplace(e);\n    T res = 0;\n    while (!que.empty()) {\n   \
-    \     const edge<T> cre = que.top();\n        que.pop();\n        if (seen[cre.to])\
-    \ continue;\n        res += cre.cost;\n        seen[cre.to] = true;\n        each_const\
-    \ (e : G[cre.to]) {\n            if (seen[e.to]) continue;\n            que.emplace(e);\n\
-    \        }\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n\
-    \    seen[0] = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
-    \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
-    \        que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
-    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
-    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs\
-    \ docs/graph/mst/Prim.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/bitop.hpp\"\n\n#line\
+    \ 4 \"other/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >>\
+    \ (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
+    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
+    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
+    \                                                \\\n    for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
+    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
+    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
+    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
+    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
+    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n} // namespace bitop\n#line 5 \"data-struct/cht/LiChaoTree.hpp\"\
+    \n\ntemplate<class T = ll, bool is_max = false> class LiChaoTree {\nprivate:\n\
+    \    struct Line {\n        T a, b;\n        int idx;\n        T get(T x) const\
+    \ { return a * x + b; }\n        Line() = default;\n        Line(T a, T b, int\
+    \ id) : a(a), b(b), idx(id) {}\n    };\n    int line_count = 0;\n    int ori,\
+    \ n;\n    std::vector<T> xs;\n    std::vector<Line> lns;\n    void add_line(int\
+    \ k, int a, int b, const Line& line) {\n        if (a + 1 == b) {\n          \
+    \  if (line.get(xs[a]) < lns[k].get(xs[a])) lns[k] = line;\n            return;\n\
+    \        }\n        int m = (a + b) >> 1;\n        T x1 = lns[k].get(xs[a]), x2\
+    \ = line.get(xs[a]);\n        T y1 = lns[k].get(xs[b - 1]), y2 = line.get(xs[b\
+    \ - 1]);\n        if (x1 <= x2 && y1 <= y2) return;\n        if (x2 <= x1 && y2\
+    \ <= y1) {\n            lns[k] = line;\n            return;\n        }\n     \
+    \   if (lns[k].get(xs[m]) <= line.get(xs[m])) {\n            if (y1 < y2) add_line(k\
+    \ << 1, a, m, line);\n            else add_line(k << 1 | 1, m, b, line);\n   \
+    \     }\n        else {\n            if (y1 < y2) add_line(k << 1 | 1, m, b, lns[k]);\n\
+    \            else add_line(k << 1, a, m, lns[k]);\n            lns[k] = line;\n\
+    \        }\n    }\n    void add_segment(int k, int a, int b, int l, int r, const\
+    \ Line& line) {\n        if (l <= a && b <= r) {\n            add_line(k, a, b,\
+    \ line);\n            return;\n        }\n        if (r <= a || b <= l) return;\n\
+    \        int m = (a + b) >> 1;\n        add_segment(k << 1, a, m, l, r, line);\n\
+    \        add_segment(k << 1 | 1, m, b, l, r, line);\n    }\n\npublic:\n    LiChaoTree()\
+    \ : LiChaoTree({0}) {}\n    LiChaoTree(const std::vector<T>& xs_) { init(xs_);\
+    \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
+    \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
+    \ 1);\n        lns.assign(n << 1,\n                   Line{0, is_max ? infinity<T>::min\
+    \ : infinity<T>::max, -1});\n    }\n    int add_segment(int l, int r, T x, T y)\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1, 0,\
+    \ n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
+    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
+    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
+    \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
+    \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
+    \  }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
+    \ k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n    \
+    \    Line res = lns[x];\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            if (chmin(mn, is_max ? -y : y)) res = lns[x];\n        }\n      \
+    \  return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n \
+    \   }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/bitop.hpp\"\
+    \n\ntemplate<class T = ll, bool is_max = false> class LiChaoTree {\nprivate:\n\
+    \    struct Line {\n        T a, b;\n        int idx;\n        T get(T x) const\
+    \ { return a * x + b; }\n        Line() = default;\n        Line(T a, T b, int\
+    \ id) : a(a), b(b), idx(id) {}\n    };\n    int line_count = 0;\n    int ori,\
+    \ n;\n    std::vector<T> xs;\n    std::vector<Line> lns;\n    void add_line(int\
+    \ k, int a, int b, const Line& line) {\n        if (a + 1 == b) {\n          \
+    \  if (line.get(xs[a]) < lns[k].get(xs[a])) lns[k] = line;\n            return;\n\
+    \        }\n        int m = (a + b) >> 1;\n        T x1 = lns[k].get(xs[a]), x2\
+    \ = line.get(xs[a]);\n        T y1 = lns[k].get(xs[b - 1]), y2 = line.get(xs[b\
+    \ - 1]);\n        if (x1 <= x2 && y1 <= y2) return;\n        if (x2 <= x1 && y2\
+    \ <= y1) {\n            lns[k] = line;\n            return;\n        }\n     \
+    \   if (lns[k].get(xs[m]) <= line.get(xs[m])) {\n            if (y1 < y2) add_line(k\
+    \ << 1, a, m, line);\n            else add_line(k << 1 | 1, m, b, line);\n   \
+    \     }\n        else {\n            if (y1 < y2) add_line(k << 1 | 1, m, b, lns[k]);\n\
+    \            else add_line(k << 1, a, m, lns[k]);\n            lns[k] = line;\n\
+    \        }\n    }\n    void add_segment(int k, int a, int b, int l, int r, const\
+    \ Line& line) {\n        if (l <= a && b <= r) {\n            add_line(k, a, b,\
+    \ line);\n            return;\n        }\n        if (r <= a || b <= l) return;\n\
+    \        int m = (a + b) >> 1;\n        add_segment(k << 1, a, m, l, r, line);\n\
+    \        add_segment(k << 1 | 1, m, b, l, r, line);\n    }\n\npublic:\n    LiChaoTree()\
+    \ : LiChaoTree({0}) {}\n    LiChaoTree(const std::vector<T>& xs_) { init(xs_);\
+    \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
+    \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
+    \ 1);\n        lns.assign(n << 1,\n                   Line{0, is_max ? infinity<T>::min\
+    \ : infinity<T>::max, -1});\n    }\n    int add_segment(int l, int r, T x, T y)\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1, 0,\
+    \ n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
+    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
+    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
+    \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
+    \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
+    \  }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
+    \ k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n    \
+    \    Line res = lns[x];\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
+    \            if (chmin(mn, is_max ? -y : y)) res = lns[x];\n        }\n      \
+    \  return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n \
+    \   }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
-  - graph/Graph.hpp
-  - data-struct/unionfind/UnionFind.hpp
+  - other/bitop.hpp
   isVerificationFile: false
-  path: graph/mst/Prim.hpp
+  path: data-struct/cht/LiChaoTree.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-19 03:53:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-documentation_of: graph/mst/Prim.hpp
+  - test/yosupo/data_structure/segment_add_get_min.test.cpp
+documentation_of: data-struct/cht/LiChaoTree.hpp
 layout: document
 redirect_from:
-- /library/graph/mst/Prim.hpp
-- /library/graph/mst/Prim.hpp.html
-title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
+- /library/data-struct/cht/LiChaoTree.hpp
+- /library/data-struct/cht/LiChaoTree.hpp.html
+title: LiChaoTree
 ---
-## 概要
+## Overview
 
-最小全域木を求める。コストが小さい辺を取って連結成分を広げていくイメージ。
+$y = ax + b$ の形の $x$ の一次関数($x$ の定義域つき)に関するクエリを扱える。
 
-- `T Prim(Graph<T> G)` : グラフ `G` に対する最小全域木を求める。 $\Theta(E \log V)$ 。
-- `Edges<T> Prim_vec(Graph<T> G)` : 最小全域木の辺の集合を返す。 $\Theta(E \log V)$ 。
+一次関数の集合 $s$ が与えられたとき、 $s$ に一次関数を追加するクエリと、 $x=k$ における最小値を求めるクエリに答えられる。
+
+内部的には木構造を利用してうまく見る必要のある線分を減らしている。
+
+## Usage
+
+### Template Arguments
+
+- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
+- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
+
+### Member Function
+
+- `LiChaoTree(vector<T> x)` : コンストラクタ。 `get_min` などで与えられる `x` の列を渡す。 $\Theta(N)$ 。
+- `int add_segment(int l, int r, T a, T b)` : $s$ に $f(x) = ax + b (x[l] \leq x < x[r])$ を追加する。返り値は追加された関数の番号。 $\Theta(\log^2 N)$ 。
+- `int add_line(T a, T b)` : $s$ に $f(x) = ax + b$ を追加する。返り値は追加された関数の番号。 $\Theta(\log N)$ 。
+- `T get_min(T k)` : $\min_{f \in s} f(k)$ を返す。そのようなものがないときは `infinity<T>::max` を返す。 $\Theta(\log N)$ 。
+- `Line get_min_line(T k)` : $\arg \min_{f \in s} f(k)$ を返す。 $\Theta(\log N)$ 。
+- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。
