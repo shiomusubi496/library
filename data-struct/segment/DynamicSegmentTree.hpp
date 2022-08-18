@@ -24,6 +24,7 @@ private:
     }
     ll ori, h, n;
     node_ptr root;
+    bool is_id;
     std::vector<T> iv, iv2;
     template<class Upd>
     void update(node_ptr& nd, ll a, ll b, int t, ll k, const Upd& upd) {
@@ -97,12 +98,12 @@ private:
              typename std::enable_if<!Monoid::has_init<M>::value &&
                                      AlwaysTrue>::type* = nullptr>
     void init_iv(const T& v) {
-        iv.reserve(this->h + 1);
+        iv.reserve(h + 1);
         iv.push_back(v);
-        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));
-        iv2.assign(this->h + 1, M::id());
-        rep (i, this->h) {
-            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
+        rep (h) iv.push_back(M::op(iv.back(), iv.back()));
+        iv2.assign(h + 1, M::id());
+        rep (i, h) {
+            if ((ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
             else iv2[i + 1] = iv2[i];
         }
     }
@@ -110,7 +111,7 @@ private:
              typename std::enable_if<!Monoid::has_init<M>::value &&
                                      AlwaysTrue>::type* = nullptr>
     T get_init(ll, ll r, int t) const {
-        return r <= this->ori ? iv[t] : iv2[t];
+        return is_id ? M::id() : (r <= ori ? iv[t] : iv2[t]);
     }
     template<bool AlwaysTrue = true,
              typename std::enable_if<Monoid::has_init<M>::value &&
@@ -120,7 +121,7 @@ private:
              typename std::enable_if<Monoid::has_init<M>::value &&
                                      AlwaysTrue>::type* = nullptr>
     T get_init(ll l, ll r, int) const {
-        return M::init(l, std::min(r, this->ori));
+        return M::init(l, std::min(r, ori));
     }
 
 public:
@@ -128,8 +129,9 @@ public:
     DynamicSegmentTree(ll n_) { init(n_); }
     DynamicSegmentTree(ll n_, const T& v) { init(n_, v); }
     DynamicSegmentTree(const DynamicSegmentTree& other)
-        : n(other.n), h(other.h), ori(other.ori),
-          root(std::make_unique<node>(other.root->val)) {
+        : ori(other.ori), h(other.h), n(other.n),
+          root(std::make_unique<node>(other.root->val)), is_id(other.is_id), iv(other.iv),
+          iv2(other.iv2) {
         init_copy(root, other.root);
     }
     DynamicSegmentTree(DynamicSegmentTree&& other) = default;
@@ -138,10 +140,18 @@ public:
         return (*this) = DynamicSegmentTree(other);
     }
     DynamicSegmentTree& operator=(DynamicSegmentTree&& other) = default;
-    void init(ll n_, const T& v = M::id()) {
+    void init(ll n_) {
         ori = n_;
         h = bitop::ceil_log2(ori);
         n = 1ull << h;
+        is_id = true;
+        root = std::make_unique<node>(get_init(0, n, h));
+    }
+    void init(ll n_, const T& v) {
+        ori = n_;
+        h = bitop::ceil_log2(ori);
+        n = 1ull << h;
+        is_id = false;
         init_iv(v);
         root = std::make_unique<node>(get_init(0, n, h));
     }
