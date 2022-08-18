@@ -76,7 +76,11 @@ public:
         Line res{*itr};
         return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
-    T get_min(T x) const { return get_min_line(x).get(x); }
+    T get_min(T x) const {
+        const auto l = get_min_line(x);
+        const auto y = l.a * x + l.b;
+        return is_max ? -y : y;
+    }
     bool empty() const { return st.empty(); }
 };
 
