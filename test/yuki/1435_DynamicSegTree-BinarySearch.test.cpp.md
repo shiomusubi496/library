@@ -286,87 +286,89 @@ data:
     \ = std::make_unique<node>(get_init(a, b, t));\n        return nd->l;\n    }\n\
     \    node_ptr& get_r(const node_ptr& nd, ll a, ll b, int t) const {\n        if\
     \ (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(a, b, t));\n    \
-    \    return nd->r;\n    }\n    ll ori, h, n;\n    node_ptr root;\n    std::vector<T>\
-    \ iv, iv2;\n    template<class Upd>\n    void update(node_ptr& nd, ll a, ll b,\
-    \ int t, ll k, const Upd& upd) {\n        if (nd == nullptr) nd = std::make_unique<node>(get_init(a,\
-    \ b, t));\n        if (a + 1 == b) {\n            nd->val = upd(nd->val);\n  \
-    \          return;\n        }\n        ll m = (a + b) >> 1;\n        if (k < m)\
-    \ update(nd->l, a, m, t - 1, k, upd);\n        else update(nd->r, m, b, t - 1,\
-    \ k, upd);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),\n\
-    \                        nd->r ? nd->r->val : get_init(m, b, t - 1));\n    }\n\
-    \    T prod(const node_ptr& nd, ll a, ll b, int t, ll l, ll r) const {\n     \
-    \   if (l <= a && b <= r) return nd->val;\n        if (r <= a || b <= l) return\
-    \ M::id();\n        ll m = (a + b) >> 1;\n        return M::op(prod(get_l(nd,\
-    \ a, m, t - 1), a, m, t - 1, l, r),\n                     prod(get_r(nd, m, b,\
-    \ t - 1), m, b, t - 1, l, r));\n    }\n    template<class Cond>\n    ll max_right(const\
-    \ node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond,\n                 T&\
-    \ sm) const {\n        if (b <= l) return n;\n        if (l <= a && cond(M::op(sm,\
-    \ nd->val))) {\n            sm = M::op(sm, nd->val);\n            return n;\n\
-    \        }\n        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n\
-    \        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);\n\
-    \        if (res != n) return res;\n        return max_right(get_r(nd, m, b, t\
-    \ - 1), m, b, t - 1, l, cond, sm);\n    }\n    template<class Cond>\n    ll min_left(const\
-    \ node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,\n                T&\
-    \ sm) const {\n        if (r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val,\
-    \ sm))) {\n            sm = M::op(nd->val, sm);\n            return 0;\n     \
-    \   }\n        if (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n     \
-    \   ll res = min_left(get_r(nd, m, b, t - 1), m, b, t - 1, r, cond, sm);\n   \
-    \     if (res != 0) return res;\n        return min_left(get_l(nd, a, m, t - 1),\
-    \ a, m, t - 1, r, cond, sm);\n    }\n    void reset(node_ptr& nd, ll a, ll b,\
-    \ int t, ll l, ll r) {\n        if (nd == nullptr) return;\n        if (r <= a\
-    \ || b <= l) return;\n        if (l <= a && b <= r) {\n            if (nd == root)\
-    \ nd = std::make_unique<node>(get_init(0, n, h));\n            else nd.reset();\n\
-    \            return;\n        }\n        ll m = (a + b) >> 1;\n        reset(nd->l,\
-    \ a, m, t - 1, l, r);\n        reset(nd->r, m, b, t - 1, l, r);\n        nd->val\
-    \ = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),\n                      \
-    \  nd->r ? nd->r->val : get_init(m, b, t - 1));\n    }\n    void init_copy(node_ptr&\
-    \ nd, const node_ptr& src) {\n        if (src == nullptr) return;\n        nd\
-    \ = std::make_unique<node>(src->val);\n        init_copy(nd->l, src->l);\n   \
-    \     init_copy(nd->r, src->r);\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_init<M>::value &&\n       \
-    \                              AlwaysTrue>::type* = nullptr>\n    void init_iv(const\
-    \ T& v) {\n        iv.reserve(this->h + 1);\n        iv.push_back(v);\n      \
-    \  rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(this->h\
-    \ + 1, M::id());\n        rep (i, this->h) {\n            if ((this->ori >> i)\
-    \ & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n            else iv2[i + 1] = iv2[i];\n\
-    \        }\n    }\n    template<bool AlwaysTrue = true,\n             typename\
-    \ std::enable_if<!Monoid::has_init<M>::value &&\n                            \
-    \         AlwaysTrue>::type* = nullptr>\n    T get_init(ll, ll r, int t) const\
-    \ {\n        return r <= this->ori ? iv[t] : iv2[t];\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_init<M>::value\
+    \    return nd->r;\n    }\n    ll ori, h, n;\n    node_ptr root;\n    bool is_id;\n\
+    \    std::vector<T> iv, iv2;\n    template<class Upd>\n    void update(node_ptr&\
+    \ nd, ll a, ll b, int t, ll k, const Upd& upd) {\n        if (nd == nullptr) nd\
+    \ = std::make_unique<node>(get_init(a, b, t));\n        if (a + 1 == b) {\n  \
+    \          nd->val = upd(nd->val);\n            return;\n        }\n        ll\
+    \ m = (a + b) >> 1;\n        if (k < m) update(nd->l, a, m, t - 1, k, upd);\n\
+    \        else update(nd->r, m, b, t - 1, k, upd);\n        nd->val = M::op(nd->l\
+    \ ? nd->l->val : get_init(a, m, t - 1),\n                        nd->r ? nd->r->val\
+    \ : get_init(m, b, t - 1));\n    }\n    T prod(const node_ptr& nd, ll a, ll b,\
+    \ int t, ll l, ll r) const {\n        if (l <= a && b <= r) return nd->val;\n\
+    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
+    \        return M::op(prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r),\n     \
+    \                prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r));\n    }\n  \
+    \  template<class Cond>\n    ll max_right(const node_ptr& nd, ll a, ll b, int\
+    \ t, ll l, const Cond& cond,\n                 T& sm) const {\n        if (b <=\
+    \ l) return n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n          \
+    \  sm = M::op(sm, nd->val);\n            return n;\n        }\n        if (a +\
+    \ 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res = max_right(get_l(nd,\
+    \ a, m, t - 1), a, m, t - 1, l, cond, sm);\n        if (res != n) return res;\n\
+    \        return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);\n\
+    \    }\n    template<class Cond>\n    ll min_left(const node_ptr& nd, ll a, ll\
+    \ b, int t, ll r, const Cond& cond,\n                T& sm) const {\n        if\
+    \ (r <= a) return 0;\n        if (b <= r && cond(M::op(nd->val, sm))) {\n    \
+    \        sm = M::op(nd->val, sm);\n            return 0;\n        }\n        if\
+    \ (a + 1 == b) return b;\n        ll m = (a + b) >> 1;\n        ll res = min_left(get_r(nd,\
+    \ m, b, t - 1), m, b, t - 1, r, cond, sm);\n        if (res != 0) return res;\n\
+    \        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);\n\
+    \    }\n    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n      \
+    \  if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n       \
+    \ if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(get_init(0,\
+    \ n, h));\n            else nd.reset();\n            return;\n        }\n    \
+    \    ll m = (a + b) >> 1;\n        reset(nd->l, a, m, t - 1, l, r);\n        reset(nd->r,\
+    \ m, b, t - 1, l, r);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a,\
+    \ m, t - 1),\n                        nd->r ? nd->r->val : get_init(m, b, t -\
+    \ 1));\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n     \
+    \   if (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n\
+    \        init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\
+    \    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_init<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ void init_iv(const T&) {}\n    template<bool AlwaysTrue = true,\n          \
-    \   typename std::enable_if<Monoid::has_init<M>::value &&\n                  \
-    \                   AlwaysTrue>::type* = nullptr>\n    T get_init(ll l, ll r,\
-    \ int) const {\n        return M::init(l, std::min(r, this->ori));\n    }\n\n\
-    public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) { init(n_); }\n    DynamicSegmentTree(ll n_, const T& v) { init(n_, v);\
-    \ }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n        : n(other.n),\
-    \ h(other.h), ori(other.ori),\n          root(std::make_unique<node>(other.root->val))\
-    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&\
-    \ other) = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicSegmentTree(other);\n    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&\
-    \ other) = default;\n    void init(ll n_, const T& v = M::id()) {\n        ori\
-    \ = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n        init_iv(v);\n\
-    \        root = std::make_unique<node>(get_init(0, n, h));\n    }\n    template<class\
-    \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
-    \      update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll k, T x)\
-    \ {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(ll\
-    \ l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n        return\
-    \ prod(root, 0, n, h, l, r);\n    }\n    T all_prod() const { return root->val;\
-    \ }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class Cond>\
-    \ ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l && l <=\
-    \ ori);\n        if (l == n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n\
-    \        return std::min(max_right(root, 0, n, h, l, cond, sm), ori);\n    }\n\
-    \    template<class Cond> ll min_left(ll r, const Cond& cond) const {\n      \
-    \  assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n        T sm =\
-    \ M::id();\n        assert(cond(sm));\n        return min_left(root, 0, n, h,\
-    \ r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, h, l, r);\
-    \ }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief\
-    \ DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs\
-    \ docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
+    \ void init_iv(const T& v) {\n        iv.reserve(h + 1);\n        iv.push_back(v);\n\
+    \        rep (h) iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(h\
+    \ + 1, M::id());\n        rep (i, h) {\n            if ((ori >> i) & 1) iv2[i\
+    \ + 1] = M::op(iv2[i], iv[i]);\n            else iv2[i + 1] = iv2[i];\n      \
+    \  }\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_init<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T get_init(ll, ll r, int t) const {\n        return is_id ? M::id() : (r <=\
+    \ ori ? iv[t] : iv2[t]);\n    }\n    template<bool AlwaysTrue = true,\n      \
+    \       typename std::enable_if<Monoid::has_init<M>::value &&\n              \
+    \                       AlwaysTrue>::type* = nullptr>\n    void init_iv(const\
+    \ T&) {}\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_init<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T get_init(ll l, ll r, int) const {\n        return M::init(l, std::min(r, ori));\n\
+    \    }\n\npublic:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n   \
+    \ DynamicSegmentTree(ll n_) { init(n_); }\n    DynamicSegmentTree(ll n_, const\
+    \ T& v) { init(n_, v); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
+    \        : ori(other.ori), h(other.h), n(other.n),\n          root(std::make_unique<node>(other.root->val)),\
+    \ is_id(other.is_id), iv(other.iv),\n          iv2(other.iv2) {\n        init_copy(root,\
+    \ other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&& other) = default;\n\
+    \    DynamicSegmentTree& operator=(const DynamicSegmentTree& other) {\n      \
+    \  if (this == &other) return *this;\n        return (*this) = DynamicSegmentTree(other);\n\
+    \    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&& other) = default;\n\
+    \    void init(ll n_) {\n        ori = n_;\n        h = bitop::ceil_log2(ori);\n\
+    \        n = 1ull << h;\n        is_id = true;\n        root = std::make_unique<node>(get_init(0,\
+    \ n, h));\n    }\n    void init(ll n_, const T& v) {\n        ori = n_;\n    \
+    \    h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n        is_id = false;\n\
+    \        init_iv(v);\n        root = std::make_unique<node>(get_init(0, n, h));\n\
+    \    }\n    template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        update(root, 0, n, h, k, upd);\n    }\n    void set(ll\
+    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
+    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        return prod(root, 0, n, h, l, r);\n    }\n    T all_prod() const { return\
+    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
+    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
+    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, h, l, cond,\
+    \ sm), ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond)\
+    \ const {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n\
+    \        T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
+    \ 0, n, h, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n,\
+    \ h, l, r); }\n    void reset(ll k) { reset(root, 0, n, h, k, k + 1); }\n};\n\n\
+    /**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
+    )\n * @docs docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 4 \"test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp\"\
     \nusing namespace std;\nint main() {\n    struct Mmm {\n        typedef struct\
     \ value_type {\n            int m1, m2, M;\n        } T;\n        static T op(T\
     \ a, T b) {\n            int v[4] = {a.m1, a.m2, b.m1, b.m2};\n            sort(all(v));\n\
@@ -405,7 +407,7 @@ data:
   isVerificationFile: true
   path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   requiredBy: []
-  timestamp: '2022-08-16 22:53:46+09:00'
+  timestamp: '2022-08-18 13:40:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
