@@ -6,12 +6,12 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/line_add_get_min.test.cpp
     title: test/yosupo/data_structure/line_add_get_min.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrick.md
     document_title: ConvexHullTrick
@@ -187,9 +187,10 @@ data:
     \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const { return\
-    \ get_min_line(x).get(x); }\n    bool empty() const { return st.empty(); }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
+    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
+    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
+    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick\
@@ -226,17 +227,18 @@ data:
     \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const { return\
-    \ get_min_line(x).get(x); }\n    bool empty() const { return st.empty(); }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
+    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
+    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
+    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-08-19 03:53:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-19 04:03:06+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/line_add_get_min.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrick.hpp

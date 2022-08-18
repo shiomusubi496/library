@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/cht
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
     - icon: ':x:'
@@ -504,7 +504,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/line_add_get_min.test.cpp
       title: test/yosupo/data_structure/line_add_get_min.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -190,9 +190,10 @@ data:
     \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const { return\
-    \ get_min_line(x).get(x); }\n    bool empty() const { return st.empty(); }\n};\n\
-    \n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
+    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
+    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
+    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
+    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\nusing\
     \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
     \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
@@ -214,8 +215,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 03:53:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 04:03:06+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/line_add_get_min.test.cpp
 layout: document
