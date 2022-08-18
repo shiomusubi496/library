@@ -35,13 +35,13 @@
 #define all(v) std::begin(v), std::end(v)
 #define rall(v) std::rbegin(v), std::rend(v)
 
-#if __cplusplus >= 201402L
+#if __cpp_constexpr >= 201304L
 #define CONSTEXPR constexpr
 #else
 #define CONSTEXPR
 #endif
 
-#ifdef __cpp_if_constexpr
+#if __cpp_if_constexpr >= 201606L
 #define IF_CONSTEXPR constexpr
 #else
 #define IF_CONSTEXPR
@@ -69,7 +69,7 @@ template<class T> constexpr T infinity<T>::max;
 template<class T> constexpr T infinity<T>::min;
 #endif
 
-#if __cplusplus >= 201402L
+#if __cpp_variable_templates >= 201304L
 template<class T> constexpr T INF = infinity<T>::value;
 #endif
 
@@ -130,7 +130,7 @@ inline CONSTEXPR bool is_prime(ll N) noexcept {
     }
     return true;
 }
-inline std::vector<ll> prime_factor(ll N) noexcept {
+inline std::vector<ll> prime_factor(ll N) {
     std::vector<ll> res;
     for (ll i = 2; i * i <= N; ++i) {
         while (N % i == 0) {
@@ -151,7 +151,7 @@ inline CONSTEXPR ll my_pow(ll a, ll b) noexcept {
     }
     return res;
 }
-inline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) noexcept {
+inline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {
     assert(mod > 0);
     if (mod == 1) return 0;
     a %= mod;
@@ -180,7 +180,7 @@ inline PLL extGCD(ll a, ll b) noexcept {
     }
     return {x, y};
 }
-inline ll mod_inv(ll a, ll mod) noexcept {
+inline ll mod_inv(ll a, ll mod) {
     ll b = mod;
     ll x = 1, u = 0;
     ll t;
@@ -193,7 +193,7 @@ inline ll mod_inv(ll a, ll mod) noexcept {
     assert(a == 1);
     return x;
 }
-inline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {
+inline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) {
     const PLL p = extGCD(m1, m2);
     const ll g = p.first * m1 + p.second * m2;
     const ll l = m1 / g * m2;
@@ -202,7 +202,7 @@ inline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) noexcept {
     return {(x * m1 + b1 + l) % l, l};
 }
 PLL ChineseRemainders(const std::vector<ll>& b,
-                      const std::vector<ll>& m) noexcept {
+                      const std::vector<ll>& m) {
     PLL res{0, 1};
     rep (i, b.size()) {
         res = ChineseRemainder(res.first, res.second, b[i], m[i]);
@@ -244,7 +244,7 @@ constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,
         n, make_vec<T>(std::forward<Args>(args)...));
 }
 
-inline CONSTEXPR int popcnt(ull x) {
+inline CONSTEXPR int popcnt(ull x) noexcept {
 #if __cplusplus >= 202002L
     return std::popcount(x);
 #endif
@@ -310,22 +310,28 @@ public:
         assert(0 <= k && k < (int)dat.size());
         return std::move(dat[k]);
     }
-    int get_index(const T& val) const {
+    int get(const T& val) const {
         assert(sorted);
-        return static_cast<int>(std::lower_bound(all(dat), val, cmp) -
-                                dat.begin());
+        auto itr = std::lower_bound(all(dat), val, cmp);
+        assert(itr != dat.end() && !cmp(val, *itr));
+        return itr - dat.begin();
+    }
+    int lower_bound(const T& val) const {
+        assert(sorted);
+        auto itr = std::lower_bound(all(dat), val, cmp);
+        return itr - dat.begin();
     }
     std::vector<int> pressed(const std::vector<T>& vec) const {
         assert(sorted);
         std::vector<int> res(vec.size());
-        rep (i, vec.size()) res[i] = get_index(vec[i]);
+        rep (i, vec.size()) res[i] = get(vec[i]);
         return res;
     }
     void press(std::vector<T>& vec) const {
         static_assert(std::is_integral<T>::value,
                       "template argument must be convertible from int type");
         assert(sorted);
-        each_for (i : vec) i = get_index(i);
+        each_for (i : vec) i = get(i);
     }
     int size() const {
         assert(sorted);
