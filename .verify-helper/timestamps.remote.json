@@ -70,5 +70,7 @@
 "test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp": "2022-08-18 19:11:53 +0900",
 "test/yosupo/data_structure/rectangle_sum.test.cpp": "2022-08-18 19:11:53 +0900",
 "test/yosupo/data_structure/set_xor_min.test.cpp": "2022-08-18 19:11:53 +0900",
-"test/yosupo/data_structure/static_range_frequency.test.cpp": "2022-08-18 19:11:53 +0900"
+"test/yosupo/data_structure/static_range_frequency.test.cpp": "2022-08-18 19:11:53 +0900",
+"test/yosupo/data_structure/static_range_inversions_query.test.cpp": "2022-08-18 19:11:53 +0900",
+"test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp": "2022-08-18 19:11:53 +0900"
 }
