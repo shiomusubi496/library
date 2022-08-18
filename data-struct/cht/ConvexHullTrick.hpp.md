@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -188,10 +188,9 @@ data:
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
-    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
-    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
-    \ */\n"
+    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
+    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
+    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick\
     \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
@@ -228,16 +227,15 @@ data:
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
-    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
-    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
-    \ */\n"
+    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
+    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
+    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-08-19 04:03:06+09:00'
+  timestamp: '2022-08-19 04:06:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/line_add_get_min.test.cpp

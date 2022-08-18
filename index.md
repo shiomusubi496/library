@@ -6,7 +6,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
     - icon: ':heavy_check_mark:'
@@ -268,7 +268,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
     - icon: ':heavy_check_mark:'
@@ -480,7 +480,7 @@ data:
       title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/aoj/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
     - icon: ':heavy_check_mark:'

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -191,11 +191,10 @@ data:
     \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
     \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
     \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto l = get_min_line(x);\n        const auto y = l.a * x + l.b;\n\
-    \        return is_max ? -y : y;\n    }\n    bool empty() const { return st.empty();\
-    \ }\n};\n\n/**\n * @brief ConvexHullTrick\n * @docs docs/data-struct/cht/ConvexHullTrick.md\n\
-    \ */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
+    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
+    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
+    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n#line 4 \"test/yosupo/data_structure/line_add_get_min.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; cin >> N >> Q;\n    ConvexHullTrick<ll,\
     \ false, __int128_t> CHT;\n    rep (N) {\n        ll a, b; cin >> a >> b;\n  \
     \      CHT.add_line(a, b);\n    }\n    rep (Q) {\n        int t; cin >> t;\n \
     \       if (t == 0) {\n            ll a, b; cin >> a >> b;\n            CHT.add_line(a,\
@@ -215,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 04:03:06+09:00'
+  timestamp: '2022-08-19 04:06:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/line_add_get_min.test.cpp

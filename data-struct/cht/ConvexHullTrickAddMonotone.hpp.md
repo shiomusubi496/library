@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
     document_title: ConvexHullTrickAddMonotone
@@ -196,15 +196,17 @@ data:
     \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
     \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
     \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ { return get_min_line(x).get(x); }\n    line dec_get_min_line(T x) {\n     \
-    \   while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
-    \            que.pop_front();\n        Line res{que.front()};\n        return\
-    \ line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n  \
-    \  T dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    line inc_get_min_line(T\
-    \ x) {\n        while (que.size() > 1 &&\n               prev(que.end())->get(x)\
-    \ > prev(que.end(), 2)->get(x))\n            que.pop_back();\n        Line res{que.back()};\n\
-    \        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n\
-    \    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n    bool\
+    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
+    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
+    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
+    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
+    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
+    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
+    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
+    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
+    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
+    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
+    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
     \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
     \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
@@ -250,15 +252,17 @@ data:
     \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
     \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
     \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ { return get_min_line(x).get(x); }\n    line dec_get_min_line(T x) {\n     \
-    \   while (que.size() > 1 &&\n               que.begin()->get(x) > next(que.begin())->get(x))\n\
-    \            que.pop_front();\n        Line res{que.front()};\n        return\
-    \ line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n  \
-    \  T dec_get_min(T x) { return dec_get_min_line(x).get(x); }\n    line inc_get_min_line(T\
-    \ x) {\n        while (que.size() > 1 &&\n               prev(que.end())->get(x)\
-    \ > prev(que.end(), 2)->get(x))\n            que.pop_back();\n        Line res{que.back()};\n\
-    \        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n\
-    \    }\n    T inc_get_min(T x) { return inc_get_min_line(x).get(x); }\n    bool\
+    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
+    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
+    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
+    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
+    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
+    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
+    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
+    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
+    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
+    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
+    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
     \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
     \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   dependsOn:
@@ -266,8 +270,8 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-08-19 03:53:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-08-19 04:06:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp
 documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp
