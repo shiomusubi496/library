@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: graph/connected/ConnectedComponents.hpp
+    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':question:'
@@ -12,16 +15,17 @@ data:
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/code-festival-2017-qualb/tasks/code_festival_2017_qualb_c
+    PROBLEM: https://atcoder.jp/contests/arc099/tasks/arc099_e
     links:
-    - https://atcoder.jp/contests/code-festival-2017-qualb/tasks/code_festival_2017_qualb_c
-  bundledCode: "#line 1 \"test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp\"\
-    \n#define PROBLEM \"https://atcoder.jp/contests/code-festival-2017-qualb/tasks/code_festival_2017_qualb_c\"\
+    - https://atcoder.jp/contests/arc099/tasks/arc099_c
+    - https://atcoder.jp/contests/arc099/tasks/arc099_e
+  bundledCode: "#line 1 \"test/atcoder/arc099_c-Bipartite.test.cpp\"\n// #define PROBLEM\
+    \ \"https://atcoder.jp/contests/arc099/tasks/arc099_c\"\n#define PROBLEM \"https://atcoder.jp/contests/arc099/tasks/arc099_e\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
@@ -199,6 +203,19 @@ data:
     \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 2 \"graph/connected/ConnectedComponents.hpp\"\n\n#line 5 \"graph/connected/ConnectedComponents.hpp\"\
+    \n\ntemplate<class T> class ConnectedComponents {\nprivate:\n    int n, sz;\n\
+    \    const Graph<T>& G;\n    std::vector<int> cmp;\n    void dfs(int v) {\n  \
+    \      each_const (e : G[v]) {\n            if (cmp[e.to] != -1) continue;\n \
+    \           cmp[e.to] = cmp[v];\n            dfs(e.to);\n        }\n    }\n  \
+    \  void init() {\n        n = G.size();\n        cmp.assign(n, -1);\n        sz\
+    \ = 0;\n        rep (i, n) {\n            if (cmp[i] != -1) continue;\n      \
+    \      cmp[i] = sz++;\n            dfs(i);\n        }\n    }\n\npublic:\n    ConnectedComponents(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(sz);\n        rep\
+    \ (i, n) res[cmp[i]].push_back(i);\n        return res;\n    }\n};\n\n/**\n *\
+    \ @brief ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/ConnectedComponents.md\n\
     \ */\n#line 2 \"graph/other/BipartiteGraph.hpp\"\n\n#line 5 \"graph/other/BipartiteGraph.hpp\"\
     \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
     \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
@@ -213,37 +230,57 @@ data:
     \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
     \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
     \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n#line 5\
-    \ \"test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    ll N, M; cin >> N >> M;\n    UnweightedGraph G(N);\n\
-    \    rep (M) {\n        int a, b; cin >> a >> b;\n        G.add_edge(a - 1, b\
-    \ - 1);\n    }\n    BipartiteGraph<unweighted_edge> BG(G);\n    if (BG.is_bipartite())\
-    \ {\n        ll a = 0;\n        rep (i, N) {\n            if (BG.get_label(i))\
-    \ ++a;\n        }\n        cout << a * (N - a) - M << endl;\n    }\n    else {\n\
-    \        cout << N * (N - 1) / 2 - M << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/code-festival-2017-qualb/tasks/code_festival_2017_qualb_c\"\
-    \n#include \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n\
-    #include \"../../graph/other/BipartiteGraph.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    ll N, M; cin >> N >> M;\n    UnweightedGraph G(N);\n    rep (M) {\n \
-    \       int a, b; cin >> a >> b;\n        G.add_edge(a - 1, b - 1);\n    }\n \
-    \   BipartiteGraph<unweighted_edge> BG(G);\n    if (BG.is_bipartite()) {\n   \
-    \     ll a = 0;\n        rep (i, N) {\n            if (BG.get_label(i)) ++a;\n\
-    \        }\n        cout << a * (N - a) - M << endl;\n    }\n    else {\n    \
-    \    cout << N * (N - 1) / 2 - M << endl;\n    }\n}\n"
+    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n#line 7\
+    \ \"test/atcoder/arc099_c-Bipartite.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, M; cin >> N >> M;\n    vector<vector<bool>> A(N, vector<bool>(N,\
+    \ true));\n    rep (M) {\n        int a, b; cin >> a >> b;\n        A[a - 1][b\
+    \ - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph G(N);\n    rep (i,\
+    \ N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n    }\n    ConnectedComponents<unweighted_edge>\
+    \ CC(G);\n    auto g = CC.groups();\n    vector<int> B(N);\n    each_const (v\
+    \ : g) {\n        rep (i, v.size()) B[v[i]] = i;\n    }\n    vector<UnweightedGraph>\
+    \ C(CC.size());\n    rep (i, CC.size()) C[i] = UnweightedGraph(g[i].size());\n\
+    \    each_const (e : UndirectedListToEdges(G)) {\n        C[CC[e.from]].add_edge(B[e.from],\
+    \ B[e.to]);\n    }\n    bitset<701> bs(1);\n    each_const (g : C) {\n       \
+    \ int n = g.size();\n        BipartiteGraph<unweighted_edge> BG(g);\n        if\
+    \ (!BG.is_bipartite()) {\n            puts(\"-1\");\n            return 0;\n \
+    \       }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i)) ++a;\n\
+    \        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n    rep (i,\
+    \ N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n    cout << N\
+    \ * (N - 1) / 2 - ans << endl;\n}\n"
+  code: "// #define PROBLEM \"https://atcoder.jp/contests/arc099/tasks/arc099_c\"\n\
+    #define PROBLEM \"https://atcoder.jp/contests/arc099/tasks/arc099_e\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../graph/Graph.hpp\"\n#include \"\
+    ../../graph/connected/ConnectedComponents.hpp\"\n#include \"../../graph/other/BipartiteGraph.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    vector<vector<bool>>\
+    \ A(N, vector<bool>(N, true));\n    rep (M) {\n        int a, b; cin >> a >> b;\n\
+    \        A[a - 1][b - 1] = A[b - 1][a - 1] = false;\n    }\n    UnweightedGraph\
+    \ G(N);\n    rep (i, N) rep (j, i) {\n        if (A[i][j]) G.add_edge(i, j);\n\
+    \    }\n    ConnectedComponents<unweighted_edge> CC(G);\n    auto g = CC.groups();\n\
+    \    vector<int> B(N);\n    each_const (v : g) {\n        rep (i, v.size()) B[v[i]]\
+    \ = i;\n    }\n    vector<UnweightedGraph> C(CC.size());\n    rep (i, CC.size())\
+    \ C[i] = UnweightedGraph(g[i].size());\n    each_const (e : UndirectedListToEdges(G))\
+    \ {\n        C[CC[e.from]].add_edge(B[e.from], B[e.to]);\n    }\n    bitset<701>\
+    \ bs(1);\n    each_const (g : C) {\n        int n = g.size();\n        BipartiteGraph<unweighted_edge>\
+    \ BG(g);\n        if (!BG.is_bipartite()) {\n            puts(\"-1\");\n     \
+    \       return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
+    \ ++a;\n        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n \
+    \   rep (i, N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n   \
+    \ cout << N * (N - 1) / 2 - ans << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - graph/Graph.hpp
+  - graph/connected/ConnectedComponents.hpp
   - graph/other/BipartiteGraph.hpp
   isVerificationFile: true
-  path: test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
+  path: test/atcoder/arc099_c-Bipartite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 01:32:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-19 01:55:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
+documentation_of: test/atcoder/arc099_c-Bipartite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
-- /verify/test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp.html
-title: test/atcoder/code_festival_2017_qualb_c-Bipartite.test.cpp
+- /verify/test/atcoder/arc099_c-Bipartite.test.cpp
+- /verify/test/atcoder/arc099_c-Bipartite.test.cpp.html
+title: test/atcoder/arc099_c-Bipartite.test.cpp
 ---
