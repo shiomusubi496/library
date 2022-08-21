@@ -2,18 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/PersistentArray.hpp
+    title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/PartialPersistentArray.md
-    document_title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-    links: []
-  bundledCode: "#line 2 \"data-struct/other/PartialPersistentArray.hpp\"\n\n#line\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
+    links:
+    - https://judge.yosupo.jp/problem/persistent_queue
+  bundledCode: "#line 1 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\n#line\
     \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
@@ -150,57 +155,75 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/PartialPersistentArray.hpp\"\
-    \n\ntemplate<class T>\nclass PartialPersistentArray {\nprivate:\n    int n;\n\
-    \    std::vector<std::vector<int>> tim;\n    std::vector<std::vector<T>> val;\n\
-    \    int last_time;\npublic:\n    PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n))\
-    \ {}\n    PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    void\
-    \ init(const std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n\
-    \        val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
-    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
-    \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
-    \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
-    \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
-    \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\n\
-    class PartialPersistentArray {\nprivate:\n    int n;\n    std::vector<std::vector<int>>\
-    \ tim;\n    std::vector<std::vector<T>> val;\n    int last_time;\npublic:\n  \
-    \  PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n)) {}\n\
-    \    PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
-    \ std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n      \
-    \  val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
-    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
-    \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
-    \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
-    \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
-    \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/PersistentArray.hpp\"\
+    \n\n#line 4 \"data-struct/other/PersistentArray.hpp\"\n\ntemplate<class T, std::size_t\
+    \ sz = 2>\nclass PersistentArray {\nprivate:\n    struct node;\n    using node_ptr\
+    \ = std::shared_ptr<node>;\n    struct node {\n        T val;\n        std::array<node_ptr,\
+    \ sz> ch;\n        node() : val(T()) { ch.fill(nullptr); }\n        node(const\
+    \ T& val) : val(val) { ch.fill(nullptr); }\n        node(const std::array<node_ptr,\
+    \ sz>& ch) : ch(ch) {}\n        node(const T& val, const std::array<node_ptr,\
+    \ sz>& ch) : val(val), ch(ch) {}\n    };\n    int n;\n    std::vector<node_ptr>\
+    \ root;\n    std::vector<int> len;\n    int last_time;\n    void build_dfs(node_ptr&\
+    \ nd, const std::vector<T>& a, int k, int t) {\n        if (k >= n) return;\n\
+    \        if (nd == nullptr) nd = std::make_shared<node>(a[k]);\n        rep (i,\
+    \ sz) {\n            build_dfs(nd->ch[i], a, k + (i + 1) * t, t * sz);\n     \
+    \   }\n    }\n    void set_dfs(node_ptr& nd, int k, const T& x) {\n        nd\
+    \ = std::make_shared<node>(*nd);\n        if (k == 0) nd->val = x;\n        else\
+    \ set_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz, x);\n    }\n    void push_back_dfs(node_ptr&\
+    \ nd, int k, const T& x) {\n        if (k == 0) nd = std::make_shared<node>(x);\n\
+    \        else {\n            nd = std::make_shared<node>(*nd);\n            push_back_dfs(nd->ch[(k\
+    \ - 1) % sz], (k - 1) / sz, x);\n        }\n    }\n    T get_dfs(const node_ptr&\
+    \ nd, int k) const {\n        if (k == 0) return nd->val;\n        return get_dfs(nd->ch[(k\
+    \ - 1) % sz], (k - 1) / sz);\n    }\n\npublic:\n    PersistentArray(int n) : PersistentArray(std::vector<T>(n))\
+    \ {}\n    PersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
+    \ std::vector<T>& a) {\n        n = a.size();\n        if (n == 0) {\n       \
+    \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
+    \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
+    \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
+    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
+    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
+    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
+    \    return last_time++;\n    }\n    int set_last(int k, const T& x) {\n     \
+    \   return set(k, x, last_time - 1);\n    }\n    int push_back(const T& x, int\
+    \ t) {\n        assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
+    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
+    \ T& x) {\n        return push_back(last_time - 1, x);\n    }\n    T get(int k,\
+    \ int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const {\n        return get(k, last_time - 1);\n    }\n\
+    \    int size(int t) const {\n        assert(-1 <= t && t < last_time);\n    \
+    \    return len[t + 1];\n    }\n    int size_last() const {\n        return size(last_time\
+    \ - 1);\n    }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\
+    \u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int q; cin >> q;\n    PersistentArray<int>\
+    \ PA(1);\n    rep (q) {\n        int a; cin >> a;\n        if (a == 0) {\n   \
+    \         int t, x; cin >> t >> x;\n            PA.push_back(x, t);\n        }\n\
+    \        else {\n            int t; cin >> t;\n            int frt = PA.get(0,\
+    \ t);\n            cout << PA.get(frt + 1, t) << endl;\n            PA.set(0,\
+    \ frt + 1, t);\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/PersistentArray.hpp\"\
+    \nusing namespace std;\nint main() {\n    int q; cin >> q;\n    PersistentArray<int>\
+    \ PA(1);\n    rep (q) {\n        int a; cin >> a;\n        if (a == 0) {\n   \
+    \         int t, x; cin >> t >> x;\n            PA.push_back(x, t);\n        }\n\
+    \        else {\n            int t; cin >> t;\n            int frt = PA.get(0,\
+    \ t);\n            cout << PA.get(frt + 1, t) << endl;\n            PA.set(0,\
+    \ frt + 1, t);\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  isVerificationFile: false
-  path: data-struct/other/PartialPersistentArray.hpp
+  - data-struct/other/PersistentArray.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   requiredBy: []
   timestamp: '2022-08-22 07:39:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: data-struct/other/PartialPersistentArray.hpp
+documentation_of: test/yosupo/data_structure/persistent_queue-Array.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/other/PartialPersistentArray.hpp
-- /library/data-struct/other/PartialPersistentArray.hpp.html
-title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
+- /verify/test/yosupo/data_structure/persistent_queue-Array.test.cpp
+- /verify/test/yosupo/data_structure/persistent_queue-Array.test.cpp.html
+title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
 ---
-## 概要
-
-部分永続配列。
-
-- `PartialPersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(N)$ 。
-- `int set(int k, T x)` : これが $i$ 回目(0-indexed)の `set` 呼び出しのとき、 $a_{i-1}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(1)$ 。
-- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log Q)$ 。

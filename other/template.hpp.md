@@ -24,6 +24,9 @@ data:
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/PersistentArray.hpp
+    title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -453,6 +456,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/line_add_get_min.test.cpp
     title: test/yosupo/data_structure/line_add_get_min.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
+    title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
@@ -943,6 +949,7 @@ data:
   - data-struct/other/DefaultMap.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/Mo.hpp
+  - data-struct/other/PersistentArray.hpp
   - data-struct/other/BinaryTrie.hpp
   - data-struct/other/RangeSet.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
@@ -999,6 +1006,7 @@ data:
   - test/yosupo/data_structure/set_xor_min.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/segment_add_get_min.test.cpp
+  - test/yosupo/data_structure/persistent_queue-Array.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
