@@ -10,8 +10,8 @@ private:
     std::vector<std::vector<T>> val;
     int last_time;
 public:
+    PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n)) {}
     PartialPersistentArray(const std::vector<T>& a) { init(a); }
-    int now() const { return last_time; }
     void init(const std::vector<T>& a) {
         n = a.size();
         tim.resize(n);
@@ -22,14 +22,16 @@ public:
         }
         last_time = 0;
     }
-    void set(int k, const T& x) {
+    int now() const { return last_time - 1; }
+    int set(int k, const T& x) {
         assert(0 <= k && k < n);
-        tim[k].push_back(last_time++);
+        tim[k].push_back(last_time);
         val[k].push_back(x);
+        return last_time++;
     }
     T get(int k, int t) const {
         assert(0 <= k && k < n);
-        assert(-1 <= t && t < now());
+        assert(-1 <= t && t < last_time);
         int id = std::upper_bound(all(tim[k]), t) - tim[k].begin() - 1;
         return val[k][id];
     }
