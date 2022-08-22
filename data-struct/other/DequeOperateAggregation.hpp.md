@@ -10,86 +10,53 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/deque_operate_all_composite.test.cpp
     title: test/yosupo/new/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/gcd_convolution.test.cpp
-    title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/lcm_convolution.test.cpp
-    title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/range_affine_point_get.test.cpp
-    title: test/yosupo/new/range_affine_point_get.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/data-struct/other/DequeOperateAggregation.md
+    document_title: DequeOperateAggregation
     links: []
-  bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c)                                                   \
-    \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
-    #define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i <\
-    \ (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n\
-    #define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define\
-    \ rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define\
-    \ RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b) for\
-    \ (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll i =\
-    \ (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...)                             \
-    \                                \\\n    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3,\
-    \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
-    \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_constexpr\
-    \ >= 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n\
-    #if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> class infinity {\npublic:\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n \
-    \   static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::min();\n};\n\n#if __cplusplus <= 201402L\ntemplate<class\
-    \ T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr T infinity<T>::mvalue;\n\
-    template<class T> constexpr T infinity<T>::max;\ntemplate<class T> constexpr T\
-    \ infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >= 201304L\ntemplate<class\
-    \ T> constexpr T INF = infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\n\
-    constexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
+  bundledCode: "#line 2 \"data-struct/other/DequeOperateAggregation.hpp\"\n\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
+    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
+    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
+    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
+    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
+    \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...)                                                             \\\n\
+    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n\
+    #else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define\
+    \ IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll = long\
+    \ long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing PLL =\
+    \ std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
     \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
     \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
     \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
@@ -294,84 +261,126 @@ data:
     \ r), r - l}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using T\
     \ = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
     \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\
-    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
-    \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
-    \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
-    \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
-    \ T> struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n"
+    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/other/DequeOperateAggregation.hpp\"\
+    \n\ntemplate<class M> class DequeOperateAggregation {\nprivate:\n    using T =\
+    \ typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T> lsm,\
+    \ rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n       \
+    \ if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
+    \        return M::op(lsm.top(), rsm.top());\n    }\n\npublic:\n    DequeOperateAggregation()\
+    \ = default;\n    int size() const { return lst.size() + rst.size(); }\n    bool\
+    \ empty() const { return lst.empty() && rst.empty(); }\n    void push_front(const\
+    \ T& x) {\n        lst.push(x);\n        if (lsm.empty()) lsm.push(lst.top());\n\
+    \        else lsm.push(M::op(lst.top(), lsm.top()));\n    }\n    template<class...\
+    \ Args> void emplace_front(Args&&... args) {\n        lst.emplace(std::forward<Args>(args)...);\n\
+    \        if (lsm.empty()) lsm.push(lst.top());\n        else lsm.push(M::op(lst.top(),\
+    \ lsm.top()));\n    }\n    void push_back(const T& x) {\n        rst.push(x);\n\
+    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
+    \ rst.top()));\n    }\n    template<class... Args> void emplace_back(Args&&...\
+    \ args) {\n        rst.emplace(std::forward<Args>(args)...);\n        if (rsm.empty())\
+    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \    }\n    void pop_front() {\n        assert(!empty());\n        if (lst.empty())\
+    \ {\n            const int rn = rst.size() / 2;\n            const int ln = rst.size()\
+    \ - rn;\n            std::vector<T> rv; rv.reserve(rn);\n            while (!rsm.empty())\
+    \ rsm.pop();\n            rep (rn) {\n                rv.push_back(rst.top());\n\
+    \                rst.pop();\n            }\n            rep (ln) {\n         \
+    \       lst.push(rst.top());\n                rst.pop();\n                if (lsm.empty())\
+    \ lsm.push(lst.top());\n                else lsm.push(M::op(lst.top(), lsm.top()));\n\
+    \            }\n            rep (rn) {\n                rst.push(rv.back());\n\
+    \                rv.pop_back();\n                if (rsm.empty()) rsm.push(rst.top());\n\
+    \                else rsm.push(M::op(rsm.top(), rst.top()));\n            }\n\
+    \        }\n        lst.pop();\n        lsm.pop();\n    }\n    void pop_back()\
+    \ {\n        assert(!empty());\n        if (rst.empty()) {\n            const\
+    \ int ln = lst.size() / 2;\n            const int rn = lst.size() - ln;\n    \
+    \        std::vector<T> lv; lv.reserve(ln);\n            while (!lsm.empty())\
+    \ lsm.pop();\n            rep (ln) {\n                lv.push_back(lst.top());\n\
+    \                lst.pop();\n            }\n            rep (rn) {\n         \
+    \       rst.push(lst.top());\n                lst.pop();\n                if (rsm.empty())\
+    \ rsm.push(rst.top());\n                else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \            }\n            rep (ln) {\n                lst.push(lv.back());\n\
+    \                lv.pop_back();\n                if (lsm.empty()) lsm.push(lst.top());\n\
+    \                else lsm.push(M::op(lst.top(), lsm.top()));\n            }\n\
+    \        }\n        rst.pop();\n        rsm.pop();\n    }\n    template<bool AlwaysTrue\
+    \ = true,\n             typename std::enable_if<Monoid::has_id<M>::value &&\n\
+    \                                     AlwaysTrue>::type* = nullptr>\n    T all_prod()\
+    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
+    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
+    \ * @brief DequeOperateAggregation\n * @docs docs/data-struct/other/DequeOperateAggregation.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n\ntemplate<class M> class DequeOperateAggregation {\nprivate:\n    using T =\
+    \ typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T> lsm,\
+    \ rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n       \
+    \ if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
+    \        return M::op(lsm.top(), rsm.top());\n    }\n\npublic:\n    DequeOperateAggregation()\
+    \ = default;\n    int size() const { return lst.size() + rst.size(); }\n    bool\
+    \ empty() const { return lst.empty() && rst.empty(); }\n    void push_front(const\
+    \ T& x) {\n        lst.push(x);\n        if (lsm.empty()) lsm.push(lst.top());\n\
+    \        else lsm.push(M::op(lst.top(), lsm.top()));\n    }\n    template<class...\
+    \ Args> void emplace_front(Args&&... args) {\n        lst.emplace(std::forward<Args>(args)...);\n\
+    \        if (lsm.empty()) lsm.push(lst.top());\n        else lsm.push(M::op(lst.top(),\
+    \ lsm.top()));\n    }\n    void push_back(const T& x) {\n        rst.push(x);\n\
+    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
+    \ rst.top()));\n    }\n    template<class... Args> void emplace_back(Args&&...\
+    \ args) {\n        rst.emplace(std::forward<Args>(args)...);\n        if (rsm.empty())\
+    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \    }\n    void pop_front() {\n        assert(!empty());\n        if (lst.empty())\
+    \ {\n            const int rn = rst.size() / 2;\n            const int ln = rst.size()\
+    \ - rn;\n            std::vector<T> rv; rv.reserve(rn);\n            while (!rsm.empty())\
+    \ rsm.pop();\n            rep (rn) {\n                rv.push_back(rst.top());\n\
+    \                rst.pop();\n            }\n            rep (ln) {\n         \
+    \       lst.push(rst.top());\n                rst.pop();\n                if (lsm.empty())\
+    \ lsm.push(lst.top());\n                else lsm.push(M::op(lst.top(), lsm.top()));\n\
+    \            }\n            rep (rn) {\n                rst.push(rv.back());\n\
+    \                rv.pop_back();\n                if (rsm.empty()) rsm.push(rst.top());\n\
+    \                else rsm.push(M::op(rsm.top(), rst.top()));\n            }\n\
+    \        }\n        lst.pop();\n        lsm.pop();\n    }\n    void pop_back()\
+    \ {\n        assert(!empty());\n        if (rst.empty()) {\n            const\
+    \ int ln = lst.size() / 2;\n            const int rn = lst.size() - ln;\n    \
+    \        std::vector<T> lv; lv.reserve(ln);\n            while (!lsm.empty())\
+    \ lsm.pop();\n            rep (ln) {\n                lv.push_back(lst.top());\n\
+    \                lst.pop();\n            }\n            rep (rn) {\n         \
+    \       rst.push(lst.top());\n                lst.pop();\n                if (rsm.empty())\
+    \ rsm.push(rst.top());\n                else rsm.push(M::op(rsm.top(), rst.top()));\n\
+    \            }\n            rep (ln) {\n                lst.push(lv.back());\n\
+    \                lv.pop_back();\n                if (lsm.empty()) lsm.push(lst.top());\n\
+    \                else lsm.push(M::op(lst.top(), lsm.top()));\n            }\n\
+    \        }\n        rst.pop();\n        rsm.pop();\n    }\n    template<bool AlwaysTrue\
+    \ = true,\n             typename std::enable_if<Monoid::has_id<M>::value &&\n\
+    \                                     AlwaysTrue>::type* = nullptr>\n    T all_prod()\
+    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
+    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
+    \ * @brief DequeOperateAggregation\n * @docs docs/data-struct/other/DequeOperateAggregation.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - other/monoid.hpp
   isVerificationFile: false
-  path: other/monoid2.hpp
+  path: data-struct/other/DequeOperateAggregation.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-23 02:00:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/deque_operate_all_composite.test.cpp
-  - test/yosupo/new/gcd_convolution.test.cpp
-  - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-documentation_of: other/monoid2.hpp
+documentation_of: data-struct/other/DequeOperateAggregation.hpp
 layout: document
 redirect_from:
-- /library/other/monoid2.hpp
-- /library/other/monoid2.hpp.html
-title: other/monoid2.hpp
+- /library/data-struct/other/DequeOperateAggregation.hpp
+- /library/data-struct/other/DequeOperateAggregation.hpp.html
+title: DequeOperateAggregation
 ---
+## 概要
+
+deque は 2 つの stack で作れる。空の stack にもう片方から移すとき、 $\frac{n}{2}$ 要素を移すことでならし $\Theta(1)$ が達成される。
+
+- `DequeOperateAggregation()` : コンストラクタ。 $\Theta(1)$ 。
+- `int size()` : サイズを返す。 $\Theta(1)$ 。
+- `bool empty()` : 空かどうかを返す。 $\Theta(1)$ 。
+- `void push_front(T x)` : $x$ を先頭に追加する。 $\Theta(1)$ 。
+- `void push_back(T x)` : $x$ を末尾に追加する。 $\Theta(1)$ 。
+- `void pop_front()` : 先頭の要素を削除する。ならし $\Theta(1)$ 。
+- `void pop_back()` : 末尾の要素を削除する。ならし $\Theta(1)$ 。
+- `T all_prod()` : 全体を `M::op` で演算した結果を返す。 $\Theta(1)$ 。

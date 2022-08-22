@@ -21,6 +21,9 @@ data:
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
     - icon: ':heavy_check_mark:'
+      path: data-struct/other/DequeOperateAggregation.hpp
+      title: DequeOperateAggregation
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
     - icon: ':heavy_check_mark:'
@@ -638,6 +641,9 @@ data:
       title: test/yosupo/matrix/matrix_product.test.cpp
   - name: test/yosupo/new
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/deque_operate_all_composite.test.cpp
+      title: test/yosupo/new/deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/gcd_convolution.test.cpp
       title: test/yosupo/new/gcd_convolution.test.cpp

@@ -6,6 +6,9 @@ data:
     title: other/template.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/DequeOperateAggregation.hpp
+    title: DequeOperateAggregation
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':heavy_check_mark:'
@@ -195,6 +198,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/deque_operate_all_composite.test.cpp
+    title: test/yosupo/new/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
@@ -587,6 +593,7 @@ data:
   - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
+  - data-struct/other/DequeOperateAggregation.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - other/monoid2.hpp
@@ -597,6 +604,7 @@ data:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/new/deque_operate_all_composite.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/rectangle_sum.test.cpp

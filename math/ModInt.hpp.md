@@ -61,6 +61,9 @@ data:
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/deque_operate_all_composite.test.cpp
+    title: test/yosupo/new/deque_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -424,6 +427,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/new/deque_operate_all_composite.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

@@ -18,6 +18,9 @@ data:
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/DequeOperateAggregation.hpp
+    title: DequeOperateAggregation
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
   - icon: ':heavy_check_mark:'
@@ -577,6 +580,9 @@ data:
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/deque_operate_all_composite.test.cpp
+    title: test/yosupo/new/deque_operate_all_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -964,6 +970,7 @@ data:
   - data-struct/segment/SparseTable.hpp
   - data-struct/other/PartialPersistentArray.hpp
   - data-struct/other/DefaultMap.hpp
+  - data-struct/other/DequeOperateAggregation.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/Mo.hpp
   - data-struct/other/PersistentArray.hpp
@@ -1010,6 +1017,7 @@ data:
   - test/yosupo/sample/many_aplusb.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/new/deque_operate_all_composite.test.cpp
   - test/yosupo/new/longest_increasing_subsequence.test.cpp
   - test/yosupo/new/jump_on_tree.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
