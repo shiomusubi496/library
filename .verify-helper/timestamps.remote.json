@@ -99,6 +99,7 @@
 "test/yosupo/math/two_sat.test.cpp": "2022-08-18 19:11:53 +0900",
 "test/yosupo/matrix/matrix_det.test.cpp": "2022-08-22 19:54:02 +0900",
 "test/yosupo/matrix/matrix_product.test.cpp": "2022-08-22 19:54:02 +0900",
+"test/yosupo/new/deque_operate_all_composite.test.cpp": "2022-08-23 02:00:39 +0900",
 "test/yosupo/new/gcd_convolution.test.cpp": "2022-08-18 19:11:53 +0900",
 "test/yosupo/new/jump_on_tree.test.cpp": "2022-08-18 19:11:53 +0900",
 "test/yosupo/new/lcm_convolution.test.cpp": "2022-08-18 19:11:53 +0900",
