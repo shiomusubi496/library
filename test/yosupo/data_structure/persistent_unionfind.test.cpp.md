@@ -2,63 +2,63 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: other/template.hpp
-    title: other/template.hpp
-  _extendedRequiredBy:
+    path: data-struct/other/PersistentArray.hpp
+    title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/PersistentUnionFind.hpp
     title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-    title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/persistent_unionfind.test.cpp
-    title: test/yosupo/data_structure/persistent_unionfind.test.cpp
+    path: other/template.hpp
+    title: other/template.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/PersistentArray.md
-    document_title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
-    links: []
-  bundledCode: "#line 2 \"data-struct/other/PersistentArray.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c)                                                   \
-    \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
-    #define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i <\
-    \ (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n\
-    #define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define\
-    \ rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define\
-    \ RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b) for\
-    \ (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll i =\
-    \ (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...)                             \
-    \                                \\\n    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3,\
-    \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
-    \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#define rall(v) std::rbegin(v), std::rend(v)\n\n#if __cpp_constexpr\
-    \ >= 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n\
-    #if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\nusing ll = long long;\nusing ull = unsigned long long;\n\
-    using ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing\
-    \ prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\ntemplate<class\
-    \ T> class infinity {\npublic:\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n \
-    \   static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::min();\n};\n\n#if __cplusplus <= 201402L\ntemplate<class\
-    \ T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr T infinity<T>::mvalue;\n\
-    template<class T> constexpr T infinity<T>::max;\ntemplate<class T> constexpr T\
-    \ infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >= 201304L\ntemplate<class\
-    \ T> constexpr T INF = infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\n\
-    constexpr ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
+    links:
+    - https://judge.yosupo.jp/problem/persistent_unionfind
+  bundledCode: "#line 1 \"test/yosupo/data_structure/persistent_unionfind.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
+    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
+    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
+    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
+    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
+    \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...)                                                             \\\n\
+    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
+    \ std::rend(v)\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n\
+    #else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define\
+    \ IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll = long\
+    \ long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing PLL =\
+    \ std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
     \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
     \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
     \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
@@ -158,7 +158,8 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/PersistentArray.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/unionfind/PersistentUnionFind.hpp\"\
+    \n\n#line 2 \"data-struct/other/PersistentArray.hpp\"\n\n#line 4 \"data-struct/other/PersistentArray.hpp\"\
     \n\ntemplate<class T, std::size_t sz = 2> class PersistentArray {\nprivate:\n\
     \    struct node;\n    using node_ptr = std::shared_ptr<node>;\n    struct node\
     \ {\n        T val;\n        std::array<node_ptr, sz> ch;\n        node() : val(T())\
@@ -199,72 +200,65 @@ data:
     \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
     \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
     \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
-    \ std::size_t sz = 2> class PersistentArray {\nprivate:\n    struct node;\n  \
-    \  using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
-    \        std::array<node_ptr, sz> ch;\n        node() : val(T()) { ch.fill(nullptr);\
-    \ }\n        node(const T& val) : val(val) { ch.fill(nullptr); }\n        node(const\
-    \ std::array<node_ptr, sz>& ch) : ch(ch) {}\n        node(const T& val, const\
-    \ std::array<node_ptr, sz>& ch)\n            : val(val), ch(ch) {}\n    };\n \
-    \   int n;\n    std::vector<node_ptr> root;\n    std::vector<int> len;\n    int\
-    \ last_time;\n    void build_dfs(node_ptr& nd, const std::vector<T>& a, int k,\
-    \ int t) {\n        if (k >= n) return;\n        if (nd == nullptr) nd = std::make_shared<node>(a[k]);\n\
-    \        rep (i, sz) {\n            build_dfs(nd->ch[i], a, k + (i + 1) * t, t\
-    \ * sz);\n        }\n    }\n    void set_dfs(node_ptr& nd, int k, const T& x)\
-    \ {\n        nd = std::make_shared<node>(*nd);\n        if (k == 0) nd->val =\
-    \ x;\n        else set_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz, x);\n    }\n  \
-    \  void push_back_dfs(node_ptr& nd, int k, const T& x) {\n        if (k == 0)\
-    \ nd = std::make_shared<node>(x);\n        else {\n            nd = std::make_shared<node>(*nd);\n\
-    \            push_back_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz, x);\n        }\n\
-    \    }\n    T get_dfs(const node_ptr& nd, int k) const {\n        if (k == 0)\
-    \ return nd->val;\n        return get_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz);\n\
-    \    }\n\npublic:\n    PersistentArray(int n) : PersistentArray(std::vector<T>(n))\
-    \ {}\n    PersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
-    \ std::vector<T>& a) {\n        n = a.size();\n        if (n == 0) {\n       \
-    \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
-    \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
-    \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
-    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
-    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
-    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
-    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
-    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
-    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
-    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
-    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
-    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
-    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
-    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
-    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
-    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
+    \ */\n#line 5 \"data-struct/unionfind/PersistentUnionFind.hpp\"\n\nclass PersistentUnionFind\
+    \ {\nprivate:\n    int n;\n    PersistentArray<int, 4> par;\n    std::vector<int>\
+    \ tim;\n    int last_time;\n    int internal_find(int x, int t) const {\n    \
+    \    int p = par.get(x, t);\n        return p < 0 ? x : internal_find(p, t);\n\
+    \    }\n\npublic:\n    PersistentUnionFind() : PersistentUnionFind(0) {}\n   \
+    \ PersistentUnionFind(int n)\n        : n(n), par(std::vector<int>(n, -1)), tim(1,\
+    \ -1), last_time(0) {}\n    int now() const { return last_time - 1; }\n    int\
+    \ find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n    \
+    \    assert(0 <= x && x < n);\n        return internal_find(x, tim[t + 1]);\n\
+    \    }\n    int find_last(int x) const { return find(x, last_time - 1); }\n  \
+    \  std::pair<std::pair<int, int>, int> merge(int x, int y, int t) {\n        x\
+    \ = find(x, t);\n        y = find(y, t);\n        if (x == y) {\n            tim.push_back((int)tim[t\
+    \ + 1]);\n            return {{x, -1}, last_time++};\n        }\n        int px\
+    \ = par.get(x, tim[t + 1]), py = par.get(y, tim[t + 1]);\n        if (px > py)\
+    \ std::swap(x, y);\n        par.set(x, px + py, tim[t + 1]);\n        par.set_last(y,\
+    \ x);\n        tim.push_back(par.now());\n        return {{x, y}, last_time++};\n\
+    \    }\n    bool same(int x, int y, int t) const { return find(x, t) == find(y,\
+    \ t); }\n    bool same_last(int x, int y) const { return same(x, y, last_time\
+    \ - 1); }\n    int size(int x, int t) const { return -par.get(x, tim[t + 1]);\
+    \ }\n    int size_last(int x) const { return size(x, last_time - 1); }\n    std::vector<std::vector<int>>\
+    \ groups(int t) const {\n        assert(-1 <= t && t < last_time);\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    std::vector<std::vector<int>> groups_last() const {\n        return\
+    \ groups(last_time - 1);\n    }\n    bool is_root(int x, int t) const {\n    \
+    \    assert(-1 <= t && t < last_time);\n        assert(0 <= x && x < n);\n   \
+    \     return par.get(x, tim[t + 1]) < 0;\n    }\n    bool is_root_last(int x)\
+    \ const { return is_root(x, last_time - 1); }\n};\n\n/**\n * @brief PersistentUnionFind(\u5B8C\
+    \u5168\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PersistentUnionFind.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/persistent_unionfind.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int n; cin >> n;\n    PersistentUnionFind\
+    \ uf(n);\n    int q; cin >> q;\n    vector<int> A(q + 1);\n    A[0] = -1;\n  \
+    \  rep (i, q) {\n        int t, tm, a, b; cin >> t >> tm >> a >> b;\n        if\
+    \ (t == 0) {\n            A[i + 1] = uf.merge(a, b, A[tm + 1]).second;\n     \
+    \   }\n        else {\n            cout << uf.same(a, b, A[tm + 1]) << endl;\n\
+    \        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/unionfind/PersistentUnionFind.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n; cin >> n;\n    PersistentUnionFind\
+    \ uf(n);\n    int q; cin >> q;\n    vector<int> A(q + 1);\n    A[0] = -1;\n  \
+    \  rep (i, q) {\n        int t, tm, a, b; cin >> t >> tm >> a >> b;\n        if\
+    \ (t == 0) {\n            A[i + 1] = uf.merge(a, b, A[tm + 1]).second;\n     \
+    \   }\n        else {\n            cout << uf.same(a, b, A[tm + 1]) << endl;\n\
+    \        }\n    }\n}"
   dependsOn:
   - other/template.hpp
-  isVerificationFile: false
-  path: data-struct/other/PersistentArray.hpp
-  requiredBy:
   - data-struct/unionfind/PersistentUnionFind.hpp
-  timestamp: '2022-08-22 19:54:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/persistent_queue-Array.test.cpp
-  - test/yosupo/data_structure/persistent_unionfind.test.cpp
-documentation_of: data-struct/other/PersistentArray.hpp
+  - data-struct/other/PersistentArray.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/persistent_unionfind.test.cpp
+  requiredBy: []
+  timestamp: '2022-08-23 00:41:56+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/data_structure/persistent_unionfind.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/other/PersistentArray.hpp
-- /library/data-struct/other/PersistentArray.hpp.html
-title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
+- /verify/test/yosupo/data_structure/persistent_unionfind.test.cpp
+- /verify/test/yosupo/data_structure/persistent_unionfind.test.cpp.html
+title: test/yosupo/data_structure/persistent_unionfind.test.cpp
 ---
-## 概要
-
-完全永続配列。単に永続配列とも。 $k$ 分木を使っている。(デフォルトは $k=2$ 。)
-
-- `PersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(kN)$ 。
-- `int set(int k, int t, T x)` : これが $i$ 回目(0-indexed)の `set`, `push_back` 呼び出しのとき、 $a_{t}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(k \log_k N)$ 。
-- `int push_back(int k, int t, T x)` : これが $i$ 回目の `set`, `push_back` 呼び出しのとき、 $a_{t}$ に $x$ を末尾に追加した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(k \log_k N)$ 。
-- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log_k N)$ 。

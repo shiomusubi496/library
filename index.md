@@ -101,6 +101,9 @@ data:
       path: data-struct/unionfind/PartialPersistentUnionFind.hpp
       title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
     - icon: ':heavy_check_mark:'
+      path: data-struct/unionfind/PersistentUnionFind.hpp
+      title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -525,6 +528,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/persistent_unionfind.test.cpp
+      title: test/yosupo/data_structure/persistent_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_add_range_sum.test.cpp
       title: test/yosupo/data_structure/point_add_range_sum.test.cpp

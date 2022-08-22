@@ -94,6 +94,9 @@ data:
     path: data-struct/unionfind/PartialPersistentUnionFind.hpp
     title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/PersistentUnionFind.hpp
+    title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
@@ -471,6 +474,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/persistent_unionfind.test.cpp
+    title: test/yosupo/data_structure/persistent_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_range_sum.test.cpp
     title: test/yosupo/data_structure/point_add_range_sum.test.cpp
@@ -932,6 +938,7 @@ data:
   - graph/other/TwoSatisfiablitity.hpp
   - graph/other/TopologicalSort.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
+  - data-struct/unionfind/PersistentUnionFind.hpp
   - data-struct/unionfind/UnionFindUndo.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
@@ -1024,6 +1031,7 @@ data:
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/static_range_frequency.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/persistent_unionfind.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
