@@ -40,8 +40,7 @@ public:
                     res[i][j] += (*this)[i][k] * other[k][j];
             }
         }
-        *this = std::move(res);
-        return *this;
+        return *this = std::move(res);
     }
     Matrix& operator*=(T s) {
         rep (i, this->size()) {

@@ -5,26 +5,26 @@
 class UnionFind {
 private:
     int n;
-    std::vector<int> par_vec;
+    std::vector<int> par;
 
 public:
     UnionFind() : UnionFind(0) {}
-    UnionFind(int n) : n(n), par_vec(n, -1) {}
+    UnionFind(int n) : n(n), par(n, -1) {}
     int find(int x) {
         assert(0 <= x && x < n);
-        return par_vec[x] < 0 ? x : par_vec[x] = find(par_vec[x]);
+        return par[x] < 0 ? x : par[x] = find(par[x]);
     }
     std::pair<int, int> merge(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y) return {x, -1};
-        if (par_vec[x] > par_vec[y]) std::swap(x, y);
-        par_vec[x] += par_vec[y];
-        par_vec[y] = x;
+        if (par[x] > par[y]) std::swap(x, y);
+        par[x] += par[y];
+        par[y] = x;
         return {x, y};
     }
     bool same(int x, int y) { return find(x) == find(y); }
-    int size(int x) { return -par_vec[find(x)]; }
+    int size(int x) { return -par[find(x)]; }
     std::vector<std::vector<int>> groups() {
         std::vector<std::vector<int>> res(n);
         rep (i, n) res[find(i)].push_back(i);
@@ -36,7 +36,7 @@ public:
     }
     bool is_root(int x) const {
         assert(0 <= x && x < n);
-        return par_vec[x] < 0;
+        return par[x] < 0;
     }
 };
 

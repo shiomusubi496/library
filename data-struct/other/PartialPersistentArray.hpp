@@ -35,6 +35,9 @@ public:
         int id = std::upper_bound(all(tim[k]), t) - tim[k].begin() - 1;
         return val[k][id];
     }
+    T get_last(int k) const {
+        return get(k, last_time - 1);
+    }
 };
 
 /**

@@ -2,8 +2,7 @@
 
 #include "../../other/template.hpp"
 
-template<class T, std::size_t sz = 2>
-class PersistentArray {
+template<class T, std::size_t sz = 2> class PersistentArray {
 private:
     struct node;
     using node_ptr = std::shared_ptr<node>;
@@ -13,7 +12,8 @@ private:
         node() : val(T()) { ch.fill(nullptr); }
         node(const T& val) : val(val) { ch.fill(nullptr); }
         node(const std::array<node_ptr, sz>& ch) : ch(ch) {}
-        node(const T& val, const std::array<node_ptr, sz>& ch) : val(val), ch(ch) {}
+        node(const T& val, const std::array<node_ptr, sz>& ch)
+            : val(val), ch(ch) {}
     };
     int n;
     std::vector<node_ptr> root;
@@ -68,9 +68,7 @@ public:
         len.push_back(len[t + 1]);
         return last_time++;
     }
-    int set_last(int k, const T& x) {
-        return set(k, x, last_time - 1);
-    }
+    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }
     int push_back(const T& x, int t) {
         assert(-1 <= t && t < last_time);
         root.push_back(std::make_shared<node>(*root[t + 1]));
@@ -78,24 +76,18 @@ public:
         len.push_back(len[t + 1] + 1);
         return last_time++;
     }
-    int push_back_last(const T& x) {
-        return push_back(last_time - 1, x);
-    }
+    int push_back_last(const T& x) { return push_back(last_time - 1, x); }
     T get(int k, int t) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= k && k < len[t + 1]);
         return get_dfs(root[t + 1], k);
     }
-    T get_last(int k) const {
-        return get(k, last_time - 1);
-    }
+    T get_last(int k) const { return get(k, last_time - 1); }
     int size(int t) const {
         assert(-1 <= t && t < last_time);
         return len[t + 1];
     }
-    int size_last() const {
-        return size(last_time - 1);
-    }
+    int size_last() const { return size(last_time - 1); }
 };
 
 /**
