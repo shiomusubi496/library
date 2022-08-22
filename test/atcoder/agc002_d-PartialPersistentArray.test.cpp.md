@@ -1,24 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
-    title: ConvexHullTrickAddMonotone
+  - icon: ':x:'
+    path: data-struct/other/PartialPersistentArray.hpp
+    title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2725
+    PROBLEM: https://atcoder.jp/contests/agc002/tasks/agc002_d
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/2725
-  bundledCode: "#line 1 \"test/aoj/other/2725-CHT.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
+    - https://atcoder.jp/contests/agc002/tasks/agc002_d
+  bundledCode: "#line 1 \"test/atcoder/agc002_d-PartialPersistentArray.test.cpp\"\n\
+    #define PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
     \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
@@ -154,96 +155,81 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
-    \ T = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
-    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
-    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
-    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
-    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
-    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
-    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
-    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n#line 4 \"\
-    test/aoj/other/2725-CHT.test.cpp\"\nusing namespace std;\nint main() {\n    int\
-    \ N, T; cin >> N >> T;\n    vector<array<ll, 3>> s(N); cin >> s;\n    sort(s.begin(),\
-    \ s.end(), [](auto a, auto b) -> bool { return a[2] < b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll,\
-    \ true>> dp(T + 1);\n    dp[0].add_line(0, 0);\n    ll ans = 0;\n    each_const\
-    \ (arr : s) {\n        ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i,\
-    \ T + 1) {\n            if (dp[i].empty()) continue;\n            if (i + t >\
-    \ T) continue;\n            ll val = p + dp[i].inc_get_min(f);\n            if\
-    \ (i != 0) val -= f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2\
-    \ * f, val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, T; cin >> N >> T;\n    vector<array<ll,\
-    \ 3>> s(N); cin >> s;\n    sort(s.begin(), s.end(), [](auto a, auto b) -> bool\
-    \ { return a[2] < b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll, true>>\
-    \ dp(T + 1);\n    dp[0].add_line(0, 0);\n    ll ans = 0;\n    each_const (arr\
-    \ : s) {\n        ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i, T +\
-    \ 1) {\n            if (dp[i].empty()) continue;\n            if (i + t > T) continue;\n\
-    \            ll val = p + dp[i].inc_get_min(f);\n            if (i != 0) val -=\
-    \ f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2 * f,\
-    \ val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/PartialPersistentArray.hpp\"\
+    \n\n#line 4 \"data-struct/other/PartialPersistentArray.hpp\"\n\ntemplate<class\
+    \ T>\nclass PartialPersistentArray {\nprivate:\n    int n;\n    std::vector<std::vector<int>>\
+    \ tim;\n    std::vector<std::vector<T>> val;\n    int last_time;\npublic:\n  \
+    \  PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n)) {}\n\
+    \    PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
+    \ std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n      \
+    \  val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
+    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
+    \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
+    \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
+    \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
+    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
+    \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     return get(k, last_time - 1);\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
+    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
+    \ */\n#line 4 \"test/atcoder/agc002_d-PartialPersistentArray.test.cpp\"\nusing\
+    \ namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n  \
+    \  PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n   \
+    \ PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
+    \ {}\n    int find(int x, int t) {\n        assert(0 <= x && x < n);\n       \
+    \ assert(-1 <= t && t <= par.now());\n        return par.get(x, t) < 0 ? x : find(par.get(x,\
+    \ t), t);\n    }\n    std::pair<int, int> merge(int x, int y) {\n        int t\
+    \ = par.now();\n        x = find(x, t);\n        y = find(y, t);\n        if (x\
+    \ == y) {\n            tm.push_back((int)tm.back());\n            return {x, -1};\n\
+    \        }\n        if (par.get(x, t) > par.get(y, t)) std::swap(x, y);\n    \
+    \    par.set(x, par.get(x, t) + par.get(y, t));\n        par.set(y, x);\n    \
+    \    tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n    bool same(int\
+    \ x, int y, int t) { return find(x, tm[t + 1]) == find(y, tm[t + 1]); }\n    int\
+    \ size(int x, int t) { return -par.get(find(x, tm[t + 1]), tm[t + 1]); }\n};\n\
+    int main() {\n    int N, M; cin >> N >> M;\n    PartialPersistentUnionFind uf(N);\n\
+    \    rep (M) {\n        int a, b; cin >> a >> b;\n        uf.merge(a - 1, b -\
+    \ 1);\n    }\n    int Q; cin >> Q;\n    rep (Q) {\n        int a, b, x; cin >>\
+    \ a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n        while\
+    \ (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n            if ((uf.size(a,\
+    \ mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x)) {\n               \
+    \ ok = mid;\n            } else {\n                ng = mid;\n            }\n\
+    \        }\n        cout << ok + 1 << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../data-struct/other/PartialPersistentArray.hpp\"\
+    \nusing namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n\
+    \    PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n \
+    \   PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
+    \ {}\n    int find(int x, int t) {\n        assert(0 <= x && x < n);\n       \
+    \ assert(-1 <= t && t <= par.now());\n        return par.get(x, t) < 0 ? x : find(par.get(x,\
+    \ t), t);\n    }\n    std::pair<int, int> merge(int x, int y) {\n        int t\
+    \ = par.now();\n        x = find(x, t);\n        y = find(y, t);\n        if (x\
+    \ == y) {\n            tm.push_back((int)tm.back());\n            return {x, -1};\n\
+    \        }\n        if (par.get(x, t) > par.get(y, t)) std::swap(x, y);\n    \
+    \    par.set(x, par.get(x, t) + par.get(y, t));\n        par.set(y, x);\n    \
+    \    tm.push_back(tm.back() + 2);\n        return {x, y};\n    }\n    bool same(int\
+    \ x, int y, int t) { return find(x, tm[t + 1]) == find(y, tm[t + 1]); }\n    int\
+    \ size(int x, int t) { return -par.get(find(x, tm[t + 1]), tm[t + 1]); }\n};\n\
+    int main() {\n    int N, M; cin >> N >> M;\n    PartialPersistentUnionFind uf(N);\n\
+    \    rep (M) {\n        int a, b; cin >> a >> b;\n        uf.merge(a - 1, b -\
+    \ 1);\n    }\n    int Q; cin >> Q;\n    rep (Q) {\n        int a, b, x; cin >>\
+    \ a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n        while\
+    \ (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n            if ((uf.size(a,\
+    \ mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x)) {\n               \
+    \ ok = mid;\n            } else {\n                ng = mid;\n            }\n\
+    \        }\n        cout << ok + 1 << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  - data-struct/other/PartialPersistentArray.hpp
   isVerificationFile: true
-  path: test/aoj/other/2725-CHT.test.cpp
+  path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
   requiredBy: []
-  timestamp: '2022-08-19 04:06:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-08-22 19:54:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/other/2725-CHT.test.cpp
+documentation_of: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/other/2725-CHT.test.cpp
-- /verify/test/aoj/other/2725-CHT.test.cpp.html
-title: test/aoj/other/2725-CHT.test.cpp
+- /verify/test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+- /verify/test/atcoder/agc002_d-PartialPersistentArray.test.cpp.html
+title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
 ---

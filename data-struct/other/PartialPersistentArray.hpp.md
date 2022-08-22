@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+    title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/PartialPersistentArray.md
     document_title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
@@ -163,7 +166,8 @@ data:
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
     \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     return get(k, last_time - 1);\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
     \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\n\
@@ -179,7 +183,8 @@ data:
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
     \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     return get(k, last_time - 1);\n    }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
     \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
     \ */\n"
   dependsOn:
@@ -187,9 +192,10 @@ data:
   isVerificationFile: false
   path: data-struct/other/PartialPersistentArray.hpp
   requiredBy: []
-  timestamp: '2022-08-22 07:39:46+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-08-22 19:54:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
 documentation_of: data-struct/other/PartialPersistentArray.hpp
 layout: document
 redirect_from:

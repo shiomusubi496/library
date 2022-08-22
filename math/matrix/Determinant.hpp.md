@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -173,19 +173,18 @@ data:
     \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
     \            rep (k, other.size()) {\n                rep (j, other[0].size())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
-    \        }\n        *this = std::move(res);\n        return *this;\n    }\n  \
-    \  Matrix& operator*=(T s) {\n        rep (i, this->size()) {\n            rep\
-    \ (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n        return *this;\n\
-    \    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n\
-    \        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
-    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
-    \ lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix pow(ll\
-    \ b) {\n        Matrix a = *this, res = get_id(this->size());\n        while (b)\
-    \ {\n            if (b & 1) res *= a;\n            a *= a;\n            b >>=\
-    \ 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\
+    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.height()\
     \ == mat.width());\n    const int n = mat.height();\n    T res = 1;\n    rep (i,\
     \ n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n     \
@@ -219,7 +218,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/matrix_det.test.cpp

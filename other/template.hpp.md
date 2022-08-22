@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':heavy_check_mark:'
@@ -90,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
+  - icon: ':x:'
+    path: data-struct/unionfind/PartialPersistentUnionFind.hpp
+    title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
@@ -441,6 +444,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+    title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+    title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
@@ -612,9 +621,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef\
@@ -926,6 +935,7 @@ data:
   - data-struct/unionfind/UnionFindUndo.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
+  - data-struct/unionfind/PartialPersistentUnionFind.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/LiChaoTree.hpp
   - data-struct/cht/ConvexHullTrick.hpp
@@ -980,7 +990,7 @@ data:
   - other/bitop.hpp
   - other/monoid.hpp
   timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
@@ -1096,6 +1106,8 @@ data:
   - test/aoj/other/2725-CHT.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
 documentation_of: other/template.hpp
 layout: document
 redirect_from:

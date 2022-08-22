@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -278,12 +278,12 @@ data:
     \ {\n        assert(this->width() == other.height());\n        Matrix res(this->size(),\
     \ other[0].size());\n        rep (i, this->size()) {\n            rep (k, other.size())\
     \ {\n                rep (j, other[0].size())\n                    res[i][j] +=\
-    \ (*this)[i][k] * other[k][j];\n            }\n        }\n        *this = std::move(res);\n\
-    \        return *this;\n    }\n    Matrix& operator*=(T s) {\n        rep (i,\
-    \ this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n\
-    \        }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
-    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
-    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ (*this)[i][k] * other[k][j];\n            }\n        }\n        return *this\
+    \ = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size())\
+    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n \
+    \       return *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const\
+    \ Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix\
+    \ operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
     \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
     \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
     \ Matrix& lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix\
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_det.test.cpp

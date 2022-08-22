@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/PersistentArray.hpp
     title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -157,12 +157,12 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/PersistentArray.hpp\"\
     \n\n#line 4 \"data-struct/other/PersistentArray.hpp\"\n\ntemplate<class T, std::size_t\
-    \ sz = 2>\nclass PersistentArray {\nprivate:\n    struct node;\n    using node_ptr\
+    \ sz = 2> class PersistentArray {\nprivate:\n    struct node;\n    using node_ptr\
     \ = std::shared_ptr<node>;\n    struct node {\n        T val;\n        std::array<node_ptr,\
     \ sz> ch;\n        node() : val(T()) { ch.fill(nullptr); }\n        node(const\
     \ T& val) : val(val) { ch.fill(nullptr); }\n        node(const std::array<node_ptr,\
     \ sz>& ch) : ch(ch) {}\n        node(const T& val, const std::array<node_ptr,\
-    \ sz>& ch) : val(val), ch(ch) {}\n    };\n    int n;\n    std::vector<node_ptr>\
+    \ sz>& ch)\n            : val(val), ch(ch) {}\n    };\n    int n;\n    std::vector<node_ptr>\
     \ root;\n    std::vector<int> len;\n    int last_time;\n    void build_dfs(node_ptr&\
     \ nd, const std::vector<T>& a, int k, int t) {\n        if (k >= n) return;\n\
     \        if (nd == nullptr) nd = std::make_shared<node>(a[k]);\n        rep (i,\
@@ -184,20 +184,20 @@ data:
     \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
     \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) {\n     \
-    \   return set(k, x, last_time - 1);\n    }\n    int push_back(const T& x, int\
-    \ t) {\n        assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
+    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
+    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
     \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) {\n        return push_back(last_time - 1, x);\n    }\n    T get(int k,\
-    \ int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
-    \   T get_last(int k) const {\n        return get(k, last_time - 1);\n    }\n\
-    \    int size(int t) const {\n        assert(-1 <= t && t < last_time);\n    \
-    \    return len[t + 1];\n    }\n    int size_last() const {\n        return size(last_time\
-    \ - 1);\n    }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\
-    \u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int q; cin >> q;\n    PersistentArray<int>\
+    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
+    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
+    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
+    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
+    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
+    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
+    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int q; cin >> q;\n    PersistentArray<int>\
     \ PA(1);\n    rep (q) {\n        int a; cin >> a;\n        if (a == 0) {\n   \
     \         int t, x; cin >> t >> x;\n            PA.push_back(x, t);\n        }\n\
     \        else {\n            int t; cin >> t;\n            int frt = PA.get(0,\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   requiredBy: []
-  timestamp: '2022-08-22 07:39:46+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/persistent_queue-Array.test.cpp

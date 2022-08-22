@@ -1,23 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
-    title: ConvexHullTrickAddMonotone
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+    title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2725
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/2725
-  bundledCode: "#line 1 \"test/aoj/other/2725-CHT.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\
+    _deprecated_at_docs: docs/data-struct/unionfind/PartialPersistentUnionFind.md
+    document_title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
+    links: []
+  bundledCode: "#line 2 \"data-struct/unionfind/PartialPersistentUnionFind.hpp\"\n\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
     #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
     \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
@@ -154,96 +153,82 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\ntemplate<class\
-    \ T = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
-    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
-    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
-    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
-    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
-    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
-    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
-    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n#line 4 \"\
-    test/aoj/other/2725-CHT.test.cpp\"\nusing namespace std;\nint main() {\n    int\
-    \ N, T; cin >> N >> T;\n    vector<array<ll, 3>> s(N); cin >> s;\n    sort(s.begin(),\
-    \ s.end(), [](auto a, auto b) -> bool { return a[2] < b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll,\
-    \ true>> dp(T + 1);\n    dp[0].add_line(0, 0);\n    ll ans = 0;\n    each_const\
-    \ (arr : s) {\n        ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i,\
-    \ T + 1) {\n            if (dp[i].empty()) continue;\n            if (i + t >\
-    \ T) continue;\n            ll val = p + dp[i].inc_get_min(f);\n            if\
-    \ (i != 0) val -= f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2\
-    \ * f, val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/2725\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, T; cin >> N >> T;\n    vector<array<ll,\
-    \ 3>> s(N); cin >> s;\n    sort(s.begin(), s.end(), [](auto a, auto b) -> bool\
-    \ { return a[2] < b[2]; });\n    vector<ConvexHullTrickAddMonotone<ll, true>>\
-    \ dp(T + 1);\n    dp[0].add_line(0, 0);\n    ll ans = 0;\n    each_const (arr\
-    \ : s) {\n        ll t = arr[0], p = arr[1], f = arr[2];\n        rrep (i, T +\
-    \ 1) {\n            if (dp[i].empty()) continue;\n            if (i + t > T) continue;\n\
-    \            ll val = p + dp[i].inc_get_min(f);\n            if (i != 0) val -=\
-    \ f * f;\n            chmax(ans, val);\n            dp[i + t].add_line(2 * f,\
-    \ val - f * f);\n        }\n    }\n    cout << ans << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/unionfind/PartialPersistentUnionFind.hpp\"\
+    \n\nclass PartialPersistentUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
+    \ par, tim;\n    std::vector<std::vector<std::pair<int, int>>> sz_hist;\n    int\
+    \ last_time;\n\npublic:\n    PartialPersistentUnionFind() : PartialPersistentUnionFind(0)\
+    \ {}\n    PartialPersistentUnionFind(int n)\n        : n(n), par(n, -1), tim(n,\
+    \ infinity<int>::value), sz_hist(n, {{-1, 1}}),\n          last_time(0) {}\n \
+    \   int now() const { return last_time - 1; }\n    int find(int x, int t) const\
+    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= x && x < n);\n\
+    \        return tim[x] <= t ? find(par[x], t) : x;\n    }\n    int find_last(int\
+    \ x) const { return find(x, last_time - 1); }\n    std::pair<std::pair<int, int>,\
+    \ int> merge(int x, int y) {\n        x = find_last(x);\n        y = find_last(y);\n\
+    \        if (x == y) return {{x, -1}, last_time++};\n        if (par[x] > par[y])\
+    \ std::swap(x, y);\n        par[x] += par[y];\n        par[y] = x;\n        tim[y]\
+    \ = last_time;\n        sz_hist[x].push_back({last_time, -par[x]});\n        return\
+    \ {{x, y}, last_time++};\n    }\n    bool same(int x, int y, int t) const { return\
+    \ find(x, t) == find(y, t); }\n    bool same_last(int x, int y) const { return\
+    \ same(x, y, last_time - 1); }\n    int size(int x, int t) const {\n        const\
+    \ auto& h = sz_hist[find(x, t)];\n        return std::prev(\n                \
+    \   std::lower_bound(all(h), std::pair<int, int>{t + 1, -1}))\n            ->second;\n\
+    \    }\n    int size_last(int x) const {\n        const auto& h = sz_hist[find_last(x)];\n\
+    \        return h.back().second;\n    }\n    std::vector<std::vector<int>> groups(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    std::vector<std::vector<int>> groups_last() const {\n        return\
+    \ groups(last_time - 1);\n    }\n    bool is_root(int x, int t) const {\n    \
+    \    assert(-1 <= t && t < last_time);\n        assert(0 <= x && x < n);\n   \
+    \     return tim[x] <= t;\n    }\n    bool is_root_last(int x) const { return\
+    \ is_root(x, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentUnionFind(\u90E8\
+    \u5206\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass PartialPersistentUnionFind\
+    \ {\nprivate:\n    int n;\n    std::vector<int> par, tim;\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> sz_hist;\n    int last_time;\n\npublic:\n    PartialPersistentUnionFind()\
+    \ : PartialPersistentUnionFind(0) {}\n    PartialPersistentUnionFind(int n)\n\
+    \        : n(n), par(n, -1), tim(n, infinity<int>::value), sz_hist(n, {{-1, 1}}),\n\
+    \          last_time(0) {}\n    int now() const { return last_time - 1; }\n  \
+    \  int find(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n\
+    \        assert(0 <= x && x < n);\n        return tim[x] <= t ? find(par[x], t)\
+    \ : x;\n    }\n    int find_last(int x) const { return find(x, last_time - 1);\
+    \ }\n    std::pair<std::pair<int, int>, int> merge(int x, int y) {\n        x\
+    \ = find_last(x);\n        y = find_last(y);\n        if (x == y) return {{x,\
+    \ -1}, last_time++};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x]\
+    \ += par[y];\n        par[y] = x;\n        tim[y] = last_time;\n        sz_hist[x].push_back({last_time,\
+    \ -par[x]});\n        return {{x, y}, last_time++};\n    }\n    bool same(int\
+    \ x, int y, int t) const { return find(x, t) == find(y, t); }\n    bool same_last(int\
+    \ x, int y) const { return same(x, y, last_time - 1); }\n    int size(int x, int\
+    \ t) const {\n        const auto& h = sz_hist[find(x, t)];\n        return std::prev(\n\
+    \                   std::lower_bound(all(h), std::pair<int, int>{t + 1, -1}))\n\
+    \            ->second;\n    }\n    int size_last(int x) const {\n        const\
+    \ auto& h = sz_hist[find_last(x)];\n        return h.back().second;\n    }\n \
+    \   std::vector<std::vector<int>> groups(int t) const {\n        assert(-1 <=\
+    \ t && t < last_time);\n        std::vector<std::vector<int>> res(n);\n      \
+    \  rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    std::vector<std::vector<int>>\
+    \ groups_last() const {\n        return groups(last_time - 1);\n    }\n    bool\
+    \ is_root(int x, int t) const {\n        assert(-1 <= t && t < last_time);\n \
+    \       assert(0 <= x && x < n);\n        return tim[x] <= t;\n    }\n    bool\
+    \ is_root_last(int x) const { return is_root(x, last_time - 1); }\n};\n\n/**\n\
+    \ * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
-  - data-struct/cht/ConvexHullTrickAddMonotone.hpp
-  isVerificationFile: true
-  path: test/aoj/other/2725-CHT.test.cpp
+  isVerificationFile: false
+  path: data-struct/unionfind/PartialPersistentUnionFind.hpp
   requiredBy: []
-  timestamp: '2022-08-19 04:06:26+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/other/2725-CHT.test.cpp
+  timestamp: '2022-08-22 19:54:02+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+documentation_of: data-struct/unionfind/PartialPersistentUnionFind.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/other/2725-CHT.test.cpp
-- /verify/test/aoj/other/2725-CHT.test.cpp.html
-title: test/aoj/other/2725-CHT.test.cpp
+- /library/data-struct/unionfind/PartialPersistentUnionFind.hpp
+- /library/data-struct/unionfind/PartialPersistentUnionFind.hpp.html
+title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
 ---

@@ -23,7 +23,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
-    - icon: ':warning:'
+    - icon: ':x:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
     - icon: ':heavy_check_mark:'
@@ -97,6 +97,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
+    - icon: ':x:'
+      path: data-struct/unionfind/PartialPersistentUnionFind.hpp
+      title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
@@ -271,7 +274,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
     - icon: ':heavy_check_mark:'
@@ -491,6 +494,12 @@ data:
       title: test/aoj/other/2945-01BFS.test.cpp
   - name: test/atcoder
     pages:
+    - icon: ':x:'
+      path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+      title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+    - icon: ':x:'
+      path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+      title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/atcoder/arc099_c-Bipartite.test.cpp
       title: test/atcoder/arc099_c-Bipartite.test.cpp

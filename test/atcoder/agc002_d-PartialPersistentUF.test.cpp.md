@@ -1,23 +1,25 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: data-struct/unionfind/PartialPersistentUnionFind.hpp
+    title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-    title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/math/Rational.md
-    document_title: "Rational(\u6709\u7406\u6570\u578B)"
-    links: []
-  bundledCode: "#line 2 \"math/Rational.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/agc002/tasks/agc002_d
+    links:
+    - https://atcoder.jp/contests/agc002/tasks/agc002_d
+  bundledCode: "#line 1 \"test/atcoder/agc002_d-PartialPersistentUF.test.cpp\"\n#define\
+    \ PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
     #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
     \ c)\n#define REP1_1(b, c)                                                   \
     \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
@@ -152,154 +154,70 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/Rational.hpp\"\n\n\
-    template<class T> class Rational {\nprivate:\n    T num, den;\n\npublic:\n   \
-    \ static void norm(T& a, T& b) {\n        assert(b != 0);\n        T g = gcd(abs(a),\
-    \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
-    \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
-    \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
-    \ {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num()\
-    \ const { return num; }\n    T get_den() const { return den; }\n    ld get_ld()\
-    \ const { return (ld)num / den; }\n    Rational& operator++() {\n        num +=\
-    \ den;\n        return *this;\n    }\n    Rational operator++(int) {\n       \
-    \ Rational res = *this;\n        ++*this;\n        return res;\n    }\n    Rational&\
-    \ operator--() {\n        num -= den;\n        return *this;\n    }\n    Rational\
-    \ operator--(int) {\n        Rational res = *this;\n        --*this;\n       \
-    \ return res;\n    }\n    Rational& operator+=(const Rational& other) {\n    \
-    \    T g = gcd(den, other.den);\n        num = num * (other.den / g) + other.num\
-    \ * (den / g);\n        den = den / g * other.den;\n        normalize();\n   \
-    \     return *this;\n    }\n    Rational& operator-=(const Rational& other) {\n\
-    \        T g = gcd(den, other.den);\n        num = num * (other.den / g) - other.num\
-    \ * (den / g);\n        den = den / g * other.den;\n        normalize();\n   \
-    \     return *this;\n    }\n    Rational& operator*=(const Rational& other) {\n\
-    \        T g1 = gcd(num, other.den);\n        T g2 = gcd(den, other.num);\n  \
-    \      num = (num / g1) * (other.num / g2);\n        den = (den / g2) * (other.den\
-    \ / g1);\n        return *this;\n    }\n    Rational& operator/=(const Rational&\
-    \ other) {\n        return (*this) *= Rational(other.den, other.num);\n    }\n\
-    \    friend Rational operator+(const Rational& lhs, const Rational& rhs) {\n \
-    \       return Rational(lhs) += rhs;\n    }\n    friend Rational operator-(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) -= rhs;\n\
-    \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
-    \    }\n    Rational operator+() { return Rational(*this); }\n    Rational operator-()\
-    \ { return Rational(-num, den); }\n    friend bool operator==(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return lhs.num == rhs.num && lhs.den ==\
-    \ rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n  \
-    \  friend bool operator<(const Rational& lhs, const Rational& rhs) {\n       \
-    \ return (__int128_t)lhs.num * rhs.den < (__int128_t)rhs.num * lhs.den;\n    }\n\
-    \    friend bool operator>(const Rational& lhs, const Rational& rhs) {\n     \
-    \   return rhs < lhs;\n    }\n    friend bool operator<=(const Rational& lhs,\
-    \ const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool\
-    \ operator>=(const Rational& lhs, const Rational& rhs) {\n        return !(lhs\
-    \ < rhs);\n    }\n    friend std::ostream& operator<<(std::ostream& ost, const\
-    \ Rational& rat) {\n        return ost << rat.get_ld();\n    }\n    friend std::istream&\
-    \ operator>>(std::istream& ist, Rational& rat) {\n        return ist >> rat.num\
-    \ >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
-    \ Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T& a,\
-    \ T& b) {\n        assert(b != 0);\n        T g = gcd(abs(a), abs(b));\n     \
-    \   a /= g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n    \
-    \        b = -b;\n        }\n    }\n    void normalize() { norm(num, den); }\n\
-    \    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n \
-    \   Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num() const\
-    \ { return num; }\n    T get_den() const { return den; }\n    ld get_ld() const\
-    \ { return (ld)num / den; }\n    Rational& operator++() {\n        num += den;\n\
-    \        return *this;\n    }\n    Rational operator++(int) {\n        Rational\
-    \ res = *this;\n        ++*this;\n        return res;\n    }\n    Rational& operator--()\
-    \ {\n        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
-    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
-    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
-    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
-    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
-    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
-    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() { return\
-    \ Rational(*this); }\n    Rational operator-() { return Rational(-num, den); }\n\
-    \    friend bool operator==(const Rational& lhs, const Rational& rhs) {\n    \
-    \    return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend bool\
-    \ operator!=(const Rational& lhs, const Rational& rhs) {\n        return lhs.num\
-    \ != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return (__int128_t)lhs.num * rhs.den <\
-    \ (__int128_t)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ ost, const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n  \
-    \  friend std::istream& operator>>(std::istream& ist, Rational& rat) {\n     \
-    \   return ist >> rat.num >> rat.den;\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
-    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/unionfind/PartialPersistentUnionFind.hpp\"\
+    \n\n#line 4 \"data-struct/unionfind/PartialPersistentUnionFind.hpp\"\n\nclass\
+    \ PartialPersistentUnionFind {\nprivate:\n    int n;\n    std::vector<int> par,\
+    \ tim;\n    std::vector<std::vector<std::pair<int, int>>> sz_hist;\n    int last_time;\n\
+    \npublic:\n    PartialPersistentUnionFind() : PartialPersistentUnionFind(0) {}\n\
+    \    PartialPersistentUnionFind(int n)\n        : n(n), par(n, -1), tim(n, infinity<int>::value),\
+    \ sz_hist(n, {{-1, 1}}),\n          last_time(0) {}\n    int now() const { return\
+    \ last_time - 1; }\n    int find(int x, int t) const {\n        assert(-1 <= t\
+    \ && t < last_time);\n        assert(0 <= x && x < n);\n        return tim[x]\
+    \ <= t ? find(par[x], t) : x;\n    }\n    int find_last(int x) const { return\
+    \ find(x, last_time - 1); }\n    std::pair<std::pair<int, int>, int> merge(int\
+    \ x, int y) {\n        x = find_last(x);\n        y = find_last(y);\n        if\
+    \ (x == y) return {{x, -1}, last_time++};\n        if (par[x] > par[y]) std::swap(x,\
+    \ y);\n        par[x] += par[y];\n        par[y] = x;\n        tim[y] = last_time;\n\
+    \        sz_hist[x].push_back({last_time, -par[x]});\n        return {{x, y},\
+    \ last_time++};\n    }\n    bool same(int x, int y, int t) const { return find(x,\
+    \ t) == find(y, t); }\n    bool same_last(int x, int y) const { return same(x,\
+    \ y, last_time - 1); }\n    int size(int x, int t) const {\n        const auto&\
+    \ h = sz_hist[find(x, t)];\n        return std::prev(\n                   std::lower_bound(all(h),\
+    \ std::pair<int, int>{t + 1, -1}))\n            ->second;\n    }\n    int size_last(int\
+    \ x) const {\n        const auto& h = sz_hist[find_last(x)];\n        return h.back().second;\n\
+    \    }\n    std::vector<std::vector<int>> groups(int t) const {\n        assert(-1\
+    \ <= t && t < last_time);\n        std::vector<std::vector<int>> res(n);\n   \
+    \     rep (i, n) res[find(i, t)].push_back(i);\n        res.erase(\n         \
+    \   remove_if(all(res),\n                      [](const std::vector<int>& v) {\
+    \ return v.empty(); }),\n            res.end());\n        return res;\n    }\n\
+    \    std::vector<std::vector<int>> groups_last() const {\n        return groups(last_time\
+    \ - 1);\n    }\n    bool is_root(int x, int t) const {\n        assert(-1 <= t\
+    \ && t < last_time);\n        assert(0 <= x && x < n);\n        return tim[x]\
+    \ <= t;\n    }\n    bool is_root_last(int x) const { return is_root(x, last_time\
+    \ - 1); }\n};\n\n/**\n * @brief PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9A\
+    UF)\n * @docs docs/data-struct/unionfind/PartialPersistentUnionFind.md\n */\n\
+    #line 4 \"test/atcoder/agc002_d-PartialPersistentUF.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, M; cin >> N >> M;\n    PartialPersistentUnionFind\
+    \ uf(N);\n    rep (M) {\n        int a, b; cin >> a >> b;\n        uf.merge(a\
+    \ - 1, b - 1);\n    }\n    int Q; cin >> Q;\n    rep (Q) {\n        int a, b,\
+    \ x; cin >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
+    \    if ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x))\
+    \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
+    \            }\n        }\n        cout << ok + 1 << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/agc002/tasks/agc002_d\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../data-struct/unionfind/PartialPersistentUnionFind.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, M; cin >> N >> M;\n    PartialPersistentUnionFind\
+    \ uf(N);\n    rep (M) {\n        int a, b; cin >> a >> b;\n        uf.merge(a\
+    \ - 1, b - 1);\n    }\n    int Q; cin >> Q;\n    rep (Q) {\n        int a, b,\
+    \ x; cin >> a >> b >> x;\n        --a; --b;\n        ll ok = M - 1, ng = -1;\n\
+    \        while (ok - ng > 1) {\n            ll mid = (ok + ng) / 2;\n        \
+    \    if ((uf.size(a, mid) + (uf.same(a, b, mid) ? 0 : uf.size(b, mid)) >= x))\
+    \ {\n                ok = mid;\n            } else {\n                ng = mid;\n\
+    \            }\n        }\n        cout << ok + 1 << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
-  isVerificationFile: false
-  path: math/Rational.hpp
+  - data-struct/unionfind/PartialPersistentUnionFind.hpp
+  isVerificationFile: true
+  path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-documentation_of: math/Rational.hpp
+  timestamp: '2022-08-22 19:54:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
 layout: document
 redirect_from:
-- /library/math/Rational.hpp
-- /library/math/Rational.hpp.html
-title: "Rational(\u6709\u7406\u6570\u578B)"
+- /verify/test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+- /verify/test/atcoder/agc002_d-PartialPersistentUF.test.cpp.html
+title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
 ---
-## 概要
-
-有理数を持つ型。オーバーフローには十分注意する。
-
-以下のメンバを持つ。
-
-- `T get_num()` : 分子を返す。 $\Theta(1)$ 。
-- `T get_den()` : 分母を返す。 $\Theta(1)$ 。
-- `ld get_ld()` : 小数の値を返す。
-
-さらに、以下の演算が動く。
-
-```
-+Rational
--Rational
-
-++Rational
-Rational++
---Rational
-Rational--
-
-Rational += Rational
-Rational -= Rational
-Rational *= Rational
-Rational /= Rational
-
-Rational + Rational
-Rational - Rational
-Rational * Rational
-Rational / Rational
-
-Rational == Rational
-Rational != Rational
-Rational < Rational
-Rational <= Rational
-Rational > Rational
-Rational >= Rational
-
-cin >> Rational
-cout << Rational
-```
-
-すべて $\Theta(1)$ 。

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -155,56 +155,55 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/unionfind/WeightedUnionFind.hpp\"\
     \n\n\ntemplate<class T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n\
-    \    std::vector<int> par_vec;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind()\
-    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par_vec(n, -1),\
+    \    std::vector<int> par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind()\
+    \ : WeightedUnionFind(0) {}\n    WeightedUnionFind(int n) : n(n), par(n, -1),\
     \ wei(n) {}\n    int find(int x) {\n        assert(0 <= x && x < n);\n       \
-    \ if (par_vec[x] < 0) return x;\n        int r = find(par_vec[x]);\n        wei[x]\
-    \ += wei[par_vec[x]];\n        return par_vec[x] = r;\n    }\n    T weight(int\
-    \ x) { return find(x), wei[x]; }\n    T diff(int x, int y) {\n        assert(find(x)\
-    \ == find(y));\n        return wei[y] - wei[x];\n    }\n    std::pair<int, int>\
-    \ merge(int x, int y, T w) {\n        w += weight(x);\n        w -= weight(y);\n\
-    \        x = find(x);\n        y = find(y);\n        if (x == y) {\n         \
-    \   if (w == 0) return {x, -1};\n            else return {x, -2};\n        }\n\
-    \        if (par_vec[x] > par_vec[y]) std::swap(x, y), w = -w;\n        par_vec[x]\
-    \ += par_vec[y];\n        par_vec[y] = x;\n        wei[y] = w;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y); }\n\
-    \    int size(int x) { return -par_vec[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0;\n\
-    \    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n *\
-    \ @docs docs/data-struct/unionfind/WeightedUnionFind.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\n\ntemplate<class\
-    \ T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
-    \ par_vec;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
-    \ {}\n    WeightedUnionFind(int n) : n(n), par_vec(n, -1), wei(n) {}\n    int\
-    \ find(int x) {\n        assert(0 <= x && x < n);\n        if (par_vec[x] < 0)\
-    \ return x;\n        int r = find(par_vec[x]);\n        wei[x] += wei[par_vec[x]];\n\
-    \        return par_vec[x] = r;\n    }\n    T weight(int x) { return find(x),\
-    \ wei[x]; }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n\
+    \ if (par[x] < 0) return x;\n        int r = find(par[x]);\n        wei[x] +=\
+    \ wei[par[x]];\n        return par[x] = r;\n    }\n    T weight(int x) { return\
+    \ find(x), wei[x]; }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n\
     \        return wei[y] - wei[x];\n    }\n    std::pair<int, int> merge(int x,\
     \ int y, T w) {\n        w += weight(x);\n        w -= weight(y);\n        x =\
     \ find(x);\n        y = find(y);\n        if (x == y) {\n            if (w ==\
     \ 0) return {x, -1};\n            else return {x, -2};\n        }\n        if\
-    \ (par_vec[x] > par_vec[y]) std::swap(x, y), w = -w;\n        par_vec[x] += par_vec[y];\n\
-    \        par_vec[y] = x;\n        wei[y] = w;\n        return {x, y};\n    }\n\
-    \    bool same(int x, int y) { return find(x) == find(y); }\n    int size(int\
-    \ x) { return -par_vec[find(x)]; }\n    std::vector<std::vector<int>> groups()\
-    \ {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
-    \        res.erase(\n            remove_if(all(res),\n                      [](const\
-    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
-    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\
+    \ (par[x] > par[y]) std::swap(x, y), w = -w;\n        par[x] += par[y];\n    \
+    \    par[y] = x;\n        wei[y] = w;\n        return {x, y};\n    }\n    bool\
+    \ same(int x, int y) { return find(x) == find(y); }\n    int size(int x) { return\
+    \ -par[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
+    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief WeightedUnionFind(\u91CD\
     \u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\n\ntemplate<class\
+    \ T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
+    \ par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
+    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n) {}\n    int find(int\
+    \ x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0) return x;\n\
+    \        int r = find(par[x]);\n        wei[x] += wei[par[x]];\n        return\
+    \ par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x]; }\n    T diff(int\
+    \ x, int y) {\n        assert(find(x) == find(y));\n        return wei[y] - wei[x];\n\
+    \    }\n    std::pair<int, int> merge(int x, int y, T w) {\n        w += weight(x);\n\
+    \        w -= weight(y);\n        x = find(x);\n        y = find(y);\n       \
+    \ if (x == y) {\n            if (w == 0) return {x, -1};\n            else return\
+    \ {x, -2};\n        }\n        if (par[x] > par[y]) std::swap(x, y), w = -w;\n\
+    \        par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n       \
+    \ return {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y);\
+    \ }\n    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
+    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    };\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp

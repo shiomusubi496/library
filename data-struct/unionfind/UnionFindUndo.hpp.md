@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -154,46 +154,44 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\nclass UnionFindUndo {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n\
-    \    std::stack<std::pair<int, int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0)\
-    \ {}\n    UnionFindUndo(int n) : n(n), par_vec(n, -1) {}\n    int find(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par_vec[x] < 0 ? x\
-    \ : find(par_vec[x]);\n    }\n    std::pair<int, int> merge(int x, int y) {\n\
-    \        x = find(x);\n        y = find(y);\n        hist.emplace(x, par_vec[x]);\n\
-    \        hist.emplace(y, par_vec[y]);\n        if (x == y) return {x, -1};\n \
-    \       if (par_vec[x] > par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n\
-    \        par_vec[y] = x;\n        return {x, y};\n    }\n    bool same(int x,\
-    \ int y) const { return find(x) == find(y); }\n    int size(int x) const { return\
-    \ -par_vec[find(x)]; }\n    std::vector<std::vector<int>> groups() const {\n \
-    \       std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \n\nclass UnionFindUndo {\nprivate:\n    int n;\n    std::vector<int> par;\n \
+    \   std::stack<std::pair<int, int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0)\
+    \ {}\n    UnionFindUndo(int n) : n(n), par(n, -1) {}\n    int find(int x) const\
+    \ {\n        assert(0 <= x && x < n);\n        return par[x] < 0 ? x : find(par[x]);\n\
+    \    }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n\
+    \        y = find(y);\n        hist.emplace(x, par[x]);\n        hist.emplace(y,\
+    \ par[y]);\n        if (x == y) return {x, -1};\n        if (par[x] > par[y])\
+    \ std::swap(x, y);\n        par[x] += par[y];\n        par[y] = x;\n        return\
+    \ {x, y};\n    }\n    bool same(int x, int y) const { return find(x) == find(y);\
+    \ }\n    int size(int x) const { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
+    \ groups() const {\n        std::vector<std::vector<int>> res(n);\n        rep\
+    \ (i, n) res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
+    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
+    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
+    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    \    void undo() {\n        par[hist.top().first] = hist.top().second;\n     \
+    \   hist.pop();\n        par[hist.top().first] = hist.top().second;\n        hist.pop();\n\
+    \    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n   \
+    \ }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\
+    \n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFindUndo\
+    \ {\nprivate:\n    int n;\n    std::vector<int> par;\n    std::stack<std::pair<int,\
+    \ int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
+    \ n) : n(n), par(n, -1) {}\n    int find(int x) const {\n        assert(0 <= x\
+    \ && x < n);\n        return par[x] < 0 ? x : find(par[x]);\n    }\n    std::pair<int,\
+    \ int> merge(int x, int y) {\n        x = find(x);\n        y = find(y);\n   \
+    \     hist.emplace(x, par[x]);\n        hist.emplace(y, par[y]);\n        if (x\
+    \ == y) return {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n     \
+    \   par[x] += par[y];\n        par[y] = x;\n        return {x, y};\n    }\n  \
+    \  bool same(int x, int y) const { return find(x) == find(y); }\n    int size(int\
+    \ x) const { return -par[find(x)]; }\n    std::vector<std::vector<int>> groups()\
+    \ const {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
     \        res.erase(\n            remove_if(all(res),\n                      [](const\
     \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
     \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
-    \ x && x < n);\n        return par_vec[x] < 0;\n    }\n    void undo() {\n   \
-    \     par_vec[hist.top().first] = hist.top().second;\n        hist.pop();\n  \
-    \      par_vec[hist.top().first] = hist.top().second;\n        hist.pop();\n \
-    \   }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n    }\n\
-    \    void rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\n/**\n\
-    \ * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass UnionFindUndo\
-    \ {\nprivate:\n    int n;\n    std::vector<int> par_vec;\n    std::stack<std::pair<int,\
-    \ int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0) {}\n    UnionFindUndo(int\
-    \ n) : n(n), par_vec(n, -1) {}\n    int find(int x) const {\n        assert(0\
-    \ <= x && x < n);\n        return par_vec[x] < 0 ? x : find(par_vec[x]);\n   \
-    \ }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n   \
-    \     y = find(y);\n        hist.emplace(x, par_vec[x]);\n        hist.emplace(y,\
-    \ par_vec[y]);\n        if (x == y) return {x, -1};\n        if (par_vec[x] >\
-    \ par_vec[y]) std::swap(x, y);\n        par_vec[x] += par_vec[y];\n        par_vec[y]\
-    \ = x;\n        return {x, y};\n    }\n    bool same(int x, int y) const { return\
-    \ find(x) == find(y); }\n    int size(int x) const { return -par_vec[find(x)];\
-    \ }\n    std::vector<std::vector<int>> groups() const {\n        std::vector<std::vector<int>>\
-    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
-    \            remove_if(all(res),\n                      [](const std::vector<int>&\
-    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
-    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
-    \     return par_vec[x] < 0;\n    }\n    void undo() {\n        par_vec[hist.top().first]\
-    \ = hist.top().second;\n        hist.pop();\n        par_vec[hist.top().first]\
+    \ x && x < n);\n        return par[x] < 0;\n    }\n    void undo() {\n       \
+    \ par[hist.top().first] = hist.top().second;\n        hist.pop();\n        par[hist.top().first]\
     \ = hist.top().second;\n        hist.pop();\n    }\n    void snapshot() {\n  \
     \      while (!hist.empty()) hist.pop();\n    }\n    void rollback() {\n     \
     \   while (!hist.empty()) undo();\n    }\n};\n\n/**\n * @brief UnionFindUndo(Undo\u53EF\
@@ -203,7 +201,7 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFindUndo.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   _extendedRequiredBy: []
@@ -153,13 +153,55 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/PersistentArray.hpp\"\
-    \n\ntemplate<class T, std::size_t sz = 2>\nclass PersistentArray {\nprivate:\n\
+    \n\ntemplate<class T, std::size_t sz = 2> class PersistentArray {\nprivate:\n\
     \    struct node;\n    using node_ptr = std::shared_ptr<node>;\n    struct node\
     \ {\n        T val;\n        std::array<node_ptr, sz> ch;\n        node() : val(T())\
     \ { ch.fill(nullptr); }\n        node(const T& val) : val(val) { ch.fill(nullptr);\
     \ }\n        node(const std::array<node_ptr, sz>& ch) : ch(ch) {}\n        node(const\
-    \ T& val, const std::array<node_ptr, sz>& ch) : val(val), ch(ch) {}\n    };\n\
-    \    int n;\n    std::vector<node_ptr> root;\n    std::vector<int> len;\n    int\
+    \ T& val, const std::array<node_ptr, sz>& ch)\n            : val(val), ch(ch)\
+    \ {}\n    };\n    int n;\n    std::vector<node_ptr> root;\n    std::vector<int>\
+    \ len;\n    int last_time;\n    void build_dfs(node_ptr& nd, const std::vector<T>&\
+    \ a, int k, int t) {\n        if (k >= n) return;\n        if (nd == nullptr)\
+    \ nd = std::make_shared<node>(a[k]);\n        rep (i, sz) {\n            build_dfs(nd->ch[i],\
+    \ a, k + (i + 1) * t, t * sz);\n        }\n    }\n    void set_dfs(node_ptr& nd,\
+    \ int k, const T& x) {\n        nd = std::make_shared<node>(*nd);\n        if\
+    \ (k == 0) nd->val = x;\n        else set_dfs(nd->ch[(k - 1) % sz], (k - 1) /\
+    \ sz, x);\n    }\n    void push_back_dfs(node_ptr& nd, int k, const T& x) {\n\
+    \        if (k == 0) nd = std::make_shared<node>(x);\n        else {\n       \
+    \     nd = std::make_shared<node>(*nd);\n            push_back_dfs(nd->ch[(k -\
+    \ 1) % sz], (k - 1) / sz, x);\n        }\n    }\n    T get_dfs(const node_ptr&\
+    \ nd, int k) const {\n        if (k == 0) return nd->val;\n        return get_dfs(nd->ch[(k\
+    \ - 1) % sz], (k - 1) / sz);\n    }\n\npublic:\n    PersistentArray(int n) : PersistentArray(std::vector<T>(n))\
+    \ {}\n    PersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
+    \ std::vector<T>& a) {\n        n = a.size();\n        if (n == 0) {\n       \
+    \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
+    \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
+    \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
+    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
+    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
+    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
+    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
+    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
+    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
+    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
+    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
+    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
+    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
+    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
+    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
+    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
+    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ std::size_t sz = 2> class PersistentArray {\nprivate:\n    struct node;\n  \
+    \  using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
+    \        std::array<node_ptr, sz> ch;\n        node() : val(T()) { ch.fill(nullptr);\
+    \ }\n        node(const T& val) : val(val) { ch.fill(nullptr); }\n        node(const\
+    \ std::array<node_ptr, sz>& ch) : ch(ch) {}\n        node(const T& val, const\
+    \ std::array<node_ptr, sz>& ch)\n            : val(val), ch(ch) {}\n    };\n \
+    \   int n;\n    std::vector<node_ptr> root;\n    std::vector<int> len;\n    int\
     \ last_time;\n    void build_dfs(node_ptr& nd, const std::vector<T>& a, int k,\
     \ int t) {\n        if (k >= n) return;\n        if (nd == nullptr) nd = std::make_shared<node>(a[k]);\n\
     \        rep (i, sz) {\n            build_dfs(nd->ch[i], a, k + (i + 1) * t, t\
@@ -181,67 +223,25 @@ data:
     \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
     \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
     \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) {\n     \
-    \   return set(k, x, last_time - 1);\n    }\n    int push_back(const T& x, int\
-    \ t) {\n        assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
+    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
+    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
     \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) {\n        return push_back(last_time - 1, x);\n    }\n    T get(int k,\
-    \ int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
-    \   T get_last(int k) const {\n        return get(k, last_time - 1);\n    }\n\
-    \    int size(int t) const {\n        assert(-1 <= t && t < last_time);\n    \
-    \    return len[t + 1];\n    }\n    int size_last() const {\n        return size(last_time\
-    \ - 1);\n    }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\
-    \u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
-    \ std::size_t sz = 2>\nclass PersistentArray {\nprivate:\n    struct node;\n \
-    \   using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
-    \        std::array<node_ptr, sz> ch;\n        node() : val(T()) { ch.fill(nullptr);\
-    \ }\n        node(const T& val) : val(val) { ch.fill(nullptr); }\n        node(const\
-    \ std::array<node_ptr, sz>& ch) : ch(ch) {}\n        node(const T& val, const\
-    \ std::array<node_ptr, sz>& ch) : val(val), ch(ch) {}\n    };\n    int n;\n  \
-    \  std::vector<node_ptr> root;\n    std::vector<int> len;\n    int last_time;\n\
-    \    void build_dfs(node_ptr& nd, const std::vector<T>& a, int k, int t) {\n \
-    \       if (k >= n) return;\n        if (nd == nullptr) nd = std::make_shared<node>(a[k]);\n\
-    \        rep (i, sz) {\n            build_dfs(nd->ch[i], a, k + (i + 1) * t, t\
-    \ * sz);\n        }\n    }\n    void set_dfs(node_ptr& nd, int k, const T& x)\
-    \ {\n        nd = std::make_shared<node>(*nd);\n        if (k == 0) nd->val =\
-    \ x;\n        else set_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz, x);\n    }\n  \
-    \  void push_back_dfs(node_ptr& nd, int k, const T& x) {\n        if (k == 0)\
-    \ nd = std::make_shared<node>(x);\n        else {\n            nd = std::make_shared<node>(*nd);\n\
-    \            push_back_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz, x);\n        }\n\
-    \    }\n    T get_dfs(const node_ptr& nd, int k) const {\n        if (k == 0)\
-    \ return nd->val;\n        return get_dfs(nd->ch[(k - 1) % sz], (k - 1) / sz);\n\
-    \    }\n\npublic:\n    PersistentArray(int n) : PersistentArray(std::vector<T>(n))\
-    \ {}\n    PersistentArray(const std::vector<T>& a) { init(a); }\n    void init(const\
-    \ std::vector<T>& a) {\n        n = a.size();\n        if (n == 0) {\n       \
-    \     root.assign(1, std::make_shared<node>());\n            len.assign(1, 0);\n\
-    \        }\n        else {\n            root.resize(1);\n            build_dfs(root[0],\
-    \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
-    \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
-    \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
-    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) {\n     \
-    \   return set(k, x, last_time - 1);\n    }\n    int push_back(const T& x, int\
-    \ t) {\n        assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
-    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
-    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) {\n        return push_back(last_time - 1, x);\n    }\n    T get(int k,\
-    \ int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
-    \   T get_last(int k) const {\n        return get(k, last_time - 1);\n    }\n\
-    \    int size(int t) const {\n        assert(-1 <= t && t < last_time);\n    \
-    \    return len[t + 1];\n    }\n    int size_last() const {\n        return size(last_time\
-    \ - 1);\n    }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\
-    \u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n */\n"
+    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
+    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
+    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
+    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
+    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
+    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
+    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   isVerificationFile: false
   path: data-struct/other/PersistentArray.hpp
   requiredBy: []
-  timestamp: '2022-08-22 07:39:46+09:00'
+  timestamp: '2022-08-22 19:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/persistent_queue-Array.test.cpp
