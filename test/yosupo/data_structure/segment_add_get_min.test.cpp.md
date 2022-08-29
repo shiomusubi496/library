@@ -438,8 +438,8 @@ data:
     \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
     \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
     \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
-    \            if (res == infinity<ll>::max) puts(\"INFINITY\");\n            else\
-    \ print << res << endl;\n        }\n    }\n}\n"
+    \            if (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n  \
+    \          else print << res << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/LiChaoTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
@@ -451,8 +451,8 @@ data:
     \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
     \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
     \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
-    \            if (res == infinity<ll>::max) puts(\"INFINITY\");\n            else\
-    \ print << res << endl;\n        }\n    }\n}\n"
+    \            if (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n  \
+    \          else print << res << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -465,7 +465,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/segment_add_get_min.test.cpp

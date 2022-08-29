@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_B
@@ -413,16 +413,16 @@ data:
     \    rep (q) {\n        int t; scan >> t;\n        if (t == 0) {\n           \
     \ int x, y, z; scan >> x >> y >> z;\n            WUF.merge(x, y, z);\n       \
     \ }\n        else {\n            int x, y; scan >> x >> y;\n            if (WUF.same(x,\
-    \ y)) print << WUF.diff(x, y) << endl;\n            else puts(\"?\");\n      \
-    \  }\n    }\n}\n"
+    \ y)) print << WUF.diff(x, y) << endl;\n            else print << \"?\" << endl;\n\
+    \        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_1_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/unionfind/WeightedUnionFind.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    WeightedUnionFind<ll>\
     \ WUF(n);\n    rep (q) {\n        int t; scan >> t;\n        if (t == 0) {\n \
     \           int x, y, z; scan >> x >> y >> z;\n            WUF.merge(x, y, z);\n\
     \        }\n        else {\n            int x, y; scan >> x >> y;\n          \
-    \  if (WUF.same(x, y)) print << WUF.diff(x, y) << endl;\n            else puts(\"\
-    ?\");\n        }\n    }\n}\n"
+    \  if (WUF.same(x, y)) print << WUF.diff(x, y) << endl;\n            else print\
+    \ << \"?\" << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -435,8 +435,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-29 17:38:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
 layout: document

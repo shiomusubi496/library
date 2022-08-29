@@ -449,18 +449,18 @@ data:
     \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n#line 5 \"test/yosupo/graph/cycle_detection.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, M; scan >> N >> M;\n    Graph<int>\
     \ G(N);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a,\
-    \ b, true);\n    }\n    GraphCycle<int> GC(G);\n    if (!GC.has_cycle()) puts(\"\
-    -1\");\n    else {\n        auto v = GC.get_cycle();\n        print << v.size()\
-    \ << endl;\n        each_const (e : GC.get_cycle()) print << e.idx << endl;\n\
-    \    }\n}\n"
+    \ b, true);\n    }\n    GraphCycle<int> GC(G);\n    if (!GC.has_cycle()) print\
+    \ << \"-1\" << endl;\n    else {\n        auto v = GC.get_cycle();\n        print\
+    \ << v.size() << endl;\n        each_const (e : GC.get_cycle()) print << e.idx\
+    \ << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/cycle_detection\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/other/GraphCycle.hpp\"\nusing namespace std;\nint main() {\n\
     \    int N, M; scan >> N >> M;\n    Graph<int> G(N);\n    rep (M) {\n        int\
     \ a, b; scan >> a >> b;\n        G.add_edge(a, b, true);\n    }\n    GraphCycle<int>\
-    \ GC(G);\n    if (!GC.has_cycle()) puts(\"-1\");\n    else {\n        auto v =\
-    \ GC.get_cycle();\n        print << v.size() << endl;\n        each_const (e :\
-    \ GC.get_cycle()) print << e.idx << endl;\n    }\n}\n"
+    \ GC(G);\n    if (!GC.has_cycle()) print << \"-1\" << endl;\n    else {\n    \
+    \    auto v = GC.get_cycle();\n        print << v.size() << endl;\n        each_const\
+    \ (e : GC.get_cycle()) print << e.idx << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -474,7 +474,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/cycle_detection.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/cycle_detection.test.cpp

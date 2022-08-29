@@ -464,20 +464,20 @@ data:
     \nusing namespace std;\nint main() {\n    int N, M, s, t; scan >> N >> M >> s\
     \ >> t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; scan >> a >>\
     \ b >> c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
-    \ s);\n    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n       \
-    \ return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    print << D[t]\
-    \ << ' ' << R.size() << endl;\n    each_const (e : R) print << e.from << ' ' <<\
-    \ e.to << endl;\n}\n"
+    \ s);\n    if (D[t] == infinity<ll>::value) {\n        print << \"-1\" << endl;\n\
+    \        return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    print\
+    \ << D[t] << ' ' << R.size() << endl;\n    each_const (e : R) print << e.from\
+    \ << ' ' << e.to << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/Dijkstra.hpp\"\n#include \"../../../graph/shortest-path/Restore.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, M, s, t; scan >> N >> M >> s\
     \ >> t;\n    Graph<ll> G(N);\n    rep (M) {\n        int a, b, c; scan >> a >>\
     \ b >> c;\n        G.add_edge(a, b, c, true);\n    }\n    vector<ll> D = Dijkstra(G,\
-    \ s);\n    if (D[t] == infinity<ll>::value) {\n        puts(\"-1\");\n       \
-    \ return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    print << D[t]\
-    \ << ' ' << R.size() << endl;\n    each_const (e : R) print << e.from << ' ' <<\
-    \ e.to << endl;\n}\n"
+    \ s);\n    if (D[t] == infinity<ll>::value) {\n        print << \"-1\" << endl;\n\
+    \        return 0;\n    }\n    Edges<ll> R = RestorePath(G, D, s, t);\n    print\
+    \ << D[t] << ' ' << R.size() << endl;\n    each_const (e : R) print << e.from\
+    \ << ' ' << e.to << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -492,7 +492,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/shortest_path.test.cpp

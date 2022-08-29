@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A
@@ -443,16 +443,16 @@ data:
     \nusing namespace std;\nint main() {\n    int V, E, r; scan >> V >> E >> r;\n\
     \    Graph<int> G(V);\n    rep (E) {\n        int s, t, d; scan >> s >> t >> d;\n\
     \        G.add_edge(s, t, d, true);\n    }\n    vector<int> dist = Dijkstra(G,\
-    \ r);\n    rep (i, V) {\n        if (dist[i] == infinity<int>::value) puts(\"\
-    INF\");\n        else print << dist[i] << endl;\n    }\n}\n"
+    \ r);\n    rep (i, V) {\n        if (dist[i] == infinity<int>::value) print <<\
+    \ \"INF\" << endl;\n        else print << dist[i] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/Dijkstra.hpp\"\nusing namespace std;\nint main()\
     \ {\n    int V, E, r; scan >> V >> E >> r;\n    Graph<int> G(V);\n    rep (E)\
     \ {\n        int s, t, d; scan >> s >> t >> d;\n        G.add_edge(s, t, d, true);\n\
     \    }\n    vector<int> dist = Dijkstra(G, r);\n    rep (i, V) {\n        if (dist[i]\
-    \ == infinity<int>::value) puts(\"INF\");\n        else print << dist[i] << endl;\n\
-    \    }\n}\n"
+    \ == infinity<int>::value) print << \"INF\" << endl;\n        else print << dist[i]\
+    \ << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -466,8 +466,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-08-29 17:38:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
 layout: document

@@ -440,15 +440,14 @@ data:
     \ main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction> A(N); scan >>\
     \ A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n    each_const\
     \ (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n\
-    \        chmax(W, 0);\n    }\n    print << fixed << setprecision(12) << ans <<\
-    \ endl;\n}\n"
+    \        chmax(W, 0);\n    }\n    print << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
     #define ERROR 1e-6\n#include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction>\
     \ A(N); scan >> A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n\
     \    each_const (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n     \
-    \   W -= f.get_den();\n        chmax(W, 0);\n    }\n    print << fixed << setprecision(12)\
-    \ << ans << endl;\n}\n"
+    \   W -= f.get_den();\n        chmax(W, 0);\n    }\n    print << ans << endl;\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -461,7 +460,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp

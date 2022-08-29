@@ -448,16 +448,16 @@ data:
     \ std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int> G(n);\n  \
     \  rep (m) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n \
     \   }\n    ConnectedComponents<int> CC(G);\n    int q; scan >> q;\n    rep (q)\
-    \ {\n        int a, b; scan >> a >> b;\n        if (CC[a] == CC[b]) puts(\"yes\"\
-    );\n        else puts(\"no\");\n    }\n}\n"
+    \ {\n        int a, b; scan >> a >> b;\n        if (CC[a] == CC[b]) print << \"\
+    yes\" << endl;\n        else print << \"no\" << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_11_D\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/connected/ConnectedComponents.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int> G(n);\n  \
     \  rep (m) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n \
     \   }\n    ConnectedComponents<int> CC(G);\n    int q; scan >> q;\n    rep (q)\
-    \ {\n        int a, b; scan >> a >> b;\n        if (CC[a] == CC[b]) puts(\"yes\"\
-    );\n        else puts(\"no\");\n    }\n}\n"
+    \ {\n        int a, b; scan >> a >> b;\n        if (CC[a] == CC[b]) print << \"\
+    yes\" << endl;\n        else print << \"no\" << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -471,7 +471,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp

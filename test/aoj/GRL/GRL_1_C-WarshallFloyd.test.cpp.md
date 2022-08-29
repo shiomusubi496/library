@@ -443,20 +443,20 @@ data:
     \ main() {\n    int V, E; scan >> V >> E;\n    auto D = make_vec<ll>(V, V, infinity<ll>::value);\n\
     \    rep (E) {\n        int s, t, d; scan >> s >> t >> d;\n        D[s][t] = d;\n\
     \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
-    \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
-    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == infinity<ll>::value)\
-    \ print << \"INF\";\n            else print << D[i][j];\n            print <<\
-    \ \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
+    \            print << \"NEGATIVE CYCLE\" << endl;\n            return 0;\n   \
+    \     }\n    }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j]\
+    \ == infinity<ll>::value) print << \"INF\";\n            else print << D[i][j];\n\
+    \            print << \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_1_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/shortest-path/WarshallFloyd.hpp\"\nusing namespace std;\nint\
     \ main() {\n    int V, E; scan >> V >> E;\n    auto D = make_vec<ll>(V, V, infinity<ll>::value);\n\
     \    rep (E) {\n        int s, t, d; scan >> s >> t >> d;\n        D[s][t] = d;\n\
     \    }\n    WarshallFloyd(D);\n    rep (i, V) {\n        if (D[i][i] < 0) {\n\
-    \            puts(\"NEGATIVE CYCLE\");\n            return 0;\n        }\n   \
-    \ }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j] == infinity<ll>::value)\
-    \ print << \"INF\";\n            else print << D[i][j];\n            print <<\
-    \ \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
+    \            print << \"NEGATIVE CYCLE\" << endl;\n            return 0;\n   \
+    \     }\n    }\n    rep (i, V) {\n        rep (j, V) {\n            if (D[i][j]\
+    \ == infinity<ll>::value) print << \"INF\";\n            else print << D[i][j];\n\
+    \            print << \" \\n\"[j == V - 1];\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -470,7 +470,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp

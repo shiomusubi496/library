@@ -474,8 +474,8 @@ data:
     \    each_const (e : UndirectedListToEdges(G)) {\n        C[CC[e.from]].add_edge(B[e.from],\
     \ B[e.to]);\n    }\n    bitset<701> bs(1);\n    each_const (g : C) {\n       \
     \ int n = g.size();\n        BipartiteGraph<unweighted_edge> BG(g);\n        if\
-    \ (!BG.is_bipartite()) {\n            puts(\"-1\");\n            return 0;\n \
-    \       }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i)) ++a;\n\
+    \ (!BG.is_bipartite()) {\n            print << \"-1\" << endl;\n            return\
+    \ 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i)) ++a;\n\
     \        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n    rep (i,\
     \ N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n    print << N\
     \ * (N - 1) / 2 - ans << endl;\n}\n"
@@ -493,8 +493,8 @@ data:
     \ C[i] = UnweightedGraph(g[i].size());\n    each_const (e : UndirectedListToEdges(G))\
     \ {\n        C[CC[e.from]].add_edge(B[e.from], B[e.to]);\n    }\n    bitset<701>\
     \ bs(1);\n    each_const (g : C) {\n        int n = g.size();\n        BipartiteGraph<unweighted_edge>\
-    \ BG(g);\n        if (!BG.is_bipartite()) {\n            puts(\"-1\");\n     \
-    \       return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
+    \ BG(g);\n        if (!BG.is_bipartite()) {\n            print << \"-1\" << endl;\n\
+    \            return 0;\n        }\n        int a = 0;\n        rep (i, n) if (BG.get_label(i))\
     \ ++a;\n        bs = (bs << a) | (bs << (n - a));\n    }\n    int ans = 0;\n \
     \   rep (i, N + 1) {\n        if (bs[i]) chmax(ans, i * (N - i));\n    }\n   \
     \ print << N * (N - 1) / 2 - ans << endl;\n}\n"
@@ -512,7 +512,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc099_c-Bipartite.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/arc099_c-Bipartite.test.cpp

@@ -483,19 +483,19 @@ data:
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    scan >>\
     \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
     \ a, b; scan >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
-    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) puts(\"\
-    s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\");\n        print\
-    \ << \"v \";\n        rep (i, N) print << (v[i] ? i + 1 : -i - 1) << ' ';\n  \
-    \      print << 0 << endl;\n    }\n}\n"
+    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) print <<\
+    \ \"s UNSATISFIABLE\" << endl;\n    else {\n        print << \"s SATISFIABLE\"\
+    \ << endl;\n        print << \"v \";\n        rep (i, N) print << (v[i] ? i +\
+    \ 1 : -i - 1) << ' ';\n        print << 0 << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n#include \"\
     ../../../other/template.hpp\"\n#include \"../../../graph/other/TwoSatisfiablitity.hpp\"\
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    scan >>\
     \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
     \ a, b; scan >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
-    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) puts(\"\
-    s UNSATISFIABLE\");\n    else {\n        puts(\"s SATISFIABLE\");\n        print\
-    \ << \"v \";\n        rep (i, N) print << (v[i] ? i + 1 : -i - 1) << ' ';\n  \
-    \      print << 0 << endl;\n    }\n}\n"
+    \ - 1, b > 0);\n    }\n    auto v = SAT.sat();\n    if (v.size() == 0) print <<\
+    \ \"s UNSATISFIABLE\" << endl;\n    else {\n        print << \"s SATISFIABLE\"\
+    \ << endl;\n        print << \"v \";\n        rep (i, N) print << (v[i] ? i +\
+    \ 1 : -i - 1) << ' ';\n        print << 0 << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -510,7 +510,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 17:38:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/two_sat.test.cpp
