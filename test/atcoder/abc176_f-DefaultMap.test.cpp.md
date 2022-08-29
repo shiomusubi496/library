@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/other/DefaultMap.hpp
+    title: DefaultMap
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -23,18 +26,17 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc176_f-DefaultMap.test.cpp
-    title: test/atcoder/abc176_f-DefaultMap.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/DefaultMap.md
-    document_title: DefaultMap
-    links: []
-  bundledCode: "#line 2 \"data-struct/other/DefaultMap.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/abc176/tasks/abc176_f
+    links:
+    - https://atcoder.jp/contests/abc176/tasks/abc176_f
+  bundledCode: "#line 1 \"test/atcoder/abc176_f-DefaultMap.test.cpp\"\n#define PROBLEM\
+    \ \"https://atcoder.jp/contests/abc176/tasks/abc176_f\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -385,37 +387,9 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/DefaultMap.hpp\"\
-    \n\ntemplate<class Key, class T, class Comp = std::less<Key>,\n         class\
-    \ Alloc = std::allocator<std::pair<const Key, T>>>\nclass default_map : public\
-    \ std::map<Key, T, Comp, Alloc> {\nprivate:\n    using base = std::map<Key, T,\
-    \ Comp, Alloc>;\n    T default_value;\n\npublic:\n    default_map(const T& default_value,\
-    \ const Comp& comp = Comp(),\n                const Alloc& alloc = Alloc())\n\
-    \        : base(comp, alloc), default_value(default_value) {}\n    template<class\
-    \ InputIterator>\n    default_map(InputIterator first, InputIterator last, const\
-    \ T& default_value,\n                const Comp& comp = Comp(), const Alloc& alloc\
-    \ = Alloc())\n        : base(first, last, comp, alloc), default_value(default_value)\
-    \ {}\n    default_map(std::initializer_list<typename base::value_type> init,\n\
-    \                const T& default_value, const Comp& comp = Comp(),\n        \
-    \        const Alloc& alloc = Alloc())\n        : base(init, comp, alloc), default_value(default_value)\
-    \ {}\n    default_map(const default_map& other)\n        : base(other), default_value(other.default_value)\
-    \ {}\n    default_map(default_map&& other)\n        : base(move(other)), default_value(std::move(other.default_value))\
-    \ {}\n    T& operator[](const Key& key) {\n        auto itr = this->lower_bound(key);\n\
-    \        if (itr == this->end() || this->key_comp()(key, itr->first)) {\n    \
-    \        itr = this->emplace_hint(itr, key, default_value);\n        }\n     \
-    \   return itr->second;\n    }\n    T& operator[](Key&& key) {\n        auto itr\
-    \ = this->lower_bound(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            itr = this->emplace_hint(itr, std::move(key), default_value);\n\
-    \        }\n        return itr->second;\n    }\n    T& at(const Key& key) {\n\
-    \        auto itr = this->find(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            throw std::out_of_range(\"key not found\");\n  \
-    \      }\n        return itr->second;\n    }\n    const T& at(const Key& key)\
-    \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
-    \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
-    key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Key,\
-    \ class T, class Comp = std::less<Key>,\n         class Alloc = std::allocator<std::pair<const\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/DefaultMap.hpp\"\
+    \n\n#line 4 \"data-struct/other/DefaultMap.hpp\"\n\ntemplate<class Key, class\
+    \ T, class Comp = std::less<Key>,\n         class Alloc = std::allocator<std::pair<const\
     \ Key, T>>>\nclass default_map : public std::map<Key, T, Comp, Alloc> {\nprivate:\n\
     \    using base = std::map<Key, T, Comp, Alloc>;\n    T default_value;\n\npublic:\n\
     \    default_map(const T& default_value, const Comp& comp = Comp(),\n        \
@@ -442,7 +416,53 @@ data:
     \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
     \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
     key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
+    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n#line\
+    \ 4 \"test/atcoder/abc176_f-DefaultMap.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N; cin >> N;\n    vector<int> A(3 * N); cin >> A;\n    rep (i, 3\
+    \ * N) --A[i];\n    auto dp = make_vec<int>(N, N, -INF<int>);\n    dp[A[0]][A[1]]\
+    \ = dp[A[1]][A[0]] = 0;\n    int ans = 0;\n    vector<int> mx(N, -INF<int>); mx[A[0]]\
+    \ = mx[A[1]] = 0;\n    rep (i, N - 1) {\n        int a = A[i * 3 + 2], b = A[i\
+    \ * 3 + 3], c = A[i * 3 + 4];\n        if (a == b && b == c) {\n            ++ans;\n\
+    \            continue;\n        }\n        default_map<int, default_map<int, int>>\
+    \ mp(default_map<int, int>(-INF<int>));\n        {\n            int p = -1, q\
+    \ = -1;\n            if (a == b) p = a, q = c;\n            if (b == c) p = b,\
+    \ q = a;\n            if (a == c) p = c, q = b;\n            if (p != -1) {\n\
+    \                rep (k, N) chmax(mp[k][q], dp[k][p] + 1);\n            }\n  \
+    \      }\n        {\n            chmax(mp[b][c], dp[a][a] + 1);\n            chmax(mp[a][c],\
+    \ dp[b][b] + 1);\n            chmax(mp[a][b], dp[c][c] + 1);\n        }\n    \
+    \    rep (k, N) {\n            chmax(mp[a][b], mx[k]);\n            chmax(mp[a][c],\
+    \ mx[k]);\n            chmax(mp[b][c], mx[k]);\n        }\n        rep (k, N)\
+    \ {\n            chmax(mp[a][k], mx[k]);\n            chmax(mp[b][k], mx[k]);\n\
+    \            chmax(mp[c][k], mx[k]);\n        }\n        each_const ([j, m] :\
+    \ mp) {\n            each_const ([k, v] : m) {\n                chmax(dp[j][k],\
+    \ v); chmax(dp[k][j], v);\n                chmax(mx[j], v); chmax(mx[k], v);\n\
+    \            }\n        }\n    }\n    ll res = 0;\n    rep (i, N) rep (j, N) {\n\
+    \        chmax(res, dp[i][j]);\n        if (i == j && i == A[3 * N - 1]) chmax(res,\
+    \ dp[i][j] + 1);\n    }\n    cout << ans + res << endl;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc176/tasks/abc176_f\"\n#include\
+    \ \"../../../library/other/template.hpp\"\n#include \"../../../library/data-struct/other/DefaultMap.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    vector<int> A(3\
+    \ * N); cin >> A;\n    rep (i, 3 * N) --A[i];\n    auto dp = make_vec<int>(N,\
+    \ N, -INF<int>);\n    dp[A[0]][A[1]] = dp[A[1]][A[0]] = 0;\n    int ans = 0;\n\
+    \    vector<int> mx(N, -INF<int>); mx[A[0]] = mx[A[1]] = 0;\n    rep (i, N - 1)\
+    \ {\n        int a = A[i * 3 + 2], b = A[i * 3 + 3], c = A[i * 3 + 4];\n     \
+    \   if (a == b && b == c) {\n            ++ans;\n            continue;\n     \
+    \   }\n        default_map<int, default_map<int, int>> mp(default_map<int, int>(-INF<int>));\n\
+    \        {\n            int p = -1, q = -1;\n            if (a == b) p = a, q\
+    \ = c;\n            if (b == c) p = b, q = a;\n            if (a == c) p = c,\
+    \ q = b;\n            if (p != -1) {\n                rep (k, N) chmax(mp[k][q],\
+    \ dp[k][p] + 1);\n            }\n        }\n        {\n            chmax(mp[b][c],\
+    \ dp[a][a] + 1);\n            chmax(mp[a][c], dp[b][b] + 1);\n            chmax(mp[a][b],\
+    \ dp[c][c] + 1);\n        }\n        rep (k, N) {\n            chmax(mp[a][b],\
+    \ mx[k]);\n            chmax(mp[a][c], mx[k]);\n            chmax(mp[b][c], mx[k]);\n\
+    \        }\n        rep (k, N) {\n            chmax(mp[a][k], mx[k]);\n      \
+    \      chmax(mp[b][k], mx[k]);\n            chmax(mp[c][k], mx[k]);\n        }\n\
+    \        each_const ([j, m] : mp) {\n            each_const ([k, v] : m) {\n \
+    \               chmax(dp[j][k], v); chmax(dp[k][j], v);\n                chmax(mx[j],\
+    \ v); chmax(mx[k], v);\n            }\n        }\n    }\n    ll res = 0;\n   \
+    \ rep (i, N) rep (j, N) {\n        chmax(res, dp[i][j]);\n        if (i == j &&\
+    \ i == A[3 * N - 1]) chmax(res, dp[i][j] + 1);\n    }\n    cout << ans + res <<\
+    \ endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -451,20 +471,17 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: data-struct/other/DefaultMap.hpp
+  - data-struct/other/DefaultMap.hpp
+  isVerificationFile: true
+  path: test/atcoder/abc176_f-DefaultMap.test.cpp
   requiredBy: []
-  timestamp: '2022-08-29 18:26:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/atcoder/abc176_f-DefaultMap.test.cpp
-documentation_of: data-struct/other/DefaultMap.hpp
+  timestamp: '2022-08-29 22:12:57+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/atcoder/abc176_f-DefaultMap.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/other/DefaultMap.hpp
-- /library/data-struct/other/DefaultMap.hpp.html
-title: DefaultMap
+- /verify/test/atcoder/abc176_f-DefaultMap.test.cpp
+- /verify/test/atcoder/abc176_f-DefaultMap.test.cpp.html
+title: test/atcoder/abc176_f-DefaultMap.test.cpp
 ---
-## 概要
-
-デフォルト値を設定できる map。 std::map を継承している。

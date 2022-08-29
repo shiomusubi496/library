@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':heavy_check_mark:'
@@ -462,6 +462,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/atcoder/abc176_f-DefaultMap.test.cpp
+    title: test/atcoder/abc176_f-DefaultMap.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
@@ -1312,6 +1315,7 @@ data:
   - test/aoj/other/2725-CHT.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/atcoder/abc176_f-DefaultMap.test.cpp
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
 documentation_of: other/template.hpp
