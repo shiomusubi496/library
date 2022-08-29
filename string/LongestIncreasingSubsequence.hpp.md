@@ -24,12 +24,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/longest_increasing_subsequence.test.cpp
     title: test/yosupo/new/longest_increasing_subsequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/LongestIncreasingSubsequence.md
     document_title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\
@@ -443,7 +443,7 @@ data:
   path: string/LongestIncreasingSubsequence.hpp
   requiredBy: []
   timestamp: '2022-08-29 18:26:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/longest_increasing_subsequence.test.cpp
 documentation_of: string/LongestIncreasingSubsequence.hpp
