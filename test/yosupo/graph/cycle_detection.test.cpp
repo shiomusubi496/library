@@ -11,7 +11,7 @@ int main() {
         G.add_edge(a, b, true);
     }
     GraphCycle<int> GC(G);
-    if (!GC.has_cycle()) puts("-1");
+    if (!GC.has_cycle()) print << "-1" << endl;
     else {
         auto v = GC.get_cycle();
         print << v.size() << endl;

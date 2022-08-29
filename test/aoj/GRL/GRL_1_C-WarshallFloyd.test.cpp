@@ -13,7 +13,7 @@ int main() {
     WarshallFloyd(D);
     rep (i, V) {
         if (D[i][i] < 0) {
-            puts("NEGATIVE CYCLE");
+            print << "NEGATIVE CYCLE" << endl;
             return 0;
         }
     }

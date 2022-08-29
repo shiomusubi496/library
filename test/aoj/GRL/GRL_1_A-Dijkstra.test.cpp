@@ -12,7 +12,7 @@ int main() {
     }
     vector<int> dist = Dijkstra(G, r);
     rep (i, V) {
-        if (dist[i] == infinity<int>::value) puts("INF");
+        if (dist[i] == infinity<int>::value) print << "INF" << endl;
         else print << dist[i] << endl;
     }
 }

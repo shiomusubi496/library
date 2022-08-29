@@ -25,7 +25,7 @@ int main() {
         if (a == 0) lct.add_segment(ps.lower_bound(b), ps.lower_bound(c), d, e);
         else {
             ll res = lct.get_min(ps.get(b));
-            if (res == infinity<ll>::max) puts("INFINITY");
+            if (res == infinity<ll>::max) print << "INFINITY" << endl;
             else print << res << endl;
         }
     }

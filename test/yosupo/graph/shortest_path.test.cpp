@@ -13,7 +13,7 @@ int main() {
     }
     vector<ll> D = Dijkstra(G, s);
     if (D[t] == infinity<ll>::value) {
-        puts("-1");
+        print << "-1" << endl;
         return 0;
     }
     Edges<ll> R = RestorePath(G, D, s, t);

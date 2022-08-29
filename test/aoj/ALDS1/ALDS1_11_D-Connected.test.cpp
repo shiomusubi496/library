@@ -14,7 +14,7 @@ int main() {
     int q; scan >> q;
     rep (q) {
         int a, b; scan >> a >> b;
-        if (CC[a] == CC[b]) puts("yes");
-        else puts("no");
+        if (CC[a] == CC[b]) print << "yes" << endl;
+        else print << "no" << endl;
     }
 }

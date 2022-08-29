@@ -2,7 +2,6 @@
 
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
-#include "../../other/type_traits.hpp"
 
 template<class T, class F, class G = void, class A = void>
 class SqrtDecomposition;

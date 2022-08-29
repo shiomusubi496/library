@@ -13,5 +13,5 @@ int main() {
         W -= f.get_den();
         chmax(W, 0);
     }
-    print << fixed << setprecision(12) << ans << endl;
+    print << ans << endl;
 }

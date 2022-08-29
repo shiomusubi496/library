@@ -32,7 +32,7 @@ int main() {
         int n = g.size();
         BipartiteGraph<unweighted_edge> BG(g);
         if (!BG.is_bipartite()) {
-            puts("-1");
+            print << "-1" << endl;
             return 0;
         }
         int a = 0;
