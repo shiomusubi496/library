@@ -11,6 +11,7 @@ private:
     std::array<char, buf_size> buffer;
     inline void write_buf() {
         int num = write(fd, buffer.begin(), idx);
+        idx = 0;
         if (num < 0) throw std::runtime_error("output failed");
     }
 
@@ -38,10 +39,7 @@ public:
 
         iterator& operator++() {
             ++writer->idx;
-            if (writer->idx == buf_size) {
-                writer->write_buf();
-                writer->idx = 0;
-            }
+            if (writer->idx == buf_size) writer->write_buf();
             return *this;
         }
         iterator operator++(int) {
@@ -50,10 +48,7 @@ public:
             return res;
         }
         char& operator*() const { return writer->buffer[writer->idx]; }
-        void flush() const {
-            writer->write_buf();
-            writer->idx = 0;
-        }
+        void flush() const { writer->write_buf(); }
     };
 
     iterator begin() noexcept { return iterator(this); }
@@ -165,7 +160,7 @@ public:
         print_char('.');
         rep (decimal_precision) {
             a *= 10;
-            print_char((char)('0' + (int)std::fmod(b, 10.0)));
+            print_char((char)('0' + (int)std::fmod(a, 10.0)));
         }
     }
 

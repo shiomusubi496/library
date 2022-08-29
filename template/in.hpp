@@ -8,17 +8,19 @@
 template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {
 private:
     int fd, idx, sz;
+    bool state;
     std::array<char, buf_size> buffer;
     inline void read_buf() {
         sz = read(fd, buffer.begin(), buf_size);
+        idx = 0;
         if (sz < 0) throw std::runtime_error("input failed");
     }
 
 public:
     static constexpr int get_buf_size() { return buf_size; }
-    Reader() : fd(0), idx(0) { read_buf(); }
-    Reader(int fd) : fd(fd), idx(0) { read_buf(); }
-    Reader(FILE* fp) : fd(fileno(fp)), idx(0) { read_buf(); }
+    Reader() noexcept : fd(0), idx(0), sz(0), state(true) {}
+    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}
+    Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}
 
     class iterator {
     private:
@@ -36,11 +38,8 @@ public:
         explicit iterator(Reader* reader) : reader(reader) {}
 
         iterator& operator++() {
+            if (reader->idx == reader->sz) reader->read_buf();
             ++reader->idx;
-            if (reader->idx == reader->sz) {
-                reader->read_buf();
-                reader->idx = 0;
-            }
             return *this;
         }
         iterator operator++(int) {
@@ -49,9 +48,12 @@ public:
             return res;
         }
         char operator*() const {
-            return reader->idx < reader->sz ? reader->buffer[reader->idx]
-                                            : '\0';
+            if (reader->idx == reader->sz) reader->read_buf();
+            if (reader->idx < reader->sz) return reader->buffer[reader->idx];
+            reader->state = false;
+            return '\0';
         }
+        bool rdstate() const { return reader->state; }
     };
 
     iterator begin() noexcept { return iterator(this); }
@@ -194,6 +196,8 @@ public:
         scan(a);
         return *this;
     }
+    
+    explicit operator bool() const { return itr.rdstate(); }
 };
 
 Scanner<Reader<>::iterator> scan(reader.begin());
