@@ -229,6 +229,11 @@ template<class A> struct MultiAction<A, true> {
                                             const value_type& e) {
                 return ost << e.val << '*' << e.len;
             }
+            template<class T> void print(T& a) const {
+                a.print(val);
+                a.print('*');
+                a.print(len);
+            }
         };
         static value_type op(const value_type& a, const value_type& b) {
             return {A::M::op(a.val, b.val), a.len + b.len};

@@ -5,31 +5,31 @@
 #include "../../../graph/tree/EulerTour.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     Graph<int> G(N);
     rep (i, N) {
-        int k; cin >> k;
+        int k; scan >> k;
         rep (k) {
-            int a; cin >> a;
+            int a; scan >> a;
             G.add_edge(i, a);
         }
     }
     EulerTour<int> ET(G);
     BinaryIndexedTree<int> BIT(2 * N);
-    int Q; cin >> Q;
+    int Q; scan >> Q;
     rep (Q) {
-        int q; cin >> q;
+        int q; scan >> q;
         if (q == 0) {
-            int a, b; cin >> a >> b;
+            int a, b; scan >> a >> b;
             auto p = ET.get_idx(a);
             BIT.add(p.first, b);
             BIT.add(p.second, -b);
         }
         else {
-            int a; cin >> a;
+            int a; scan >> a;
             int ans = 0;
             ET.each_edge(0, a, [&](int l, int r){ ans += BIT.sum(l, r); });
-            cout << ans << endl;
+            print << ans << endl;
         }
     }
 }

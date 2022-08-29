@@ -3,11 +3,11 @@
 #include "../../../data-struct/segment/CumulativeSum.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<ll> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<ll> A(N); scan >> A;
     CumulativeSum<ll> CS(A);
     rep (Q) {
-        int l, r; cin >> l >> r;
-        cout << CS.prod(l, r) << endl;
+        int l, r; scan >> l >> r;
+        print << CS.prod(l, r) << endl;
     }
 }

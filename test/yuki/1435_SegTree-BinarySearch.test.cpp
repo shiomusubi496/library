@@ -16,8 +16,8 @@ int main() {
             return {infinity<int>::value, infinity<int>::value, infinity<int>::mvalue};
         }
     };
-    int N; cin >> N;
-    vector<int> A(N); cin >> A;
+    int N; scan >> N;
+    vector<int> A(N); scan >> A;
     vector<typename Mmm::value_type> B(N);
     rep (i, N) {
         B[i].m1 = B[i].M = A[i];
@@ -34,5 +34,5 @@ int main() {
         ans2 += i - idx - 1;
     }
     assert(ans1 == ans2);
-    cout << ans1 << endl;
+    print << ans1 << endl;
 }

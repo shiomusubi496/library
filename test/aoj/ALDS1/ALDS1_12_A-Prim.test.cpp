@@ -4,15 +4,15 @@
 #include "../../../graph/mst/Prim.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     Graph<int> G(n);
     rep (i, n) {
         rep (j, n) {
-            int a; cin >> a;
+            int a; scan >> a;
             if (a != -1) {
                 G.add_edge(i, j, a, true);
             }
         }
     }
-    cout << Prim(G) << endl;
+    print << Prim(G) << endl;
 }

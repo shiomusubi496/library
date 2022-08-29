@@ -7,7 +7,7 @@ using namespace std;
 using mint = modint998244353;
 using Mat = Matrix<mint>;
 int main() {
-    int n; cin >> n;
-    Mat a(n, n); cin >> a;
-    cout << determinant(a) << endl;
+    int n; scan >> n;
+    Mat a(n, n); scan >> a;
+    print << determinant(a) << endl;
 }

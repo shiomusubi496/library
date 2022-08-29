@@ -5,33 +5,33 @@
 #include "../../../graph/tree/HeavyLightDecomposition.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     Graph<int> G(n);
     rep (i, n) {
-        int k; cin >> k;
+        int k; scan >> k;
         rep (k) {
-            int a; cin >> a;
+            int a; scan >> a;
             G.add_edge(i, a);
         }
     }
     HeavyLightDecomposition<int> HLD(G);
     RangeAddQueryRangeSumQuery<ll> seg(n);
-    int q; cin >> q;
+    int q; scan >> q;
     rep (q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            int v; ll w; cin >> v >> w;
+            int v; ll w; scan >> v >> w;
             HLD.each_edge(0, v, [&](int l, int r) {
                 seg.apply(l, r, w);
             });
         }
         else {
-            int u; cin >> u;
+            int u; scan >> u;
             ll ans = 0;
             HLD.each_edge(0, u, [&](int l, int r) {
                 ans += seg.prod(l, r);
             });
-            cout << ans << endl;
+            print << ans << endl;
         }
     }
 }

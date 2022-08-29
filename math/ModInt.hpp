@@ -116,11 +116,17 @@ public:
     friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm) {
         return ost << sm.val;
     }
+    template<class Pr> void print(Pr& a) const { a.print(val); }
     friend std::istream& operator>>(std::istream& ist, StaticModInt& sm) {
         ll v;
         ist >> v;
         sm = v;
         return ist;
+    }
+    template<class Sc> void scan(Sc& a) {
+        ll v;
+        a.scan(v);
+        *this = v;
     }
 };
 
@@ -238,11 +244,17 @@ public:
                                     const DynamicModInt& dm) {
         return ost << dm.val;
     }
+    template<class Pr> void print(Pr& a) const { a.print(val); }
     friend std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {
         ll v;
         ist >> v;
         dm = v;
         return ist;
+    }
+    template<class Sc> void scan(Sc& a) {
+        ll v;
+        a.scan(v);
+        *this = v;
     }
 };
 

@@ -3,7 +3,7 @@
 #include "../../string/RunLength.hpp"
 using namespace std;
 int main() {
-    string S; cin >> S;
-    each_const (p : RunLength(S)) cout << p.first;
-    cout << endl;
+    string S; scan >> S;
+    each_const (p : RunLength(S)) print << p.first;
+    print << endl;
 }

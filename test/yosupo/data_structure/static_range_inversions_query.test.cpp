@@ -4,12 +4,12 @@
 #include "../../../data-struct/other/Mo.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     presser<int> ps(A); ps.build();
     ps.press(A);
     int M = ps.size();
-    vector<pair<int, int>> B(Q); cin >> B;
+    vector<pair<int, int>> B(Q); scan >> B;
     Mo mo(N, move(B));
     BinaryIndexedTree<int> bit(M);
     vector<ll> ans(Q);
@@ -29,5 +29,5 @@ int main() {
     }, [&](int k) -> void {
         ans[k] = cur;
     });
-    each_const (i : ans) cout << i << endl;
+    each_const (i : ans) print << i << endl;
 }

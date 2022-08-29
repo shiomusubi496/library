@@ -4,10 +4,10 @@
 using namespace std;
 int main() {
     BinaryTrie<30> BT;
-    int Q; cin >> Q;
+    int Q; scan >> Q;
     rep (Q) {
-        int t; cin >> t;
-        ull x; cin >> x;
+        int t; scan >> t;
+        ull x; scan >> x;
         if (t == 0) {
             if (BT.count(x) == 0) BT.insert(x);
         }
@@ -16,7 +16,7 @@ int main() {
         }
         else {
             BT.xor_all(x);
-            cout << BT.kth_element(0) << endl;
+            print << BT.kth_element(0) << endl;
             BT.xor_all(x);
         }
     }

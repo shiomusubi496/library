@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
 template<class A, bool = Monoid::has_mul_op<A>::value>

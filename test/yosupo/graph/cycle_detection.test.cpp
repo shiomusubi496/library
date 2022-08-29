@@ -4,17 +4,17 @@
 #include "../../../graph/other/GraphCycle.hpp"
 using namespace std;
 int main() {
-    int N, M; cin >> N >> M;
+    int N, M; scan >> N >> M;
     Graph<int> G(N);
     rep (M) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         G.add_edge(a, b, true);
     }
     GraphCycle<int> GC(G);
     if (!GC.has_cycle()) puts("-1");
     else {
         auto v = GC.get_cycle();
-        cout << v.size() << endl;
-        each_const (e : GC.get_cycle()) cout << e.idx << endl;
+        print << v.size() << endl;
+        each_const (e : GC.get_cycle()) print << e.idx << endl;
     }
 }

@@ -3,12 +3,12 @@
 #include "../../../math/PrimeFactor.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     PrimeFactor PF(100000000);
     int ans = 0;
     rep (n) {
-        int a; cin >> a;
+        int a; scan >> a;
         if (PF.is_prime(a)) ans++;
     }
-    cout << ans << endl;
+    print << ans << endl;
 }

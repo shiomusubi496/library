@@ -13,19 +13,19 @@ struct Action {
     }
 };
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<mint> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<mint> A(N); scan >> A;
     DualSegmentTree<Action> seg(A);
     rep (Q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            int l, r; cin >> l >> r;
-            mint a, b; cin >> a >> b;
+            int l, r; scan >> l >> r;
+            mint a, b; scan >> a >> b;
             seg.apply(l, r, {a, b});
         }
         else {
-            int k; cin >> k;
-            cout << seg.get(k) << endl;
+            int k; scan >> k;
+            print << seg.get(k) << endl;
         }
     }
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
 template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {

@@ -3,8 +3,8 @@
 #include "../../../data-struct/cht/ConvexHullTrickAddMonotone.hpp"
 using namespace std;
 int main() {
-    int N, T; cin >> N >> T;
-    vector<array<ll, 3>> s(N); cin >> s;
+    int N, T; scan >> N >> T;
+    vector<array<ll, 3>> s(N); scan >> s;
     sort(s.begin(), s.end(), [](auto a, auto b) -> bool { return a[2] < b[2]; });
     vector<ConvexHullTrickAddMonotone<ll, true>> dp(T + 1);
     dp[0].add_line(0, 0);
@@ -20,5 +20,5 @@ int main() {
             dp[i + t].add_line(2 * f, val - f * f);
         }
     }
-    cout << ans << endl;
+    print << ans << endl;
 }

@@ -24,6 +24,7 @@ public:
         return factorial[n] / factorial[n - r];
     }
     static T comb(ll n, ll r) {
+        if (n < 0) return T(0);
         if (r < 0 || r > n) return T(0);
         init(n);
         return factorial[n] / factorial[n - r] / factorial[r];
@@ -80,6 +81,7 @@ public:
         return factorial[n] * factinv[n - r];
     }
     static T comb(ll n, ll r) {
+        if (n < 0) return 0;
         if (r < 0 || r > n) return 0;
         init(n);
         return factorial[n] * factinv[n - r] * factinv[r];

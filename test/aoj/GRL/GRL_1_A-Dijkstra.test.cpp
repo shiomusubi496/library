@@ -4,15 +4,15 @@
 #include "../../../graph/shortest-path/Dijkstra.hpp"
 using namespace std;
 int main() {
-    int V, E, r; cin >> V >> E >> r;
+    int V, E, r; scan >> V >> E >> r;
     Graph<int> G(V);
     rep (E) {
-        int s, t, d; cin >> s >> t >> d;
+        int s, t, d; scan >> s >> t >> d;
         G.add_edge(s, t, d, true);
     }
     vector<int> dist = Dijkstra(G, r);
     rep (i, V) {
         if (dist[i] == infinity<int>::value) puts("INF");
-        else cout << dist[i] << endl;
+        else print << dist[i] << endl;
     }
 }

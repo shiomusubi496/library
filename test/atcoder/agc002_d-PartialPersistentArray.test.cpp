@@ -33,15 +33,15 @@ public:
     int size(int x, int t) { return -par.get(find(x, tm[t + 1]), tm[t + 1]); }
 };
 int main() {
-    int N, M; cin >> N >> M;
+    int N, M; scan >> N >> M;
     PartialPersistentUnionFind uf(N);
     rep (M) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         uf.merge(a - 1, b - 1);
     }
-    int Q; cin >> Q;
+    int Q; scan >> Q;
     rep (Q) {
-        int a, b, x; cin >> a >> b >> x;
+        int a, b, x; scan >> a >> b >> x;
         --a; --b;
         ll ok = M - 1, ng = -1;
         while (ok - ng > 1) {
@@ -52,6 +52,6 @@ int main() {
                 ng = mid;
             }
         }
-        cout << ok + 1 << endl;
+        print << ok + 1 << endl;
     }
 }

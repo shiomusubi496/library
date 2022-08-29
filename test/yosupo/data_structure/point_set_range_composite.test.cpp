@@ -7,15 +7,15 @@ using namespace std;
 using mint = modint998244353;
 using PMM = pair<mint, mint>;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<PMM> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<PMM> A(N); scan >> A;
     SegmentTree<Monoid::Composite<mint>> seg(A);
     rep (Q) {
-        int t, a, b, c; cin >> t >> a >> b >> c;
+        int t, a, b, c; scan >> t >> a >> b >> c;
         if (t == 0) seg.set(a, PMM{b, c});
         else {
             PMM p = seg.prod(a, b);
-            cout << p.first * c + p.second << endl;
+            print << p.first * c + p.second << endl;
         }
     }
 }

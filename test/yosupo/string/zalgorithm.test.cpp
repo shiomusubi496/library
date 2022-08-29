@@ -3,6 +3,6 @@
 #include "../../../string/ZAlgorithm.hpp"
 using namespace std;
 int main() {
-    string S; cin >> S;
-    cout << ZAlgorithm(S) << endl;
+    string S; scan >> S;
+    print << ZAlgorithm(S) << endl;
 }

@@ -101,8 +101,13 @@ public:
     friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {
         return ost << rat.get_ld();
     }
+    template<class Pr> void print(Pr& a) const { a.print(get_ld()); }
     friend std::istream& operator>>(std::istream& ist, Rational& rat) {
         return ist >> rat.num >> rat.den;
+    }
+    template<class Sc> void scan(Sc& a) {
+        a.scan(num);
+        a.scan(den);
     }
 };
 

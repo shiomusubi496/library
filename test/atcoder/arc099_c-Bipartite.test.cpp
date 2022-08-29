@@ -6,10 +6,10 @@
 #include "../../graph/other/BipartiteGraph.hpp"
 using namespace std;
 int main() {
-    int N, M; cin >> N >> M;
+    int N, M; scan >> N >> M;
     vector<vector<bool>> A(N, vector<bool>(N, true));
     rep (M) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         A[a - 1][b - 1] = A[b - 1][a - 1] = false;
     }
     UnweightedGraph G(N);
@@ -43,5 +43,5 @@ int main() {
     rep (i, N + 1) {
         if (bs[i]) chmax(ans, i * (N - i));
     }
-    cout << N * (N - 1) / 2 - ans << endl;
+    print << N * (N - 1) / 2 - ans << endl;
 }

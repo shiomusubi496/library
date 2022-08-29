@@ -4,8 +4,8 @@
 #include "../../../data-struct/segment/SqrtDecomposition.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     presser<int> ps(A); ps.build();
     ps.press(A);
     auto f = [&](vector<int>&& v) -> vector<int> {
@@ -16,7 +16,7 @@ int main() {
     };
     SqrtDecomposition<int, decltype(f)> sd(A, f);
     rep (Q) {
-        int l, r, k; cin >> l >> r >> k;
+        int l, r, k; scan >> l >> r >> k;
         int ok = ps.size() - 1, ng = -1;
         while (ok - ng > 1) {
             int mid = (ok + ng) / 2;
@@ -30,6 +30,6 @@ int main() {
             if (cnt > k) ok = mid;
             else ng = mid;
         }
-        cout << ps[ok] << endl;
+        print << ps[ok] << endl;
     }
 }

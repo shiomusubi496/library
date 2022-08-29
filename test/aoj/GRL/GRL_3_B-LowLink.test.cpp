@@ -4,10 +4,10 @@
 #include "../../../graph/other/LowLink.hpp"
 using namespace std;
 int main() {
-    int V, E; cin >> V >> E;
+    int V, E; scan >> V >> E;
     Graph<int> G(V);
     rep (E) {
-        int s, t; cin >> s >> t;
+        int s, t; scan >> s >> t;
         G.add_edge(s, t);
     }
     LowLink<int> LL(G);
@@ -19,5 +19,5 @@ int main() {
         if (a.from != b.from) return a.from < b.from;
         return a.to < b.to;
     });
-    each_const (e : v) cout << e.from << ' ' << e.to << endl;
+    each_const (e : v) print << e.from << ' ' << e.to << endl;
 }

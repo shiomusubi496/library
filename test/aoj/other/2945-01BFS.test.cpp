@@ -7,13 +7,13 @@ constexpr int dx[] = {0, 1, 0, -1};
 constexpr int dy[] = {1, 0, -1, 0};
 int main() {
     int N;
-    while (cin >> N) {
+    while (scan >> N) {
         if (N == 0) return 0;
-        int A, B, C, D; cin >> A >> B >> C >> D;
+        int A, B, C, D; scan >> A >> B >> C >> D;
         --A; --B; --C; --D;
         vector<pair<int, int>> E(N + 1);
         rep (i, N + 1) {
-            cin >> E[i];
+            scan >> E[i];
             --E[i].first; --E[i].second;
         }
         auto is_in = [&](int x, int y) -> bool {
@@ -30,6 +30,6 @@ int main() {
         }
         int ans = 0;
         rep (i, N) ans += ZeroOneBFS(G, E[i].first * 100 + E[i].second)[E[i + 1].first * 100 + E[i + 1].second];
-        cout << ans << endl;
+        print << ans << endl;
     }
 }

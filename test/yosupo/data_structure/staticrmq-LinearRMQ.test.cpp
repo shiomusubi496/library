@@ -3,11 +3,11 @@
 #include "../../../data-struct/segment/LinearRMQ.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     LinearRMQ<Monoid::Min<int>> RMQ(A);
     rep (Q) {
-        int l, r; cin >> l >> r;
-        cout << RMQ.prod(l, r) << endl;
+        int l, r; scan >> l >> r;
+        print << RMQ.prod(l, r) << endl;
     }
 }

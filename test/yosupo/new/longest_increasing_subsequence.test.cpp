@@ -3,9 +3,9 @@
 #include "../../../string/LongestIncreasingSubsequence.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
-    vector<int> a(n); cin >> a;
+    int n; scan >> n;
+    vector<int> a(n); scan >> a;
     LongestIncreasingSubsequence<vector<int>> lis(a);
-    cout << lis.size() << endl;
-    cout << lis.get() << endl;
+    print << lis.size() << endl;
+    print << lis.get() << endl;
 }

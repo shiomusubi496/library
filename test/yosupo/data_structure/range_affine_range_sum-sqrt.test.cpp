@@ -14,8 +14,8 @@ struct CompositeAction {
     }
 };
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<mint> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<mint> A(N); scan >> A;
     auto f = [&](vector<mint>&& v) -> pair<mint, int> {
         mint ans = 0;
         each_const (i : v) ans += i;
@@ -26,20 +26,20 @@ int main() {
     };
     SqrtDecomposition<mint, decltype(f), decltype(g), CompositeAction> seg(A, f, g);
     rep (Q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            int l, r, b, c; cin >> l >> r >> b >> c;
+            int l, r, b, c; scan >> l >> r >> b >> c;
             seg.apply(l, r, PMM{b, c});
         }
         else {
-            int l, r; cin >> l >> r;
+            int l, r; scan >> l >> r;
             auto g = [&](const mint& x) -> mint {
                 return x;
             };
             auto h = [&](const pair<mint, int>& p) -> mint {
                 return p.first;
             };
-            cout << seg.prod<Monoid::Sum<mint>>(l, r, g, h) << endl;
+            print << seg.prod<Monoid::Sum<mint>>(l, r, g, h) << endl;
         }
     }
 }

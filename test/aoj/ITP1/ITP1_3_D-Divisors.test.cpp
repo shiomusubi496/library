@@ -3,10 +3,10 @@
 #include "../../../math/Divisor.hpp"
 using namespace std;
 int main() {
-    ll a, b, c; cin >> a >> b >> c;
+    ll a, b, c; scan >> a >> b >> c;
     ll ans = 0;
     each_const (i : divisors(c)) {
         if (a <= i && i <= b) ++ans;
     }
-    cout << ans << endl;
+    print << ans << endl;
 }

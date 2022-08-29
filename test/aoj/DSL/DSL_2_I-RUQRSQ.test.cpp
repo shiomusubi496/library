@@ -3,17 +3,17 @@
 #include "../../../data-struct/segment/LazySegmentTree.hpp"
 using namespace std;
 int main() {
-    int n, q; cin >> n >> q;
+    int n, q; scan >> n >> q;
     RangeUpdateQueryRangeSumQuery<int> RUQRSQ(n);
     rep (q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            int l, r, x; cin >> l >> r >> x;
+            int l, r, x; scan >> l >> r >> x;
             RUQRSQ.apply(l, r + 1, x);
         }
         else {
-            int l, r; cin >> l >> r;
-            cout << RUQRSQ.prod(l, r + 1) << endl;
+            int l, r; scan >> l >> r;
+            print << RUQRSQ.prod(l, r + 1) << endl;
         }
     }
 }

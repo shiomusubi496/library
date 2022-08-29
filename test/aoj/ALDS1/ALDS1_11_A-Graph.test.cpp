@@ -3,22 +3,22 @@
 #include "../../../graph/Graph.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     Graph<int> G(N);
     rep (i, N) {
-        int v, k; cin >> v >> k;
+        int v, k; scan >> v >> k;
         --v;
         rep (k) {
-            int u; cin >> u;
+            int u; scan >> u;
             G.add_edge(v, u - 1, true);
         }
     }
     GMatrix<int> GM = ListToMatrix(G);
     each_const (v : GM) {
         rep (i, N) {
-            if (v[i] == 1) cout << 1;
-            else cout << 0;
-            cout << " \n"[i == N - 1];
+            if (v[i] == 1) print << 1;
+            else print << 0;
+            print << " \n"[i == N - 1];
         }
     }
 }

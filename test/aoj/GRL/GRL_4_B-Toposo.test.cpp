@@ -4,11 +4,11 @@
 #include "../../../graph/other/TopologicalSort.hpp"
 using namespace std;
 int main() {
-    int n, m; cin >> n >> m;
+    int n, m; scan >> n >> m;
     Graph<int> G(n);
     rep (m) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         G.add_edge(a, b, true);
     }
-    each_const (i : TopologicalSort<int>(G).get()) cout << i << endl;
+    each_const (i : TopologicalSort<int>(G).get()) print << i << endl;
 }

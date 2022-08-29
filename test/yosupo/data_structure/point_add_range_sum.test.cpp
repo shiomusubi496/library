@@ -3,15 +3,15 @@
 #include "../../../data-struct/segment/BinaryIndexedTree.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
+    int N, Q; scan >> N >> Q;
     BinaryIndexedTree<ll> BIT(N);
     rep (i, N) {
-        int a; cin >> a;
+        int a; scan >> a;
         BIT.add(i, a);
     }
     rep (Q) {
-        int t, a, b; cin >> t >> a >> b;
+        int t, a, b; scan >> t >> a >> b;
         if (t == 0) BIT.add(a, b);
-        else cout << BIT.sum(a, b) << endl;
+        else print << BIT.sum(a, b) << endl;
     }
 }

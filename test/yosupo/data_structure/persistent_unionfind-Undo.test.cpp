@@ -4,11 +4,11 @@
 #include "../../../data-struct/unionfind/UnionFindUndo.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
+    int N, Q; scan >> N >> Q;
     Graph<PLL> G(Q + 1);
     vector<vector<array<int, 3>>> A(Q + 1);
     rep (i, Q) {
-        int t, k, u, v; cin >> t >> k >> u >> v;
+        int t, k, u, v; scan >> t >> k >> u >> v;
         if (t == 0) G.add_edge(k + 1, i + 1, PLL{u, v}, true);
         else A[k + 1].push_back({(int)i, u, v});
     }
@@ -30,6 +30,6 @@ int main() {
     } func{G, A, ans, UFU};
     func(0);
     rep (i, Q) {
-        if (ans[i] != -1) cout << ans[i] << endl;
+        if (ans[i] != -1) print << ans[i] << endl;
     }
 }

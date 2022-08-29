@@ -4,10 +4,10 @@
 #include "../../../graph/shortest-path/WarshallFloyd.hpp"
 using namespace std;
 int main() {
-    int V, E; cin >> V >> E;
+    int V, E; scan >> V >> E;
     auto D = make_vec<ll>(V, V, infinity<ll>::value);
     rep (E) {
-        int s, t, d; cin >> s >> t >> d;
+        int s, t, d; scan >> s >> t >> d;
         D[s][t] = d;
     }
     WarshallFloyd(D);
@@ -19,9 +19,9 @@ int main() {
     }
     rep (i, V) {
         rep (j, V) {
-            if (D[i][j] == infinity<ll>::value) cout << "INF";
-            else cout << D[i][j];
-            cout << " \n"[j == V - 1];
+            if (D[i][j] == infinity<ll>::value) print << "INF";
+            else print << D[i][j];
+            print << " \n"[j == V - 1];
         }
     }
 }

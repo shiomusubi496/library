@@ -3,13 +3,13 @@
 #include "../../../data-struct/cht/LiChaoTree.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<array<ll, 4>> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<array<ll, 4>> A(N); scan >> A;
     vector<array<ll, 5>> B(Q);
     each_for ([a, b, c, d, e] : B) {
-        cin >> a;
-        if (a == 0) cin >> b >> c >> d >> e;
-        else cin >> b;
+        scan >> a;
+        if (a == 0) scan >> b >> c >> d >> e;
+        else scan >> b;
     }
     presser<ll> ps;
     each_const ([a, b, c, d, e] : B) {
@@ -26,7 +26,7 @@ int main() {
         else {
             ll res = lct.get_min(ps.get(b));
             if (res == infinity<ll>::max) puts("INFINITY");
-            else cout << res << endl;
+            else print << res << endl;
         }
     }
 }

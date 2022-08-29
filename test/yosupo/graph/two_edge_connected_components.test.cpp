@@ -4,15 +4,15 @@
 #include "../../../graph/connected/TwoEdgeConnectedComponents.hpp"
 using namespace std;
 int main() {
-    int N, M; cin >> N >> M;
+    int N, M; scan >> N >> M;
     Graph<int> G(N);
     rep (M) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         G.add_edge(a, b);
     }
     auto tecc = TwoEdgeConnectedComponents<int>(G).groups();
-    cout << tecc.size() << endl;
+    print << tecc.size() << endl;
     each_const (v : tecc) {
-        cout << v.size() << ' ' << v << endl;
+        print << v.size() << ' ' << v << endl;
     }
 }

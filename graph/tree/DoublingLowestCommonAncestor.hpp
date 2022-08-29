@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 #include "../Graph.hpp"
 
 template<class T> class DoublingLCA {

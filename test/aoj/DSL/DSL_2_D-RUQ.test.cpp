@@ -3,17 +3,17 @@
 #include "../../../data-struct/segment/DualSegmentTree.hpp"
 using namespace std;
 int main() {
-    int n, q; cin >> n >> q;
+    int n, q; scan >> n >> q;
     RangeUpdateQuery<int> RUQ(n, (1ull << 31) - 1);
     rep (q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            int l, r, x; cin >> l >> r >> x;
+            int l, r, x; scan >> l >> r >> x;
             RUQ.apply(l, r + 1, x);
         }
         else {
-            int k; cin >> k;
-            cout << RUQ.get(k) << endl;
+            int k; scan >> k;
+            print << RUQ.get(k) << endl;
         }
     }
 }

@@ -3,6 +3,6 @@
 #include "../../../string/Manacher.hpp"
 using namespace std;
 int main() {
-    string S; cin >> S;
-    cout << ManacherEven(S) << endl;
+    string S; scan >> S;
+    print << ManacherEven(S) << endl;
 }

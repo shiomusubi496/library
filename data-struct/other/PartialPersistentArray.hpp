@@ -2,13 +2,13 @@
 
 #include "../../other/template.hpp"
 
-template<class T>
-class PartialPersistentArray {
+template<class T> class PartialPersistentArray {
 private:
     int n;
     std::vector<std::vector<int>> tim;
     std::vector<std::vector<T>> val;
     int last_time;
+
 public:
     PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n)) {}
     PartialPersistentArray(const std::vector<T>& a) { init(a); }
@@ -35,9 +35,7 @@ public:
         int id = std::upper_bound(all(tim[k]), t) - tim[k].begin() - 1;
         return val[k][id];
     }
-    T get_last(int k) const {
-        return get(k, last_time - 1);
-    }
+    T get_last(int k) const { return get(k, last_time - 1); }
 };
 
 /**

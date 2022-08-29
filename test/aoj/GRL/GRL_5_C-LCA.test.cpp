@@ -4,19 +4,19 @@
 #include "../../../graph/tree/DoublingLowestCommonAncestor.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     Graph<int> G(N);
     rep (i, N) {
-        int k; cin >> k;
+        int k; scan >> k;
         rep (k) {
-            int t; cin >> t;
+            int t; scan >> t;
             G.add_edge(i, t, true);
         }
     }
     DoublingLCA<int> T(G);
-    int Q; cin >> Q;
+    int Q; scan >> Q;
     rep (i, Q) {
-        int a, b; cin >> a >> b;
-        cout << T.lca(a, b) << endl;
+        int a, b; scan >> a >> b;
+        print << T.lca(a, b) << endl;
     }
 }

@@ -1,81 +1,12 @@
 #pragma once
 
 #include <bits/stdc++.h>
-
-#ifndef __COUNTER__
-#define __COUNTER__ __LINE__
-#endif
-
-#define REP_SELECTER(a, b, c, d, e, ...) e
-#define REP1_0(b, c) REP1_1(b, c)
-#define REP1_1(b, c)                                                           \
-    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)
-#define REP1(b) REP1_0(b, __COUNTER__)
-#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)
-#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)
-#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))
-#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)
-#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)
-#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)
-#define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))
-#define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)
-#define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)
-#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)
-#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))
-#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)
-#define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)
-#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)
-#define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))
-#define rreps(...)                                                             \
-    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)
-
-#define each_for(...) for (auto&& __VA_ARGS__)
-#define each_const(...) for (const auto& __VA_ARGS__)
-
-#define all(v) std::begin(v), std::end(v)
-#define rall(v) std::rbegin(v), std::rend(v)
-
-#if __cpp_constexpr >= 201304L
-#define CONSTEXPR constexpr
-#else
-#define CONSTEXPR
-#endif
-
-#if __cpp_if_constexpr >= 201606L
-#define IF_CONSTEXPR constexpr
-#else
-#define IF_CONSTEXPR
-#endif
-
-using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
-using PLL = std::pair<ll, ll>;
-template<class T>
-using prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-
-template<class T> class infinity {
-public:
-    static constexpr T value = std::numeric_limits<T>::max() / 2;
-    static constexpr T mvalue = std::numeric_limits<T>::min() / 2;
-    static constexpr T max = std::numeric_limits<T>::max();
-    static constexpr T min = std::numeric_limits<T>::min();
-};
-
-#if __cplusplus <= 201402L
-template<class T> constexpr T infinity<T>::value;
-template<class T> constexpr T infinity<T>::mvalue;
-template<class T> constexpr T infinity<T>::max;
-template<class T> constexpr T infinity<T>::min;
-#endif
-
-#if __cpp_variable_templates >= 201304L
-template<class T> constexpr T INF = infinity<T>::value;
-#endif
-
-constexpr ll inf = infinity<ll>::value;
-constexpr ld EPS = 1e-8;
-constexpr ld PI = 3.1415926535897932384626;
+#include "../template/macros.hpp"
+#include "../template/alias.hpp"
+#include "../template/type_traits.hpp"
+#include "../template/in.hpp"
+#include "../template/out.hpp"
+#include "../template/bitop.hpp"
 
 template<class T, class U>
 std::ostream& operator<<(std::ostream& ost, const std::pair<T, U>& p) {
@@ -201,8 +132,7 @@ inline PLL ChineseRemainder(ll b1, ll m1, ll b2, ll m2) {
     const ll x = (b2 - b1) / g * p.first % (m2 / g);
     return {(x * m1 + b1 + l) % l, l};
 }
-PLL ChineseRemainders(const std::vector<ll>& b,
-                      const std::vector<ll>& m) {
+PLL ChineseRemainders(const std::vector<ll>& b, const std::vector<ll>& m) {
     PLL res{0, 1};
     rep (i, b.size()) {
         res = ChineseRemainder(res.first, res.second, b[i], m[i]);
@@ -242,18 +172,6 @@ constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,
                                                                Args&&... args) {
     return typename multi_dim_vector<Args..., T>::type(
         n, make_vec<T>(std::forward<Args>(args)...));
-}
-
-inline CONSTEXPR int popcnt(ull x) noexcept {
-#if __cplusplus >= 202002L
-    return std::popcount(x);
-#endif
-    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);
-    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);
-    x = (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);
-    x = (x & 0x00ff00ff00ff00ff) + ((x >> 8) & 0x00ff00ff00ff00ff);
-    x = (x & 0x0000ffff0000ffff) + ((x >> 16) & 0x0000ffff0000ffff);
-    return (x & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);
 }
 
 template<class T, class Comp = std::less<T>> class presser {

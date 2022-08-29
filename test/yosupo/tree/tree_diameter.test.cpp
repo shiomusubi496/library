@@ -4,16 +4,16 @@
 #include "../../../graph/tree/TreeDiameter.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     Graph<ll> G(N);
     rep (N - 1) {
-        int a, b; ll c; cin >> a >> b >> c;
+        int a, b; ll c; scan >> a >> b >> c;
         G.add_edge(a, b, c);
     }
     TreeDiameter<ll> TD(G);
     auto v = TD.get_path();
-    cout << TD.diameter() << ' ' << v.size() + 1 << endl;
-    cout << v[0].from;
-    each_const (e : v) cout << ' ' << e.to;
-    cout << endl;
+    print << TD.diameter() << ' ' << v.size() + 1 << endl;
+    print << v[0].from;
+    each_const (e : v) print << ' ' << e.to;
+    print << endl;
 }

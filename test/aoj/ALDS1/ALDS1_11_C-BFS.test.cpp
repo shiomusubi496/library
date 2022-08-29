@@ -4,18 +4,18 @@
 #include "../../../graph/shortest-path/BreadthFirstSearch.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     Graph<int> G(N);
     rep (N) {
-        int u; cin >> u;
-        int k; cin >> k;
+        int u; scan >> u;
+        int k; scan >> k;
         rep (j, k) {
-            int v; cin >> v;
+            int v; scan >> v;
             G.add_edge(u - 1 , v - 1 , true);
         }
     }
     vector<int> dist = BFS(G);
     rep (i, N) {
-        cout << i + 1 << ' ' << dist[i] << endl;
+        print << i + 1 << ' ' << dist[i] << endl;
     }
 }

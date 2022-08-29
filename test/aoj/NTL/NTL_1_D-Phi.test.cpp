@@ -3,6 +3,6 @@
 #include "../../../math/EulerPhi.hpp"
 using namespace std;
 int main() {
-    ll N; cin >> N;
-    cout << euler_phi(N) << endl;
+    ll N; scan >> N;
+    print << euler_phi(N) << endl;
 }

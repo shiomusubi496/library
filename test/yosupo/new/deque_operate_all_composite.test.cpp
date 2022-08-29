@@ -6,24 +6,24 @@
 using namespace std;
 using mint = modint998244353;
 int main() {
-    int Q; cin >> Q;
+    int Q; scan >> Q;
     DequeOperateAggregation<Monoid::Composite<mint>> d;
     rep (Q) {
-        int t; cin >> t;
+        int t; scan >> t;
         if (t == 0) {
-            mint a, b; cin >> a >> b;
+            mint a, b; scan >> a >> b;
             d.push_front({a, b});
         }
         else if (t == 1) {
-            mint a, b; cin >> a >> b;
+            mint a, b; scan >> a >> b;
             d.push_back({a, b});
         }
         else if (t == 2) d.pop_front();
         else if (t == 3) d.pop_back();
         else {
-            mint x; cin >> x;
+            mint x; scan >> x;
             auto a = d.all_prod();
-            cout << a.first * x + a.second << endl;
+            print << a.first * x + a.second << endl;
         }
     }
 }

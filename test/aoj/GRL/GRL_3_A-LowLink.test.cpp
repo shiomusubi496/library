@@ -4,14 +4,14 @@
 #include "../../../graph/other/LowLink.hpp"
 using namespace std;
 int main() {
-    int V, E; cin >> V >> E;
+    int V, E; scan >> V >> E;
     Graph<int> G(V);
     rep (E) {
-        int s, t; cin >> s >> t;
+        int s, t; scan >> s >> t;
         G.add_edge(s, t);
     }
     LowLink<int> LL(G);
     auto v = LL.articulation_points();
     sort(v.begin(), v.end());
-    each_const (i : v) { cout << i << endl; }
+    each_const (i : v) { print << i << endl; }
 }

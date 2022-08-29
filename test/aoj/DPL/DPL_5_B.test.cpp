@@ -6,6 +6,6 @@ using namespace std;
 using mint = modint1000000007;
 using comb = Combinatorics<mint>;
 int main() {
-    ll n, k; cin >> n >> k;
-    cout << comb::perm(k, n) << endl;
+    ll n, k; scan >> n >> k;
+    print << comb::perm(k, n) << endl;
 }

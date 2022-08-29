@@ -2,11 +2,11 @@
 #include "../../../other/template.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     int ans = 0;
     rep (n) {
-        int a; cin >> a;
+        int a; scan >> a;
         if (is_prime(a)) ans++;
     }
-    cout << ans << endl;
+    print << ans << endl;
 }

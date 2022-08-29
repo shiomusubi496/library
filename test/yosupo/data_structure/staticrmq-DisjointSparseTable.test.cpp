@@ -3,11 +3,11 @@
 #include "../../../data-struct/segment/DisjointSparseTable.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     DisjointSparseTable<Monoid::Min<int>> ST(A);
     rep (Q) {
-        int l, r; cin >> l >> r;
-        cout << ST.prod(l, r) << endl;
+        int l, r; scan >> l >> r;
+        print << ST.prod(l, r) << endl;
     }
 }

@@ -3,12 +3,12 @@
 #include "../../data-struct/segment/DynamicSegmentTree.hpp"
 using namespace std;
 int main() {
-    ll H, W, N; cin >> H >> W >> N;
+    ll H, W, N; scan >> H >> W >> N;
     DynamicSegmentTree<Monoid::Max<ll>> segl(H + 2), segu(W + 2);
     DynamicSegmentTree<Monoid::Min<ll>> segr(H + 2), segd(W + 2);
     map<ll, ll> mpl, mpr, mpu, mpd;
     rep (N) {
-        ll x, y, l; cin >> x >> y >> l;
+        ll x, y, l; scan >> x >> y >> l;
         bool flg = false;
         if (y == 0 || y == H + 1) {
             swap(H, W);
@@ -103,5 +103,5 @@ int main() {
     each_const (p : mpr) ans += W + 1 - p.second;
     each_const (p : mpu) ans += p.second;
     each_const (p : mpd) ans += H + 1 - p.second;
-    cout << ans << endl;
+    print << ans << endl;
 }

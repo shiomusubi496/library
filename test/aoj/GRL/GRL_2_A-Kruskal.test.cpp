@@ -4,8 +4,8 @@
 #include "../../../graph/mst/Kruskal.hpp"
 using namespace std;
 int main() {
-    int V, E; cin >> V >> E;
+    int V, E; scan >> V >> E;
     Edges<int> Ed(E);
-    each_for (e : Ed) cin >> e.from >> e.to >> e.cost;
-    cout << Kruskal(V, Ed) << endl;
+    each_for (e : Ed) scan >> e.from >> e.to >> e.cost;
+    print << Kruskal(V, Ed) << endl;
 }

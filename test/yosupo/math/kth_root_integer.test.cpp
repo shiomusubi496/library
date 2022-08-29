@@ -3,9 +3,9 @@
 #include "../../../math/KthRoot.hpp"
 using namespace std;
 int main() {
-    int T; cin >> T;
+    int T; scan >> T;
     rep (T) {
-        ull a, k; cin >> a >> k;
-        cout << kth_root(a, k) << endl;
+        ull a, k; scan >> a >> k;
+        print << kth_root(a, k) << endl;
     }
 }

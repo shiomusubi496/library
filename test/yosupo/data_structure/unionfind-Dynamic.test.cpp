@@ -4,12 +4,12 @@
 using namespace std;
 int main() {
     int N, Q;
-    cin >> N >> Q;
+    scan >> N >> Q;
     DynamicUnionFind UF;
     rep (Q) {
         int t, u, v;
-        cin >> t >> u >> v;
+        scan >> t >> u >> v;
         if (t == 0) UF.merge(u, v);
-        else cout << UF.same(u, v) << endl;
+        else print << UF.same(u, v) << endl;
     }
 }

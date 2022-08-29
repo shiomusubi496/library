@@ -2,11 +2,11 @@
 #include "../../../other/template.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     int l = 1;
     rep (n) {
-        int a; cin >> a;
+        int a; scan >> a;
         l = lcm(l, a);
     }
-    cout << l << endl;
+    print << l << endl;
 }

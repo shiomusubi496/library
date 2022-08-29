@@ -4,15 +4,15 @@
 #include "../../../graph/mst/Kruskal.hpp"
 using namespace std;
 int main() {
-    int n; cin >> n;
+    int n; scan >> n;
     Edges<int> Ed;
     rep (i, n) {
         rep (j, n) {
-            int a; cin >> a;
+            int a; scan >> a;
             if (a != -1) {
                 Ed.emplace_back(i, j, a);
             }
         }
     }
-    cout << Kruskal(n, Ed) << endl;
+    print << Kruskal(n, Ed) << endl;
 }

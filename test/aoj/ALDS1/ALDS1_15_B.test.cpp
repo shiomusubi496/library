@@ -4,8 +4,8 @@
 #include "../../../math/Rational.hpp"
 using namespace std;
 int main() {
-    int N, W; cin >> N >> W;
-    vector<Fraction> A(N); cin >> A;
+    int N, W; scan >> N >> W;
+    vector<Fraction> A(N); scan >> A;
     sort(all(A), greater<Fraction>());
     Fraction ans;
     each_const (f : A) {
@@ -13,5 +13,5 @@ int main() {
         W -= f.get_den();
         chmax(W, 0);
     }
-    cout << fixed << setprecision(12) << ans << endl;
+    print << fixed << setprecision(12) << ans << endl;
 }

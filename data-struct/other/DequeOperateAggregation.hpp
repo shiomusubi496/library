@@ -44,7 +44,8 @@ public:
         if (lst.empty()) {
             const int rn = rst.size() / 2;
             const int ln = rst.size() - rn;
-            std::vector<T> rv; rv.reserve(rn);
+            std::vector<T> rv;
+            rv.reserve(rn);
             while (!rsm.empty()) rsm.pop();
             rep (rn) {
                 rv.push_back(rst.top());
@@ -71,7 +72,8 @@ public:
         if (rst.empty()) {
             const int ln = lst.size() / 2;
             const int rn = lst.size() - ln;
-            std::vector<T> lv; lv.reserve(ln);
+            std::vector<T> lv;
+            lv.reserve(ln);
             while (!lsm.empty()) lsm.pop();
             rep (ln) {
                 lv.push_back(lst.top());

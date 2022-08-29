@@ -7,9 +7,9 @@
 using namespace std;
 using mint = modint998244353;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     vector<mint> a(1 << N), b(1 << N);
-    cin >> a >> b;
+    scan >> a >> b;
     auto c = bitwise_and_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a, b);
-    cout << c << endl;
+    print << c << endl;
 }

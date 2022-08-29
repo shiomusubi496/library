@@ -12,15 +12,15 @@ struct Merge {
     static value_type id() { return {}; }
 };
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     SSegmentTree<Merge> seg([&] {
         vector<vector<int>> B(N);
         rep (i, N) B[i] = {A[i]};
         return B;
     }());
     rep (Q) {
-        int l, r, k; cin >> l >> r >> k;
+        int l, r, k; scan >> l >> r >> k;
         int ok = 1e9, ng = -1;
         while (ok - ng > 1) {
             int mid = (ok + ng) / 2;
@@ -30,6 +30,6 @@ int main() {
             if (cnt > k) ok = mid;
             else ng = mid;
         }
-        cout << ok << endl;
+        print << ok << endl;
     }
 }

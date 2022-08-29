@@ -4,16 +4,16 @@
 #include "../../../graph/connected/StronglyConnectedComponents.hpp"
 using namespace std;
 int main() {
-    int v, e; cin >> v >> e;
+    int v, e; scan >> v >> e;
     Graph<int> G(v);
     rep (e) {
-        int u, v; cin >> u >> v;
+        int u, v; scan >> u >> v;
         G.add_edge(u, v, true);
     }
     StronglyConnectedComponents<int> SCC(G);
-    int q; cin >> q;
+    int q; scan >> q;
     rep (q) {
-        int a, b; cin >> a >> b;
-        cout << (SCC[a] == SCC[b]) << endl;
+        int a, b; scan >> a >> b;
+        print << (SCC[a] == SCC[b]) << endl;
     }
 }

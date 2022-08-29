@@ -2,8 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class Cont>
-class LongestIncreasingSubsequence {
+template<class Cont> class LongestIncreasingSubsequence {
 private:
     using T = typename Cont::value_type;
     std::vector<int> lis;
@@ -12,7 +11,6 @@ public:
     LongestIncreasingSubsequence(const Cont& str, bool strict = true) {
         int n = str.size();
         std::vector<int> dp(n + 1, -1);
-        // dp[i] : 長さ i の単調増加数列の最後の要素で最小のものの index
         dp[0] = -2;
         auto cmp = [&](int i, int j) {
             if (i == -1 || j == -2) return false;

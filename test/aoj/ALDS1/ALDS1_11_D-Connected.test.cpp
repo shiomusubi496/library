@@ -4,16 +4,16 @@
 #include "../../../graph/connected/ConnectedComponents.hpp"
 using namespace std;
 int main() {
-    int n, m; cin >> n >> m;
+    int n, m; scan >> n >> m;
     Graph<int> G(n);
     rep (m) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         G.add_edge(a, b);
     }
     ConnectedComponents<int> CC(G);
-    int q; cin >> q;
+    int q; scan >> q;
     rep (q) {
-        int a, b; cin >> a >> b;
+        int a, b; scan >> a >> b;
         if (CC[a] == CC[b]) puts("yes");
         else puts("no");
     }

@@ -2,6 +2,6 @@
 #include "../../../other/template.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
-    cout << N << ": " << prime_factor(N) << endl;
+    int N; scan >> N;
+    print << N << ": " << prime_factor(N) << endl;
 }

@@ -13,7 +13,8 @@ private:
         if (visited[v]) return -1;
         visited[v] = seen[v] = true;
         each_const (e : G[v]) {
-            int d = dfs(e.to, v);
+            if (e.idx == k) continue;
+            int d = dfs(e.to, e.idx);
             if (d != -1) {
                 if (d == -2) return -2;
                 cycle.push_back(e);

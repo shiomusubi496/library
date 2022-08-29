@@ -2,6 +2,6 @@
 #include "../../../other/template.hpp"
 using namespace std;
 int main() {
-    int x, y; cin >> x >> y;
-    cout << gcd(x, y) << endl;
+    int x, y; scan >> x >> y;
+    print << gcd(x, y) << endl;
 }

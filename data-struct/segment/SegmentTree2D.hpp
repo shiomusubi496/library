@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 #include "SegmentTree.hpp"
 
@@ -64,7 +63,8 @@ public:
         assert(built);
         l = psx.lower_bound(l);
         r = psx.lower_bound(r);
-        l += n; r += n;
+        l += n;
+        r += n;
         T lsm = M::id(), rsm = M::id();
         while (l != r) {
             if (l & 1) {

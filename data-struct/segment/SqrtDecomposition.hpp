@@ -4,7 +4,8 @@
 #include "../../other/monoid.hpp"
 #include "../../other/type_traits.hpp"
 
-template<class T, class F, class G = void, class A = void> class SqrtDecomposition;
+template<class T, class F, class G = void, class A = void>
+class SqrtDecomposition;
 
 template<class T, class F> class SqrtDecomposition<T, F, void, void> {
     static_assert(std::is_same<typename function_traits<F>::argument_tuple,
@@ -37,14 +38,13 @@ public:
         }
     }
     template<class M, class G, class H>
-    auto prod(int l, int r, const G& g, const H& h) ->
-        typename std::enable_if<
-            Monoid::is_monoid<M>::value &&
-                std::is_same<decltype(g(std::declval<T>())),
-                             typename M::value_type>::value &&
-                std::is_same<decltype(h(std::declval<U>())),
-                             typename M::value_type>::value,
-            typename M::value_type>::type {
+    auto prod(int l, int r, const G& g, const H& h) -> typename std::enable_if<
+        Monoid::is_monoid<M>::value &&
+            std::is_same<decltype(g(std::declval<T>())),
+                         typename M::value_type>::value &&
+            std::is_same<decltype(h(std::declval<U>())),
+                         typename M::value_type>::value,
+        typename M::value_type>::type {
         using S = typename M::value_type;
         assert(0 <= l && l <= r && r <= n);
         const int lb = l / b, rb = r / b;

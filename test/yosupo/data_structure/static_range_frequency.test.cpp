@@ -3,11 +3,11 @@
 #include "../../../data-struct/segment/StaticRangeFrequency.hpp"
 using namespace std;
 int main() {
-    int N, Q; cin >> N >> Q;
-    vector<int> A(N); cin >> A;
+    int N, Q; scan >> N >> Q;
+    vector<int> A(N); scan >> A;
     StaticRangeFrequency<int> srf(A);
     rep (Q) {
-        int l, r, x; cin >> l >> r >> x;
-        cout << srf.count(l, r, x) << endl;
+        int l, r, x; scan >> l >> r >> x;
+        print << srf.count(l, r, x) << endl;
     }
 }

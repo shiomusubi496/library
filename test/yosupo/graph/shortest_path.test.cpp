@@ -5,10 +5,10 @@
 #include "../../../graph/shortest-path/Restore.hpp"
 using namespace std;
 int main() {
-    int N, M, s, t; cin >> N >> M >> s >> t;
+    int N, M, s, t; scan >> N >> M >> s >> t;
     Graph<ll> G(N);
     rep (M) {
-        int a, b, c; cin >> a >> b >> c;
+        int a, b, c; scan >> a >> b >> c;
         G.add_edge(a, b, c, true);
     }
     vector<ll> D = Dijkstra(G, s);
@@ -17,6 +17,6 @@ int main() {
         return 0;
     }
     Edges<ll> R = RestorePath(G, D, s, t);
-    cout << D[t] << ' ' << R.size() << endl;
-    each_const (e : R) cout << e.from << ' ' << e.to << endl;
+    print << D[t] << ' ' << R.size() << endl;
+    each_const (e : R) print << e.from << ' ' << e.to << endl;
 }

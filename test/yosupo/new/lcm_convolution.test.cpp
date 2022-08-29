@@ -7,10 +7,10 @@
 using namespace std;
 using mint = modint998244353;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     vector<mint> A(N + 1), B(N + 1);
-    reps (i, N) cin >> A[i];
-    reps (i, N) cin >> B[i];
+    reps (i, N) scan >> A[i];
+    reps (i, N) scan >> B[i];
     auto v = lcm_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A, B);
-    reps (i, N) cout << v[i] << " \n"[i == N];
+    reps (i, N) print << v[i] << " \n"[i == N];
 }

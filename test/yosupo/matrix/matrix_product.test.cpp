@@ -6,9 +6,9 @@ using namespace std;
 using mint = modint998244353;
 using Mat = Matrix<mint>;
 int main() {
-    int N, M, K; cin >> N >> M >> K;
-    Mat A(N, M); cin >> A;
-    Mat B(M, K); cin >> B;
+    int N, M, K; scan >> N >> M >> K;
+    Mat A(N, M); scan >> A;
+    Mat B(M, K); scan >> B;
     Mat C = A * B;
-    each_const (v : C) cout << v << endl;
+    each_const (v : C) print << v << endl;
 }

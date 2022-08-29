@@ -7,11 +7,11 @@
 using namespace std;
 using mint = modint998244353;
 int main() {
-    int N; cin >> N;
+    int N; scan >> N;
     vector<mint> a(1 << N), b(1 << N);
-    cin >> a >> b;
+    scan >> a >> b;
     reverse(all(a)); reverse(all(b));
     auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a, b);
     reverse(all(c));
-    cout << c << endl;
+    print << c << endl;
 }

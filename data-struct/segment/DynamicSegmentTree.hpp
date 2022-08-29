@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 #include "../../other/monoid.hpp"
 
 template<class M> class DynamicSegmentTree {
@@ -130,8 +129,8 @@ public:
     DynamicSegmentTree(ll n_, const T& v) { init(n_, v); }
     DynamicSegmentTree(const DynamicSegmentTree& other)
         : ori(other.ori), h(other.h), n(other.n),
-          root(std::make_unique<node>(other.root->val)), is_id(other.is_id), iv(other.iv),
-          iv2(other.iv2) {
+          root(std::make_unique<node>(other.root->val)), is_id(other.is_id),
+          iv(other.iv), iv2(other.iv2) {
         init_copy(root, other.root);
     }
     DynamicSegmentTree(DynamicSegmentTree&& other) = default;

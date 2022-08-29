@@ -1,7 +1,6 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../other/bitop.hpp"
 
 template<class T = ll, bool is_max = false> class LiChaoTree {
 private:
