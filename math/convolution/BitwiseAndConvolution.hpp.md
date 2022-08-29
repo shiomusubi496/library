@@ -1,53 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':question:'
+    path: template/alias.hpp
+    title: template/alias.hpp
+  - icon: ':question:'
+    path: template/bitop.hpp
+    title: template/bitop.hpp
+  - icon: ':question:'
+    path: template/in.hpp
+    title: template/in.hpp
+  - icon: ':question:'
+    path: template/macros.hpp
+    title: template/macros.hpp
+  - icon: ':question:'
+    path: template/out.hpp
+    title: template/out.hpp
+  - icon: ':question:'
+    path: template/type_traits.hpp
+    title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/BitwiseAndConvolution.md
     document_title: BitwiseAndConvolution
     links: []
   bundledCode: "#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\n\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n\
-    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
-    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
-    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
-    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
-    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
-    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
-    \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
-    \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#define rall(v) std::rbegin(v),\
-    \ std::rend(v)\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n\
-    #else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define\
-    \ IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\nusing ll = long\
-    \ long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing PLL =\
-    \ std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.begin(), v.end()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
+    using PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
     \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
     \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
@@ -57,7 +78,226 @@ data:
     \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
     \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
     \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n\ntemplate<class\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
+    \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
+    \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
+    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
+    \ (Tp::*)(Args...)&> {\n    using type = function_traits_impl<Res, Args...>;\n\
+    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
+    \ (Tp::*)(Args...) const> {\n    using type = function_traits_impl<Res, Args...>;\n\
+    };\ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
+    \ (Tp::*)(Args...) const&> {\n    using type = function_traits_impl<Res, Args...>;\n\
+    };\n\n#if __cpp_noexcept_function_type >= 201510L\ntemplate<class Res, class Tp,\
+    \ class... Args>\nstruct function_traits_helper<Res (Tp::*)(Args...) noexcept>\
+    \ {\n    using type = function_traits_impl<Res, Args...>;\n};\ntemplate<class\
+    \ Res, class Tp, class... Args>\nstruct function_traits_helper<Res (Tp::*)(Args...)&\
+    \ noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\ntemplate<class\
+    \ Res, class Tp, class... Args>\nstruct function_traits_helper<Res (Tp::*)(Args...)\
+    \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
+    template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
+    \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
+    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
+    \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
+    \ T, class = void> struct is_range : std::false_type {};\ntemplate<class T>\n\
+    struct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
+    \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
+    struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
+    \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
+    \                             range_rank<typename T::value_type>::value + 1> {};\n\
+    #line 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\
+    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n \
+    \   int fd, idx, sz;\n    std::array<char, buf_size> buffer;\n    inline void\
+    \ read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n        if (sz\
+    \ < 0) throw std::runtime_error(\"input failed\");\n    }\n\npublic:\n    static\
+    \ constexpr int get_buf_size() { return buf_size; }\n    Reader() : fd(0), idx(0)\
+    \ { read_buf(); }\n    Reader(int fd) : fd(fd), idx(0) { read_buf(); }\n    Reader(FILE*\
+    \ fp) : fd(fileno(fp)), idx(0) { read_buf(); }\n\n    class iterator {\n    private:\n\
+    \        Reader* reader;\n\n    public:\n        using difference_type = void;\n\
+    \        using value_type = void;\n        using pointer = void;\n        using\
+    \ reference = void;\n        using iterator_category = std::input_iterator_tag;\n\
+    \n        iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
+    \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
+    \ {}\n\n        iterator& operator++() {\n            ++reader->idx;\n       \
+    \     if (reader->idx == reader->sz) {\n                reader->read_buf();\n\
+    \                reader->idx = 0;\n            }\n            return *this;\n\
+    \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
+    \            ++(*this);\n            return res;\n        }\n        char operator*()\
+    \ const {\n            return reader->idx < reader->sz ? reader->buffer[reader->idx]\n\
+    \                                            : '\\0';\n        }\n    };\n\n \
+    \   iterator begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\
+    \ntemplate<class Iterator, std::size_t decimal_precision = 16> class Scanner {\n\
+    public:\n    using iterator_type = Iterator;\n\nprivate:\n    template<class,\
+    \ class = void> struct has_scan : std::false_type {};\n    template<class T>\n\
+    \    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
+    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void\
+    \ discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr ==\
+    \ ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n   \
+    \     a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
+    t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
+    \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
+    \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
+    \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
+    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
+    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
+    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
+    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
+    \                sgn = true;\n                ++itr;\n            }\n        }\n\
+    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
+    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
+    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
+    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
+    \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
+    \     }\n        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n      \
+    \      a = a * 10 + *itr - '0';\n            ++itr;\n        }\n        if (*itr\
+    \ == '.') {\n            ++itr;\n            T n = 0, d = 1;\n            for\
+    \ (int i = 0;\n                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;\n\
+    \                 ++i) {\n                n = n * 10 + *itr - '0';\n         \
+    \       d *= 10;\n                ++itr;\n            }\n            while ('0'\
+    \ <= *itr && *itr <= '9') ++itr;\n            a += n / d;\n        }\n       \
+    \ if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class... Args>\
+    \ void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
+    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
+    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
+    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
+    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
+    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        each_for (i : a) scan(i);\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
+    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
+    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
+    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
+    \  return *this;\n    }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\
+    #line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t\
+    \ buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n    int fd, idx;\n    std::array<char,\
+    \ buf_size> buffer;\n    inline void write_buf() {\n        int num = write(fd,\
+    \ buffer.begin(), idx);\n        if (num < 0) throw std::runtime_error(\"output\
+    \ failed\");\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n   \
+    \ Writer(int fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept :\
+    \ fd(fileno(fp)), idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator\
+    \ {\n    private:\n        Writer* writer;\n\n    public:\n        using difference_type\
+    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
+    \       using reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
+    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
+    \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
+    \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
+    \   ++writer->idx;\n            if (writer->idx == buf_size) {\n             \
+    \   writer->write_buf();\n                writer->idx = 0;\n            }\n  \
+    \          return *this;\n        }\n        iterator operator++(int) {\n    \
+    \        iterator res = *this;\n            ++(*this);\n            return res;\n\
+    \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
+    \ }\n        void flush() const {\n            writer->write_buf();\n        \
+    \    writer->idx = 0;\n        }\n    };\n\n    iterator begin() noexcept { return\
+    \ iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\ntemplate<class Iterator,\
+    \ std::size_t decimal_precision = 16, bool debug = false>\nclass Printer {\npublic:\n\
+    \    using iterator_type = Iterator;\n\nprivate:\n    template<class, class =\
+    \ void> struct has_print : std::false_type {};\n    template<class T>\n    struct\
+    \ has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
+    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
+    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
+    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
+    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
+    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
+    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
+    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
+    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
+    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
+    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
+    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
+    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
+    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
+    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \ {\n            if (a < 0) {\n                print_char('-');\n            \
+    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
+    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
+    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
+    \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(b, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \            print_char(' ');\n            print(std::get<i>(a));\n          \
+    \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
+    \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
+    \ print_char('(');\n        if IF_CONSTEXPR (sizeof...(Args) != 0) print(std::get<0>(a));\n\
+    \        print<1, Args...>(a);\n        if IF_CONSTEXPR (debug) print_char(')');\n\
+    \    }\n    template<class T, class U> void print(const std::pair<T, U>& a) {\n\
+    \        if IF_CONSTEXPR (debug) print_char('(');\n        print(a.first);\n \
+    \       if IF_CONSTEXPR (debug) print_char(',');\n        print_char(' ');\n \
+    \       print(a.second);\n        if IF_CONSTEXPR (debug) print_char(')');\n \
+    \   }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(const T& a) {\n        if IF_CONSTEXPR (debug) print_char('{');\n\
+    \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
+    \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
+    \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
+    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
+    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
+    \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
+    \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
+    \        return *this;\n    }\n\n    Printer& operator<<(Printer& (*pf)(Printer&))\
+    \ { return pf(*this); }\n};\n\ntemplate<class Iterator, std::size_t decimal_precision,\
+    \ bool debug>\nPrinter<Iterator, decimal_precision, debug>&\nendl(Printer<Iterator,\
+    \ decimal_precision, debug>& pr) {\n    pr.print_char('\\n');\n    pr.flush();\n\
+    \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
+    \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
+    \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
+    \ print(writer.begin()), eprint(writer.begin());\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
+    \ 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar\
+    \ debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
+    \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
+    \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
+    \ debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\
+    \n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k)\
+    \ (1ull << (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0)\
+    \ return 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a\
+    \ >> 1 | b;\n}\n\n#define rep_comb(i, n, k)                                  \
+    \                    \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));\
+    \                         \\\n         i = bitop::next_combination((n), i))\n\n\
+    inline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
+    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
+    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
+    \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
+    #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
+    \    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);\n    x =\
+    \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
+    \ + ((x >> 8) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >>\
+    \ 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32)\
+    \ & 0x00000000ffffffff);\n}\n#line 10 \"other/template.hpp\"\n\ntemplate<class\
     \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
     \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
     \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
@@ -100,56 +340,48 @@ data:
     \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
     \ - b1) % g != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first\
     \ % (m2 / g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b,\n                      const std::vector<ll>& m) {\n   \
-    \ PLL res{0, 1};\n    rep (i, b.size()) {\n        res = ChineseRemainder(res.first,\
-    \ res.second, b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n\
-    \    return res;\n}\n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\
-    \npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n\
-    \    template<class... Args>\n    constexpr auto operator()(Args&&... args) const\n\
-    \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
-    \ f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class F> inline\
-    \ constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
-    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
-    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
-    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
-    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
-    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
-    \                                        Args&&... args) {\n    return typename\
-    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ninline CONSTEXPR int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n\
-    \    return std::popcount(x);\n#endif\n    x = (x & 0x5555555555555555) + ((x\
-    \ >> 1) & 0x5555555555555555);\n    x = (x & 0x3333333333333333) + ((x >> 2) &\
-    \ 0x3333333333333333);\n    x = (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);\n\
-    \    x = (x & 0x00ff00ff00ff00ff) + ((x >> 8) & 0x00ff00ff00ff00ff);\n    x =\
-    \ (x & 0x0000ffff0000ffff) + ((x >> 16) & 0x0000ffff0000ffff);\n    return (x\
-    \ & 0x00000000ffffffff) + ((x >> 32) & 0x00000000ffffffff);\n}\n\ntemplate<class\
-    \ T, class Comp = std::less<T>> class presser {\nprivate:\n    std::vector<T>\
-    \ dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n    presser() : presser(Comp())\
-    \ {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n    presser(const std::vector<T>&\
-    \ vec, const Comp& cmp = Comp())\n        : dat(vec), cmp(cmp) {}\n    presser(std::vector<T>&&\
-    \ vec, const Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {}\n\
-    \    presser(std::initializer_list<T> il, const Comp& cmp = Comp())\n        :\
-    \ dat(il.begin(), il.end()), cmp(cmp) {}\n    void reserve(int n) {\n        assert(!sorted);\n\
-    \        dat.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
-    \        dat.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
-    \        dat.push_back(std::move(v));\n    }\n    void push(const std::vector<T>&\
-    \ vec) {\n        assert(!sorted);\n        const int n = dat.size();\n      \
-    \  dat.resize(n + vec.size());\n        rep (i, vec.size()) dat[n + i] = vec[i];\n\
-    \    }\n    int build() {\n        assert(!sorted);\n        sorted = true;\n\
-    \        std::sort(all(dat), cmp);\n        dat.erase(std::unique(all(dat),\n\
-    \                              [&](const T& a, const T& b) -> bool {\n       \
-    \                           return !cmp(a, b) && !cmp(b, a);\n               \
-    \               }),\n                  dat.end());\n        return dat.size();\n\
-    \    }\n    const T& operator[](int k) const& {\n        assert(sorted);\n   \
-    \     assert(0 <= k && k < (int)dat.size());\n        return dat[k];\n    }\n\
-    \    T operator[](int k) && {\n        assert(sorted);\n        assert(0 <= k\
-    \ && k < (int)dat.size());\n        return std::move(dat[k]);\n    }\n    int\
-    \ get(const T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        assert(itr != dat.end() && !cmp(val, *itr));\n        return\
-    \ itr - dat.begin();\n    }\n    int lower_bound(const T& val) const {\n     \
-    \   assert(sorted);\n        auto itr = std::lower_bound(all(dat), val, cmp);\n\
-    \        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
+    \ std::vector<ll>& b, const std::vector<ll>& m) {\n    PLL res{0, 1};\n    rep\
+    \ (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second, b[i],\
+    \ m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n}\n\
+    \ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
+    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    \ Args>\n    constexpr auto operator()(Args&&... args) const\n        -> decltype(f(*this,\
+    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
+    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
+    \                                                         Args&&... args) {\n\
+    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
+    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
+    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
+    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
+    \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
+    \ il, const Comp& cmp = Comp())\n        : dat(il.begin(), il.end()), cmp(cmp)\
+    \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
+    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
+    \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
+    \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
+    \    assert(!sorted);\n        sorted = true;\n        std::sort(all(dat), cmp);\n\
+    \        dat.erase(std::unique(all(dat),\n                              [&](const\
+    \ T& a, const T& b) -> bool {\n                                  return !cmp(a,\
+    \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
+    \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
+    \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
+    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
+    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
+    \    }\n    int get(const T& val) const {\n        assert(sorted);\n        auto\
+    \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
+    \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
     \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
     \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
     \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
@@ -183,12 +415,18 @@ data:
     \ */\n"
   dependsOn:
   - other/template.hpp
+  - template/macros.hpp
+  - template/alias.hpp
+  - template/type_traits.hpp
+  - template/in.hpp
+  - template/out.hpp
+  - template/bitop.hpp
   - math/convolution/SupersetZetaMoebiusTransform.hpp
   isVerificationFile: false
   path: math/convolution/BitwiseAndConvolution.hpp
   requiredBy: []
-  timestamp: '2022-08-18 19:11:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-08-29 17:11:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
 documentation_of: math/convolution/BitwiseAndConvolution.hpp
