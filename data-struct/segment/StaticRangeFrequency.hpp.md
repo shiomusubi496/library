@@ -24,12 +24,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_frequency.test.cpp
     title: test/yosupo/data_structure/static_range_frequency.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/StaticRangeFrequency.md
     document_title: StaticRangeFrequency
@@ -423,7 +423,7 @@ data:
   path: data-struct/segment/StaticRangeFrequency.hpp
   requiredBy: []
   timestamp: '2022-08-29 18:26:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/static_range_frequency.test.cpp
 documentation_of: data-struct/segment/StaticRangeFrequency.hpp
