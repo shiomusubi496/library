@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -40,19 +40,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
@@ -68,7 +68,7 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -81,27 +81,27 @@ data:
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
@@ -138,43 +138,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -310,35 +310,37 @@ data:
     \                             range_rank<typename T::value_type>::value + 1> {};\n\
     #line 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\
     \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n \
-    \   int fd, idx, sz;\n    std::array<char, buf_size> buffer;\n    inline void\
-    \ read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n        if (sz\
-    \ < 0) throw std::runtime_error(\"input failed\");\n    }\n\npublic:\n    static\
-    \ constexpr int get_buf_size() { return buf_size; }\n    Reader() : fd(0), idx(0)\
-    \ { read_buf(); }\n    Reader(int fd) : fd(fd), idx(0) { read_buf(); }\n    Reader(FILE*\
-    \ fp) : fd(fileno(fp)), idx(0) { read_buf(); }\n\n    class iterator {\n    private:\n\
-    \        Reader* reader;\n\n    public:\n        using difference_type = void;\n\
-    \        using value_type = void;\n        using pointer = void;\n        using\
-    \ reference = void;\n        using iterator_category = std::input_iterator_tag;\n\
+    \   int fd, idx, sz;\n    bool state;\n    std::array<char, buf_size> buffer;\n\
+    \    inline void read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n\
+    \        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"input failed\"\
+    );\n    }\n\npublic:\n    static constexpr int get_buf_size() { return buf_size;\
+    \ }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true) {}\n    Reader(int\
+    \ fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n    Reader(FILE* fp) noexcept\
+    \ : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\n    class iterator {\n  \
+    \  private:\n        Reader* reader;\n\n    public:\n        using difference_type\
+    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
+    \       using reference = void;\n        using iterator_category = std::input_iterator_tag;\n\
     \n        iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
     \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
-    \ {}\n\n        iterator& operator++() {\n            ++reader->idx;\n       \
-    \     if (reader->idx == reader->sz) {\n                reader->read_buf();\n\
-    \                reader->idx = 0;\n            }\n            return *this;\n\
+    \ {}\n\n        iterator& operator++() {\n            if (reader->idx == reader->sz)\
+    \ reader->read_buf();\n            ++reader->idx;\n            return *this;\n\
     \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
     \            ++(*this);\n            return res;\n        }\n        char operator*()\
-    \ const {\n            return reader->idx < reader->sz ? reader->buffer[reader->idx]\n\
-    \                                            : '\\0';\n        }\n    };\n\n \
-    \   iterator begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\
-    \ntemplate<class Iterator, std::size_t decimal_precision = 16> class Scanner {\n\
-    public:\n    using iterator_type = Iterator;\n\nprivate:\n    template<class,\
-    \ class = void> struct has_scan : std::false_type {};\n    template<class T>\n\
-    \    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
-    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void\
-    \ discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr ==\
-    \ ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n   \
-    \     a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
-    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \ const {\n            if (reader->idx == reader->sz) reader->read_buf();\n  \
+    \          if (reader->idx < reader->sz) return reader->buffer[reader->idx];\n\
+    \            reader->state = false;\n            return '\\0';\n        }\n  \
+    \      bool rdstate() const { return reader->state; }\n    };\n\n    iterator\
+    \ begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision = 16> class Scanner {\npublic:\n   \
+    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, class = void>\
+    \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
+    \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
+    \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
+    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void discard_space()\
+    \ {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr == ' ') ++itr;\n\
+    \    }\n    void scan(char& a) {\n        discard_space();\n        a = *itr;\n\
+    \        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n \
+    \       a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
     \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
     t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
@@ -377,32 +379,31 @@ data:
     \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\
-    #line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t\
-    \ buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n    int fd, idx;\n    std::array<char,\
-    \ buf_size> buffer;\n    inline void write_buf() {\n        int num = write(fd,\
-    \ buffer.begin(), idx);\n        if (num < 0) throw std::runtime_error(\"output\
-    \ failed\");\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n   \
-    \ Writer(int fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept :\
-    \ fd(fileno(fp)), idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator\
-    \ {\n    private:\n        Writer* writer;\n\n    public:\n        using difference_type\
-    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
-    \       using reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
+    \  return *this;\n    }\n    \n    explicit operator bool() const { return itr.rdstate();\
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
+    \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
+    \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
+    \    inline void write_buf() {\n        int num = write(fd, buffer.begin(), idx);\n\
+    \        idx = 0;\n        if (num < 0) throw std::runtime_error(\"output failed\"\
+    );\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int\
+    \ fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)),\
+    \ idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n\
+    \        Writer* writer;\n\n    public:\n        using difference_type = void;\n\
+    \        using value_type = void;\n        using pointer = void;\n        using\
+    \ reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
     \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
     \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
     \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
-    \   ++writer->idx;\n            if (writer->idx == buf_size) {\n             \
-    \   writer->write_buf();\n                writer->idx = 0;\n            }\n  \
-    \          return *this;\n        }\n        iterator operator++(int) {\n    \
-    \        iterator res = *this;\n            ++(*this);\n            return res;\n\
+    \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
+    \            return *this;\n        }\n        iterator operator++(int) {\n  \
+    \          iterator res = *this;\n            ++(*this);\n            return res;\n\
     \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
-    \ }\n        void flush() const {\n            writer->write_buf();\n        \
-    \    writer->idx = 0;\n        }\n    };\n\n    iterator begin() noexcept { return\
-    \ iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\ntemplate<class Iterator,\
-    \ std::size_t decimal_precision = 16, bool debug = false>\nclass Printer {\npublic:\n\
-    \    using iterator_type = Iterator;\n\nprivate:\n    template<class, class =\
-    \ void> struct has_print : std::false_type {};\n    template<class T>\n    struct\
-    \ has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
+    \ }\n        void flush() const { writer->write_buf(); }\n    };\n\n    iterator\
+    \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
+    \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
+    class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
+    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
+    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
     \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
     \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
     \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
@@ -439,7 +440,7 @@ data:
     \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
     \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
     \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
-    \ + (int)std::fmod(b, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
     \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
     \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
     \            print_char(' ');\n            print(std::get<i>(a));\n          \
@@ -706,7 +707,7 @@ data:
   - graph/other/TwoSatisfiablitity.hpp
   - graph/other/TopologicalSort.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-08-29 17:11:28+09:00'
+  timestamp: '2022-08-29 18:26:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/cartesian_tree.test.cpp
