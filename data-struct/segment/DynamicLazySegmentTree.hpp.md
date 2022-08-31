@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/DynamicLazySegmentTree.md
     document_title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
@@ -404,7 +404,7 @@ data:
     template<class M, class = void> class has_get_inv : public std::false_type {};\n\
     template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
     \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init)> : public\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
     \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
     \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
@@ -472,35 +472,31 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A, bool = has_init<typename A::M>::value>\
-    \ struct MultiAction {\n    struct M {\n        struct value_type {\n        private:\n\
-    \            using T_ = typename A::M::value_type;\n\n        public:\n      \
-    \      T_ val;\n            ll len;\n            value_type() = default;\n   \
-    \         value_type(T_ v, ll l) : val(v), len(l) {}\n            friend std::ostream&\
-    \ operator<<(std::ostream& ost,\n                                            const\
-    \ value_type& e) {\n                return ost << e.val << '*' << e.len;\n   \
-    \         }\n        };\n        static value_type op(const value_type& a, const\
-    \ value_type& b) {\n            return {A::M::op(a.val, b.val), a.len + b.len};\n\
-    \        }\n        static value_type id() { return {A::M::id(), 0}; }\n    };\n\
-    \    using E = typename A::E;\n\nprivate:\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n\npublic:\n    static T op(const U& a,\
-    \ const T& b) {\n        return {A::mul_op(a, b.len, b.val), b.len};\n    }\n\
-    };\n\ntemplate<class A> struct MultiAction<A, true> {\n    struct M {\n      \
-    \  struct value_type {\n        private:\n            using T_ = typename A::M::value_type;\n\
-    \n        public:\n            T_ val;\n            ll len;\n            value_type()\
-    \ = default;\n            value_type(T_ v, ll l) : val(v), len(l) {}\n       \
-    \     friend std::ostream& operator<<(std::ostream& ost,\n                   \
-    \                         const value_type& e) {\n                return ost <<\
-    \ e.val << '*' << e.len;\n            }\n            template<class T> void print(T&\
-    \ a) const {\n                a.print(val);\n                a.print('*');\n \
-    \               a.print(len);\n            }\n        };\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            return {A::M::op(a.val,\
-    \ b.val), a.len + b.len};\n        }\n        static value_type id() { return\
-    \ {A::M::id(), 0}; }\n        static value_type init(ll l, ll r) { return {A::M::init(l,\
-    \ r), r - l}; }\n    };\n    using E = typename A::E;\n\nprivate:\n    using T\
-    \ = typename M::value_type;\n    using U = typename E::value_type;\n\npublic:\n\
-    \    static T op(const U& a, const T& b) {\n        return {A::mul_op(a, b.len,\
-    \ b.val), b.len};\n    }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
+    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct LengthAction {\n    struct\
+    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
+    \ A::M::value_type;\n\n        public:\n            T_ val;\n            ll len;\n\
+    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
+    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
+    \                                            const value_type& e) {\n        \
+    \        return ost << e.val << '*' << e.len;\n            }\n            template<class\
+    \ T> void print(T& a) const {\n                a.print(val);\n               \
+    \ a.print('*');\n                a.print(len);\n            }\n        };\n  \
+    \      static value_type op(const value_type& a, const value_type& b) {\n    \
+    \        return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
+    \ value_type id() { return {A::M::id(), 0}; }\n        template<bool AlwaysTrue\
+    \ = true,\n                 typename std::enable_if<has_init<typename A::M>::value\
+    \ &&\n                                         AlwaysTrue>::type* = nullptr>\n\
+    \        static value_type init(ll l, ll r) {\n            return {A::M::init(l,\
+    \ r), r - l};\n        }\n    };\n    using E = typename A::E;\n\nprivate:\n \
+    \   using T = typename M::value_type;\n    using U = typename E::value_type;\n\
+    \npublic:\n    static T op(const U& a, const T& b) {\n        return {A::mul_op(a,\
+    \ b.len, b.val), b.len};\n    }\n    template<bool AlwaysTrue = true,\n      \
+    \          typename std::enable_if<AlwaysTrue, decltype((void)A::break_cond)>::type*\
+    \ = nullptr>\n    static bool break_cond(const T& a, const U& b) {\n        return\
+    \ A::break_cond(a.val, b);\n    }\n    template<bool AlwaysTrue = true,\n    \
+    \            typename std::enable_if<AlwaysTrue, decltype((void)A::tag_cond)>::type*\
+    \ = nullptr>\n    static bool tag_cond(const T& a, const U& b) {\n        return\
+    \ A::tag_cond(a.val, b);\n    }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
     \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
     \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
     \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
@@ -598,7 +594,7 @@ data:
     \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
     \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
     \      update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(a, x);\
+    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
     \ });\n    }\n    void apply(ll l, ll r, const U& x) {\n        assert(0 <= l\
     \ && l <= r && r <= ori);\n        apply(root, 0, n, h, l, r, x);\n    }\n   \
     \ void all_apply(const U& x) { apply(root, 0, n, h, 0, n, x); }\n    T prod(ll\
@@ -615,7 +611,7 @@ data:
     \ 0, n, h, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
     \ true> {\nprivate:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
     \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
-    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::MultiAction<A>>\
+    \    using elm = typename Monoid::LengthAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::LengthAction<A>>\
     \ seg;\n\npublic:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf)\
     \ {}\n    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}\n    DynamicLazySegmentTree(ll\
     \ n_, const T_& v) : seg(n_, {v, 1}) {}\n    void init(ll n_, const T_& v = M_::id())\
@@ -732,7 +728,7 @@ data:
     \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
     \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
     \      update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(a, x);\
+    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
     \ });\n    }\n    void apply(ll l, ll r, const U& x) {\n        assert(0 <= l\
     \ && l <= r && r <= ori);\n        apply(root, 0, n, h, l, r, x);\n    }\n   \
     \ void all_apply(const U& x) { apply(root, 0, n, h, 0, n, x); }\n    T prod(ll\
@@ -749,7 +745,7 @@ data:
     \ 0, n, h, k, k + 1); }\n};\n\n\ntemplate<class A> class DynamicLazySegmentTree<A,\
     \ true> {\nprivate:\n    using M_ = typename A::M;\n    using E_ = typename A::E;\n\
     \    using T_ = typename M_::value_type;\n    using U_ = typename E_::value_type;\n\
-    \    using elm = typename Monoid::MultiAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::MultiAction<A>>\
+    \    using elm = typename Monoid::LengthAction<A>::M::value_type;\n    DynamicLazySegmentTree<Monoid::LengthAction<A>>\
     \ seg;\n\npublic:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf)\
     \ {}\n    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}\n    DynamicLazySegmentTree(ll\
     \ n_, const T_& v) : seg(n_, {v, 1}) {}\n    void init(ll n_, const T_& v = M_::id())\
@@ -780,8 +776,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-08-29 18:26:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-01 00:01:19+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
