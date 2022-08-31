@@ -22,7 +22,7 @@ class has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type {};
 
 template<class M, class = void> class has_init : public std::false_type {};
 template<class M>
-class has_init<M, decltype((void)M::init)> : public std::true_type {};
+class has_init<M, decltype((void)M::init(0, 0))> : public std::true_type {};
 
 template<class A, class = void> class has_mul_op : public std::false_type {};
 template<class A>
@@ -181,40 +181,7 @@ template<class E_> struct AttachMonoid {
 };
 
 
-template<class A, bool = has_init<typename A::M>::value> struct MultiAction {
-    struct M {
-        struct value_type {
-        private:
-            using T_ = typename A::M::value_type;
-
-        public:
-            T_ val;
-            ll len;
-            value_type() = default;
-            value_type(T_ v, ll l) : val(v), len(l) {}
-            friend std::ostream& operator<<(std::ostream& ost,
-                                            const value_type& e) {
-                return ost << e.val << '*' << e.len;
-            }
-        };
-        static value_type op(const value_type& a, const value_type& b) {
-            return {A::M::op(a.val, b.val), a.len + b.len};
-        }
-        static value_type id() { return {A::M::id(), 0}; }
-    };
-    using E = typename A::E;
-
-private:
-    using T = typename M::value_type;
-    using U = typename E::value_type;
-
-public:
-    static T op(const U& a, const T& b) {
-        return {A::mul_op(a, b.len, b.val), b.len};
-    }
-};
-
-template<class A> struct MultiAction<A, true> {
+template<class A> struct LengthAction {
     struct M {
         struct value_type {
         private:
@@ -239,7 +206,12 @@ template<class A> struct MultiAction<A, true> {
             return {A::M::op(a.val, b.val), a.len + b.len};
         }
         static value_type id() { return {A::M::id(), 0}; }
-        static value_type init(ll l, ll r) { return {A::M::init(l, r), r - l}; }
+        template<bool AlwaysTrue = true,
+                 typename std::enable_if<has_init<typename A::M>::value &&
+                                         AlwaysTrue>::type* = nullptr>
+        static value_type init(ll l, ll r) {
+            return {A::M::init(l, r), r - l};
+        }
     };
     using E = typename A::E;
 
@@ -250,6 +222,16 @@ private:
 public:
     static T op(const U& a, const T& b) {
         return {A::mul_op(a, b.len, b.val), b.len};
+    }
+    template<bool AlwaysTrue = true,
+                typename std::enable_if<AlwaysTrue, decltype((void)A::break_cond)>::type* = nullptr>
+    static bool break_cond(const T& a, const U& b) {
+        return A::break_cond(a.val, b);
+    }
+    template<bool AlwaysTrue = true,
+                typename std::enable_if<AlwaysTrue, decltype((void)A::tag_cond)>::type* = nullptr>
+    static bool tag_cond(const T& a, const U& b) {
+        return A::tag_cond(a.val, b);
     }
 };
 

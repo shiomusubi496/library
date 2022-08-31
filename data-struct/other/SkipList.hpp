@@ -600,11 +600,11 @@ public:
 
 template<class A, class Rand> class SkipList<A, Rand, true> {
 private:
-    using Base = SkipList<Monoid::MultiAction<A>, Rand>;
+    using Base = SkipList<Monoid::LengthAction<A>, Rand>;
     using T_ = typename A::M::value_type;
     using U_ = typename A::E::value_type;
     Base sl;
-    using elm = typename Monoid::MultiAction<A>::M::value_type;
+    using elm = typename Monoid::LengthAction<A>::M::value_type;
     static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
         const int n = v.size();
         std::vector<elm> res(n);

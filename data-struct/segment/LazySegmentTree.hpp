@@ -88,13 +88,13 @@ public:
         data[k] = upd(data[k]);
         reps (i, h) calc(k >> i);
     }
-    void set(int k, T x) {
+    void set(int k, const T& x) {
         update(k, [&](const T&) -> T { return x; });
     }
-    void apply(int k, U x) {
+    void apply(int k, const U& x) {
         update(k, [&](const T& a) -> T { return A::op(x, a); });
     }
-    void apply(int l, int r, U x) {
+    void apply(int l, int r, const U& x) {
         assert(0 <= l && l <= r && r <= ori);
         if (l == r) return;
 
@@ -175,32 +175,32 @@ template<class A> class LazySegmentTree<A, true> {
     static_assert(Monoid::is_action<A>::value, "A must be action");
 
 private:
-    using T_ = typename A::M::value_type;
-    using U_ = typename A::E::value_type;
-    using elm = typename Monoid::MultiAction<A>::M::value_type;
-    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
+    using T = typename A::M::value_type;
+    using U = typename A::E::value_type;
+    using elm = typename Monoid::LengthAction<A>::M::value_type;
+    static std::vector<elm> get_elm_vec(const std::vector<T>& v) {
         const int n = v.size();
         std::vector<elm> res(n);
         rep (i, n) res[i] = elm{v[i], 1};
         return res;
     }
-    LazySegmentTree<Monoid::MultiAction<A>> seg;
+    LazySegmentTree<Monoid::LengthAction<A>> seg;
 
 public:
     LazySegmentTree() : LazySegmentTree(0) {}
     LazySegmentTree(int n_) : seg(n_, {A::M::id(), 1}) {}
-    LazySegmentTree(int n_, const T_& v) : seg(n_, {v, 1}) {}
-    LazySegmentTree(const std::vector<T_>& v) : seg(get_elm_vec(v)) {}
-    void init(const std::vector<T_>& v) { seg.init(get_elm_vec(v)); }
-    T_ prod(int l, int r) { return seg.prod(l, r).val; }
-    T_ get(int k) { return seg.get(k).val; }
-    T_ all_prod() const { return seg.all_prod().val; }
+    LazySegmentTree(int n_, const T& v) : seg(n_, {v, 1}) {}
+    LazySegmentTree(const std::vector<T>& v) : seg(get_elm_vec(v)) {}
+    void init(const std::vector<T>& v) { seg.init(get_elm_vec(v)); }
+    T prod(int l, int r) { return seg.prod(l, r).val; }
+    T get(int k) { return seg.get(k).val; }
+    T all_prod() const { return seg.all_prod().val; }
     template<class Upd> void update(int k, const Upd& upd) {
         seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len}; });
     }
-    void set(int k, T_ x) { seg.set(k, elm{x, 1}); }
-    void apply(int k, U_ x) { seg.apply(k, x); }
-    void apply(int l, int r, U_ x) { seg.apply(l, r, x); }
+    void set(int k, const T& x) { seg.set(k, elm{x, 1}); }
+    void apply(int k, const U& x) { seg.apply(k, x); }
+    void apply(int l, int r, const U& x) { seg.apply(l, r, x); }
     template<class C> int max_right(int l, const C& cond) {
         return seg.max_right(l,
                              [&](const elm& a) -> bool { return cond(a.val); });

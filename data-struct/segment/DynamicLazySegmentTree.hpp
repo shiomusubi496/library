@@ -200,7 +200,7 @@ public:
         update(k, [&](const T&) -> T { return x; });
     }
     void apply(ll k, const U& x) {
-        update(k, [&](const T& a) -> T { return A::op(a, x); });
+        update(k, [&](const T& a) -> T { return A::op(x, a); });
     }
     void apply(ll l, ll r, const U& x) {
         assert(0 <= l && l <= r && r <= ori);
@@ -238,8 +238,8 @@ private:
     using E_ = typename A::E;
     using T_ = typename M_::value_type;
     using U_ = typename E_::value_type;
-    using elm = typename Monoid::MultiAction<A>::M::value_type;
-    DynamicLazySegmentTree<Monoid::MultiAction<A>> seg;
+    using elm = typename Monoid::LengthAction<A>::M::value_type;
+    DynamicLazySegmentTree<Monoid::LengthAction<A>> seg;
 
 public:
     DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}
