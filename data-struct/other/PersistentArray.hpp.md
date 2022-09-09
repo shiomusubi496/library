@@ -23,19 +23,19 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/PersistentUnionFind.hpp
     title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
     title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_unionfind.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/PersistentArray.md
     document_title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
@@ -181,7 +181,7 @@ data:
     \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n    \n    explicit operator bool() const { return itr.rdstate();\
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
     \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
     \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
     \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
@@ -487,8 +487,8 @@ data:
   path: data-struct/other/PersistentArray.hpp
   requiredBy:
   - data-struct/unionfind/PersistentUnionFind.hpp
-  timestamp: '2022-08-29 18:26:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-09 19:55:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/persistent_queue-Array.test.cpp
   - test/yosupo/data_structure/persistent_unionfind.test.cpp

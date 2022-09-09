@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -190,7 +190,7 @@ data:
     \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n    \n    explicit operator bool() const { return itr.rdstate();\
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
     \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
     \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
     \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
@@ -479,32 +479,8 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct LengthAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n            template<class\
-    \ T> void print(T& a) const {\n                a.print(val);\n               \
-    \ a.print('*');\n                a.print(len);\n            }\n        };\n  \
-    \      static value_type op(const value_type& a, const value_type& b) {\n    \
-    \        return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        template<bool AlwaysTrue\
-    \ = true,\n                 typename std::enable_if<has_init<typename A::M>::value\
-    \ &&\n                                         AlwaysTrue>::type* = nullptr>\n\
-    \        static value_type init(ll l, ll r) {\n            return {A::M::init(l,\
-    \ r), r - l};\n        }\n    };\n    using E = typename A::E;\n\nprivate:\n \
-    \   using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \npublic:\n    static T op(const U& a, const T& b) {\n        return {A::mul_op(a,\
-    \ b.len, b.val), b.len};\n    }\n    template<bool AlwaysTrue = true,\n      \
-    \          typename std::enable_if<AlwaysTrue, decltype((void)A::break_cond)>::type*\
-    \ = nullptr>\n    static bool break_cond(const T& a, const U& b) {\n        return\
-    \ A::break_cond(a.val, b);\n    }\n    template<bool AlwaysTrue = true,\n    \
-    \            typename std::enable_if<AlwaysTrue, decltype((void)A::tag_cond)>::type*\
-    \ = nullptr>\n    static bool tag_cond(const T& a, const U& b) {\n        return\
-    \ A::tag_cond(a.val, b);\n    }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\
-    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
     \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
     \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
     \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
@@ -665,25 +641,32 @@ data:
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
     \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 6 \"data-struct/other/SkipList.hpp\"\
-    \n\ntemplate<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>\n\
-    class SkipList {\nprivate:\n    using M = typename A::M;\n    using E = typename\
-    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    static inline int get_level(Rand& rnd) {\n        int level = 1;\n      \
-    \  while ((rnd() & 1) == 0) ++level;\n        return level;\n    }\n    struct\
-    \ node;\n    using node_ptr = node*;\n    struct next_node {\n        node_ptr\
-    \ node;\n        int dist;\n        T sm;\n        U lazy;\n        bool lazyflag;\n\
-    \        next_node(node_ptr n, int d, const T& s)\n            : node(n), dist(d),\
-    \ sm(s), lazyflag(false) {}\n        next_node(node_ptr n, int d, const T& s,\
-    \ const U& l)\n            : node(n), dist(d), sm(s), lazy(l), lazyflag(true)\
-    \ {}\n    };\n    struct node {\n        std::vector<next_node> nxt;\n       \
-    \ std::vector<node_ptr> prv;\n        int level() const {\n            assert(nxt.size()\
-    \ == prv.size());\n            return nxt.size();\n        }\n        node(Rand&\
-    \ rnd) : node(get_level(rnd)) {}\n        node(int lev) : nxt(lev, {nullptr, 1,\
-    \ M::id()}), prv(lev, nullptr) {}\n    };\n    using nodepair = std::pair<node_ptr,\
-    \ node_ptr>;\n    Rand rnd;\n    nodepair sl;\n    static inline void all_apply(const\
-    \ node_ptr& nd, int k, const U& x) {\n        assert(0 <= k && k < nd->level());\n\
-    \        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);\n        if (k != 0) {\n   \
-    \         if (nd->nxt[k].lazyflag) {\n                nd->nxt[k].lazy = E::op(nd->nxt[k].lazy,\
+    \n\ntemplate<class A, class Rand = Random32> class SkipList {\nprivate:\n    using\
+    \ M = typename A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    static inline int get_level(Rand&\
+    \ rnd) {\n        int level = 1;\n        while ((rnd() & 1) == 0) ++level;\n\
+    \        return level;\n    }\n    struct node;\n    using node_ptr = node*;\n\
+    \    struct next_node {\n        node_ptr node;\n        int dist;\n        T\
+    \ sm;\n        U lazy;\n        bool lazyflag;\n        next_node(node_ptr n,\
+    \ int d, const T& s)\n            : node(n), dist(d), sm(s), lazyflag(false) {}\n\
+    \        next_node(node_ptr n, int d, const T& s, const U& l)\n            : node(n),\
+    \ dist(d), sm(s), lazy(l), lazyflag(true) {}\n    };\n    struct node {\n    \
+    \    std::vector<next_node> nxt;\n        std::vector<node_ptr> prv;\n       \
+    \ int level() const {\n            assert(nxt.size() == prv.size());\n       \
+    \     return nxt.size();\n        }\n        node(Rand& rnd) : node(get_level(rnd))\
+    \ {}\n        node(int lev) : nxt(lev, {nullptr, 1, M::id()}), prv(lev, nullptr)\
+    \ {}\n    };\n    using nodepair = std::pair<node_ptr, node_ptr>;\n    Rand rnd;\n\
+    \    nodepair sl;\n\n    template<bool AlwaysTrue = true,\n             typename\
+    \ std::enable_if<!Monoid::has_mul_op<A>::value &&\n                          \
+    \           AlwaysTrue>::type* = nullptr>\n    static inline T Aop(const U& a,\
+    \ const T& b, int) {\n        return A::op(a, b);\n    }\n    template<bool AlwaysTrue\
+    \ = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value &&\n\
+    \                                     AlwaysTrue>::type* = nullptr>\n    static\
+    \ inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a, c,\
+    \ b);\n    }\n\n    static inline void all_apply(const node_ptr& nd, int k, const\
+    \ U& x) {\n        assert(0 <= k && k < nd->level());\n        nd->nxt[k].sm =\
+    \ Aop(x, nd->nxt[k].sm, nd->nxt[k].dist);\n        if (k != 0) {\n           \
+    \ if (nd->nxt[k].lazyflag) {\n                nd->nxt[k].lazy = E::op(nd->nxt[k].lazy,\
     \ x);\n            }\n            else {\n                nd->nxt[k].lazy = x;\n\
     \                nd->nxt[k].lazyflag = true;\n            }\n        }\n    }\n\
     \    static inline void eval(const node_ptr& nd, int k) {\n        assert(0 <=\
@@ -909,7 +892,7 @@ data:
     \ nd = get_ptr(sl, k);\n        nd->nxt[0].sm = upd(nd->nxt[0].sm);\n        all_calc(sl,\
     \ k);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&)\
     \ { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
-    \ [&](const T& sm) { return E::op(x, sm); });\n    }\n    template<class C> int\
+    \ [&](const T& sm) { return Aop(x, sm, 1); });\n    }\n    template<class C> int\
     \ max_right(int l, const C& cond) const {\n        assert(0 <= l && l <= size());\n\
     \        assert(cond(M::id()));\n        if (l == size()) return size();\n   \
     \     all_eval(sl, l);\n        auto np = get_ptr(sl, l);\n        T sm = M::id();\n\
@@ -939,38 +922,8 @@ data:
     \ lhs.rnd), lhs.rnd};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
     \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first),\
     \ sl.rnd},\n                SkipList{std::move(s.second), sl.rnd}};\n    }\n};\n\
-    \ntemplate<class A, class Rand> class SkipList<A, Rand, true> {\nprivate:\n  \
-    \  using Base = SkipList<Monoid::LengthAction<A>, Rand>;\n    using T_ = typename\
-    \ A::M::value_type;\n    using U_ = typename A::E::value_type;\n    Base sl;\n\
-    \    using elm = typename Monoid::LengthAction<A>::M::value_type;\n    static\
-    \ std::vector<elm> get_elm_vec(const std::vector<T_>& v) {\n        const int\
-    \ n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n) res[i] =\
-    \ {v[i], 1};\n        return res;\n    }\n    SkipList(const Base& other) : sl(other)\
-    \ {}\n    SkipList(Base&& other) : sl(std::move(other)) {}\n\npublic:\n    SkipList()\
-    \ : SkipList(Rand()) {}\n    SkipList(const Rand& rnd) : sl(rnd) {}\n    SkipList(const\
-    \ std::vector<T_>& v, const Rand& rnd = Rand())\n        : sl(get_elm_vec(v),\
-    \ rnd) {}\n    void init(const std::vector<T_>& v) { sl.init(get_elm_vec(v));\
-    \ }\n    int size() const { return sl.size(); }\n    bool empty() const { return\
-    \ sl.empty(); }\n    void insert(int k, const T_& sm) { sl.insert(k, {sm, 1});\
-    \ }\n    void erase(int k) { sl.erase(k); }\n    T_ prod(int l, int r) const {\
-    \ return sl.prod(l, r).val; }\n    T_ all_prod() const { return sl.all_prod().val;\
-    \ }\n    T_ get(int k) const { return sl.get(k).val; }\n    void apply(int l,\
-    \ int r, const U_& x) { sl.apply(l, r, x); }\n    template<class Upd> void update(int\
-    \ k, const Upd& upd) {\n        sl.update(k, [&](const elm& e) -> elm { return\
-    \ {upd(e.val), e.len}; });\n    }\n    void set(int k, const T_& x) { sl.set(k,\
-    \ {x, 1}); }\n    void apply(int k, const U_& x) { sl.apply(k, x); }\n    template<class\
-    \ C> int max_right(int l, const C& cond) const {\n        return sl.max_right(l,\n\
-    \                            [&](const elm& e) -> bool { return cond(e.val); });\n\
-    \    }\n    template<class C> int min_left(int r, const C& cond) const {\n   \
-    \     return sl.min_left(r,\n                           [&](const elm& e) -> bool\
-    \ { return cond(e.val); });\n    }\n    std::vector<T_> get_data() const {\n \
-    \       std::vector<elm> d = sl.get_data();\n        std::vector<T_> res(d.size());\n\
-    \        rep (i, d.size()) res[i] = d[i].val;\n        return res;\n    }\n  \
-    \  friend SkipList merge(SkipList lhs, SkipList rhs) {\n        return {merge(std::move(lhs.sl),\
-    \ std::move(rhs.sl))};\n    }\n    friend std::pair<SkipList, SkipList> split(SkipList\
-    \ sl, int k) {\n        auto s = split(std::move(sl.sl), k);\n        return {SkipList{std::move(s.first)},\
-    \ SkipList{std::move(s.second)}};\n    }\n};\n\n/**\n * @brief SkipList\n * @docs\
-    \ docs/data-struct/other/SkipList.md\n */\n#line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp\"\
+    \n/**\n * @brief SkipList\n * @docs docs/data-struct/other/SkipList.md\n */\n\
+    #line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
     \ Q; scan >> N >> Q;\n    vector<mint> A(N); scan >> A;\n    SkipList<Monoid::AffineSum<mint>>\
     \ sl(A), slrev(vector<mint>(rall(A)));\n    rep (Q) {\n        int t; scan >>\
@@ -1026,7 +979,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 00:01:19+09:00'
+  timestamp: '2022-09-09 19:55:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp

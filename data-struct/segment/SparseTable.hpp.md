@@ -33,23 +33,23 @@ data:
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - icon: ':x:'
@@ -72,7 +72,7 @@ data:
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SparseTable.md
     document_title: SparseTable
@@ -218,7 +218,7 @@ data:
     \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n    \n    explicit operator bool() const { return itr.rdstate();\
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
     \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
     \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
     \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
@@ -507,31 +507,7 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct LengthAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n            template<class\
-    \ T> void print(T& a) const {\n                a.print(val);\n               \
-    \ a.print('*');\n                a.print(len);\n            }\n        };\n  \
-    \      static value_type op(const value_type& a, const value_type& b) {\n    \
-    \        return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        template<bool AlwaysTrue\
-    \ = true,\n                 typename std::enable_if<has_init<typename A::M>::value\
-    \ &&\n                                         AlwaysTrue>::type* = nullptr>\n\
-    \        static value_type init(ll l, ll r) {\n            return {A::M::init(l,\
-    \ r), r - l};\n        }\n    };\n    using E = typename A::E;\n\nprivate:\n \
-    \   using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \npublic:\n    static T op(const U& a, const T& b) {\n        return {A::mul_op(a,\
-    \ b.len, b.val), b.len};\n    }\n    template<bool AlwaysTrue = true,\n      \
-    \          typename std::enable_if<AlwaysTrue, decltype((void)A::break_cond)>::type*\
-    \ = nullptr>\n    static bool break_cond(const T& a, const U& b) {\n        return\
-    \ A::break_cond(a.val, b);\n    }\n    template<bool AlwaysTrue = true,\n    \
-    \            typename std::enable_if<AlwaysTrue, decltype((void)A::tag_cond)>::type*\
-    \ = nullptr>\n    static bool tag_cond(const T& a, const U& b) {\n        return\
-    \ A::tag_cond(a.val, b);\n    }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
     \n\ntemplate<class M> class SparseTable {\nprivate:\n    using T = typename M::value_type;\n\
     \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
     \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
@@ -590,8 +566,8 @@ data:
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-09-01 00:01:19+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-09 19:55:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp

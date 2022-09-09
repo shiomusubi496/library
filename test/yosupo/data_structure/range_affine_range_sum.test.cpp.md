@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -187,7 +187,7 @@ data:
     \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n    \n    explicit operator bool() const { return itr.rdstate();\
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
     \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
     \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
     \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
@@ -476,32 +476,8 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n\ntemplate<class A> struct LengthAction {\n    struct\
-    \ M {\n        struct value_type {\n        private:\n            using T_ = typename\
-    \ A::M::value_type;\n\n        public:\n            T_ val;\n            ll len;\n\
-    \            value_type() = default;\n            value_type(T_ v, ll l) : val(v),\
-    \ len(l) {}\n            friend std::ostream& operator<<(std::ostream& ost,\n\
-    \                                            const value_type& e) {\n        \
-    \        return ost << e.val << '*' << e.len;\n            }\n            template<class\
-    \ T> void print(T& a) const {\n                a.print(val);\n               \
-    \ a.print('*');\n                a.print(len);\n            }\n        };\n  \
-    \      static value_type op(const value_type& a, const value_type& b) {\n    \
-    \        return {A::M::op(a.val, b.val), a.len + b.len};\n        }\n        static\
-    \ value_type id() { return {A::M::id(), 0}; }\n        template<bool AlwaysTrue\
-    \ = true,\n                 typename std::enable_if<has_init<typename A::M>::value\
-    \ &&\n                                         AlwaysTrue>::type* = nullptr>\n\
-    \        static value_type init(ll l, ll r) {\n            return {A::M::init(l,\
-    \ r), r - l};\n        }\n    };\n    using E = typename A::E;\n\nprivate:\n \
-    \   using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \npublic:\n    static T op(const U& a, const T& b) {\n        return {A::mul_op(a,\
-    \ b.len, b.val), b.len};\n    }\n    template<bool AlwaysTrue = true,\n      \
-    \          typename std::enable_if<AlwaysTrue, decltype((void)A::break_cond)>::type*\
-    \ = nullptr>\n    static bool break_cond(const T& a, const U& b) {\n        return\
-    \ A::break_cond(a.val, b);\n    }\n    template<bool AlwaysTrue = true,\n    \
-    \            typename std::enable_if<AlwaysTrue, decltype((void)A::tag_cond)>::type*\
-    \ = nullptr>\n    static bool tag_cond(const T& a, const U& b) {\n        return\
-    \ A::tag_cond(a.val, b);\n    }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\
-    \n\nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
     \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
     \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
     \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
@@ -636,88 +612,77 @@ data:
     \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
     \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
     \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int k, const U& x)\
-    \ {\n        data[k] = A::op(x, data[k]);\n        if (k < n) {\n            if\
-    \ (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n            }\n\
-    \            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n    }\n    void eval(int k) {\n        if\
-    \ (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  \
-    \  void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]); }\n\npublic:\n\
-    \    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int n) : LazySegmentTree(std::vector<T>(n,\
-    \ M::id())) {}\n    LazySegmentTree(int n, const T& v)\n        : LazySegmentTree(std::vector<T>(n,\
-    \ v)) {}\n    LazySegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n\
-    \        lazyflag.assign(n, false);\n    }\n    T prod(int l, int r) {\n     \
-    \   assert(0 <= l && l <= r && r <= ori);\n        if (l == r) return M::id();\n\
-    \n        l += n, r += n;\n        rreps (i, h) {\n            bool seen = false;\n\
-    \            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n          \
-    \  if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n            if\
-    \ (!seen) break;\n        }\n\n        T lsm = M::id(), rsm = M::id();\n     \
-    \   while (l != r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n  \
-    \          if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1, r >>=\
-    \ 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T get(int k) {\n\
-    \        assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
-    \ >> i);\n        return data[k];\n    }\n    T all_prod() const { return data[1];\
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
-    \       data[k] = upd(data[k]);\n        reps (i, h) calc(k >> i);\n    }\n  \
-    \  void set(int k, const T& x) {\n        update(k, [&](const T&) -> T { return\
-    \ x; });\n    }\n    void apply(int k, const U& x) {\n        update(k, [&](const\
-    \ T& a) -> T { return A::op(x, a); });\n    }\n    void apply(int l, int r, const\
-    \ U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l == r)\
-    \ return;\n\n        l += n, r += n;\n        int lst = h + 1;\n        rreps\
-    \ (i, h) {\n            if (((l >> i) << i) != l) eval(l >> i), lst = i;\n   \
-    \         if (((r >> i) << i) != r) eval((r - 1) >> i), lst = i;\n           \
-    \ if (lst != i) break;\n        }\n\n        for (int l2 = l, r2 = r; l2 != r2;\
-    \ l2 >>= 1, r2 >>= 1) {\n            if (l2 & 1) all_apply(l2++, x);\n       \
-    \     if (r2 & 1) all_apply(--r2, x);\n        }\n\n        rep (i, lst, h + 1)\
-    \ {\n            if (((l >> i) << i) != l) calc(l >> i);\n            if (((r\
-    \ >> i) << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class\
-    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
-    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
-    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
-    \ >> i);\n            else break;\n        }\n\n        T sm = M::id();\n    \
-    \    do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    eval(l);\n\
-    \                    l <<= 1;\n                    if (cond(M::op(sm, data[l])))\
-    \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
-    \            }\n            sm = M::op(sm, data[l++]);\n        } while ((l &\
-    \ -l) != l);\n        return ori;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n\n        r += n;\n        rreps (i, n) {\n  \
-    \          if (((r >> i) << i) != r) eval((r - 1) >> i);\n            else break;\n\
-    \        }\n\n        T sm = M::id();\n        do {\n            --r;\n      \
-    \      while ((r & 1) && r > 1) r >>= 1;\n            if (!cond(M::op(data[r],\
-    \ sm))) {\n                while (r < n) {\n                    eval(r);\n   \
-    \                 r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class A> class LazySegmentTree<A,\
-    \ true> {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\"\
-    );\n\nprivate:\n    using T = typename A::M::value_type;\n    using U = typename\
-    \ A::E::value_type;\n    using elm = typename Monoid::LengthAction<A>::M::value_type;\n\
-    \    static std::vector<elm> get_elm_vec(const std::vector<T>& v) {\n        const\
-    \ int n = v.size();\n        std::vector<elm> res(n);\n        rep (i, n) res[i]\
-    \ = elm{v[i], 1};\n        return res;\n    }\n    LazySegmentTree<Monoid::LengthAction<A>>\
-    \ seg;\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
-    \ n_) : seg(n_, {A::M::id(), 1}) {}\n    LazySegmentTree(int n_, const T& v) :\
-    \ seg(n_, {v, 1}) {}\n    LazySegmentTree(const std::vector<T>& v) : seg(get_elm_vec(v))\
-    \ {}\n    void init(const std::vector<T>& v) { seg.init(get_elm_vec(v)); }\n \
-    \   T prod(int l, int r) { return seg.prod(l, r).val; }\n    T get(int k) { return\
-    \ seg.get(k).val; }\n    T all_prod() const { return seg.all_prod().val; }\n \
-    \   template<class Upd> void update(int k, const Upd& upd) {\n        seg.update(k,\
-    \ [&](const elm& a) -> elm { return {upd(a.val), a.len}; });\n    }\n    void\
-    \ set(int k, const T& x) { seg.set(k, elm{x, 1}); }\n    void apply(int k, const\
-    \ U& x) { seg.apply(k, x); }\n    void apply(int l, int r, const U& x) { seg.apply(l,\
-    \ r, x); }\n    template<class C> int max_right(int l, const C& cond) {\n    \
-    \    return seg.max_right(l,\n                             [&](const elm& a) ->\
-    \ bool { return cond(a.val); });\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) {\n        return seg.min_left(r,\n                      \
-    \      [&](const elm& a) -> bool { return cond(a.val); });\n    }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max>\nusing RangeUpdateQueryRangeMinimumQuery\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
+    \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
+    \ = Aop(x, data[k], d);\n        if (k < n) {\n            if (lazyflag[k]) {\n\
+    \                lazy[k] = E::op(lazy[k], x);\n            }\n            else\
+    \ {\n                lazy[k] = x;\n                lazyflag[k] = true;\n     \
+    \       }\n        }\n    }\n    void eval(int k, int d) {\n        if (lazyflag[k])\
+    \ {\n            all_apply(k << 1, lazy[k], d >> 1);\n            all_apply(k\
+    \ << 1 ^ 1, lazy[k], d >> 1);\n            lazyflag[k] = false;\n        }\n \
+    \   }\n    void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\
+    \ }\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    LazySegmentTree(int\
+    \ n, const T& v)\n        : LazySegmentTree(std::vector<T>(n, v)) {}\n    LazySegmentTree(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
+    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ false);\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r\
+    \ && r <= ori);\n        if (l == r) return M::id();\n\n        l += n, r += n;\n\
+    \        rreps (i, h) {\n            bool seen = false;\n            if (((l >>\
+    \ i) << i) != l) eval(l >> i, 1 << i), seen = true;\n            if (((r >> i)\
+    \ << i) != r) eval((r - 1) >> i, 1 << i), seen = true;\n            if (!seen)\
+    \ break;\n        }\n\n        T lsm = M::id(), rsm = M::id();\n        while\
+    \ (l != r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n          \
+    \  if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1, r >>= 1;\n  \
+    \      }\n        return M::op(lsm, rsm);\n    }\n    T get(int k) {\n       \
+    \ assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >>\
+    \ i, 1 << i);\n        return data[k];\n    }\n    T all_prod() const { return\
+    \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
+    \ >> i, i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k >> i);\n\
+    \    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&) ->\
+    \ T { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
+    \ [&](const T& a) -> T { return A::op(x, a); });\n    }\n    void apply(int l,\
+    \ int r, const U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n      \
+    \  if (l == r) return;\n\n        l += n, r += n;\n        int lst = h + 1;\n\
+    \        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >> i, 1\
+    \ << i), lst = i;\n            if (((r >> i) << i) != r) eval((r - 1) >> i, 1\
+    \ << i), lst = i;\n            if (lst != i) break;\n        }\n\n        for\
+    \ (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {\n     \
+    \       if (l2 & 1) all_apply(l2++, x, d);\n            if (r2 & 1) all_apply(--r2,\
+    \ x, d);\n        }\n\n        rep (i, lst, h + 1) {\n            if (((l >> i)\
+    \ << i) != l) calc(l >> i);\n            if (((r >> i) << i) != r) calc((r - 1)\
+    \ >> i);\n        }\n    }\n    template<class C> int max_right(int l, const C&\
+    \ cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
+    \            if (((l >> i) << i) != l) eval(l >> i, 1 << i);\n            else\
+    \ break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n        do\
+    \ {\n            while ((l & 1) == 0) l >>= 1, d <<= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    eval(l, d);\n\
+    \                    l <<= 1;\n                    d >>= 1;\n                \
+    \    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n              \
+    \  }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r == 0) return\
+    \ 0;\n\n        r += n;\n        rreps (i, h) {\n            if (((r >> i) <<\
+    \ i) != r) eval((r - 1) >> i, 1 << i);\n            else break;\n        }\n\n\
+    \        T sm = M::id();\n        int d = 1;\n        do {\n            --r;\n\
+    \            while ((r & 1) && r > 1) r >>= 1, d <<= 1;\n            if (!cond(M::op(data[r],\
+    \ sm))) {\n                while (r < n) {\n                    eval(r, d);\n\
+    \                    r = r << 1 ^ 1;\n                    d >>= 1;\n         \
+    \           if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);\n       \
+    \         }\n                return r + 1 - n;\n            }\n            sm\
+    \ = M::op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeUpdateQueryRangeMinimumQuery\
     \ =\n    LazySegmentTree<Monoid::AssignMin<T, max_value>>;\n\ntemplate<class T,\
     \ T min_value = infinity<T>::min>\nusing RangeUpdateQueryRangeMaximumQuery =\n\
     \    LazySegmentTree<Monoid::AssignMax<T, min_value>>;\n\ntemplate<class T>\n\
@@ -767,7 +732,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-01 00:01:19+09:00'
+  timestamp: '2022-09-09 19:55:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_affine_range_sum.test.cpp
