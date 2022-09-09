@@ -4,8 +4,7 @@
 #include "../../other/monoid.hpp"
 #include "../../random/Random.hpp"
 
-template<class A, class Rand = Random32, bool = Monoid::has_mul_op<A>::value>
-class SkipList {
+template<class A, class Rand = Random32> class SkipList {
 private:
     using M = typename A::M;
     using E = typename A::E;
@@ -42,9 +41,23 @@ private:
     using nodepair = std::pair<node_ptr, node_ptr>;
     Rand rnd;
     nodepair sl;
+
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int) {
+        return A::op(a, b);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int c) {
+        return A::mul_op(a, c, b);
+    }
+
     static inline void all_apply(const node_ptr& nd, int k, const U& x) {
         assert(0 <= k && k < nd->level());
-        nd->nxt[k].sm = A::op(x, nd->nxt[k].sm);
+        nd->nxt[k].sm = Aop(x, nd->nxt[k].sm, nd->nxt[k].dist);
         if (k != 0) {
             if (nd->nxt[k].lazyflag) {
                 nd->nxt[k].lazy = E::op(nd->nxt[k].lazy, x);
@@ -531,7 +544,7 @@ public:
         update(k, [&](const T&) { return x; });
     }
     void apply(int k, const U& x) {
-        update(k, [&](const T& sm) { return E::op(x, sm); });
+        update(k, [&](const T& sm) { return Aop(x, sm, 1); });
     }
     template<class C> int max_right(int l, const C& cond) const {
         assert(0 <= l && l <= size());
@@ -595,64 +608,6 @@ public:
         auto s = split(std::move(sl.sl), k);
         return {SkipList{std::move(s.first), sl.rnd},
                 SkipList{std::move(s.second), sl.rnd}};
-    }
-};
-
-template<class A, class Rand> class SkipList<A, Rand, true> {
-private:
-    using Base = SkipList<Monoid::LengthAction<A>, Rand>;
-    using T_ = typename A::M::value_type;
-    using U_ = typename A::E::value_type;
-    Base sl;
-    using elm = typename Monoid::LengthAction<A>::M::value_type;
-    static std::vector<elm> get_elm_vec(const std::vector<T_>& v) {
-        const int n = v.size();
-        std::vector<elm> res(n);
-        rep (i, n) res[i] = {v[i], 1};
-        return res;
-    }
-    SkipList(const Base& other) : sl(other) {}
-    SkipList(Base&& other) : sl(std::move(other)) {}
-
-public:
-    SkipList() : SkipList(Rand()) {}
-    SkipList(const Rand& rnd) : sl(rnd) {}
-    SkipList(const std::vector<T_>& v, const Rand& rnd = Rand())
-        : sl(get_elm_vec(v), rnd) {}
-    void init(const std::vector<T_>& v) { sl.init(get_elm_vec(v)); }
-    int size() const { return sl.size(); }
-    bool empty() const { return sl.empty(); }
-    void insert(int k, const T_& sm) { sl.insert(k, {sm, 1}); }
-    void erase(int k) { sl.erase(k); }
-    T_ prod(int l, int r) const { return sl.prod(l, r).val; }
-    T_ all_prod() const { return sl.all_prod().val; }
-    T_ get(int k) const { return sl.get(k).val; }
-    void apply(int l, int r, const U_& x) { sl.apply(l, r, x); }
-    template<class Upd> void update(int k, const Upd& upd) {
-        sl.update(k, [&](const elm& e) -> elm { return {upd(e.val), e.len}; });
-    }
-    void set(int k, const T_& x) { sl.set(k, {x, 1}); }
-    void apply(int k, const U_& x) { sl.apply(k, x); }
-    template<class C> int max_right(int l, const C& cond) const {
-        return sl.max_right(l,
-                            [&](const elm& e) -> bool { return cond(e.val); });
-    }
-    template<class C> int min_left(int r, const C& cond) const {
-        return sl.min_left(r,
-                           [&](const elm& e) -> bool { return cond(e.val); });
-    }
-    std::vector<T_> get_data() const {
-        std::vector<elm> d = sl.get_data();
-        std::vector<T_> res(d.size());
-        rep (i, d.size()) res[i] = d[i].val;
-        return res;
-    }
-    friend SkipList merge(SkipList lhs, SkipList rhs) {
-        return {merge(std::move(lhs.sl), std::move(rhs.sl))};
-    }
-    friend std::pair<SkipList, SkipList> split(SkipList sl, int k) {
-        auto s = split(std::move(sl.sl), k);
-        return {SkipList{std::move(s.first)}, SkipList{std::move(s.second)}};
     }
 };
 

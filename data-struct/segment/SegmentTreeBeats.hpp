@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A, bool = Monoid::has_mul_op<A>::value> class SegmentTreeBeats {
+template<class A> class SegmentTreeBeats {
 private:
     using M = typename A::M;
     using E = typename A::E;
@@ -13,8 +13,22 @@ private:
     std::vector<T> data;
     std::vector<U> lazy;
     std::vector<bool> lazyflag;
+
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int) {
+        return A::op(a, b);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int c) {
+        return A::mul_op(a, c, b);
+    }
+
     void all_apply(int k, const U& x) {
-        data[k] = A::op(x, data[k]);
+        data[k] = Aop(x, data[k], 1 << (h - bitop::msb(k)));
         if (k < n) {
             if (lazyflag[k]) {
                 lazy[k] = E::op(lazy[k], x);
@@ -102,36 +116,6 @@ public:
     }
     T all_prod() const { return data[1]; }
     T get(int k) { return prod(k, k + 1); }
-};
-
-template<class A> class SegmentTreeBeats<A, true> {
-private:
-    using T = typename A::M::value_type;
-    using U = typename A::E::value_type;
-    using elm = typename Monoid::LengthAction<A>::M::value_type;
-    static std::vector<elm> get_elm_vec(const std::vector<T>& v) {
-        const int n = v.size();
-        std::vector<elm> res(n);
-        rep (i, n) res[i] = elm{v[i], 1};
-        return res;
-    }
-    SegmentTreeBeats<Monoid::LengthAction<A>> seg;
-
-public:
-    SegmentTreeBeats() : SegmentTreeBeats(0) {}
-    SegmentTreeBeats(int n) : seg(n, {A::M::id(), 1}) {}
-    SegmentTreeBeats(int n, const T& v) : seg(n, {v, 1}) {}
-    SegmentTreeBeats(const std::vector<T>& v) : seg(get_elm_vec(v)) {}
-    void init(const std::vector<T>& v) { init(get_elm_vec(v)); }
-    T prod(int l, int r) { return seg.prod(l, r).val; }
-    T get(int k) { return seg.get(k).val; }
-    T all_prod() { return seg.all_prod().val; }
-    template<class Upd> void update(int k, const Upd& upd) {
-        seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len}; });
-    }
-    void set(int k, const T& x) { seg.set(k, {x, 1}); }
-    void apply(int k, const U& x) { seg.apply(k, x); }
-    void apply(int l, int r, const U& x) { seg.apply(l, r, x); }
 };
 
 namespace Monoid {
@@ -245,6 +229,58 @@ struct ChmaxChminAddAssignMaxMinSum {
 };
 
 } // namespace Monoid
+
+// range chmin chmax add assign query, range max min sum query
+template<class T, T max_value = infinity<T>::max,
+         T min_value = infinity<T>::min>
+class SegTreeBeats {
+private:
+    using A = Monoid::ChmaxChminAddAssignMaxMinSum<T, max_value, min_value>;
+    SegmentTreeBeats<A> seg;
+    static inline std::vector<typename A::M::value_type>
+    convert_vec(const std::vector<T>& v) {
+        std::vector<typename A::M::value_type> res(v.size());
+        rep (i, v.size()) res[i] = A::M::get(v[i]);
+        return res;
+    }
+
+public:
+    SegTreeBeats() = default;
+    SegTreeBeats(int n) : seg(n) {}
+    SegTreeBeats(int n, const T& v) : seg(n, A::M::get(v)) {}
+    SegTreeBeats(const std::vector<T>& v) : seg(convert_vec(v)) {}
+    template<class Upd> void update(int k, const Upd& upd) {
+        seg.update(k, upd);
+    }
+    void set(int k, const T& x) { seg.set(k, A::M::get(x)); }
+    void chmin(int l, int r, const T& x) {
+        auto y = A::E::id();
+        y.mn = x;
+        seg.apply(l, r, y);
+    }
+    void chmax(int l, int r, const T& x) {
+        auto y = A::E::id();
+        y.mx = x;
+        seg.apply(l, r, y);
+    }
+    void add(int l, int r, const T& x) {
+        auto y = A::E::id();
+        y.ad = x;
+        seg.apply(l, r, y);
+    }
+    void assign(int l, int r, const T& x) {
+        chmin(l, r, x);
+        chmax(l, r, x);
+    }
+    void chmin(int k, const T& x) { chmin(k, k + 1, x); }
+    void chmax(int k, const T& x) { chmax(k, k + 1, x); }
+    void add(int k, const T& x) { add(k, k + 1, x); }
+    void assign(int k, const T& x) { assign(k, k + 1, x); }
+    T prod_max(int l, int r) { return seg.prod(l, r).mx; }
+    T prod_min(int l, int r) { return seg.prod(l, r).mn; }
+    T prod_sum(int l, int r) { return seg.prod(l, r).sm; }
+    T get(int k) { return seg.get(k).mx; }
+};
 
 /**
  * @brief SegmentTreeBeats!

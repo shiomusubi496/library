@@ -196,7 +196,7 @@ public:
         scan(a);
         return *this;
     }
-    
+
     explicit operator bool() const { return itr.rdstate(); }
 };
 

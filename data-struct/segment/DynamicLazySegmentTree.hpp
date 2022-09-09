@@ -29,8 +29,22 @@ private:
         if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l, r, t));
         return nd->r;
     }
-    void all_apply(node_ptr& nd, int t, const U& x) {
-        nd->val = A::op(x, nd->val);
+
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, ll) {
+        return A::op(a, b);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, ll c) {
+        return A::mul_op(a, c, b);
+    }
+
+    void all_apply(node_ptr& nd, int t, const U& x, ll d) {
+        nd->val = Aop(x, nd->val, d);
         if (t != 0) {
             if (nd->lazyflag) {
                 nd->lazy = E::op(nd->lazy, x);
@@ -44,8 +58,8 @@ private:
     void eval(node_ptr& nd, ll a, ll b, int t) {
         if (nd->lazyflag) {
             ll m = (a + b) >> 1;
-            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy);
-            all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy);
+            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy, m - a);
+            all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy, b - m);
             nd->lazyflag = false;
         }
     }
@@ -79,7 +93,7 @@ private:
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
-            all_apply(nd, t, x);
+            all_apply(nd, t, x, b - a);
             return;
         }
         eval(nd, a, b, t);
@@ -229,42 +243,6 @@ public:
     }
     void reset(ll l, ll r) { reset(root, 0, n, h, l, r); }
     void reset(ll k) { reset(root, 0, n, h, k, k + 1); }
-};
-
-
-template<class A> class DynamicLazySegmentTree<A, true> {
-private:
-    using M_ = typename A::M;
-    using E_ = typename A::E;
-    using T_ = typename M_::value_type;
-    using U_ = typename E_::value_type;
-    using elm = typename Monoid::LengthAction<A>::M::value_type;
-    DynamicLazySegmentTree<Monoid::LengthAction<A>> seg;
-
-public:
-    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}
-    DynamicLazySegmentTree(ll n_) : seg(n_, {M_::id(), 1}) {}
-    DynamicLazySegmentTree(ll n_, const T_& v) : seg(n_, {v, 1}) {}
-    void init(ll n_, const T_& v = M_::id()) { seg.init(n_, {v, 1}); }
-    T_ prod(ll l, ll r) { return seg.prod(l, r).val; }
-    T_ get(ll k) { return seg.get(k).val; }
-    T_ all_prod() const { return seg.all_prod().val; }
-    template<class Upd> void update(ll k, const Upd& upd) {
-        seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len}; });
-    }
-    void set(ll k, T_ x) { seg.set(k, elm{x, 1}); }
-    void apply(ll k, U_ x) { seg.apply(k, x); }
-    void apply(ll l, ll r, U_ x) { seg.apply(l, r, x); }
-    template<class C> ll max_right(ll l, const C& cond) {
-        return seg.max_right(l,
-                             [&](const elm& a) -> bool { return cond(a.val); });
-    }
-    template<class C> ll min_left(ll r, const C& cond) {
-        return seg.min_left(r,
-                            [&](const elm& a) -> bool { return cond(a.val); });
-    }
-    void reset(ll l, ll r) { seg.reset(l, r); }
-    void reset(ll k) { seg.reset(k); }
 };
 
 /**

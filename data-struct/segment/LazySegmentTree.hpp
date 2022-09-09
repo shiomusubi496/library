@@ -15,8 +15,22 @@ private:
     std::vector<T> data;
     std::vector<U> lazy;
     std::vector<bool> lazyflag;
-    void all_apply(int k, const U& x) {
-        data[k] = A::op(x, data[k]);
+
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int) {
+        return A::op(a, b);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int c) {
+        return A::mul_op(a, c, b);
+    }
+
+    void all_apply(int k, const U& x, int d) {
+        data[k] = Aop(x, data[k], d);
         if (k < n) {
             if (lazyflag[k]) {
                 lazy[k] = E::op(lazy[k], x);
@@ -27,10 +41,10 @@ private:
             }
         }
     }
-    void eval(int k) {
+    void eval(int k, int d) {
         if (lazyflag[k]) {
-            all_apply(k << 1, lazy[k]);
-            all_apply(k << 1 ^ 1, lazy[k]);
+            all_apply(k << 1, lazy[k], d >> 1);
+            all_apply(k << 1 ^ 1, lazy[k], d >> 1);
             lazyflag[k] = false;
         }
     }
@@ -59,8 +73,8 @@ public:
         l += n, r += n;
         rreps (i, h) {
             bool seen = false;
-            if (((l >> i) << i) != l) eval(l >> i), seen = true;
-            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;
+            if (((l >> i) << i) != l) eval(l >> i, 1 << i), seen = true;
+            if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i), seen = true;
             if (!seen) break;
         }
 
@@ -76,7 +90,7 @@ public:
         assert(0 <= k && k < ori);
 
         k += n;
-        rreps (i, h) eval(k >> i);
+        rreps (i, h) eval(k >> i, 1 << i);
         return data[k];
     }
     T all_prod() const { return data[1]; }
@@ -84,7 +98,7 @@ public:
         assert(0 <= k && k < ori);
 
         k += n;
-        rreps (i, h) eval(k >> i);
+        rreps (i, h) eval(k >> i, i);
         data[k] = upd(data[k]);
         reps (i, h) calc(k >> i);
     }
@@ -101,14 +115,14 @@ public:
         l += n, r += n;
         int lst = h + 1;
         rreps (i, h) {
-            if (((l >> i) << i) != l) eval(l >> i), lst = i;
-            if (((r >> i) << i) != r) eval((r - 1) >> i), lst = i;
+            if (((l >> i) << i) != l) eval(l >> i, 1 << i), lst = i;
+            if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i), lst = i;
             if (lst != i) break;
         }
 
-        for (int l2 = l, r2 = r; l2 != r2; l2 >>= 1, r2 >>= 1) {
-            if (l2 & 1) all_apply(l2++, x);
-            if (r2 & 1) all_apply(--r2, x);
+        for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {
+            if (l2 & 1) all_apply(l2++, x, d);
+            if (r2 & 1) all_apply(--r2, x, d);
         }
 
         rep (i, lst, h + 1) {
@@ -123,17 +137,19 @@ public:
 
         l += n;
         rreps (i, h) {
-            if (((l >> i) << i) != l) eval(l >> i);
+            if (((l >> i) << i) != l) eval(l >> i, 1 << i);
             else break;
         }
 
         T sm = M::id();
+        int d = 1;
         do {
-            while ((l & 1) == 0) l >>= 1;
+            while ((l & 1) == 0) l >>= 1, d <<= 1;
             if (!cond(M::op(sm, data[l]))) {
                 while (l < n) {
-                    eval(l);
+                    eval(l, d);
                     l <<= 1;
+                    d >>= 1;
                     if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);
                 }
                 return l - n;
@@ -148,19 +164,21 @@ public:
         if (r == 0) return 0;
 
         r += n;
-        rreps (i, n) {
-            if (((r >> i) << i) != r) eval((r - 1) >> i);
+        rreps (i, h) {
+            if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i);
             else break;
         }
 
         T sm = M::id();
+        int d = 1;
         do {
             --r;
-            while ((r & 1) && r > 1) r >>= 1;
+            while ((r & 1) && r > 1) r >>= 1, d <<= 1;
             if (!cond(M::op(data[r], sm))) {
                 while (r < n) {
-                    eval(r);
+                    eval(r, d);
                     r = r << 1 ^ 1;
+                    d >>= 1;
                     if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);
                 }
                 return r + 1 - n;
@@ -168,46 +186,6 @@ public:
             sm = M::op(data[r], sm);
         } while ((r & -r) != r);
         return 0;
-    }
-};
-
-template<class A> class LazySegmentTree<A, true> {
-    static_assert(Monoid::is_action<A>::value, "A must be action");
-
-private:
-    using T = typename A::M::value_type;
-    using U = typename A::E::value_type;
-    using elm = typename Monoid::LengthAction<A>::M::value_type;
-    static std::vector<elm> get_elm_vec(const std::vector<T>& v) {
-        const int n = v.size();
-        std::vector<elm> res(n);
-        rep (i, n) res[i] = elm{v[i], 1};
-        return res;
-    }
-    LazySegmentTree<Monoid::LengthAction<A>> seg;
-
-public:
-    LazySegmentTree() : LazySegmentTree(0) {}
-    LazySegmentTree(int n_) : seg(n_, {A::M::id(), 1}) {}
-    LazySegmentTree(int n_, const T& v) : seg(n_, {v, 1}) {}
-    LazySegmentTree(const std::vector<T>& v) : seg(get_elm_vec(v)) {}
-    void init(const std::vector<T>& v) { seg.init(get_elm_vec(v)); }
-    T prod(int l, int r) { return seg.prod(l, r).val; }
-    T get(int k) { return seg.get(k).val; }
-    T all_prod() const { return seg.all_prod().val; }
-    template<class Upd> void update(int k, const Upd& upd) {
-        seg.update(k, [&](const elm& a) -> elm { return {upd(a.val), a.len}; });
-    }
-    void set(int k, const T& x) { seg.set(k, elm{x, 1}); }
-    void apply(int k, const U& x) { seg.apply(k, x); }
-    void apply(int l, int r, const U& x) { seg.apply(l, r, x); }
-    template<class C> int max_right(int l, const C& cond) {
-        return seg.max_right(l,
-                             [&](const elm& a) -> bool { return cond(a.val); });
-    }
-    template<class C> int min_left(int r, const C& cond) {
-        return seg.min_left(r,
-                            [&](const elm& a) -> bool { return cond(a.val); });
     }
 };
 

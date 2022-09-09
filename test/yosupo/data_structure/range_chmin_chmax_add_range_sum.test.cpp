@@ -4,40 +4,29 @@
 #include "../../../data-struct/segment/SegmentTreeBeats.hpp"
 using namespace std;
 int main() {
-    using Action = Monoid::ChmaxChminAddAssignMaxMinSum<ll>;
     int N, Q; scan >> N >> Q;
     vector<ll> A(N); scan >> A;
-    SegmentTreeBeats<Action> seg([&] {
-        vector<typename Action::M::value_type> B(N);
-        rep (i, N) B[i] = Action::M::get(A[i]);
-        return B;
-    }());
+    SegTreeBeats<ll> seg(A);
     rep (Q) {
         int t; scan >> t;
         if (t == 0) {
             int l, r; scan >> l >> r;
             ll b; scan >> b;
-            auto x = Action::E::id();
-            x.mn = b;
-            seg.apply(l, r, x);
+            seg.chmin(l, r, b);
         }
         else if (t == 1) {
             int l, r; scan >> l >> r;
             ll b; scan >> b;
-            auto x = Action::E::id();
-            x.mx = b;
-            seg.apply(l, r, x);
+            seg.chmax(l, r, b);
         }
         else if (t == 2) {
             int l, r; scan >> l >> r;
             ll b; scan >> b;
-            auto x = Action::E::id();
-            x.ad = b;
-            seg.apply(l, r, x);
+            seg.add(l, r, b);
         }
         else {
             int l, r; scan >> l >> r;
-            print << seg.prod(l, r).sm << endl;
+            print << seg.prod_sum(l, r) << endl;
         }
     }
 }
