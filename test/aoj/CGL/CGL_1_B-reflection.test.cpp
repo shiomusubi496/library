@@ -1,4 +1,4 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_A"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_B"
 #define ERROR 0.00000001
 #include "../../../other/template.hpp"
 #include "../../../geometry/Line.hpp"
@@ -9,6 +9,6 @@ int main() {
     int q; scan >> q;
     rep (q) {
         Point p2; scan >> p2;
-        print << projection(l, p2) << endl;
+        print << reflection(l, p2) << endl;
     }
 }

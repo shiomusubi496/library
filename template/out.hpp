@@ -251,6 +251,11 @@ flush(Printer<Iterator, decimal_precision, debug>& pr) {
 
 Printer<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());
 
+void prints(const std::string& s) {
+    print << s;
+    print.print_char('\n');
+}
+
 #ifdef SHIO_LOCAL
 Printer<Writer<>::iterator, 16, true> debug(writer.begin()),
     edebug(ewriter.begin());
