@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -33,9 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_A-area.test.cpp
     title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -459,14 +462,22 @@ data:
     \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
     \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Polygon.hpp\"\
     \n\nclass Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
-    };\n\nReal area(const Polygon& p) {\n    Real res = 0;\n    rep (i, p.size())\
-    \ {\n        res += cross(p[i], p[(i + 1) % p.size()]);\n    }\n    return res\
-    \ / 2;\n}\n"
+    };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
+    \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
+    \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
+    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
+    \    return true;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
     \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
-    };\n\nReal area(const Polygon& p) {\n    Real res = 0;\n    rep (i, p.size())\
-    \ {\n        res += cross(p[i], p[(i + 1) % p.size()]);\n    }\n    return res\
-    \ / 2;\n}\n"
+    };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
+    \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
+    \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
+    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
+    \    return true;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -480,10 +491,11 @@ data:
   isVerificationFile: false
   path: geometry/Polygon.hpp
   requiredBy: []
-  timestamp: '2022-09-10 17:46:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-10 18:52:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 documentation_of: geometry/Polygon.hpp
 layout: document
 redirect_from:

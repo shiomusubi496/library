@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':question:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':question:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -23,37 +32,35 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-    title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/PartialPersistentArray.md
-    document_title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-    links: []
-  bundledCode: "#line 2 \"data-struct/other/PartialPersistentArray.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -397,40 +404,78 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/PartialPersistentArray.hpp\"\
-    \n\ntemplate<class T> class PartialPersistentArray {\nprivate:\n    int n;\n \
-    \   std::vector<std::vector<int>> tim;\n    std::vector<std::vector<T>> val;\n\
-    \    int last_time;\n\npublic:\n    PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n))\
-    \ {}\n    PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    void\
-    \ init(const std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n\
-    \        val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
-    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
-    \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
-    \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
-    \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
-    \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
-    \ class PartialPersistentArray {\nprivate:\n    int n;\n    std::vector<std::vector<int>>\
-    \ tim;\n    std::vector<std::vector<T>> val;\n    int last_time;\n\npublic:\n\
-    \    PartialPersistentArray(int n) : PartialPersistentArray(std::vector<T>(n))\
-    \ {}\n    PartialPersistentArray(const std::vector<T>& a) { init(a); }\n    void\
-    \ init(const std::vector<T>& a) {\n        n = a.size();\n        tim.resize(n);\n\
-    \        val.resize(n);\n        for (int i = 0; i < n; i++) {\n            tim[i].push_back(-1);\n\
-    \            val[i].push_back(a[i]);\n        }\n        last_time = 0;\n    }\n\
-    \    int now() const { return last_time - 1; }\n    int set(int k, const T& x)\
-    \ {\n        assert(0 <= k && k < n);\n        tim[k].push_back(last_time);\n\
-    \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
-    \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
-    \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
+    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const {\n        print << x << ' ' << y;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('(');\n\
+    \        print << x;\n        print.print_char(',');\n        print << y;\n  \
+    \      print.print_char(')');\n    }\n};\n\nReal distance(const Point& p1, const\
+    \ Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Polygon.hpp\"\
+    \n\nclass Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
+    \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
+    \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
+    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
+    \    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
+    \ >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
+    using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
+    \ >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -439,24 +484,19 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: data-struct/other/PartialPersistentArray.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 17:46:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-documentation_of: data-struct/other/PartialPersistentArray.hpp
+  timestamp: '2022-09-10 18:52:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/other/PartialPersistentArray.hpp
-- /library/data-struct/other/PartialPersistentArray.hpp.html
-title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
+- /verify/test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+- /verify/test/aoj/CGL/CGL_3_B-isconvex.test.cpp.html
+title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 ---
-## 概要
-
-部分永続配列。
-
-- `PartialPersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(N)$ 。
-- `int set(int k, T x)` : これが $i$ 回目(0-indexed)の `set` 呼び出しのとき、 $a_{i-1}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(1)$ 。
-- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log Q)$ 。

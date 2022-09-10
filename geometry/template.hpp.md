@@ -26,10 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_A-area.test.cpp
     title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/template.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -458,7 +461,7 @@ data:
   - geometry/Segment.hpp
   - geometry/Polygon.hpp
   timestamp: '2022-09-10 17:46:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
@@ -468,6 +471,7 @@ data:
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 documentation_of: geometry/template.hpp
 layout: document
 redirect_from:
