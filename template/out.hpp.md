@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':x:'
@@ -90,7 +90,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':x:'
@@ -123,7 +123,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -140,13 +140,13 @@ data:
   - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
   - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
@@ -162,49 +162,49 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':x:'
@@ -216,13 +216,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
   - icon: ':x:'
@@ -239,11 +239,11 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/SubsetZetaMoebiusTransform.hpp
     title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
@@ -256,13 +256,13 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':warning:'
@@ -309,7 +309,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -402,58 +402,58 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
     title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
     title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':x:'
@@ -468,13 +468,13 @@ data:
   - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -728,27 +728,31 @@ data:
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
     \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
     class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
-    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
-    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
-    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
-    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
-    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
+    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
+    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
+    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
+    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
+    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
+    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
+    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
+    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
+    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
+    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
     \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
-    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
-    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
     \ {\n            if (a < 0) {\n                print_char('-');\n            \
     \    a = -a;\n            }\n        }\n        std::string s;\n        while\
     \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
@@ -784,9 +788,12 @@ data:
     \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
     \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
-    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
-    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              !debug>::type* = nullptr>\n   \
+    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -826,27 +833,31 @@ data:
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
     \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
     class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
-    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
-    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
-    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
-    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
-    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
+    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
+    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
+    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
+    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
+    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
+    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
+    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
+    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
+    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
+    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
     \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
-    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
-    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
     \ {\n            if (a < 0) {\n                print_char('-');\n            \
     \    a = -a;\n            }\n        }\n        std::string s;\n        while\
     \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
@@ -882,9 +893,12 @@ data:
     \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
     \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
-    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
-    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              !debug>::type* = nullptr>\n   \
+    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -995,7 +1009,7 @@ data:
   - other/monoid2.hpp
   - other/monoid.hpp
   - other/template.hpp
-  timestamp: '2022-08-29 18:26:28+09:00'
+  timestamp: '2022-09-10 11:26:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp

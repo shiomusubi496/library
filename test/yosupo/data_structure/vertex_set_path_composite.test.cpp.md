@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -219,27 +219,31 @@ data:
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
     \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
     class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
-    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
-    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
-    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
-    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
-    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
+    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
+    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
+    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
+    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
+    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
+    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
+    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
+    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
+    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
+    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
     \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
-    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
-    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
     \ {\n            if (a < 0) {\n                print_char('-');\n            \
     \    a = -a;\n            }\n        }\n        std::string s;\n        while\
     \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
@@ -275,9 +279,12 @@ data:
     \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
     \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
-    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
-    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              !debug>::type* = nullptr>\n   \
+    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -602,7 +609,8 @@ data:
     \   if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n\
     \        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
     \ ist, StaticModInt& sm) {\n        ll v;\n        ist >> v;\n        sm = v;\n\
     \        return ist;\n    }\n    template<class Sc> void scan(Sc& a) {\n     \
     \   ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
@@ -652,61 +660,62 @@ data:
     \            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
     \ operator<<(std::ostream& ost,\n                                    const DynamicModInt&\
     \ dm) {\n        return ost << dm.val;\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
-    \        return ist;\n    }\n    template<class Sc> void scan(Sc& a) {\n     \
-    \   ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<int id>\
-    \ unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
-    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
-    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
-    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
-    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
-    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
-    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
-    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
-    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
-    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
-    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
-    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
-    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line\
-    \ 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n\npublic:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
+    \ a) const { a.print(val); }\n    template<class Pr> void debug(Pr& a) const {\
+    \ a.print(val); }\n    friend std::istream& operator>>(std::istream& ist, DynamicModInt&\
+    \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
+    \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
+    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"\
+    graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from, to;\n\
+    \    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f,\
+    \ int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
+    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
+    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
+    \n\n#line 5 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class\
+    \ SparseTable {\nprivate:\n    using T = typename M::value_type;\n    int h, ori;\n\
+    \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T\
+    \ internal_prod(int l, int r) const {\n        assert(0 <= l && l < r && r <=\
+    \ ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l], data[d][r\
+    \ - (1 << d)]);\n    }\n\npublic:\n    SparseTable() = default;\n    SparseTable(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
     \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
     \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
     \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
@@ -818,7 +827,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:55:32+09:00'
+  timestamp: '2022-09-10 11:26:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_set_path_composite.test.cpp

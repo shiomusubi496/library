@@ -200,27 +200,31 @@ data:
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
     \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
     class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
-    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
-    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
-    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
-    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
-    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
+    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
+    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
+    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
+    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
+    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
+    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
+    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
+    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
+    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
+    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
     \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
-    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
-    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
     \ {\n            if (a < 0) {\n                print_char('-');\n            \
     \    a = -a;\n            }\n        }\n        std::string s;\n        while\
     \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
@@ -256,9 +260,12 @@ data:
     \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
     \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
-    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
-    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              !debug>::type* = nullptr>\n   \
+    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -436,7 +443,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:55:32+09:00'
+  timestamp: '2022-09-10 11:26:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp

@@ -206,27 +206,31 @@ data:
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
     \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
     class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, class = void> struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<\n        T, decltype(std::declval<T>().print(std::declval<Printer&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    void\
-    \ print_char(char c) {\n        *itr = c;\n        ++itr;\n    }\n\n    void flush()\
-    \ { itr.flush(); }\n\n    Printer() noexcept = default;\n    Printer(const Iterator&\
-    \ itr) noexcept : itr(itr) {}\n\n    void print(char c) {\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n        print_char(c);\n        if IF_CONSTEXPR\
-    \ (debug) print_char('\\'');\n    }\n    void print(bool b) { print_char((char)(b\
-    \ + '0')); }\n    void print(const char* a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n        for (; *a != '\\0'; ++a) print_char(*a);\n      \
-    \  if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const char (&a)[len]) {\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n        for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug)\
-    \ print_char('\"');\n    }\n    void print(const std::string& a) {\n        if\
+    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
+    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
+    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
+    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
+    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
+    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
+    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
+    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
+    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
+    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
+    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
+    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
     \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    template<std::size_t\
-    \ len> void print(const std::bitset<len>& a) {\n        rrep (i, len) print_char((char)(a[i]\
-    \ + '0'));\n    }\n    template<class T,\n             typename std::enable_if<std::is_integral<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (!a) {\n            print_char('0');\n    \
-    \        return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
     \ {\n            if (a < 0) {\n                print_char('-');\n            \
     \    a = -a;\n            }\n        }\n        std::string s;\n        while\
     \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
@@ -262,9 +266,12 @@ data:
     \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
     \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T,\n  \
-    \           typename std::enable_if<has_print<T>::value>::type* = nullptr>\n \
-    \   void print(const T& a) {\n        a.print(*this);\n    }\n\n    void operator()()\
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              !debug>::type* = nullptr>\n   \
+    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -443,7 +450,8 @@ data:
     \   if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n\
     \        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
     \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
     \ ist, StaticModInt& sm) {\n        ll v;\n        ist >> v;\n        sm = v;\n\
     \        return ist;\n    }\n    template<class Sc> void scan(Sc& a) {\n     \
     \   ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
@@ -493,41 +501,42 @@ data:
     \            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
     \ operator<<(std::ostream& ost,\n                                    const DynamicModInt&\
     \ dm) {\n        return ost << dm.val;\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, DynamicModInt& dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n\
-    \        return ist;\n    }\n    template<class Sc> void scan(Sc& a) {\n     \
-    \   ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<int id>\
-    \ unsigned int DynamicModInt<id>::mod = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
-    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
-    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
-    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
-    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
-    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
-    \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
-    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
-    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
-    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
-    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
-    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
-    \            rep (k, other.size()) {\n                rep (j, other[0].size())\n\
-    \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
-    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
-    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 2 \"math/matrix/Determinant.hpp\"\
+    \ a) const { a.print(val); }\n    template<class Pr> void debug(Pr& a) const {\
+    \ a.print(val); }\n    friend std::istream& operator>>(std::istream& ist, DynamicModInt&\
+    \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
+    \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
+    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line\
+    \ 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
+    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
+    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
+    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \ get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i]\
+    \ = T{1};\n        return res;\n    }\n    int height() const { return this->size();\
+    \ }\n    int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
+    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
+    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
+    \ {\n        assert(this->width() == other.height());\n        Matrix res(this->size(),\
+    \ other[0].size());\n        rep (i, this->size()) {\n            rep (k, other.size())\
+    \ {\n                rep (j, other[0].size())\n                    res[i][j] +=\
+    \ (*this)[i][k] * other[k][j];\n            }\n        }\n        return *this\
+    \ = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size())\
+    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n \
+    \       return *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const\
+    \ Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix\
+    \ operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix\
+    \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
+    \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
+    \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
+    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 2 \"math/matrix/Determinant.hpp\"\
     \n\n#line 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
     \ mat) {\n    assert(mat.height() == mat.width());\n    const int n = mat.height();\n\
     \    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n           \
@@ -564,7 +573,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-09-09 19:55:32+09:00'
+  timestamp: '2022-09-10 11:26:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_det.test.cpp
