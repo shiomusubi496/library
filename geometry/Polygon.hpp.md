@@ -2,8 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':question:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -27,22 +30,16 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-    title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-    title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_3_A-area.test.cpp
+    title: test/aoj/CGL/CGL_3_A-area.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/DynamicLazySegmentTree.md
-    document_title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\
-      \u30F3\u30C8\u6728)"
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+  bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
+    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -403,330 +400,74 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
-    \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
-    \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        bool lazyflag;\n        node_ptr\
-    \ l, r;\n        node(const T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr)\
-    \ {}\n        node(const T& v, const U& x)\n            : val(v), lazy(x), lazyflag(true),\
-    \ l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll\
-    \ l, ll r, int t) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd,\
-    \ ll l, ll r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->r;\n    }\n\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
-    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
-    \ T Aop(const U& a, const T& b, ll) {\n        return A::op(a, b);\n    }\n  \
-    \  template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, ll c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(node_ptr& nd, int t, const U& x, ll d) {\n\
-    \        nd->val = Aop(x, nd->val, d);\n        if (t != 0) {\n            if\
-    \ (nd->lazyflag) {\n                nd->lazy = E::op(nd->lazy, x);\n         \
-    \   }\n            else {\n                nd->lazy = x;\n                nd->lazyflag\
-    \ = true;\n            }\n        }\n    }\n    void eval(node_ptr& nd, ll a,\
-    \ ll b, int t) {\n        if (nd->lazyflag) {\n            ll m = (a + b) >> 1;\n\
-    \            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy, m - a);\n    \
-    \        all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy, b - m);\n        \
-    \    nd->lazyflag = false;\n        }\n    }\n    ll ori, h, n;\n    std::vector<T>\
-    \ iv, iv2;\n    node_ptr root;\n    template<class Upd>\n    void update(node_ptr&\
-    \ nd, ll a, ll b, int t, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n\
-    \            nd->val = upd(nd->val);\n            return;\n        }\n       \
-    \ eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n        if (k < m) update(get_l(nd,\
-    \ a, m, t - 1), a, m, t - 1, k, upd);\n        else update(get_r(nd, m, b, t -\
-    \ 1), m, b, t - 1, k, upd);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a,\
-    \ m, t - 1),\n                        nd->r ? nd->r->val : get_init(m, b, t -\
-    \ 1));\n    }\n    T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n   \
-    \     if (r <= a || b <= l) return M::id();\n        if (l <= a && b <= r) return\
-    \ nd->val;\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n       \
-    \ return M::op(\n            r > a && m > l ? prod(get_l(nd, a, m, t - 1), a,\
-    \ m, t - 1, l, r)\n                           : M::id(),\n            r > m &&\
-    \ b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r)\n                  \
-    \         : M::id());\n    }\n    void apply(node_ptr& nd, ll a, ll b, int t,\
-    \ ll l, ll r, const U& x) {\n        if (r <= a || b <= l) return;\n        if\
-    \ (l <= a && b <= r) {\n            all_apply(nd, t, x, b - a);\n            return;\n\
-    \        }\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n       \
-    \ apply(get_l(nd, a, m, t - 1), a, m, t - 1, l, r, x);\n        apply(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, l, r, x);\n        nd->val = M::op(nd->l ? nd->l->val\
-    \ : get_init(a, m, t - 1),\n                        nd->r ? nd->r->val : get_init(m,\
-    \ b, t - 1));\n    }\n    template<class Cond>\n    ll max_right(node_ptr& nd,\
-    \ ll a, ll b, int t, ll l, const Cond& cond,\n                 T& sm) {\n    \
-    \    if (b <= l) return n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n\
-    \            sm = M::op(sm, nd->val);\n            return n;\n        }\n    \
-    \    if (a + 1 == b) return a;\n        eval(nd, a, b, t);\n        ll m = (a\
-    \ + b) >> 1;\n        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1,\
-    \ l, cond, sm);\n        if (res != n) return res;\n        return max_right(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, l, cond, sm);\n    }\n    template<class Cond>\n\
-    \    ll min_left(node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,\n  \
-    \              T& sm) {\n        if (r <= a) return 0;\n        if (b <= r &&\
-    \ cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val, sm);\n        \
-    \    return 0;\n        }\n        if (a + 1 == b) return b;\n        eval(nd,\
-    \ a, b, t);\n        ll m = (a + b) >> 1;\n        ll res = min_left(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, r, cond, sm);\n        if (res != 0) return res;\n\
-    \        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);\n\
-    \    }\n    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n      \
-    \  if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n       \
-    \ if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(get_init(0,\
-    \ n, h));\n            else nd.reset();\n            return;\n        }\n    \
-    \    ll m = (a + b) >> 1;\n        reset(nd->l, a, m, t - 1, l, r);\n        reset(nd->r,\
-    \ m, b, t - 1, l, r);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a,\
-    \ m, t - 1),\n                        nd->r ? nd->r->val : get_init(m, b, t -\
-    \ 1));\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n     \
-    \   if (src == nullptr) return;\n        if (src->lazyflag) nd = std::make_unique<node>(src->val,\
-    \ src->lazy);\n        else nd = std::make_unique<node>(src->val);\n        init_copy(nd->l,\
-    \ src->l);\n        init_copy(nd->r, src->r);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<!Monoid::has_init<M>::value &&\n\
-    \                                     AlwaysTrue>::type* = nullptr>\n    void\
-    \ init_iv(const T& v) {\n        iv.reserve(this->h + 1);\n        iv.push_back(v);\n\
-    \        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(this->h\
-    \ + 1, M::id());\n        rep (i, this->h) {\n            if ((this->ori >> i)\
-    \ & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n            else iv2[i + 1] = iv2[i];\n\
-    \        }\n    }\n    template<bool AlwaysTrue = true,\n             typename\
-    \ std::enable_if<!Monoid::has_init<M>::value &&\n                            \
-    \         AlwaysTrue>::type* = nullptr>\n    T get_init(ll, ll r, int t) const\
-    \ {\n        return r <= this->ori ? iv[t] : iv2[t];\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_init<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ void init_iv(const T&) {}\n    template<bool AlwaysTrue = true,\n          \
-    \   typename std::enable_if<Monoid::has_init<M>::value &&\n                  \
-    \                   AlwaysTrue>::type* = nullptr>\n    T get_init(ll l, ll r,\
-    \ int) const {\n        return M::init(l, std::min(r, this->ori));\n    }\n\n\
-    public:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}\n    DynamicLazySegmentTree(ll\
-    \ n_) { init(n_); }\n    DynamicLazySegmentTree(ll n_, const T& v) { init(n_,\
-    \ v); }\n    DynamicLazySegmentTree(const DynamicLazySegmentTree& other)\n   \
-    \     : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),\n\
-    \          root(std::make_unique<node>(other.root->val)) {\n        init_copy(root,\
-    \ other.root);\n    }\n    DynamicLazySegmentTree(DynamicLazySegmentTree&& other)\
-    \ = default;\n    DynamicLazySegmentTree& operator=(const DynamicLazySegmentTree&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicLazySegmentTree(other);\n    }\n    DynamicLazySegmentTree& operator=(DynamicLazySegmentTree&&\
-    \ other) = default;\n    void init(ll n_, const T& v = M::id()) {\n        ori\
-    \ = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n        init_iv(v);\n\
-    \        root = std::make_unique<node>(get_init(0, n, h));\n    }\n    template<class\
-    \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
-    \      update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
-    \ });\n    }\n    void apply(ll l, ll r, const U& x) {\n        assert(0 <= l\
-    \ && l <= r && r <= ori);\n        apply(root, 0, n, h, l, r, x);\n    }\n   \
-    \ void all_apply(const U& x) { apply(root, 0, n, h, 0, n, x); }\n    T prod(ll\
-    \ l, ll r) {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(root,\
-    \ 0, n, h, l, r);\n    }\n    T all_prod() const { return root->val; }\n    T\
-    \ get(ll k) { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll\
-    \ l, const Cond& cond) {\n        assert(0 <= l && l <= ori);\n        if (l ==\
-    \ n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n        return\
-    \ std::min(max_right(root, 0, n, h, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) {\n        assert(0 <= r && r <= ori);\n\
-    \        if (0 == r) return 0;\n        T sm = M::id();\n        assert(cond(sm));\n\
-    \        return min_left(root, 0, n, h, r, cond, sm);\n    }\n    void reset(ll\
-    \ l, ll r) { reset(root, 0, n, h, l, r); }\n    void reset(ll k) { reset(root,\
-    \ 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief DynamicLazySegmentTree(\u52D5\u7684\
-    \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DynamicLazySegmentTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
-    \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
-    \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        bool lazyflag;\n        node_ptr\
-    \ l, r;\n        node(const T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr)\
-    \ {}\n        node(const T& v, const U& x)\n            : val(v), lazy(x), lazyflag(true),\
-    \ l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll\
-    \ l, ll r, int t) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd,\
-    \ ll l, ll r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->r;\n    }\n\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
-    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
-    \ T Aop(const U& a, const T& b, ll) {\n        return A::op(a, b);\n    }\n  \
-    \  template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, ll c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(node_ptr& nd, int t, const U& x, ll d) {\n\
-    \        nd->val = Aop(x, nd->val, d);\n        if (t != 0) {\n            if\
-    \ (nd->lazyflag) {\n                nd->lazy = E::op(nd->lazy, x);\n         \
-    \   }\n            else {\n                nd->lazy = x;\n                nd->lazyflag\
-    \ = true;\n            }\n        }\n    }\n    void eval(node_ptr& nd, ll a,\
-    \ ll b, int t) {\n        if (nd->lazyflag) {\n            ll m = (a + b) >> 1;\n\
-    \            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy, m - a);\n    \
-    \        all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy, b - m);\n        \
-    \    nd->lazyflag = false;\n        }\n    }\n    ll ori, h, n;\n    std::vector<T>\
-    \ iv, iv2;\n    node_ptr root;\n    template<class Upd>\n    void update(node_ptr&\
-    \ nd, ll a, ll b, int t, ll k, const Upd& upd) {\n        if (a + 1 == b) {\n\
-    \            nd->val = upd(nd->val);\n            return;\n        }\n       \
-    \ eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n        if (k < m) update(get_l(nd,\
-    \ a, m, t - 1), a, m, t - 1, k, upd);\n        else update(get_r(nd, m, b, t -\
-    \ 1), m, b, t - 1, k, upd);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a,\
-    \ m, t - 1),\n                        nd->r ? nd->r->val : get_init(m, b, t -\
-    \ 1));\n    }\n    T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n   \
-    \     if (r <= a || b <= l) return M::id();\n        if (l <= a && b <= r) return\
-    \ nd->val;\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n       \
-    \ return M::op(\n            r > a && m > l ? prod(get_l(nd, a, m, t - 1), a,\
-    \ m, t - 1, l, r)\n                           : M::id(),\n            r > m &&\
-    \ b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r)\n                  \
-    \         : M::id());\n    }\n    void apply(node_ptr& nd, ll a, ll b, int t,\
-    \ ll l, ll r, const U& x) {\n        if (r <= a || b <= l) return;\n        if\
-    \ (l <= a && b <= r) {\n            all_apply(nd, t, x, b - a);\n            return;\n\
-    \        }\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n       \
-    \ apply(get_l(nd, a, m, t - 1), a, m, t - 1, l, r, x);\n        apply(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, l, r, x);\n        nd->val = M::op(nd->l ? nd->l->val\
-    \ : get_init(a, m, t - 1),\n                        nd->r ? nd->r->val : get_init(m,\
-    \ b, t - 1));\n    }\n    template<class Cond>\n    ll max_right(node_ptr& nd,\
-    \ ll a, ll b, int t, ll l, const Cond& cond,\n                 T& sm) {\n    \
-    \    if (b <= l) return n;\n        if (l <= a && cond(M::op(sm, nd->val))) {\n\
-    \            sm = M::op(sm, nd->val);\n            return n;\n        }\n    \
-    \    if (a + 1 == b) return a;\n        eval(nd, a, b, t);\n        ll m = (a\
-    \ + b) >> 1;\n        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1,\
-    \ l, cond, sm);\n        if (res != n) return res;\n        return max_right(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, l, cond, sm);\n    }\n    template<class Cond>\n\
-    \    ll min_left(node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,\n  \
-    \              T& sm) {\n        if (r <= a) return 0;\n        if (b <= r &&\
-    \ cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val, sm);\n        \
-    \    return 0;\n        }\n        if (a + 1 == b) return b;\n        eval(nd,\
-    \ a, b, t);\n        ll m = (a + b) >> 1;\n        ll res = min_left(get_r(nd,\
-    \ m, b, t - 1), m, b, t - 1, r, cond, sm);\n        if (res != 0) return res;\n\
-    \        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);\n\
-    \    }\n    void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {\n      \
-    \  if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n       \
-    \ if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(get_init(0,\
-    \ n, h));\n            else nd.reset();\n            return;\n        }\n    \
-    \    ll m = (a + b) >> 1;\n        reset(nd->l, a, m, t - 1, l, r);\n        reset(nd->r,\
-    \ m, b, t - 1, l, r);\n        nd->val = M::op(nd->l ? nd->l->val : get_init(a,\
-    \ m, t - 1),\n                        nd->r ? nd->r->val : get_init(m, b, t -\
-    \ 1));\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n     \
-    \   if (src == nullptr) return;\n        if (src->lazyflag) nd = std::make_unique<node>(src->val,\
-    \ src->lazy);\n        else nd = std::make_unique<node>(src->val);\n        init_copy(nd->l,\
-    \ src->l);\n        init_copy(nd->r, src->r);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<!Monoid::has_init<M>::value &&\n\
-    \                                     AlwaysTrue>::type* = nullptr>\n    void\
-    \ init_iv(const T& v) {\n        iv.reserve(this->h + 1);\n        iv.push_back(v);\n\
-    \        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));\n        iv2.assign(this->h\
-    \ + 1, M::id());\n        rep (i, this->h) {\n            if ((this->ori >> i)\
-    \ & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);\n            else iv2[i + 1] = iv2[i];\n\
-    \        }\n    }\n    template<bool AlwaysTrue = true,\n             typename\
-    \ std::enable_if<!Monoid::has_init<M>::value &&\n                            \
-    \         AlwaysTrue>::type* = nullptr>\n    T get_init(ll, ll r, int t) const\
-    \ {\n        return r <= this->ori ? iv[t] : iv2[t];\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_init<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ void init_iv(const T&) {}\n    template<bool AlwaysTrue = true,\n          \
-    \   typename std::enable_if<Monoid::has_init<M>::value &&\n                  \
-    \                   AlwaysTrue>::type* = nullptr>\n    T get_init(ll l, ll r,\
-    \ int) const {\n        return M::init(l, std::min(r, this->ori));\n    }\n\n\
-    public:\n    DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}\n    DynamicLazySegmentTree(ll\
-    \ n_) { init(n_); }\n    DynamicLazySegmentTree(ll n_, const T& v) { init(n_,\
-    \ v); }\n    DynamicLazySegmentTree(const DynamicLazySegmentTree& other)\n   \
-    \     : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),\n\
-    \          root(std::make_unique<node>(other.root->val)) {\n        init_copy(root,\
-    \ other.root);\n    }\n    DynamicLazySegmentTree(DynamicLazySegmentTree&& other)\
-    \ = default;\n    DynamicLazySegmentTree& operator=(const DynamicLazySegmentTree&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicLazySegmentTree(other);\n    }\n    DynamicLazySegmentTree& operator=(DynamicLazySegmentTree&&\
-    \ other) = default;\n    void init(ll n_, const T& v = M::id()) {\n        ori\
-    \ = n_;\n        h = bitop::ceil_log2(ori);\n        n = 1ull << h;\n        init_iv(v);\n\
-    \        root = std::make_unique<node>(get_init(0, n, h));\n    }\n    template<class\
-    \ Upd> void update(ll k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        update(root, 0, n, h, k, upd);\n    }\n    void set(ll k, T x) {\n  \
-    \      update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
-    \ });\n    }\n    void apply(ll l, ll r, const U& x) {\n        assert(0 <= l\
-    \ && l <= r && r <= ori);\n        apply(root, 0, n, h, l, r, x);\n    }\n   \
-    \ void all_apply(const U& x) { apply(root, 0, n, h, 0, n, x); }\n    T prod(ll\
-    \ l, ll r) {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(root,\
-    \ 0, n, h, l, r);\n    }\n    T all_prod() const { return root->val; }\n    T\
-    \ get(ll k) { return prod(k, k + 1); }\n    template<class Cond> ll max_right(ll\
-    \ l, const Cond& cond) {\n        assert(0 <= l && l <= ori);\n        if (l ==\
-    \ n) return n;\n        T sm = M::id();\n        assert(cond(sm));\n        return\
-    \ std::min(max_right(root, 0, n, h, l, cond, sm), ori);\n    }\n    template<class\
-    \ Cond> ll min_left(ll r, const Cond& cond) {\n        assert(0 <= r && r <= ori);\n\
-    \        if (0 == r) return 0;\n        T sm = M::id();\n        assert(cond(sm));\n\
-    \        return min_left(root, 0, n, h, r, cond, sm);\n    }\n    void reset(ll\
-    \ l, ll r) { reset(root, 0, n, h, l, r); }\n    void reset(ll k) { reset(root,\
-    \ 0, n, h, k, k + 1); }\n};\n\n/**\n * @brief DynamicLazySegmentTree(\u52D5\u7684\
-    \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DynamicLazySegmentTree.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"geometry/template.hpp\"\n\
+    \n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr\
+    \ ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n   \
+    \ template<class Printer> void print(Printer& print) const {\n        print <<\
+    \ x << ' ' << y;\n    }\n    template<class Printer> void debug(Printer& print)\
+    \ const {\n        print.print_char('(');\n        print << x;\n        print.print_char(',');\n\
+    \        print << y;\n        print.print_char(')');\n    }\n};\n\nReal distance(const\
+    \ Point& p1, const Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW\
+    \ {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n \
+    \   ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const\
+    \ Point& p1, const Point& p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a,\
+    \ b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0)\
+    \ return CCW::CLOCKWISE;\n    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n\
+    \    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n\
+    }\n#line 5 \"geometry/Polygon.hpp\"\n\nclass Polygon : public std::vector<Point>\
+    \ {\npublic:\n    using std::vector<Point>::vector;\n};\n\nReal area(const Polygon&\
+    \ p) {\n    Real res = 0;\n    rep (i, p.size()) {\n        res += cross(p[i],\
+    \ p[(i + 1) % p.size()]);\n    }\n    return res / 2;\n}\n"
+  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
+    \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    };\n\nReal area(const Polygon& p) {\n    Real res = 0;\n    rep (i, p.size())\
+    \ {\n        res += cross(p[i], p[(i + 1) % p.size()]);\n    }\n    return res\
+    \ / 2;\n}\n"
   dependsOn:
+  - geometry/template.hpp
   - other/template.hpp
   - template/macros.hpp
   - template/alias.hpp
@@ -734,49 +475,18 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - other/monoid.hpp
+  - geometry/Point.hpp
   isVerificationFile: false
-  path: data-struct/segment/DynamicLazySegmentTree.hpp
+  path: geometry/Polygon.hpp
   requiredBy: []
   timestamp: '2022-09-10 17:04:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-documentation_of: data-struct/segment/DynamicLazySegmentTree.hpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+documentation_of: geometry/Polygon.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/DynamicLazySegmentTree.hpp
-- /library/data-struct/segment/DynamicLazySegmentTree.hpp.html
-title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\
-  \u6728)"
+- /library/geometry/Polygon.hpp
+- /library/geometry/Polygon.hpp.html
+title: geometry/Polygon.hpp
 ---
-## 概要
-
-初期値以外の値を持っているか、作用素がかかっている要素だけ持つセグメント木。座標圧縮して通常の遅延セグメント木を使うのでもいいが、オンラインでもできることに利点がある。あと楽。
-
-- コンストラクタ
-  - `DynamicLazySegmentTree()` : 長さ $inf$ に初期化する。 $\Theta(\log n)$ 。
-  - `DynamicLazySegmentTree(ll n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(\log n)$ 。
-  - `DynamicLazySegmentTree(ll n, T v)` : 長さ `n` で初期化する。初期値は `v` 。 $\Theta(\log n)$ 。
-  - `void init(ll n, T v)` : 長さ `n` で初期化する。初期値は `v` 。 $\Theta(N)$ 。
-- 取得クエリ
-  - `T prod(ll l, ll r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
-  - `T get(ll k)` : `a[k]` を返す。 $\Theta(\log N)$ 。
-  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 。
-- 更新クエリ
-  - `void set(ll k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(ll k, U f)` : `a[k]` に `mp(f, a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void update(ll k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(ll l, ll r, U f)` : `a[l], a[l+1], ..., a[r-1]` に `mp(f, a[l]), mp(f, a[l+1]), ..., mp(f, a[r-1])` を代入する。 $\Theta(\log N)$ 。
-- セグメント木上の二分探索
-  - `ll max_right(ll l, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
-    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
-  - `ll min_left(ll r, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
-    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`

@@ -196,24 +196,25 @@ data:
     \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
     \ }\n        void flush() const { writer->write_buf(); }\n    };\n\n    iterator\
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
-    \ntemplate<class Iterator, std::size_t decimal_precision = 16, bool debug = false>\n\
-    class Printer {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n  \
-    \  template<class, bool = debug, class = void>\n    struct has_print : std::false_type\
-    \ {};\n    template<class T>\n    struct has_print<T, false,\n               \
-    \      decltype(std::declval<T>().print(std::declval<Printer&>()),\n         \
-    \                     (void)0)> : std::true_type {};\n    template<class T>\n\
-    \    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \ntemplate<class Iterator, bool debug = false>\nclass Printer {\npublic:\n   \
+    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, bool = debug,\
+    \ class = void>\n    struct has_print : std::false_type {};\n    template<class\
+    \ T>\n    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    template<class\
+    \ T>\n    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
     \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
-    \npublic:\n    void print_char(char c) {\n        *itr = c;\n        ++itr;\n\
-    \    }\n\n    void flush() { itr.flush(); }\n\n    Printer() noexcept = default;\n\
-    \    Printer(const Iterator& itr) noexcept : itr(itr) {}\n\n    void print(char\
-    \ c) {\n        if IF_CONSTEXPR (debug) print_char('\\'');\n        print_char(c);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\\'');\n    }\n    void print(bool\
-    \ b) { print_char((char)(b + '0')); }\n    void print(const char* a) {\n     \
-    \   if IF_CONSTEXPR (debug) print_char('\"');\n        for (; *a != '\\0'; ++a)\
-    \ print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n\
-    \    template<std::size_t len> void print(const char (&a)[len]) {\n        if\
-    \ IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
+    \    std::size_t decimal_precision;\n\npublic:\n    void print_char(char c) {\n\
+    \        *itr = c;\n        ++itr;\n    }\n\n    void flush() { itr.flush(); }\n\
+    \n    Printer() noexcept = default;\n    explicit Printer(const Iterator& itr)\
+    \ noexcept : itr(itr), decimal_precision(16) {}\n\n    void set_decimal_precision(std::size_t\
+    \ decimal_precision) {\n        this->decimal_precision = decimal_precision;\n\
+    \    }\n\n    void print(char c) {\n        if IF_CONSTEXPR (debug) print_char('\\\
+    '');\n        print_char(c);\n        if IF_CONSTEXPR (debug) print_char('\\'');\n\
+    \    }\n    void print(bool b) { print_char((char)(b + '0')); }\n    void print(const\
+    \ char* a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n        for (;\
+    \ *a != '\\0'; ++a) print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const char (&a)[len]) {\n\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
     \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
     \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
     \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
@@ -268,32 +269,33 @@ data:
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
     \        return *this;\n    }\n\n    Printer& operator<<(Printer& (*pf)(Printer&))\
-    \ { return pf(*this); }\n};\n\ntemplate<class Iterator, std::size_t decimal_precision,\
-    \ bool debug>\nPrinter<Iterator, decimal_precision, debug>&\nendl(Printer<Iterator,\
-    \ decimal_precision, debug>& pr) {\n    pr.print_char('\\n');\n    pr.flush();\n\
-    \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
-    \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
-    \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
-    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
-    Printer<Writer<>::iterator, 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
-    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
-    \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
-    \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
-    \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
-    \ debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\
-    \n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k)\
-    \ (1ull << (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0)\
-    \ return 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a\
-    \ >> 1 | b;\n}\n\n#define rep_comb(i, n, k)                                  \
-    \                    \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));\
-    \                         \\\n         i = bitop::next_combination((n), i))\n\n\
-    inline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
-    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
-    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
-    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ { return pf(*this); }\n};\n\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
+    \ debug>&\nendl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n \
+    \   pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
+    \ debug>&\nflush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return\
+    \ pr;\n}\n\nstruct SetPrec { int n; };\nSetPrec setprec(int n) { return SetPrec{n};\
+    \ }\ntemplate<class Iterator, bool debug>\nPrinter<Iterator, debug>&\noperator<<(Printer<Iterator,\
+    \ debug>& pr, SetPrec sp) {\n    pr.set_decimal_precision(sp.n);\n    return pr;\n\
+    }\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
+    n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
+    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
+    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
+    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
+    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
+    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\
+    \n\n#line 5 \"template/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
+    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
+    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
+    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
+    \                                                \\\n    for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
+    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
+    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
+    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
+    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
+    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
     \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
@@ -503,7 +505,7 @@ data:
   isVerificationFile: false
   path: math/Rational.hpp
   requiredBy: []
-  timestamp: '2022-09-10 13:42:58+09:00'
+  timestamp: '2022-09-10 17:04:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp

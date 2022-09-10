@@ -1,9 +1,15 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
   - icon: ':x:'
-    path: data-struct/unionfind/DynamicUnionFind.hpp
-    title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':question:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -32,11 +38,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
     links:
-    - https://judge.yosupo.jp/problem/unionfind
-  bundledCode: "#line 1 \"test/yosupo/data_structure/unionfind-Dynamic.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#line 2 \"other/template.hpp\"\
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -397,35 +403,74 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/unionfind/DynamicUnionFind.hpp\"\
-    \n\n#line 4 \"data-struct/unionfind/DynamicUnionFind.hpp\"\n\ntemplate<class T\
-    \ = ll> class DynamicUnionFind {\nprivate:\n    std::map<T, T> data;\n\npublic:\n\
-    \    DynamicUnionFind() = default;\n    T find(T x) {\n        auto itr = data.find(x);\n\
-    \        return itr == data.end() || itr->second < 0\n                   ? x\n\
-    \                   : itr->second = find(itr->second);\n    }\n    std::pair<T,\
-    \ T> merge(T x, T y) {\n        x = find(x);\n        y = find(y);\n        if\
-    \ (x == y) return {x, -1};\n        auto itrx = data.find(x), itry = data.find(y);\n\
-    \        if (itrx == data.end()) itrx = data.insert({x, -1}).first;\n        if\
-    \ (itry == data.end()) itry = data.insert({y, -1}).first;\n        if (itrx->second\
-    \ > itry->second) std::swap(itrx, itry), std::swap(x, y);\n        itrx->second\
-    \ += itry->second;\n        itry->second = x;\n        return {x, y};\n    }\n\
-    \    bool same(T x, T y) { return find(x) == find(y); }\n    int size(T x) {\n\
-    \        x = find(x);\n        auto itr = data.find(x);\n        if (itr == data.end())\
-    \ return 1;\n        else return -itr->second;\n    }\n    bool is_root(T x) {\n\
-    \        auto itr = data.find(x);\n        if (itr == data.end() || itr->second\
-    \ < 0) return true;\n        return false;\n    }\n};\n\n/**\n * @brief DynamicUnionFind(\u52D5\
-    \u7684UnionFind)\n * @docs docs/data-struct/unionfind/DynamicUnionFind.md\n */\n\
-    #line 4 \"test/yosupo/data_structure/unionfind-Dynamic.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q;\n    scan >> N >> Q;\n    DynamicUnionFind\
-    \ UF;\n    rep (Q) {\n        int t, u, v;\n        scan >> t >> u >> v;\n   \
-    \     if (t == 0) UF.merge(u, v);\n        else print << UF.same(u, v) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
-    ../../../other/template.hpp\"\n#include \"../../../data-struct/unionfind/DynamicUnionFind.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q;\n    scan >> N >> Q;\n   \
-    \ DynamicUnionFind UF;\n    rep (Q) {\n        int t, u, v;\n        scan >> t\
-    \ >> u >> v;\n        if (t == 0) UF.merge(u, v);\n        else print << UF.same(u,\
-    \ v) << endl;\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
+    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n   \
+    \ template<class Printer> void print(Printer& print) const {\n        print <<\
+    \ x << ' ' << y;\n    }\n    template<class Printer> void debug(Printer& print)\
+    \ const {\n        print.print_char('(');\n        print << x;\n        print.print_char(',');\n\
+    \        print << y;\n        print.print_char(')');\n    }\n};\n\nReal distance(const\
+    \ Point& p1, const Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW\
+    \ {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n \
+    \   ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const\
+    \ Point& p1, const Point& p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a,\
+    \ b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0)\
+    \ return CCW::CLOCKWISE;\n    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n\
+    \    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n\
+    }\n#line 5 \"geometry/Polygon.hpp\"\n\nclass Polygon : public std::vector<Point>\
+    \ {\npublic:\n    using std::vector<Point>::vector;\n};\n\nReal area(const Polygon&\
+    \ p) {\n    Real res = 0;\n    rep (i, p.size()) {\n        res += cross(p[i],\
+    \ p[(i + 1) % p.size()]);\n    }\n    return res / 2;\n}\n#line 4 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    print << setprec(1) << area(p) << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
+    using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
+    \ >> p;\n    print << setprec(1) << area(p) << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -434,17 +479,19 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - data-struct/unionfind/DynamicUnionFind.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+  path: test/aoj/CGL/CGL_3_A-area.test.cpp
   requiredBy: []
   timestamp: '2022-09-10 17:04:44+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+documentation_of: test/aoj/CGL/CGL_3_A-area.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-- /verify/test/yosupo/data_structure/unionfind-Dynamic.test.cpp.html
-title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
+- /verify/test/aoj/CGL/CGL_3_A-area.test.cpp
+- /verify/test/aoj/CGL/CGL_3_A-area.test.cpp.html
+title: test/aoj/CGL/CGL_3_A-area.test.cpp
 ---
