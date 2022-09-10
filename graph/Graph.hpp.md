@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
   - icon: ':x:'
@@ -37,10 +37,10 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
@@ -62,10 +62,10 @@ data:
   - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
   - icon: ':x:'
@@ -105,28 +105,28 @@ data:
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - icon: ':x:'
@@ -233,7 +233,7 @@ data:
     title: test/yosupo/tree/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/Graph.md
     document_title: Graph-template
@@ -480,27 +480,27 @@ data:
     \ pr;\n}\n\nstruct SetPrec {\n    int n;\n    template<class Pr>\n    void print(Pr&\
     \ pr) const {\n        pr.set_decimal_precision(n);\n    }\n    template<class\
     \ Pr>\n    void debug(Pr& pr) const {\n        pr.set_decimal_precision(n);\n\
-    \    }\n};\nSetPrec setprec(int n) { return SetPrec{n}; }\ntemplate<class Iterator,\
-    \ bool debug>\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
-    \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
-    n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
-    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
-    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
-    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
-    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
-    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\
-    \n\n#line 5 \"template/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
-    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
-    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
-    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
-    \                                                \\\n    for (ull i = (1ull <<\
-    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
-    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
-    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
-    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
-    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
-    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \    }\n};\nSetPrec setprec(int n) { return SetPrec{n}; };\n\nPrinter<Writer<>::iterator>\
+    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
+    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
+    \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
+    \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
+    \ debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\
+    \n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k)\
+    \ (1ull << (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0)\
+    \ return 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a\
+    \ >> 1 | b;\n}\n\n#define rep_comb(i, n, k)                                  \
+    \                    \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));\
+    \                         \\\n         i = bitop::next_combination((n), i))\n\n\
+    inline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
+    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
+    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
     \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
@@ -718,8 +718,8 @@ data:
   - graph/other/TwoSatisfiablitity.hpp
   - graph/other/TopologicalSort.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-09-10 17:34:05+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-10 17:46:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/cartesian_tree.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
