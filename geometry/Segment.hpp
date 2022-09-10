@@ -59,6 +59,14 @@ bool is_intersect(const Segment& s1, const Segment& s2) {
     Point p = intersection(Line(s1), Line(s2));
     return s1.is_on(p) && s2.is_on(p);
 }
+bool is_intersect(const Segment& s1, const Line& l) {
+    if (!is_intersect(Line(s1), l)) return false;
+    Point p = intersection(Line(s1), l);
+    return s1.is_on(p);
+}
+bool is_intersect(const Line& l, const Segment& s1) {
+    return is_intersect(s1, l);
+}
 
 Real distance(const Point& p, const Segment& s) {
     if (s.p1 == s.p2) return distance(p, s.p1);
@@ -72,3 +80,8 @@ Real distance(const Segment& s1, const Segment& s2) {
     return std::min({distance(s1.p1, s2), distance(s1.p2, s2), distance(s2.p1, s1),
                 distance(s2.p2, s1)});
 }
+Real distance(const Segment& s, const Line& l) {
+    if (is_intersect(s, l)) return 0;
+    return std::min(distance(s.p1, l), distance(s.p2, l));
+}
+Real distance(const Line& l, const Segment& s) { return distance(s, l); }

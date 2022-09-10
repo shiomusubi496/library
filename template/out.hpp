@@ -56,7 +56,7 @@ public:
 
 Writer<> writer(1), ewriter(2);
 
-template<class Iterator, std::size_t decimal_precision = 16, bool debug = false>
+template<class Iterator, bool debug = false>
 class Printer {
 public:
     using iterator_type = Iterator;
@@ -73,6 +73,7 @@ private:
                      decltype(std::declval<T>().debug(std::declval<Printer&>()),
                               (void)0)> : std::true_type {};
     Iterator itr;
+    std::size_t decimal_precision;
 
 public:
     void print_char(char c) {
@@ -83,7 +84,11 @@ public:
     void flush() { itr.flush(); }
 
     Printer() noexcept = default;
-    Printer(const Iterator& itr) noexcept : itr(itr) {}
+    explicit Printer(const Iterator& itr) noexcept : itr(itr), decimal_precision(16) {}
+
+    void set_decimal_precision(std::size_t decimal_precision) {
+        this->decimal_precision = decimal_precision;
+    }
 
     void print(char c) {
         if IF_CONSTEXPR (debug) print_char('\'');
@@ -235,17 +240,26 @@ public:
     Printer& operator<<(Printer& (*pf)(Printer&)) { return pf(*this); }
 };
 
-template<class Iterator, std::size_t decimal_precision, bool debug>
-Printer<Iterator, decimal_precision, debug>&
-endl(Printer<Iterator, decimal_precision, debug>& pr) {
+template<class Iterator, bool debug>
+Printer<Iterator, debug>&
+endl(Printer<Iterator, debug>& pr) {
     pr.print_char('\n');
     pr.flush();
     return pr;
 }
-template<class Iterator, std::size_t decimal_precision, bool debug>
-Printer<Iterator, decimal_precision, debug>&
-flush(Printer<Iterator, decimal_precision, debug>& pr) {
+template<class Iterator, bool debug>
+Printer<Iterator, debug>&
+flush(Printer<Iterator, debug>& pr) {
     pr.flush();
+    return pr;
+}
+
+struct SetPrec { int n; };
+SetPrec setprec(int n) { return SetPrec{n}; }
+template<class Iterator, bool debug>
+Printer<Iterator, debug>&
+operator<<(Printer<Iterator, debug>& pr, SetPrec sp) {
+    pr.set_decimal_precision(sp.n);
     return pr;
 }
 
@@ -257,7 +271,7 @@ void prints(const std::string& s) {
 }
 
 #ifdef SHIO_LOCAL
-Printer<Writer<>::iterator, 16, true> debug(writer.begin()),
+Printer<Writer<>::iterator, true> debug(writer.begin()),
     edebug(ewriter.begin());
 #else
 char debug_iterator_character;
