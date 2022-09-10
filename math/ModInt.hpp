@@ -117,6 +117,7 @@ public:
         return ost << sm.val;
     }
     template<class Pr> void print(Pr& a) const { a.print(val); }
+    template<class Pr> void debug(Pr& a) const { a.print(val); }
     friend std::istream& operator>>(std::istream& ist, StaticModInt& sm) {
         ll v;
         ist >> v;
@@ -245,6 +246,7 @@ public:
         return ost << dm.val;
     }
     template<class Pr> void print(Pr& a) const { a.print(val); }
+    template<class Pr> void debug(Pr& a) const { a.print(val); }
     friend std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {
         ll v;
         ist >> v;

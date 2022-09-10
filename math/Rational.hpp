@@ -102,6 +102,11 @@ public:
         return ost << rat.get_ld();
     }
     template<class Pr> void print(Pr& a) const { a.print(get_ld()); }
+    template<class Pr> void debug(Pr& a) const {
+        a.print(num);
+        a.print_char('/');
+        a.print(den);
+    }
     friend std::istream& operator>>(std::istream& ist, Rational& rat) {
         return ist >> rat.num >> rat.den;
     }

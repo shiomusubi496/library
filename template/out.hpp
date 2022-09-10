@@ -62,11 +62,16 @@ public:
     using iterator_type = Iterator;
 
 private:
-    template<class, class = void> struct has_print : std::false_type {};
+    template<class, bool = debug, class = void>
+    struct has_print : std::false_type {};
     template<class T>
-    struct has_print<
-        T, decltype(std::declval<T>().print(std::declval<Printer&>()), (void)0)>
-        : std::true_type {};
+    struct has_print<T, false,
+                     decltype(std::declval<T>().print(std::declval<Printer&>()),
+                              (void)0)> : std::true_type {};
+    template<class T>
+    struct has_print<T, true,
+                     decltype(std::declval<T>().debug(std::declval<Printer&>()),
+                              (void)0)> : std::true_type {};
     Iterator itr;
 
 public:
@@ -204,10 +209,15 @@ public:
         }
         if IF_CONSTEXPR (debug) print_char('}');
     }
-    template<class T,
-             typename std::enable_if<has_print<T>::value>::type* = nullptr>
+    template<class T, typename std::enable_if<has_print<T>::value &&
+                                              debug>::type* = nullptr>
     void print(const T& a) {
         a.print(*this);
+    }
+    template<class T, typename std::enable_if<has_print<T>::value &&
+                                              !debug>::type* = nullptr>
+    void print(const T& a) {
+        a.debug(*this);
     }
 
     void operator()() {}
