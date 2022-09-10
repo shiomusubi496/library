@@ -1,6 +1,15 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -23,37 +32,35 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/other/2725-CHT.test.cpp
-    title: test/aoj/other/2725-CHT.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
-    document_title: ConvexHullTrickAddMonotone
-    links: []
-  bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_A
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp\"\n#define\
+    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_A\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -394,118 +401,112 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false, class LargeT = __int128_t>\nclass\
-    \ ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a, b;\n\
-    \        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
-    \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
-    \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() =\
-    \ default;\n        Line(T a, T b, int id, bool i = false)\n            : a(a),\
-    \ b(b), idx(id), is_query(i), has_nxt(false) {}\n        friend bool operator<(const\
-    \ Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n\
-    \            if (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n\
-    \                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n\
-    \            if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n\
-    \                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n\
-    \            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
-    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
-    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
-    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrickAddMonotone\
-    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
-    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
-    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
-    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
-    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
-    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
-    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Line.hpp\"\n\n\
+    #line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n   \
+    \ template<class Printer> void print(Printer& print) const {\n        print <<\
+    \ x << ' ' << y;\n    }\n    template<class Printer> void debug(Printer& print)\
+    \ const {\n        print.print_char('(');\n        print << x;\n        print.print_char(',');\n\
+    \        print << y;\n        print.print_char(')');\n    }\n};\n\nenum class\
+    \ CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n\
+    \    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const\
+    \ Point& p1, const Point& p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a,\
+    \ b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0)\
+    \ return CCW::CLOCKWISE;\n    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n\
+    \    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n\
+    }\n#line 5 \"geometry/Line.hpp\"\n\nclass Line {\npublic:\n    Real a, b, c; //\
+    \ ax + by + c = 0\n    Line() : a(0), b(1), c(0) {}\n    Line(Real a, Real b,\
+    \ Real c) : a(a), b(b), c(c) {}\n    Line(const Point& p1, const Point& p2) {\n\
+    \        a = p2.y - p1.y;\n        b = p1.x - p2.x;\n        c = p2.x * p1.y -\
+    \ p1.x * p2.y;\n    }\n    friend bool operator==(const Line& l1, const Line&\
+    \ l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n              \
+    \ cmp(l1.b * l2.c, l2.b * l1.c) == 0;\n    }\n    friend bool operator!=(const\
+    \ Line& l1, const Line& l2) {\n        return !(l1 == l2);\n    }\n    friend\
+    \ bool operator<(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) < 0 ||\n               (cmp(l1.a * l2.b, l2.a * l1.b) ==\
+    \ 0 &&\n                cmp(l1.b * l2.c, l2.b * l1.c) < 0);\n    }\n    friend\
+    \ bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n    friend\
+    \ bool operator<=(const Line& l1, const Line& l2) {\n        return !(l2 < l1);\n\
+    \    }\n    friend bool operator>=(const Line& l1, const Line& l2) {\n       \
+    \ return !(l1 < l2);\n    }\n    template<class Printer>\n    void debug(Printer&\
+    \ print) const {\n        print << a;\n        print.print_char(\"x+\");\n   \
+    \     print << b;\n        print.print_char(\"y+\");\n        print << c;\n  \
+    \      print.print_char(\"=0\");\n    }\n};\n\nReal distance(const Point& p, const\
+    \ Line& l) {\n    return abs(l.a * p.x + l.b * p.y + l.c) / sqrt(l.a * l.a + l.b\
+    \ * l.b);\n}\nReal distance(const Line& l, const Point& p) { return distance(p,\
+    \ l); }\n\n// \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const\
+    \ Point& p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2\
+    \ + (p2 - p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const\
+    \ Line& l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n\
+    }\n// \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\
+    \u7DDA\nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b,\
+    \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
+    \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
+    \ l2) {\n    return !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const\
+    \ Line& l1, const Line& l2) {\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return\
+    \ Point((l1.b * l2.c - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c\
+    \ * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint projection(const Line& l, const Point&\
+    \ p) {\n    return intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\n\
+    Point reflection(const Line& l, const Point& p) {\n    return projection(l, p)\
+    \ * 2 - p;\n}\n#line 4 \"test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n   \
+    \     Point p0, p1, p2, p3; scan >> p0 >> p1 >> p2 >> p3;\n        Line l1(p0,\
+    \ p1), l2(p2, p3);\n        if (is_parallel(l1, l2)) prints(\"2\");\n        else\
+    \ if (is_orthogonal(l1, l2)) prints(\"1\");\n        else prints(\"0\");\n   \
+    \ }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_A\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Line.hpp\"\nusing\
+    \ namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n       \
+    \ Point p0, p1, p2, p3; scan >> p0 >> p1 >> p2 >> p3;\n        Line l1(p0, p1),\
+    \ l2(p2, p3);\n        if (is_parallel(l1, l2)) prints(\"2\");\n        else if\
+    \ (is_orthogonal(l1, l2)) prints(\"1\");\n        else prints(\"0\");\n    }\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -514,41 +515,19 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  - geometry/Line.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 13:42:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/other/2725-CHT.test.cpp
-documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  timestamp: '2022-09-10 13:58:39+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp
-- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp.html
-title: ConvexHullTrickAddMonotone
+- /verify/test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+- /verify/test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp.html
+title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
 ---
-## Overview
-
-Convex Hull Trick のうち、追加クエリで与えられる直線の傾きが単調増加あるいは単調減少であるような場合に使える。
-
-通常の Convex Hull Trick は `std::set` などを使う必要があるのに対して、単調増加あるいは単調減少の場合は `std::deque` を用いればよいため、二分探索をしない追加クエリの計算量が落ちる。
-
-さらに、取得クエリの `x` が単調増加あるいは単調減少のときは二分探索をせず要らなくなった直線を消していけばいいので、取得クエリの計算量も落ちる。当然、 `get_min` `inc_get_min` `dec_get_min` のうち 2 つを同時に使ってはいけない。
-
-## Usage
-
-### Template Arguments
-
-- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
-- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
-- `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `__int128_t` 。
-
-### Member Function
-
-- `ConvexHullTrickAddMonotone()` : `ConvexHullTrick` を作成する。ここで、関数集合を $s$ と表す。 $\Theta(1)$ 。
-- `void add_line(T a, T b)` : $s$ に `f(x) = ax + b` を追加する。 $\Theta(1)$ 。
-- `T get_min(T x)` : $\min_{f \in s} f(x)$ を返す。 $\Theta(\log N)$ 。
-- `T inc_get_min(T x)` : `x` が単調増加であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
-- `T dec_get_min(T x)` : `x` が単調減少であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
-- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。

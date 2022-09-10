@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
     title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+    title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -434,6 +437,7 @@ data:
   timestamp: '2022-09-10 13:42:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/CGL/CGL_1_C-ccw.test.cpp
