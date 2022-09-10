@@ -33,8 +33,8 @@ public:
         return !(l1 < l2);
     }
     bool is_on(const Point& p) const { return cmp(a * p.x + b * p.y + c, 0) == 0; }
-    template<class Printer>
-    void debug(Printer& print) const {
+    template<class Pr>
+    void debug(Pr& print) const {
         print << a;
         print.print_char("x+");
         print << b;
@@ -45,7 +45,7 @@ public:
 };
 
 Real distance(const Point& p, const Line& l) {
-    return abs(l.a * p.x + l.b * p.y + l.c) / sqrt(l.a * l.a + l.b * l.b);
+    return std::abs(l.a * p.x + l.b * p.y + l.c) / std::sqrt(l.a * l.a + l.b * l.b);
 }
 Real distance(const Line& l, const Point& p) { return distance(p, l); }
 

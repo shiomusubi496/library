@@ -254,14 +254,19 @@ flush(Printer<Iterator, debug>& pr) {
     return pr;
 }
 
-struct SetPrec { int n; };
+struct SetPrec {
+    int n;
+    template<class Pr>
+    void print(Pr& pr) const {
+        pr.set_decimal_precision(n);
+    }
+    template<class Pr>
+    void debug(Pr& pr) const {
+        pr.set_decimal_precision(n);
+    }
+};
 SetPrec setprec(int n) { return SetPrec{n}; }
 template<class Iterator, bool debug>
-Printer<Iterator, debug>&
-operator<<(Printer<Iterator, debug>& pr, SetPrec sp) {
-    pr.set_decimal_precision(sp.n);
-    return pr;
-}
 
 Printer<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());
 

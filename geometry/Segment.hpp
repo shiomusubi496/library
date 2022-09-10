@@ -29,14 +29,14 @@ public:
         return p == p1 || p == p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;
     }
     explicit operator Line() const { return Line(p1, p2); }
-    template<class Printer>
-    void debug(Printer& print) const {
+    template<class Pr>
+    void debug(Pr& print) const {
         print << p1;
         print.print_char("->");
         print << p2;
     }
-    template<class Scanner>
-    void scan(Scanner& scan) {
+    template<class Sc>
+    void scan(Sc& scan) {
         scan >> p1 >> p2;
     }
 };
