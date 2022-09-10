@@ -32,6 +32,7 @@ public:
     friend bool operator>=(const Line& l1, const Line& l2) {
         return !(l1 < l2);
     }
+    bool is_on(const Point& p) const { return cmp(a * p.x + b * p.y + c, 0) == 0; }
     template<class Printer>
     void debug(Printer& print) const {
         print << a;
@@ -72,10 +73,11 @@ Line perpendicular(const Line& l, const Point& p) {
 
 // 交叉判定
 bool is_intersect(const Line& l1, const Line& l2) {
-    return !is_parallel(l1, l2);
+    return l1 == l2 || !is_parallel(l1, l2);
 }
 // 交点
 Point intersection(const Line& l1, const Line& l2) {
+    assert(!is_parallel(l1, l2));
     Real d = l1.a * l2.b - l2.a * l1.b;
     return Point((l1.b * l2.c - l2.b * l1.c) / d,
                  (l1.c * l2.a - l2.c * l1.a) / d);

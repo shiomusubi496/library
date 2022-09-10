@@ -99,6 +99,10 @@ public:
     }
 };
 
+Real distance(const Point& p1, const Point& p2) {
+    return abs(p1 - p2);
+}
+
 enum class CCW {
     COUNTER_CLOCKWISE = 1,
     CLOCKWISE = -1,
