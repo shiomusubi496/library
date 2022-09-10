@@ -210,12 +210,12 @@ public:
         if IF_CONSTEXPR (debug) print_char('}');
     }
     template<class T, typename std::enable_if<has_print<T>::value &&
-                                              debug>::type* = nullptr>
+                                              !debug>::type* = nullptr>
     void print(const T& a) {
         a.print(*this);
     }
     template<class T, typename std::enable_if<has_print<T>::value &&
-                                              !debug>::type* = nullptr>
+                                              debug>::type* = nullptr>
     void print(const T& a) {
         a.debug(*this);
     }
