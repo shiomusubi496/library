@@ -114,6 +114,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
+  - icon: ':x:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':x:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':x:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
@@ -131,7 +140,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
@@ -140,7 +149,7 @@ data:
   - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':x:'
@@ -213,7 +222,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':x:'
@@ -306,7 +315,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -318,6 +327,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
     title: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_1_A-projection.test.cpp
+    title: test/aoj/CGL/CGL_1_A-projection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
@@ -390,13 +402,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - icon: ':x:'
@@ -720,6 +732,9 @@ data:
   isVerificationFile: false
   path: template/bitop.hpp
   requiredBy:
+  - geometry/Point.hpp
+  - geometry/Line.hpp
+  - geometry/template.hpp
   - random/Timer.hpp
   - random/Random.hpp
   - graph/tree/PMORMQLCA.hpp
@@ -869,6 +884,7 @@ data:
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp

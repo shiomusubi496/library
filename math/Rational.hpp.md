@@ -24,12 +24,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/Rational.md
     document_title: "Rational(\u6709\u7406\u6570\u578B)"
@@ -260,10 +260,10 @@ data:
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
     \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
     \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
     \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              !debug>::type* = nullptr>\n   \
-    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \                                              debug>::type* = nullptr>\n    void\
+    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -502,8 +502,8 @@ data:
   isVerificationFile: false
   path: math/Rational.hpp
   requiredBy: []
-  timestamp: '2022-09-10 11:26:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-10 13:28:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
 documentation_of: math/Rational.hpp

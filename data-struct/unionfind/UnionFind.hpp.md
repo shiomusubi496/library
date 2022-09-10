@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - icon: ':x:'
@@ -281,10 +281,10 @@ data:
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
     \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
     \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
     \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              !debug>::type* = nullptr>\n   \
-    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \                                              debug>::type* = nullptr>\n    void\
+    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -458,7 +458,7 @@ data:
   requiredBy:
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2022-09-10 11:26:21+09:00'
+  timestamp: '2022-09-10 13:28:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/unionfind.test.cpp

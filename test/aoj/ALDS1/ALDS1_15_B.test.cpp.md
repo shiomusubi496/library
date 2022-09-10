@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: 1e-6
@@ -264,10 +264,10 @@ data:
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
     \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
     \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
     \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              !debug>::type* = nullptr>\n   \
-    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \                                              debug>::type* = nullptr>\n    void\
+    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -470,8 +470,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 11:26:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-10 13:28:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
 layout: document

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
@@ -265,10 +265,10 @@ data:
     \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
     \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
     \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
     \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              !debug>::type* = nullptr>\n   \
-    \ void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \                                              debug>::type* = nullptr>\n    void\
+    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -483,8 +483,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 11:26:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-10 13:28:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
 layout: document
