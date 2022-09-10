@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -467,11 +467,11 @@ data:
     \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
     \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
-    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
-    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
-    \    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan >> p;\n  \
-    \  print << setprec(1) << area(p) << endl;\n}\n"
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
+    \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
+    \       }\n    }\n    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    print << setprec(1) << area(p) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
     using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
@@ -490,7 +490,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_A-area.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 18:52:42+09:00'
+  timestamp: '2022-09-10 19:25:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_A-area.test.cpp

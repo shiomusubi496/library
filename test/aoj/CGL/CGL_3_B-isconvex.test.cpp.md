@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B
@@ -467,11 +467,11 @@ data:
     \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
     \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
-    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
-    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
-    \    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
-    \ >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
+    \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
+    \       }\n    }\n    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
     using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
@@ -490,8 +490,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 18:52:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-10 19:25:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 layout: document

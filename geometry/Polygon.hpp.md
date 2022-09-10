@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_A-area.test.cpp
     title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
     title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -466,18 +466,18 @@ data:
     \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
     \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
-    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
-    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
-    \    return true;\n}\n"
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
+    \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
+    \       }\n    }\n    return true;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
     \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
     };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
     \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
     \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
-    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c != CCW::CLOCKWISE && (!allow_straight\
-    \ || c != CCW::ONLINE_BACK)) {\n            return false;\n        }\n    }\n\
-    \    return true;\n}\n"
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
+    \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
+    \       }\n    }\n    return true;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -491,8 +491,8 @@ data:
   isVerificationFile: false
   path: geometry/Polygon.hpp
   requiredBy: []
-  timestamp: '2022-09-10 18:52:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-10 19:25:01+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_3_A-area.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
