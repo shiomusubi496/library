@@ -265,8 +265,7 @@ struct SetPrec {
         pr.set_decimal_precision(n);
     }
 };
-SetPrec setprec(int n) { return SetPrec{n}; }
-template<class Iterator, bool debug>
+SetPrec setprec(int n) { return SetPrec{n}; };
 
 Printer<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());
 
