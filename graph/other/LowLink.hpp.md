@@ -31,7 +31,7 @@ data:
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - icon: ':x:'
@@ -42,7 +42,7 @@ data:
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/other/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -288,9 +288,10 @@ data:
     \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
     \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
     \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar\
-    \ debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
+    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
     \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
     \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
     \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
@@ -499,8 +500,8 @@ data:
   path: graph/other/LowLink.hpp
   requiredBy:
   - graph/connected/TwoEdgeConnectedComponents.hpp
-  timestamp: '2022-09-10 13:28:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-10 13:42:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp

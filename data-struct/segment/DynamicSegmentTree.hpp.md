@@ -285,9 +285,10 @@ data:
     \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
     \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
     \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar\
-    \ debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
+    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
     \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
     \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
     \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
@@ -678,7 +679,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicSegmentTree.hpp
   requiredBy: []
-  timestamp: '2022-09-10 13:28:31+09:00'
+  timestamp: '2022-09-10 13:42:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp

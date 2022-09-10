@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/GRL_3_A
@@ -279,9 +279,10 @@ data:
     \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
     \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
     \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar\
-    \ debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
+    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
     \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
     \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
     \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
@@ -483,8 +484,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 13:28:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-10 13:42:58+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
 layout: document

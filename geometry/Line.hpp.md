@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -30,12 +30,15 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_A-projection.test.cpp
     title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
+    title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Line.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -279,9 +282,10 @@ data:
     \    return pr;\n}\ntemplate<class Iterator, std::size_t decimal_precision, bool\
     \ debug>\nPrinter<Iterator, decimal_precision, debug>&\nflush(Printer<Iterator,\
     \ decimal_precision, debug>& pr) {\n    pr.flush();\n    return pr;\n}\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar\
-    \ debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
+    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, 16, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
     \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
     \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
     \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
@@ -540,9 +544,10 @@ data:
   isVerificationFile: false
   path: geometry/Line.hpp
   requiredBy: []
-  timestamp: '2022-09-10 13:28:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-10 13:42:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
 documentation_of: geometry/Line.hpp
 layout: document

@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -23,20 +29,18 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/string/enumerate_palindromes.test.cpp
-    title: test/yosupo/string/enumerate_palindromes.test.cpp
-  _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/string/Manacher.md
-    document_title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA\
-      )"
-    links: []
-  bundledCode: "#line 2 \"string/Manacher.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
-    \n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_C
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_1_C-ccw.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_C\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -394,46 +398,77 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"string/Manacher.hpp\"\n\n\
-    \ntemplate<class Cont, class Comp>\nstd::vector<int> Manacher(const Cont& str,\
-    \ const Comp& cmp) {\n    const int n = str.size();\n    std::vector<int> res(n);\n\
-    \    res[0] = 1;\n    int mid = 0;\n    rep (i, 1, n) {\n        if (mid + res[mid]\
-    \ > i) {\n            res[i] = std::min(res[mid - (i - mid)], mid + res[mid] -\
-    \ (int)i);\n        }\n        while (0 <= i - res[i] && i + res[i] < n &&\n \
-    \              cmp(str[i - res[i]], str[i + res[i]])) {\n            ++res[i];\n\
-    \        }\n        if (mid + res[mid] < i + res[i]) mid = i;\n    }\n    return\
-    \ res;\n}\n\ntemplate<class Cont> std::vector<int> Manacher(const Cont& str) {\n\
-    \    return Manacher(str, std::equal_to<typename Cont::value_type>());\n}\n\n\
-    template<class Cont, class Comp>\nstd::vector<int> ManacherEven(const Cont& str,\
-    \ const Comp& cmp,\n                              const typename Cont::value_type\
-    \ dummy = '$') {\n    const int n = str.size();\n    Cont str2(n * 2 + 1, dummy);\n\
-    \    rep (i, n) str2[i * 2 + 1] = str[i];\n    const std::vector<int> mana = Manacher(str2,\
-    \ cmp);\n    std::vector<int> res(n * 2 - 1);\n    rep (i, n * 2 - 1) res[i] =\
-    \ mana[i + 1] - 1;\n    return res;\n}\n\ntemplate<class Cont>\nstd::vector<int>\
-    \ ManacherEven(const Cont& str,\n                              const typename\
-    \ Cont::value_type dummy = '$') {\n    return ManacherEven(str, std::equal_to<typename\
-    \ Cont::value_type>(), dummy);\n}\n\n/**\n * @brief Manacher's Algortihm(\u6700\
-    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/string/Manacher.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\n\ntemplate<class Cont,\
-    \ class Comp>\nstd::vector<int> Manacher(const Cont& str, const Comp& cmp) {\n\
-    \    const int n = str.size();\n    std::vector<int> res(n);\n    res[0] = 1;\n\
-    \    int mid = 0;\n    rep (i, 1, n) {\n        if (mid + res[mid] > i) {\n  \
-    \          res[i] = std::min(res[mid - (i - mid)], mid + res[mid] - (int)i);\n\
-    \        }\n        while (0 <= i - res[i] && i + res[i] < n &&\n            \
-    \   cmp(str[i - res[i]], str[i + res[i]])) {\n            ++res[i];\n        }\n\
-    \        if (mid + res[mid] < i + res[i]) mid = i;\n    }\n    return res;\n}\n\
-    \ntemplate<class Cont> std::vector<int> Manacher(const Cont& str) {\n    return\
-    \ Manacher(str, std::equal_to<typename Cont::value_type>());\n}\n\ntemplate<class\
-    \ Cont, class Comp>\nstd::vector<int> ManacherEven(const Cont& str, const Comp&\
-    \ cmp,\n                              const typename Cont::value_type dummy =\
-    \ '$') {\n    const int n = str.size();\n    Cont str2(n * 2 + 1, dummy);\n  \
-    \  rep (i, n) str2[i * 2 + 1] = str[i];\n    const std::vector<int> mana = Manacher(str2,\
-    \ cmp);\n    std::vector<int> res(n * 2 - 1);\n    rep (i, n * 2 - 1) res[i] =\
-    \ mana[i + 1] - 1;\n    return res;\n}\n\ntemplate<class Cont>\nstd::vector<int>\
-    \ ManacherEven(const Cont& str,\n                              const typename\
-    \ Cont::value_type dummy = '$') {\n    return ManacherEven(str, std::equal_to<typename\
-    \ Cont::value_type>(), dummy);\n}\n\n/**\n * @brief Manacher's Algortihm(\u6700\
-    \u9577\u56DE\u6587\u9577\u691C\u51FA)\n * @docs docs/string/Manacher.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Point.hpp\"\n\n\
+    #line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 4 \"geometry/Point.hpp\"\n\nclass Point {\npublic:\n  \
+    \  Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x),\
+    \ y(y) {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n      \
+    \  y += p.y;\n        return *this;\n    }\n    Point& operator-=(const Point&\
+    \ p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n \
+    \   Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n        return\
+    \ *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n        y /=\
+    \ a;\n        return *this;\n    }\n    Point operator+() const { return *this;\
+    \ }\n    Point operator-() const { return Point(-x, -y); }\n    friend Point operator+(const\
+    \ Point& p1, const Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend\
+    \ Point operator-(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ -= p2;\n    }\n    friend Point operator*(const Point& p, Real a) { return Point(p)\
+    \ *= a; }\n    friend Point operator*(Real a, const Point& p) { return Point(p)\
+    \ *= a; }\n    friend Point operator/(const Point& p, Real a) { return Point(p)\
+    \ /= a; }\n    friend bool operator==(const Point& p1, const Point& p2) {\n  \
+    \      return cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend\
+    \ bool operator!=(const Point& p1, const Point& p2) {\n        return !(p1 ==\
+    \ p2);\n    }\n    friend bool operator<(const Point& p1, const Point& p2) {\n\
+    \        return cmp(p1.x, p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 &&\
+    \ cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const Point& p1, const\
+    \ Point& p2) { return p2 < p1; }\n    friend bool operator<=(const Point& p1,\
+    \ const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend bool operator>=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    Real norm()\
+    \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
+    \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
+    \ abs(const Point& p) { return p.abs(); }\n    Real arg() const { return atan2(y,\
+    \ x); }\n    friend Real arg(const Point& p) { return p.arg(); }\n    Point& rotate(Real\
+    \ theta) {\n        Real c = cos(theta), s = sin(theta);\n        Real nx = x\
+    \ * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y = ny;\n       \
+    \ return *this;\n    }\n    friend Point rotate(const Point& p, Real theta) {\n\
+    \        return Point(p).rotate(theta);\n    }\n    Point& rotate90() {\n    \
+    \    Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n        return *this;\n\
+    \    }\n    friend Point rotate90(const Point& p) { return Point(p).rotate90();\
+    \ }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| * |p2| * cos(theta)\n\
+    \    friend Real dot(const Point& p1, const Point& p2) {\n        return p1.x\
+    \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
+    \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
+    \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
+    \ Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n    template<class Printer>\
+    \ void print(Printer& print) const {\n        print << x << ' ' << y;\n    }\n\
+    \    template<class Printer> void debug(Printer& print) const {\n        print.print_char('(');\n\
+    \        print << x;\n        print.print_char(',');\n        print << y;\n  \
+    \      print.print_char(')');\n    }\n};\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 4 \"test/aoj/CGL/CGL_1_C-ccw.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    Point p0, p1; scan >> p0 >> p1;\n  \
+    \  int q; scan >> q;\n    rep (q) {\n        Point p2; scan >> p2;\n        int\
+    \ res = (int)ccw(p0, p1, p2);\n        if (res == 1) prints(\"COUNTER_CLOCKWISE\"\
+    );\n        if (res == -1) prints(\"CLOCKWISE\");\n        if (res == 2) prints(\"\
+    ONLINE_BACK\");\n        if (res == -2) prints(\"ONLINE_FRONT\");\n        if\
+    \ (res == 0) prints(\"ON_SEGMENT\");\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_C\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Point.hpp\"\n\
+    using namespace std;\nint main() {\n    Point p0, p1; scan >> p0 >> p1;\n    int\
+    \ q; scan >> q;\n    rep (q) {\n        Point p2; scan >> p2;\n        int res\
+    \ = (int)ccw(p0, p1, p2);\n        if (res == 1) prints(\"COUNTER_CLOCKWISE\"\
+    );\n        if (res == -1) prints(\"CLOCKWISE\");\n        if (res == 2) prints(\"\
+    ONLINE_BACK\");\n        if (res == -2) prints(\"ONLINE_FRONT\");\n        if\
+    \ (res == 0) prints(\"ON_SEGMENT\");\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -442,23 +477,18 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: string/Manacher.hpp
+  - geometry/Point.hpp
+  - geometry/template.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
   requiredBy: []
   timestamp: '2022-09-10 13:42:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/string/enumerate_palindromes.test.cpp
-documentation_of: string/Manacher.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_1_C-ccw.test.cpp
 layout: document
 redirect_from:
-- /library/string/Manacher.hpp
-- /library/string/Manacher.hpp.html
-title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
+- /verify/test/aoj/CGL/CGL_1_C-ccw.test.cpp
+- /verify/test/aoj/CGL/CGL_1_C-ccw.test.cpp.html
+title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
 ---
-## 概要
-
-文字列が与えられたとき、それの各文字を中心とする回文を求める。ダミーの文字を間に挟むことで偶数長の回文についても求められる。
-
-- `vector<int> Manacher(string str)` : 長さ `n` の配列を返す。 `i` 番目の要素は、 `str[i]` を中心とする最長の回文の半径($\frac{\text{長さ}+1}{2}$ のこと)。 $\Theta(n)$ 。
-- `vector<int> ManacherEven(string str)` : 長さ `2n-1` の配列を返す。文字または文字と文字の間の `2n-1` 箇所を中心とする回文の長さを返す。 $\Theta(n)$ 。
