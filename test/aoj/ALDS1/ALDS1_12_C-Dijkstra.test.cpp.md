@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_12_C
@@ -278,10 +278,11 @@ data:
     \ debug>&\nendl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n \
     \   pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
     \ debug>&\nflush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return\
-    \ pr;\n}\n\nstruct SetPrec { int n; };\nSetPrec setprec(int n) { return SetPrec{n};\
-    \ }\ntemplate<class Iterator, bool debug>\nPrinter<Iterator, debug>&\noperator<<(Printer<Iterator,\
-    \ debug>& pr, SetPrec sp) {\n    pr.set_decimal_precision(sp.n);\n    return pr;\n\
-    }\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \ pr;\n}\n\nstruct SetPrec {\n    int n;\n    template<class Pr>\n    void print(Pr&\
+    \ pr) const {\n        pr.set_decimal_precision(n);\n    }\n    template<class\
+    \ Pr>\n    void debug(Pr& pr) const {\n        pr.set_decimal_precision(n);\n\
+    \    }\n};\nSetPrec setprec(int n) { return SetPrec{n}; }\ntemplate<class Iterator,\
+    \ bool debug>\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
     \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
     n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
     \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
@@ -477,8 +478,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 17:04:44+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-10 17:34:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
 layout: document

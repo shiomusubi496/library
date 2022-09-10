@@ -1,60 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
   - icon: ':x:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_1_A-projection.test.cpp
     title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
     title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
     title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
     title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
     title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
     title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL/CGL_2_D-distance.test.cpp
     title: test/aoj/CGL/CGL_2_D-distance.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test/aoj/CGL/CGL_3_A-area.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -305,10 +305,11 @@ data:
     \ debug>&\nendl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n \
     \   pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
     \ debug>&\nflush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return\
-    \ pr;\n}\n\nstruct SetPrec { int n; };\nSetPrec setprec(int n) { return SetPrec{n};\
-    \ }\ntemplate<class Iterator, bool debug>\nPrinter<Iterator, debug>&\noperator<<(Printer<Iterator,\
-    \ debug>& pr, SetPrec sp) {\n    pr.set_decimal_precision(sp.n);\n    return pr;\n\
-    }\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \ pr;\n}\n\nstruct SetPrec {\n    int n;\n    template<class Pr>\n    void print(Pr&\
+    \ pr) const {\n        pr.set_decimal_precision(n);\n    }\n    template<class\
+    \ Pr>\n    void debug(Pr& pr) const {\n        pr.set_decimal_precision(n);\n\
+    \    }\n};\nSetPrec setprec(int n) { return SetPrec{n}; }\ntemplate<class Iterator,\
+    \ bool debug>\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
     \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
     n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
     \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
@@ -472,18 +473,18 @@ data:
     \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
     \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
     \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
-    \ Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n    template<class Printer>\
-    \ void print(Printer& print) const {\n        print << x << ' ' << y;\n    }\n\
-    \    template<class Printer> void debug(Printer& print) const {\n        print.print_char('(');\n\
-    \        print << x;\n        print.print_char(',');\n        print << y;\n  \
-    \      print.print_char(')');\n    }\n};\n\nReal distance(const Point& p1, const\
-    \ Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
-    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
-    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
-    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
-    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
-    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
-    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n"
+    \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
+    \ print) const {\n        print << x << ' ' << y;\n    }\n    template<class Pr>\
+    \ void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) {\n    return abs(p1\
+    \ - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n\nclass Point {\npublic:\n   \
     \ Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y)\
     \ {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n        y +=\
@@ -522,18 +523,18 @@ data:
     \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
     \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
     \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
-    \ Scanner> void scan(Scanner& scan) { scan >> x >> y; }\n    template<class Printer>\
-    \ void print(Printer& print) const {\n        print << x << ' ' << y;\n    }\n\
-    \    template<class Printer> void debug(Printer& print) const {\n        print.print_char('(');\n\
-    \        print << x;\n        print.print_char(',');\n        print << y;\n  \
-    \      print.print_char(')');\n    }\n};\n\nReal distance(const Point& p1, const\
-    \ Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
-    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
-    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
-    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
-    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
-    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
-    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n"
+    \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
+    \ print) const {\n        print << x << ' ' << y;\n    }\n    template<class Pr>\
+    \ void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) {\n    return abs(p1\
+    \ - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -549,8 +550,8 @@ data:
   - geometry/Line.hpp
   - geometry/Segment.hpp
   - geometry/Polygon.hpp
-  timestamp: '2022-09-10 17:04:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-10 17:34:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
