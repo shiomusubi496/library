@@ -448,7 +448,8 @@ data:
     \ void print(Printer& print) const {\n        print << x << ' ' << y;\n    }\n\
     \    template<class Printer> void debug(Printer& print) const {\n        print.print_char('(');\n\
     \        print << x;\n        print.print_char(',');\n        print << y;\n  \
-    \      print.print_char(')');\n    }\n};\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \      print.print_char(')');\n    }\n};\n\nReal distance(const Point& p1, const\
+    \ Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
     \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
     \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
     \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
@@ -482,7 +483,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 13:42:58+09:00'
+  timestamp: '2022-09-10 15:00:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_1_C-ccw.test.cpp

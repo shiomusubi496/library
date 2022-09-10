@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/cht
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
     - icon: ':heavy_check_mark:'
@@ -26,17 +26,17 @@ data:
     - icon: ':x:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/PersistentArray.hpp
       title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
     - icon: ':x:'
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
     - icon: ':x:'
@@ -103,16 +103,16 @@ data:
     - icon: ':x:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PartialPersistentUnionFind.hpp
       title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
     - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFindUndo.hpp
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
     - icon: ':heavy_check_mark:'
@@ -127,6 +127,9 @@ data:
       path: geometry/Point.hpp
       title: geometry/Point.hpp
     - icon: ':heavy_check_mark:'
+      path: geometry/Segment.hpp
+      title: geometry/Segment.hpp
+    - icon: ':heavy_check_mark:'
       path: geometry/template.hpp
       title: geometry/template.hpp
   - name: graph
@@ -136,7 +139,7 @@ data:
       title: Graph-template
   - name: graph/connected
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
     - icon: ':question:'
@@ -157,7 +160,7 @@ data:
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     - icon: ':question:'
@@ -247,10 +250,10 @@ data:
       title: "Rational(\u6709\u7406\u6570\u578B)"
   - name: math/convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseAndConvolution.hpp
       title: BitwiseAndConvolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
     - icon: ':x:'
@@ -267,11 +270,11 @@ data:
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/SubsetZetaMoebiusTransform.hpp
       title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/SupersetZetaMoebiusTransform.hpp
       title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -288,7 +291,7 @@ data:
     - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
     - icon: ':question:'
@@ -296,7 +299,7 @@ data:
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
     - icon: ':warning:'
@@ -393,6 +396,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
       title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
+      title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - name: test/aoj/DPL
     pages:
     - icon: ':heavy_check_mark:'
@@ -545,38 +551,38 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
       title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
       title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/arc099_c-Bipartite.test.cpp
       title: test/atcoder/arc099_c-Bipartite.test.cpp
   - name: test/yosupo/convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/line_add_get_min.test.cpp
       title: test/yosupo/data_structure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
       title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_unionfind.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind.test.cpp
     - icon: ':x:'

@@ -28,7 +28,10 @@ data:
   - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: geometry/Segment.hpp
+    title: geometry/Segment.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_A-projection.test.cpp
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
     title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
+    title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -453,9 +459,10 @@ data:
     \ template<class Printer> void print(Printer& print) const {\n        print <<\
     \ x << ' ' << y;\n    }\n    template<class Printer> void debug(Printer& print)\
     \ const {\n        print.print_char('(');\n        print << x;\n        print.print_char(',');\n\
-    \        print << y;\n        print.print_char(')');\n    }\n};\n\nenum class\
-    \ CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n\
-    \    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const\
+    \        print << y;\n        print.print_char(')');\n    }\n};\n\nReal distance(const\
+    \ Point& p1, const Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW\
+    \ {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n \
+    \   ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const\
     \ Point& p1, const Point& p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a,\
     \ b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0)\
     \ return CCW::CLOCKWISE;\n    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n\
@@ -474,7 +481,8 @@ data:
     \ bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n    friend\
     \ bool operator<=(const Line& l1, const Line& l2) {\n        return !(l2 < l1);\n\
     \    }\n    friend bool operator>=(const Line& l1, const Line& l2) {\n       \
-    \ return !(l1 < l2);\n    }\n    template<class Printer>\n    void debug(Printer&\
+    \ return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const { return cmp(a\
+    \ * p.x + b * p.y + c, 0) == 0; }\n    template<class Printer>\n    void debug(Printer&\
     \ print) const {\n        print << a;\n        print.print_char(\"x+\");\n   \
     \     print << b;\n        print.print_char(\"y+\");\n        print << c;\n  \
     \      print.print_char(\"=0\");\n    }\n};\n\nReal distance(const Point& p, const\
@@ -490,13 +498,13 @@ data:
     \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
     \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
     }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
-    \ l2) {\n    return !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const\
-    \ Line& l1, const Line& l2) {\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return\
-    \ Point((l1.b * l2.c - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c\
-    \ * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint projection(const Line& l, const Point&\
-    \ p) {\n    return intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\n\
-    Point reflection(const Line& l, const Point& p) {\n    return projection(l, p)\
-    \ * 2 - p;\n}\n"
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
     \ Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() : a(0), b(1),\
     \ c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n    Line(const\
@@ -511,8 +519,9 @@ data:
     \    friend bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n\
     \    friend bool operator<=(const Line& l1, const Line& l2) {\n        return\
     \ !(l2 < l1);\n    }\n    friend bool operator>=(const Line& l1, const Line& l2)\
-    \ {\n        return !(l1 < l2);\n    }\n    template<class Printer>\n    void\
-    \ debug(Printer& print) const {\n        print << a;\n        print.print_char(\"\
+    \ {\n        return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\
+    \ return cmp(a * p.x + b * p.y + c, 0) == 0; }\n    template<class Printer>\n\
+    \    void debug(Printer& print) const {\n        print << a;\n        print.print_char(\"\
     x+\");\n        print << b;\n        print.print_char(\"y+\");\n        print\
     \ << c;\n        print.print_char(\"=0\");\n    }\n};\n\nReal distance(const Point&\
     \ p, const Line& l) {\n    return abs(l.a * p.x + l.b * p.y + l.c) / sqrt(l.a\
@@ -527,13 +536,13 @@ data:
     \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
     \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
     }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
-    \ l2) {\n    return !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const\
-    \ Line& l1, const Line& l2) {\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return\
-    \ Point((l1.b * l2.c - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c\
-    \ * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint projection(const Line& l, const Point&\
-    \ p) {\n    return intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\n\
-    Point reflection(const Line& l, const Point& p) {\n    return projection(l, p)\
-    \ * 2 - p;\n}\n"
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -546,11 +555,13 @@ data:
   - geometry/Point.hpp
   isVerificationFile: false
   path: geometry/Line.hpp
-  requiredBy: []
-  timestamp: '2022-09-10 13:42:58+09:00'
+  requiredBy:
+  - geometry/Segment.hpp
+  timestamp: '2022-09-10 15:00:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
 documentation_of: geometry/Line.hpp
