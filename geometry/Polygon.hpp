@@ -2,6 +2,7 @@
 
 #include "template.hpp"
 #include "Point.hpp"
+#include "Line.hpp"
 
 class Polygon : public std::vector<Point> {
 public:
@@ -106,5 +107,21 @@ Real diameter(const Polygon& p) {
         }
         chmax(res, abs(p[i] - p[j]));
     } while (i != si || j != sj);
+    return res;
+}
+
+// cut with line p0-p1 and return left side
+Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {
+    const int n = p.size();
+    Polygon res;
+    rep (i, n) {
+        Point a = p[i], b = p[(i + 1) % n];
+        Real ca = cross(p0 - a, p1 - a);
+        Real cb = cross(p0 - b, p1 - b);
+        if (cmp(ca, 0) >= 0) res.push_back(a);
+        if (cmp(ca, 0) * cmp(cb, 0) < 0) {
+            res.push_back(intersection(Line(a, b), Line(p0, p1)));
+        }
+    }
     return res;
 }
