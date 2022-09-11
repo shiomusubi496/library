@@ -58,7 +58,7 @@ Polygon convex_hull(std::vector<Point> A, bool allow_straight = false) {
     const int n = A.size();
     if (n <= 2) return Polygon{A};
     std::sort(A.begin(), A.end(), [](const Point& a, const Point& b) {
-        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);
+        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;
     });
     Polygon res;
     rep (i, n) {
