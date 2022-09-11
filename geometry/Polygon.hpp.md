@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
     title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_3_C-contain.test.cpp
+    title: test/aoj/CGL/CGL_3_C-contain.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -468,7 +471,16 @@ data:
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
     \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
     \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
-    \       }\n    }\n    return true;\n}\n"
+    \       }\n    }\n    return true;\n}\n\nbool contains(const Polygon& p, const\
+    \ Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n  \
+    \  rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
     \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
     };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
@@ -477,7 +489,16 @@ data:
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
     \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
     \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
-    \       }\n    }\n    return true;\n}\n"
+    \       }\n    }\n    return true;\n}\n\nbool contains(const Polygon& p, const\
+    \ Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n  \
+    \  rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -491,9 +512,10 @@ data:
   isVerificationFile: false
   path: geometry/Polygon.hpp
   requiredBy: []
-  timestamp: '2022-09-10 19:25:01+09:00'
+  timestamp: '2022-09-11 11:58:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_3_C-contain.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 documentation_of: geometry/Polygon.hpp

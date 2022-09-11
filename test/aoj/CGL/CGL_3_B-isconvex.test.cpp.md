@@ -469,9 +469,18 @@ data:
     \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
     \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
     \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
-    \       }\n    }\n    return true;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
-    \ scan >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
+    \       }\n    }\n    return true;\n}\n\nbool contains(const Polygon& p, const\
+    \ Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n  \
+    \  rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int n; scan >> n;\n    Polygon p(n); scan >> p;\n    print <<\
+    \ (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
     using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
@@ -490,7 +499,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 19:25:01+09:00'
+  timestamp: '2022-09-11 11:58:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_B-isconvex.test.cpp

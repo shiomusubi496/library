@@ -1,9 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -26,53 +32,18 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/deque_operate_all_composite.test.cpp
-    title: test/yosupo/new/deque_operate_all_composite.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/gcd_convolution.test.cpp
-    title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/lcm_convolution.test.cpp
-    title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/range_affine_point_get.test.cpp
-    title: test/yosupo/new/range_affine_point_get.test.cpp
-  _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_C
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_C\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -433,137 +404,90 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
-    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
-    \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
-    \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
-    \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
-    \ T> struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
+    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const {\n        print << x << ' ' << y;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('(');\n\
+    \        print << x;\n        print.print_char(',');\n        print << y;\n  \
+    \      print.print_char(')');\n    }\n};\n\nReal distance(const Point& p1, const\
+    \ Point& p2) {\n    return abs(p1 - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE\
+    \ = 1,\n    CLOCKWISE = -1,\n    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n  \
+    \  ON_SEGMENT = 0,\n};\n\nCCW ccw(const Point& p0, const Point& p1, const Point&\
+    \ p2) {\n    Point a = p1 - p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0)\
+    \ return CCW::COUNTER_CLOCKWISE;\n    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n\
+    \    if (cmp(dot(a, b), 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm())\
+    \ return CCW::ONLINE_FRONT;\n    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Polygon.hpp\"\
+    \n\nclass Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    };\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real res\
+    \ = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n    }\n\
+    \    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\
+    \ (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return false;\n \
+    \       }\n    }\n    return true;\n}\n\nbool contains(const Polygon& p, const\
+    \ Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n  \
+    \  rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n#line 4 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int n; scan >> n;\n    Polygon p(n); scan >> p;\n    int q; scan\
+    \ >> q;\n    rep (q) {\n        Point a; scan >> a;\n        print << (contains(p,\
+    \ a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_C\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
+    using namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
+    \ >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a; scan >> a;\n \
+    \       print << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) <<\
+    \ endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -572,30 +496,19 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - other/monoid.hpp
-  isVerificationFile: false
-  path: other/monoid2.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_3_C-contain.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 17:46:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
-  - test/yosupo/new/deque_operate_all_composite.test.cpp
-  - test/yosupo/new/gcd_convolution.test.cpp
-  - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-documentation_of: other/monoid2.hpp
+  timestamp: '2022-09-11 11:58:53+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_3_C-contain.test.cpp
 layout: document
 redirect_from:
-- /library/other/monoid2.hpp
-- /library/other/monoid2.hpp.html
-title: other/monoid2.hpp
+- /verify/test/aoj/CGL/CGL_3_C-contain.test.cpp
+- /verify/test/aoj/CGL/CGL_3_C-contain.test.cpp.html
+title: test/aoj/CGL/CGL_3_C-contain.test.cpp
 ---

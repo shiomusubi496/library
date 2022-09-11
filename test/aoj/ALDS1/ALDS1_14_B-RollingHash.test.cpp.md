@@ -447,13 +447,13 @@ data:
     \        return res;\n    }\n    ull BASE;\n    void init() { BASE = (1ull <<\
     \ 31) + (rand32() & MASK31); }\n\npublic:\n    class Hash {\n    private:\n  \
     \      int n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
-    \ pows;\n\n    public:\n        template<class Cont> Hash(ull b, const Cont& str)\
-    \ : BASE(b) {\n            n = str.size();\n            hash.resize(n + 1);\n\
-    \            rep (i, n)\n                hash[i + 1] = calc_add(calc_multi(hash[i],\
-    \ BASE), str[i]);\n            pows.resize(n + 1);\n            pows[0] = 1;\n\
-    \            rep (i, n) pows[i + 1] = calc_multi(pows[i], BASE);\n        }\n\
-    \        ull get_hash(int l, int r) const {\n            assert(0 <= l && l <=\
-    \ r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
+    \ pows;\n\n    public:\n        Hash() = default;\n        template<class Cont>\
+    \ Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n    \
+    \        hash.resize(n + 1);\n            rep (i, n)\n                hash[i +\
+    \ 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n            pows.resize(n\
+    \ + 1);\n            pows[0] = 1;\n            rep (i, n) pows[i + 1] = calc_multi(pows[i],\
+    \ BASE);\n        }\n        ull get_hash(int l, int r) const {\n            assert(0\
+    \ <= l && l <= r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
     \ pows[r - l]));\n        }\n        ull get_all() const { return hash[n]; }\n\
     \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
     \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
@@ -482,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2022-09-10 17:46:07+09:00'
+  timestamp: '2022-09-11 11:58:53+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
