@@ -497,16 +497,17 @@ data:
     \ namespace std;\nint main() {\n    int n; scan >> n;\n    std::vector<Point>\
     \ p(n); scan >> p;\n    auto ch = convex_hull(p, true);\n    int itr = min_element(all(ch),\
     \ [](const Point& a, const Point& b) {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x,\
-    \ b.x) < 0 : cmp(a.y, b.y) < 0;\n    }) - ch.begin();\n    rep (i, ch.size())\
-    \ {\n        print << ch[(itr + i) % ch.size()] << endl;\n    }\n}\n"
+    \ b.x) < 0 : cmp(a.y, b.y) < 0;\n    }) - ch.begin();\n    print << ch.size()\
+    \ << endl;\n    rep (i, ch.size()) {\n        print << ch[(itr + i) % ch.size()]\
+    \ << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A\"\n#define\
     \ GEOMETRY_REAL_TYPE ll\n#include \"../../../other/template.hpp\"\n#include \"\
     ../../../geometry/Polygon.hpp\"\nusing namespace std;\nint main() {\n    int n;\
     \ scan >> n;\n    std::vector<Point> p(n); scan >> p;\n    auto ch = convex_hull(p,\
     \ true);\n    int itr = min_element(all(ch), [](const Point& a, const Point& b)\
     \ {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n\
-    \    }) - ch.begin();\n    rep (i, ch.size()) {\n        print << ch[(itr + i)\
-    \ % ch.size()] << endl;\n    }\n}\n"
+    \    }) - ch.begin();\n    print << ch.size() << endl;\n    rep (i, ch.size())\
+    \ {\n        print << ch[(itr + i) % ch.size()] << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -521,7 +522,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
+  timestamp: '2022-09-11 14:15:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
