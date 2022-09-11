@@ -18,7 +18,9 @@ public:
     friend bool operator<(const Segment& s1, const Segment& s2) {
         return s1.p1 < s2.p1 || (s1.p1 == s2.p1 && s1.p2 < s2.p2);
     }
-    friend bool operator>(const Segment& s1, const Segment& s2) { return s2 < s1; }
+    friend bool operator>(const Segment& s1, const Segment& s2) {
+        return s2 < s1;
+    }
     friend bool operator<=(const Segment& s1, const Segment& s2) {
         return !(s2 < s1);
     }
@@ -29,16 +31,12 @@ public:
         return p == p1 || p == p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;
     }
     explicit operator Line() const { return Line(p1, p2); }
-    template<class Pr>
-    void debug(Pr& print) const {
+    template<class Pr> void debug(Pr& print) const {
         print << p1;
         print.print_char("->");
         print << p2;
     }
-    template<class Sc>
-    void scan(Sc& scan) {
-        scan >> p1 >> p2;
-    }
+    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2; }
 };
 
 bool is_parallel(const Segment& s1, const Segment& s2) {
@@ -77,8 +75,8 @@ Real distance(const Point& p, const Segment& s) {
 Real distance(const Segment& s, const Point& p) { return distance(p, s); }
 Real distance(const Segment& s1, const Segment& s2) {
     if (is_intersect(s1, s2)) return 0;
-    return std::min({distance(s1.p1, s2), distance(s1.p2, s2), distance(s2.p1, s1),
-                distance(s2.p2, s1)});
+    return std::min({distance(s1.p1, s2), distance(s1.p2, s2),
+                     distance(s2.p1, s1), distance(s2.p2, s1)});
 }
 Real distance(const Segment& s, const Line& l) {
     if (is_intersect(s, l)) return 0;

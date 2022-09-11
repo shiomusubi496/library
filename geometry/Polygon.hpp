@@ -6,6 +6,9 @@
 class Polygon : public std::vector<Point> {
 public:
     using std::vector<Point>::vector;
+    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}
+    explicit Polygon(std::vector<Point>&& v)
+        : std::vector<Point>(std::move(v)) {}
 };
 
 Real area(const Polygon& p) {
@@ -21,7 +24,8 @@ bool is_convex(const Polygon& p, bool allow_straight = false) {
     const int n = p.size();
     rep (i, n) {
         CCW c = ccw(p[(i + 1) % n], p[i], p[(i + 2) % n]);
-        if (c == CCW::COUNTER_CLOCKWISE || (!allow_straight && c == CCW::ONLINE_BACK)) {
+        if (c == CCW::COUNTER_CLOCKWISE ||
+            (!allow_straight && c == CCW::ONLINE_BACK)) {
             return false;
         }
     }
@@ -47,5 +51,39 @@ bool contains(const Polygon& p, const Point& q, bool true_when_on_edge = true) {
             res = !res;
         }
     }
+    return res;
+}
+
+Polygon convex_hull(std::vector<Point> A, bool allow_straight = false) {
+    const int n = A.size();
+    if (n <= 2) return Polygon{A};
+    std::sort(A.begin(), A.end(), [](const Point& a, const Point& b) {
+        return cmp(a.x, b.x) != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);
+    });
+    Polygon res;
+    rep (i, n) {
+        while ((int)res.size() >= 2) {
+            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);
+            if (c == CCW::CLOCKWISE ||
+                (!allow_straight && c == CCW::ONLINE_FRONT)) {
+                res.pop_back();
+            }
+            else break;
+        }
+        res.push_back(A[i]);
+    }
+    int t = res.size();
+    rrep (i, n - 1) {
+        while ((int)res.size() >= t + 1) {
+            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);
+            if (c == CCW::CLOCKWISE ||
+                (!allow_straight && c == CCW::ONLINE_FRONT)) {
+                res.pop_back();
+            }
+            else break;
+        }
+        res.push_back(A[i]);
+    }
+    res.pop_back();
     return res;
 }

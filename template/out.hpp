@@ -56,8 +56,7 @@ public:
 
 Writer<> writer(1), ewriter(2);
 
-template<class Iterator, bool debug = false>
-class Printer {
+template<class Iterator, bool debug = false> class Printer {
 public:
     using iterator_type = Iterator;
 
@@ -84,7 +83,8 @@ public:
     void flush() { itr.flush(); }
 
     Printer() noexcept = default;
-    explicit Printer(const Iterator& itr) noexcept : itr(itr), decimal_precision(16) {}
+    explicit Printer(const Iterator& itr) noexcept
+        : itr(itr), decimal_precision(16) {}
 
     void set_decimal_precision(std::size_t decimal_precision) {
         this->decimal_precision = decimal_precision;
@@ -241,29 +241,21 @@ public:
 };
 
 template<class Iterator, bool debug>
-Printer<Iterator, debug>&
-endl(Printer<Iterator, debug>& pr) {
+Printer<Iterator, debug>& endl(Printer<Iterator, debug>& pr) {
     pr.print_char('\n');
     pr.flush();
     return pr;
 }
 template<class Iterator, bool debug>
-Printer<Iterator, debug>&
-flush(Printer<Iterator, debug>& pr) {
+Printer<Iterator, debug>& flush(Printer<Iterator, debug>& pr) {
     pr.flush();
     return pr;
 }
 
 struct SetPrec {
     int n;
-    template<class Pr>
-    void print(Pr& pr) const {
-        pr.set_decimal_precision(n);
-    }
-    template<class Pr>
-    void debug(Pr& pr) const {
-        pr.set_decimal_precision(n);
-    }
+    template<class Pr> void print(Pr& pr) const { pr.set_decimal_precision(n); }
+    template<class Pr> void debug(Pr& pr) const { pr.set_decimal_precision(n); }
 };
 SetPrec setprec(int n) { return SetPrec{n}; };
 

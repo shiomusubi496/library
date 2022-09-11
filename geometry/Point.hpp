@@ -87,9 +87,7 @@ public:
         return p1.x * p2.y - p1.y * p2.x;
     }
     template<class Sc> void scan(Sc& scan) { scan >> x >> y; }
-    template<class Pr> void print(Pr& print) const {
-        print << x << ' ' << y;
-    }
+    template<class Pr> void print(Pr& print) const { print << x << ' ' << y; }
     template<class Pr> void debug(Pr& print) const {
         print.print_char('(');
         print << x;
@@ -99,9 +97,7 @@ public:
     }
 };
 
-Real distance(const Point& p1, const Point& p2) {
-    return abs(p1 - p2);
-}
+Real distance(const Point& p1, const Point& p2) { return abs(p1 - p2); }
 
 enum class CCW {
     COUNTER_CLOCKWISE = 1,
