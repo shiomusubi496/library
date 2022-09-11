@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_C-contain.test.cpp
     title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+    title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -234,17 +237,17 @@ data:
     \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
     \ }\n        void flush() const { writer->write_buf(); }\n    };\n\n    iterator\
     \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
-    \ntemplate<class Iterator, bool debug = false>\nclass Printer {\npublic:\n   \
-    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, bool = debug,\
-    \ class = void>\n    struct has_print : std::false_type {};\n    template<class\
-    \ T>\n    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
+    \ntemplate<class Iterator, bool debug = false> class Printer {\npublic:\n    using\
+    \ iterator_type = Iterator;\n\nprivate:\n    template<class, bool = debug, class\
+    \ = void>\n    struct has_print : std::false_type {};\n    template<class T>\n\
+    \    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
     \                              (void)0)> : std::true_type {};\n    template<class\
     \ T>\n    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
     \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
     \    std::size_t decimal_precision;\n\npublic:\n    void print_char(char c) {\n\
     \        *itr = c;\n        ++itr;\n    }\n\n    void flush() { itr.flush(); }\n\
     \n    Printer() noexcept = default;\n    explicit Printer(const Iterator& itr)\
-    \ noexcept : itr(itr), decimal_precision(16) {}\n\n    void set_decimal_precision(std::size_t\
+    \ noexcept\n        : itr(itr), decimal_precision(16) {}\n\n    void set_decimal_precision(std::size_t\
     \ decimal_precision) {\n        this->decimal_precision = decimal_precision;\n\
     \    }\n\n    void print(char c) {\n        if IF_CONSTEXPR (debug) print_char('\\\
     '');\n        print_char(c);\n        if IF_CONSTEXPR (debug) print_char('\\'');\n\
@@ -308,33 +311,32 @@ data:
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
     \        return *this;\n    }\n\n    Printer& operator<<(Printer& (*pf)(Printer&))\
     \ { return pf(*this); }\n};\n\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
-    \ debug>&\nendl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n \
-    \   pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
-    \ debug>&\nflush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return\
-    \ pr;\n}\n\nstruct SetPrec {\n    int n;\n    template<class Pr>\n    void print(Pr&\
-    \ pr) const {\n        pr.set_decimal_precision(n);\n    }\n    template<class\
-    \ Pr>\n    void debug(Pr& pr) const {\n        pr.set_decimal_precision(n);\n\
-    \    }\n};\nSetPrec setprec(int n) { return SetPrec{n}; };\n\nPrinter<Writer<>::iterator>\
-    \ print(writer.begin()), eprint(writer.begin());\n\nvoid prints(const std::string&\
-    \ s) {\n    print << s;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\n\
-    Printer<Writer<>::iterator, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
-    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
-    \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
-    \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
-    \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
-    \ debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\
-    \n\nnamespace bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k)\
-    \ (1ull << (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0)\
-    \ return 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a\
-    \ >> 1 | b;\n}\n\n#define rep_comb(i, n, k)                                  \
-    \                    \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));\
-    \                         \\\n         i = bitop::next_combination((n), i))\n\n\
-    inline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
-    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
-    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
-    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
-    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
-    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ debug>& endl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n  \
+    \  pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
+    \ debug>& flush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return pr;\n\
+    }\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void print(Pr& pr) const\
+    \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
+    \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
+    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
+    n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
+    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
+    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
+    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
+    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
+    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\
+    \n\n#line 5 \"template/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
+    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
+    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
+    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
+    \                                                \\\n    for (ull i = (1ull <<\
+    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
+    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
+    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
+    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
+    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
+    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
+    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
     \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
@@ -480,11 +482,11 @@ data:
     \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
     \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
     \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
-    \ print) const {\n        print << x << ' ' << y;\n    }\n    template<class Pr>\
-    \ void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) {\n    return abs(p1\
-    \ - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \ print) const { print << x << ' ' << y; }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print.print_char('(');\n        print << x;\n      \
+    \  print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
     \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
     \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
     \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
@@ -530,11 +532,11 @@ data:
     \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
     \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
     \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
-    \ print) const {\n        print << x << ' ' << y;\n    }\n    template<class Pr>\
-    \ void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) {\n    return abs(p1\
-    \ - p2);\n}\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \ print) const { print << x << ' ' << y; }\n    template<class Pr> void debug(Pr&\
+    \ print) const {\n        print.print_char('(');\n        print << x;\n      \
+    \  print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
     \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
     \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
     \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
@@ -556,14 +558,15 @@ data:
   - geometry/Line.hpp
   - geometry/Segment.hpp
   - geometry/Polygon.hpp
-  timestamp: '2022-09-10 17:46:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-11 12:55:45+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp

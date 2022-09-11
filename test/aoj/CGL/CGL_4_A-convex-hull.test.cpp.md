@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':question:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':question:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -23,19 +32,18 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/data_structure/static_range_frequency.test.cpp
-    title: test/yosupo/data_structure/static_range_frequency.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/StaticRangeFrequency.md
-    document_title: StaticRangeFrequency
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/StaticRangeFrequency.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A\"\n#define GEOMETRY_REAL_TYPE\
+    \ ll\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -396,31 +404,109 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/segment/StaticRangeFrequency.hpp\"\
-    \n\ntemplate<class T, class Map = std::map<T, std::vector<int>>>\nclass StaticRangeFrequency\
-    \ {\nprivate:\n    int n;\n    Map mp;\n\npublic:\n    StaticRangeFrequency(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        for (int i = 0; i < n;\
-    \ i++) {\n            mp[v[i]].push_back(i);\n        }\n    }\n    int count(T\
-    \ x) {\n        auto itr = mp.find(x);\n        if (itr == mp.end()) {\n     \
-    \       return 0;\n        }\n        return itr->second.size();\n    }\n    int\
-    \ count(int l, int r, T x) {\n        assert(0 <= l && l <= r && r <= n);\n  \
-    \      auto itr = mp.find(x);\n        if (itr == mp.end()) {\n            return\
-    \ 0;\n        }\n        return std::lower_bound(all(itr->second), r) -\n    \
-    \           std::lower_bound(all(itr->second), l);\n    }\n};\n\n/**\n * @brief\
-    \ StaticRangeFrequency\n * @docs docs/data-struct/segment/StaticRangeFrequency.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
-    \ class Map = std::map<T, std::vector<int>>>\nclass StaticRangeFrequency {\nprivate:\n\
-    \    int n;\n    Map mp;\n\npublic:\n    StaticRangeFrequency(const std::vector<T>&\
-    \ v) {\n        n = v.size();\n        for (int i = 0; i < n; i++) {\n       \
-    \     mp[v[i]].push_back(i);\n        }\n    }\n    int count(T x) {\n       \
-    \ auto itr = mp.find(x);\n        if (itr == mp.end()) {\n            return 0;\n\
-    \        }\n        return itr->second.size();\n    }\n    int count(int l, int\
-    \ r, T x) {\n        assert(0 <= l && l <= r && r <= n);\n        auto itr = mp.find(x);\n\
-    \        if (itr == mp.end()) {\n            return 0;\n        }\n        return\
-    \ std::lower_bound(all(itr->second), r) -\n               std::lower_bound(all(itr->second),\
-    \ l);\n    }\n};\n\n/**\n * @brief StaticRangeFrequency\n * @docs docs/data-struct/segment/StaticRangeFrequency.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
+    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Polygon.hpp\"\n\nclass Polygon\
+    \ : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
+    \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
+    \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
+    \ res = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n  \
+    \  }\n    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n\
+    \            (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return\
+    \ false;\n        }\n    }\n    return true;\n}\n\nbool contains(const Polygon&\
+    \ p, const Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n\
+    \    rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
+    \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
+    \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);\n    });\n    Polygon res;\n    rep\
+    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
+    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
+    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
+    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
+    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
+    \    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int n; scan >> n;\n    std::vector<Point>\
+    \ p(n); scan >> p;\n    auto ch = convex_hull(p, true);\n    int itr = min_element(all(ch),\
+    \ [](const Point& a, const Point& b) {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x,\
+    \ b.x) < 0 : cmp(a.y, b.y) < 0;\n    }) - ch.begin();\n    rep (i, ch.size())\
+    \ {\n        print << ch[(itr + i) % ch.size()] << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A\"\n#define\
+    \ GEOMETRY_REAL_TYPE ll\n#include \"../../../other/template.hpp\"\n#include \"\
+    ../../../geometry/Polygon.hpp\"\nusing namespace std;\nint main() {\n    int n;\
+    \ scan >> n;\n    std::vector<Point> p(n); scan >> p;\n    auto ch = convex_hull(p,\
+    \ true);\n    int itr = min_element(all(ch), [](const Point& a, const Point& b)\
+    \ {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n\
+    \    }) - ch.begin();\n    rep (i, ch.size()) {\n        print << ch[(itr + i)\
+    \ % ch.size()] << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -429,26 +515,19 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: data-struct/segment/StaticRangeFrequency.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   requiredBy: []
   timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/data_structure/static_range_frequency.test.cpp
-documentation_of: data-struct/segment/StaticRangeFrequency.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/StaticRangeFrequency.hpp
-- /library/data-struct/segment/StaticRangeFrequency.hpp.html
-title: StaticRangeFrequency
+- /verify/test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+- /verify/test/aoj/CGL/CGL_4_A-convex-hull.test.cpp.html
+title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
 ---
-## 概要
-
-区間に含まれるある値の個数を求める。静的なので、普通に各値ごとに vector を持って二分探索しているだけ。
-
-デフォルトでは `map` を使っているが、 `unordered_map` とかの hashmap を使うことで、オーダーはよくなる。 (コンストラクタと `count(T)` が線形時間/定数時間になる)
-
-- `StaticRangeFrequency(vector<T> v)` : `v` で初期化。 $\Theta(n \log n)$ 。
-- `int count(T x)` : `v` に含まれる `x` の個数を返す。 $\Theta(\log n)$ 。
-- `int count(int l, int r, T x)` : `v` に含まれる `x` の個数を返す。 $\Theta(\log n)$ 。
