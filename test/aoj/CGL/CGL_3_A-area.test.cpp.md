@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
   - icon: ':heavy_check_mark:'
@@ -460,8 +463,46 @@ data:
     \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
     \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
     \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Polygon.hpp\"\n\nclass Polygon\
-    \ : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
+    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
+    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
+    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
+    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
+    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
+    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
+    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
+    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
+    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
+    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
+    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
+    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
+    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
+    \       print.print_char(\"x+\");\n        print << b;\n        print.print_char(\"\
+    y+\");\n        print << c;\n        print.print_char(\"=0\");\n    }\n};\n\n\
+    Real distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x\
+    \ + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal\
+    \ distance(const Line& l, const Point& p) { return distance(p, l); }\n\n// \u5782\
+    \u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const\
+    \ Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
+    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
+    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
+    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
+    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
+    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
+    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
+    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
+    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
+    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
+    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
+    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
+    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Polygon.hpp\"\n\n\
+    class Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
     \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
     \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
     \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
@@ -499,7 +540,13 @@ data:
     \    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0)\
     \ {\n            i = (i + 1) % n;\n        }\n        else {\n            j =\
     \ (j + 1) % n;\n        }\n        chmax(res, abs(p[i] - p[j]));\n    } while\
-    \ (i != si || j != sj);\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\
+    \ (i != si || j != sj);\n    return res;\n}\n\n// cut with line p0-p1 and return\
+    \ left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const Point&\
+    \ p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n   \
+    \     Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1\
+    \ - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0)\
+    \ res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_A-area.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
     \ scan >> p;\n    print << setprec(1) << area(p) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_A\"\n#include\
@@ -517,10 +564,11 @@ data:
   - geometry/Polygon.hpp
   - geometry/template.hpp
   - geometry/Point.hpp
+  - geometry/Line.hpp
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_A-area.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 16:29:28+09:00'
+  timestamp: '2022-09-11 17:27:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_A-area.test.cpp

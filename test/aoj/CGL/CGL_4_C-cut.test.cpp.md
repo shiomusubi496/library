@@ -1,9 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -26,45 +35,37 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/lca-HLD.test.cpp
-    title: test/yosupo/tree/lca-HLD.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/tree/HeavyLightDecomposition.md
-    document_title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-    links: []
-  bundledCode: "#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.00001'
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_C
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_C
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_4_C-cut.test.cpp\"\n#define PROBLEM \"\
+    https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_C\"\n#define ERROR 0.00001\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -407,149 +408,155 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\n\ntemplate<class T>\
-    \ class HeavyLightDecomposition {\nprivate:\n    int n, root, cnt;\n    std::vector<int>\
-    \ ssz, head, vin, vout, par;\n    const Graph<T>& G;\n    int szdfs(int v, int\
-    \ p) {\n        ssz[v] = 1;\n        each_const (e : G[v]) {\n            if (e.to\
-    \ == p) continue;\n            ssz[v] += szdfs(e.to, v);\n        }\n        return\
-    \ ssz[v];\n    }\n    void bldfs(int v, int p) {\n        par[v] = p;\n      \
-    \  vin[v] = cnt++;\n        int idx = -1;\n        each_const (e : G[v]) {\n \
-    \           if (e.to != p) {\n                if (idx == -1 || ssz[idx] < ssz[e.to])\
-    \ idx = e.to;\n            }\n        }\n        if (idx != -1) {\n          \
-    \  head[idx] = head[v];\n            bldfs(idx, v);\n        }\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p && e.to != idx) {\n                head[e.to]\
-    \ = e.to;\n                bldfs(e.to, v);\n            }\n        }\n       \
-    \ vout[v] = cnt;\n    }\n    void init() {\n        n = G.size();\n        ssz.assign(n,\
-    \ -1);\n        szdfs(root, -1);\n        rep (i, n) {\n            if (ssz[i]\
-    \ == -1) szdfs(i, -1);\n        }\n        cnt = 0;\n        head.assign(n, -1);\n\
-    \        head[root] = root;\n        vin.resize(n);\n        vout.resize(n);\n\
-    \        par.resize(n);\n        bldfs(root, -1);\n        rep (i, n) {\n    \
-    \        if (head[i] == -1) {\n                head[i] = i;\n                bldfs(i,\
-    \ -1);\n            }\n        }\n    }\n\npublic:\n    HeavyLightDecomposition(const\
-    \ Graph<T>& G, int root = 0)\n        : root(root), G(G) {\n        init();\n\
-    \    }\n    int get_size(int k) const { return ssz[k]; }\n    std::pair<int, int>\
-    \ get_idx(int k) const { return {vin[k], vout[k]}; }\n    std::pair<int, int>\
-    \ get_pach(int a, int b) const {\n        if (vin[a] < vin[b]) return {a, b};\n\
-    \        return {b, a};\n    }\n    int lca(int u, int v) const {\n        while\
-    \ (head[u] != head[v]) {\n            if (vin[u] > vin[v]) std::swap(u, v);\n\
-    \            v = par[head[v]];\n        }\n        return vin[u] < vin[v] ? u\
-    \ : v;\n    }\n    std::vector<std::pair<int, int>> up_path(int u, int v) const\
-    \ {\n        std::vector<std::pair<int, int>> res;\n        while (head[u] !=\
-    \ head[v]) {\n            res.emplace_back(vin[u], vin[head[u]]);\n          \
-    \  u = par[head[u]];\n        }\n        if (u != v) res.emplace_back(vin[u],\
-    \ vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int, int>>\
-    \ down_path(int u, int v) const {\n        auto res = up_path(v, u);\n       \
-    \ each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
-    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
-    \ v, const F& f) const {\n        return each_vertex(u, v, f, f);\n    }\n   \
-    \ template<class F, class G>\n    void each_vertex(int u, int v, const F& f, const\
-    \ G& g) const {\n        int l = lca(u, v);\n        auto func = [&](int a, int\
-    \ b) {\n            if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n\
-    \        };\n        each_const (p : up_path(u, l)) func(p.first, p.second);\n\
-    \        func(vin[l], vin[l]);\n        each_const (p : down_path(l, v)) func(p.first,\
-    \ p.second);\n    }\n    template<class F> void each_edge(int u, int v, const\
-    \ F& f) const {\n        return each_edge(u, v, f, f);\n    }\n    template<class\
-    \ F, class G>\n    void each_edge(int u, int v, const F& f, const G& g) const\
-    \ {\n        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n   \
-    \         if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n\
-    \        each_const (p : up_path(u, l)) func(p.first, p.second);\n        each_const\
-    \ (p : down_path(l, v)) func(p.first, p.second);\n    }\n    template<class F>\
-    \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
-    \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
-    \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
-    \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
-    \    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e : G[v])\
-    \ {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to, v);\n\
-    \        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p) {\n  \
-    \      par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p) {\n                if (idx == -1 ||\
-    \ ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n        if (idx\
-    \ != -1) {\n            head[idx] = head[v];\n            bldfs(idx, v);\n   \
-    \     }\n        each_const (e : G[v]) {\n            if (e.to != p && e.to !=\
-    \ idx) {\n                head[e.to] = e.to;\n                bldfs(e.to, v);\n\
-    \            }\n        }\n        vout[v] = cnt;\n    }\n    void init() {\n\
-    \        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
-    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
-    \        cnt = 0;\n        head.assign(n, -1);\n        head[root] = root;\n \
-    \       vin.resize(n);\n        vout.resize(n);\n        par.resize(n);\n    \
-    \    bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1) {\n\
-    \                head[i] = i;\n                bldfs(i, -1);\n            }\n\
-    \        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>& G, int\
-    \ root = 0)\n        : root(root), G(G) {\n        init();\n    }\n    int get_size(int\
-    \ k) const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const {\
-    \ return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b)\
-    \ const {\n        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n\
-    \    }\n    int lca(int u, int v) const {\n        while (head[u] != head[v])\
-    \ {\n            if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
-    \        }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
-    \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
-    \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
-    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
-    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
-    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
-    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
-    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
-    \ v, const F& f) const {\n        return each_vertex(u, v, f, f);\n    }\n   \
-    \ template<class F, class G>\n    void each_vertex(int u, int v, const F& f, const\
-    \ G& g) const {\n        int l = lca(u, v);\n        auto func = [&](int a, int\
-    \ b) {\n            if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n\
-    \        };\n        each_const (p : up_path(u, l)) func(p.first, p.second);\n\
-    \        func(vin[l], vin[l]);\n        each_const (p : down_path(l, v)) func(p.first,\
-    \ p.second);\n    }\n    template<class F> void each_edge(int u, int v, const\
-    \ F& f) const {\n        return each_edge(u, v, f, f);\n    }\n    template<class\
-    \ F, class G>\n    void each_edge(int u, int v, const F& f, const G& g) const\
-    \ {\n        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n   \
-    \         if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n\
-    \        each_const (p : up_path(u, l)) func(p.first, p.second);\n        each_const\
-    \ (p : down_path(l, v)) func(p.first, p.second);\n    }\n    template<class F>\
-    \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
-    \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
-    \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
+    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
+    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
+    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
+    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
+    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
+    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
+    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
+    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
+    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
+    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
+    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
+    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
+    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
+    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
+    \       print.print_char(\"x+\");\n        print << b;\n        print.print_char(\"\
+    y+\");\n        print << c;\n        print.print_char(\"=0\");\n    }\n};\n\n\
+    Real distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x\
+    \ + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal\
+    \ distance(const Line& l, const Point& p) { return distance(p, l); }\n\n// \u5782\
+    \u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const\
+    \ Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
+    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
+    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
+    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
+    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
+    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
+    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
+    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
+    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
+    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
+    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
+    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
+    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Polygon.hpp\"\n\n\
+    class Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
+    \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
+    \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
+    \ res = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n  \
+    \  }\n    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n\
+    \            (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return\
+    \ false;\n        }\n    }\n    return true;\n}\n\nbool contains(const Polygon&\
+    \ p, const Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n\
+    \    rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
+    \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
+    \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    res.pop_back();\n    return res;\n}\n\nReal diameter(const Polygon&\
+    \ p) {\n    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n\
+    \        if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x)\
+    \ < 0) j = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int si = i, sj = j;\n\
+    \    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0)\
+    \ {\n            i = (i + 1) % n;\n        }\n        else {\n            j =\
+    \ (j + 1) % n;\n        }\n        chmax(res, abs(p[i] - p[j]));\n    } while\
+    \ (i != si || j != sj);\n    return res;\n}\n\n// cut with line p0-p1 and return\
+    \ left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const Point&\
+    \ p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n   \
+    \     Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1\
+    \ - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0)\
+    \ res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_C-cut.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a, b; scan >>\
+    \ a >> b;\n        print << area(polygon_cut(p, a, b)) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_C\"\n#define\
+    \ ERROR 0.00001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a, b; scan >>\
+    \ a >> b;\n        print << area(polygon_cut(p, a, b)) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -558,34 +565,20 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/tree/HeavyLightDecomposition.hpp
+  - geometry/Polygon.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  - geometry/Line.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_4_C-cut.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/tree/lca-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-documentation_of: graph/tree/HeavyLightDecomposition.hpp
+  timestamp: '2022-09-11 17:27:16+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_4_C-cut.test.cpp
 layout: document
 redirect_from:
-- /library/graph/tree/HeavyLightDecomposition.hpp
-- /library/graph/tree/HeavyLightDecomposition.hpp.html
-title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+- /verify/test/aoj/CGL/CGL_4_C-cut.test.cpp
+- /verify/test/aoj/CGL/CGL_4_C-cut.test.cpp.html
+title: test/aoj/CGL/CGL_4_C-cut.test.cpp
 ---
-## 概要
-
-木に対する様々なクエリを扱える。計算量はオイラーツアーより悪いが、パスに対するクエリや部分木に対するクエリを同時に扱える。
-
-うまく木をいくつかの列に分解することで、パスを $O(\log N)$ 個の列に分割する。
-
-- `HeavyLightDecomposition(Graph<T> G)` : グラフ `G` に大して HL 分解をする。 $\Theta(N)$ 。
-- `pair<int, int> get_idx(int v)` : 頂点 `v` に入る index と出る index のペアを返す。 $\Theta(1)$ 。
-- `int lca(int v, int u)` : 頂点 `v` と `u` の最小共通祖先(Lowest Common Ancestor)を返す。 StaticRMQ::prod が $\Theta(f(N))$ で動くとき、 $\Theta(f(N))$ 。
-- `void each_vertex_subtree(int v, void f(int, int))` : `v` の部分木の頂点に対して `f` を適用する。計算量は `f` のそれに比例。
-- `void each_edge_subtree(int v, void f(int, int))` : 同様に辺に対して適用する。
-- `void each_vertex(int l, int r, void f(int, int), void g(int, int))` : `l` から `r` までのパスの頂点に対して `f` を適用する。可換でない演算を使う場合、 `g` は逆向きに演算をした場合の結果を返すべき。 `Monoid::ReverseMonoid` を活用する。 `f` が $\Theta(t)$ で動く場合、計算量 $\Theta(t \log N)$ 。
-- `void each_edge(int l, int r, void f(int, int), void g(int, int))` : 同様に辺に対して適用する。

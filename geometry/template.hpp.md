@@ -72,6 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
     title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_4_C-cut.test.cpp
+    title: test/aoj/CGL/CGL_4_C-cut.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -474,6 +477,7 @@ data:
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp

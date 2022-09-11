@@ -30,6 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
   _extendedVerifiedWith:
@@ -51,6 +54,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_D-distance.test.cpp
     title: test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_3_A-area.test.cpp
+    title: test/aoj/CGL/CGL_3_A-area.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_3_C-contain.test.cpp
+    title: test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+    title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
+    title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_4_C-cut.test.cpp
+    title: test/aoj/CGL/CGL_4_C-cut.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -566,15 +587,22 @@ data:
   path: geometry/Line.hpp
   requiredBy:
   - geometry/Segment.hpp
+  - geometry/Polygon.hpp
   timestamp: '2022-09-11 12:55:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
+  - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
 documentation_of: geometry/Line.hpp
 layout: document
 redirect_from:
