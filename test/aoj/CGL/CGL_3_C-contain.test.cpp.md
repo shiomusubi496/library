@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -482,20 +482,20 @@ data:
     }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
     \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
     \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);\n    });\n    Polygon res;\n    rep\
-    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
     \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
     \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
     \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
-    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
-    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
-    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
-    \    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n); scan\
-    \ >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a; scan >> a;\n \
-    \       print << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) <<\
+    \    }\n    res.pop_back();\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_C-contain.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
+    \ scan >> p;\n    int q; scan >> q;\n    rep (q) {\n        Point a; scan >> a;\n\
+    \        print << (contains(p, a) ? 1 : 0) + (contains(p, a, false) ? 1 : 0) <<\
     \ endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\n\
@@ -517,7 +517,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_C-contain.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
+  timestamp: '2022-09-11 14:38:40+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_C-contain.test.cpp

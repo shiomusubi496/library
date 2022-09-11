@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A
@@ -483,18 +483,18 @@ data:
     }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
     \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
     \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);\n    });\n    Polygon res;\n    rep\
-    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
     \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
     \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
     \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
-    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
-    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
-    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
-    \    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    int n; scan >> n;\n    std::vector<Point>\
+    \    }\n    res.pop_back();\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    std::vector<Point>\
     \ p(n); scan >> p;\n    auto ch = convex_hull(p, true);\n    int itr = min_element(all(ch),\
     \ [](const Point& a, const Point& b) {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x,\
     \ b.x) < 0 : cmp(a.y, b.y) < 0;\n    }) - ch.begin();\n    print << ch.size()\
@@ -522,8 +522,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 14:15:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-11 14:38:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
 layout: document

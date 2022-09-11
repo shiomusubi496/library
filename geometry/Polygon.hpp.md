@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_C-contain.test.cpp
     title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -487,17 +487,17 @@ data:
     }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
     \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
     \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);\n    });\n    Polygon res;\n    rep\
-    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
     \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
     \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
     \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
-    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
-    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
-    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
-    \    return res;\n}\n"
+    \    }\n    res.pop_back();\n    return res;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
     \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
     \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
@@ -520,17 +520,17 @@ data:
     }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
     \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
     \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y);\n    });\n    Polygon res;\n    rep\
-    \ (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c = ccw(res[res.size()\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
     \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
     \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
     \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    int t = res.size();\n    rrep (i, n - 1) {\n        while ((int)res.size()\
-    \ >= t + 1) {\n            CCW c = ccw(res[res.size() - 2], res.back(), A[i]);\n\
-    \            if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c\
-    \ == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n \
-    \           else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
-    \    return res;\n}\n"
+    \    }\n    res.pop_back();\n    return res;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -544,8 +544,8 @@ data:
   isVerificationFile: false
   path: geometry/Polygon.hpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-11 14:38:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
