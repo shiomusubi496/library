@@ -10,6 +10,7 @@ int main() {
     int itr = min_element(all(ch), [](const Point& a, const Point& b) {
         return cmp(a.y, b.y) == 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;
     }) - ch.begin();
+    print << ch.size() << endl;
     rep (i, ch.size()) {
         print << ch[(itr + i) % ch.size()] << endl;
     }
