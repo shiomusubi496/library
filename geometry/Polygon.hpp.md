@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -42,12 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
     title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Polygon.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -562,7 +562,7 @@ data:
   path: geometry/Polygon.hpp
   requiredBy: []
   timestamp: '2022-09-11 16:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
