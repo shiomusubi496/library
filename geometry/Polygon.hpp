@@ -87,3 +87,24 @@ Polygon convex_hull(std::vector<Point> A, bool allow_straight = false) {
     res.pop_back();
     return res;
 }
+
+Real diameter(const Polygon& p) {
+    const int n = p.size();
+    int i = 0, j = 0;
+    rep (k, n) {
+        if (cmp(p[k].x, p[i].x) > 0) i = k;
+        if (cmp(p[k].x, p[j].x) < 0) j = k;
+    }
+    Real res = abs(p[i] - p[j]);
+    int si = i, sj = j;
+    do {
+        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0) {
+            i = (i + 1) % n;
+        }
+        else {
+            j = (j + 1) % n;
+        }
+        chmax(res, abs(p[i] - p[j]));
+    } while (i != si || j != sj);
+    return res;
+}
