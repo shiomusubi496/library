@@ -27,3 +27,25 @@ bool is_convex(const Polygon& p, bool allow_straight = false) {
     }
     return true;
 }
+
+bool contains(const Polygon& p, const Point& q, bool true_when_on_edge = true) {
+    const int n = p.size();
+    rep (i, n) {
+        if (p[i] == q) return true_when_on_edge;
+        Point a = p[i] - q;
+        Point b = p[(i + 1) % n] - q;
+        if (cmp(cross(a, b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {
+            return true_when_on_edge;
+        }
+    }
+    bool res = false;
+    rep (i, n) {
+        Point a = p[i] - q;
+        Point b = p[(i + 1) % n] - q;
+        if (cmp(a.y, b.y) > 0) std::swap(a, b);
+        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a, b), 0) < 0) {
+            res = !res;
+        }
+    }
+    return res;
+}

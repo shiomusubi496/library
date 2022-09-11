@@ -38,6 +38,7 @@ public:
         std::vector<ull> pows;
 
     public:
+        Hash() = default;
         template<class Cont> Hash(ull b, const Cont& str) : BASE(b) {
             n = str.size();
             hash.resize(n + 1);
