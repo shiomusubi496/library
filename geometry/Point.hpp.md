@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -69,9 +69,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
+    title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -559,8 +562,9 @@ data:
   - geometry/Segment.hpp
   - geometry/Polygon.hpp
   timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp

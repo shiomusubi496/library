@@ -27,12 +27,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SegmentTreeBeats.md
     document_title: SegmentTreeBeats!
@@ -737,7 +737,7 @@ data:
   path: data-struct/segment/SegmentTreeBeats.hpp
   requiredBy: []
   timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: data-struct/segment/SegmentTreeBeats.hpp

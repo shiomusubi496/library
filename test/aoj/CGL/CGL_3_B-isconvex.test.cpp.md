@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -492,7 +492,14 @@ data:
     \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
     \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
     \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    res.pop_back();\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\
+    \    }\n    res.pop_back();\n    return res;\n}\n\nReal diameter(const Polygon&\
+    \ p) {\n    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n\
+    \        if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x)\
+    \ < 0) j = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int si = i, sj = j;\n\
+    \    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0)\
+    \ {\n            i = (i + 1) % n;\n        }\n        else {\n            j =\
+    \ (j + 1) % n;\n        }\n        chmax(res, abs(p[i] - p[j]));\n    } while\
+    \ (i != si || j != sj);\n    return res;\n}\n#line 4 \"test/aoj/CGL/CGL_3_B-isconvex.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
     \ scan >> p;\n    print << (is_convex(p, true) ? 1 : 0) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_3_B\"\n#include\
@@ -513,7 +520,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 14:38:40+09:00'
+  timestamp: '2022-09-11 16:29:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
