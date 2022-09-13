@@ -30,12 +30,12 @@ public:
 };
 
 enum class circle_relation {
-    IN = 0, // 内包
-    INSCRIBE = 1, // 内接
-    INTERSECT = 2, // 交わる
+    IN = 0,           // 内包
+    INSCRIBE = 1,     // 内接
+    INTERSECT = 2,    // 交わる
     CIRCUMSCRIBE = 3, // 外接
-    SEPARATE = 4, // 離れている
-    SAME = 5, // 同じ
+    SEPARATE = 4,     // 離れている
+    SAME = 5,         // 等しい
 };
 
 circle_relation relation(const Circle& c1, const Circle& c2) {
