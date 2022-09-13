@@ -136,6 +136,9 @@ data:
       path: geometry/Segment.hpp
       title: geometry/Segment.hpp
     - icon: ':heavy_check_mark:'
+      path: geometry/Triangle.hpp
+      title: geometry/Triangle.hpp
+    - icon: ':heavy_check_mark:'
       path: geometry/template.hpp
       title: geometry/template.hpp
   - name: graph
@@ -432,6 +435,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
       title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
+      title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+      title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   - name: test/aoj/DPL
     pages:
     - icon: ':heavy_check_mark:'

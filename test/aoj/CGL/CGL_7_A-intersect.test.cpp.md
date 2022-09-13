@@ -471,19 +471,20 @@ data:
     \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
     \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
     \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
-    \    }\n};\n\nenum class circle_relation {\n    IN = 0, // \u5185\u5305\n    INSCRIBE\
-    \ = 1, // \u5185\u63A5\n    INTERSECT = 2, // \u4EA4\u308F\u308B\n    CIRCUMSCRIBE\
-    \ = 3, // \u5916\u63A5\n    SEPARATE = 4, // \u96E2\u308C\u3066\u3044\u308B\n\
-    \    SAME = 5, // \u540C\u3058\n};\n\ncircle_relation relation(const Circle& c1,\
-    \ const Circle& c2) {\n    if (c1 == c2) return circle_relation::SAME;\n    const\
-    \ Real d = norm(c1.c - c2.c);\n    const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n\
-    \    if (cmp(d, r1 * r1) > 0) return circle_relation::SEPARATE;\n    if (cmp(d,\
-    \ r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n    if (cmp(d, r2 * r2)\
-    \ > 0) return circle_relation::INTERSECT;\n    if (cmp(d, r2 * r2) == 0) return\
-    \ circle_relation::INSCRIBE;\n    return circle_relation::IN;\n}\n#line 4 \"test/aoj/CGL/CGL_7_A-intersect.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    Point p, q;\n    Real r, s;\n    scan\
-    \ >> p >> r >> q >> s;\n    Circle c1(p, r), c2(q, s);\n    cout << (int)relation(c1,\
-    \ c2) << endl;\n}\n"
+    \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
+    \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
+    \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
+    \u308C\u3066\u3044\u308B\n    SAME = 5,         // \u7B49\u3057\u3044\n};\n\n\
+    circle_relation relation(const Circle& c1, const Circle& c2) {\n    if (c1 ==\
+    \ c2) return circle_relation::SAME;\n    const Real d = norm(c1.c - c2.c);\n \
+    \   const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n    if (cmp(d, r1 * r1) >\
+    \ 0) return circle_relation::SEPARATE;\n    if (cmp(d, r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n\
+    \    if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;\n    if (cmp(d,\
+    \ r2 * r2) == 0) return circle_relation::INSCRIBE;\n    return circle_relation::IN;\n\
+    }\n#line 4 \"test/aoj/CGL/CGL_7_A-intersect.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    Point p, q;\n    Real r, s;\n    scan >> p >> r >> q >> s;\n\
+    \    Circle c1(p, r), c2(q, s);\n    cout << (int)relation(c1, c2) << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\n\
     using namespace std;\nint main() {\n    Point p, q;\n    Real r, s;\n    scan\
@@ -503,7 +504,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
   requiredBy: []
-  timestamp: '2022-09-13 18:43:28+09:00'
+  timestamp: '2022-09-13 20:45:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_7_A-intersect.test.cpp

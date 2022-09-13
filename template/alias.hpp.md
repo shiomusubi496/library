@@ -127,6 +127,9 @@ data:
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
   - icon: ':heavy_check_mark:'
+    path: geometry/Triangle.hpp
+    title: geometry/Triangle.hpp
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':heavy_check_mark:'
@@ -375,6 +378,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
+    title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+    title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
@@ -738,6 +747,7 @@ data:
   - geometry/Line.hpp
   - geometry/Circle.hpp
   - geometry/Segment.hpp
+  - geometry/Triangle.hpp
   - geometry/Polygon.hpp
   - geometry/template.hpp
   - random/Timer.hpp
@@ -898,10 +908,12 @@ data:
   - test/aoj/CGL/CGL_3_A-area.test.cpp
   - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
+  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   - test/aoj/CGL/CGL_7_A-intersect.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
