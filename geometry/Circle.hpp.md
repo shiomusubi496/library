@@ -31,7 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: geometry/All.hpp
+    title: geometry/All.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
@@ -643,7 +646,8 @@ data:
   - geometry/Line.hpp
   isVerificationFile: false
   path: geometry/Circle.hpp
-  requiredBy: []
+  requiredBy:
+  - geometry/All.hpp
   timestamp: '2022-09-16 21:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -26,6 +26,9 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: geometry/All.hpp
+    title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
@@ -588,6 +591,7 @@ data:
   isVerificationFile: false
   path: geometry/Point.hpp
   requiredBy:
+  - geometry/All.hpp
   - geometry/Line.hpp
   - geometry/Circle.hpp
   - geometry/Segment.hpp

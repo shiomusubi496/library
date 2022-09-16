@@ -120,6 +120,9 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: geometry
     pages:
+    - icon: ':warning:'
+      path: geometry/All.hpp
+      title: geometry/All.hpp
     - icon: ':heavy_check_mark:'
       path: geometry/Circle.hpp
       title: geometry/Circle.hpp

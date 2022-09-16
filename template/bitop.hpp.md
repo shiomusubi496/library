@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
+  - icon: ':warning:'
+    path: geometry/All.hpp
+    title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
@@ -801,6 +804,7 @@ data:
   isVerificationFile: false
   path: template/bitop.hpp
   requiredBy:
+  - geometry/All.hpp
   - geometry/Point.hpp
   - geometry/Line.hpp
   - geometry/Circle.hpp

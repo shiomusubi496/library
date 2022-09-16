@@ -2,8 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: geometry/Circle.hpp
+    title: geometry/Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Polygon.hpp
+    title: geometry/Polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Segment.hpp
+    title: geometry/Segment.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Triangle.hpp
+    title: geometry/Triangle.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
@@ -28,87 +43,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: geometry/All.hpp
-    title: geometry/All.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Circle.hpp
-    title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Polygon.hpp
-    title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Segment.hpp
-    title: geometry/Segment.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Triangle.hpp
-    title: geometry/Triangle.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_A-projection.test.cpp
-    title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-    title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-    title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-    title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-    title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_D-distance.test.cpp
-    title: test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_A-area.test.cpp
-    title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_C-contain.test.cpp
-    title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-    title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-    title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_C-cut.test.cpp
-    title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-    title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-    title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-    title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"geometry/Line.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
-    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+  bundledCode: "#line 2 \"geometry/All.hpp\"\n\n#line 2 \"geometry/template.hpp\"\n\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -525,37 +468,38 @@ data:
     \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
     \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
     \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n#line 5 \"geometry/Line.hpp\"\n\nclass Line {\n\
-    public:\n    Real a, b, c; // ax + by + c = 0\n    Line() : a(0), b(1), c(0) {}\n\
-    \    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n    Line(const Point&\
-    \ p1, const Point& p2) {\n        a = p2.y - p1.y;\n        b = p1.x - p2.x;\n\
-    \        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend bool operator==(const\
-    \ Line& l1, const Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) ==\
-    \ 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) == 0;\n    }\n    friend\
-    \ bool operator!=(const Line& l1, const Line& l2) {\n        return !(l1 == l2);\n\
-    \    }\n    friend bool operator<(const Line& l1, const Line& l2) {\n        return\
-    \ cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n               (cmp(l1.a * l2.b, l2.a\
-    \ * l1.b) == 0 &&\n                cmp(l1.b * l2.c, l2.b * l1.c) < 0);\n    }\n\
-    \    friend bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n\
-    \    friend bool operator<=(const Line& l1, const Line& l2) {\n        return\
-    \ !(l2 < l1);\n    }\n    friend bool operator>=(const Line& l1, const Line& l2)\
-    \ {\n        return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n\
-    \        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print << a;\n        print.print_char('x');\n\
-    \        print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
-    \        print.print_char('+');\n        print << c;\n        print.print_char('=');\n\
-    \        print.print_char('0');\n    }\n};\n\nReal distance(const Point& p, const\
-    \ Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a\
-    \ * l.a + l.b * l.b);\n}\nReal distance(const Line& l, const Point& p) { return\
-    \ distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const\
-    \ Point& p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2\
-    \ + (p2 - p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const\
-    \ Line& l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n\
-    }\n// \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line&\
-    \ l2) {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\
-    \u7DDA\nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b,\
-    \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
-    \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
+    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
+    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
+    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
+    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
+    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
+    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
+    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
+    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
+    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
+    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
+    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
+    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
+    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
+    \       print.print_char('x');\n        print.print_char('+');\n        print\
+    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
+    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
+    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
+    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
+    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
+    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
+    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
+    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
+    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
+    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
+    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
+    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
+    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
     }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
     \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
     \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
@@ -563,46 +507,195 @@ data:
     \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
     // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
     \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
-    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n\nclass\
-    \ Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() : a(0), b(1),\
-    \ c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n    Line(const\
-    \ Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n        b = p1.x -\
-    \ p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend bool operator==(const\
-    \ Line& l1, const Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) ==\
-    \ 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) == 0;\n    }\n    friend\
-    \ bool operator!=(const Line& l1, const Line& l2) {\n        return !(l1 == l2);\n\
-    \    }\n    friend bool operator<(const Line& l1, const Line& l2) {\n        return\
-    \ cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n               (cmp(l1.a * l2.b, l2.a\
-    \ * l1.b) == 0 &&\n                cmp(l1.b * l2.c, l2.b * l1.c) < 0);\n    }\n\
-    \    friend bool operator>(const Line& l1, const Line& l2) { return l2 < l1; }\n\
-    \    friend bool operator<=(const Line& l1, const Line& l2) {\n        return\
-    \ !(l2 < l1);\n    }\n    friend bool operator>=(const Line& l1, const Line& l2)\
-    \ {\n        return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n\
-    \        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print << a;\n        print.print_char('x');\n\
-    \        print.print_char('+');\n        print << b;\n        print.print_char('y');\n\
-    \        print.print_char('+');\n        print << c;\n        print.print_char('=');\n\
-    \        print.print_char('0');\n    }\n};\n\nReal distance(const Point& p, const\
-    \ Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a\
-    \ * l.a + l.b * l.b);\n}\nReal distance(const Line& l, const Point& p) { return\
-    \ distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const\
-    \ Point& p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2\
-    \ + (p2 - p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const\
-    \ Line& l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n\
-    }\n// \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line&\
-    \ l2) {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\
-    \u7DDA\nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b,\
-    \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
-    \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
-    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
-    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
-    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
-    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
-    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
-    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
-    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
-    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n"
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 2\
+    \ \"geometry/Segment.hpp\"\n\n#line 6 \"geometry/Segment.hpp\"\n\nclass Segment\
+    \ {\npublic:\n    Point p1, p2;\n    Segment() = default;\n    Segment(const Point&\
+    \ p1, const Point& p2) : p1(p1), p2(p2) {}\n    friend bool operator==(const Segment&\
+    \ s1, const Segment& s2) {\n        return s1.p1 == s2.p1 && s1.p2 == s2.p2;\n\
+    \    }\n    friend bool operator!=(const Segment& s1, const Segment& s2) {\n \
+    \       return !(s1 == s2);\n    }\n    friend bool operator<(const Segment& s1,\
+    \ const Segment& s2) {\n        return s1.p1 < s2.p1 || (s1.p1 == s2.p1 && s1.p2\
+    \ < s2.p2);\n    }\n    friend bool operator>(const Segment& s1, const Segment&\
+    \ s2) {\n        return s2 < s1;\n    }\n    friend bool operator<=(const Segment&\
+    \ s1, const Segment& s2) {\n        return !(s2 < s1);\n    }\n    friend bool\
+    \ operator>=(const Segment& s1, const Segment& s2) {\n        return !(s1 < s2);\n\
+    \    }\n    bool is_on(const Point& p) const {\n        return p == p1 || p ==\
+    \ p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;\n    }\n    explicit operator Line()\
+    \ const { return Line(p1, p2); }\n    template<class Pr> void debug(Pr& print)\
+    \ const {\n        print << p1;\n        print.print_char('-');\n        print.print_char('>');\n\
+    \        print << p2;\n    }\n    template<class Sc> void scan(Sc& scan) { scan\
+    \ >> p1 >> p2; }\n};\n\nbool is_parallel(const Segment& s1, const Segment& s2)\
+    \ {\n    return is_parallel(Line(s1), Line(s2));\n}\nbool is_orthogonal(const\
+    \ Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1), Line(s2));\n\
+    }\nLine perpendicular_bisector(const Segment& s) {\n    return perpendicular_bisector(s.p1,\
+    \ s.p2);\n}\n\nbool is_intersect(const Segment& s1, const Segment& s2) {\n   \
+    \ if (is_parallel(s1, s2)) {\n        return s1.is_on(s2.p1) || s1.is_on(s2.p2)\
+    \ || s2.is_on(s1.p1) ||\n               s2.is_on(s1.p2);\n    }\n    Point p =\
+    \ intersection(Line(s1), Line(s2));\n    return s1.is_on(p) && s2.is_on(p);\n\
+    }\nbool is_intersect(const Segment& s1, const Line& l) {\n    if (!is_intersect(Line(s1),\
+    \ l)) return false;\n    Point p = intersection(Line(s1), l);\n    return s1.is_on(p);\n\
+    }\nbool is_intersect(const Line& l, const Segment& s1) {\n    return is_intersect(s1,\
+    \ l);\n}\n\nReal distance(const Point& p, const Segment& s) {\n    if (s.p1 ==\
+    \ s.p2) return distance(p, s.p1);\n    if (dot(s.p2 - s.p1, p - s.p1) < 0) return\
+    \ distance(p, s.p1);\n    if (dot(s.p1 - s.p2, p - s.p2) < 0) return distance(p,\
+    \ s.p2);\n    return distance(p, Line(s));\n}\nReal distance(const Segment& s,\
+    \ const Point& p) { return distance(p, s); }\nReal distance(const Segment& s1,\
+    \ const Segment& s2) {\n    if (is_intersect(s1, s2)) return 0;\n    return std::min({distance(s1.p1,\
+    \ s2), distance(s1.p2, s2),\n                     distance(s2.p1, s1), distance(s2.p2,\
+    \ s1)});\n}\nReal distance(const Segment& s, const Line& l) {\n    if (is_intersect(s,\
+    \ l)) return 0;\n    return std::min(distance(s.p1, l), distance(s.p2, l));\n\
+    }\nReal distance(const Line& l, const Segment& s) { return distance(s, l); }\n\
+    #line 2 \"geometry/Polygon.hpp\"\n\n#line 6 \"geometry/Polygon.hpp\"\n\nclass\
+    \ Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
+    \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
+    \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
+    \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
+    \ res = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n  \
+    \  }\n    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
+    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
+    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n\
+    \            (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return\
+    \ false;\n        }\n    }\n    return true;\n}\n\nbool contains(const Polygon&\
+    \ p, const Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n\
+    \    rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
+    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
+    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
+    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
+    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
+    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
+    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
+    }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
+    \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
+    \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
+    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
+    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
+    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
+    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
+    \         res.pop_back();\n            }\n            else break;\n        }\n\
+    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
+    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
+    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
+    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
+    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
+    \    }\n    res.pop_back();\n    return res;\n}\n\nReal diameter(const Polygon&\
+    \ p) {\n    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n\
+    \        if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x)\
+    \ < 0) j = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int si = i, sj = j;\n\
+    \    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0)\
+    \ {\n            i = (i + 1) % n;\n        }\n        else {\n            j =\
+    \ (j + 1) % n;\n        }\n        chmax(res, abs(p[i] - p[j]));\n    } while\
+    \ (i != si || j != sj);\n    return res;\n}\n\n// cut with line p0-p1 and return\
+    \ left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const Point&\
+    \ p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n   \
+    \     Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1\
+    \ - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0)\
+    \ res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 2 \"geometry/Triangle.hpp\"\
+    \n\n#line 6 \"geometry/Triangle.hpp\"\n\nclass Triangle {\npublic:\n    Point\
+    \ p1, p2, p3;\n    Triangle() = default;\n    Triangle(const Point& p1, const\
+    \ Point& p2, const Point& p3)\n        : p1(p1), p2(p2), p3(p3) {}\n\n    Real\
+    \ area() const { return std::abs(cross(p2 - p1, p3 - p1)) / 2; }\n    Point centroid()\
+    \ const { return (p1 + p2 + p3) / 3; }\n    Point circumcenter() const {\n   \
+    \     Line l1 = perpendicular_bisector(p1, p2);\n        Line l2 = perpendicular_bisector(p2,\
+    \ p3);\n        return intersection(l1, l2);\n    }\n    Real circumradius() const\
+    \ { return distance(p1, circumcenter()); }\n    Point incenter() const {\n   \
+    \     Real a = distance(p2, p3);\n        Real b = distance(p3, p1);\n       \
+    \ Real c = distance(p1, p2);\n        return (a * p1 + b * p2 + c * p3) / (a +\
+    \ b + c);\n    }\n    Real inradius() const {\n        return 2 * area() /\n \
+    \              (distance(p1, p2) + distance(p2, p3) + distance(p3, p1));\n   \
+    \ }\n    Point orthocenter() const {\n        return intersection(perpendicular(Line(p1,\
+    \ p2), p3),\n                            perpendicular(Line(p2, p3), p1));\n \
+    \   }\n    std::array<Point, 3> excenter() const {\n        Real a = distance(p2,\
+    \ p3);\n        Real b = distance(p3, p1);\n        Real c = distance(p1, p2);\n\
+    \        return {(-a * p1 + b * p2 + c * p3) / (-a + b + c),\n               \
+    \ (a * p1 - b * p2 + c * p3) / (a - b + c),\n                (a * p1 + b * p2\
+    \ - c * p3) / (a + b - c)};\n    }\n    std::array<Real, 3> exradius() const {\n\
+    \        auto a = excenter();\n        Line l(p1, p2);\n        return {distance(a[0],\
+    \ l), distance(a[1], l), distance(a[2], l)};\n    }\n    Point nine_point_center()\
+    \ const {\n        return (orthocenter() + circumcenter()) / 2;\n    }\n    Real\
+    \ nine_point_radius() const { return circumradius() / 2; }\n\n    template<class\
+    \ Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n    template<class Pr>\
+    \ void debug(Pr& print) const {\n        print.print_char('{');\n        print\
+    \ << p1;\n        print.print_char(' ');\n        print << p2;\n        print.print_char('\
+    \ ');\n        print << p3;\n        print.print_char('}');\n    }\n};\n#line\
+    \ 2 \"geometry/Circle.hpp\"\n\n#line 6 \"geometry/Circle.hpp\"\n\nclass Circle\
+    \ {\npublic:\n    Point c;\n    Real r;\n    Circle() : c(Point()), r(0) {}\n\
+    \    Circle(Point c, Real r) : c(c), r(r) {}\n    friend bool operator==(const\
+    \ Circle& c1, const Circle& c2) {\n        return c1.c == c2.c && cmp(c1.r, c2.r)\
+    \ == 0;\n    }\n    friend bool operator!=(const Circle& c1, const Circle& c2)\
+    \ {\n        return !(c1 == c2);\n    }\n    friend bool operator<(const Circle&\
+    \ c1, const Circle& c2) {\n        return c1.c < c2.c || (c1.c == c2.c && cmp(c1.r,\
+    \ c2.r) < 0);\n    }\n    friend bool operator>(const Circle& c1, const Circle&\
+    \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
+    \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
+    \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
+    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
+    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
+    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
+    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
+    \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
+    \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
+    \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
+    \u308C\u3066\u3044\u308B\n    SAME = 5,         // \u7B49\u3057\u3044\n};\n\n\
+    circle_relation relation(const Circle& c1, const Circle& c2) {\n    if (c1 ==\
+    \ c2) return circle_relation::SAME;\n    const Real d = norm(c1.c - c2.c);\n \
+    \   const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n    if (cmp(d, r1 * r1) >\
+    \ 0) return circle_relation::SEPARATE;\n    if (cmp(d, r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n\
+    \    if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;\n    if (cmp(d,\
+    \ r2 * r2) == 0) return circle_relation::INSCRIBE;\n    return circle_relation::IN;\n\
+    }\n\nstd::vector<Point> intersections(const Circle& c, const Line& l) {\n    const\
+    \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
+    \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
+    \  const Point v =\n        Point(l.b, -l.a) *\n        std::sqrt(std::max<Real>((c.r\
+    \ * c.r - d) / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\n\
+    Line radical_axis(const Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x,\
+    \ b = c1.c.y, r = c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n  \
+    \  const Real p = -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a *\
+    \ a + b * b - c * c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\n\
+    std::vector<Point> intersections(const Circle& c1, const Circle& c2) {\n    const\
+    \ Line l = radical_axis(c1, c2);\n    return intersections(c1, l);\n}\n\nLine\
+    \ tangent_at_point(const Circle& c, const Point& p) {\n    assert(cmp(norm(c.c\
+    \ - p), c.r * c.r) == 0);\n    const Real a = c.c.x, b = c.c.y;\n    const Real\
+    \ px = p.x, py = p.y;\n    return Line(px - a, py - b, (a - px) * a + (b - py)\
+    \ * b - c.r * c.r);\n}\n\nstd::vector<Point> tangent_points(const Circle& c, const\
+    \ Point& p) {\n    const Real d = norm(c.c - p);\n    const Real r2 = c.r * c.r;\n\
+    \    if (cmp(d, r2) < 0) return {};\n    if (cmp(d, r2) == 0) return {p};\n  \
+    \  const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));\n    return intersections(c,\
+    \ c2);\n}\n\nstd::vector<Point> common_tangents(const Circle& c1, const Circle&\
+    \ c2) {\n    assert(c1 != c2);\n    const Real d = norm(c1.c - c2.c);\n    const\
+    \ Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n    if (cmp(d, (r1\
+    \ - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
+    \        res.push_back(c1.c + (cmp(r1, r2) < 0 ? -v : v));\n    }\n    else if\
+    \ (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n        if (cmp(r1, r2) == 0) {\n   \
+    \         const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));\n  \
+    \          res.push_back(c1.c + v);\n            res.push_back(c1.c - v);\n  \
+    \      }\n        else {\n            const Point v = (c1.c * r2 - c2.c * r1)\
+    \ / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
+    \ std::back_inserter(res));\n        }\n        if (cmp(d, (r1 + r2) * (r1 + r2))\
+    \ == 0) {\n            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
+    \            res.push_back(c1.c + v);\n        }\n        else if (cmp(d, (r1\
+    \ + r2) * (r1 + r2)) > 0) {\n            const Point v = (c1.c * r2 + c2.c * r1)\
+    \ / (r1 + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
+    \ std::back_inserter(res));\n        }\n    }\n    return res;\n}\n#line 10 \"\
+    geometry/All.hpp\"\n"
+  code: '#pragma once
+
+
+    #include "template.hpp"
+
+    #include "Point.hpp"
+
+    #include "Line.hpp"
+
+    #include "Segment.hpp"
+
+    #include "Polygon.hpp"
+
+    #include "Triangle.hpp"
+
+    #include "Circle.hpp"
+
+    '
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -613,40 +706,21 @@ data:
   - template/out.hpp
   - template/bitop.hpp
   - geometry/Point.hpp
-  isVerificationFile: false
-  path: geometry/Line.hpp
-  requiredBy:
-  - geometry/All.hpp
-  - geometry/Circle.hpp
+  - geometry/Line.hpp
   - geometry/Segment.hpp
-  - geometry/Triangle.hpp
   - geometry/Polygon.hpp
-  timestamp: '2022-09-16 21:37:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-documentation_of: geometry/Line.hpp
+  - geometry/Triangle.hpp
+  - geometry/Circle.hpp
+  isVerificationFile: false
+  path: geometry/All.hpp
+  requiredBy: []
+  timestamp: '2022-09-17 07:33:17+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: geometry/All.hpp
 layout: document
 redirect_from:
-- /library/geometry/Line.hpp
-- /library/geometry/Line.hpp.html
-title: geometry/Line.hpp
+- /library/geometry/All.hpp
+- /library/geometry/All.hpp.html
+title: geometry/All.hpp
 ---
