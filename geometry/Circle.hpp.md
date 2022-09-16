@@ -488,58 +488,59 @@ data:
     \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
     \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
     \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char('x'); print.print_char('+');\n        print << b;\n \
-    \       print.print_char('y'); print.print_char('+');\n        print << c;\n \
-    \       print.print_char('='); print.print_char('0');\n    }\n};\n\nReal distance(const\
-    \ Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c)\
-    \ /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const Line&\
-    \ l, const Point& p) { return distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\
-    \u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point& p2) {\n\
-    \    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n}\n\n\
-    // \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line& l2)\
-    \ {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\u5B9A\
-    \nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a *\
-    \ l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
-    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
-    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
-    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
-    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
-    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
-    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
-    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
-    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
-    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
-    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
-    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Circle.hpp\"\n\n\
-    class Circle {\npublic:\n    Point c;\n    Real r;\n    Circle() : c(Point()),\
-    \ r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend bool operator==(const\
-    \ Circle& c1, const Circle& c2) {\n        return c1.c == c2.c && cmp(c1.r, c2.r)\
-    \ == 0;\n    }\n    friend bool operator!=(const Circle& c1, const Circle& c2)\
-    \ {\n        return !(c1 == c2);\n    }\n    friend bool operator<(const Circle&\
-    \ c1, const Circle& c2) {\n        return c1.c < c2.c || (c1.c == c2.c && cmp(c1.r,\
-    \ c2.r) < 0);\n    }\n    friend bool operator>(const Circle& c1, const Circle&\
-    \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
-    \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
-    \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
-    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
-    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
-    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
-    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
-    \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
-    \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
-    \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
-    \u308C\u3066\u3044\u308B\n    SAME = 5,         // \u7B49\u3057\u3044\n};\n\n\
-    circle_relation relation(const Circle& c1, const Circle& c2) {\n    if (c1 ==\
-    \ c2) return circle_relation::SAME;\n    const Real d = norm(c1.c - c2.c);\n \
-    \   const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n    if (cmp(d, r1 * r1) >\
-    \ 0) return circle_relation::SEPARATE;\n    if (cmp(d, r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n\
-    \    if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;\n    if (cmp(d,\
-    \ r2 * r2) == 0) return circle_relation::INSCRIBE;\n    return circle_relation::IN;\n\
-    }\n\nstd::vector<Point> intersections(const Circle& c, const Line& l) {\n    const\
-    \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
-    \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
-    \  const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d)\
-    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \       print.print_char('x');\n        print.print_char('+');\n        print\
+    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
+    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
+    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
+    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
+    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
+    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
+    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
+    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
+    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
+    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
+    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
+    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
+    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 6\
+    \ \"geometry/Circle.hpp\"\n\nclass Circle {\npublic:\n    Point c;\n    Real r;\n\
+    \    Circle() : c(Point()), r(0) {}\n    Circle(Point c, Real r) : c(c), r(r)\
+    \ {}\n    friend bool operator==(const Circle& c1, const Circle& c2) {\n     \
+    \   return c1.c == c2.c && cmp(c1.r, c2.r) == 0;\n    }\n    friend bool operator!=(const\
+    \ Circle& c1, const Circle& c2) {\n        return !(c1 == c2);\n    }\n    friend\
+    \ bool operator<(const Circle& c1, const Circle& c2) {\n        return c1.c <\
+    \ c2.c || (c1.c == c2.c && cmp(c1.r, c2.r) < 0);\n    }\n    friend bool operator>(const\
+    \ Circle& c1, const Circle& c2) {\n        return c2 < c1;\n    }\n    friend\
+    \ bool operator<=(const Circle& c1, const Circle& c2) {\n        return !(c2 <\
+    \ c1);\n    }\n    friend bool operator>=(const Circle& c1, const Circle& c2)\
+    \ {\n        return !(c1 < c2);\n    }\n    template<class Sc> void scan(Sc& scan)\
+    \ { scan >> c >> r; }\n    template<class Pr> void print(Pr& print) { print <<\
+    \ c << ' ' << r; }\n    template<class Pr> void debug(Pr& print) {\n        print.print_char('{');\n\
+    \        print << c;\n        print.print_char(':');\n        print << r;\n  \
+    \      print.print_char('}');\n    }\n};\n\nenum class circle_relation {\n   \
+    \ IN = 0,           // \u5185\u5305\n    INSCRIBE = 1,     // \u5185\u63A5\n \
+    \   INTERSECT = 2,    // \u4EA4\u308F\u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\
+    \n    SEPARATE = 4,     // \u96E2\u308C\u3066\u3044\u308B\n    SAME = 5,     \
+    \    // \u7B49\u3057\u3044\n};\n\ncircle_relation relation(const Circle& c1, const\
+    \ Circle& c2) {\n    if (c1 == c2) return circle_relation::SAME;\n    const Real\
+    \ d = norm(c1.c - c2.c);\n    const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n\
+    \    if (cmp(d, r1 * r1) > 0) return circle_relation::SEPARATE;\n    if (cmp(d,\
+    \ r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n    if (cmp(d, r2 * r2)\
+    \ > 0) return circle_relation::INTERSECT;\n    if (cmp(d, r2 * r2) == 0) return\
+    \ circle_relation::INSCRIBE;\n    return circle_relation::IN;\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c, const Line& l) {\n    const Point h = projection(l,\
+    \ c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d, c.r * c.r) > 0) return\
+    \ {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n    const Point v =\n    \
+    \    Point(l.b, -l.a) *\n        std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a\
+    \ * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
     \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
     \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
     \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
@@ -557,17 +558,18 @@ data:
     \ - c2.c);\n    const Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n\
     \    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c\
     \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (cmp(r1, r2) <\
-    \ 0 ? -v : v));\n    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n       \
-    \ if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
+    \ 0 ? -v : v));\n    }\n    else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n  \
+    \      if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
     \ * (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n            res.push_back(c1.c\
-    \ - v);\n        } else {\n            const Point v = (c1.c * r2 - c2.c * r1)\
-    \ / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
-    \ std::back_inserter(res));\n        }\n        if (cmp(d, (r1 + r2) * (r1 + r2))\
-    \ == 0) {\n            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
-    \            res.push_back(c1.c + v);\n        } else if (cmp(d, (r1 + r2) * (r1\
-    \ + r2)) > 0) {\n            const Point v = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n\
-    \            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
-    \ std::back_inserter(res));\n        }\n    }\n    return res;\n}\n"
+    \ - v);\n        }\n        else {\n            const Point v = (c1.c * r2 - c2.c\
+    \ * r1) / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n        \
+    \    std::copy(all(ps), std::back_inserter(res));\n        }\n        if (cmp(d,\
+    \ (r1 + r2) * (r1 + r2)) == 0) {\n            const Point v = (c2.c - c1.c) *\
+    \ (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n        }\n    \
+    \    else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {\n            const Point v\
+    \ = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n            auto ps = tangent_points(c1,\
+    \ v);\n            std::copy(all(ps), std::back_inserter(res));\n        }\n \
+    \   }\n    return res;\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Circle {\npublic:\n    Point c;\n    Real r;\n    Circle()\
     \ : c(Point()), r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend\
@@ -596,16 +598,16 @@ data:
     \ circle_relation::INSCRIBE;\n    return circle_relation::IN;\n}\n\nstd::vector<Point>\
     \ intersections(const Circle& c, const Line& l) {\n    const Point h = projection(l,\
     \ c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d, c.r * c.r) > 0) return\
-    \ {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n    const Point v = Point(l.b,\
-    \ -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b),\
-    \ 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const Circle& c1, const\
-    \ Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r = c1.r;\n    const Real\
-    \ c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p = -2 * a + 2 * c, q = -2\
-    \ * b + 2 * d;\n    const Real r2 = a * a + b * b - c * c - d * d - r * r + s\
-    \ * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point> intersections(const\
-    \ Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1, c2);\n\
-    \    return intersections(c1, l);\n}\n\nLine tangent_at_point(const Circle& c,\
-    \ const Point& p) {\n    assert(cmp(norm(c.c - p), c.r * c.r) == 0);\n    const\
+    \ {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n    const Point v =\n    \
+    \    Point(l.b, -l.a) *\n        std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a\
+    \ * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
+    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
+    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
+    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
+    \ c2);\n    return intersections(c1, l);\n}\n\nLine tangent_at_point(const Circle&\
+    \ c, const Point& p) {\n    assert(cmp(norm(c.c - p), c.r * c.r) == 0);\n    const\
     \ Real a = c.c.x, b = c.c.y;\n    const Real px = p.x, py = p.y;\n    return Line(px\
     \ - a, py - b, (a - px) * a + (b - py) * b - c.r * c.r);\n}\n\nstd::vector<Point>\
     \ tangent_points(const Circle& c, const Point& p) {\n    const Real d = norm(c.c\
@@ -616,17 +618,18 @@ data:
     \ - c2.c);\n    const Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n\
     \    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c\
     \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (cmp(r1, r2) <\
-    \ 0 ? -v : v));\n    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n       \
-    \ if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
+    \ 0 ? -v : v));\n    }\n    else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n  \
+    \      if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
     \ * (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n            res.push_back(c1.c\
-    \ - v);\n        } else {\n            const Point v = (c1.c * r2 - c2.c * r1)\
-    \ / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
-    \ std::back_inserter(res));\n        }\n        if (cmp(d, (r1 + r2) * (r1 + r2))\
-    \ == 0) {\n            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
-    \            res.push_back(c1.c + v);\n        } else if (cmp(d, (r1 + r2) * (r1\
-    \ + r2)) > 0) {\n            const Point v = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n\
-    \            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
-    \ std::back_inserter(res));\n        }\n    }\n    return res;\n}\n"
+    \ - v);\n        }\n        else {\n            const Point v = (c1.c * r2 - c2.c\
+    \ * r1) / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n        \
+    \    std::copy(all(ps), std::back_inserter(res));\n        }\n        if (cmp(d,\
+    \ (r1 + r2) * (r1 + r2)) == 0) {\n            const Point v = (c2.c - c1.c) *\
+    \ (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n        }\n    \
+    \    else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {\n            const Point v\
+    \ = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n            auto ps = tangent_points(c1,\
+    \ v);\n            std::copy(all(ps), std::back_inserter(res));\n        }\n \
+    \   }\n    return res;\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -641,7 +644,7 @@ data:
   isVerificationFile: false
   path: geometry/Circle.hpp
   requiredBy: []
-  timestamp: '2022-09-16 21:27:52+09:00'
+  timestamp: '2022-09-16 21:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp

@@ -482,48 +482,48 @@ data:
     \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
     \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
     \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char('x'); print.print_char('+');\n        print << b;\n \
-    \       print.print_char('y'); print.print_char('+');\n        print << c;\n \
-    \       print.print_char('='); print.print_char('0');\n    }\n};\n\nReal distance(const\
-    \ Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c)\
-    \ /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const Line&\
-    \ l, const Point& p) { return distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\
-    \u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point& p2) {\n\
-    \    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n}\n\n\
-    // \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line& l2)\
-    \ {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\u5B9A\
-    \nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a *\
-    \ l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
-    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
-    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
-    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
-    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
-    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
-    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
-    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
-    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
-    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
-    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
-    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Segment.hpp\"\n\n\
-    class Segment {\npublic:\n    Point p1, p2;\n    Segment() = default;\n    Segment(const\
-    \ Point& p1, const Point& p2) : p1(p1), p2(p2) {}\n    friend bool operator==(const\
-    \ Segment& s1, const Segment& s2) {\n        return s1.p1 == s2.p1 && s1.p2 ==\
-    \ s2.p2;\n    }\n    friend bool operator!=(const Segment& s1, const Segment&\
-    \ s2) {\n        return !(s1 == s2);\n    }\n    friend bool operator<(const Segment&\
-    \ s1, const Segment& s2) {\n        return s1.p1 < s2.p1 || (s1.p1 == s2.p1 &&\
-    \ s1.p2 < s2.p2);\n    }\n    friend bool operator>(const Segment& s1, const Segment&\
-    \ s2) {\n        return s2 < s1;\n    }\n    friend bool operator<=(const Segment&\
-    \ s1, const Segment& s2) {\n        return !(s2 < s1);\n    }\n    friend bool\
-    \ operator>=(const Segment& s1, const Segment& s2) {\n        return !(s1 < s2);\n\
-    \    }\n    bool is_on(const Point& p) const {\n        return p == p1 || p ==\
-    \ p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;\n    }\n    explicit operator Line()\
-    \ const { return Line(p1, p2); }\n    template<class Pr> void debug(Pr& print)\
-    \ const {\n        print << p1;\n        print.print_char('-'); print.print_char('>');\n\
-    \        print << p2;\n    }\n    template<class Sc> void scan(Sc& scan) { scan\
-    \ >> p1 >> p2; }\n};\n\nbool is_parallel(const Segment& s1, const Segment& s2)\
-    \ {\n    return is_parallel(Line(s1), Line(s2));\n}\nbool is_orthogonal(const\
-    \ Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1), Line(s2));\n\
-    }\nLine perpendicular_bisector(const Segment& s) {\n    return perpendicular_bisector(s.p1,\
+    \       print.print_char('x');\n        print.print_char('+');\n        print\
+    \ << b;\n        print.print_char('y');\n        print.print_char('+');\n    \
+    \    print << c;\n        print.print_char('=');\n        print.print_char('0');\n\
+    \    }\n};\n\nReal distance(const Point& p, const Line& l) {\n    return std::abs(l.a\
+    \ * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\n\
+    Real distance(const Line& l, const Point& p) { return distance(p, l); }\n\n//\
+    \ \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point&\
+    \ p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 -\
+    \ p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line&\
+    \ l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n//\
+    \ \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\
+    \nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a\
+    \ * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line&\
+    \ l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 6\
+    \ \"geometry/Segment.hpp\"\n\nclass Segment {\npublic:\n    Point p1, p2;\n  \
+    \  Segment() = default;\n    Segment(const Point& p1, const Point& p2) : p1(p1),\
+    \ p2(p2) {}\n    friend bool operator==(const Segment& s1, const Segment& s2)\
+    \ {\n        return s1.p1 == s2.p1 && s1.p2 == s2.p2;\n    }\n    friend bool\
+    \ operator!=(const Segment& s1, const Segment& s2) {\n        return !(s1 == s2);\n\
+    \    }\n    friend bool operator<(const Segment& s1, const Segment& s2) {\n  \
+    \      return s1.p1 < s2.p1 || (s1.p1 == s2.p1 && s1.p2 < s2.p2);\n    }\n   \
+    \ friend bool operator>(const Segment& s1, const Segment& s2) {\n        return\
+    \ s2 < s1;\n    }\n    friend bool operator<=(const Segment& s1, const Segment&\
+    \ s2) {\n        return !(s2 < s1);\n    }\n    friend bool operator>=(const Segment&\
+    \ s1, const Segment& s2) {\n        return !(s1 < s2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return p == p1 || p == p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;\n\
+    \    }\n    explicit operator Line() const { return Line(p1, p2); }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print << p1;\n        print.print_char('-');\n\
+    \        print.print_char('>');\n        print << p2;\n    }\n    template<class\
+    \ Sc> void scan(Sc& scan) { scan >> p1 >> p2; }\n};\n\nbool is_parallel(const\
+    \ Segment& s1, const Segment& s2) {\n    return is_parallel(Line(s1), Line(s2));\n\
+    }\nbool is_orthogonal(const Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1),\
+    \ Line(s2));\n}\nLine perpendicular_bisector(const Segment& s) {\n    return perpendicular_bisector(s.p1,\
     \ s.p2);\n}\n\nbool is_intersect(const Segment& s1, const Segment& s2) {\n   \
     \ if (is_parallel(s1, s2)) {\n        return s1.is_on(s2.p1) || s1.is_on(s2.p2)\
     \ || s2.is_on(s1.p1) ||\n               s2.is_on(s1.p2);\n    }\n    Point p =\
@@ -555,11 +555,11 @@ data:
     \ s2) {\n        return !(s1 < s2);\n    }\n    bool is_on(const Point& p) const\
     \ {\n        return p == p1 || p == p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;\n\
     \    }\n    explicit operator Line() const { return Line(p1, p2); }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print << p1;\n        print.print_char('-');\
-    \ print.print_char('>');\n        print << p2;\n    }\n    template<class Sc>\
-    \ void scan(Sc& scan) { scan >> p1 >> p2; }\n};\n\nbool is_parallel(const Segment&\
-    \ s1, const Segment& s2) {\n    return is_parallel(Line(s1), Line(s2));\n}\nbool\
-    \ is_orthogonal(const Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1),\
+    \ Pr> void debug(Pr& print) const {\n        print << p1;\n        print.print_char('-');\n\
+    \        print.print_char('>');\n        print << p2;\n    }\n    template<class\
+    \ Sc> void scan(Sc& scan) { scan >> p1 >> p2; }\n};\n\nbool is_parallel(const\
+    \ Segment& s1, const Segment& s2) {\n    return is_parallel(Line(s1), Line(s2));\n\
+    }\nbool is_orthogonal(const Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1),\
     \ Line(s2));\n}\nLine perpendicular_bisector(const Segment& s) {\n    return perpendicular_bisector(s.p1,\
     \ s.p2);\n}\n\nbool is_intersect(const Segment& s1, const Segment& s2) {\n   \
     \ if (is_parallel(s1, s2)) {\n        return s1.is_on(s2.p1) || s1.is_on(s2.p2)\
@@ -592,7 +592,7 @@ data:
   isVerificationFile: false
   path: geometry/Segment.hpp
   requiredBy: []
-  timestamp: '2022-09-16 20:41:47+09:00'
+  timestamp: '2022-09-16 21:37:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
