@@ -37,11 +37,11 @@ public:
     }
     template<class Pr> void debug(Pr& print) const {
         print << a;
-        print.print_char("x+");
+        print.print_char('x'); print.print_char('+');
         print << b;
-        print.print_char("y+");
+        print.print_char('y'); print.print_char('+');
         print << c;
-        print.print_char("=0");
+        print.print_char('='); print.print_char('0');
     }
 };
 

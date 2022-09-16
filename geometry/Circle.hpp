@@ -81,6 +81,13 @@ std::vector<Point> intersections(const Circle& c1, const Circle& c2) {
     return intersections(c1, l);
 }
 
+Line tangent_at_point(const Circle& c, const Point& p) {
+    assert(cmp(norm(c.c - p), c.r * c.r) == 0);
+    const Real a = c.c.x, b = c.c.y;
+    const Real px = p.x, py = p.y;
+    return Line(px - a, py - b, (a - px) * a + (b - py) * b - c.r * c.r);
+}
+
 std::vector<Point> tangent_points(const Circle& c, const Point& p) {
     const Real d = norm(c.c - p);
     const Real r2 = c.r * c.r;
@@ -89,12 +96,33 @@ std::vector<Point> tangent_points(const Circle& c, const Point& p) {
     const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));
     return intersections(c, c2);
 }
-std::vector<Line> tangent_lines(const Circle& c, const Point& p) {
-    const std::vector<Point> ps = tangent_points(c, p);
-    if (ps.empty()) return {};
-    if (ps.size() == 1) {
-        const Real a = p.x - c.c.x, b = p.y - c.c.y;
-        return {Line(a, b, -a * c.c.x - b * c.c.y - c.r * c.r)};
+
+std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
+    assert(c1 != c2);
+    const Real d = norm(c1.c - c2.c);
+    const Real r1 = c1.r, r2 = c2.r;
+    std::vector<Point> res;
+    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {
+        const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));
+        res.push_back(c1.c + (r1 < r2 ? -v : v));
+    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {
+        if (cmp(r1, r2) == 0) {
+            const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));
+            res.push_back(c1.c + v);
+            res.push_back(c1.c - v);
+        } else {
+            const Point v = (c1.c * r2 - c2.c * r1) / (-r1 + r2);
+            auto ps = tangent_points(c1, v);
+            std::copy(all(ps), std::back_inserter(res));
+        }
+        if (cmp(d, (r1 + r2) * (r1 + r2)) == 0) {
+            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));
+            res.push_back(c1.c + v);
+        } else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {
+            const Point v = (c1.c * r2 + c2.c * r1) / (r1 + r2);
+            auto ps = tangent_points(c1, v);
+            std::copy(all(ps), std::back_inserter(res));
+        }
     }
-    return {Line(ps[0], p), Line(ps[1], p)};
+    return res;
 }
