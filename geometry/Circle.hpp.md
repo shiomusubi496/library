@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -36,12 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
+    title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Circle.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -511,6 +514,10 @@ data:
     \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
     \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
     \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
+    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
+    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
+    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
+    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
     \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
     \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
     \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
@@ -525,7 +532,13 @@ data:
     \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
     \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
     \  const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d)\
-    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n"
+    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
+    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
+    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
+    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
+    \ c2);\n    return intersections(c1, l);\n}\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Circle {\npublic:\n    Point c;\n    Real r;\n    Circle()\
     \ : c(Point()), r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend\
@@ -537,9 +550,13 @@ data:
     \ Circle& c1, const Circle& c2) {\n        return c2 < c1;\n    }\n    friend\
     \ bool operator<=(const Circle& c1, const Circle& c2) {\n        return !(c2 <\
     \ c1);\n    }\n    friend bool operator>=(const Circle& c1, const Circle& c2)\
-    \ {\n        return !(c1 < c2);\n    }\n};\n\nenum class circle_relation {\n \
-    \   IN = 0,           // \u5185\u5305\n    INSCRIBE = 1,     // \u5185\u63A5\n\
-    \    INTERSECT = 2,    // \u4EA4\u308F\u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\
+    \ {\n        return !(c1 < c2);\n    }\n    template<class Sc> void scan(Sc& scan)\
+    \ { scan >> c >> r; }\n    template<class Pr> void print(Pr& print) { print <<\
+    \ c << ' ' << r; }\n    template<class Pr> void debug(Pr& print) {\n        print.print_char('{');\n\
+    \        print << c;\n        print.print_char(':');\n        print << r;\n  \
+    \      print.print_char('}');\n    }\n};\n\nenum class circle_relation {\n   \
+    \ IN = 0,           // \u5185\u5305\n    INSCRIBE = 1,     // \u5185\u63A5\n \
+    \   INTERSECT = 2,    // \u4EA4\u308F\u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\
     \n    SEPARATE = 4,     // \u96E2\u308C\u3066\u3044\u308B\n    SAME = 5,     \
     \    // \u7B49\u3057\u3044\n};\n\ncircle_relation relation(const Circle& c1, const\
     \ Circle& c2) {\n    if (c1 == c2) return circle_relation::SAME;\n    const Real\
@@ -552,7 +569,13 @@ data:
     \ c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d, c.r * c.r) > 0) return\
     \ {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n    const Point v = Point(l.b,\
     \ -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b),\
-    \ 0));\n    return {h - v, h + v};\n}\n"
+    \ 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const Circle& c1, const\
+    \ Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r = c1.r;\n    const Real\
+    \ c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p = -2 * a + 2 * c, q = -2\
+    \ * b + 2 * d;\n    const Real r2 = a * a + b * b - c * c - d * d - r * r + s\
+    \ * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point> intersections(const\
+    \ Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1, c2);\n\
+    \    return intersections(c1, l);\n}\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -567,10 +590,11 @@ data:
   isVerificationFile: false
   path: geometry/Circle.hpp
   requiredBy: []
-  timestamp: '2022-09-16 17:29:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-16 17:51:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
 documentation_of: geometry/Circle.hpp
 layout: document

@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -527,11 +527,12 @@ data:
     \ nine_point_center() const {\n        return (orthocenter() + circumcenter())\
     \ / 2;\n    }\n    Real nine_point_radius() const { return circumradius() / 2;\
     \ }\n\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print << p1;\n\
-    \        print.print_char(' ');\n        print << p2;\n        print.print_char('\
-    \ ');\n        print << p3;\n    }\n};\n#line 5 \"test/aoj/CGL/CGL_7_C-circumcenter.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    Triangle t; scan >> t;\n    print <<\
-    \ t.circumcenter() << ' ' << t.circumradius() << endl;\n}\n"
+    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('{');\n\
+    \        print << p1;\n        print.print_char(' ');\n        print << p2;\n\
+    \        print.print_char(' ');\n        print << p3;\n        print.print_char('}');\n\
+    \    }\n};\n#line 5 \"test/aoj/CGL/CGL_7_C-circumcenter.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    Triangle t; scan >> t;\n    print << t.circumcenter()\
+    \ << ' ' << t.circumradius() << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C\"\n#define\
     \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Triangle.hpp\"\
     \nusing namespace std;\nint main() {\n    Triangle t; scan >> t;\n    print <<\
@@ -551,7 +552,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
   requiredBy: []
-  timestamp: '2022-09-13 20:45:13+09:00'
+  timestamp: '2022-09-16 17:51:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp

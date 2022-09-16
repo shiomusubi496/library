@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
   - icon: ':heavy_check_mark:'
@@ -90,12 +90,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
     title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
+    title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -585,7 +588,7 @@ data:
   - geometry/Triangle.hpp
   - geometry/Polygon.hpp
   timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
@@ -601,6 +604,7 @@ data:
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp

@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_D
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_D
   bundledCode: "#line 1 \"test/aoj/CGL/CGL_7_D-intersection.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C\"\n#define ERROR 0.000001\n\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_D\"\n#define ERROR 0.000001\n\
     #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -514,6 +514,10 @@ data:
     \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
     \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
     \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
+    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
+    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
+    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
+    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
     \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
     \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
     \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
@@ -528,23 +532,27 @@ data:
     \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
     \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
     \  const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d)\
-    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n#line 5 \"test/aoj/CGL/CGL_7_D-intersection.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    Point p; scan >> p;\n    Real r; scan\
-    \ >> r;\n    const Circle c(p, r);\n    int q; scan >> q;\n    rep (q) {\n   \
-    \     Point a, b; scan >> a >> b;\n        const Line l(a, b);\n        auto ps\
-    \ = intersections(c, l);\n        sort(all(ps));\n        if (ps.size() == 0)\
-    \ {\n            assert(false);\n        } else if (ps.size() == 1) {\n      \
-    \      print << ps[0] << ' ' << ps[0] << endl;\n        } else {\n           \
-    \ print << ps[0] << ' ' << ps[1] << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C\"\n#define\
+    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
+    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
+    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
+    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
+    \ c2);\n    return intersections(c1, l);\n}\n#line 5 \"test/aoj/CGL/CGL_7_D-intersection.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    Circle c; scan >> c;\n    int q; scan\
+    \ >> q;\n    rep (q) {\n        Point a, b; scan >> a >> b;\n        const Line\
+    \ l(a, b);\n        auto ps = intersections(c, l);\n        sort(all(ps));\n \
+    \       if (ps.size() == 0) {\n            assert(false);\n        } else if (ps.size()\
+    \ == 1) {\n            print << ps[0] << ' ' << ps[0] << endl;\n        } else\
+    \ {\n            print << ps[0] << ' ' << ps[1] << endl;\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_D\"\n#define\
     \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\
-    \nusing namespace std;\nint main() {\n    Point p; scan >> p;\n    Real r; scan\
-    \ >> r;\n    const Circle c(p, r);\n    int q; scan >> q;\n    rep (q) {\n   \
-    \     Point a, b; scan >> a >> b;\n        const Line l(a, b);\n        auto ps\
-    \ = intersections(c, l);\n        sort(all(ps));\n        if (ps.size() == 0)\
-    \ {\n            assert(false);\n        } else if (ps.size() == 1) {\n      \
-    \      print << ps[0] << ' ' << ps[0] << endl;\n        } else {\n           \
-    \ print << ps[0] << ' ' << ps[1] << endl;\n        }\n    }\n}\n"
+    \nusing namespace std;\nint main() {\n    Circle c; scan >> c;\n    int q; scan\
+    \ >> q;\n    rep (q) {\n        Point a, b; scan >> a >> b;\n        const Line\
+    \ l(a, b);\n        auto ps = intersections(c, l);\n        sort(all(ps));\n \
+    \       if (ps.size() == 0) {\n            assert(false);\n        } else if (ps.size()\
+    \ == 1) {\n            print << ps[0] << ' ' << ps[0] << endl;\n        } else\
+    \ {\n            print << ps[0] << ' ' << ps[1] << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -560,8 +568,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
   requiredBy: []
-  timestamp: '2022-09-16 17:29:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-16 17:51:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_7_D-intersection.test.cpp
 layout: document

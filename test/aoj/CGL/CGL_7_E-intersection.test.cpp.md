@@ -2,9 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/convolution/DivisorZetaMoebiusTransform.hpp
-    title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
-      \u30A6\u30B9\u5909\u63DB)"
+    path: geometry/Circle.hpp
+    title: geometry/Circle.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Line.hpp
+    title: geometry/Line.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/Point.hpp
+    title: geometry/Point.hpp
+  - icon: ':heavy_check_mark:'
+    path: geometry/template.hpp
+    title: geometry/template.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -27,36 +35,37 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/lcm_convolution.test.cpp
-    title: test/yosupo/new/lcm_convolution.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/convolution/LcmConvolution.md
-    document_title: LCMConvolution
-    links: []
-  bundledCode: "#line 2 \"math/convolution/LcmConvolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.000001'
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_E
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_E
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_7_E-intersection.test.cpp\"\n#define PROBLEM\
+    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_E\"\n#define ERROR 0.000001\n\
+    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -399,33 +408,149 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\
-    \n\n#line 4 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\ntemplate<class\
-    \ Sum>\nvoid divisor_zeta_transform(std::vector<typename Sum::value_type>& v)\
-    \ {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n\
-    \    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n    \
-    \    reps (j, n / i) {\n            v[j * i] = Sum::op(v[j * i], v[j]);\n    \
-    \        is_prime[j * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\n\
-    void divisor_moebius_transform(std::vector<typename Sum::value_type>& v) {\n \
-    \   int n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for\
-    \ (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps\
-    \ (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n           \
-    \ is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/LcmConvolution.hpp\"\n\ntemplate<class Sum, class\
-    \ Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
-    \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"DivisorZetaMoebiusTransform.hpp\"\
-    \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
-    \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Circle.hpp\"\n\n\
+    #line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
+    \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
+    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
+    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
+    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
+    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
+    \ 0;\n}\n#endif\n#line 2 \"geometry/Point.hpp\"\n\n#line 4 \"geometry/Point.hpp\"\
+    \n\nclass Point {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real\
+    \ x, Real y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n      \
+    \  x += p.x;\n        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    Real arg() const\
+    \ { return atan2(y, x); }\n    friend Real arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(Real theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, Real theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
+    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
+    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
+    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
+    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
+    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
+    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
+    \    return CCW::ON_SEGMENT;\n}\n#line 2 \"geometry/Line.hpp\"\n\n#line 5 \"geometry/Line.hpp\"\
+    \n\nclass Line {\npublic:\n    Real a, b, c; // ax + by + c = 0\n    Line() :\
+    \ a(0), b(1), c(0) {}\n    Line(Real a, Real b, Real c) : a(a), b(b), c(c) {}\n\
+    \    Line(const Point& p1, const Point& p2) {\n        a = p2.y - p1.y;\n    \
+    \    b = p1.x - p2.x;\n        c = p2.x * p1.y - p1.x * p2.y;\n    }\n    friend\
+    \ bool operator==(const Line& l1, const Line& l2) {\n        return cmp(l1.a *\
+    \ l2.b, l2.a * l1.b) == 0 &&\n               cmp(l1.b * l2.c, l2.b * l1.c) ==\
+    \ 0;\n    }\n    friend bool operator!=(const Line& l1, const Line& l2) {\n  \
+    \      return !(l1 == l2);\n    }\n    friend bool operator<(const Line& l1, const\
+    \ Line& l2) {\n        return cmp(l1.a * l2.b, l2.a * l1.b) < 0 ||\n         \
+    \      (cmp(l1.a * l2.b, l2.a * l1.b) == 0 &&\n                cmp(l1.b * l2.c,\
+    \ l2.b * l1.c) < 0);\n    }\n    friend bool operator>(const Line& l1, const Line&\
+    \ l2) { return l2 < l1; }\n    friend bool operator<=(const Line& l1, const Line&\
+    \ l2) {\n        return !(l2 < l1);\n    }\n    friend bool operator>=(const Line&\
+    \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
+    \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
+    \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
+    \       print.print_char(\"x+\");\n        print << b;\n        print.print_char(\"\
+    y+\");\n        print << c;\n        print.print_char(\"=0\");\n    }\n};\n\n\
+    Real distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x\
+    \ + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal\
+    \ distance(const Line& l, const Point& p) { return distance(p, l); }\n\n// \u5782\
+    \u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const\
+    \ Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
+    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
+    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
+    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
+    }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
+    \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
+    \u5B9A\nbool is_intersect(const Line& l1, const Line& l2) {\n    return l1 ==\
+    \ l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint intersection(const Line&\
+    \ l1, const Line& l2) {\n    assert(!is_parallel(l1, l2));\n    Real d = l1.a\
+    \ * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c - l2.b * l1.c) / d,\n \
+    \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
+    \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
+    \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Circle.hpp\"\n\n\
+    class Circle {\npublic:\n    Point c;\n    Real r;\n    Circle() : c(Point()),\
+    \ r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend bool operator==(const\
+    \ Circle& c1, const Circle& c2) {\n        return c1.c == c2.c && cmp(c1.r, c2.r)\
+    \ == 0;\n    }\n    friend bool operator!=(const Circle& c1, const Circle& c2)\
+    \ {\n        return !(c1 == c2);\n    }\n    friend bool operator<(const Circle&\
+    \ c1, const Circle& c2) {\n        return c1.c < c2.c || (c1.c == c2.c && cmp(c1.r,\
+    \ c2.r) < 0);\n    }\n    friend bool operator>(const Circle& c1, const Circle&\
+    \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
+    \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
+    \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
+    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
+    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
+    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
+    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
+    \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
+    \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
+    \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
+    \u308C\u3066\u3044\u308B\n    SAME = 5,         // \u7B49\u3057\u3044\n};\n\n\
+    circle_relation relation(const Circle& c1, const Circle& c2) {\n    if (c1 ==\
+    \ c2) return circle_relation::SAME;\n    const Real d = norm(c1.c - c2.c);\n \
+    \   const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n    if (cmp(d, r1 * r1) >\
+    \ 0) return circle_relation::SEPARATE;\n    if (cmp(d, r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n\
+    \    if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;\n    if (cmp(d,\
+    \ r2 * r2) == 0) return circle_relation::INSCRIBE;\n    return circle_relation::IN;\n\
+    }\n\nstd::vector<Point> intersections(const Circle& c, const Line& l) {\n    const\
+    \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
+    \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
+    \  const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d)\
+    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
+    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
+    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
+    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
+    \ c2);\n    return intersections(c1, l);\n}\n#line 5 \"test/aoj/CGL/CGL_7_E-intersection.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    Circle c1, c2; scan >> c1 >> c2;\n \
+    \   auto ps = intersections(c1, c2);\n    sort(all(ps));\n    if (ps.size() ==\
+    \ 0) {\n        assert(false);\n    } else if (ps.size() == 1) {\n        print\
+    \ << ps[0] << ' ' << ps[0] << endl;\n    } else {\n        print << ps[0] << '\
+    \ ' << ps[1] << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_E\"\n#define\
+    \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\
+    \nusing namespace std;\nint main() {\n    Circle c1, c2; scan >> c1 >> c2;\n \
+    \   auto ps = intersections(c1, c2);\n    sort(all(ps));\n    if (ps.size() ==\
+    \ 0) {\n        assert(false);\n    } else if (ps.size() == 1) {\n        print\
+    \ << ps[0] << ' ' << ps[0] << endl;\n    } else {\n        print << ps[0] << '\
+    \ ' << ps[1] << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -434,23 +559,20 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - math/convolution/DivisorZetaMoebiusTransform.hpp
-  isVerificationFile: false
-  path: math/convolution/LcmConvolution.hpp
+  - geometry/Circle.hpp
+  - geometry/template.hpp
+  - geometry/Point.hpp
+  - geometry/Line.hpp
+  isVerificationFile: true
+  path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
-documentation_of: math/convolution/LcmConvolution.hpp
+  timestamp: '2022-09-16 17:51:18+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/CGL/CGL_7_E-intersection.test.cpp
 layout: document
 redirect_from:
-- /library/math/convolution/LcmConvolution.hpp
-- /library/math/convolution/LcmConvolution.hpp.html
-title: LCMConvolution
+- /verify/test/aoj/CGL/CGL_7_E-intersection.test.cpp
+- /verify/test/aoj/CGL/CGL_7_E-intersection.test.cpp.html
+title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
 ---
-## 概要
-
-- `vector<T> lcm_convolution(vector<T> a, vector<T> b)` :  
-    次の条件を満たす $c$ を計算して返す。
-    - $\displaystyle c_k = \sum_{\operatorname{lcm}(i, j) = k} a_ib_j$

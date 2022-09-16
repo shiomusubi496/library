@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -524,9 +524,10 @@ data:
     \ nine_point_center() const {\n        return (orthocenter() + circumcenter())\
     \ / 2;\n    }\n    Real nine_point_radius() const { return circumradius() / 2;\
     \ }\n\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print << p1;\n\
-    \        print.print_char(' ');\n        print << p2;\n        print.print_char('\
-    \ ');\n        print << p3;\n    }\n};\n"
+    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('{');\n\
+    \        print << p1;\n        print.print_char(' ');\n        print << p2;\n\
+    \        print.print_char(' ');\n        print << p3;\n        print.print_char('}');\n\
+    \    }\n};\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Triangle {\npublic:\n    Point p1, p2, p3;\n    Triangle()\
     \ = default;\n    Triangle(const Point& p1, const Point& p2, const Point& p3)\n\
@@ -551,9 +552,10 @@ data:
     \ nine_point_center() const {\n        return (orthocenter() + circumcenter())\
     \ / 2;\n    }\n    Real nine_point_radius() const { return circumradius() / 2;\
     \ }\n\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }\n\
-    \    template<class Pr> void debug(Pr& print) const {\n        print << p1;\n\
-    \        print.print_char(' ');\n        print << p2;\n        print.print_char('\
-    \ ');\n        print << p3;\n    }\n};\n"
+    \    template<class Pr> void debug(Pr& print) const {\n        print.print_char('{');\n\
+    \        print << p1;\n        print.print_char(' ');\n        print << p2;\n\
+    \        print.print_char(' ');\n        print << p3;\n        print.print_char('}');\n\
+    \    }\n};\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -568,7 +570,7 @@ data:
   isVerificationFile: false
   path: geometry/Triangle.hpp
   requiredBy: []
-  timestamp: '2022-09-13 20:45:13+09:00'
+  timestamp: '2022-09-16 17:51:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
