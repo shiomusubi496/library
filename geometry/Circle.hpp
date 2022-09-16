@@ -104,7 +104,7 @@ std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
     std::vector<Point> res;
     if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {
         const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));
-        res.push_back(c1.c + (r1 < r2 ? -v : v));
+        res.push_back(c1.c + (cmp(r1, r2) < 0 ? -v : v));
     } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {
         if (cmp(r1, r2) == 0) {
             const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));
