@@ -538,12 +538,20 @@ data:
     \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
     \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
     \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
-    \ c2);\n    return intersections(c1, l);\n}\n#line 5 \"test/aoj/CGL/CGL_7_E-intersection.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    Circle c1, c2; scan >> c1 >> c2;\n \
-    \   auto ps = intersections(c1, c2);\n    sort(all(ps));\n    if (ps.size() ==\
-    \ 0) {\n        assert(false);\n    } else if (ps.size() == 1) {\n        print\
-    \ << ps[0] << ' ' << ps[0] << endl;\n    } else {\n        print << ps[0] << '\
-    \ ' << ps[1] << endl;\n    }\n}\n"
+    \ c2);\n    return intersections(c1, l);\n}\n\nstd::vector<Point> tangent_points(const\
+    \ Circle& c, const Point& p) {\n    const Real d = norm(c.c - p);\n    const Real\
+    \ r2 = c.r * c.r;\n    if (cmp(d, r2) < 0) return {};\n    if (cmp(d, r2) == 0)\
+    \ return {p};\n    const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));\n\
+    \    return intersections(c, c2);\n}\nstd::vector<Line> tangent_lines(const Circle&\
+    \ c, const Point& p) {\n    const std::vector<Point> ps = tangent_points(c, p);\n\
+    \    if (ps.empty()) return {};\n    if (ps.size() == 1) {\n        const Real\
+    \ a = p.x - c.c.x, b = p.y - c.c.y;\n        return {Line(a, b, -a * c.c.x - b\
+    \ * c.c.y - c.r * c.r)};\n    }\n    return {Line(ps[0], p), Line(ps[1], p)};\n\
+    }\n#line 5 \"test/aoj/CGL/CGL_7_E-intersection.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    Circle c1, c2; scan >> c1 >> c2;\n    auto ps = intersections(c1,\
+    \ c2);\n    sort(all(ps));\n    if (ps.size() == 0) {\n        assert(false);\n\
+    \    } else if (ps.size() == 1) {\n        print << ps[0] << ' ' << ps[0] << endl;\n\
+    \    } else {\n        print << ps[0] << ' ' << ps[1] << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_E\"\n#define\
     \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\
     \nusing namespace std;\nint main() {\n    Circle c1, c2; scan >> c1 >> c2;\n \
@@ -566,7 +574,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
   requiredBy: []
-  timestamp: '2022-09-16 17:51:18+09:00'
+  timestamp: '2022-09-16 19:00:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_7_E-intersection.test.cpp

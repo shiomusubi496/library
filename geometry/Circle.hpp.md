@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
+    title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -538,7 +541,16 @@ data:
     \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
     \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
     \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
-    \ c2);\n    return intersections(c1, l);\n}\n"
+    \ c2);\n    return intersections(c1, l);\n}\n\nstd::vector<Point> tangent_points(const\
+    \ Circle& c, const Point& p) {\n    const Real d = norm(c.c - p);\n    const Real\
+    \ r2 = c.r * c.r;\n    if (cmp(d, r2) < 0) return {};\n    if (cmp(d, r2) == 0)\
+    \ return {p};\n    const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));\n\
+    \    return intersections(c, c2);\n}\nstd::vector<Line> tangent_lines(const Circle&\
+    \ c, const Point& p) {\n    const std::vector<Point> ps = tangent_points(c, p);\n\
+    \    if (ps.empty()) return {};\n    if (ps.size() == 1) {\n        const Real\
+    \ a = p.x - c.c.x, b = p.y - c.c.y;\n        return {Line(a, b, -a * c.c.x - b\
+    \ * c.c.y - c.r * c.r)};\n    }\n    return {Line(ps[0], p), Line(ps[1], p)};\n\
+    }\n"
   code: "#pragma once\n\n#include \"template.hpp\"\n#include \"Point.hpp\"\n#include\
     \ \"Line.hpp\"\n\nclass Circle {\npublic:\n    Point c;\n    Real r;\n    Circle()\
     \ : c(Point()), r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend\
@@ -575,7 +587,16 @@ data:
     \ * b + 2 * d;\n    const Real r2 = a * a + b * b - c * c - d * d - r * r + s\
     \ * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point> intersections(const\
     \ Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1, c2);\n\
-    \    return intersections(c1, l);\n}\n"
+    \    return intersections(c1, l);\n}\n\nstd::vector<Point> tangent_points(const\
+    \ Circle& c, const Point& p) {\n    const Real d = norm(c.c - p);\n    const Real\
+    \ r2 = c.r * c.r;\n    if (cmp(d, r2) < 0) return {};\n    if (cmp(d, r2) == 0)\
+    \ return {p};\n    const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));\n\
+    \    return intersections(c, c2);\n}\nstd::vector<Line> tangent_lines(const Circle&\
+    \ c, const Point& p) {\n    const std::vector<Point> ps = tangent_points(c, p);\n\
+    \    if (ps.empty()) return {};\n    if (ps.size() == 1) {\n        const Real\
+    \ a = p.x - c.c.x, b = p.y - c.c.y;\n        return {Line(a, b, -a * c.c.x - b\
+    \ * c.c.y - c.r * c.r)};\n    }\n    return {Line(ps[0], p), Line(ps[1], p)};\n\
+    }\n"
   dependsOn:
   - geometry/template.hpp
   - other/template.hpp
@@ -590,9 +611,10 @@ data:
   isVerificationFile: false
   path: geometry/Circle.hpp
   requiredBy: []
-  timestamp: '2022-09-16 17:51:18+09:00'
+  timestamp: '2022-09-16 19:00:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
   - test/aoj/CGL/CGL_7_A-intersect.test.cpp
   - test/aoj/CGL/CGL_7_E-intersection.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
