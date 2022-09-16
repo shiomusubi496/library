@@ -2,6 +2,7 @@
 
 #include "template.hpp"
 #include "Point.hpp"
+#include "Line.hpp"
 
 class Circle {
 public:
@@ -47,4 +48,13 @@ circle_relation relation(const Circle& c1, const Circle& c2) {
     if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;
     if (cmp(d, r2 * r2) == 0) return circle_relation::INSCRIBE;
     return circle_relation::IN;
+}
+
+std::vector<Point> intersections(const Circle& c, const Line& l) {
+    const Point h = projection(l, c.c);
+    const Real d = norm(h - c.c);
+    if (cmp(d, c.r * c.r) > 0) return {};
+    if (cmp(d, c.r * c.r) == 0) return {h};
+    const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b), 0));
+    return {h - v, h + v};
 }
