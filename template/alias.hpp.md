@@ -394,6 +394,9 @@ data:
     path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+    title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -914,6 +917,7 @@ data:
   - test/aoj/CGL/CGL_4_C-cut.test.cpp
   - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - test/aoj/CGL/CGL_7_F-tangent.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
   - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp

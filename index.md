@@ -450,6 +450,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
       title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+      title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - name: test/aoj/DPL
     pages:
     - icon: ':heavy_check_mark:'

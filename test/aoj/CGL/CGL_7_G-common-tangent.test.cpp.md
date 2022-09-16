@@ -2,14 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: geometry/Circle.hpp
+    title: geometry/Circle.hpp
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Polygon.hpp
-    title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
@@ -41,30 +41,31 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A
+    ERROR: '0.000001'
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_G
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A
-  bundledCode: "#line 1 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\n#define PROBLEM\
-    \ \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A\"\n#define GEOMETRY_REAL_TYPE\
-    \ ll\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    - https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_G
+  bundledCode: "#line 1 \"test/aoj/CGL/CGL_7_G-common-tangent.test.cpp\"\n#define\
+    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_G\"\n#define ERROR\
+    \ 0.000001\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line\
+    \ 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n\
+    #define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...)\
+    \ e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)                 \
+    \                                          \\\n    for (ll REP_COUNTER_##c = 0;\
+    \ REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n\
+    #define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for\
+    \ (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4,\
+    \ REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i\
+    \ >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -407,8 +408,8 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Polygon.hpp\"\n\
-    \n#line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"geometry/Circle.hpp\"\n\n\
+    #line 2 \"geometry/template.hpp\"\n\n#line 4 \"geometry/template.hpp\"\n\n#ifdef\
     \ GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps\
     \ = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
     // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
@@ -503,66 +504,72 @@ data:
     \                (l1.c * l2.a - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint\
     \ projection(const Line& l, const Point& p) {\n    return intersection(l, perpendicular(l,\
     \ p));\n}\n// \u53CD\u5C04\nPoint reflection(const Line& l, const Point& p) {\n\
-    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Polygon.hpp\"\n\n\
-    class Polygon : public std::vector<Point> {\npublic:\n    using std::vector<Point>::vector;\n\
-    \    explicit Polygon(const std::vector<Point>& v) : std::vector<Point>(v) {}\n\
-    \    explicit Polygon(std::vector<Point>&& v)\n        : std::vector<Point>(std::move(v))\
-    \ {}\n};\n\nReal area(const Polygon& p) {\n    const int n = p.size();\n    Real\
-    \ res = 0;\n    rep (i, n) {\n        res += cross(p[i], p[(i + 1) % n]);\n  \
-    \  }\n    return res / 2;\n}\n\nbool is_convex(const Polygon& p, bool allow_straight\
-    \ = false) {\n    const int n = p.size();\n    rep (i, n) {\n        CCW c = ccw(p[(i\
-    \ + 1) % n], p[i], p[(i + 2) % n]);\n        if (c == CCW::COUNTER_CLOCKWISE ||\n\
-    \            (!allow_straight && c == CCW::ONLINE_BACK)) {\n            return\
-    \ false;\n        }\n    }\n    return true;\n}\n\nbool contains(const Polygon&\
-    \ p, const Point& q, bool true_when_on_edge = true) {\n    const int n = p.size();\n\
-    \    rep (i, n) {\n        if (p[i] == q) return true_when_on_edge;\n        Point\
-    \ a = p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(cross(a,\
-    \ b), 0) == 0 && cmp(dot(a, b), 0) <= 0) {\n            return true_when_on_edge;\n\
-    \        }\n    }\n    bool res = false;\n    rep (i, n) {\n        Point a =\
-    \ p[i] - q;\n        Point b = p[(i + 1) % n] - q;\n        if (cmp(a.y, b.y)\
-    \ > 0) std::swap(a, b);\n        if (cmp(a.y, 0) <= 0 && cmp(b.y, 0) > 0 && cmp(cross(a,\
-    \ b), 0) < 0) {\n            res = !res;\n        }\n    }\n    return res;\n\
-    }\n\nPolygon convex_hull(std::vector<Point> A, bool allow_straight = false) {\n\
-    \    const int n = A.size();\n    if (n <= 2) return Polygon{A};\n    std::sort(A.begin(),\
-    \ A.end(), [](const Point& a, const Point& b) {\n        return cmp(a.x, b.x)\
-    \ != 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n    });\n    Polygon res;\n \
-    \   rep (i, n) {\n        while ((int)res.size() >= 2) {\n            CCW c =\
-    \ ccw(res[res.size() - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE\
-    \ ||\n                (!allow_straight && c == CCW::ONLINE_FRONT)) {\n       \
-    \         res.pop_back();\n            }\n            else break;\n        }\n\
-    \        res.push_back(A[i]);\n    }\n    int t = res.size();\n    rrep (i, n\
-    \ - 1) {\n        while ((int)res.size() >= t + 1) {\n            CCW c = ccw(res[res.size()\
-    \ - 2], res.back(), A[i]);\n            if (c == CCW::CLOCKWISE ||\n         \
-    \       (!allow_straight && c == CCW::ONLINE_FRONT)) {\n                res.pop_back();\n\
-    \            }\n            else break;\n        }\n        res.push_back(A[i]);\n\
-    \    }\n    res.pop_back();\n    return res;\n}\n\nReal diameter(const Polygon&\
-    \ p) {\n    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n\
-    \        if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x)\
-    \ < 0) j = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int si = i, sj = j;\n\
-    \    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0)\
-    \ {\n            i = (i + 1) % n;\n        }\n        else {\n            j =\
-    \ (j + 1) % n;\n        }\n        chmax(res, abs(p[i] - p[j]));\n    } while\
-    \ (i != si || j != sj);\n    return res;\n}\n\n// cut with line p0-p1 and return\
-    \ left side\nPolygon polygon_cut(const Polygon& p, const Point& p0, const Point&\
-    \ p1) {\n    const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n   \
-    \     Point a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1\
-    \ - a);\n        Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0)\
-    \ res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
-    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_A-convex-hull.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    std::vector<Point>\
-    \ p(n); scan >> p;\n    auto ch = convex_hull(p, true);\n    int itr = min_element(all(ch),\
-    \ [](const Point& a, const Point& b) {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x,\
-    \ b.x) < 0 : cmp(a.y, b.y) < 0;\n    }) - ch.begin();\n    print << ch.size()\
-    \ << endl;\n    rep (i, ch.size()) {\n        print << ch[(itr + i) % ch.size()]\
-    \ << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_A\"\n#define\
-    \ GEOMETRY_REAL_TYPE ll\n#include \"../../../other/template.hpp\"\n#include \"\
-    ../../../geometry/Polygon.hpp\"\nusing namespace std;\nint main() {\n    int n;\
-    \ scan >> n;\n    std::vector<Point> p(n); scan >> p;\n    auto ch = convex_hull(p,\
-    \ true);\n    int itr = min_element(all(ch), [](const Point& a, const Point& b)\
-    \ {\n        return cmp(a.y, b.y) == 0 ? cmp(a.x, b.x) < 0 : cmp(a.y, b.y) < 0;\n\
-    \    }) - ch.begin();\n    print << ch.size() << endl;\n    rep (i, ch.size())\
-    \ {\n        print << ch[(itr + i) % ch.size()] << endl;\n    }\n}\n"
+    \    return projection(l, p) * 2 - p;\n}\n#line 6 \"geometry/Circle.hpp\"\n\n\
+    class Circle {\npublic:\n    Point c;\n    Real r;\n    Circle() : c(Point()),\
+    \ r(0) {}\n    Circle(Point c, Real r) : c(c), r(r) {}\n    friend bool operator==(const\
+    \ Circle& c1, const Circle& c2) {\n        return c1.c == c2.c && cmp(c1.r, c2.r)\
+    \ == 0;\n    }\n    friend bool operator!=(const Circle& c1, const Circle& c2)\
+    \ {\n        return !(c1 == c2);\n    }\n    friend bool operator<(const Circle&\
+    \ c1, const Circle& c2) {\n        return c1.c < c2.c || (c1.c == c2.c && cmp(c1.r,\
+    \ c2.r) < 0);\n    }\n    friend bool operator>(const Circle& c1, const Circle&\
+    \ c2) {\n        return c2 < c1;\n    }\n    friend bool operator<=(const Circle&\
+    \ c1, const Circle& c2) {\n        return !(c2 < c1);\n    }\n    friend bool\
+    \ operator>=(const Circle& c1, const Circle& c2) {\n        return !(c1 < c2);\n\
+    \    }\n    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }\n    template<class\
+    \ Pr> void print(Pr& print) { print << c << ' ' << r; }\n    template<class Pr>\
+    \ void debug(Pr& print) {\n        print.print_char('{');\n        print << c;\n\
+    \        print.print_char(':');\n        print << r;\n        print.print_char('}');\n\
+    \    }\n};\n\nenum class circle_relation {\n    IN = 0,           // \u5185\u5305\
+    \n    INSCRIBE = 1,     // \u5185\u63A5\n    INTERSECT = 2,    // \u4EA4\u308F\
+    \u308B\n    CIRCUMSCRIBE = 3, // \u5916\u63A5\n    SEPARATE = 4,     // \u96E2\
+    \u308C\u3066\u3044\u308B\n    SAME = 5,         // \u7B49\u3057\u3044\n};\n\n\
+    circle_relation relation(const Circle& c1, const Circle& c2) {\n    if (c1 ==\
+    \ c2) return circle_relation::SAME;\n    const Real d = norm(c1.c - c2.c);\n \
+    \   const Real r1 = c1.r + c2.r, r2 = c1.r - c2.r;\n    if (cmp(d, r1 * r1) >\
+    \ 0) return circle_relation::SEPARATE;\n    if (cmp(d, r1 * r1) == 0) return circle_relation::CIRCUMSCRIBE;\n\
+    \    if (cmp(d, r2 * r2) > 0) return circle_relation::INTERSECT;\n    if (cmp(d,\
+    \ r2 * r2) == 0) return circle_relation::INSCRIBE;\n    return circle_relation::IN;\n\
+    }\n\nstd::vector<Point> intersections(const Circle& c, const Line& l) {\n    const\
+    \ Point h = projection(l, c.c);\n    const Real d = norm(h - c.c);\n    if (cmp(d,\
+    \ c.r * c.r) > 0) return {};\n    if (cmp(d, c.r * c.r) == 0) return {h};\n  \
+    \  const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d)\
+    \ / (l.a * l.a + l.b * l.b), 0));\n    return {h - v, h + v};\n}\n\nLine radical_axis(const\
+    \ Circle& c1, const Circle& c2) {\n    const Real a = c1.c.x, b = c1.c.y, r =\
+    \ c1.r;\n    const Real c = c2.c.x, d = c2.c.y, s = c2.r;\n    const Real p =\
+    \ -2 * a + 2 * c, q = -2 * b + 2 * d;\n    const Real r2 = a * a + b * b - c *\
+    \ c - d * d - r * r + s * s;\n    return Line(p, q, r2);\n}\n\nstd::vector<Point>\
+    \ intersections(const Circle& c1, const Circle& c2) {\n    const Line l = radical_axis(c1,\
+    \ c2);\n    return intersections(c1, l);\n}\n\nLine tangent_at_point(const Circle&\
+    \ c, const Point& p) {\n    assert(cmp(norm(c.c - p), c.r * c.r) == 0);\n    const\
+    \ Real a = c.c.x, b = c.c.y;\n    const Real px = p.x, py = p.y;\n    return Line(px\
+    \ - a, py - b, (a - px) * a + (b - py) * b - c.r * c.r);\n}\n\nstd::vector<Point>\
+    \ tangent_points(const Circle& c, const Point& p) {\n    const Real d = norm(c.c\
+    \ - p);\n    const Real r2 = c.r * c.r;\n    if (cmp(d, r2) < 0) return {};\n\
+    \    if (cmp(d, r2) == 0) return {p};\n    const Circle c2(p, std::sqrt(std::max<Real>(d\
+    \ - r2, 0)));\n    return intersections(c, c2);\n}\n\nstd::vector<Point> common_tangents(const\
+    \ Circle& c1, const Circle& c2) {\n    assert(c1 != c2);\n    const Real d = norm(c1.c\
+    \ - c2.c);\n    const Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n\
+    \    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c\
+    \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (r1 < r2 ? -v :\
+    \ v));\n    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n        if (cmp(r1,\
+    \ r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));\n\
+    \            res.push_back(c1.c + v);\n            res.push_back(c1.c - v);\n\
+    \        } else {\n            const Point v = (c1.c * r2 - c2.c * r1) / (-r1\
+    \ + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
+    \ std::back_inserter(res));\n        }\n        if (cmp(d, (r1 + r2) * (r1 + r2))\
+    \ == 0) {\n            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
+    \            res.push_back(c1.c + v);\n        } else if (cmp(d, (r1 + r2) * (r1\
+    \ + r2)) > 0) {\n            const Point v = (c1.c * r2 + c2.c * r1) / (r1 + r2);\n\
+    \            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
+    \ std::back_inserter(res));\n        }\n    }\n    return res;\n}\n#line 5 \"\
+    test/aoj/CGL/CGL_7_G-common-tangent.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    Circle c1, c2; scan >> c1 >> c2;\n    auto ps = common_tangents(c1, c2);\n\
+    \    sort(all(ps));\n    each_const (p : ps) print << p << endl;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_G\"\n#define\
+    \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Circle.hpp\"\
+    \nusing namespace std;\nint main() {\n    Circle c1, c2; scan >> c1 >> c2;\n \
+    \   auto ps = common_tangents(c1, c2);\n    sort(all(ps));\n    each_const (p\
+    \ : ps) print << p << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -571,20 +578,20 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - geometry/Polygon.hpp
+  - geometry/Circle.hpp
   - geometry/template.hpp
   - geometry/Point.hpp
   - geometry/Line.hpp
   isVerificationFile: true
-  path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   requiredBy: []
   timestamp: '2022-09-16 20:41:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+documentation_of: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-- /verify/test/aoj/CGL/CGL_4_A-convex-hull.test.cpp.html
-title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+- /verify/test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+- /verify/test/aoj/CGL/CGL_7_G-common-tangent.test.cpp.html
+title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
 ---

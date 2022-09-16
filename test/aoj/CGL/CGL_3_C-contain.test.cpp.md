@@ -480,17 +480,18 @@ data:
     \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
     \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
     \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char(\"x+\");\n        print << b;\n        print.print_char(\"\
-    y+\");\n        print << c;\n        print.print_char(\"=0\");\n    }\n};\n\n\
-    Real distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x\
-    \ + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal\
-    \ distance(const Line& l, const Point& p) { return distance(p, l); }\n\n// \u5782\
-    \u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const\
-    \ Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
-    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
-    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
-    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
-    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \       print.print_char('x'); print.print_char('+');\n        print << b;\n \
+    \       print.print_char('y'); print.print_char('+');\n        print << c;\n \
+    \       print.print_char('='); print.print_char('0');\n    }\n};\n\nReal distance(const\
+    \ Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c)\
+    \ /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const Line&\
+    \ l, const Point& p) { return distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\
+    \u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point& p2) {\n\
+    \    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n}\n\n\
+    // \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\u5B9A\
+    \nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a *\
+    \ l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
     \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
     }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
     \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
@@ -572,7 +573,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_3_C-contain.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 17:27:16+09:00'
+  timestamp: '2022-09-16 20:41:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_3_C-contain.test.cpp

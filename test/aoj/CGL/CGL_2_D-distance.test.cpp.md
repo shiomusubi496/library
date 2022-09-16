@@ -482,17 +482,18 @@ data:
     \ l1, const Line& l2) {\n        return !(l1 < l2);\n    }\n    bool is_on(const\
     \ Point& p) const {\n        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n\
     \    template<class Pr> void debug(Pr& print) const {\n        print << a;\n \
-    \       print.print_char(\"x+\");\n        print << b;\n        print.print_char(\"\
-    y+\");\n        print << c;\n        print.print_char(\"=0\");\n    }\n};\n\n\
-    Real distance(const Point& p, const Line& l) {\n    return std::abs(l.a * p.x\
-    \ + l.b * p.y + l.c) /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal\
-    \ distance(const Line& l, const Point& p) { return distance(p, l); }\n\n// \u5782\
-    \u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const\
-    \ Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n\
-    }\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line&\
-    \ l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\
-    \u5B9A\nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
-    \ * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
+    \       print.print_char('x'); print.print_char('+');\n        print << b;\n \
+    \       print.print_char('y'); print.print_char('+');\n        print << c;\n \
+    \       print.print_char('='); print.print_char('0');\n    }\n};\n\nReal distance(const\
+    \ Point& p, const Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c)\
+    \ /\n           std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const Line&\
+    \ l, const Point& p) { return distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\
+    \u5206\u7DDA\nLine perpendicular_bisector(const Point& p1, const Point& p2) {\n\
+    \    return Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n}\n\n\
+    // \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const Line& l1, const Line& l2)\
+    \ {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\u5B9A\
+    \nbool is_orthogonal(const Line& l1, const Line& l2) {\n    return cmp(l1.a *\
+    \ l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const\
     \ Line& l, const Point& p) {\n    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n\
     }\n// \u5782\u76F4\u7DDA\nLine perpendicular(const Line& l, const Point& p) {\n\
     \    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\
@@ -517,32 +518,32 @@ data:
     \    }\n    bool is_on(const Point& p) const {\n        return p == p1 || p ==\
     \ p2 || ccw(p1, p2, p) == CCW::ON_SEGMENT;\n    }\n    explicit operator Line()\
     \ const { return Line(p1, p2); }\n    template<class Pr> void debug(Pr& print)\
-    \ const {\n        print << p1;\n        print.print_char(\"->\");\n        print\
-    \ << p2;\n    }\n    template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2;\
-    \ }\n};\n\nbool is_parallel(const Segment& s1, const Segment& s2) {\n    return\
-    \ is_parallel(Line(s1), Line(s2));\n}\nbool is_orthogonal(const Segment& s1, const\
-    \ Segment& s2) {\n    return is_orthogonal(Line(s1), Line(s2));\n}\nLine perpendicular_bisector(const\
-    \ Segment& s) {\n    return perpendicular_bisector(s.p1, s.p2);\n}\n\nbool is_intersect(const\
-    \ Segment& s1, const Segment& s2) {\n    if (is_parallel(s1, s2)) {\n        return\
-    \ s1.is_on(s2.p1) || s1.is_on(s2.p2) || s2.is_on(s1.p1) ||\n               s2.is_on(s1.p2);\n\
-    \    }\n    Point p = intersection(Line(s1), Line(s2));\n    return s1.is_on(p)\
-    \ && s2.is_on(p);\n}\nbool is_intersect(const Segment& s1, const Line& l) {\n\
-    \    if (!is_intersect(Line(s1), l)) return false;\n    Point p = intersection(Line(s1),\
-    \ l);\n    return s1.is_on(p);\n}\nbool is_intersect(const Line& l, const Segment&\
-    \ s1) {\n    return is_intersect(s1, l);\n}\n\nReal distance(const Point& p, const\
-    \ Segment& s) {\n    if (s.p1 == s.p2) return distance(p, s.p1);\n    if (dot(s.p2\
-    \ - s.p1, p - s.p1) < 0) return distance(p, s.p1);\n    if (dot(s.p1 - s.p2, p\
-    \ - s.p2) < 0) return distance(p, s.p2);\n    return distance(p, Line(s));\n}\n\
-    Real distance(const Segment& s, const Point& p) { return distance(p, s); }\nReal\
-    \ distance(const Segment& s1, const Segment& s2) {\n    if (is_intersect(s1, s2))\
-    \ return 0;\n    return std::min({distance(s1.p1, s2), distance(s1.p2, s2),\n\
-    \                     distance(s2.p1, s1), distance(s2.p2, s1)});\n}\nReal distance(const\
-    \ Segment& s, const Line& l) {\n    if (is_intersect(s, l)) return 0;\n    return\
-    \ std::min(distance(s.p1, l), distance(s.p2, l));\n}\nReal distance(const Line&\
-    \ l, const Segment& s) { return distance(s, l); }\n#line 5 \"test/aoj/CGL/CGL_2_D-distance.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n \
-    \       Segment s1, s2; scan >> s1 >> s2;\n        print << distance(s1, s2) <<\
-    \ endl;\n    }\n}\n"
+    \ const {\n        print << p1;\n        print.print_char('-'); print.print_char('>');\n\
+    \        print << p2;\n    }\n    template<class Sc> void scan(Sc& scan) { scan\
+    \ >> p1 >> p2; }\n};\n\nbool is_parallel(const Segment& s1, const Segment& s2)\
+    \ {\n    return is_parallel(Line(s1), Line(s2));\n}\nbool is_orthogonal(const\
+    \ Segment& s1, const Segment& s2) {\n    return is_orthogonal(Line(s1), Line(s2));\n\
+    }\nLine perpendicular_bisector(const Segment& s) {\n    return perpendicular_bisector(s.p1,\
+    \ s.p2);\n}\n\nbool is_intersect(const Segment& s1, const Segment& s2) {\n   \
+    \ if (is_parallel(s1, s2)) {\n        return s1.is_on(s2.p1) || s1.is_on(s2.p2)\
+    \ || s2.is_on(s1.p1) ||\n               s2.is_on(s1.p2);\n    }\n    Point p =\
+    \ intersection(Line(s1), Line(s2));\n    return s1.is_on(p) && s2.is_on(p);\n\
+    }\nbool is_intersect(const Segment& s1, const Line& l) {\n    if (!is_intersect(Line(s1),\
+    \ l)) return false;\n    Point p = intersection(Line(s1), l);\n    return s1.is_on(p);\n\
+    }\nbool is_intersect(const Line& l, const Segment& s1) {\n    return is_intersect(s1,\
+    \ l);\n}\n\nReal distance(const Point& p, const Segment& s) {\n    if (s.p1 ==\
+    \ s.p2) return distance(p, s.p1);\n    if (dot(s.p2 - s.p1, p - s.p1) < 0) return\
+    \ distance(p, s.p1);\n    if (dot(s.p1 - s.p2, p - s.p2) < 0) return distance(p,\
+    \ s.p2);\n    return distance(p, Line(s));\n}\nReal distance(const Segment& s,\
+    \ const Point& p) { return distance(p, s); }\nReal distance(const Segment& s1,\
+    \ const Segment& s2) {\n    if (is_intersect(s1, s2)) return 0;\n    return std::min({distance(s1.p1,\
+    \ s2), distance(s1.p2, s2),\n                     distance(s2.p1, s1), distance(s2.p2,\
+    \ s1)});\n}\nReal distance(const Segment& s, const Line& l) {\n    if (is_intersect(s,\
+    \ l)) return 0;\n    return std::min(distance(s.p1, l), distance(s.p2, l));\n\
+    }\nReal distance(const Line& l, const Segment& s) { return distance(s, l); }\n\
+    #line 5 \"test/aoj/CGL/CGL_2_D-distance.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int q; scan >> q;\n    rep (q) {\n        Segment s1, s2; scan\
+    \ >> s1 >> s2;\n        print << distance(s1, s2) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_2_D\"\n#define\
     \ ERROR 0.00000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Segment.hpp\"\
     \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n \
@@ -563,7 +564,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_2_D-distance.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
+  timestamp: '2022-09-16 20:41:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_2_D-distance.test.cpp

@@ -478,32 +478,33 @@ data:
     \ !(l2 < l1);\n    }\n    friend bool operator>=(const Line& l1, const Line& l2)\
     \ {\n        return !(l1 < l2);\n    }\n    bool is_on(const Point& p) const {\n\
     \        return cmp(a * p.x + b * p.y + c, 0) == 0;\n    }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print << a;\n        print.print_char(\"\
-    x+\");\n        print << b;\n        print.print_char(\"y+\");\n        print\
-    \ << c;\n        print.print_char(\"=0\");\n    }\n};\n\nReal distance(const Point&\
-    \ p, const Line& l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c) /\n  \
-    \         std::sqrt(l.a * l.a + l.b * l.b);\n}\nReal distance(const Line& l, const\
-    \ Point& p) { return distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\
-    \nLine perpendicular_bisector(const Point& p1, const Point& p2) {\n    return\
-    \ Line((p1 + p2) / 2, (p1 + p2) / 2 + (p2 - p1).rotate90());\n}\n\n// \u5E73\u884C\
-    \u5224\u5B9A\nbool is_parallel(const Line& l1, const Line& l2) {\n    return cmp(l1.a\
-    \ * l2.b, l2.a * l1.b) == 0;\n}\n// \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const\
-    \ Line& l1, const Line& l2) {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) ==\
-    \ 0;\n}\n// \u5E73\u884C\u7DDA\nLine parallel(const Line& l, const Point& p) {\n\
-    \    return Line(l.a, l.b, -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\n\
-    Line perpendicular(const Line& l, const Point& p) {\n    return Line(l.b, -l.a,\
-    \ -l.b * p.x + l.a * p.y);\n}\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const\
-    \ Line& l1, const Line& l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n\
-    }\n// \u4EA4\u70B9\nPoint intersection(const Line& l1, const Line& l2) {\n   \
-    \ assert(!is_parallel(l1, l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n   \
-    \ return Point((l1.b * l2.c - l2.b * l1.c) / d,\n                 (l1.c * l2.a\
-    \ - l2.c * l1.a) / d);\n}\n// \u5C04\u5F71\nPoint projection(const Line& l, const\
-    \ Point& p) {\n    return intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\
-    \nPoint reflection(const Line& l, const Point& p) {\n    return projection(l,\
-    \ p) * 2 - p;\n}\n#line 5 \"test/aoj/CGL/CGL_1_B-reflection.test.cpp\"\nusing\
-    \ namespace std;\nint main() {\n    Point p0, p1; scan >> p0 >> p1;\n    Line\
-    \ l(p0, p1);\n    int q; scan >> q;\n    rep (q) {\n        Point p2; scan >>\
-    \ p2;\n        print << reflection(l, p2) << endl;\n    }\n}\n"
+    \ Pr> void debug(Pr& print) const {\n        print << a;\n        print.print_char('x');\
+    \ print.print_char('+');\n        print << b;\n        print.print_char('y');\
+    \ print.print_char('+');\n        print << c;\n        print.print_char('=');\
+    \ print.print_char('0');\n    }\n};\n\nReal distance(const Point& p, const Line&\
+    \ l) {\n    return std::abs(l.a * p.x + l.b * p.y + l.c) /\n           std::sqrt(l.a\
+    \ * l.a + l.b * l.b);\n}\nReal distance(const Line& l, const Point& p) { return\
+    \ distance(p, l); }\n\n// \u5782\u76F4\u4E8C\u7B49\u5206\u7DDA\nLine perpendicular_bisector(const\
+    \ Point& p1, const Point& p2) {\n    return Line((p1 + p2) / 2, (p1 + p2) / 2\
+    \ + (p2 - p1).rotate90());\n}\n\n// \u5E73\u884C\u5224\u5B9A\nbool is_parallel(const\
+    \ Line& l1, const Line& l2) {\n    return cmp(l1.a * l2.b, l2.a * l1.b) == 0;\n\
+    }\n// \u76F4\u4EA4\u5224\u5B9A\nbool is_orthogonal(const Line& l1, const Line&\
+    \ l2) {\n    return cmp(l1.a * l2.a + l1.b * l2.b, 0) == 0;\n}\n// \u5E73\u884C\
+    \u7DDA\nLine parallel(const Line& l, const Point& p) {\n    return Line(l.a, l.b,\
+    \ -l.a * p.x - l.b * p.y);\n}\n// \u5782\u76F4\u7DDA\nLine perpendicular(const\
+    \ Line& l, const Point& p) {\n    return Line(l.b, -l.a, -l.b * p.x + l.a * p.y);\n\
+    }\n\n// \u4EA4\u53C9\u5224\u5B9A\nbool is_intersect(const Line& l1, const Line&\
+    \ l2) {\n    return l1 == l2 || !is_parallel(l1, l2);\n}\n// \u4EA4\u70B9\nPoint\
+    \ intersection(const Line& l1, const Line& l2) {\n    assert(!is_parallel(l1,\
+    \ l2));\n    Real d = l1.a * l2.b - l2.a * l1.b;\n    return Point((l1.b * l2.c\
+    \ - l2.b * l1.c) / d,\n                 (l1.c * l2.a - l2.c * l1.a) / d);\n}\n\
+    // \u5C04\u5F71\nPoint projection(const Line& l, const Point& p) {\n    return\
+    \ intersection(l, perpendicular(l, p));\n}\n// \u53CD\u5C04\nPoint reflection(const\
+    \ Line& l, const Point& p) {\n    return projection(l, p) * 2 - p;\n}\n#line 5\
+    \ \"test/aoj/CGL/CGL_1_B-reflection.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    Point p0, p1; scan >> p0 >> p1;\n    Line l(p0, p1);\n    int q; scan\
+    \ >> q;\n    rep (q) {\n        Point p2; scan >> p2;\n        print << reflection(l,\
+    \ p2) << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_1_B\"\n#define\
     \ ERROR 0.00000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Line.hpp\"\
     \nusing namespace std;\nint main() {\n    Point p0, p1; scan >> p0 >> p1;\n  \
@@ -523,7 +524,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
   requiredBy: []
-  timestamp: '2022-09-11 12:55:45+09:00'
+  timestamp: '2022-09-16 20:41:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_1_B-reflection.test.cpp
