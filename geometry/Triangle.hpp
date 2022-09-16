@@ -53,10 +53,12 @@ public:
 
     template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2 >> p3; }
     template<class Pr> void debug(Pr& print) const {
+        print.print_char('{');
         print << p1;
         print.print_char(' ');
         print << p2;
         print.print_char(' ');
         print << p3;
+        print.print_char('}');
     }
 };

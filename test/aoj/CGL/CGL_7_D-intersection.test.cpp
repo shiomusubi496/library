@@ -1,12 +1,10 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_C"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/problems/CGL_7_D"
 #define ERROR 0.000001
 #include "../../../other/template.hpp"
 #include "../../../geometry/Circle.hpp"
 using namespace std;
 int main() {
-    Point p; scan >> p;
-    Real r; scan >> r;
-    const Circle c(p, r);
+    Circle c; scan >> c;
     int q; scan >> q;
     rep (q) {
         Point a, b; scan >> a >> b;

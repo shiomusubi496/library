@@ -3,9 +3,6 @@
 #include "../../../geometry/Circle.hpp"
 using namespace std;
 int main() {
-    Point p, q;
-    Real r, s;
-    scan >> p >> r >> q >> s;
-    Circle c1(p, r), c2(q, s);
+    Circle c1, c2; scan >> c1 >> c2;
     cout << (int)relation(c1, c2) << endl;
 }

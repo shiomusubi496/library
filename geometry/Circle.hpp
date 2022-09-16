@@ -28,6 +28,15 @@ public:
     friend bool operator>=(const Circle& c1, const Circle& c2) {
         return !(c1 < c2);
     }
+    template<class Sc> void scan(Sc& scan) { scan >> c >> r; }
+    template<class Pr> void print(Pr& print) { print << c << ' ' << r; }
+    template<class Pr> void debug(Pr& print) {
+        print.print_char('{');
+        print << c;
+        print.print_char(':');
+        print << r;
+        print.print_char('}');
+    }
 };
 
 enum class circle_relation {
@@ -57,4 +66,17 @@ std::vector<Point> intersections(const Circle& c, const Line& l) {
     if (cmp(d, c.r * c.r) == 0) return {h};
     const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b), 0));
     return {h - v, h + v};
+}
+
+Line radical_axis(const Circle& c1, const Circle& c2) {
+    const Real a = c1.c.x, b = c1.c.y, r = c1.r;
+    const Real c = c2.c.x, d = c2.c.y, s = c2.r;
+    const Real p = -2 * a + 2 * c, q = -2 * b + 2 * d;
+    const Real r2 = a * a + b * b - c * c - d * d - r * r + s * s;
+    return Line(p, q, r2);
+}
+
+std::vector<Point> intersections(const Circle& c1, const Circle& c2) {
+    const Line l = radical_axis(c1, c2);
+    return intersections(c1, l);
 }
