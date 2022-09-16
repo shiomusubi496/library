@@ -548,12 +548,12 @@ data:
     \ Circle& c1, const Circle& c2) {\n    assert(c1 != c2);\n    const Real d = norm(c1.c\
     \ - c2.c);\n    const Real r1 = c1.r, r2 = c2.r;\n    std::vector<Point> res;\n\
     \    if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {\n        const Point v = (c2.c\
-    \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (r1 < r2 ? -v :\
-    \ v));\n    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n        if (cmp(r1,\
-    \ r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));\n\
-    \            res.push_back(c1.c + v);\n            res.push_back(c1.c - v);\n\
-    \        } else {\n            const Point v = (c1.c * r2 - c2.c * r1) / (-r1\
-    \ + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
+    \ - c1.c) * (r1 / std::sqrt(d));\n        res.push_back(c1.c + (cmp(r1, r2) <\
+    \ 0 ? -v : v));\n    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {\n       \
+    \ if (cmp(r1, r2) == 0) {\n            const Point v = (c2.c - c1.c).rotate90()\
+    \ * (r1 / std::sqrt(d));\n            res.push_back(c1.c + v);\n            res.push_back(c1.c\
+    \ - v);\n        } else {\n            const Point v = (c1.c * r2 - c2.c * r1)\
+    \ / (-r1 + r2);\n            auto ps = tangent_points(c1, v);\n            std::copy(all(ps),\
     \ std::back_inserter(res));\n        }\n        if (cmp(d, (r1 + r2) * (r1 + r2))\
     \ == 0) {\n            const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));\n\
     \            res.push_back(c1.c + v);\n        } else if (cmp(d, (r1 + r2) * (r1\
@@ -582,7 +582,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
   requiredBy: []
-  timestamp: '2022-09-16 20:41:47+09:00'
+  timestamp: '2022-09-16 21:27:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_7_A-intersect.test.cpp
