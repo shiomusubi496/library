@@ -64,7 +64,9 @@ std::vector<Point> intersections(const Circle& c, const Line& l) {
     const Real d = norm(h - c.c);
     if (cmp(d, c.r * c.r) > 0) return {};
     if (cmp(d, c.r * c.r) == 0) return {h};
-    const Point v = Point(l.b, -l.a) * std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b), 0));
+    const Point v =
+        Point(l.b, -l.a) *
+        std::sqrt(std::max<Real>((c.r * c.r - d) / (l.a * l.a + l.b * l.b), 0));
     return {h - v, h + v};
 }
 
@@ -105,12 +107,14 @@ std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
     if (cmp(d, (r1 - r2) * (r1 - r2)) == 0) {
         const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));
         res.push_back(c1.c + (cmp(r1, r2) < 0 ? -v : v));
-    } else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {
+    }
+    else if (cmp(d, (r1 - r2) * (r1 - r2)) > 0) {
         if (cmp(r1, r2) == 0) {
             const Point v = (c2.c - c1.c).rotate90() * (r1 / std::sqrt(d));
             res.push_back(c1.c + v);
             res.push_back(c1.c - v);
-        } else {
+        }
+        else {
             const Point v = (c1.c * r2 - c2.c * r1) / (-r1 + r2);
             auto ps = tangent_points(c1, v);
             std::copy(all(ps), std::back_inserter(res));
@@ -118,7 +122,8 @@ std::vector<Point> common_tangents(const Circle& c1, const Circle& c2) {
         if (cmp(d, (r1 + r2) * (r1 + r2)) == 0) {
             const Point v = (c2.c - c1.c) * (r1 / std::sqrt(d));
             res.push_back(c1.c + v);
-        } else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {
+        }
+        else if (cmp(d, (r1 + r2) * (r1 + r2)) > 0) {
             const Point v = (c1.c * r2 + c2.c * r1) / (r1 + r2);
             auto ps = tangent_points(c1, v);
             std::copy(all(ps), std::back_inserter(res));

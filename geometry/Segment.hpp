@@ -33,7 +33,8 @@ public:
     explicit operator Line() const { return Line(p1, p2); }
     template<class Pr> void debug(Pr& print) const {
         print << p1;
-        print.print_char('-'); print.print_char('>');
+        print.print_char('-');
+        print.print_char('>');
         print << p2;
     }
     template<class Sc> void scan(Sc& scan) { scan >> p1 >> p2; }
