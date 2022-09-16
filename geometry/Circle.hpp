@@ -80,3 +80,21 @@ std::vector<Point> intersections(const Circle& c1, const Circle& c2) {
     const Line l = radical_axis(c1, c2);
     return intersections(c1, l);
 }
+
+std::vector<Point> tangent_points(const Circle& c, const Point& p) {
+    const Real d = norm(c.c - p);
+    const Real r2 = c.r * c.r;
+    if (cmp(d, r2) < 0) return {};
+    if (cmp(d, r2) == 0) return {p};
+    const Circle c2(p, std::sqrt(std::max<Real>(d - r2, 0)));
+    return intersections(c, c2);
+}
+std::vector<Line> tangent_lines(const Circle& c, const Point& p) {
+    const std::vector<Point> ps = tangent_points(c, p);
+    if (ps.empty()) return {};
+    if (ps.size() == 1) {
+        const Real a = p.x - c.c.x, b = p.y - c.c.y;
+        return {Line(a, b, -a * c.c.x - b * c.c.y - c.r * c.r)};
+    }
+    return {Line(ps[0], p), Line(ps[1], p)};
+}
