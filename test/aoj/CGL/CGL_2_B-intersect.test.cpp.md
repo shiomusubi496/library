@@ -330,7 +330,11 @@ data:
     \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
     \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
     }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -563,7 +567,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
   requiredBy: []
-  timestamp: '2022-09-16 21:37:28+09:00'
+  timestamp: '2022-09-17 19:31:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_2_B-intersect.test.cpp

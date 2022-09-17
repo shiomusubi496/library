@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -38,19 +38,19 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/PMORMQLCA.md
     document_title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
@@ -340,7 +340,11 @@ data:
     \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
     \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
     }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -669,8 +673,8 @@ data:
   path: graph/tree/PMORMQLCA.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-17 19:31:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

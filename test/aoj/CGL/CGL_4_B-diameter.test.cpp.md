@@ -332,7 +332,11 @@ data:
     \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
     \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
     }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -544,29 +548,31 @@ data:
     \ int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
     \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
     \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, abs(p[i]\
-    \ - p[j]))) {\n            ri = i;\n            rj = j;\n        }\n    } while\
+    \ - p[j]),\n                  [](const Real& a, const Real& b) { return cmp(a,\
+    \ b) < 0; })) {\n            ri = i;\n            rj = j;\n        }\n    } while\
     \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
     \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
     \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
     \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
-    \    Real res = infinity<Real>::value;\n    int ri = -1, rj = -1;\n    rec_lambda([&](auto&&\
+    \    Real res = infinity<Real>::value;\n    Point a, b;\n    rec_lambda([&](auto&&\
     \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
-    \ (r - l <= 1) return;\n        self(l, m); self(m, r);\n        std::inplace_merge(p.begin()\
-    \ + l, p.begin() + m, p.begin() + r,\n                           [](const Point&\
-    \ a, const Point& b) {\n                               return cmp(a.y, b.y) <\
-    \ 0;\n                           });\n        std::vector<int> B;\n        rep\
-    \ (i, l, r) {\n            if (cmp(p[i].x - p[m].x, res) >= 0) continue;\n   \
-    \         rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
-    \ >= 0) break;\n                if (chmin(res, abs(p[i] - p[B[j]]))) {\n     \
-    \               ri = i;\n                    rj = B[j];\n                }\n \
-    \           }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
-    \ {p[ri], p[rj]};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
-    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
-    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
-    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
-    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
-    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
-    \ p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_B-diameter.test.cpp\"\
+    \ (r - l <= 1) return;\n        self(l, m);\n        self(m, r);\n        std::inplace_merge(\n\
+    \            p.begin() + l, p.begin() + m, p.begin() + r,\n            [](const\
+    \ Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });\n        std::vector<int>\
+    \ B;\n        rep (i, l, r) {\n            if (cmp(std::abs(p[i].x - p[m].x),\
+    \ res) >= 0) continue;\n            rrep (j, B.size()) {\n                if (cmp(p[i].y\
+    \ - p[B[j]].y, res) >= 0) break;\n                if (chmin(res, distance(p[i],\
+    \ p[B[j]]),\n                          [](const Real& a, const Real& b) {\n  \
+    \                            return cmp(a, b) < 0;\n                         \
+    \ })) {\n                    a = p[i];\n                    b = p[B[j]];\n   \
+    \             }\n            }\n            B.push_back(i);\n        }\n    })(0,\
+    \ n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and return left side\n\
+    Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {\n  \
+    \  const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n        Point\
+    \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
+    \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
+    \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
+    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_B-diameter.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
     \ scan >> p;\n    auto ps = diameter(p);\n    print << distance(ps.first, ps.second)\
     \ << endl;\n}\n"
@@ -590,7 +596,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
   requiredBy: []
-  timestamp: '2022-09-17 19:09:02+09:00'
+  timestamp: '2022-09-17 19:31:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_4_B-diameter.test.cpp

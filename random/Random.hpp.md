@@ -23,7 +23,7 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':heavy_check_mark:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/random/Random.md
     document_title: Random
@@ -328,7 +328,11 @@ data:
     \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
     \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
     }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
+    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
+    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -479,8 +483,8 @@ data:
   requiredBy:
   - data-struct/other/SkipList.hpp
   - string/RollingHash.hpp
-  timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-17 19:31:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
