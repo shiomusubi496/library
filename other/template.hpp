@@ -43,6 +43,14 @@ template<class T, class U>
 inline constexpr bool chmax(T& a, const U& b) noexcept {
     return a < b ? a = b, true : false;
 }
+template<class T, class U, class Comp>
+inline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {
+    return cmp(b, a) ? a = b, true : false;
+}
+template<class T, class U, class Comp>
+inline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {
+    return cmp(a, b) ? a = b, true : false;
+}
 
 inline CONSTEXPR ll gcd(ll a, ll b) noexcept {
     while (b) {

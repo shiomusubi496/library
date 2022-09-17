@@ -106,7 +106,8 @@ std::pair<Point, Point> diameter(const Polygon& p) {
         else {
             j = (j + 1) % n;
         }
-        if (chmax(res, abs(p[i] - p[j]))) {
+        if (chmax(res, abs(p[i] - p[j]),
+                  [](const Real& a, const Real& b) { return cmp(a, b) < 0; })) {
             ri = i;
             rj = j;
         }
@@ -124,29 +125,32 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
     const int n = p.size();
     std::sort(all(p));
     Real res = infinity<Real>::value;
-    int ri = -1, rj = -1;
+    Point a, b;
     rec_lambda([&](auto&& self, int l, int r) -> void {
         const int m = (l + r) / 2;
         if (r - l <= 1) return;
-        self(l, m); self(m, r);
-        std::inplace_merge(p.begin() + l, p.begin() + m, p.begin() + r,
-                           [](const Point& a, const Point& b) {
-                               return cmp(a.y, b.y) < 0;
-                           });
+        self(l, m);
+        self(m, r);
+        std::inplace_merge(
+            p.begin() + l, p.begin() + m, p.begin() + r,
+            [](const Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });
         std::vector<int> B;
         rep (i, l, r) {
-            if (cmp(p[i].x - p[m].x, res) >= 0) continue;
+            if (cmp(std::abs(p[i].x - p[m].x), res) >= 0) continue;
             rrep (j, B.size()) {
                 if (cmp(p[i].y - p[B[j]].y, res) >= 0) break;
-                if (chmin(res, abs(p[i] - p[B[j]]))) {
-                    ri = i;
-                    rj = B[j];
+                if (chmin(res, distance(p[i], p[B[j]]),
+                          [](const Real& a, const Real& b) {
+                              return cmp(a, b) < 0;
+                          })) {
+                    a = p[i];
+                    b = p[B[j]];
                 }
             }
             B.push_back(i);
         }
     })(0, n);
-    return {p[ri], p[rj]};
+    return {a, b};
 }
 
 // cut with line p0-p1 and return left side
