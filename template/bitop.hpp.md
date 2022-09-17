@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
@@ -120,13 +120,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':heavy_check_mark:'
@@ -280,7 +280,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -381,6 +381,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_5_A-closest.test.cpp
+    title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
@@ -726,9 +729,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/bitop.hpp\"\n\n#line 2 \"template/macros.hpp\"\n\
@@ -900,7 +903,7 @@ data:
   - other/monoid.hpp
   - other/template.hpp
   timestamp: '2022-08-29 17:11:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
@@ -961,6 +964,7 @@ data:
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp

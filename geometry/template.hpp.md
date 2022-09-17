@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
@@ -29,13 +29,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -84,6 +84,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
+  - icon: ':x:'
+    path: test/aoj/CGL/CGL_5_A-closest.test.cpp
+    title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
@@ -105,9 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/template.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -505,8 +508,9 @@ data:
   - geometry/Triangle.hpp
   - geometry/Polygon.hpp
   timestamp: '2022-09-11 12:55:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp

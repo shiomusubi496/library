@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -537,26 +537,44 @@ data:
     \          if (c == CCW::CLOCKWISE ||\n                (!allow_straight && c ==\
     \ CCW::ONLINE_FRONT)) {\n                res.pop_back();\n            }\n    \
     \        else break;\n        }\n        res.push_back(A[i]);\n    }\n    res.pop_back();\n\
-    \    return res;\n}\n\nReal diameter(const Polygon& p) {\n    const int n = p.size();\n\
-    \    int i = 0, j = 0;\n    rep (k, n) {\n        if (cmp(p[k].x, p[i].x) > 0)\
-    \ i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j = k;\n    }\n    Real res = abs(p[i]\
-    \ - p[j]);\n    int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n]\
-    \ - p[i], p[(j + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n      \
-    \  }\n        else {\n            j = (j + 1) % n;\n        }\n        chmax(res,\
-    \ abs(p[i] - p[j]));\n    } while (i != si || j != sj);\n    return res;\n}\n\n\
-    // cut with line p0-p1 and return left side\nPolygon polygon_cut(const Polygon&\
-    \ p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n    Polygon\
-    \ res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n      \
-    \  Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1 - b);\n\
-    \        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0) * cmp(cb,\
-    \ 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0, p1)));\n\
-    \        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_B-diameter.test.cpp\"\
+    \    return res;\n}\n\nstd::pair<Point, Point> diameter(const Polygon& p) {\n\
+    \    const int n = p.size();\n    int i = 0, j = 0;\n    rep (k, n) {\n      \
+    \  if (cmp(p[k].x, p[i].x) > 0) i = k;\n        if (cmp(p[k].x, p[j].x) < 0) j\
+    \ = k;\n    }\n    Real res = abs(p[i] - p[j]);\n    int ri = i, rj = j;\n   \
+    \ int si = i, sj = j;\n    do {\n        if (cross(p[(i + 1) % n] - p[i], p[(j\
+    \ + 1) % n] - p[j]) < 0) {\n            i = (i + 1) % n;\n        }\n        else\
+    \ {\n            j = (j + 1) % n;\n        }\n        if (chmax(res, abs(p[i]\
+    \ - p[j]))) {\n            ri = i;\n            rj = j;\n        }\n    } while\
+    \ (i != si || j != sj);\n    return {p[ri], p[rj]};\n}\n\nstd::pair<Point, Point>\
+    \ farthest_pair(const std::vector<Point>& p) {\n    auto poly = convex_hull(p);\n\
+    \    return diameter(poly);\n}\n\nstd::pair<Point, Point> closest_pair(std::vector<Point>\
+    \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
+    \    Real res = infinity<Real>::value;\n    int ri = -1, rj = -1;\n    rec_lambda([&](auto&&\
+    \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
+    \ (r - l <= 1) return;\n        self(l, m); self(m, r);\n        std::inplace_merge(p.begin()\
+    \ + l, p.begin() + m, p.begin() + r,\n                           [](const Point&\
+    \ a, const Point& b) {\n                               return cmp(a.y, b.y) <\
+    \ 0;\n                           });\n        std::vector<int> B;\n        rep\
+    \ (i, l, r) {\n            if (cmp(p[i].x - p[m].x, res) >= 0) continue;\n   \
+    \         rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
+    \ >= 0) break;\n                if (chmin(res, abs(p[i] - p[B[j]]))) {\n     \
+    \               ri = i;\n                    rj = B[j];\n                }\n \
+    \           }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
+    \ {p[ri], p[rj]};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
+    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
+    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
+    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
+    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
+    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
+    \ p1)));\n        }\n    }\n    return res;\n}\n#line 5 \"test/aoj/CGL/CGL_4_B-diameter.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
-    \ scan >> p;\n    print << diameter(p) << endl;\n}\n"
+    \ scan >> p;\n    auto ps = diameter(p);\n    print << distance(ps.first, ps.second)\
+    \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/CGL_4_B\"\n#define\
     \ ERROR 0.000001\n#include \"../../../other/template.hpp\"\n#include \"../../../geometry/Polygon.hpp\"\
     \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    Polygon p(n);\
-    \ scan >> p;\n    print << diameter(p) << endl;\n}\n"
+    \ scan >> p;\n    auto ps = diameter(p);\n    print << distance(ps.first, ps.second)\
+    \ << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -572,7 +590,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
   requiredBy: []
-  timestamp: '2022-09-16 21:37:28+09:00'
+  timestamp: '2022-09-17 19:09:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_4_B-diameter.test.cpp
