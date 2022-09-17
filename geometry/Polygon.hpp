@@ -129,6 +129,7 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
     rec_lambda([&](auto&& self, int l, int r) -> void {
         const int m = (l + r) / 2;
         if (r - l <= 1) return;
+        const Real x = p[m].x;
         self(l, m);
         self(m, r);
         std::inplace_merge(
@@ -136,7 +137,7 @@ std::pair<Point, Point> closest_pair(std::vector<Point> p) {
             [](const Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });
         std::vector<int> B;
         rep (i, l, r) {
-            if (cmp(std::abs(p[i].x - p[m].x), res) >= 0) continue;
+            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;
             rrep (j, B.size()) {
                 if (cmp(p[i].y - p[B[j]].y, res) >= 0) break;
                 if (chmin(res, distance(p[i], p[B[j]]),
