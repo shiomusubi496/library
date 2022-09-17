@@ -89,7 +89,7 @@ Polygon convex_hull(std::vector<Point> A, bool allow_straight = false) {
     return res;
 }
 
-Real diameter(const Polygon& p) {
+std::pair<Point, Point> diameter(const Polygon& p) {
     const int n = p.size();
     int i = 0, j = 0;
     rep (k, n) {
@@ -97,6 +97,7 @@ Real diameter(const Polygon& p) {
         if (cmp(p[k].x, p[j].x) < 0) j = k;
     }
     Real res = abs(p[i] - p[j]);
+    int ri = i, rj = j;
     int si = i, sj = j;
     do {
         if (cross(p[(i + 1) % n] - p[i], p[(j + 1) % n] - p[j]) < 0) {
@@ -105,9 +106,47 @@ Real diameter(const Polygon& p) {
         else {
             j = (j + 1) % n;
         }
-        chmax(res, abs(p[i] - p[j]));
+        if (chmax(res, abs(p[i] - p[j]))) {
+            ri = i;
+            rj = j;
+        }
     } while (i != si || j != sj);
-    return res;
+    return {p[ri], p[rj]};
+}
+
+std::pair<Point, Point> farthest_pair(const std::vector<Point>& p) {
+    auto poly = convex_hull(p);
+    return diameter(poly);
+}
+
+std::pair<Point, Point> closest_pair(std::vector<Point> p) {
+    assert(p.size() >= 2);
+    const int n = p.size();
+    std::sort(all(p));
+    Real res = infinity<Real>::value;
+    int ri = -1, rj = -1;
+    rec_lambda([&](auto&& self, int l, int r) -> void {
+        const int m = (l + r) / 2;
+        if (r - l <= 1) return;
+        self(l, m); self(m, r);
+        std::inplace_merge(p.begin() + l, p.begin() + m, p.begin() + r,
+                           [](const Point& a, const Point& b) {
+                               return cmp(a.y, b.y) < 0;
+                           });
+        std::vector<int> B;
+        rep (i, l, r) {
+            if (cmp(p[i].x - p[m].x, res) >= 0) continue;
+            rrep (j, B.size()) {
+                if (cmp(p[i].y - p[B[j]].y, res) >= 0) break;
+                if (chmin(res, abs(p[i] - p[B[j]]))) {
+                    ri = i;
+                    rj = B[j];
+                }
+            }
+            B.push_back(i);
+        }
+    })(0, n);
+    return {p[ri], p[rj]};
 }
 
 // cut with line p0-p1 and return left side
