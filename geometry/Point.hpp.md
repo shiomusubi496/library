@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -32,10 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,9 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -605,7 +605,7 @@ data:
   - geometry/Triangle.hpp
   - geometry/Polygon.hpp
   timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_4_B-diameter.test.cpp

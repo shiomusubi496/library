@@ -44,7 +44,7 @@ data:
       title: SlidingWindowAggregation(SWAG)
   - name: data-struct/segment
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':x:'
@@ -53,20 +53,20 @@ data:
     - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicLazySegmentTree.hpp
       title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
@@ -80,7 +80,7 @@ data:
       path: data-struct/segment/SSegmentTree.hpp
       title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\
         \u7279\u6B8A\u306A\u30BB\u30B0\u6728)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
@@ -115,7 +115,7 @@ data:
     - icon: ':x:'
       path: data-struct/unionfind/UnionFindUndo.hpp
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/WeightedUnionFind.hpp
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: geometry
@@ -126,13 +126,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/Circle.hpp
       title: geometry/Circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Line.hpp
       title: geometry/Line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Point.hpp
       title: geometry/Point.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Polygon.hpp
       title: geometry/Polygon.hpp
     - icon: ':heavy_check_mark:'
@@ -141,7 +141,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geometry/Triangle.hpp
       title: geometry/Triangle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/template.hpp
       title: geometry/template.hpp
   - name: graph
@@ -154,7 +154,7 @@ data:
     - icon: ':question:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
@@ -164,10 +164,10 @@ data:
         \u89E3)"
   - name: graph/mst
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/Kruskal.hpp
       title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/Prim.hpp
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
@@ -175,13 +175,13 @@ data:
     - icon: ':x:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
@@ -190,7 +190,7 @@ data:
       title: TwoSatisfiability(2-SAT)
   - name: graph/shortest-path
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/BellmanFord.hpp
       title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
     - icon: ':heavy_check_mark:'
@@ -199,10 +199,10 @@ data:
     - icon: ':question:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/shortest-path/Restore.hpp
       title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
@@ -234,12 +234,12 @@ data:
     - icon: ':x:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/tree/TreeDiameter.hpp
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':x:'
@@ -300,7 +300,7 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: other
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
     - icon: ':x:'
@@ -435,7 +435,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL/CGL_4_C-cut.test.cpp
       title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/CGL/CGL_5_A-closest.test.cpp
       title: test/aoj/CGL/CGL_5_A-closest.test.cpp
     - icon: ':heavy_check_mark:'
@@ -473,89 +473,89 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_D.test.cpp
       title: test/aoj/DPL/DPL_5_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_E.test.cpp
       title: test/aoj/DPL/DPL_5_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_F.test.cpp
       title: test/aoj/DPL/DPL_5_F.test.cpp
   - name: test/aoj/DSL
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_A-UF.test.cpp
       title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
       title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
       title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
       title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
       title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
       title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
       title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
       title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
       title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
       title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
       title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - name: test/aoj/GRL
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
       title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
       title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
       title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
       title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
       title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
       title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
       title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
       title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
       title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
       title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
       title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     - icon: ':x:'

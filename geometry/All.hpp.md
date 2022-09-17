@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
   - icon: ':question:'
@@ -596,23 +596,24 @@ data:
     \ p) {\n    assert(p.size() >= 2);\n    const int n = p.size();\n    std::sort(all(p));\n\
     \    Real res = infinity<Real>::value;\n    Point a, b;\n    rec_lambda([&](auto&&\
     \ self, int l, int r) -> void {\n        const int m = (l + r) / 2;\n        if\
-    \ (r - l <= 1) return;\n        self(l, m);\n        self(m, r);\n        std::inplace_merge(\n\
-    \            p.begin() + l, p.begin() + m, p.begin() + r,\n            [](const\
-    \ Point& a, const Point& b) { return cmp(a.y, b.y) < 0; });\n        std::vector<int>\
-    \ B;\n        rep (i, l, r) {\n            if (cmp(std::abs(p[i].x - p[m].x),\
-    \ res) >= 0) continue;\n            rrep (j, B.size()) {\n                if (cmp(p[i].y\
-    \ - p[B[j]].y, res) >= 0) break;\n                if (chmin(res, distance(p[i],\
-    \ p[B[j]]),\n                          [](const Real& a, const Real& b) {\n  \
-    \                            return cmp(a, b) < 0;\n                         \
-    \ })) {\n                    a = p[i];\n                    b = p[B[j]];\n   \
-    \             }\n            }\n            B.push_back(i);\n        }\n    })(0,\
-    \ n);\n    return {a, b};\n}\n\n// cut with line p0-p1 and return left side\n\
-    Polygon polygon_cut(const Polygon& p, const Point& p0, const Point& p1) {\n  \
-    \  const int n = p.size();\n    Polygon res;\n    rep (i, n) {\n        Point\
-    \ a = p[i], b = p[(i + 1) % n];\n        Real ca = cross(p0 - a, p1 - a);\n  \
-    \      Real cb = cross(p0 - b, p1 - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n\
-    \        if (cmp(ca, 0) * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a,\
-    \ b), Line(p0, p1)));\n        }\n    }\n    return res;\n}\n#line 2 \"geometry/Triangle.hpp\"\
+    \ (r - l <= 1) return;\n        const Real x = p[m].x;\n        self(l, m);\n\
+    \        self(m, r);\n        std::inplace_merge(\n            p.begin() + l,\
+    \ p.begin() + m, p.begin() + r,\n            [](const Point& a, const Point& b)\
+    \ { return cmp(a.y, b.y) < 0; });\n        std::vector<int> B;\n        rep (i,\
+    \ l, r) {\n            if (cmp(std::abs(p[i].x - x), res) >= 0) continue;\n  \
+    \          rrep (j, B.size()) {\n                if (cmp(p[i].y - p[B[j]].y, res)\
+    \ >= 0) break;\n                if (chmin(res, distance(p[i], p[B[j]]),\n    \
+    \                      [](const Real& a, const Real& b) {\n                  \
+    \            return cmp(a, b) < 0;\n                          })) {\n        \
+    \            a = p[i];\n                    b = p[B[j]];\n                }\n\
+    \            }\n            B.push_back(i);\n        }\n    })(0, n);\n    return\
+    \ {a, b};\n}\n\n// cut with line p0-p1 and return left side\nPolygon polygon_cut(const\
+    \ Polygon& p, const Point& p0, const Point& p1) {\n    const int n = p.size();\n\
+    \    Polygon res;\n    rep (i, n) {\n        Point a = p[i], b = p[(i + 1) % n];\n\
+    \        Real ca = cross(p0 - a, p1 - a);\n        Real cb = cross(p0 - b, p1\
+    \ - b);\n        if (cmp(ca, 0) >= 0) res.push_back(a);\n        if (cmp(ca, 0)\
+    \ * cmp(cb, 0) < 0) {\n            res.push_back(intersection(Line(a, b), Line(p0,\
+    \ p1)));\n        }\n    }\n    return res;\n}\n#line 2 \"geometry/Triangle.hpp\"\
     \n\n#line 6 \"geometry/Triangle.hpp\"\n\nclass Triangle {\npublic:\n    Point\
     \ p1, p2, p3;\n    Triangle() = default;\n    Triangle(const Point& p1, const\
     \ Point& p2, const Point& p3)\n        : p1(p1), p2(p2), p3(p3) {}\n\n    Real\
@@ -736,7 +737,7 @@ data:
   isVerificationFile: false
   path: geometry/All.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
+  timestamp: '2022-09-17 19:54:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geometry/All.hpp
