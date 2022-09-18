@@ -70,7 +70,10 @@ jobs:
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: oj-verify all
+      run: export DROPBOX_TOKEN=$(curl https://api.dropbox.com/oauth2/token --user 153gig8dqgk3ujg:5l7o7lh73o8i9ux \
+                                      --data grant_type=refresh_token --data refresh_token=$REFRESH_TOKEN | \
+                                      jq -r .access_token) ; \
+            oj-verify all
