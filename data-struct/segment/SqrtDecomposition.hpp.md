@@ -27,7 +27,7 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SqrtDecomposition.md
     document_title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
@@ -640,7 +640,7 @@ data:
   path: data-struct/segment/SqrtDecomposition.hpp
   requiredBy: []
   timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp

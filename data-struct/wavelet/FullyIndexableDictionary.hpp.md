@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -26,18 +23,15 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/SlidingWindowAggregation.md
-    document_title: SlidingWindowAggregation(SWAG)
+    _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
+    document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
     links: []
-  bundledCode: "#line 2 \"data-struct/other/SlidingWindowAggregation.hpp\"\n\n#line\
+  bundledCode: "#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line\
     \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -403,137 +397,26 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/other/SlidingWindowAggregation.hpp\"\
-    \n\ntemplate<class M> class SlidingWindowAggregation {\nprivate:\n    using T\
-    \ = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T> lsm,\
-    \ rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n       \
-    \ if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
-    \        return M::op(lsm.top(), rsm.top());\n    }\n\npublic:\n    SlidingWindowAggregation()\
-    \ = default;\n    int size() const { return lst.size() + rst.size(); }\n    bool\
-    \ empty() const { return lst.empty() && rst.empty(); }\n    void push(const T&\
-    \ x) {\n        rst.push(x);\n        if (rsm.empty()) rsm.push(rst.top());\n\
-    \        else rsm.push(M::op(rsm.top(), rst.top()));\n    }\n    template<class...\
-    \ Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
-    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
-    \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
-    \ (lst.empty()) {\n            lst.push(rst.top());\n            lsm.push(rst.top());\n\
-    \            rst.pop();\n            rsm.pop();\n            while (!rst.empty())\
-    \ {\n                lst.push(rst.top());\n                lsm.push(M::op(rst.top(),\
-    \ lsm.top()));\n                rst.pop();\n                rsm.pop();\n     \
-    \       }\n        }\n        lst.pop();\n        lsm.pop();\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T all_prod() const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
-    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/data-struct/other/SlidingWindowAggregation.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M> class SlidingWindowAggregation {\nprivate:\n    using T\
-    \ = typename M::value_type;\n    std::stack<T> lst, rst;\n    std::stack<T> lsm,\
-    \ rsm;\n    T internal_all_prod() const {\n        assert(!empty());\n       \
-    \ if (lst.empty()) return rsm.top();\n        if (rst.empty()) return lsm.top();\n\
-    \        return M::op(lsm.top(), rsm.top());\n    }\n\npublic:\n    SlidingWindowAggregation()\
-    \ = default;\n    int size() const { return lst.size() + rst.size(); }\n    bool\
-    \ empty() const { return lst.empty() && rst.empty(); }\n    void push(const T&\
-    \ x) {\n        rst.push(x);\n        if (rsm.empty()) rsm.push(rst.top());\n\
-    \        else rsm.push(M::op(rsm.top(), rst.top()));\n    }\n    template<class...\
-    \ Args> void emplace(Args&&... args) {\n        rst.emplace(std::forward<Args>(args)...);\n\
-    \        if (rsm.empty()) rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(),\
-    \ rst.top()));\n    }\n    void pop() {\n        assert(!empty());\n        if\
-    \ (lst.empty()) {\n            lst.push(rst.top());\n            lsm.push(rst.top());\n\
-    \            rst.pop();\n            rsm.pop();\n            while (!rst.empty())\
-    \ {\n                lst.push(rst.top());\n                lsm.push(M::op(rst.top(),\
-    \ lsm.top()));\n                rst.pop();\n                rsm.pop();\n     \
-    \       }\n        }\n        lst.pop();\n        lsm.pop();\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T all_prod() const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
-    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief SlidingWindowAggregation(SWAG)\n * @docs docs/data-struct/other/SlidingWindowAggregation.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
+    \n\nclass FullyIndexableDictionary {\nprivate:\n    int n, b;\n    std::vector<unsigned\
+    \ int> bit, sm;\npublic:\n    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int\
+    \ n) : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) {\n      \
+    \  bit[i >> 5] |= 1U << (i & 31);\n    }\n    void build() {\n        rep (i,\
+    \ b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n    }\n    int rank(int i) const\
+    \ {\n        return sm[i >> 5] + popcnt(bit[i >> 5] & ((1U << (i & 31)) - 1));\n\
+    \    }\n    int rank(bool x, int i) const {\n        return x ? rank(i) : i -\
+    \ rank(i);\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\u5099\u8F9E\
+    \u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) {\n        bit[i\
+    \ >> 5] |= 1U << (i & 31);\n    }\n    void build() {\n        rep (i, b - 1)\
+    \ sm[i + 1] = sm[i] + popcnt(bit[i]);\n    }\n    int rank(int i) const {\n  \
+    \      return sm[i >> 5] + popcnt(bit[i >> 5] & ((1U << (i & 31)) - 1));\n   \
+    \ }\n    int rank(bool x, int i) const {\n        return x ? rank(i) : i - rank(i);\n\
+    \    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8\
+    )\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -542,29 +425,26 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/other/SlidingWindowAggregation.hpp
+  path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-documentation_of: data-struct/other/SlidingWindowAggregation.hpp
+  timestamp: '2022-09-18 20:48:42+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
 layout: document
 redirect_from:
-- /library/data-struct/other/SlidingWindowAggregation.hpp
-- /library/data-struct/other/SlidingWindowAggregation.hpp.html
-title: SlidingWindowAggregation(SWAG)
+- /library/data-struct/wavelet/FullyIndexableDictionary.hpp
+- /library/data-struct/wavelet/FullyIndexableDictionary.hpp.html
+title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
 ---
 ## 概要
 
-`queue` の要素全てに順に演算を適当した値を $\Theta(1)$ で求めることができるデータ構造。 `stack` 2 つで `queue` を作るテクニックを使っている。
+$2N+O(1)$ のメモリで 01 配列の累積和を求める。
 
-- `SlidingWindowAggregation()` : SWAG を作る。 $\Theta(1)$ 。
-- `int size()` : 要素数を返す。 $\Theta(1)$ 。
-- `bool empty()` : 空であるかを返す。 $\Theta(1)$ 。
-- `void push(T x)` : `x` を追加する。 $\Theta(1)$ 。
-- `void emplace(Args...)` : 要素を直接構築で追加する。 $\Theta(1)$ 。
-- `void pop()` : 要素を削除する。ならし $\Theta(1)$ 。
-- `T all_prod()` : queue の要素全てで順に演算をした値を返す。 $\Theta(1)$ 。
+- `FullyIndexableDictionary()` : コンストラクタ。
+- `FullyIndexableDictionary(int n)` : $\Theta(n)$ 。
+- `void set(int i)` : `a[i]` を 1 にする。 $\Theta(1)$ 。
+- `void build()` : 計算する。 $\Theta(1)$ 。
+- `int rank(int i)` : `a[0, i)` のうち $1$ の個数を返す。 $\Theta(1)$ 。
+- `int rank(bool x, int i)` : `a[0, i)` のうち $x$ の個数を返す。 $\Theta(1)$ 。
