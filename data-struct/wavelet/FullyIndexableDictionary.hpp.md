@@ -22,7 +22,10 @@ data:
   - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/wavelet/WaveletMatrix.hpp
+    title: data-struct/wavelet/WaveletMatrix.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -399,24 +402,34 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
     \n\nclass FullyIndexableDictionary {\nprivate:\n    int n, b;\n    std::vector<unsigned\
-    \ int> bit, sm;\npublic:\n    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int\
-    \ n) : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) {\n      \
-    \  bit[i >> 5] |= 1U << (i & 31);\n    }\n    void build() {\n        rep (i,\
-    \ b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n    }\n    int rank(int i) const\
-    \ {\n        return sm[i >> 5] + popcnt(bit[i >> 5] & ((1U << (i & 31)) - 1));\n\
-    \    }\n    int rank(bool x, int i) const {\n        return x ? rank(i) : i -\
-    \ rank(i);\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\u5099\u8F9E\
-    \u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n */\n"
+    \ int> bit, sm;\n\npublic:\n    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int\
+    \ n) : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >>\
+    \ 5] |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >>\
+    \ 5] >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
+    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
+    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass FullyIndexableDictionary\
-    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\npublic:\n\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
     \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
-    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) {\n        bit[i\
-    \ >> 5] |= 1U << (i & 31);\n    }\n    void build() {\n        rep (i, b - 1)\
-    \ sm[i + 1] = sm[i] + popcnt(bit[i]);\n    }\n    int rank(int i) const {\n  \
-    \      return sm[i >> 5] + popcnt(bit[i >> 5] & ((1U << (i & 31)) - 1));\n   \
-    \ }\n    int rank(bool x, int i) const {\n        return x ? rank(i) : i - rank(i);\n\
-    \    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8\
-    )\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n */\n"
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
+    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
+    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -427,8 +440,9 @@ data:
   - template/bitop.hpp
   isVerificationFile: false
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
-  requiredBy: []
-  timestamp: '2022-09-18 20:48:42+09:00'
+  requiredBy:
+  - data-struct/wavelet/WaveletMatrix.hpp
+  timestamp: '2022-09-19 12:46:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp

@@ -1,19 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTourSubtree.hpp
-    title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
-      \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+  - icon: ':warning:'
+    path: data-struct/wavelet/FullyIndexableDictionary.hpp
+    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -38,34 +28,29 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
-    links:
-    - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
-  bundledCode: "#line 1 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\n\
-    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    links: []
+  bundledCode: "#line 2 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -412,190 +397,80 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/EulerTourSubtree.hpp\"\
-    \n\n#line 5 \"graph/tree/EulerTourSubtree.hpp\"\n\ntemplate<class T> class EulerTourSubtree\
-    \ {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n    const Graph<T>&\
-    \ G;\n    std::vector<std::pair<int, int>> idx;\n    void dfs(int v, int p) {\n\
-    \        idx[v].first = cnt++;\n        each_const (e : G[v]) {\n            if\
-    \ (e.to != p) dfs(e.to, v);\n        }\n        idx[v].second = cnt;\n    }\n\
-    \    void init() {\n        n = G.size();\n        idx.assign(n, {-1, -1});\n\
-    \        cnt = 0;\n        each_const (r : root) dfs(r, -1);\n        rep (i,\
-    \ n) {\n            if (idx[i].first == -1) dfs(i, -1);\n        }\n    }\n\n\
-    public:\n    EulerTourSubtree(const Graph<T>& G, int root = 0) : root({root}),\
-    \ G(G) {\n        init();\n    }\n    EulerTourSubtree(const Graph<T>& G, const\
-    \ std::vector<int>& root)\n        : root(root), G(G) {\n        init();\n   \
-    \ }\n    const std::pair<int, int>& get_idx(int k) const& { return idx[k]; }\n\
-    \    std::pair<int, int> get_idx(int k) && { return std::move(idx[k]); }\n   \
-    \ int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
-    \ ? a : b;\n    }\n    template<class F> void each_vertex_subtree(int v, const\
-    \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
-    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
-    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
-    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/graph/tree/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
-    \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p;\
-    \ scan >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
-    \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; scan\
-    \ >> t;\n        if (t == 0) {\n            int p; ll x; scan >> p >> x;\n   \
-    \         auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n    \
-    \    }\n        else {\n            int u; scan >> u;\n            ll ans = 0;\n\
-    \            ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r);\
-    \ });\n            print << ans << endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/EulerTourSubtree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
-    \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p;\
-    \ scan >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
-    \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; scan\
-    \ >> t;\n        if (t == 0) {\n            int p; ll x; scan >> p >> x;\n   \
-    \         auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n    \
-    \    }\n        else {\n            int u; scan >> u;\n            ll ans = 0;\n\
-    \            ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r);\
-    \ });\n            print << ans << endl;\n        }\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
+    \n\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
+    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
+    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\nusing T = int;\nclass\
+    \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T> ps;\n    std::vector<FullyIndexableDictionary>\
+    \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
+    \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
+    \ v) {\n        n = v.size();\n        ps.push(v);\n        ps.build();\n    \
+    \    m = ps.size();\n        ps.press(v);\n        h = bitop::ceil_log2(m);\n\
+    \        dat.assign(h, FullyIndexableDictionary(n));\n        std::vector<T> lv(n),\
+    \ rv(n);\n        rrep (i, h) {\n            int l = 0, r = 0;\n            rep\
+    \ (j, n) {\n                if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n\
+    \                    rv[r++] = v[j];\n                }\n                else\
+    \ {\n                    lv[l++] = v[j];\n                }\n            }\n \
+    \           dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n\
+    \            rep (j, r) v[l + j] = rv[j];\n        }\n        start.resize(m);\n\
+    \        rep (i, n) {\n            if (i == 0 || v[i - 1] != v[i]) start[v[i]]\
+    \ = i;\n        }\n    }\n    T access(int k) const {\n        assert(0 <= k &&\
+    \ k < n);\n        int res = 0;\n        rrep (i, h) {\n            if (dat[i][k])\
+    \ {\n                res |= (1ull << i);\n                k = dat[i].rank(true,\
+    \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
+    \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
+    \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
+    \      assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i,\
+    \ h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n   \
+    \         else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
+    \    }\n    int rank(const T& x) const { return rank(n, x); }\n    int rank(int\
+    \ l, int r, const T& x) const { return rank(r, x) - rank(l, x); }\n    int select(int\
+    \ k, const T& x) const {\n        assert(0 <= k && k < rank(x));\n        int\
+    \ v = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if\
+    \ (mid[i] <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
+    \ k);\n        }\n        return k;\n    }\n    \n};\n\n/**\n * @brief\n *\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
+    \n\nusing T = int;\nclass WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T>\
+    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid,\
+    \ start;\n\npublic:\n    WaveletMatrix() = default;\n    WaveletMatrix(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(std::vector<T> v) {\n        n = v.size();\n\
+    \        ps.push(v);\n        ps.build();\n        m = ps.size();\n        ps.press(v);\n\
+    \        h = bitop::ceil_log2(m);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
+    \        std::vector<T> lv(n), rv(n);\n        rrep (i, h) {\n            int\
+    \ l = 0, r = 0;\n            rep (j, n) {\n                if ((v[j] >> i) & 1)\
+    \ {\n                    dat[i].set(j);\n                    rv[r++] = v[j];\n\
+    \                }\n                else {\n                    lv[l++] = v[j];\n\
+    \                }\n            }\n            dat[i].build();\n            mid[i]\
+    \ = l;\n            v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n  \
+    \      }\n        start.resize(m);\n        rep (i, n) {\n            if (i ==\
+    \ 0 || v[i - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n    T access(int\
+    \ k) const {\n        assert(0 <= k && k < n);\n        int res = 0;\n       \
+    \ rrep (i, h) {\n            if (dat[i][k]) {\n                res |= (1ull <<\
+    \ i);\n                k = dat[i].rank(true, k) + mid[i];\n            }\n   \
+    \         else {\n                k = dat[i].rank(false, k);\n            }\n\
+    \        }\n        return ps[res];\n    }\n    T operator[](int k) const { return\
+    \ access(k); }\n    int rank(int k, const T& x) const {\n        assert(0 <= k\
+    \ && k <= n);\n        int v = ps.get(x);\n        rrep (i, h) {\n           \
+    \ if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n            else k = dat[i].rank(false,\
+    \ k);\n        }\n        return k - start[v];\n    }\n    int rank(const T& x)\
+    \ const { return rank(n, x); }\n    int rank(int l, int r, const T& x) const {\
+    \ return rank(r, x) - rank(l, x); }\n    int select(int k, const T& x) const {\n\
+    \        assert(0 <= k && k < rank(x));\n        int v = ps.get(x);\n        k\
+    \ += start[v];\n        rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true,\
+    \ k - mid[i]);\n            else k = dat[i].select(false, k);\n        }\n   \
+    \     return k;\n    }\n    \n};\n\n/**\n * @brief\n *\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -604,20 +479,17 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - other/monoid.hpp
-  - graph/Graph.hpp
-  - graph/tree/EulerTourSubtree.hpp
-  isVerificationFile: true
-  path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  isVerificationFile: false
+  path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-19 12:46:28+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+documentation_of: data-struct/wavelet/WaveletMatrix.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-- /verify/test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp.html
-title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+- /library/data-struct/wavelet/WaveletMatrix.hpp
+- /library/data-struct/wavelet/WaveletMatrix.hpp.html
+title: data-struct/wavelet/WaveletMatrix.hpp
 ---
