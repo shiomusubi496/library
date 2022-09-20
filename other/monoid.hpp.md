@@ -23,215 +23,215 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree2D.hpp
     title: SegmentTree2D
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_range_sum.test.cpp
     title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/deque_operate_all_composite.test.cpp
     title: test/yosupo/new/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
   - icon: ':x:'
@@ -245,7 +245,7 @@ data:
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -605,10 +605,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -782,81 +786,81 @@ data:
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/DynamicLazySegmentTree.hpp
-  - data-struct/segment/SegmentTree2D.hpp
-  - data-struct/segment/SqrtDecomposition.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/SSegmentTree.hpp
-  - data-struct/segment/SegmentTreeBeats.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/other/DequeOperateAggregation.hpp
-  - data-struct/other/SkipList.hpp
-  - data-struct/other/SlidingWindowAggregation.hpp
+  - graph/tree/ReRooting.hpp
+  - graph/tree/PMORMQLCA.hpp
   - other/monoid2.hpp
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/other/SlidingWindowAggregation.hpp
+  - data-struct/other/SkipList.hpp
+  - data-struct/segment/LCARMQ.hpp
+  - data-struct/segment/SSegmentTree.hpp
+  - data-struct/segment/DualSegmentTree.hpp
+  - data-struct/segment/SegmentTree2D.hpp
+  - data-struct/segment/SparseTable.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/SqrtDecomposition.hpp
+  - data-struct/segment/SegmentTreeBeats.hpp
+  - data-struct/segment/DisjointSparseTable.hpp
+  - data-struct/segment/DynamicLazySegmentTree.hpp
+  - data-struct/segment/LinearRMQ.hpp
+  - data-struct/segment/PlusMinusOneRMQ.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/DynamicSegmentTree.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/deque_operate_all_composite.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
+  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/point_add_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/rectangle_sum.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
 documentation_of: other/monoid.hpp
 layout: document
 redirect_from:

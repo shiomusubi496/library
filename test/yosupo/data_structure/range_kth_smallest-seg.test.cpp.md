@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -31,9 +31,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -398,10 +398,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -569,8 +573,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
 layout: document

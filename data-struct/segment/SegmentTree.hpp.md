@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -26,26 +26,26 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree2D.hpp
     title: SegmentTree2D
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SegmentTree.md
     document_title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -415,10 +415,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -601,16 +605,16 @@ data:
   path: data-struct/segment/SegmentTree.hpp
   requiredBy:
   - data-struct/segment/SegmentTree2D.hpp
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/rectangle_sum.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:

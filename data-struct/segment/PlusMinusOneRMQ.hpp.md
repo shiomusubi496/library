@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -29,22 +29,22 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/PlusMinusOneRMQ.md
     document_title: PlusMinusOneRMQ($\pm1$RMQ)
@@ -407,10 +407,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -602,11 +606,11 @@ data:
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: data-struct/segment/PlusMinusOneRMQ.hpp
 layout: document
 redirect_from:

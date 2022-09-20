@@ -23,7 +23,7 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':heavy_check_mark:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/random/Random.md
     document_title: Random
@@ -400,10 +400,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -483,11 +487,11 @@ data:
   requiredBy:
   - data-struct/other/SkipList.hpp
   - string/RollingHash.hpp
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: random/Random.hpp
 layout: document
 redirect_from:

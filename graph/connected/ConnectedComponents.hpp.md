@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
     title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/connected/ConnectedComponents.md
     document_title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
@@ -398,10 +398,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -487,8 +491,8 @@ data:
   isVerificationFile: false
   path: graph/connected/ConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp

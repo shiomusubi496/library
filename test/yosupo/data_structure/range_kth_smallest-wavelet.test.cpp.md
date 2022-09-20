@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
+  - icon: ':x:'
+    path: data-struct/wavelet/FullyIndexableDictionary.hpp
+    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':x:'
+    path: data-struct/wavelet/WaveletMatrix.hpp
+    title: WaveletMatrix
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -26,39 +29,36 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/GraphCycle.md
-    document_title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    links: []
-  bundledCode: "#line 2 \"graph/other/GraphCycle.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
+    links:
+    - https://judge.yosupo.jp/problem/range_kth_smallest
+  bundledCode: "#line 1 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n#line\
+    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -409,81 +409,86 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/GraphCycle.hpp\"\n\ntemplate<class T> class GraphCycle\
-    \ {\nprivate:\n    const Graph<T>& G;\n    std::vector<bool> visited, seen;\n\
-    \    Edges<T> cycle;\n    int dfs(int v, int k) {\n        if (seen[v]) return\
-    \ v;\n        if (visited[v]) return -1;\n        visited[v] = seen[v] = true;\n\
-    \        each_const (e : G[v]) {\n            if (e.idx == k) continue;\n    \
-    \        int d = dfs(e.to, e.idx);\n            if (d != -1) {\n             \
-    \   if (d == -2) return -2;\n                cycle.push_back(e);\n           \
-    \     if (d == v) return -2;\n                return d;\n            }\n     \
-    \   }\n        seen[v] = false;\n        return -1;\n    }\n    void init() {\n\
-    \        const int N = G.size();\n        visited.assign(N, false);\n        seen.assign(N,\
-    \ false);\n        rep (i, N) {\n            if (dfs(i, -1) == -2) {\n       \
-    \         std::reverse(all(cycle));\n                break;\n            }\n \
-    \       }\n    }\n\npublic:\n    GraphCycle(const Graph<T>& G) : G(G) { init();\
-    \ }\n    bool has_cycle() const { return !cycle.empty(); }\n    const Edges<T>&\
-    \ get_cycle() const& { return cycle; }\n    Edges<T> get_cycle() && { return std::move(cycle);\
-    \ }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class GraphCycle {\nprivate:\n    const Graph<T>& G;\n \
-    \   std::vector<bool> visited, seen;\n    Edges<T> cycle;\n    int dfs(int v,\
-    \ int k) {\n        if (seen[v]) return v;\n        if (visited[v]) return -1;\n\
-    \        visited[v] = seen[v] = true;\n        each_const (e : G[v]) {\n     \
-    \       if (e.idx == k) continue;\n            int d = dfs(e.to, e.idx);\n   \
-    \         if (d != -1) {\n                if (d == -2) return -2;\n          \
-    \      cycle.push_back(e);\n                if (d == v) return -2;\n         \
-    \       return d;\n            }\n        }\n        seen[v] = false;\n      \
-    \  return -1;\n    }\n    void init() {\n        const int N = G.size();\n   \
-    \     visited.assign(N, false);\n        seen.assign(N, false);\n        rep (i,\
-    \ N) {\n            if (dfs(i, -1) == -2) {\n                std::reverse(all(cycle));\n\
-    \                break;\n            }\n        }\n    }\n\npublic:\n    GraphCycle(const\
-    \ Graph<T>& G) : G(G) { init(); }\n    bool has_cycle() const { return !cycle.empty();\
-    \ }\n    const Edges<T>& get_cycle() const& { return cycle; }\n    Edges<T> get_cycle()\
-    \ && { return std::move(cycle); }\n};\n\n/**\n * @brief GraphCycle(\u9589\u8DEF\
-    \u691C\u51FA)\n * @docs docs/graph/other/GraphCycle.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/wavelet/WaveletMatrix.hpp\"\
+    \n\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line 4 \"\
+    data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\nusing T = int;\nclass\
+    \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T> ps;\n    std::vector<FullyIndexableDictionary>\
+    \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
+    \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
+    \ v_) {\n        n = v_.size();\n        ps.push(v_);\n        ps.build();\n \
+    \       m = ps.size();\n        std::vector<int> v = ps.pressed(v_);\n       \
+    \ h = bitop::ceil_log2(m + 1);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
+    \        mid.resize(h);\n        std::vector<T> lv(n), rv(n);\n        rrep (i,\
+    \ h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n            \
+    \    if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n            \
+    \        rv[r++] = v[j];\n                }\n                else {\n        \
+    \            lv[l++] = v[j];\n                }\n            }\n            dat[i].build();\n\
+    \            mid[i] = l;\n            v.swap(lv);\n            rep (j, r) v[l\
+    \ + j] = rv[j];\n        }\n        start.resize(m);\n        rep (i, n) {\n \
+    \           if (i == 0 || v[i - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n\
+    \    T access(int k) const {\n        assert(0 <= k && k < n);\n        int res\
+    \ = 0;\n        rrep (i, h) {\n            if (dat[i][k]) {\n                res\
+    \ |= (1ull << i);\n                k = dat[i].rank(true, k) + mid[i];\n      \
+    \      }\n            else {\n                k = dat[i].rank(false, k);\n   \
+    \         }\n        }\n        return ps[res];\n    }\n    T operator[](int k)\
+    \ const { return access(k); }\n    int rank(int k, const T& x) const {\n     \
+    \   assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i, h)\
+    \ {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n      \
+    \      else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
+    \    }\n    int rank(const T& x) const { return rank(n, x); }\n    int rank(int\
+    \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
+    \ 1) {\n                l = dat[i].rank(true, l) + mid[i];\n                r\
+    \ = dat[i].rank(true, r) + mid[i];\n            }\n            else {\n      \
+    \          l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
+    \ r);\n            }\n        }\n        return r - l;\n    }\n    int select(const\
+    \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
+    \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
+    \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
+    \ k);\n        }\n        return k;\n    }\n    T quantile(int l, int r, int k)\
+    \ const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k\
+    \ && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
+    \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
+    \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
+    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
+    \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return ps[res];\n    }\n    int count_le(int l, int r, const T& x) const\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        int v = ps.upper_bound(x)\
+    \ - ps.contains(x);\n        int res = 0;\n        rrep (i, h) {\n           \
+    \ if ((v >> i) & 1) {\n                const int a = dat[i].rank(true, l);\n \
+    \               const int b = dat[i].rank(true, r);\n                res += (r\
+    \ - l) - (b - a);\n                l = a + mid[i];\n                r = b + mid[i];\n\
+    \            }\n            else {\n                l = dat[i].rank(false, l);\n\
+    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
+    \  return res;\n    }\n    int count(int l, int r, const T& x, const T& y) const\
+    \ {\n        return count_le(l, r, y) - count_le(l, r, x);\n    }\n};\n\n/**\n\
+    \ * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
+    \ A(n); scan >> A;\n    WaveletMatrix wm(A);\n    rep (q) {\n        int l, r,\
+    \ k; scan >> l >> r >> k;\n        print << wm.quantile(l, r, k) << endl;\n  \
+    \  }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/wavelet/WaveletMatrix.hpp\"\
+    \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
+    \ A(n); scan >> A;\n    WaveletMatrix wm(A);\n    rep (q) {\n        int l, r,\
+    \ k; scan >> l >> r >> k;\n        print << wm.quantile(l, r, k) << endl;\n  \
+    \  }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -492,26 +497,18 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/other/GraphCycle.hpp
+  - data-struct/wavelet/WaveletMatrix.hpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   requiredBy: []
   timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-documentation_of: graph/other/GraphCycle.hpp
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 layout: document
 redirect_from:
-- /library/graph/other/GraphCycle.hpp
-- /library/graph/other/GraphCycle.hpp.html
-title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
+- /verify/test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+- /verify/test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp.html
+title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 ---
-## 概要
-
-有向グラフに対して閉路を検出する。
-
-- `GraphCycle(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool has_cycle()` : 閉路を持つかを返す。 $\Theta(1)$ 。
-- `Edges<T> get_cycle()` : 閉路 $p$ を $1$ つ返す。存在しない場合は空のリストが返る。 $\Theta(|p|)$ 。

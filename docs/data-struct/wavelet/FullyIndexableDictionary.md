@@ -1,6 +1,6 @@
 ## 概要
 
-$2N+O(1)$ のメモリで 01 配列の累積和を求める。
+$2N+o(N)$ bit のメモリ量で 01 配列の累積和を求める。
 
 - `FullyIndexableDictionary()` : コンストラクタ。
 - `FullyIndexableDictionary(int n)` : $\Theta(n)$ 。

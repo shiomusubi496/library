@@ -26,14 +26,14 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yosupo/tree/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest-path/Restore.md
     document_title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
@@ -403,10 +403,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -501,12 +505,12 @@ data:
   path: graph/shortest-path/Restore.hpp
   requiredBy:
   - graph/tree/TreeDiameter.hpp
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document
 redirect_from:

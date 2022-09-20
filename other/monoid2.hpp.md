@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -27,48 +27,48 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/deque_operate_all_composite.test.cpp
     title: test/yosupo/new/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -428,10 +428,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -579,22 +583,22 @@ data:
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/deque_operate_all_composite.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:

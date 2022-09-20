@@ -27,13 +27,13 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yosupo/tree/lca-HLD.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/HeavyLightDecomposition.md
     document_title: "HeavyLightDecomposition(HL\u5206\u89E3)"
@@ -403,10 +403,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -566,13 +570,13 @@ data:
   isVerificationFile: false
   path: graph/tree/HeavyLightDecomposition.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
 documentation_of: graph/tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

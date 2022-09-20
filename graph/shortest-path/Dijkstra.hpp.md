@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/shortest-path/Dijkstra.md
     document_title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
@@ -403,10 +403,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -484,13 +488,13 @@ data:
   isVerificationFile: false
   path: graph/shortest-path/Dijkstra.hpp
   requiredBy: []
-  timestamp: '2022-09-17 19:31:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/graph/shortest_path.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
 documentation_of: graph/shortest-path/Dijkstra.hpp
 layout: document
 redirect_from:

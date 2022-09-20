@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
@@ -26,11 +26,16 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrix.md
+    document_title: WaveletMatrix
     links: []
   bundledCode: "#line 2 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
@@ -389,10 +394,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -408,69 +417,118 @@ data:
     \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
     \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
     \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
-    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
-    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
     \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
     \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\nusing T = int;\nclass\
     \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T> ps;\n    std::vector<FullyIndexableDictionary>\
     \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
     \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
-    \ v) {\n        n = v.size();\n        ps.push(v);\n        ps.build();\n    \
-    \    m = ps.size();\n        ps.press(v);\n        h = bitop::ceil_log2(m);\n\
-    \        dat.assign(h, FullyIndexableDictionary(n));\n        std::vector<T> lv(n),\
-    \ rv(n);\n        rrep (i, h) {\n            int l = 0, r = 0;\n            rep\
-    \ (j, n) {\n                if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n\
-    \                    rv[r++] = v[j];\n                }\n                else\
-    \ {\n                    lv[l++] = v[j];\n                }\n            }\n \
-    \           dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n\
-    \            rep (j, r) v[l + j] = rv[j];\n        }\n        start.resize(m);\n\
-    \        rep (i, n) {\n            if (i == 0 || v[i - 1] != v[i]) start[v[i]]\
-    \ = i;\n        }\n    }\n    T access(int k) const {\n        assert(0 <= k &&\
-    \ k < n);\n        int res = 0;\n        rrep (i, h) {\n            if (dat[i][k])\
-    \ {\n                res |= (1ull << i);\n                k = dat[i].rank(true,\
-    \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
-    \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
-    \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
-    \      assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i,\
-    \ h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n   \
-    \         else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
+    \ v_) {\n        n = v_.size();\n        ps.push(v_);\n        ps.build();\n \
+    \       m = ps.size();\n        std::vector<int> v = ps.pressed(v_);\n       \
+    \ h = bitop::ceil_log2(m + 1);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
+    \        mid.resize(h);\n        std::vector<T> lv(n), rv(n);\n        rrep (i,\
+    \ h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n            \
+    \    if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n            \
+    \        rv[r++] = v[j];\n                }\n                else {\n        \
+    \            lv[l++] = v[j];\n                }\n            }\n            dat[i].build();\n\
+    \            mid[i] = l;\n            v.swap(lv);\n            rep (j, r) v[l\
+    \ + j] = rv[j];\n        }\n        start.resize(m);\n        rep (i, n) {\n \
+    \           if (i == 0 || v[i - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n\
+    \    T access(int k) const {\n        assert(0 <= k && k < n);\n        int res\
+    \ = 0;\n        rrep (i, h) {\n            if (dat[i][k]) {\n                res\
+    \ |= (1ull << i);\n                k = dat[i].rank(true, k) + mid[i];\n      \
+    \      }\n            else {\n                k = dat[i].rank(false, k);\n   \
+    \         }\n        }\n        return ps[res];\n    }\n    T operator[](int k)\
+    \ const { return access(k); }\n    int rank(int k, const T& x) const {\n     \
+    \   assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i, h)\
+    \ {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n      \
+    \      else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
     \    }\n    int rank(const T& x) const { return rank(n, x); }\n    int rank(int\
-    \ l, int r, const T& x) const { return rank(r, x) - rank(l, x); }\n    int select(int\
-    \ k, const T& x) const {\n        assert(0 <= k && k < rank(x));\n        int\
-    \ v = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if\
-    \ (mid[i] <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
-    \ k);\n        }\n        return k;\n    }\n    \n};\n\n/**\n * @brief\n *\n */\n"
+    \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
+    \ 1) {\n                l = dat[i].rank(true, l) + mid[i];\n                r\
+    \ = dat[i].rank(true, r) + mid[i];\n            }\n            else {\n      \
+    \          l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
+    \ r);\n            }\n        }\n        return r - l;\n    }\n    int select(const\
+    \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
+    \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
+    \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
+    \ k);\n        }\n        return k;\n    }\n    T quantile(int l, int r, int k)\
+    \ const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k\
+    \ && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
+    \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
+    \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
+    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
+    \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return ps[res];\n    }\n    int count_le(int l, int r, const T& x) const\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        int v = ps.upper_bound(x)\
+    \ - ps.contains(x);\n        int res = 0;\n        rrep (i, h) {\n           \
+    \ if ((v >> i) & 1) {\n                const int a = dat[i].rank(true, l);\n \
+    \               const int b = dat[i].rank(true, r);\n                res += (r\
+    \ - l) - (b - a);\n                l = a + mid[i];\n                r = b + mid[i];\n\
+    \            }\n            else {\n                l = dat[i].rank(false, l);\n\
+    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
+    \  return res;\n    }\n    int count(int l, int r, const T& x, const T& y) const\
+    \ {\n        return count_le(l, r, y) - count_le(l, r, x);\n    }\n};\n\n/**\n\
+    \ * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
     \n\nusing T = int;\nclass WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T>\
     \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid,\
     \ start;\n\npublic:\n    WaveletMatrix() = default;\n    WaveletMatrix(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(std::vector<T> v) {\n        n = v.size();\n\
-    \        ps.push(v);\n        ps.build();\n        m = ps.size();\n        ps.press(v);\n\
-    \        h = bitop::ceil_log2(m);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
-    \        std::vector<T> lv(n), rv(n);\n        rrep (i, h) {\n            int\
-    \ l = 0, r = 0;\n            rep (j, n) {\n                if ((v[j] >> i) & 1)\
-    \ {\n                    dat[i].set(j);\n                    rv[r++] = v[j];\n\
-    \                }\n                else {\n                    lv[l++] = v[j];\n\
-    \                }\n            }\n            dat[i].build();\n            mid[i]\
-    \ = l;\n            v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n  \
-    \      }\n        start.resize(m);\n        rep (i, n) {\n            if (i ==\
-    \ 0 || v[i - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n    T access(int\
-    \ k) const {\n        assert(0 <= k && k < n);\n        int res = 0;\n       \
-    \ rrep (i, h) {\n            if (dat[i][k]) {\n                res |= (1ull <<\
-    \ i);\n                k = dat[i].rank(true, k) + mid[i];\n            }\n   \
-    \         else {\n                k = dat[i].rank(false, k);\n            }\n\
-    \        }\n        return ps[res];\n    }\n    T operator[](int k) const { return\
-    \ access(k); }\n    int rank(int k, const T& x) const {\n        assert(0 <= k\
-    \ && k <= n);\n        int v = ps.get(x);\n        rrep (i, h) {\n           \
-    \ if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n            else k = dat[i].rank(false,\
+    \ v) { init(v); }\n    void init(std::vector<T> v_) {\n        n = v_.size();\n\
+    \        ps.push(v_);\n        ps.build();\n        m = ps.size();\n        std::vector<int>\
+    \ v = ps.pressed(v_);\n        h = bitop::ceil_log2(m + 1);\n        dat.assign(h,\
+    \ FullyIndexableDictionary(n));\n        mid.resize(h);\n        std::vector<T>\
+    \ lv(n), rv(n);\n        rrep (i, h) {\n            int l = 0, r = 0;\n      \
+    \      rep (j, n) {\n                if ((v[j] >> i) & 1) {\n                \
+    \    dat[i].set(j);\n                    rv[r++] = v[j];\n                }\n\
+    \                else {\n                    lv[l++] = v[j];\n               \
+    \ }\n            }\n            dat[i].build();\n            mid[i] = l;\n   \
+    \         v.swap(lv);\n            rep (j, r) v[l + j] = rv[j];\n        }\n \
+    \       start.resize(m);\n        rep (i, n) {\n            if (i == 0 || v[i\
+    \ - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n    T access(int k) const\
+    \ {\n        assert(0 <= k && k < n);\n        int res = 0;\n        rrep (i,\
+    \ h) {\n            if (dat[i][k]) {\n                res |= (1ull << i);\n  \
+    \              k = dat[i].rank(true, k) + mid[i];\n            }\n           \
+    \ else {\n                k = dat[i].rank(false, k);\n            }\n        }\n\
+    \        return ps[res];\n    }\n    T operator[](int k) const { return access(k);\
+    \ }\n    int rank(int k, const T& x) const {\n        assert(0 <= k && k <= n);\n\
+    \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
+    \ 1) k = dat[i].rank(true, k) + mid[i];\n            else k = dat[i].rank(false,\
     \ k);\n        }\n        return k - start[v];\n    }\n    int rank(const T& x)\
-    \ const { return rank(n, x); }\n    int rank(int l, int r, const T& x) const {\
-    \ return rank(r, x) - rank(l, x); }\n    int select(int k, const T& x) const {\n\
-    \        assert(0 <= k && k < rank(x));\n        int v = ps.get(x);\n        k\
-    \ += start[v];\n        rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true,\
-    \ k - mid[i]);\n            else k = dat[i].select(false, k);\n        }\n   \
-    \     return k;\n    }\n    \n};\n\n/**\n * @brief\n *\n */\n"
+    \ const { return rank(n, x); }\n    int rank(int l, int r, const T& x) const {\n\
+    \        assert(0 <= l && l <= r && r <= n);\n        int v = ps.get(x);\n   \
+    \     rrep (i, h) {\n            if ((v >> i) & 1) {\n                l = dat[i].rank(true,\
+    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
+    \   }\n            else {\n                l = dat[i].rank(false, l);\n      \
+    \          r = dat[i].rank(false, r);\n            }\n        }\n        return\
+    \ r - l;\n    }\n    int select(const T& x, int k) const {\n        assert(0 <=\
+    \ k && k < rank(x));\n        int v = ps.get(x);\n        k += start[v];\n   \
+    \     rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true, k - mid[i]);\n\
+    \            else k = dat[i].select(false, k);\n        }\n        return k;\n\
+    \    }\n    T quantile(int l, int r, int k) const {\n        assert(0 <= l &&\
+    \ l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n        int res =\
+    \ 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false, r) - dat[i].rank(false,\
+    \ l);\n            if (cnt <= k) {\n                res |= (1ull << i);\n    \
+    \            l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true,\
+    \ r) + mid[i];\n                k -= cnt;\n            }\n            else {\n\
+    \                l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
+    \ r);\n            }\n        }\n        return ps[res];\n    }\n    int count_le(int\
+    \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.upper_bound(x) - ps.contains(x);\n        int res = 0;\n \
+    \       rrep (i, h) {\n            if ((v >> i) & 1) {\n                const\
+    \ int a = dat[i].rank(true, l);\n                const int b = dat[i].rank(true,\
+    \ r);\n                res += (r - l) - (b - a);\n                l = a + mid[i];\n\
+    \                r = b + mid[i];\n            }\n            else {\n        \
+    \        l = dat[i].rank(false, l);\n                r = dat[i].rank(false, r);\n\
+    \            }\n        }\n        return res;\n    }\n    int count(int l, int\
+    \ r, const T& x, const T& y) const {\n        return count_le(l, r, y) - count_le(l,\
+    \ r, x);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -483,13 +541,26 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2022-09-19 12:46:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrix.hpp
 layout: document
 redirect_from:
 - /library/data-struct/wavelet/WaveletMatrix.hpp
 - /library/data-struct/wavelet/WaveletMatrix.hpp.html
-title: data-struct/wavelet/WaveletMatrix.hpp
+title: WaveletMatrix
 ---
+## 概要
+
+数列が与えられたとき、区間に対して色々できる。以下値の種類数を $m$ とする。
+
+- `WaveletMatrix(vector<T> a)` : 列 `a` で初期化する。 $\Theta(n \log n)$ 。空間は $\Theta(n \log m)$ bit 。
+- `T access(int k)` : `a[k]` を返す。 $\Theta(\log m)$ 。
+- `T operator[](int k)` : 上に同じ。
+- `int rank(int r, T x)` : `a[0:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
+- `int rank(int l, int r, T x)` : `a[l:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
+- `int select(T x, int k)` : `x` のうち `k` 個目にある値の index を返す。 $\Theta(\log n \log m)$ 。
+- `T quantile(int l, int r, int k)` : `a[l:r)` をソートしたとき `k` 番目の値を返す。 $\Theta(\log n \log m)$ 。
+- `int count(int l, int r, T x, T y)` : `a[l:r)` のうち `[x:y)` に収まる値の個数を返す。 $\Theta(\log m)$ 。

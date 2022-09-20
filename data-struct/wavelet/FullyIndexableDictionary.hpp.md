@@ -23,13 +23,16 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrix.hpp
-    title: data-struct/wavelet/WaveletMatrix.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+    title: WaveletMatrix
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+    title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
     document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
@@ -392,10 +395,14 @@ data:
     \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
     \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
     \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    std::vector<int> pressed(const\
-    \ std::vector<T>& vec) const {\n        assert(sorted);\n        std::vector<int>\
-    \ res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n      \
-    \  return res;\n    }\n    void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
+    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
+    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
+    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
+    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
+    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
+    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
     \                      \"template argument must be convertible from int type\"\
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
@@ -410,9 +417,9 @@ data:
     \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
     \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
     \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
-    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
-    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
     \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass FullyIndexableDictionary\
@@ -425,9 +432,9 @@ data:
     \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
     \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
     \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = -1, r = n;\n        while (r - l > 1) {\n            int m =\
-    \ (l + r) >> 1;\n            if (rank(x, m) < i) l = m;\n            else r =\
-    \ m;\n        }\n        return l + 1;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
     \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
     \ */\n"
   dependsOn:
@@ -442,9 +449,10 @@ data:
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy:
   - data-struct/wavelet/WaveletMatrix.hpp
-  timestamp: '2022-09-19 12:46:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-09-20 18:17:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
 layout: document
 redirect_from:
@@ -454,7 +462,7 @@ title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
 ---
 ## 概要
 
-$2N+O(1)$ のメモリで 01 配列の累積和を求める。
+$2N+o(N)$ bit のメモリ量で 01 配列の累積和を求める。
 
 - `FullyIndexableDictionary()` : コンストラクタ。
 - `FullyIndexableDictionary(int n)` : $\Theta(n)$ 。
