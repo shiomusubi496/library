@@ -247,6 +247,15 @@ public:
         auto itr = std::lower_bound(all(dat), val, cmp);
         return itr - dat.begin();
     }
+    int upper_bound(const T& val) const {
+        assert(sorted);
+        auto itr = std::upper_bound(all(dat), val, cmp);
+        return itr - dat.begin();
+    }
+    bool contains(const T& val) const {
+        assert(sorted);
+        return std::binary_search(all(dat), val, cmp);
+    }
     std::vector<int> pressed(const std::vector<T>& vec) const {
         assert(sorted);
         std::vector<int> res(vec.size());

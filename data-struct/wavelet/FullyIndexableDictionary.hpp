@@ -21,13 +21,13 @@ public:
     }
     int rank(bool x, int i) const { return x ? rank(i) : i - rank(i); }
     int select(bool x, int i) const {
-        int l = -1, r = n;
+        int l = 0, r = n;
         while (r - l > 1) {
             int m = (l + r) >> 1;
-            if (rank(x, m) < i) l = m;
+            if (rank(x, m) <= i) l = m;
             else r = m;
         }
-        return l + 1;
+        return l;
     }
 };
 
