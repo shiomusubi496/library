@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "FullyIndexableDictionary.hpp"
 
-using T = int;
-class WaveletMatrix {
+template<class T> class WaveletMatrix {
 private:
     int n, m, h;
     presser<T> ps;
@@ -95,7 +94,7 @@ public:
         }
         return k;
     }
-    T quantile(int l, int r, int k) const {
+    T kth_smallest(int l, int r, int k) const {
         assert(0 <= l && l <= r && r <= n);
         assert(0 <= k && k < r - l);
         int res = 0;
@@ -114,9 +113,12 @@ public:
         }
         return ps[res];
     }
-    int count_le(int l, int r, const T& x) const {
+    T kth_largest(int l, int r, int k) const {
+        return kth_smallest(l, r, r - l - 1 - k);
+    }
+    int range_freq(int l, int r, const T& upper) const {
         assert(0 <= l && l <= r && r <= n);
-        int v = ps.upper_bound(x) - ps.contains(x);
+        int v = ps.lower_bound(upper);
         int res = 0;
         rrep (i, h) {
             if ((v >> i) & 1) {
@@ -133,8 +135,8 @@ public:
         }
         return res;
     }
-    int count(int l, int r, const T& x, const T& y) const {
-        return count_le(l, r, y) - count_le(l, r, x);
+    int range_freq(int l, int r, const T& lower, const T& upper) const {
+        return range_freq(l, r, upper) - range_freq(l, r, lower);
     }
 };
 

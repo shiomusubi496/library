@@ -8,5 +8,6 @@
 - `int rank(int r, T x)` : `a[0:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
 - `int rank(int l, int r, T x)` : `a[l:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
 - `int select(T x, int k)` : `x` のうち `k` 個目にある値の index を返す。 $\Theta(\log n \log m)$ 。
-- `T quantile(int l, int r, int k)` : `a[l:r)` をソートしたとき `k` 番目の値を返す。 $\Theta(\log n \log m)$ 。
-- `int count(int l, int r, T x, T y)` : `a[l:r)` のうち `[x:y)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
+- `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
+- `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
+- `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。

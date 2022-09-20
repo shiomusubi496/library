@@ -8,6 +8,6 @@ int main() {
     WaveletMatrix wm(A);
     rep (q) {
         int l, r, k; scan >> l >> r >> k;
-        print << wm.quantile(l, r, k) << endl;
+        print << wm.kth_smallest(l, r, k) << endl;
     }
 }
