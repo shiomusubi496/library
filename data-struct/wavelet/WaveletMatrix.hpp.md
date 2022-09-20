@@ -421,7 +421,7 @@ data:
     \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
     \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
     \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\nusing T = int;\nclass\
+    \ */\n#line 5 \"data-struct/wavelet/WaveletMatrix.hpp\"\n\ntemplate<class T> class\
     \ WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T> ps;\n    std::vector<FullyIndexableDictionary>\
     \ dat;\n    std::vector<int> mid, start;\n\npublic:\n    WaveletMatrix() = default;\n\
     \    WaveletMatrix(const std::vector<T>& v) { init(v); }\n    void init(std::vector<T>\
@@ -455,28 +455,29 @@ data:
     \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
     \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
     \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
-    \ k);\n        }\n        return k;\n    }\n    T quantile(int l, int r, int k)\
-    \ const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k\
-    \ && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
+    \ k);\n        }\n        return k;\n    }\n    T kth_smallest(int l, int r, int\
+    \ k) const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <=\
+    \ k && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
     \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
     \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
     \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
     \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
     \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return ps[res];\n    }\n    int count_le(int l, int r, const T& x) const\
-    \ {\n        assert(0 <= l && l <= r && r <= n);\n        int v = ps.upper_bound(x)\
-    \ - ps.contains(x);\n        int res = 0;\n        rrep (i, h) {\n           \
-    \ if ((v >> i) & 1) {\n                const int a = dat[i].rank(true, l);\n \
-    \               const int b = dat[i].rank(true, r);\n                res += (r\
-    \ - l) - (b - a);\n                l = a + mid[i];\n                r = b + mid[i];\n\
-    \            }\n            else {\n                l = dat[i].rank(false, l);\n\
-    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
-    \  return res;\n    }\n    int count(int l, int r, const T& x, const T& y) const\
-    \ {\n        return count_le(l, r, y) - count_le(l, r, x);\n    }\n};\n\n/**\n\
-    \ * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \        return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const\
+    \ {\n        return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
+    \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
+    \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
+    \ l);\n                const int b = dat[i].rank(true, r);\n                res\
+    \ += (r - l) - (b - a);\n                l = a + mid[i];\n                r =\
+    \ b + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
+    \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
+    \ r, lower);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
-    \n\nusing T = int;\nclass WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T>\
+    \n\ntemplate<class T> class WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T>\
     \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<int> mid,\
     \ start;\n\npublic:\n    WaveletMatrix() = default;\n    WaveletMatrix(const std::vector<T>&\
     \ v) { init(v); }\n    void init(std::vector<T> v_) {\n        n = v_.size();\n\
@@ -510,24 +511,26 @@ data:
     \ k && k < rank(x));\n        int v = ps.get(x);\n        k += start[v];\n   \
     \     rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true, k - mid[i]);\n\
     \            else k = dat[i].select(false, k);\n        }\n        return k;\n\
-    \    }\n    T quantile(int l, int r, int k) const {\n        assert(0 <= l &&\
-    \ l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n        int res =\
-    \ 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false, r) - dat[i].rank(false,\
+    \    }\n    T kth_smallest(int l, int r, int k) const {\n        assert(0 <= l\
+    \ && l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n        int res\
+    \ = 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false, r) - dat[i].rank(false,\
     \ l);\n            if (cnt <= k) {\n                res |= (1ull << i);\n    \
     \            l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true,\
     \ r) + mid[i];\n                k -= cnt;\n            }\n            else {\n\
     \                l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
-    \ r);\n            }\n        }\n        return ps[res];\n    }\n    int count_le(int\
-    \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        int v = ps.upper_bound(x) - ps.contains(x);\n        int res = 0;\n \
-    \       rrep (i, h) {\n            if ((v >> i) & 1) {\n                const\
-    \ int a = dat[i].rank(true, l);\n                const int b = dat[i].rank(true,\
-    \ r);\n                res += (r - l) - (b - a);\n                l = a + mid[i];\n\
-    \                r = b + mid[i];\n            }\n            else {\n        \
-    \        l = dat[i].rank(false, l);\n                r = dat[i].rank(false, r);\n\
-    \            }\n        }\n        return res;\n    }\n    int count(int l, int\
-    \ r, const T& x, const T& y) const {\n        return count_le(l, r, y) - count_le(l,\
-    \ r, x);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ r);\n            }\n        }\n        return ps[res];\n    }\n    T kth_largest(int\
+    \ l, int r, int k) const {\n        return kth_smallest(l, r, r - l - 1 - k);\n\
+    \    }\n    int range_freq(int l, int r, const T& upper) const {\n        assert(0\
+    \ <= l && l <= r && r <= n);\n        int v = ps.lower_bound(upper);\n       \
+    \ int res = 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) {\n     \
+    \           const int a = dat[i].rank(true, l);\n                const int b =\
+    \ dat[i].rank(true, r);\n                res += (r - l) - (b - a);\n         \
+    \       l = a + mid[i];\n                r = b + mid[i];\n            }\n    \
+    \        else {\n                l = dat[i].rank(false, l);\n                r\
+    \ = dat[i].rank(false, r);\n            }\n        }\n        return res;\n  \
+    \  }\n    int range_freq(int l, int r, const T& lower, const T& upper) const {\n\
+    \        return range_freq(l, r, upper) - range_freq(l, r, lower);\n    }\n};\n\
+    \n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -541,7 +544,7 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2022-09-20 18:17:08+09:00'
+  timestamp: '2022-09-20 19:15:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
@@ -562,5 +565,6 @@ title: WaveletMatrix
 - `int rank(int r, T x)` : `a[0:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
 - `int rank(int l, int r, T x)` : `a[l:r)` の `x` の個数を返す。 $\Theta(\log m)$ 。
 - `int select(T x, int k)` : `x` のうち `k` 個目にある値の index を返す。 $\Theta(\log n \log m)$ 。
-- `T quantile(int l, int r, int k)` : `a[l:r)` をソートしたとき `k` 番目の値を返す。 $\Theta(\log n \log m)$ 。
-- `int count(int l, int r, T x, T y)` : `a[l:r)` のうち `[x:y)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
+- `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
+- `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
+- `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
