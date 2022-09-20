@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -646,8 +646,8 @@ data:
   timestamp: '2022-09-20 18:17:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
 documentation_of: data-struct/segment/SqrtDecomposition.hpp
 layout: document
 redirect_from:

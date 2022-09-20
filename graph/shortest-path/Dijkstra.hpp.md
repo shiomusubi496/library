@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - icon: ':x:'
@@ -491,10 +491,10 @@ data:
   timestamp: '2022-09-20 18:17:08+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
 documentation_of: graph/shortest-path/Dijkstra.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -556,8 +556,8 @@ data:
   timestamp: '2022-09-20 18:17:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
 documentation_of: data-struct/segment/DisjointSparseTable.hpp
 layout: document
 redirect_from:
