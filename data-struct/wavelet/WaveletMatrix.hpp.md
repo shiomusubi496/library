@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrix.md
     document_title: WaveletMatrix
@@ -474,7 +474,13 @@ data:
     \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
     \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
     \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
+    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
+    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
+    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
+    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
     \n\ntemplate<class T> class WaveletMatrix {\nprivate:\n    int n, m, h;\n    presser<T>\
@@ -529,8 +535,14 @@ data:
     \        else {\n                l = dat[i].rank(false, l);\n                r\
     \ = dat[i].rank(false, r);\n            }\n        }\n        return res;\n  \
     \  }\n    int range_freq(int l, int r, const T& lower, const T& upper) const {\n\
-    \        return range_freq(l, r, upper) - range_freq(l, r, lower);\n    }\n};\n\
-    \n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \        return range_freq(l, r, upper) - range_freq(l, r, lower);\n    }\n  \
+    \  // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n    T prev_value(int l, int\
+    \ r, const T& upper) const {\n        int cnt = range_freq(l, r, upper);\n   \
+    \     if (cnt == 0) return T{-1};\n        return kth_smallest(l, r, cnt - 1);\n\
+    \    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n    T next_value(int\
+    \ l, int r, const T& lower) const {\n        int cnt = range_freq(l, r, lower);\n\
+    \        if (cnt == r - l) return T{-1};\n        return kth_smallest(l, r, cnt);\n\
+    \    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -544,8 +556,8 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2022-09-20 19:15:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-22 23:22:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrix.hpp
@@ -568,3 +580,5 @@ title: WaveletMatrix
 - `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
+- `T prev_value(int l, int r, T upper)` : `a[l:r)` のうち `upper` より大きい最小の値を返す。 $\Theta(\log m)$ 。
+- `T next_value(int l, int r, T lower)` : `a[l:r)` のうち `lower` 以下の最大の値を返す。 $\Theta(\log m)$ 。

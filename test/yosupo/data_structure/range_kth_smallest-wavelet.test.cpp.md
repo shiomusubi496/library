@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -478,7 +478,13 @@ data:
     \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
     \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
     \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
-    \ r, lower);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
+    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
+    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
+    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
+    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
     \ A(n); scan >> A;\n    WaveletMatrix wm(A);\n    rep (q) {\n        int l, r,\
@@ -503,8 +509,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-09-20 19:15:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-22 23:22:39+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 layout: document
