@@ -11,3 +11,5 @@
 - `T kth_smallest(int l, int r, int k)` : `a[l:r)` を昇順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `T kth_largest(int l, int r, int k)` : `a[l:r)` を降順ソートしたとき `k` 番目の値を返す。 $\Theta(\log m)$ 。
 - `int range_freq(int l, int r, T lower, T upper)` : `a[l:r)` のうち `[lower:upper)` に収まる値の個数を返す。 $\Theta(\log m)$ 。
+- `T prev_value(int l, int r, T upper)` : `a[l:r)` のうち `upper` より大きい最小の値を返す。 $\Theta(\log m)$ 。
+- `T next_value(int l, int r, T lower)` : `a[l:r)` のうち `lower` 以下の最大の値を返す。 $\Theta(\log m)$ 。
