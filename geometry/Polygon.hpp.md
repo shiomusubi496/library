@@ -405,6 +405,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -674,16 +676,16 @@ data:
   path: geometry/Polygon.hpp
   requiredBy:
   - geometry/All.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
+  timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - test/aoj/CGL/CGL_5_A-closest.test.cpp
+  - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
 documentation_of: geometry/Polygon.hpp
 layout: document
 redirect_from:

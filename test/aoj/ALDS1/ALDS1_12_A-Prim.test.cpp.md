@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':question:'
@@ -384,6 +384,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -509,7 +511,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2022-09-20 18:17:08+09:00'
+  timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

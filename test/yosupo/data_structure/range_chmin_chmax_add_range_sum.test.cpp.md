@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -382,6 +382,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -648,8 +650,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
 layout: document

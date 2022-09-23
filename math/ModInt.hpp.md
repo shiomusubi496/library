@@ -45,25 +45,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -439,6 +439,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -692,30 +694,30 @@ data:
   path: math/ModInt.hpp
   requiredBy:
   - math/Combinatorics.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
+  timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/yosupo/new/deque_operate_all_composite.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
-  - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

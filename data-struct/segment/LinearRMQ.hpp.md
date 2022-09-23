@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -383,6 +383,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -605,7 +607,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LinearRMQ.hpp
   requiredBy: []
-  timestamp: '2022-09-20 18:17:08+09:00'
+  timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp

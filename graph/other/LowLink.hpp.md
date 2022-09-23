@@ -31,10 +31,10 @@ data:
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - icon: ':x:'
@@ -42,7 +42,7 @@ data:
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/other/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -390,6 +390,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -510,12 +512,12 @@ data:
   path: graph/other/LowLink.hpp
   requiredBy:
   - graph/connected/TwoEdgeConnectedComponents.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
 documentation_of: graph/other/LowLink.hpp
 layout: document
 redirect_from:

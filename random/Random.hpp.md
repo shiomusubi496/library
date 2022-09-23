@@ -23,7 +23,7 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':heavy_check_mark:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/random/Random.md
     document_title: Random
@@ -385,6 +385,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -487,11 +489,11 @@ data:
   requiredBy:
   - data-struct/other/SkipList.hpp
   - string/RollingHash.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
 documentation_of: random/Random.hpp
 layout: document
 redirect_from:

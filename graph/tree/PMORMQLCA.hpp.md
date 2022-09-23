@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -42,7 +42,7 @@ data:
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/PMORMQLCA.md
     document_title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
@@ -397,6 +397,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -677,11 +679,11 @@ data:
   path: graph/tree/PMORMQLCA.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/PMORMQLCA.hpp
 layout: document
 redirect_from:

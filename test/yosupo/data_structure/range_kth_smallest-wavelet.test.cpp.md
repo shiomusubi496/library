@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -382,6 +382,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -432,23 +434,23 @@ data:
     \ v_) {\n        n = v_.size();\n        ps.push(v_);\n        ps.build();\n \
     \       m = ps.size();\n        std::vector<int> v = ps.pressed(v_);\n       \
     \ h = bitop::ceil_log2(m + 1);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
-    \        mid.resize(h);\n        std::vector<T> lv(n), rv(n);\n        rrep (i,\
-    \ h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n            \
-    \    if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n            \
-    \        rv[r++] = v[j];\n                }\n                else {\n        \
-    \            lv[l++] = v[j];\n                }\n            }\n            dat[i].build();\n\
-    \            mid[i] = l;\n            v.swap(lv);\n            rep (j, r) v[l\
-    \ + j] = rv[j];\n        }\n        start.resize(m);\n        rep (i, n) {\n \
-    \           if (i == 0 || v[i - 1] != v[i]) start[v[i]] = i;\n        }\n    }\n\
-    \    T access(int k) const {\n        assert(0 <= k && k < n);\n        int res\
-    \ = 0;\n        rrep (i, h) {\n            if (dat[i][k]) {\n                res\
-    \ |= (1ull << i);\n                k = dat[i].rank(true, k) + mid[i];\n      \
-    \      }\n            else {\n                k = dat[i].rank(false, k);\n   \
-    \         }\n        }\n        return ps[res];\n    }\n    T operator[](int k)\
-    \ const { return access(k); }\n    int rank(int k, const T& x) const {\n     \
-    \   assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i, h)\
-    \ {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n      \
-    \      else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
+    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
+    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
+    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
+    \            rv[r++] = v[j];\n                }\n                else {\n    \
+    \                lv[l++] = v[j];\n                }\n            }\n         \
+    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
+    \      rep (j, r) v[l + j] = rv[j];\n        }\n        start.resize(m);\n   \
+    \     rep (i, n) {\n            if (i == 0 || v[i - 1] != v[i]) start[v[i]] =\
+    \ i;\n        }\n    }\n    T access(int k) const {\n        assert(0 <= k &&\
+    \ k < n);\n        int res = 0;\n        rrep (i, h) {\n            if (dat[i][k])\
+    \ {\n                res |= (1ull << i);\n                k = dat[i].rank(true,\
+    \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
+    \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
+    \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
+    \      assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i,\
+    \ h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n   \
+    \         else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
     \    }\n    int rank(const T& x) const { return rank(n, x); }\n    int rank(int\
     \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
     \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
@@ -487,15 +489,15 @@ data:
     \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
-    \ A(n); scan >> A;\n    WaveletMatrix wm(A);\n    rep (q) {\n        int l, r,\
-    \ k; scan >> l >> r >> k;\n        print << wm.kth_smallest(l, r, k) << endl;\n\
-    \    }\n}\n"
+    \ A(n); scan >> A;\n    WaveletMatrix<int> wm(A);\n    rep (q) {\n        int\
+    \ l, r, k; scan >> l >> r >> k;\n        print << wm.kth_smallest(l, r, k) <<\
+    \ endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/wavelet/WaveletMatrix.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    vector<int>\
-    \ A(n); scan >> A;\n    WaveletMatrix wm(A);\n    rep (q) {\n        int l, r,\
-    \ k; scan >> l >> r >> k;\n        print << wm.kth_smallest(l, r, k) << endl;\n\
-    \    }\n}\n"
+    \ A(n); scan >> A;\n    WaveletMatrix<int> wm(A);\n    rep (q) {\n        int\
+    \ l, r, k; scan >> l >> r >> k;\n        print << wm.kth_smallest(l, r, k) <<\
+    \ endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -509,8 +511,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   requiredBy: []
-  timestamp: '2022-09-22 23:22:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 layout: document

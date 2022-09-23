@@ -456,6 +456,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -602,36 +604,36 @@ data:
   isVerificationFile: false
   path: geometry/Point.hpp
   requiredBy:
-  - geometry/All.hpp
-  - geometry/Line.hpp
-  - geometry/Circle.hpp
   - geometry/Segment.hpp
-  - geometry/Triangle.hpp
   - geometry/Polygon.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
+  - geometry/Line.hpp
+  - geometry/All.hpp
+  - geometry/Circle.hpp
+  - geometry/Triangle.hpp
+  timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - test/aoj/CGL/CGL_3_C-contain.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
 documentation_of: geometry/Point.hpp
 layout: document
 redirect_from:

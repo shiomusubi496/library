@@ -23,16 +23,22 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
+  - icon: ':x:'
+    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
     document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
@@ -380,6 +386,8 @@ data:
     \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
     \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
+    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
+    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -449,10 +457,12 @@ data:
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy:
   - data-struct/wavelet/WaveletMatrix.hpp
-  timestamp: '2022-09-20 18:17:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  timestamp: '2022-09-23 16:45:58+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
 documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
 layout: document
 redirect_from:

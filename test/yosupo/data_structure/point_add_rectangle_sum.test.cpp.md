@@ -2,11 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: data-struct/unionfind/UnionFindUndo.hpp
-    title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
+    path: data-struct/segment/SegmentTree.hpp
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':x:'
+    path: data-struct/wavelet/FullyIndexableDictionary.hpp
+    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+  - icon: ':x:'
+    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':x:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -35,12 +41,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/persistent_unionfind
-  bundledCode: "#line 1 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/point_add_rectangle_sum
+  bundledCode: "#line 1 \"test/yosupo/data_structure/point_add_rectangle_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
+    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -411,96 +417,204 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\nclass UnionFindUndo {\nprivate:\n    int n;\n    std::vector<int> par;\n \
-    \   std::stack<std::pair<int, int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0)\
-    \ {}\n    UnionFindUndo(int n) : n(n), par(n, -1) {}\n    int find(int x) const\
-    \ {\n        assert(0 <= x && x < n);\n        return par[x] < 0 ? x : find(par[x]);\n\
-    \    }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n\
-    \        y = find(y);\n        hist.emplace(x, par[x]);\n        hist.emplace(y,\
-    \ par[y]);\n        if (x == y) return {x, -1};\n        if (par[x] > par[y])\
-    \ std::swap(x, y);\n        par[x] += par[y];\n        par[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) const { return find(x) == find(y);\
-    \ }\n    int size(int x) const { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(n);\n        rep\
-    \ (i, n) res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
-    \    void undo() {\n        par[hist.top().first] = hist.top().second;\n     \
-    \   hist.pop();\n        par[hist.top().first] = hist.top().second;\n        hist.pop();\n\
-    \    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n   \
-    \ }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\
-    \n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n\
-    \ */\n#line 5 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    Graph<PLL>\
-    \ G(Q + 1);\n    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n \
-    \       int t, k, u, v; scan >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k\
-    \ + 1, i + 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n\
-    \    }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n\
-    \        Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n            each_const\
-    \ (e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n    \
-    \            this->operator()(e.to);\n                UFU.undo();\n          \
-    \  }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q) {\n\
-    \        if (ans[i] != -1) print << ans[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../data-struct/unionfind/UnionFindUndo.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    Graph<PLL> G(Q + 1);\n\
-    \    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t,\
-    \ k, u, v; scan >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k + 1, i\
-    \ + 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n \
-    \   }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n\
-    \        Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n            each_const\
-    \ (e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n    \
-    \            this->operator()(e.to);\n                UFU.undo();\n          \
-    \  }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q) {\n\
-    \        if (ans[i] != -1) print << ans[i] << endl;\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
+    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
+    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\
+    \n\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
+    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
+    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
+    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
+    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
+    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
+    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
+    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
+    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
+    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
+    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
+    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
+    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
+    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
+    \                }\n                return l - n;\n            }\n           \
+    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
+    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
+    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
+    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
+    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
+    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
+    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
+    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    template<class T, T max_value = infinity<T>::max>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
+    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
+    \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
+    template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n\
+    \ * @brief SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
+    \ */\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line 4\
+    \ \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
+    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
+    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
+    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
+    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
+    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
+    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
+    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
+    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
+    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
+    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
+    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
+    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
+    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
+    \ */\n#line 7 \"data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\n\n\
+    template<class T, class M = Monoid::Sum<ll>, class BIT = SegmentTree<M>>\nclass\
+    \ WaveletMatrixPointAddRectangleSum {\nprivate:\n    using U = typename M::value_type;\n\
+    \    int n, m, h;\n    presser<std::pair<T, T>> points;\n    presser<T> ps;\n\
+    \    std::vector<FullyIndexableDictionary> dat;\n    std::vector<BIT> bit;\n \
+    \   std::vector<int> mid;\n\npublic:\n    WaveletMatrixPointAddRectangleSum()\
+    \ = default;\n    void add_point(const T& x, const T& y) {\n        points.emplace_back(x,\
+    \ y);\n        ps.push_back(y);\n    }\n    void build() {\n        points.build();\n\
+    \        ps.build();\n        n = points.size();\n        m = ps.size();\n   \
+    \     h = bitop::ceil_log2(m);\n        std::vector<int> v(n);\n        rep (i,\
+    \ n) v[i] = ps.get(points[i].second);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
+    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
+    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
+    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
+    \            rv[r++] = v[j];\n                }\n                else {\n    \
+    \                lv[l++] = v[j];\n                }\n            }\n         \
+    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
+    \      rep (j, r) v[l + j] = rv[j];\n        }\n        bit.assign(h, BIT(n));\n\
+    \    }\n    void apply(const T& x, const T& y, const U& z) {\n        int k =\
+    \ points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n        rrep\
+    \ (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n\
+    \            else k = dat[i].rank(false, k);\n            bit[i].apply(k, z);\n\
+    \        }\n    }\n    void set(const T& x, const T& y, const U& z) {\n      \
+    \  int k = points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n  \
+    \      rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) +\
+    \ mid[i];\n            else k = dat[i].rank(false, k);\n            bit[i].set(k,\
+    \ z);\n        }\n    }\n\nprivate:\n    U prod(int l, int r, int upper) const\
+    \ {\n        T res = M::id();\n        rrep (i, h) {\n            const int l0\
+    \ = dat[i].rank(false, l);\n            const int r0 = dat[i].rank(false, r);\n\
+    \            if ((upper >> i) & 1) {\n                res = M::op(res, bit[i].prod(l0,\
+    \ r0));\n                l = l - l0 + mid[i];\n                r = r - r0 + mid[i];\n\
+    \            }\n            else {\n                l = l0;\n                r\
+    \ = r0;\n            }\n        }\n        return res;\n    }\n\npublic:\n   \
+    \ U prod(const T& xl, const T& xr, const T& yl, const T& yr) const {\n       \
+    \ int l = points.lower_bound(std::pair<T, T>(xl, infinity<T>::mvalue));\n    \
+    \    int r = points.lower_bound(std::pair<T, T>(xr, infinity<T>::mvalue));\n \
+    \       int y = ps.lower_bound(yl);\n        int z = ps.lower_bound(yr);\n   \
+    \     return M::inv(prod(l, r, z), prod(l, r, y));\n    }\n};\n\n/**\n * @brief\
+    \ WaveletMatrixPointAddRectangleSum.hpp\n * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n\
+    \ */\n#line 5 \"test/yosupo/data_structure/point_add_rectangle_sum.test.cpp\"\n\
+    using namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
+    \ 3>> A(N); scan >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
+    \ d, e] : B) {\n        scan >> a;\n        if (a == 0) scan >> b >> c >> d;\n\
+    \        else scan >> b >> c >> d >> e;\n    }\n    WaveletMatrixPointAddRectangleSum<ll,\
+    \ Monoid::Sum<ll>> wm;\n    rep (i, N) wm.add_point(A[i][0], A[i][1]);\n    rep\
+    \ (i, Q) {\n        if (B[i][0] == 0) wm.add_point(B[i][1], B[i][2]);\n    }\n\
+    \    wm.build();\n    rep (i, N) wm.apply(A[i][0], A[i][1], A[i][2]);\n    each_const\
+    \ ([a, b, c, d, e] : B) {\n        if (a == 0) wm.apply(b, c, d);\n        else\
+    \ print << wm.prod(b, d, c, e) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\
+    \n#include \"../../../data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
+    \ 3>> A(N); scan >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
+    \ d, e] : B) {\n        scan >> a;\n        if (a == 0) scan >> b >> c >> d;\n\
+    \        else scan >> b >> c >> d >> e;\n    }\n    WaveletMatrixPointAddRectangleSum<ll,\
+    \ Monoid::Sum<ll>> wm;\n    rep (i, N) wm.add_point(A[i][0], A[i][1]);\n    rep\
+    \ (i, Q) {\n        if (B[i][0] == 0) wm.add_point(B[i][1], B[i][2]);\n    }\n\
+    \    wm.build();\n    rep (i, N) wm.apply(A[i][0], A[i][1], A[i][2]);\n    each_const\
+    \ ([a, b, c, d, e] : B) {\n        if (a == 0) wm.apply(b, c, d);\n        else\
+    \ print << wm.prod(b, d, c, e) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -509,18 +623,20 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - graph/Graph.hpp
-  - data-struct/unionfind/UnionFindUndo.hpp
+  - other/monoid.hpp
+  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  - data-struct/segment/SegmentTree.hpp
+  - data-struct/wavelet/FullyIndexableDictionary.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+  path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+documentation_of: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-- /verify/test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp.html
-title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+- /verify/test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+- /verify/test/yosupo/data_structure/point_add_rectangle_sum.test.cpp.html
+title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
 ---
