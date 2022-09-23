@@ -209,6 +209,10 @@ public:
         assert(!sorted);
         dat.push_back(std::move(v));
     }
+    template<class... Args> void emplace_back(Args&&... args) {
+        assert(!sorted);
+        dat.emplace_back(std::forward<Args>(args)...);
+    }
     void push(const std::vector<T>& vec) {
         assert(!sorted);
         const int n = dat.size();

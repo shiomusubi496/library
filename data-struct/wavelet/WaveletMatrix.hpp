@@ -22,7 +22,7 @@ public:
         h = bitop::ceil_log2(m + 1);
         dat.assign(h, FullyIndexableDictionary(n));
         mid.resize(h);
-        std::vector<T> lv(n), rv(n);
+        std::vector<int> lv(n), rv(n);
         rrep (i, h) {
             int l = 0, r = 0;
             rep (j, n) {
