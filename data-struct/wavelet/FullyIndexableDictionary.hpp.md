@@ -456,13 +456,13 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy:
-  - data-struct/wavelet/WaveletMatrix.hpp
   - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  - data-struct/wavelet/WaveletMatrix.hpp
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
 documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
 layout: document
 redirect_from:

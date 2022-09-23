@@ -492,8 +492,8 @@ data:
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: random/Random.hpp
 layout: document
 redirect_from:

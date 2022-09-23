@@ -2,13 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':question:'
-    path: graph/tree/DoublingLowestCommonAncestor.hpp
-    title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-      \u308BLCA)"
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -30,18 +23,20 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
+    title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
+    _deprecated_at_docs: docs/math/FloorSum.md
+    document_title: FloorSum
     links:
-    - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"test/yosupo/new/jump_on_tree.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    - https://rsk0315.hatenablog.com/entry/2020/12/13/231307
+  bundledCode: "#line 2 \"math/FloorSum.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
+    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -411,99 +406,34 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\n\n#line 5 \"graph/tree/DoublingLowestCommonAncestor.hpp\"\
-    \n\ntemplate<class T> class DoublingLCA {\nprivate:\n    int root, n, h;\n   \
-    \ Graph<T> G_;\n    const Graph<T>& G;\n    std::vector<edge<T>> par;\n    std::vector<int>\
-    \ dep;\n    std::vector<std::vector<int>> dbl;\n    void dfs_build(int v, int\
-    \ p) {\n        each_const (e : G[v]) {\n            if (e.to != p) {\n      \
-    \          par[e.to] = edge<T>(e.to, e.from, e.cost, e.idx);\n               \
-    \ dep[e.to] = dep[v] + 1;\n                dfs_build(e.to, v);\n            }\n\
-    \        }\n    }\n    void init() {\n        n = G.size();\n        h = bitop::ceil_log2(n)\
-    \ + 1;\n        par.resize(n);\n        par[root] = edge<T>{};\n        dep.resize(n);\n\
-    \        dep[root] = 0;\n        dfs_build(root, -1);\n        dbl.assign(n, std::vector<int>(h,\
-    \ -1));\n        rep (i, n) dbl[i][0] = par[i].to;\n        rep (i, h - 1) {\n\
-    \            rep (j, n) dbl[j][i + 1] = dbl[j][i] == -1 ? -1 : dbl[dbl[j][i]][i];\n\
-    \        }\n    }\n\npublic:\n    DoublingLCA(const Graph<T>& G, int r = 0) :\
-    \ root(r), G(G) { init(); }\n    DoublingLCA(Graph<T>&& G, int r = 0) : root(r),\
-    \ G_(std::move(G)), G(G_) {\n        init();\n    }\n    int depth(int v) const\
-    \ { return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
-    \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
-    \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
-    \        return v;\n    }\n    int next_vertex(int s, int t) const {\n       \
-    \ assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n        int\
-    \ u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(u) == s ? u\
-    \ : parent(s);\n    }\n    int kth_next_vertext(int s, int t, int k) const {\n\
-    \        int l = lca(s, t);\n        int d = dep[s] + dep[t] - 2 * dep[l];\n \
-    \       if (d < k) return -1;\n        if (dep[s] - dep[l] >= k) return kth_ancestor(s,\
-    \ k);\n        return kth_ancestor(t, d - k);\n    }\n    Edges<T> path(int s,\
-    \ int t) const {\n        Edges<T> pre, suf;\n        while (dep[s] > dep[t])\
-    \ pre.push_back(par[s]), s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]),\
-    \ t = par[t].to;\n        while (s != t) {\n            pre.push_back(par[s]),\
-    \ s = par[s].to;\n            suf.push_back(par[t]), t = par[t].to;\n        }\n\
-    \        rrep (i, suf.size())\n            pre.emplace_back(suf[i].to, suf[i].from,\
-    \ suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int lca(int u, int\
-    \ v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n\
-    \        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] - dep[u]);\n        if\
-    \ (u == v) return u;\n        rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i])\
-    \ {\n                u = dbl[u][i];\n                v = dbl[v][i];\n        \
-    \    }\n        }\n        return parent(u);\n    }\n    int dist(int u, int v)\
-    \ const {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n\
-    /**\n * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
-    \u3088\u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n */\n\
-    #line 5 \"test/yosupo/new/jump_on_tree.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N - 1) {\n\
-    \        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    DoublingLCA<int>\
-    \ dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s >> t >> k;\n       \
-    \ print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/tree/DoublingLowestCommonAncestor.hpp\"\nusing namespace std;\n\
-    int main() {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N\
-    \ - 1) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n\
-    \    DoublingLCA<int> dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s\
-    \ >> t >> k;\n        print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n\
-    }\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/FloorSum.hpp\"\n\n\
+    ull floor_sum_unsigned(ull n, ull m, ull a, ull b) {\n    ull ans = 0;\n    while\
+    \ (true) {\n        if (a >= m) {\n            ans += n * (n - 1) / 2 * (a / m);\n\
+    \            a %= m;\n        }\n        if (b >= m) {\n            ans += n *\
+    \ (b / m);\n            b %= m;\n        }\n        ull y = a * n + b;\n     \
+    \   if (y < m) break;\n        n = y / m;\n        b = y % m;\n        std::swap(m,\
+    \ a);\n    }\n    return ans;\n}\n\nll floor_sum(ll n, ll m, ll a, ll b) {\n \
+    \   assert(0 <= n);\n    assert(1 <= m);\n    ll ans = 0;\n    if (a < 0) {\n\
+    \        ll a1 = a % m;\n        if (a1 < 0) a1 += m;\n        ans -= (ull)(n\
+    \ - 1) * n / 2 * ((a1 - a) / m);\n        a = a1;\n    }\n    if (b < 0) {\n \
+    \       ll b1 = b % m;\n        if (b1 < 0) b1 += m;\n        ans -= (ull)n *\
+    \ ((b1 - b) / m);\n        b = b1;\n    }\n    return ans + floor_sum_unsigned(n,\
+    \ m, a, b);\n}\n\n/**\n * @brief FloorSum\n * @docs docs/math/FloorSum.md\n *\
+    \ @see https://rsk0315.hatenablog.com/entry/2020/12/13/231307\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\null floor_sum_unsigned(ull\
+    \ n, ull m, ull a, ull b) {\n    ull ans = 0;\n    while (true) {\n        if\
+    \ (a >= m) {\n            ans += n * (n - 1) / 2 * (a / m);\n            a %=\
+    \ m;\n        }\n        if (b >= m) {\n            ans += n * (b / m);\n    \
+    \        b %= m;\n        }\n        ull y = a * n + b;\n        if (y < m) break;\n\
+    \        n = y / m;\n        b = y % m;\n        std::swap(m, a);\n    }\n   \
+    \ return ans;\n}\n\nll floor_sum(ll n, ll m, ll a, ll b) {\n    assert(0 <= n);\n\
+    \    assert(1 <= m);\n    ll ans = 0;\n    if (a < 0) {\n        ll a1 = a % m;\n\
+    \        if (a1 < 0) a1 += m;\n        ans -= (ull)(n - 1) * n / 2 * ((a1 - a)\
+    \ / m);\n        a = a1;\n    }\n    if (b < 0) {\n        ll b1 = b % m;\n  \
+    \      if (b1 < 0) b1 += m;\n        ans -= (ull)n * ((b1 - b) / m);\n       \
+    \ b = b1;\n    }\n    return ans + floor_sum_unsigned(n, m, a, b);\n}\n\n/**\n\
+    \ * @brief FloorSum\n * @docs docs/math/FloorSum.md\n * @see https://rsk0315.hatenablog.com/entry/2020/12/13/231307\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -512,18 +442,21 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - graph/Graph.hpp
-  - graph/tree/DoublingLowestCommonAncestor.hpp
-  isVerificationFile: true
-  path: test/yosupo/new/jump_on_tree.test.cpp
+  isVerificationFile: false
+  path: math/FloorSum.hpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/new/jump_on_tree.test.cpp
+  timestamp: '2022-09-23 17:56:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/math/sum_of_floor_of_linear.test.cpp
+documentation_of: math/FloorSum.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/jump_on_tree.test.cpp
-- /verify/test/yosupo/new/jump_on_tree.test.cpp.html
-title: test/yosupo/new/jump_on_tree.test.cpp
+- /library/math/FloorSum.hpp
+- /library/math/FloorSum.hpp.html
+title: FloorSum
 ---
+## 概要
+
+- `ull floor_sum_unsigned(ull n, ull m, ull a, ull b)` : $\sum_{i=0}^{n-1} \left\lfloor \cfrac{ai+b}{m} \right\rfloor$ を求める。 $O(\log m)$ 。
+- `ll floor_sum(ll n, ll m, ll a, ll b)` : 同上。
