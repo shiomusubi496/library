@@ -72,5 +72,13 @@
 "test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp": "2022-09-23 16:45:58 +0900",
 "test/aoj/NTL/NTL_1_A-Prime.test.cpp": "2022-09-23 16:45:58 +0900",
 "test/aoj/NTL/NTL_1_B-Pow.test.cpp": "2022-09-23 16:45:58 +0900",
-"test/aoj/NTL/NTL_1_C-LCM.test.cpp": "2022-09-23 16:45:58 +0900"
+"test/aoj/NTL/NTL_1_C-LCM.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/aoj/NTL/NTL_1_D-Phi.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/aoj/other/2725-CHT.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/aoj/other/2945-01BFS.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/atcoder/abc176_f-DefaultMap.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/atcoder/agc002_d-PartialPersistentArray.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/atcoder/agc002_d-PartialPersistentUF.test.cpp": "2022-09-23 16:45:58 +0900",
+"test/atcoder/arc099_c-Bipartite.test.cpp": "2022-09-23 16:45:58 +0900"
 }
