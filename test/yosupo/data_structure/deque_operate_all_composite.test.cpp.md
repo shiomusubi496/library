@@ -44,8 +44,8 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/deque_operate_all_composite
     links:
     - https://judge.yosupo.jp/problem/deque_operate_all_composite
-  bundledCode: "#line 1 \"test/yosupo/new/deque_operate_all_composite.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
+  bundledCode: "#line 1 \"test/yosupo/data_structure/deque_operate_all_composite.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -675,11 +675,11 @@ data:
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
     \ * @brief DequeOperateAggregation\n * @docs docs/data-struct/other/DequeOperateAggregation.md\n\
-    \ */\n#line 6 \"test/yosupo/new/deque_operate_all_composite.test.cpp\"\nusing\
-    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q; scan\
-    \ >> Q;\n    DequeOperateAggregation<Monoid::Composite<mint>> d;\n    rep (Q)\
-    \ {\n        int t; scan >> t;\n        if (t == 0) {\n            mint a, b;\
-    \ scan >> a >> b;\n            d.push_front({a, b});\n        }\n        else\
+    \ */\n#line 6 \"test/yosupo/data_structure/deque_operate_all_composite.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
+    \ scan >> Q;\n    DequeOperateAggregation<Monoid::Composite<mint>> d;\n    rep\
+    \ (Q) {\n        int t; scan >> t;\n        if (t == 0) {\n            mint a,\
+    \ b; scan >> a >> b;\n            d.push_front({a, b});\n        }\n        else\
     \ if (t == 1) {\n            mint a, b; scan >> a >> b;\n            d.push_back({a,\
     \ b});\n        }\n        else if (t == 2) d.pop_front();\n        else if (t\
     \ == 3) d.pop_back();\n        else {\n            mint x; scan >> x;\n      \
@@ -710,15 +710,15 @@ data:
   - math/ModInt.hpp
   - data-struct/other/DequeOperateAggregation.hpp
   isVerificationFile: true
-  path: test/yosupo/new/deque_operate_all_composite.test.cpp
+  path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
+  timestamp: '2022-09-24 18:54:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/new/deque_operate_all_composite.test.cpp
+documentation_of: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/deque_operate_all_composite.test.cpp
-- /verify/test/yosupo/new/deque_operate_all_composite.test.cpp.html
-title: test/yosupo/new/deque_operate_all_composite.test.cpp
+- /verify/test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+- /verify/test/yosupo/data_structure/deque_operate_all_composite.test.cpp.html
+title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
 ---

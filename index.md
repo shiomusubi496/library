@@ -6,7 +6,7 @@ data:
     - icon: ':x:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
     - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
     - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
     - icon: ':x:'
@@ -103,7 +103,7 @@ data:
     - icon: ':x:'
       path: data-struct/unionfind/DynamicUnionFind.hpp
       title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PartialPersistentUnionFind.hpp
       title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
     - icon: ':x:'
@@ -162,7 +162,7 @@ data:
       title: Graph-template
   - name: graph/connected
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
     - icon: ':question:'
@@ -183,7 +183,7 @@ data:
       title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - name: graph/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     - icon: ':question:'
@@ -217,7 +217,7 @@ data:
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/ZeroOneBFS.hpp
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
@@ -256,7 +256,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':x:'
@@ -606,32 +606,32 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
       title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
       title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/aoj/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2945-01BFS.test.cpp
       title: test/aoj/other/2945-01BFS.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
       title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
       title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/arc099_c-Bipartite.test.cpp
       title: test/atcoder/arc099_c-Bipartite.test.cpp
   - name: test/yosupo/convolution
@@ -644,6 +644,9 @@ data:
       title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
+    - icon: ':x:'
+      path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+      title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     - icon: ':x:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
@@ -778,9 +781,6 @@ data:
       title: test/yosupo/matrix/matrix_product.test.cpp
   - name: test/yosupo/new
     pages:
-    - icon: ':x:'
-      path: test/yosupo/new/deque_operate_all_composite.test.cpp
-      title: test/yosupo/new/deque_operate_all_composite.test.cpp
     - icon: ':x:'
       path: test/yosupo/new/gcd_convolution.test.cpp
       title: test/yosupo/new/gcd_convolution.test.cpp

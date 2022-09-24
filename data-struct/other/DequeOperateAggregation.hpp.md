@@ -28,8 +28,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yosupo/new/deque_operate_all_composite.test.cpp
-    title: test/yosupo/new/deque_operate_all_composite.test.cpp
+    path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+    title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -597,7 +597,7 @@ data:
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/new/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
 documentation_of: data-struct/other/DequeOperateAggregation.hpp
 layout: document
 redirect_from:

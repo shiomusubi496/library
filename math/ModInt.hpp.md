@@ -52,6 +52,9 @@ data:
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - icon: ':x:'
+    path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+    title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -78,9 +81,6 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/new/deque_operate_all_composite.test.cpp
-    title: test/yosupo/new/deque_operate_all_composite.test.cpp
   - icon: ':x:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
@@ -698,13 +698,13 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/lcm_convolution.test.cpp
-  - test/yosupo/new/deque_operate_all_composite.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
