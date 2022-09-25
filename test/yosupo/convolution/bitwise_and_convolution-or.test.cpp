@@ -11,7 +11,7 @@ int main() {
     vector<mint> a(1 << N), b(1 << N);
     scan >> a >> b;
     reverse(all(a)); reverse(all(b));
-    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a, b);
+    auto c = bitwise_or_convolution<mint>(a, b);
     reverse(all(c));
     print << c << endl;
 }

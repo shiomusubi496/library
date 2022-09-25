@@ -10,6 +10,6 @@ int main() {
     int N; scan >> N;
     vector<mint> a(1 << N), b(1 << N);
     scan >> a >> b;
-    auto c = bitwise_and_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a, b);
+    auto c = bitwise_and_convolution<mint>(a, b);
     print << c << endl;
 }
