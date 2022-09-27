@@ -625,8 +625,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
 documentation_of: math/Combinatorics.hpp

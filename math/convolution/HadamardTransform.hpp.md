@@ -22,19 +22,22 @@ data:
   - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/convolution/BitwiseXorConvolution.hpp
+    title: BitwiseXorConvolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/line_add_get_min.test.cpp
-    title: test/yosupo/data_structure/line_add_get_min.test.cpp
+    path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+    title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrick.md
-    document_title: ConvexHullTrick
+    _deprecated_at_docs: docs/math/convolution/HadamardTransform.md
+    document_title: HadmardTransform
     links: []
-  bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrick.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/convolution/HadamardTransform.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -405,84 +408,25 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false, class LargeT = __int128_t>\nclass\
-    \ ConvexHullTrick {\nprivate:\n    struct Line {\n        T a, b;\n        int\
-    \ idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable\
-    \ bool has_nxt;\n        T get(T x) const { return a * x + b; }\n        T get_nxt(T\
-    \ x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T\
-    \ a, T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::set<Line> st;\n    bool is_necessary(const\
-    \ typename std::set<Line>::iterator& itr) {\n        if (itr != st.begin() &&\
-    \ itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n       \
-    \ if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return itr->b\
-    \ < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end())) return\
-    \ true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\
-    \ <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
-    \    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T a, T b)\
-    \ {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max ? -b :\
-    \ b, line_count).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
-    \            return line_count++;\n        }\n        while (itr != st.begin()\
-    \ && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n        while\
-    \ (itr != prev(st.end()) && !is_necessary(next(itr)))\n            st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b = itr->b;\n\
-    \        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n\
-    \            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
-    \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick\
-    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
-    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
-    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
-    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::set<Line> st;\n    bool is_necessary(const\
-    \ typename std::set<Line>::iterator& itr) {\n        if (itr != st.begin() &&\
-    \ itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n       \
-    \ if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return itr->b\
-    \ < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end())) return\
-    \ true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\
-    \ <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
-    \    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T a, T b)\
-    \ {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max ? -b :\
-    \ b, line_count).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
-    \            return line_count++;\n        }\n        while (itr != st.begin()\
-    \ && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n        while\
-    \ (itr != prev(st.end()) && !is_necessary(next(itr)))\n            st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b = itr->b;\n\
-    \        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n\
-    \            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
-    \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/convolution/HadamardTransform.hpp\"\
+    \n\ntemplate<class Sum>\nvoid hadamard_transform(std::vector<typename Sum::value_type>&\
+    \ v) {\n    const int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n  \
+    \      rep (j, n) {\n            if (i & ~j) {\n                auto x = v[j],\
+    \ y = v[j | i];\n                v[j] = Sum::op(x, y);\n                v[j |\
+    \ i] = Sum::inv(x, y);\n            }\n        }\n    }\n}\n\ntemplate<class Sum>\n\
+    void inv_hadamard_transform(std::vector<typename Sum::value_type>& v) {\n    const\
+    \ int n = v.size();\n    hadamard_transform<Sum>(v);\n    each_for (x : v) x /=\
+    \ n;\n}\n\n/**\n * @brief HadmardTransform\n * @docs docs/math/convolution/HadamardTransform.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Sum>\n\
+    void hadamard_transform(std::vector<typename Sum::value_type>& v) {\n    const\
+    \ int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep (j, n)\
+    \ {\n            if (i & ~j) {\n                auto x = v[j], y = v[j | i];\n\
+    \                v[j] = Sum::op(x, y);\n                v[j | i] = Sum::inv(x,\
+    \ y);\n            }\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid inv_hadamard_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    const int n = v.size();\n    hadamard_transform<Sum>(v);\n\
+    \    each_for (x : v) x /= n;\n}\n\n/**\n * @brief HadmardTransform\n * @docs\
+    \ docs/math/convolution/HadamardTransform.md\n */"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -492,37 +436,23 @@ data:
   - template/out.hpp
   - template/bitop.hpp
   isVerificationFile: false
-  path: data-struct/cht/ConvexHullTrick.hpp
-  requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
+  path: math/convolution/HadamardTransform.hpp
+  requiredBy:
+  - math/convolution/BitwiseXorConvolution.hpp
+  timestamp: '2022-09-25 18:09:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/line_add_get_min.test.cpp
-documentation_of: data-struct/cht/ConvexHullTrick.hpp
+  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+documentation_of: math/convolution/HadamardTransform.hpp
 layout: document
 redirect_from:
-- /library/data-struct/cht/ConvexHullTrick.hpp
-- /library/data-struct/cht/ConvexHullTrick.hpp.html
-title: ConvexHullTrick
+- /library/math/convolution/HadamardTransform.hpp
+- /library/math/convolution/HadamardTransform.hpp.html
+title: HadmardTransform
 ---
-## Overview
+## 概要
 
-$y = ax + b$ の形の $x$ の一次関数に関するクエリを扱える。
+アダマール変換とその逆変換。
 
-一次関数の集合 $s$ が与えられたとき、 $s$ に一次関数を追加するクエリと、 $x=k$ における最小値を求めるクエリに答えられる。
-
-## Usage
-
-### Template Arguments
-
-- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
-- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
-- `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `__int128_t` 。
-
-### Member Function
-
-- `ConvexHullTrick()` : コンストラクタ。 $\Theta(1)$ 。
-- `int add_line(T a, T b)` : $s$ に $f(x) = ax + b$ を追加する。返り値は追加された関数の番号。 $\Theta(\log N)$ 。
-- `T get_min(T k)` : $\min_{f \in s} f(k)$ を返す。 $\Theta(\log N)$ 。
-- `Line get_min_line(T k)` : $\arg \min_{f \in s} f(k)$ を返す。 $\Theta(\log N)$ 。
-- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。
+- `void hadamard_transform(vector<T>& a)` : a に対してアダマール変換をする。
+- `void inv_hadamard_transform(vector<T>& a)` : a に対してアダマール逆変換をする。

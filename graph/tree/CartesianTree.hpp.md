@@ -503,8 +503,8 @@ data:
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/tree/cartesian_tree.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/tree/cartesian_tree.test.cpp
 documentation_of: graph/tree/CartesianTree.hpp
 layout: document
 redirect_from:

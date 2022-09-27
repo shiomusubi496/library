@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/SubsetZetaMoebiusTransform.hpp
     title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -40,9 +40,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/bitwise_and_convolution
@@ -644,26 +644,28 @@ data:
     \ (j, n) {\n            if (j & i) v[j] = Sum::inv(v[j], v[j ^ i]);\n        }\n\
     \    }\n}\n\n/**\n * @brief SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\
     \u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SubsetZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/BitwiseOrConvolution.hpp\"\n\ntemplate<class\
-    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_or_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                       std::vector<typename Sum::value_type>\
-    \ b) {\n    subset_zeta_transform<Sum>(a);\n    subset_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    subset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseOrConvolution\n * @docs docs/math/convolution/BitwiseOrConvolution.md\n\
+    \ */\n#line 7 \"math/convolution/BitwiseOrConvolution.hpp\"\n\ntemplate<class\
+    \ T, class Sum = Monoid::Sum<T>, class Prod = Monoid::Product<T>>\nstd::vector<T>\
+    \ bitwise_or_convolution(std::vector<T> a, std::vector<T> b) {\n    static_assert(std::is_same<typename\
+    \ Sum::value_type, T>::value,\n                  \"Sum::value_type must be T\"\
+    );\n    static_assert(std::is_same<typename Prod::value_type, T>::value,\n   \
+    \               \"Prod::value_type must be T\");\n    subset_zeta_transform<Sum>(a);\n\
+    \    subset_zeta_transform<Sum>(b);\n    rep (i, a.size()) a[i] = Prod::op(a[i],\
+    \ b[i]);\n    subset_moebius_transform<Sum>(a);\n    return a;\n}\n\n/**\n * @brief\
+    \ BitwiseOrConvolution\n * @docs docs/math/convolution/BitwiseOrConvolution.md\n\
     \ */\n#line 7 \"test/yosupo/convolution/bitwise_and_convolution-or.test.cpp\"\n\
     using namespace std;\nusing mint = modint998244353;\nint main() {\n    int N;\
     \ scan >> N;\n    vector<mint> a(1 << N), b(1 << N);\n    scan >> a >> b;\n  \
-    \  reverse(all(a)); reverse(all(b));\n    auto c = bitwise_or_convolution<Monoid::Sum<mint>,\
-    \ Monoid::Product<mint>>(a, b);\n    reverse(all(c));\n    print << c << endl;\n\
-    }\n"
+    \  reverse(all(a)); reverse(all(b));\n    auto c = bitwise_or_convolution<mint>(a,\
+    \ b);\n    reverse(all(c));\n    print << c << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bitwise_and_convolution\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\
     \n#include \"../../../other/monoid2.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../math/convolution/BitwiseOrConvolution.hpp\"\nusing namespace\
     \ std;\nusing mint = modint998244353;\nint main() {\n    int N; scan >> N;\n \
     \   vector<mint> a(1 << N), b(1 << N);\n    scan >> a >> b;\n    reverse(all(a));\
-    \ reverse(all(b));\n    auto c = bitwise_or_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(a,\
-    \ b);\n    reverse(all(c));\n    print << c << endl;\n}\n"
+    \ reverse(all(b));\n    auto c = bitwise_or_convolution<mint>(a, b);\n    reverse(all(c));\n\
+    \    print << c << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -680,8 +682,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-09-25 23:48:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
 layout: document

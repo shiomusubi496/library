@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':x:'
+    path: math/MontmortNumber.hpp
+    title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -23,36 +29,36 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/line_add_get_min.test.cpp
-    title: test/yosupo/data_structure/line_add_get_min.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrick.md
-    document_title: ConvexHullTrick
-    links: []
-  bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrick.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
+    links:
+    - https://judge.yosupo.jp/problem/montmort_number_mod
+  bundledCode: "#line 1 \"test/yosupo/math/montmort_number_mod.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -405,84 +411,127 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false, class LargeT = __int128_t>\nclass\
-    \ ConvexHullTrick {\nprivate:\n    struct Line {\n        T a, b;\n        int\
-    \ idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable\
-    \ bool has_nxt;\n        T get(T x) const { return a * x + b; }\n        T get_nxt(T\
-    \ x) const { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T\
-    \ a, T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::set<Line> st;\n    bool is_necessary(const\
-    \ typename std::set<Line>::iterator& itr) {\n        if (itr != st.begin() &&\
-    \ itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n       \
-    \ if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return itr->b\
-    \ < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end())) return\
-    \ true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\
-    \ <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
-    \    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T a, T b)\
-    \ {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max ? -b :\
-    \ b, line_count).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
-    \            return line_count++;\n        }\n        while (itr != st.begin()\
-    \ && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n        while\
-    \ (itr != prev(st.end()) && !is_necessary(next(itr)))\n            st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b = itr->b;\n\
-    \        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n\
-    \            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
-    \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false, class LargeT = __int128_t>\nclass ConvexHullTrick\
-    \ {\nprivate:\n    struct Line {\n        T a, b;\n        int idx;\n        bool\
-    \ is_query;\n        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n\
-    \        T get(T x) const { return a * x + b; }\n        T get_nxt(T x) const\
-    \ { return nxt_a * x + nxt_b; }\n        Line() = default;\n        Line(T a,\
-    \ T b, int id, bool i = false)\n            : a(a), b(b), idx(id), is_query(i),\
-    \ has_nxt(false) {}\n        friend bool operator<(const Line& lhs, const Line&\
-    \ rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n            if\
-    \ (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n         \
-    \       return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n         \
-    \   if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n   \
-    \             return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n   \
-    \         return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::set<Line> st;\n    bool is_necessary(const\
-    \ typename std::set<Line>::iterator& itr) {\n        if (itr != st.begin() &&\
-    \ itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n       \
-    \ if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return itr->b\
-    \ < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end())) return\
-    \ true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\
-    \ <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
-    \    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T a, T b)\
-    \ {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max ? -b :\
-    \ b, line_count).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
-    \            return line_count++;\n        }\n        while (itr != st.begin()\
-    \ && !is_necessary(prev(itr)))\n            st.erase(prev(itr));\n        while\
-    \ (itr != prev(st.end()) && !is_necessary(next(itr)))\n            st.erase(next(itr));\n\
-    \        if (itr != st.begin()) {\n            prev(itr)->has_nxt = true;\n  \
-    \          prev(itr)->nxt_a = itr->a;\n            prev(itr)->nxt_b = itr->b;\n\
-    \        }\n        if (itr != prev(st.end())) {\n            itr->has_nxt = true;\n\
-    \            itr->nxt_a = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n\
-    \        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = st.lower_bound(Line{x, 0, -1,\
-    \ true});\n        Line res{*itr};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const {\n    \
-    \    const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\ntemplate<unsigned int mod> class StaticModInt {\n \
+    \   static_assert(mod > 0, \"mod must be greater than 0\");\n\nprivate:\n    unsigned\
+    \ int val;\n    static constexpr unsigned int inv1000000007[] = {\n        0,\
+    \         1,         500000004, 333333336, 250000002, 400000003,\n        166666668,\
+    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr unsigned\
+    \ int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    StaticModInt() : val(0) {}\n    template<class T, typename std::enable_if<\n\
+    \                          std::is_integral<T>::value>::type* = nullptr>\n   \
+    \ StaticModInt(T v) {\n        v %= (long long)mod;\n        if (v < 0) v += (long\
+    \ long)mod;\n        val = v;\n    }\n    unsigned int get() const { return val;\
+    \ }\n    static unsigned int get_mod() { return mod; }\n    static StaticModInt\
+    \ raw(unsigned int v) {\n        StaticModInt res;\n        res.val = v;\n   \
+    \     return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        unsigned\
+    \ long long a = val;\n        a *= other.val;\n        a %= mod;\n        val\
+    \ = a;\n        return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt&\
+    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
+    \ StaticModInt operator+(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n\
+    \    }\n    friend StaticModInt operator-(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ -= rhs;\n    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt&\
+    \ lhs,\n                                  const StaticModInt& rhs) {\n       \
+    \ return StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const\
+    \ { return StaticModInt(*this); }\n    StaticModInt operator-() const { return\
+    \ StaticModInt::raw(0) - *this; }\n    friend bool operator==(const StaticModInt&\
+    \ lhs, const StaticModInt& rhs) {\n        return lhs.val == rhs.val;\n    }\n\
+    \    friend bool operator!=(const StaticModInt& lhs, const StaticModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n    StaticModInt pow(ll a) const\
+    \ {\n        StaticModInt v = *this, res = 1;\n        while (a) {\n         \
+    \   if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n        }\n\
+    \        return res;\n    }\n    friend std::ostream& operator<<(std::ostream&\
+    \ ost, const StaticModInt& sm) {\n        return ost << sm.val;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    friend std::istream& operator>>(std::istream&\
+    \ ist, StaticModInt& sm) {\n        ll v;\n        ist >> v;\n        sm = v;\n\
+    \        return ist;\n    }\n    template<class Sc> void scan(Sc& a) {\n     \
+    \   ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<unsigned int mod>\nconstexpr unsigned int StaticModInt<mod>::inv1000000007[];\n\
+    template<unsigned int mod>\nconstexpr unsigned int StaticModInt<mod>::inv998244353[];\n\
+    #endif\n\nusing modint1000000007 = StaticModInt<1000000007>;\nusing modint998244353\
+    \ = StaticModInt<998244353>;\n\ntemplate<int id> class DynamicModInt {\nprivate:\n\
+    \    unsigned int val;\n    static unsigned int mod;\n\npublic:\n    DynamicModInt()\
+    \ : val(0) {}\n    template<class T, typename std::enable_if<\n              \
+    \            std::is_integral<T>::value>::type* = nullptr>\n    DynamicModInt(T\
+    \ v) {\n        v %= (long long)mod;\n        if (v < 0) v += (long long)mod;\n\
+    \        val = v;\n    }\n    unsigned int get() const { return val; }\n    static\
+    \ unsigned int get_mod() { return mod; }\n    static void set_mod(unsigned int\
+    \ v) {\n        assert(v > 0);\n        mod = v;\n    }\n    static DynamicModInt\
+    \ raw(unsigned int v) {\n        DynamicModInt res;\n        res.val = v;\n  \
+    \      return res;\n    }\n    DynamicModInt inv() const { return mod_inv(val,\
+    \ mod); }\n    DynamicModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int)\
+    \ {\n        DynamicModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n\
+    \        --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
+    \ {\n        DynamicModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        unsigned\
+    \ long long a = val;\n        a *= other.val;\n        a %= mod;\n        val\
+    \ = a;\n        return *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt&\
+    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
+    \ DynamicModInt operator+(const DynamicModInt& lhs,\n                        \
+    \           const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) +=\
+    \ rhs;\n    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs,\n\
+    \                                   const DynamicModInt& rhs) {\n        return\
+    \ DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt operator*(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt\
+    \ operator/(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n  \
+    \  DynamicModInt operator+() const { return DynamicModInt(*this); }\n    DynamicModInt\
+    \ operator-() const { return DynamicModInt::raw(0) - *this; }\n    friend bool\
+    \ operator==(const DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return\
+    \ lhs.val == rhs.val;\n    }\n    friend bool operator!=(const DynamicModInt&\
+    \ lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n\
+    \    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this, res = 1;\n\
+    \        while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
+    \            v *= v;\n        }\n        return res;\n    }\n    friend std::ostream&\
+    \ operator<<(std::ostream& ost,\n                                    const DynamicModInt&\
+    \ dm) {\n        return ost << dm.val;\n    }\n    template<class Pr> void print(Pr&\
+    \ a) const { a.print(val); }\n    template<class Pr> void debug(Pr& a) const {\
+    \ a.print(val); }\n    friend std::istream& operator>>(std::istream& ist, DynamicModInt&\
+    \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
+    \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
+    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/MontmortNumber.hpp\"\n\n#line\
+    \ 5 \"math/MontmortNumber.hpp\"\n\ntemplate<class T> std::vector<T> montmort_number(int\
+    \ n) {\n    std::vector<T> res(n + 1);\n    res[0] = 1;\n    if (n == 0) return\
+    \ res;\n    res[1] = 0;\n    rep (i, 1, n) res[i + 1] = (res[i] + res[i - 1])\
+    \ * i;\n    return res;\n}\n\n/**\n * @brief MontmortNumber(\u652A\u4E71\u9806\
+    \u5217)\n * @docs docs/math/MontmortNumber.md\n */\n#line 5 \"test/yosupo/math/montmort_number_mod.test.cpp\"\
+    \nusing mint = modint;\nint main() {\n    int N, M; scan >> N >> M;\n    mint::set_mod(M);\n\
+    \    auto v = monmort_number<mint>(N);\n    rep (i, 1, v.size()) print << ' '\
+    \ << v[i];\n    print << endl;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/MontmortNumber.hpp\"\nusing mint = modint;\nint main()\
+    \ {\n    int N, M; scan >> N >> M;\n    mint::set_mod(M);\n    auto v = monmort_number<mint>(N);\n\
+    \    rep (i, 1, v.size()) print << ' ' << v[i];\n    print << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -491,38 +540,18 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  isVerificationFile: false
-  path: data-struct/cht/ConvexHullTrick.hpp
+  - math/ModInt.hpp
+  - math/MontmortNumber.hpp
+  isVerificationFile: true
+  path: test/yosupo/math/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/line_add_get_min.test.cpp
-documentation_of: data-struct/cht/ConvexHullTrick.hpp
+  timestamp: '2022-09-25 23:48:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/math/montmort_number_mod.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/cht/ConvexHullTrick.hpp
-- /library/data-struct/cht/ConvexHullTrick.hpp.html
-title: ConvexHullTrick
+- /verify/test/yosupo/math/montmort_number_mod.test.cpp
+- /verify/test/yosupo/math/montmort_number_mod.test.cpp.html
+title: test/yosupo/math/montmort_number_mod.test.cpp
 ---
-## Overview
-
-$y = ax + b$ の形の $x$ の一次関数に関するクエリを扱える。
-
-一次関数の集合 $s$ が与えられたとき、 $s$ に一次関数を追加するクエリと、 $x=k$ における最小値を求めるクエリに答えられる。
-
-## Usage
-
-### Template Arguments
-
-- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
-- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
-- `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `__int128_t` 。
-
-### Member Function
-
-- `ConvexHullTrick()` : コンストラクタ。 $\Theta(1)$ 。
-- `int add_line(T a, T b)` : $s$ に $f(x) = ax + b$ を追加する。返り値は追加された関数の番号。 $\Theta(\log N)$ 。
-- `T get_min(T k)` : $\min_{f \in s} f(k)$ を返す。 $\Theta(\log N)$ 。
-- `Line get_min_line(T k)` : $\arg \min_{f \in s} f(k)$ を返す。 $\Theta(\log N)$ 。
-- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。

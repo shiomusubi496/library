@@ -558,8 +558,8 @@ data:
   timestamp: '2022-09-23 16:45:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
 documentation_of: data-struct/segment/DisjointSparseTable.hpp
 layout: document
 redirect_from:

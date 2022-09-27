@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: data-struct/cht
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
     - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/DequeOperateAggregation.hpp
       title: DequeOperateAggregation
     - icon: ':x:'
@@ -29,17 +29,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/PersistentArray.hpp
       title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
     - icon: ':x:'
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/SlidingWindowAggregation.hpp
       title: SlidingWindowAggregation(SWAG)
   - name: data-struct/segment
@@ -66,7 +66,7 @@ data:
     - icon: ':x:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
@@ -86,13 +86,13 @@ data:
     - icon: ':x:'
       path: data-struct/segment/SegmentTree2D.hpp
       title: SegmentTree2D
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
     - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/SqrtDecomposition.hpp
       title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     - icon: ':x:'
@@ -106,13 +106,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PartialPersistentUnionFind.hpp
       title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
     - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFindUndo.hpp
       title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
     - icon: ':heavy_check_mark:'
@@ -120,13 +120,13 @@ data:
       title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - name: data-struct/wavelet
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/wavelet/FullyIndexableDictionary.hpp
       title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
     - icon: ':x:'
       path: data-struct/wavelet/WaveletMatrix.hpp
       title: WaveletMatrix
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
       title: WaveletMatrixPointAddRectangleSum.hpp
   - name: geometry
@@ -268,6 +268,9 @@ data:
     - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
+    - icon: ':x:'
+      path: math/MontmortNumber.hpp
+      title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
@@ -276,12 +279,15 @@ data:
       title: "Rational(\u6709\u7406\u6570\u578B)"
   - name: math/convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseAndConvolution.hpp
       title: BitwiseAndConvolution
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseOrConvolution.hpp
       title: BitwiseOrConvolution
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/BitwiseXorConvolution.hpp
+      title: BitwiseXorConvolution
     - icon: ':x:'
       path: math/convolution/DivisorZetaMoebiusTransform.hpp
       title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
@@ -289,6 +295,9 @@ data:
     - icon: ':x:'
       path: math/convolution/GcdConvolution.hpp
       title: GCDConvolution
+    - icon: ':heavy_check_mark:'
+      path: math/convolution/HadamardTransform.hpp
+      title: HadmardTransform
     - icon: ':x:'
       path: math/convolution/LcmConvolution.hpp
       title: LCMConvolution
@@ -296,11 +305,11 @@ data:
       path: math/convolution/MultipleZetaMoebiusTransform.hpp
       title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/SubsetZetaMoebiusTransform.hpp
       title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/SupersetZetaMoebiusTransform.hpp
       title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
         \u30A6\u30B9\u5909\u63DB)"
@@ -317,7 +326,7 @@ data:
     - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
     - icon: ':question:'
@@ -325,7 +334,7 @@ data:
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
     - icon: ':warning:'
@@ -636,51 +645,54 @@ data:
       title: test/atcoder/arc099_c-Bipartite.test.cpp
   - name: test/yosupo/convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
       title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+      title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/line_add_get_min.test.cpp
       title: test/yosupo/data_structure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
       title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/persistent_unionfind.test.cpp
       title: test/yosupo/data_structure/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_add_range_sum.test.cpp
       title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
       title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     - icon: ':x:'
@@ -765,6 +777,9 @@ data:
     - icon: ':x:'
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/math/montmort_number_mod.test.cpp
+      title: test/yosupo/math/montmort_number_mod.test.cpp
     - icon: ':x:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp

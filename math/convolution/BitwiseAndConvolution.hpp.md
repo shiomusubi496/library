@@ -1,10 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
+  - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':question:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -28,12 +34,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/BitwiseAndConvolution.md
     document_title: BitwiseAndConvolution
@@ -410,7 +416,112 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
+    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
+    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
+    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\
+    \n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
+    \ Product {\n    using value_type = T;\n    static T op(const T& a, const T& b)\
+    \ { return a * b; }\n    static T id() { return T{1}; }\n    static T inv(const\
+    \ T& a, const T& b) { return a / b; }\n    static T get_inv(const T& a) { return\
+    \ T{1} / a; }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
+    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
+    \   }\n    static value_type id() { return {T{1}, T{0}}; }\n    static value_type\
+    \ get_inv(const value_type& a) {\n        return {T{1} / a.first, -a.second /\
+    \ a.first};\n    }\n    static value_type inv(const value_type& a, const value_type&\
+    \ b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct\
+    \ GCD {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a,\
+    \ b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n\
+    \    using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n\
+    \    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n\
+    \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
+    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
+    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
+    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
+    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
+    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\
     \n\n#line 4 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class\
     \ Sum>\nvoid superset_zeta_transform(std::vector<typename Sum::value_type>& v)\
     \ {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
@@ -420,17 +531,24 @@ data:
     \ 1) {\n        rep (j, n) {\n            if (j & i) v[j ^ i] = Sum::inv(v[j ^\
     \ i], v[j]);\n        }\n    }\n}\n\n/**\n * @brief SupersetZeta/MoebiusTransform(\u30BC\
     \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/SupersetZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
-    \ Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
-    \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
+    \ */\n#line 7 \"math/convolution/BitwiseAndConvolution.hpp\"\n\ntemplate<class\
+    \ T, class Sum = Monoid::Sum<T>, class Prod = Monoid::Product<T>>\nstd::vector<T>\
+    \ bitwise_and_convolution(std::vector<T> a, std::vector<T> b) {\n    static_assert(std::is_same<typename\
+    \ Sum::value_type, T>::value,\n                  \"Sum::value_type must be T\"\
+    );\n    static_assert(std::is_same<typename Prod::value_type, T>::value,\n   \
+    \               \"Prod::value_type must be T\");\n    superset_zeta_transform<Sum>(a);\n\
+    \    superset_zeta_transform<Sum>(b);\n    rep (i, a.size()) a[i] = Prod::op(a[i],\
+    \ b[i]);\n    superset_moebius_transform<Sum>(a);\n    return a;\n}\n\n/**\n *\
+    \ @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
     \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"SupersetZetaMoebiusTransform.hpp\"\
-    \n\ntemplate<class Sum, class Prod>\nstd::vector<typename Sum::value_type>\nbitwise_and_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                        std::vector<typename Sum::value_type>\
-    \ b) {\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n#include \"../../other/monoid2.hpp\"\n#include \"SupersetZetaMoebiusTransform.hpp\"\
+    \n\ntemplate<class T, class Sum = Monoid::Sum<T>, class Prod = Monoid::Product<T>>\n\
+    std::vector<T> bitwise_and_convolution(std::vector<T> a, std::vector<T> b) {\n\
+    \    static_assert(std::is_same<typename Sum::value_type, T>::value,\n       \
+    \           \"Sum::value_type must be T\");\n    static_assert(std::is_same<typename\
+    \ Prod::value_type, T>::value,\n                  \"Prod::value_type must be T\"\
+    );\n    superset_zeta_transform<Sum>(a);\n    superset_zeta_transform<Sum>(b);\n\
     \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    superset_moebius_transform<Sum>(a);\n\
     \    return a;\n}\n\n/**\n * @brief BitwiseAndConvolution\n * @docs docs/math/convolution/BitwiseAndConvolution.md\n\
     \ */\n"
@@ -442,12 +560,14 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
+  - other/monoid.hpp
+  - other/monoid2.hpp
   - math/convolution/SupersetZetaMoebiusTransform.hpp
   isVerificationFile: false
   path: math/convolution/BitwiseAndConvolution.hpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-09-25 23:48:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
 documentation_of: math/convolution/BitwiseAndConvolution.hpp
