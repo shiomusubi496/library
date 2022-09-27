@@ -67,15 +67,10 @@ jobs:
     #    crate: cargo-udeps
     #    use-tool-cache: true
 
-    - name: Install jq
-      run: brew install jq
-
     - name: Run tests
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+        DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
-      run: export DROPBOX_TOKEN=$(curl https://api.dropbox.com/oauth2/token --user 153gig8dqgk3ujg:5l7o7lh73o8i9ux
-                                  --data grant_type=refresh_token --data refresh_token=$REFRESH_TOKEN | jq -r .access_token) ;
-            oj-verify all
+      run: oj-verify all
