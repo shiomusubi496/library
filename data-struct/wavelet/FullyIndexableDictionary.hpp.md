@@ -23,7 +23,7 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
   - icon: ':heavy_check_mark:'
@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
     document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
@@ -459,7 +459,7 @@ data:
   - data-struct/wavelet/WaveletMatrix.hpp
   - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
   timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp

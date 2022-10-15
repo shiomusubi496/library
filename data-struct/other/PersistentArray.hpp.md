@@ -445,14 +445,17 @@ data:
     \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
     \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
-    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
-    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
-    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
-    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
-    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
-    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
+    \ T& x) { return push_back(last_time - 1, x); }\n    int pop_back(int t) {\n \
+    \       assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
+    \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
+    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
+    \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
+    \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PersistentArray.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ std::size_t sz = 2> class PersistentArray {\nprivate:\n    struct node;\n  \
     \  using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
@@ -487,14 +490,17 @@ data:
     \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
     \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
-    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
-    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
-    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
-    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
-    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
-    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
+    \ T& x) { return push_back(last_time - 1, x); }\n    int pop_back(int t) {\n \
+    \       assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
+    \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
+    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
+    \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
+    \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PersistentArray.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -507,7 +513,7 @@ data:
   path: data-struct/other/PersistentArray.hpp
   requiredBy:
   - data-struct/unionfind/PersistentUnionFind.hpp
-  timestamp: '2022-09-23 16:45:58+09:00'
+  timestamp: '2022-10-15 23:23:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind.test.cpp
@@ -521,9 +527,10 @@ title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
 ---
 ## 概要
 
-完全永続配列。単に永続配列とも。 $k$ 分木を使っている。(デフォルトは $k=2$ 。)
+完全永続配列。単に永続配列とも。 $m$ 分木を使っている。(デフォルトは $m=2$ 。)
 
-- `PersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(kN)$ 。
-- `int set(int k, int t, T x)` : これが $i$ 回目(0-indexed)の `set`, `push_back` 呼び出しのとき、 $a_{t}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(k \log_k N)$ 。
-- `int push_back(int k, int t, T x)` : これが $i$ 回目の `set`, `push_back` 呼び出しのとき、 $a_{t}$ に $x$ を末尾に追加した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(k \log_k N)$ 。
-- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log_k N)$ 。
+- `PersistentArray(vector<T> a)` : $a_{-1} := a$ とする。 $\Theta(mN)$ 。
+- `int set(int k, int t, T x)` : これが $i$ 回目(0-indexed)の呼び出しのとき、 $a_{t}[k]$ を $x$ に更新した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(m \log_m N)$ 。
+- `int push_back(int t, T x)` : これが $i$ 回目の呼び出しのとき、 $a_{t}$ に $x$ を末尾に追加した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(m \log_m N)$ 。
+- `int pop_back(int t)` : これが $i$ 回目の呼び出しのとき、 $a_{t}$ の末尾を削除した配列を $a_i$ とする。返り値は $i$ 。 $\Theta(m \log_m N)$ 。
+- `T get(int k, int t)` : $a_{t}[k]$ を返す。 $\Theta(\log_m N)$ 。

@@ -442,15 +442,18 @@ data:
     \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
     \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
     \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    T get(int k, int t) const\
-    \ {\n        assert(-1 <= t && t < last_time);\n        assert(0 <= k && k < len[t\
-    \ + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k)\
-    \ const { return get(k, last_time - 1); }\n    int size(int t) const {\n     \
-    \   assert(-1 <= t && t < last_time);\n        return len[t + 1];\n    }\n   \
-    \ int size_last() const { return size(last_time - 1); }\n};\n\n/**\n * @brief\
-    \ PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int q; scan >> q;\n    PersistentArray<int>\
+    \ T& x) { return push_back(last_time - 1, x); }\n    int pop_back(int t) {\n \
+    \       assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
+    \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
+    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
+    \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
+    \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PersistentArray.md\n */\n#line 4 \"test/yosupo/data_structure/persistent_queue-Array.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    PersistentArray<int>\
     \ PA(1);\n    rep (q) {\n        int a; scan >> a;\n        if (a == 0) {\n  \
     \          int t, x; scan >> t >> x;\n            PA.push_back(x, t);\n      \
     \  }\n        else {\n            int t; scan >> t;\n            int frt = PA.get(0,\
@@ -476,7 +479,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
+  timestamp: '2022-10-15 23:23:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/persistent_queue-Array.test.cpp

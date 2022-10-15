@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':question:'
