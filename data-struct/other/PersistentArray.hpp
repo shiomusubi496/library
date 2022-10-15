@@ -77,6 +77,13 @@ public:
         return last_time++;
     }
     int push_back_last(const T& x) { return push_back(last_time - 1, x); }
+    int pop_back(int t) {
+        assert(-1 <= t && t < last_time);
+        root.push_back(std::make_shared<node>(*root[t + 1]));
+        len.push_back(len[t + 1] - 1);
+        return last_time++;
+    }
+    int pop_back_last() { return pop_back(last_time - 1); }
     T get(int k, int t) const {
         assert(-1 <= t && t < last_time);
         assert(0 <= k && k < len[t + 1]);
