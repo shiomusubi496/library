@@ -24,12 +24,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/Rational.md
     document_title: "Rational(\u6709\u7406\u6570\u578B)"
@@ -104,9 +104,31 @@ data:
     struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
     \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
     \                             range_rank<typename T::value_type>::value + 1> {};\n\
-    #line 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\
-    \ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n \
-    \   int fd, idx, sz;\n    bool state;\n    std::array<char, buf_size> buffer;\n\
+    \ntemplate<std::size_t size> struct int_least {\n    static_assert(size <= 128,\
+    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
+    \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
+    \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
+    \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
+    \ <= 64, std::int_least64_t,\n                                          __int128_t>::type>::type>::type>::\n\
+    \        type;\n};\n\ntemplate<std::size_t size> using int_least_t = typename\
+    \ int_least<size>::type;\n\ntemplate<std::size_t size> struct uint_least {\n \
+    \   static_assert(size <= 128, \"size must be less than or equal to 128\");\n\n\
+    \    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
+    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
+    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
+    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
+    \                                          __uint128_t>::type>::type>::type>::\n\
+    \        type;\n};\n\ntemplate<std::size_t size> using uint_least_t = typename\
+    \ uint_least<size>::type;\n\ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
+    \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
+    template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
+    \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
+    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
+    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    template<class T> using double_size_t = typename double_size<T>::type;\n#line\
+    \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
+    template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
+    \ int fd, idx, sz;\n    bool state;\n    std::array<char, buf_size> buffer;\n\
     \    inline void read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n\
     \        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"input failed\"\
     );\n    }\n\npublic:\n    static constexpr int get_buf_size() { return buf_size;\
@@ -277,25 +299,26 @@ data:
     \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
     \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
     \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
-    \nvoid prints(const std::string& s) {\n    print << s;\n    print.print_char('\\\
-    n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
-    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
-    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
-    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
-    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
-    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n#line 2 \"template/bitop.hpp\"\
-    \n\n#line 5 \"template/bitop.hpp\"\n\nnamespace bitop {\n\n#define KTH_BIT(b,\
-    \ k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull << (k))\n\ninline ull next_combination(int\
-    \ n, ull x) {\n    if (n == 0) return 1;\n    ull a = x & -x;\n    ull b = x +\
-    \ a;\n    return (x & ~b) / a >> 1 | b;\n}\n\n#define rep_comb(i, n, k)      \
-    \                                                \\\n    for (ull i = (1ull <<\
-    \ (k)) - 1; i < (1ull << (n));                         \\\n         i = bitop::next_combination((n),\
-    \ i))\n\ninline CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if\
-    \ (x & 0xFFFFFFFF00000000) x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000)\
-    \ x &= 0xFFFF0000FFFF0000, res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00,\
-    \ res += 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n\
-    \    if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return\
-    \ res + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
+    \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
+    \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
+    \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
+    class DebugIterator {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator&\
+    \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
+    \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
+    \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\
+    #line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\n\nnamespace\
+    \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
+    \ (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0) return\
+    \ 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 |\
+    \ b;\n}\n\n#define rep_comb(i, n, k)                                         \
+    \             \\\n    for (ull i = (1ull << (k)) - 1; i < (1ull << (n));     \
+    \                    \\\n         i = bitop::next_combination((n), i))\n\ninline\
+    \ CONSTEXPR int msb(ull x) {\n    int res = x ? 0 : -1;\n    if (x & 0xFFFFFFFF00000000)\
+    \ x &= 0xFFFFFFFF00000000, res += 32;\n    if (x & 0xFFFF0000FFFF0000) x &= 0xFFFF0000FFFF0000,\
+    \ res += 16;\n    if (x & 0xFF00FF00FF00FF00) x &= 0xFF00FF00FF00FF00, res +=\
+    \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
+    \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
+    \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
     \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
@@ -406,8 +429,10 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"math/Rational.hpp\"\n\n\
-    template<class T> class Rational {\nprivate:\n    T num, den;\n\npublic:\n   \
-    \ static void norm(T& a, T& b) {\n        assert(b != 0);\n        T g = gcd(abs(a),\
+    template<class T> class Rational {\nprivate:\n    using LargeT =\n        typename\
+    \ std::conditional<std::is_integral<T>::value,\n                             \
+    \     typename double_size<T>::type, ld>::type;\n    T num, den;\n\npublic:\n\
+    \    static void norm(T& a, T& b) {\n        assert(b != 0);\n        T g = gcd(abs(a),\
     \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
     \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
     \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
@@ -441,69 +466,71 @@ data:
     \ rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs, const Rational&\
     \ rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n  \
     \  friend bool operator<(const Rational& lhs, const Rational& rhs) {\n       \
-    \ return (__int128_t)lhs.num * rhs.den < (__int128_t)rhs.num * lhs.den;\n    }\n\
-    \    friend bool operator>(const Rational& lhs, const Rational& rhs) {\n     \
-    \   return rhs < lhs;\n    }\n    friend bool operator<=(const Rational& lhs,\
-    \ const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool\
-    \ operator>=(const Rational& lhs, const Rational& rhs) {\n        return !(lhs\
-    \ < rhs);\n    }\n    friend std::ostream& operator<<(std::ostream& ost, const\
-    \ Rational& rat) {\n        return ost << rat.get_ld();\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class Pr> void\
-    \ debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n  \
-    \      a.print(den);\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, Rational& rat) {\n        return ist >> rat.num >> rat.den;\n    }\n  \
-    \  template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n\
-    \    }\n};\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
+    \ return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n    friend\
+    \ bool operator>(const Rational& lhs, const Rational& rhs) {\n        return rhs\
+    \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
+    \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
+    \    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {\n\
+    \        return ost << rat.get_ld();\n    }\n    template<class Pr> void print(Pr&\
+    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
+    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
+    \    }\n    friend std::istream& operator>>(std::istream& ist, Rational& rat)\
+    \ {\n        return ist >> rat.num >> rat.den;\n    }\n    template<class Sc>\
+    \ void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n};\n\n\
+    using Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
+    )\n * @docs docs/math/Rational.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
-    \ Rational {\nprivate:\n    T num, den;\n\npublic:\n    static void norm(T& a,\
-    \ T& b) {\n        assert(b != 0);\n        T g = gcd(abs(a), abs(b));\n     \
-    \   a /= g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n    \
-    \        b = -b;\n        }\n    }\n    void normalize() { norm(num, den); }\n\
-    \    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n \
-    \   Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num() const\
-    \ { return num; }\n    T get_den() const { return den; }\n    ld get_ld() const\
-    \ { return (ld)num / den; }\n    Rational& operator++() {\n        num += den;\n\
-    \        return *this;\n    }\n    Rational operator++(int) {\n        Rational\
-    \ res = *this;\n        ++*this;\n        return res;\n    }\n    Rational& operator--()\
-    \ {\n        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
-    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
-    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
-    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
-    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
-    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
-    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() { return\
-    \ Rational(*this); }\n    Rational operator-() { return Rational(-num, den); }\n\
-    \    friend bool operator==(const Rational& lhs, const Rational& rhs) {\n    \
-    \    return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend bool\
-    \ operator!=(const Rational& lhs, const Rational& rhs) {\n        return lhs.num\
-    \ != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return (__int128_t)lhs.num * rhs.den <\
-    \ (__int128_t)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    friend std::ostream& operator<<(std::ostream&\
-    \ ost, const Rational& rat) {\n        return ost << rat.get_ld();\n    }\n  \
-    \  template<class Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class\
-    \ Pr> void debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n\
-    \        a.print(den);\n    }\n    friend std::istream& operator>>(std::istream&\
-    \ ist, Rational& rat) {\n        return ist >> rat.num >> rat.den;\n    }\n  \
-    \  template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n\
-    \    }\n};\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
+    \ Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
+    \                                  typename double_size<T>::type, ld>::type;\n\
+    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        assert(b\
+    \ != 0);\n        T g = gcd(abs(a), abs(b));\n        a /= g;\n        b /= g;\n\
+    \        if (b < 0) {\n            a = -a;\n            b = -b;\n        }\n \
+    \   }\n    void normalize() { norm(num, den); }\n    Rational() : num(0), den(1)\
+    \ {}\n    Rational(T a) : num(a), den(1) {}\n    Rational(T a, T b) : num(a),\
+    \ den(b) { normalize(); }\n    T get_num() const { return num; }\n    T get_den()\
+    \ const { return den; }\n    ld get_ld() const { return (ld)num / den; }\n   \
+    \ Rational& operator++() {\n        num += den;\n        return *this;\n    }\n\
+    \    Rational operator++(int) {\n        Rational res = *this;\n        ++*this;\n\
+    \        return res;\n    }\n    Rational& operator--() {\n        num -= den;\n\
+    \        return *this;\n    }\n    Rational operator--(int) {\n        Rational\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n    Rational& operator+=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) + other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator-=(const\
+    \ Rational& other) {\n        T g = gcd(den, other.den);\n        num = num *\
+    \ (other.den / g) - other.num * (den / g);\n        den = den / g * other.den;\n\
+    \        normalize();\n        return *this;\n    }\n    Rational& operator*=(const\
+    \ Rational& other) {\n        T g1 = gcd(num, other.den);\n        T g2 = gcd(den,\
+    \ other.num);\n        num = (num / g1) * (other.num / g2);\n        den = (den\
+    \ / g2) * (other.den / g1);\n        return *this;\n    }\n    Rational& operator/=(const\
+    \ Rational& other) {\n        return (*this) *= Rational(other.den, other.num);\n\
+    \    }\n    friend Rational operator+(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) += rhs;\n    }\n    friend Rational operator-(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) -= rhs;\n\
+    \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
+    \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
+    \    }\n    Rational operator+() { return Rational(*this); }\n    Rational operator-()\
+    \ { return Rational(-num, den); }\n    friend bool operator==(const Rational&\
+    \ lhs, const Rational& rhs) {\n        return lhs.num == rhs.num && lhs.den ==\
+    \ rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs, const Rational&\
+    \ rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n  \
+    \  friend bool operator<(const Rational& lhs, const Rational& rhs) {\n       \
+    \ return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n    friend\
+    \ bool operator>(const Rational& lhs, const Rational& rhs) {\n        return rhs\
+    \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
+    \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
+    \    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {\n\
+    \        return ost << rat.get_ld();\n    }\n    template<class Pr> void print(Pr&\
+    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
+    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
+    \    }\n    friend std::istream& operator>>(std::istream& ist, Rational& rat)\
+    \ {\n        return ist >> rat.num >> rat.den;\n    }\n    template<class Sc>\
+    \ void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n};\n\n\
+    using Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
+    )\n * @docs docs/math/Rational.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -515,8 +542,8 @@ data:
   isVerificationFile: false
   path: math/Rational.hpp
   requiredBy: []
-  timestamp: '2022-09-23 16:45:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-16 18:27:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
 documentation_of: math/Rational.hpp
