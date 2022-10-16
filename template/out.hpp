@@ -261,8 +261,8 @@ SetPrec setprec(int n) { return SetPrec{n}; };
 
 Printer<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());
 
-void prints(const std::string& s) {
-    print << s;
+template<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {
+    print << v;
     print.print_char('\n');
 }
 

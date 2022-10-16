@@ -2,7 +2,8 @@
 
 #include "../../other/template.hpp"
 
-template<class T = ll, bool is_max = false, class LargeT = __int128_t>
+template<class T = ll, bool is_max = false,
+         class LargeT = typename double_size_int<T>::type>
 class ConvexHullTrickAddMonotone {
 private:
     struct Line {

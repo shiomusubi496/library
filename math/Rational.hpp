@@ -4,6 +4,9 @@
 
 template<class T> class Rational {
 private:
+    using LargeT =
+        typename std::conditional<std::is_integral<T>::value,
+                                  typename double_size<T>::type, ld>::type;
     T num, den;
 
 public:
@@ -87,7 +90,7 @@ public:
         return lhs.num != rhs.num || lhs.den != rhs.den;
     }
     friend bool operator<(const Rational& lhs, const Rational& rhs) {
-        return (__int128_t)lhs.num * rhs.den < (__int128_t)rhs.num * lhs.den;
+        return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;
     }
     friend bool operator>(const Rational& lhs, const Rational& rhs) {
         return rhs < lhs;
