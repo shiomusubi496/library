@@ -153,8 +153,8 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
-    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
     template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
@@ -637,17 +637,17 @@ data:
   requiredBy:
   - data-struct/segment/SegmentTree2D.hpp
   - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-  timestamp: '2022-10-16 18:27:39+09:00'
+  timestamp: '2022-10-24 21:04:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
+  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
+  - test/yosupo/data_structure/rectangle_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:

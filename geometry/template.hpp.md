@@ -202,8 +202,8 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
-    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
     template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
@@ -533,37 +533,37 @@ data:
   isVerificationFile: false
   path: geometry/template.hpp
   requiredBy:
-  - geometry/All.hpp
-  - geometry/Polygon.hpp
   - geometry/Line.hpp
+  - geometry/Polygon.hpp
+  - geometry/Segment.hpp
+  - geometry/Point.hpp
+  - geometry/All.hpp
   - geometry/Circle.hpp
   - geometry/Triangle.hpp
-  - geometry/Point.hpp
-  - geometry/Segment.hpp
-  timestamp: '2022-10-16 18:27:39+09:00'
+  timestamp: '2022-10-24 21:04:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
   - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
+  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
+  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_1_A-projection.test.cpp
+  - test/aoj/CGL/CGL_3_A-area.test.cpp
+  - test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
+  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
 documentation_of: geometry/template.hpp
 layout: document
 redirect_from:

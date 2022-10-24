@@ -274,7 +274,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
   - name: math/convolution
@@ -405,7 +405,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
       title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
       title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -490,7 +490,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_B.test.cpp
       title: test/aoj/DPL/DPL_5_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/DPL/DPL_5_C.test.cpp
       title: test/aoj/DPL/DPL_5_C.test.cpp
     - icon: ':x:'

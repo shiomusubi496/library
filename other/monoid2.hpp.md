@@ -172,8 +172,8 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
-    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
     template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
@@ -621,25 +621,25 @@ data:
   path: other/monoid2.hpp
   requiredBy:
   - math/convolution/BitwiseAndConvolution.hpp
-  - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
-  timestamp: '2022-10-16 18:27:39+09:00'
+  - math/convolution/BitwiseXorConvolution.hpp
+  timestamp: '2022-10-24 21:04:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/new/range_affine_point_get.test.cpp
-  - test/yosupo/new/gcd_convolution.test.cpp
-  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/new/gcd_convolution.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:

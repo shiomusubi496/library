@@ -166,8 +166,8 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
-    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
     template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
@@ -605,22 +605,22 @@ data:
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
   - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
-  - graph/tree/PMORMQLCA.hpp
+  - data-struct/segment/LCARMQ.hpp
   - graph/tree/EulerTour.hpp
-  timestamp: '2022-10-16 18:27:39+09:00'
+  - graph/tree/PMORMQLCA.hpp
+  timestamp: '2022-10-24 21:04:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp
 layout: document
 redirect_from:

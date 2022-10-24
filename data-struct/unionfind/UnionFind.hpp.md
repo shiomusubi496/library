@@ -144,8 +144,8 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size = std::conditional<std::is_signed<T>::value,\n\
-    \                                     double_size_int<T>, double_size_uint<T>>;\n\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
     template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
@@ -492,17 +492,17 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
-  - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  timestamp: '2022-10-16 18:27:39+09:00'
+  - graph/mst/Kruskal.hpp
+  timestamp: '2022-10-24 21:04:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/unionfind.test.cpp
-  - test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/yosupo/data_structure/unionfind.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document
 redirect_from:
