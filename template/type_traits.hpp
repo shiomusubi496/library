@@ -109,6 +109,7 @@ using double_size_uint = uint_least<std::numeric_limits<T>::digits * 2>;
 template<class T> using double_size_uint_t = typename double_size_uint<T>::type;
 
 template<class T>
-using double_size = std::conditional<std::is_signed<T>::value,
-                                     double_size_int<T>, double_size_uint<T>>;
+using double_size =
+    typename std::conditional<std::is_signed<T>::value, double_size_int<T>,
+                              double_size_uint<T>>::type;
 template<class T> using double_size_t = typename double_size<T>::type;
