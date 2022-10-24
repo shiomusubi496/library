@@ -23,10 +23,13 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/abc265_c-Timer.test.cpp
+    title: test/atcoder/abc265_c-Timer.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/random/Timer.md
     document_title: Timer
@@ -455,8 +458,9 @@ data:
   path: random/Timer.hpp
   requiredBy: []
   timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/abc265_c-Timer.test.cpp
 documentation_of: random/Timer.hpp
 layout: document
 redirect_from:
