@@ -31,7 +31,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/Divisor.md
+    _deprecated_at_docs: docs/math/Divisors.md
     document_title: "Divisors(\u7D04\u6570\u5217\u6319)"
     links: []
   bundledCode: "#line 2 \"math/Divisor.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -434,14 +434,14 @@ data:
     \          if (i * i != n) res2.push_back(n / i);\n        }\n    }\n    res1.reserve(res1.size()\
     \ + res2.size());\n    std::copy(res2.rbegin(), res2.rend(), std::back_inserter(res1));\n\
     \    return res1;\n}\n\n/**\n * @brief Divisors(\u7D04\u6570\u5217\u6319)\n *\
-    \ @docs docs/math/Divisor.md\n */\n"
+    \ @docs docs/math/Divisors.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nstd::vector<ll> divisors(ll\
     \ n) {\n    std::vector<ll> res1, res2;\n    for (ll i = 1; i * i <= n; ++i) {\n\
     \        if (n % i == 0) {\n            res1.push_back(i);\n            if (i\
     \ * i != n) res2.push_back(n / i);\n        }\n    }\n    res1.reserve(res1.size()\
     \ + res2.size());\n    std::copy(res2.rbegin(), res2.rend(), std::back_inserter(res1));\n\
     \    return res1;\n}\n\n/**\n * @brief Divisors(\u7D04\u6570\u5217\u6319)\n *\
-    \ @docs docs/math/Divisor.md\n */\n"
+    \ @docs docs/math/Divisors.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -453,7 +453,7 @@ data:
   isVerificationFile: false
   path: math/Divisor.hpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-29 19:48:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
@@ -464,3 +464,6 @@ redirect_from:
 - /library/math/Divisor.hpp.html
 title: "Divisors(\u7D04\u6570\u5217\u6319)"
 ---
+## 概要
+
+- `vector<ll> divisors(ll n)` : $n$ の約数を昇順に返す。 $\Theta(\sqrt{n})$ 。

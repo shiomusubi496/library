@@ -436,7 +436,7 @@ data:
     \ {\n            res1.push_back(i);\n            if (i * i != n) res2.push_back(n\
     \ / i);\n        }\n    }\n    res1.reserve(res1.size() + res2.size());\n    std::copy(res2.rbegin(),\
     \ res2.rend(), std::back_inserter(res1));\n    return res1;\n}\n\n/**\n * @brief\
-    \ Divisors(\u7D04\u6570\u5217\u6319)\n * @docs docs/math/Divisor.md\n */\n#line\
+    \ Divisors(\u7D04\u6570\u5217\u6319)\n * @docs docs/math/Divisors.md\n */\n#line\
     \ 4 \"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp\"\nusing namespace std;\nint main()\
     \ {\n    ll a, b, c; scan >> a >> b >> c;\n    ll ans = 0;\n    each_const (i\
     \ : divisors(c)) {\n        if (a <= i && i <= b) ++ans;\n    }\n    print <<\
@@ -458,7 +458,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-29 19:48:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp

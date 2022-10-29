@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -31,17 +31,17 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/TwoSatisfiablitity.md
+    _deprecated_at_docs: docs/graph/other/TwoSatisfiability.md
     document_title: TwoSatisfiability(2-SAT)
     links: []
-  bundledCode: "#line 2 \"graph/other/TwoSatisfiablitity.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"graph/other/TwoSatisfiability.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -502,7 +502,7 @@ data:
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
     \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
-    \ */\n#line 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability\
+    \ */\n#line 6 \"graph/other/TwoSatisfiability.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
     \ : TwoSatisfiability(0) {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n\
     \    int neg(int t) const { return t < n ? t + n : t - n; }\n    void add_clause(int\
@@ -521,7 +521,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n"
+    \ * @docs docs/graph/other/TwoSatisfiability.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../connected/StronglyConnectedComponents.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
@@ -542,7 +542,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n"
+    \ * @docs docs/graph/other/TwoSatisfiability.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -554,16 +554,35 @@ data:
   - graph/Graph.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   isVerificationFile: false
-  path: graph/other/TwoSatisfiablitity.hpp
+  path: graph/other/TwoSatisfiability.hpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-10-29 19:48:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/two_sat.test.cpp
-documentation_of: graph/other/TwoSatisfiablitity.hpp
+documentation_of: graph/other/TwoSatisfiability.hpp
 layout: document
 redirect_from:
-- /library/graph/other/TwoSatisfiablitity.hpp
-- /library/graph/other/TwoSatisfiablitity.hpp.html
+- /library/graph/other/TwoSatisfiability.hpp
+- /library/graph/other/TwoSatisfiability.hpp.html
 title: TwoSatisfiability(2-SAT)
 ---
+## 概要
+
+SAT(Satisfiability) は、論理式が与えられたとき、それを真にするような変数の割り当てが存在するかを判定する問題。
+
+$(a \lor b) \land (c \lor d) \land \cdots$ というように、高々 2 個のリテラルが $\lor$ で結ばれた形のクローズを $\land$ で結んだ形の論理式に対する SAT は 2-SAT と呼ばれる。
+
+一般の SAT は多項式時間の解法が知られていないが、 2-SAT はグラフを使うことでクローズの数に対し線形時間で解ける。
+
+- `TwoSatisfiability(int n)` : `n` 変数 $x_0, x_1, \ldots, x_{n-1}$ からなる 2-SAT を作成する。 $\Theta(n)$ 。
+- `int neg(int k)` : 変数 `k` の否定の変数の index を返す。 $\Theta(1)$ 。
+- `void add_clause(int i, bool f, int j, bool g)` : $(x_i = j) \lor (x_j = g)$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_if(int a, int b)` : $a \Rightarrow b$ 、つまり $\lnot a \lor b$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_or(int a, int b)` : $a \lor b$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_nand(int a, int b)` : $\lnot (a \land b)$ 、つまり $\lnot a \lor \lnot b$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_eq(int a, int b)` : $a \Leftrightarrow b$ 、つまり $(\lnot a \lor b) \land (\lnot b \lor a)$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_neq(int a, int b)` : $a \not\Leftrightarrow b$ 、つまり $(a \lor b) \land (\lnot b \lor \lnot a)$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_true(int a)` : $a$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `void add_false(int a)` : $\lnot a$ の形のクローズを作成する。 $\Theta(1)$ 。
+- `vector<bool> sat()` : 現在の論理式が充足可能ならその割り当ての一例を、充足不可能なら空のリストを返す。追加されたクローズの数を $m$ として $\Theta(n + m)$ 。

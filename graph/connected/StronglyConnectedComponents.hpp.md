@@ -26,19 +26,19 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/other/TwoSatisfiablitity.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/connected/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -544,9 +544,9 @@ data:
   isVerificationFile: false
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy:
-  - graph/other/TwoSatisfiablitity.hpp
+  - graph/other/TwoSatisfiability.hpp
   timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/yosupo/math/two_sat.test.cpp

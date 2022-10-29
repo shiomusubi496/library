@@ -4,12 +4,12 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':x:'
-    path: graph/other/TwoSatisfiablitity.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
   - icon: ':question:'
     path: other/template.hpp
@@ -34,9 +34,9 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_sat
@@ -437,7 +437,7 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/other/TwoSatisfiablitity.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/other/TwoSatisfiability.hpp\"\
     \n\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
     \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
@@ -504,7 +504,7 @@ data:
     \ res.add_edge(cmp[i], cmp[e.to], e.cost, true);\n            }\n        }\n \
     \       return res;\n    }\n};\n\n/**\n * @brief StronglyConnectedComponents(\u5F37\
     \u9023\u7D50\u6210\u5206\u5206\u89E3)\n * @docs docs/graph/connected/StronglyConnectedComponents.md\n\
-    \ */\n#line 6 \"graph/other/TwoSatisfiablitity.hpp\"\n\nclass TwoSatisfiability\
+    \ */\n#line 6 \"graph/other/TwoSatisfiability.hpp\"\n\nclass TwoSatisfiability\
     \ {\nprivate:\n    int n;\n    UnweightedGraph G;\n\npublic:\n    TwoSatisfiability()\
     \ : TwoSatisfiability(0) {}\n    TwoSatisfiability(int n) : n(n), G(2 * n) {}\n\
     \    int neg(int t) const { return t < n ? t + n : t - n; }\n    void add_clause(int\
@@ -523,7 +523,7 @@ data:
     \ SCC(G);\n        std::vector<bool> res(n);\n        rep (i, n) {\n         \
     \   if (SCC[i] == SCC[neg(i)]) return {};\n            res[i] = SCC[neg(i)] <\
     \ SCC[i];\n        }\n        return res;\n    }\n};\n\n/**\n * @brief TwoSatisfiability(2-SAT)\n\
-    \ * @docs docs/graph/other/TwoSatisfiablitity.md\n */\n#line 4 \"test/yosupo/math/two_sat.test.cpp\"\
+    \ * @docs docs/graph/other/TwoSatisfiability.md\n */\n#line 4 \"test/yosupo/math/two_sat.test.cpp\"\
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    scan >>\
     \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
     \ a, b; scan >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
@@ -532,7 +532,7 @@ data:
     \ << endl;\n        print << \"v \";\n        rep (i, N) print << (v[i] ? i +\
     \ 1 : -i - 1) << ' ';\n        print << 0 << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_sat\"\n#include \"\
-    ../../../other/template.hpp\"\n#include \"../../../graph/other/TwoSatisfiablitity.hpp\"\
+    ../../../other/template.hpp\"\n#include \"../../../graph/other/TwoSatisfiability.hpp\"\
     \nusing namespace std;\nint main() {\n    string s;\n    int N, M;\n    scan >>\
     \ s >> s >> N >> M;\n    TwoSatisfiability SAT(N);\n    rep (M) {\n        int\
     \ a, b; scan >> a >> b >> s;\n        SAT.add_clause(abs(a) - 1, a > 0, abs(b)\
@@ -548,14 +548,14 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
-  - graph/other/TwoSatisfiablitity.hpp
+  - graph/other/TwoSatisfiability.hpp
   - graph/Graph.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   isVerificationFile: true
   path: test/yosupo/math/two_sat.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-29 19:48:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/two_sat.test.cpp
 layout: document
