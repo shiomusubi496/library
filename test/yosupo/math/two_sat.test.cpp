@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/two_sat"
 #include "../../../other/template.hpp"
-#include "../../../graph/other/TwoSatisfiablitity.hpp"
+#include "../../../graph/other/TwoSatisfiability.hpp"
 using namespace std;
 int main() {
     string s;
