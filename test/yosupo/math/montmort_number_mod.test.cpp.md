@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
@@ -548,12 +548,12 @@ data:
     \ * i;\n    return res;\n}\n\n/**\n * @brief MontmortNumber(\u652A\u4E71\u9806\
     \u5217)\n * @docs docs/math/MontmortNumber.md\n */\n#line 5 \"test/yosupo/math/montmort_number_mod.test.cpp\"\
     \nusing mint = modint;\nint main() {\n    int N, M; scan >> N >> M;\n    mint::set_mod(M);\n\
-    \    auto v = monmort_number<mint>(N);\n    rep (i, 1, v.size()) print << ' '\
+    \    auto v = montmort_number<mint>(N);\n    rep (i, 1, v.size()) print << ' '\
     \ << v[i];\n    print << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/montmort_number_mod\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../math/MontmortNumber.hpp\"\nusing mint = modint;\nint main()\
-    \ {\n    int N, M; scan >> N >> M;\n    mint::set_mod(M);\n    auto v = monmort_number<mint>(N);\n\
+    \ {\n    int N, M; scan >> N >> M;\n    mint::set_mod(M);\n    auto v = montmort_number<mint>(N);\n\
     \    rep (i, 1, v.size()) print << ' ' << v[i];\n    print << endl;\n}\n"
   dependsOn:
   - other/template.hpp
@@ -568,8 +568,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-29 20:08:44+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/montmort_number_mod.test.cpp
 layout: document
