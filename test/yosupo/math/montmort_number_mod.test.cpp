@@ -6,7 +6,7 @@ using mint = modint;
 int main() {
     int N, M; scan >> N >> M;
     mint::set_mod(M);
-    auto v = monmort_number<mint>(N);
+    auto v = montmort_number<mint>(N);
     rep (i, 1, v.size()) print << ' ' << v[i];
     print << endl;
 }
