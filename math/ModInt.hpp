@@ -260,7 +260,7 @@ public:
     }
 };
 
-template<int id> unsigned int DynamicModInt<id>::mod = 1000000007;
+template<int id> unsigned int DynamicModInt<id>::mod = 998244353;
 
 using modint = DynamicModInt<-1>;
 
