@@ -24,12 +24,12 @@ data:
     title: template/type_traits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
     title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/DynamicUnionFind.md
     document_title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
@@ -476,7 +476,7 @@ data:
   path: data-struct/unionfind/DynamicUnionFind.hpp
   requiredBy: []
   timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
 documentation_of: data-struct/unionfind/DynamicUnionFind.hpp

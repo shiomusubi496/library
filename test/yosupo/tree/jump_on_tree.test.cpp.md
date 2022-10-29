@@ -39,7 +39,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/jump_on_tree
     links:
     - https://judge.yosupo.jp/problem/jump_on_tree
-  bundledCode: "#line 1 \"test/yosupo/new/jump_on_tree.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/yosupo/tree/jump_on_tree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
@@ -514,11 +514,12 @@ data:
     \ const {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n\
     /**\n * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
     \u3088\u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n */\n\
-    #line 5 \"test/yosupo/new/jump_on_tree.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N - 1) {\n\
-    \        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    DoublingLCA<int>\
-    \ dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s >> t >> k;\n       \
-    \ print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n}\n"
+    #line 5 \"test/yosupo/tree/jump_on_tree.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N -\
+    \ 1) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n\
+    \    DoublingLCA<int> dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s\
+    \ >> t >> k;\n        print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/jump_on_tree\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/tree/DoublingLowestCommonAncestor.hpp\"\nusing namespace std;\n\
@@ -538,15 +539,15 @@ data:
   - graph/Graph.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   isVerificationFile: true
-  path: test/yosupo/new/jump_on_tree.test.cpp
+  path: test/yosupo/tree/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-28 20:23:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/new/jump_on_tree.test.cpp
+documentation_of: test/yosupo/tree/jump_on_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/jump_on_tree.test.cpp
-- /verify/test/yosupo/new/jump_on_tree.test.cpp.html
-title: test/yosupo/new/jump_on_tree.test.cpp
+- /verify/test/yosupo/tree/jump_on_tree.test.cpp
+- /verify/test/yosupo/tree/jump_on_tree.test.cpp.html
+title: test/yosupo/tree/jump_on_tree.test.cpp
 ---

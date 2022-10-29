@@ -31,8 +31,8 @@ data:
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - icon: ':x:'
-    path: test/yosupo/new/jump_on_tree.test.cpp
-    title: test/yosupo/new/jump_on_tree.test.cpp
+    path: test/yosupo/tree/jump_on_tree.test.cpp
+    title: test/yosupo/tree/jump_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -571,7 +571,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/yosupo/new/jump_on_tree.test.cpp
+  - test/yosupo/tree/jump_on_tree.test.cpp
 documentation_of: graph/tree/DoublingLowestCommonAncestor.hpp
 layout: document
 redirect_from:
