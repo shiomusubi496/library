@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -540,7 +540,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/MontmortNumber.hpp\"\n\n#line\
     \ 5 \"math/MontmortNumber.hpp\"\n\ntemplate<class T> std::vector<T> montmort_number(int\
     \ n) {\n    std::vector<T> res(n + 1);\n    res[0] = 1;\n    if (n == 0) return\
@@ -568,7 +568,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-10-29 20:08:44+09:00'
+  timestamp: '2022-10-29 22:24:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/montmort_number_mod.test.cpp

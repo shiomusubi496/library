@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -11,31 +11,31 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -655,7 +655,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/BitwiseAndConvolution.hpp\"\
     \n\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
     math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
@@ -703,7 +703,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-29 22:24:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/bitwise_and_convolution.test.cpp

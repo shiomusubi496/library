@@ -10,34 +10,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -698,7 +698,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"\
     graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from, to;\n\
     \    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int f,\
@@ -847,7 +847,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-29 22:24:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp

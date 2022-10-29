@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy: []
@@ -549,7 +549,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
     \ T> class IntCombinatorics {\nprivate:\n    static std::vector<T> factorial;\n\
     \npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
@@ -644,7 +644,7 @@ data:
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy: []
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-10-29 22:24:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_F.test.cpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
@@ -90,18 +90,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/ModInt.md
     document_title: ModInt
@@ -605,7 +605,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<unsigned int\
     \ mod> class StaticModInt {\n    static_assert(mod > 0, \"mod must be greater\
@@ -712,7 +712,7 @@ data:
     \ dm) {\n        ll v;\n        ist >> v;\n        dm = v;\n        return ist;\n\
     \    }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
     \        *this = v;\n    }\n};\n\ntemplate<int id> unsigned int DynamicModInt<id>::mod\
-    \ = 1000000007;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
+    \ = 998244353;\n\nusing modint = DynamicModInt<-1>;\n\n/**\n * @brief ModInt\n\
     \ * @docs docs/math/ModInt.md\n */\n"
   dependsOn:
   - other/template.hpp
@@ -727,8 +727,8 @@ data:
   requiredBy:
   - math/Combinatorics.hpp
   - math/MontmortNumber.hpp
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-10-29 22:24:02+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
