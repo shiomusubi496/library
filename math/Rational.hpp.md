@@ -463,15 +463,12 @@ data:
     \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
     \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
     \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
-    \    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {\n\
-    \        return ost << rat.get_ld();\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    friend std::istream& operator>>(std::istream& ist, Rational& rat)\
-    \ {\n        return ist >> rat.num >> rat.den;\n    }\n    template<class Sc>\
-    \ void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n};\n\n\
-    using Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
-    )\n * @docs docs/math/Rational.md\n */\n"
+    \    template<class Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class\
+    \ Pr> void debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n\
+    \        a.print(den);\n    }\n    template<class Sc> void scan(Sc& a) {\n   \
+    \     a.scan(num);\n        a.scan(den);\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
     \ Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
     \                                  typename double_size<T>::type, ld>::type;\n\
@@ -514,15 +511,12 @@ data:
     \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
     \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
     \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
-    \    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {\n\
-    \        return ost << rat.get_ld();\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    friend std::istream& operator>>(std::istream& ist, Rational& rat)\
-    \ {\n        return ist >> rat.num >> rat.den;\n    }\n    template<class Sc>\
-    \ void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n};\n\n\
-    using Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
-    )\n * @docs docs/math/Rational.md\n */\n"
+    \    template<class Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class\
+    \ Pr> void debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n\
+    \        a.print(den);\n    }\n    template<class Sc> void scan(Sc& a) {\n   \
+    \     a.scan(num);\n        a.scan(den);\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -536,7 +530,7 @@ data:
   isVerificationFile: false
   path: math/Rational.hpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 18:01:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp

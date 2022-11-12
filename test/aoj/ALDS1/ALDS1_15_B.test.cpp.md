@@ -467,20 +467,16 @@ data:
     \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
     \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
     \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
-    \    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {\n\
-    \        return ost << rat.get_ld();\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    friend std::istream& operator>>(std::istream& ist, Rational& rat)\
-    \ {\n        return ist >> rat.num >> rat.den;\n    }\n    template<class Sc>\
-    \ void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n};\n\n\
-    using Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
-    )\n * @docs docs/math/Rational.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction>\
-    \ A(N); scan >> A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n\
-    \    each_const (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n     \
-    \   W -= f.get_den();\n        chmax(W, 0);\n    }\n    print << ans << endl;\n\
-    }\n"
+    \    template<class Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class\
+    \ Pr> void debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n\
+    \        a.print(den);\n    }\n    template<class Sc> void scan(Sc& a) {\n   \
+    \     a.scan(num);\n        a.scan(den);\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
+    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
+    \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace std;\nint\
+    \ main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction> A(N); scan >>\
+    \ A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n    each_const\
+    \ (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n\
+    \        chmax(W, 0);\n    }\n    print << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
     #define ERROR 1e-6\n#include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction>\
@@ -502,7 +498,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 18:01:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
