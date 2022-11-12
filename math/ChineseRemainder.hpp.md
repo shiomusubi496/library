@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/448-Garner.test.cpp
+    title: test/yuki/448-Garner.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -428,8 +431,19 @@ data:
     PLL ChineseRemainder(const std::vector<ll>& b, const std::vector<ll>& m) {\n \
     \   PLL res{0, 1};\n    rep (i, b.size()) {\n        res = ChineseRemainder(res.first,\
     \ res.second, b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\
-    \u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n */\n"
+    \    return res;\n}\n\nPLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD)\
+    \ {\n    const int n = b.size();\n    rep (i, n) rep (j, i) {\n        ll g =\
+    \ gcd(m[i], m[j]);\n        if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};\n\
+    \        m[i] /= g; m[j] /= g;\n        ll gi = gcd(m[i], g), gj = g / gi;\n \
+    \       for (g = gcd(gi, gj); g != 1; g = gcd(gi, gj)) {\n            gi *= g;\
+    \ gj /= g;\n        }\n        m[i] *= gi; m[j] *= gj;\n        b[i] %= m[i];\
+    \ b[j] %= m[j];\n    }\n    m.push_back(MOD);\n    std::vector<ll> ans(n + 1),\
+    \ pr(n + 1, 1);\n    rep (i, n) {\n        ll t = (b[i] - ans[i]) * mod_inv(pr[i],\
+    \ m[i]) % m[i];\n        if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1)\
+    \ {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %=\
+    \ m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese\
+    \ Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nPLL ChineseRemainder(ll\
     \ b1, ll m1, ll b2, ll m2) {\n    const PLL p = extGCD(m1, m2);\n    const ll\
     \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
@@ -438,8 +452,18 @@ data:
     \ std::vector<ll>& b, const std::vector<ll>& m) {\n    PLL res{0, 1};\n    rep\
     \ (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second, b[i],\
     \ m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n}\n\
-    \n/**\n * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs\
-    \ docs/math/ChineseRemainder.md\n */\n"
+    \nPLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD) {\n    const int n\
+    \ = b.size();\n    rep (i, n) rep (j, i) {\n        ll g = gcd(m[i], m[j]);\n\
+    \        if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};\n        m[i] /= g; m[j]\
+    \ /= g;\n        ll gi = gcd(m[i], g), gj = g / gi;\n        for (g = gcd(gi,\
+    \ gj); g != 1; g = gcd(gi, gj)) {\n            gi *= g; gj /= g;\n        }\n\
+    \        m[i] *= gi; m[j] *= gj;\n        b[i] %= m[i]; b[j] %= m[j];\n    }\n\
+    \    m.push_back(MOD);\n    std::vector<ll> ans(n + 1), pr(n + 1, 1);\n    rep\
+    \ (i, n) {\n        ll t = (b[i] - ans[i]) * mod_inv(pr[i], m[i]) % m[i];\n  \
+    \      if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1) {\n            (ans[j]\
+    \ += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %= m[j];\n        }\n  \
+    \  }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese Remainder(\u4E2D\
+    \u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -453,10 +477,11 @@ data:
   isVerificationFile: false
   path: math/ChineseRemainder.hpp
   requiredBy: []
-  timestamp: '2022-11-12 14:37:48+09:00'
+  timestamp: '2022-11-13 00:30:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/447-CRT.test.cpp
+  - test/yuki/448-Garner.test.cpp
 documentation_of: math/ChineseRemainder.hpp
 layout: document
 redirect_from:
@@ -472,5 +497,6 @@ $b_0, b_1, m_0, m_1$ が与えられたとき、 $M = \mathrm{lcm}(m_0, m_1)$ �
 
 $m_0, m_1$ が互いに素 (つまり $m_0 m_1 = M$) であるときこのような $x$ は必ず存在し、また一意であることで知られている。
 
-- `PLL ChineseRemainder(ll b0, ll m0, ll b1, ll m1)` : 上記の通り。拡張ユークリッドの互除法を用いている。 $O(\log(m0 + m1))$
-- `PLL ChineseRemainder(vector<ll> b, vector<ll> m)` : 同様。拡張ユークリッドの互除法を用いている。 $O(n \log\max(m))$
+- `PLL ChineseRemainder(ll b0, ll m0, ll b1, ll m1)` : 上記の通り。拡張ユークリッドの互除法を用いている。 $O(\log(m0 + m1))$ 。
+- `PLL ChineseRemainder(vector<ll> b, vector<ll> m)` : 同様。 $O(n \log\max(m))$ 。
+- `PLL Garner(vector<ll> b, vector<ll> m, ll MOD)` : 同様に $\mod MOD$ で求める。 $O(n^2 \log\max(m))$ 。

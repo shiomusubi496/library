@@ -38,10 +38,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/447
+    PROBLEM: https://yukicoder.me/problems/448
     links:
-    - https://yukicoder.me/problems/447
-  bundledCode: "#line 1 \"test/yuki/447-CRT.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/447\"\
+    - https://yukicoder.me/problems/448
+  bundledCode: "#line 1 \"test/yuki/448-Garner.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/448\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -442,15 +442,15 @@ data:
     \ i + 1, n + 1) {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j]\
     \ *= m[i]) %= m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n\
     \ * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
-    \ */\n#line 4 \"test/yuki/447-CRT.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    vector<ll> A(3), B(3);\n    rep (i, 3) scan >> A[i] >> B[i];\n    auto\
-    \ p = ChineseRemainder(A, B);\n    if (p.first == 0) p.first += p.second;\n  \
-    \  prints(p.first);\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/447\"\n#include \"../../other/template.hpp\"\
+    \ */\n#line 4 \"test/yuki/448-Garner.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int n; scan >> n;\n    vector<ll> b(n), m(n);\n    rep (i, n) scan >>\
+    \ b[i] >> m[i];\n    auto res = Garner(b, m, 1000000007);\n    if (count(all(b),\
+    \ 0) == n) prints(res.second);\n    else prints(res.first);\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/448\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../math/ChineseRemainder.hpp\"\nusing namespace std;\nint main()\
-    \ {\n    vector<ll> A(3), B(3);\n    rep (i, 3) scan >> A[i] >> B[i];\n    auto\
-    \ p = ChineseRemainder(A, B);\n    if (p.first == 0) p.first += p.second;\n  \
-    \  prints(p.first);\n}\n"
+    \ {\n    int n; scan >> n;\n    vector<ll> b(n), m(n);\n    rep (i, n) scan >>\
+    \ b[i] >> m[i];\n    auto res = Garner(b, m, 1000000007);\n    if (count(all(b),\
+    \ 0) == n) prints(res.second);\n    else prints(res.first);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -463,15 +463,15 @@ data:
   - template/util.hpp
   - math/ChineseRemainder.hpp
   isVerificationFile: true
-  path: test/yuki/447-CRT.test.cpp
+  path: test/yuki/448-Garner.test.cpp
   requiredBy: []
   timestamp: '2022-11-13 00:30:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yuki/447-CRT.test.cpp
+documentation_of: test/yuki/448-Garner.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yuki/447-CRT.test.cpp
-- /verify/test/yuki/447-CRT.test.cpp.html
-title: test/yuki/447-CRT.test.cpp
+- /verify/test/yuki/448-Garner.test.cpp
+- /verify/test/yuki/448-Garner.test.cpp.html
+title: test/yuki/448-Garner.test.cpp
 ---

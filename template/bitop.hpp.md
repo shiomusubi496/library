@@ -788,6 +788,9 @@ data:
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yuki/448-Garner.test.cpp
+    title: test/yuki/448-Garner.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: false
@@ -992,6 +995,7 @@ data:
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/447-CRT.test.cpp
+  - test/yuki/448-Garner.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1601-RangeSet.test.cpp
   - test/yuki/1469-RunLength.test.cpp
