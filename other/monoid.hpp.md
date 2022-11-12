@@ -11,6 +11,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':question:'
+    path: template/func.hpp
+    title: template/func.hpp
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
   - icon: ':question:'
@@ -22,225 +25,228 @@ data:
   - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
+  - icon: ':question:'
+    path: template/util.hpp
+    title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree2D.hpp
     title: SegmentTree2D
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_range_sum.test.cpp
     title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':x:'
@@ -252,18 +258,18 @@ data:
   - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -290,7 +296,7 @@ data:
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
     \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
     \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.begin(), v.end()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
     \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
     \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
@@ -386,11 +392,13 @@ data:
     \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
     \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
     \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void discard_space()\
-    \ {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr == ' ') ++itr;\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = *itr;\n\
-    \        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n \
-    \       a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
+    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
+    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
+    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
     \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
     t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
@@ -430,18 +438,22 @@ data:
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
     \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
-    \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
-    \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
-    \    inline void write_buf() {\n        int num = write(fd, buffer.begin(), idx);\n\
-    \        idx = 0;\n        if (num < 0) throw std::runtime_error(\"output failed\"\
-    );\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int\
-    \ fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)),\
-    \ idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n\
-    \        Writer* writer;\n\n    public:\n        using difference_type = void;\n\
-    \        using value_type = void;\n        using pointer = void;\n        using\
-    \ reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
-    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
+    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
+    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
+    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\
+    \n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n\
+    \    int fd, idx;\n    std::array<char, buf_size> buffer;\n    inline void write_buf()\
+    \ {\n        int num = write(fd, buffer.begin(), idx);\n        idx = 0;\n   \
+    \     if (num < 0) throw std::runtime_error(\"output failed\");\n    }\n\npublic:\n\
+    \    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int fd) noexcept : fd(fd),\
+    \ idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)), idx(0) {}\n\n   \
+    \ ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n        Writer*\
+    \ writer;\n\n    public:\n        using difference_type = void;\n        using\
+    \ value_type = void;\n        using pointer = void;\n        using reference =\
+    \ void;\n        using iterator_category = std::output_iterator_tag;\n\n     \
+    \   iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
     \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
     \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
     \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
@@ -558,27 +570,13 @@ data:
     \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
     \ + ((x >> 8) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >>\
     \ 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32)\
-    \ & 0x00000000ffffffff);\n}\n#line 10 \"other/template.hpp\"\n\ntemplate<class\
-    \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
-    \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
-    \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
-    \    return ist >> p.first >> p.second;\n}\n\ntemplate<class Container, typename\
-    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    ->\
-    \ decltype(cont.begin(), cont.end(), ost) {\n    for (auto itr = cont.begin();\
-    \ itr != cont.end(); ++itr) {\n        if (itr != cont.begin()) ost << ' ';\n\
-    \        ost << *itr;\n    }\n    return ost;\n}\ntemplate<class Container, typename\
-    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator>>(std::istream& ist, Container& cont)\n    -> decltype(cont.begin(),\
-    \ cont.end(), ist) {\n    for (auto itr = cont.begin(); itr != cont.end(); ++itr)\
-    \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
-    \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
-    }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
-    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
-    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
-    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
-    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ & 0x00000000ffffffff);\n}\n#line 2 \"template/func.hpp\"\n\n#line 6 \"template/func.hpp\"\
+    \n\ntemplate<class T, class U, class Comp = std::less<>>\ninline constexpr bool\
+    \ chmin(T& a, const U& b,\n                            Comp cmp = Comp()) noexcept(noexcept(cmp(b,\
+    \ a))) {\n    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class\
+    \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
+    \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
+    \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -593,43 +591,37 @@ data:
     \ ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return 0;\n    a %=\
     \ mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n\
     \        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ninline\
-    \ PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m = b;\n    ll x = 1,\
-    \ y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a / b;\n     \
-    \   std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n        std::swap(y\
-    \ -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n        y -= n;\n \
-    \   }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n\
-    \    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n      \
-    \  std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if\
-    \ (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n}\ninline PLL ChineseRemainder(ll\
-    \ b1, ll m1, ll b2, ll m2) {\n    const PLL p = extGCD(m1, m2);\n    const ll\
-    \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
-    \ - b1) % g != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first\
-    \ % (m2 / g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b, const std::vector<ll>& m) {\n    PLL res{0, 1};\n    rep\
-    \ (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second, b[i],\
-    \ m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n}\n\
-    \ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args) const\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n    ll x = 1, y = 0, u\
+    \ = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
+    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n        std::swap(y -= t *\
+    \ v, v);\n    }\n    if (x < 0) {\n        x += m;\n        y -= n;\n    }\n \
+    \   return {x, y};\n}\ninline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n  \
+    \  ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
+    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x +=\
+    \ mod;\n    assert(a == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\
+    \n#line 5 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
+    \    F f;\n\npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_))\
+    \ {}\n    template<class... Args>\n    constexpr auto operator()(Args&&... args)\n\
+    \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
+    \ f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class F> inline\
+    \ constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
     \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
     \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
     \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
     \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(il.begin(), il.end()), cmp(cmp)\
-    \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
+    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
+    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
     \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
@@ -826,6 +818,8 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
+  - template/func.hpp
+  - template/util.hpp
   isVerificationFile: false
   path: other/monoid.hpp
   requiredBy:
@@ -856,8 +850,8 @@ data:
   - graph/tree/ReRooting.hpp
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-12 12:15:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp

@@ -8,122 +8,122 @@ data:
     path: template/type_traits.hpp
     title: template/type_traits.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/LiChaoTree.hpp
     title: LiChaoTree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/PersistentArray.hpp
     title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree2D.hpp
     title: SegmentTree2D
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/StaticRangeFrequency.hpp
     title: StaticRangeFrequency
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/PartialPersistentUnionFind.hpp
     title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/PersistentUnionFind.hpp
     title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrix.hpp
     title: WaveletMatrix
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':warning:'
@@ -150,106 +150,106 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/FloorSum.hpp
     title: FloorSum
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
   - icon: ':heavy_check_mark:'
@@ -258,13 +258,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
   - icon: ':x:'
@@ -274,7 +274,7 @@ data:
   - icon: ':x:'
     path: math/convolution/GcdConvolution.hpp
     title: GCDConvolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/HadamardTransform.hpp
     title: HadmardTransform
   - icon: ':x:'
@@ -284,49 +284,49 @@ data:
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/SubsetZetaMoebiusTransform.hpp
     title: "SubsetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/Timer.hpp
     title: Timer
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/LongestIncreasingSubsequence.hpp
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
   _extendedVerifiedWith:
@@ -438,286 +438,286 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
     title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
     title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc265_c-Timer.test.cpp
     title: test/atcoder/abc265_c-Timer.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/line_add_get_min.test.cpp
     title: test/yosupo/data_structure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
     title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_unionfind.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_range_sum.test.cpp
     title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/segment_add_get_min.test.cpp
     title: test/yosupo/data_structure/segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/set_xor_min.test.cpp
     title: test/yosupo/data_structure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_frequency.test.cpp
     title: test/yosupo/data_structure/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
     title: test/yosupo/data_structure/unionfind-Dynamic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/kth_root_integer.test.cpp
     title: test/yosupo/math/kth_root_integer.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/montmort_number_mod.test.cpp
     title: test/yosupo/math/montmort_number_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':x:'
@@ -726,49 +726,49 @@ data:
   - icon: ':x:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/new/longest_increasing_subsequence.test.cpp
     title: test/yosupo/new/longest_increasing_subsequence.test.cpp
   - icon: ':x:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/sample/aplusb.test.cpp
     title: test/yosupo/sample/aplusb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/sample/many_aplusb.test.cpp
     title: test/yosupo/sample/many_aplusb.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/string/enumerate_palindromes.test.cpp
     title: test/yosupo/string/enumerate_palindromes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
@@ -799,14 +799,14 @@ data:
     \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
     \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
     \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.begin(), v.end()\n#endif\n\n#if __cpp_constexpr >= 201304L\n\
-    #define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr\
-    \ >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\
-    \n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/type_traits.hpp\"\n\n#line 5\
-    \ \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -883,83 +883,12 @@ data:
     \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
     \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
     \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void discard_space()\
-    \ {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr == ' ') ++itr;\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = *itr;\n\
-    \        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n \
-    \       a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
-    \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
-    t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
-    \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
-    \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
-    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
-    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
-    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
-    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
-    \                sgn = true;\n                ++itr;\n            }\n        }\n\
-    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
-    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
-    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
-    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
-    \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
-    \     }\n        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n      \
-    \      a = a * 10 + *itr - '0';\n            ++itr;\n        }\n        if (*itr\
-    \ == '.') {\n            ++itr;\n            T n = 0, d = 1;\n            for\
-    \ (int i = 0;\n                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;\n\
-    \                 ++i) {\n                n = n * 10 + *itr - '0';\n         \
-    \       d *= 10;\n                ++itr;\n            }\n            while ('0'\
-    \ <= *itr && *itr <= '9') ++itr;\n            a += n / d;\n        }\n       \
-    \ if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class... Args>\
-    \ void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
-    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
-    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
-    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
-    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
-    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        each_for (i : a) scan(i);\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
-    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
-    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
-    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n"
-  code: "#pragma once\n\n#include \"macros.hpp\"\n#include \"type_traits.hpp\"\n#include\
-    \ <bits/stdc++.h>\n#include <unistd.h>\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
-    \ class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
-    \ buf_size> buffer;\n    inline void read_buf() {\n        sz = read(fd, buffer.begin(),\
-    \ buf_size);\n        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"\
-    input failed\");\n    }\n\npublic:\n    static constexpr int get_buf_size() {\
-    \ return buf_size; }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true)\
-    \ {}\n    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n  \
-    \  Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\
-    \n    class iterator {\n    private:\n        Reader* reader;\n\n    public:\n\
-    \        using difference_type = void;\n        using value_type = void;\n   \
-    \     using pointer = void;\n        using reference = void;\n        using iterator_category\
-    \ = std::input_iterator_tag;\n\n        iterator() : reader(nullptr) {}\n    \
-    \    explicit iterator(Reader& reader) : reader(&reader) {}\n        explicit\
-    \ iterator(Reader* reader) : reader(reader) {}\n\n        iterator& operator++()\
-    \ {\n            if (reader->idx == reader->sz) reader->read_buf();\n        \
-    \    ++reader->idx;\n            return *this;\n        }\n        iterator operator++(int)\
-    \ {\n            iterator res = *this;\n            ++(*this);\n            return\
-    \ res;\n        }\n        char operator*() const {\n            if (reader->idx\
-    \ == reader->sz) reader->read_buf();\n            if (reader->idx < reader->sz)\
-    \ return reader->buffer[reader->idx];\n            reader->state = false;\n  \
-    \          return '\\0';\n        }\n        bool rdstate() const { return reader->state;\
-    \ }\n    };\n\n    iterator begin() noexcept { return iterator(this); }\n};\n\n\
-    Reader<> reader(0);\n\ntemplate<class Iterator, std::size_t decimal_precision\
-    \ = 16> class Scanner {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n\
-    \    template<class, class = void> struct has_scan : std::false_type {};\n   \
-    \ template<class T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
-    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
-    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void\
-    \ discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr ==\
-    \ ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n   \
-    \     a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
+    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
+    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
+    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
     \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
     \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
     t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
@@ -1000,7 +929,90 @@ data:
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
     \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n"
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
+    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
+    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
+    \    }\n    return scan;\n}\n"
+  code: "#pragma once\n\n#include \"macros.hpp\"\n#include \"type_traits.hpp\"\n#include\
+    \ <bits/stdc++.h>\n#include <unistd.h>\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
+    \ class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
+    \ buf_size> buffer;\n    inline void read_buf() {\n        sz = read(fd, buffer.begin(),\
+    \ buf_size);\n        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"\
+    input failed\");\n    }\n\npublic:\n    static constexpr int get_buf_size() {\
+    \ return buf_size; }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true)\
+    \ {}\n    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n  \
+    \  Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\
+    \n    class iterator {\n    private:\n        Reader* reader;\n\n    public:\n\
+    \        using difference_type = void;\n        using value_type = void;\n   \
+    \     using pointer = void;\n        using reference = void;\n        using iterator_category\
+    \ = std::input_iterator_tag;\n\n        iterator() : reader(nullptr) {}\n    \
+    \    explicit iterator(Reader& reader) : reader(&reader) {}\n        explicit\
+    \ iterator(Reader* reader) : reader(reader) {}\n\n        iterator& operator++()\
+    \ {\n            if (reader->idx == reader->sz) reader->read_buf();\n        \
+    \    ++reader->idx;\n            return *this;\n        }\n        iterator operator++(int)\
+    \ {\n            iterator res = *this;\n            ++(*this);\n            return\
+    \ res;\n        }\n        char operator*() const {\n            if (reader->idx\
+    \ == reader->sz) reader->read_buf();\n            if (reader->idx < reader->sz)\
+    \ return reader->buffer[reader->idx];\n            reader->state = false;\n  \
+    \          return '\\0';\n        }\n        bool rdstate() const { return reader->state;\
+    \ }\n    };\n\n    iterator begin() noexcept { return iterator(this); }\n};\n\n\
+    Reader<> reader(0);\n\ntemplate<class Iterator, std::size_t decimal_precision\
+    \ = 16> class Scanner {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n\
+    \    template<class, class = void> struct has_scan : std::false_type {};\n   \
+    \ template<class T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
+    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char()\
+    \ {\n        char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
+    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
+    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
+    t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
+    \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
+    \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
+    \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
+    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
+    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
+    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
+    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
+    \                sgn = true;\n                ++itr;\n            }\n        }\n\
+    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
+    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
+    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
+    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
+    \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
+    \     }\n        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n      \
+    \      a = a * 10 + *itr - '0';\n            ++itr;\n        }\n        if (*itr\
+    \ == '.') {\n            ++itr;\n            T n = 0, d = 1;\n            for\
+    \ (int i = 0;\n                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;\n\
+    \                 ++i) {\n                n = n * 10 + *itr - '0';\n         \
+    \       d *= 10;\n                ++itr;\n            }\n            while ('0'\
+    \ <= *itr && *itr <= '9') ++itr;\n            a += n / d;\n        }\n       \
+    \ if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class... Args>\
+    \ void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
+    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
+    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
+    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
+    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
+    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        each_for (i : a) scan(i);\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
+    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
+    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
+    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
+    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
+    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
+    \    }\n    return scan;\n}\n"
   dependsOn:
   - template/macros.hpp
   - template/type_traits.hpp
@@ -1109,7 +1121,7 @@ data:
   - geometry/Circle.hpp
   - geometry/template.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-10-24 21:04:24+09:00'
+  timestamp: '2022-11-12 12:15:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp

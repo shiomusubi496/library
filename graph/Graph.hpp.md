@@ -11,6 +11,9 @@ data:
     path: template/bitop.hpp
     title: template/bitop.hpp
   - icon: ':question:'
+    path: template/func.hpp
+    title: template/func.hpp
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
   - icon: ':question:'
@@ -22,86 +25,89 @@ data:
   - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
+  - icon: ':question:'
+    path: template/util.hpp
+    title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/BreadthFirstSearch.hpp
     title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
@@ -126,114 +132,114 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/Graph.md
     document_title: Graph-template
@@ -262,7 +268,7 @@ data:
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
     \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
     \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.begin(), v.end()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
     \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
     #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
     \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
@@ -358,11 +364,13 @@ data:
     \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
     \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
     \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    inline void discard_space()\
-    \ {\n        while (('\\t' <= *itr && *itr <= '\\r') || *itr == ' ') ++itr;\n\
-    \    }\n    void scan(char& a) {\n        discard_space();\n        a = *itr;\n\
-    \        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n \
-    \       a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
+    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
+    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
+    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
     \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
     t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
@@ -402,18 +410,22 @@ data:
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
     \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
-    \n\n#line 7 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
-    \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
-    \    inline void write_buf() {\n        int num = write(fd, buffer.begin(), idx);\n\
-    \        idx = 0;\n        if (num < 0) throw std::runtime_error(\"output failed\"\
-    );\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int\
-    \ fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)),\
-    \ idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n\
-    \        Writer* writer;\n\n    public:\n        using difference_type = void;\n\
-    \        using value_type = void;\n        using pointer = void;\n        using\
-    \ reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
-    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
+    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
+    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
+    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\
+    \n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n\
+    \    int fd, idx;\n    std::array<char, buf_size> buffer;\n    inline void write_buf()\
+    \ {\n        int num = write(fd, buffer.begin(), idx);\n        idx = 0;\n   \
+    \     if (num < 0) throw std::runtime_error(\"output failed\");\n    }\n\npublic:\n\
+    \    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int fd) noexcept : fd(fd),\
+    \ idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)), idx(0) {}\n\n   \
+    \ ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n        Writer*\
+    \ writer;\n\n    public:\n        using difference_type = void;\n        using\
+    \ value_type = void;\n        using pointer = void;\n        using reference =\
+    \ void;\n        using iterator_category = std::output_iterator_tag;\n\n     \
+    \   iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
     \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
     \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
     \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
@@ -530,27 +542,13 @@ data:
     \ (x & 0x0f0f0f0f0f0f0f0f) + ((x >> 4) & 0x0f0f0f0f0f0f0f0f);\n    x = (x & 0x00ff00ff00ff00ff)\
     \ + ((x >> 8) & 0x00ff00ff00ff00ff);\n    x = (x & 0x0000ffff0000ffff) + ((x >>\
     \ 16) & 0x0000ffff0000ffff);\n    return (x & 0x00000000ffffffff) + ((x >> 32)\
-    \ & 0x00000000ffffffff);\n}\n#line 10 \"other/template.hpp\"\n\ntemplate<class\
-    \ T, class U>\nstd::ostream& operator<<(std::ostream& ost, const std::pair<T,\
-    \ U>& p) {\n    return ost << p.first << ' ' << p.second;\n}\ntemplate<class T,\
-    \ class U>\nstd::istream& operator>>(std::istream& ist, std::pair<T, U>& p) {\n\
-    \    return ist >> p.first >> p.second;\n}\n\ntemplate<class Container, typename\
-    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator<<(std::ostream& ost, const Container& cont)\n    ->\
-    \ decltype(cont.begin(), cont.end(), ost) {\n    for (auto itr = cont.begin();\
-    \ itr != cont.end(); ++itr) {\n        if (itr != cont.begin()) ost << ' ';\n\
-    \        ost << *itr;\n    }\n    return ost;\n}\ntemplate<class Container, typename\
-    \ std::enable_if<!std::is_same<\n                              Container, std::string>::value>::type*\
-    \ = nullptr>\nauto operator>>(std::istream& ist, Container& cont)\n    -> decltype(cont.begin(),\
-    \ cont.end(), ist) {\n    for (auto itr = cont.begin(); itr != cont.end(); ++itr)\
-    \ ist >> *itr;\n    return ist;\n}\n\ntemplate<class T, class U>\ninline constexpr\
-    \ bool chmin(T& a, const U& b) noexcept {\n    return a > b ? a = b, true : false;\n\
-    }\ntemplate<class T, class U>\ninline constexpr bool chmax(T& a, const U& b) noexcept\
-    \ {\n    return a < b ? a = b, true : false;\n}\ntemplate<class T, class U, class\
-    \ Comp>\ninline constexpr bool chmin(T& a, const U& b, Comp cmp) noexcept {\n\
-    \    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class U, class\
-    \ Comp>\ninline constexpr bool chmax(T& a, const U& b, Comp cmp) noexcept {\n\
-    \    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
+    \ & 0x00000000ffffffff);\n}\n#line 2 \"template/func.hpp\"\n\n#line 6 \"template/func.hpp\"\
+    \n\ntemplate<class T, class U, class Comp = std::less<>>\ninline constexpr bool\
+    \ chmin(T& a, const U& b,\n                            Comp cmp = Comp()) noexcept(noexcept(cmp(b,\
+    \ a))) {\n    return cmp(b, a) ? a = b, true : false;\n}\ntemplate<class T, class\
+    \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
+    \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
+    \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
     \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
     \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
     \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
@@ -565,43 +563,37 @@ data:
     \ ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return 0;\n    a %=\
     \ mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n\
     \        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ninline\
-    \ PLL extGCD(ll a, ll b) noexcept {\n    const ll n = a, m = b;\n    ll x = 1,\
-    \ y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a / b;\n     \
-    \   std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n        std::swap(y\
-    \ -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n        y -= n;\n \
-    \   }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n\
-    \    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n      \
-    \  std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if\
-    \ (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n}\ninline PLL ChineseRemainder(ll\
-    \ b1, ll m1, ll b2, ll m2) {\n    const PLL p = extGCD(m1, m2);\n    const ll\
-    \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
-    \ - b1) % g != 0) return PLL{-1, -1};\n    const ll x = (b2 - b1) / g * p.first\
-    \ % (m2 / g);\n    return {(x * m1 + b1 + l) % l, l};\n}\nPLL ChineseRemainders(const\
-    \ std::vector<ll>& b, const std::vector<ll>& m) {\n    PLL res{0, 1};\n    rep\
-    \ (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second, b[i],\
-    \ m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n}\n\
-    \ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args) const\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n    ll x = 1, y = 0, u\
+    \ = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
+    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n        std::swap(y -= t *\
+    \ v, v);\n    }\n    if (x < 0) {\n        x += m;\n        y -= n;\n    }\n \
+    \   return {x, y};\n}\ninline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n  \
+    \  ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
+    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x +=\
+    \ mod;\n    assert(a == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\
+    \n#line 5 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
+    \    F f;\n\npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_))\
+    \ {}\n    template<class... Args>\n    constexpr auto operator()(Args&&... args)\n\
+    \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
+    \ f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class F> inline\
+    \ constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
     \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
     \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
     \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
     \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(il.begin(), il.end()), cmp(cmp)\
-    \ {}\n    void reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n\
-    \    }\n    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
+    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
+    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
+    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
     \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
     \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
     \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
@@ -722,6 +714,8 @@ data:
   - template/in.hpp
   - template/out.hpp
   - template/bitop.hpp
+  - template/func.hpp
+  - template/util.hpp
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
@@ -750,8 +744,8 @@ data:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/HeavyLightDecomposition.hpp
-  timestamp: '2022-10-24 21:04:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-12 12:15:27+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
