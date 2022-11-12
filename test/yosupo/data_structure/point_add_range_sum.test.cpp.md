@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -138,36 +138,36 @@ data:
     \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
-    \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
-    template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
-    \ int fd, idx, sz;\n    bool state;\n    std::array<char, buf_size> buffer;\n\
-    \    inline void read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n\
-    \        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"input failed\"\
-    );\n    }\n\npublic:\n    static constexpr int get_buf_size() { return buf_size;\
-    \ }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true) {}\n    Reader(int\
-    \ fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n    Reader(FILE* fp) noexcept\
-    \ : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\n    class iterator {\n  \
-    \  private:\n        Reader* reader;\n\n    public:\n        using difference_type\
-    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
-    \       using reference = void;\n        using iterator_category = std::input_iterator_tag;\n\
-    \n        iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
-    \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
-    \ {}\n\n        iterator& operator++() {\n            if (reader->idx == reader->sz)\
-    \ reader->read_buf();\n            ++reader->idx;\n            return *this;\n\
-    \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
-    \            ++(*this);\n            return res;\n        }\n        char operator*()\
-    \ const {\n            if (reader->idx == reader->sz) reader->read_buf();\n  \
-    \          if (reader->idx < reader->sz) return reader->buffer[reader->idx];\n\
-    \            reader->state = false;\n            return '\\0';\n        }\n  \
-    \      bool rdstate() const { return reader->state; }\n    };\n\n    iterator\
-    \ begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\ntemplate<class\
-    \ Iterator, std::size_t decimal_precision = 16> class Scanner {\npublic:\n   \
-    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, class = void>\
-    \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
-    \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
-    \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
-    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
+    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
+    \ class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
+    \ buf_size> buffer;\n    inline void read_buf() {\n        sz = read(fd, buffer.begin(),\
+    \ buf_size);\n        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"\
+    input failed\");\n    }\n\npublic:\n    static constexpr int get_buf_size() {\
+    \ return buf_size; }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true)\
+    \ {}\n    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n  \
+    \  Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\
+    \n    class iterator {\n    private:\n        Reader* reader;\n\n    public:\n\
+    \        using difference_type = void;\n        using value_type = void;\n   \
+    \     using pointer = void;\n        using reference = void;\n        using iterator_category\
+    \ = std::input_iterator_tag;\n\n        iterator() : reader(nullptr) {}\n    \
+    \    explicit iterator(Reader& reader) : reader(&reader) {}\n        explicit\
+    \ iterator(Reader* reader) : reader(reader) {}\n\n        iterator& operator++()\
+    \ {\n            if (reader->idx == reader->sz) reader->read_buf();\n        \
+    \    ++reader->idx;\n            return *this;\n        }\n        iterator operator++(int)\
+    \ {\n            iterator res = *this;\n            ++(*this);\n            return\
+    \ res;\n        }\n        char operator*() const {\n            if (reader->idx\
+    \ == reader->sz) reader->read_buf();\n            if (reader->idx < reader->sz)\
+    \ return reader->buffer[reader->idx];\n            reader->state = false;\n  \
+    \          return '\\0';\n        }\n        bool rdstate() const { return reader->state;\
+    \ }\n    };\n\n    iterator begin() noexcept { return iterator(this); }\n};\n\n\
+    Reader<> reader(0);\n\ntemplate<class Iterator, std::size_t decimal_precision\
+    \ = 16> class Scanner {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n\
+    \    template<class, class = void> struct has_scan : std::false_type {};\n   \
+    \ template<class T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
+    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char()\
+    \ {\n        char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
     \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
     \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
     r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
@@ -216,7 +216,7 @@ data:
     \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
     getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
     \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
-    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\
+    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 8 \"template/out.hpp\"\
     \n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n\
     \    int fd, idx;\n    std::array<char, buf_size> buffer;\n    inline void write_buf()\
     \ {\n        int num = write(fd, buffer.begin(), idx);\n        idx = 0;\n   \
@@ -324,7 +324,7 @@ data:
     \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
     \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
     \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\
-    #line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\n\nnamespace\
+    #line 2 \"template/bitop.hpp\"\n\n#line 6 \"template/bitop.hpp\"\n\nnamespace\
     \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
     \ (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0) return\
     \ 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 |\
@@ -373,7 +373,7 @@ data:
     \  ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
     \ -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x +=\
     \ mod;\n    assert(a == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\
-    \n#line 5 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
+    \n#line 6 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
     \    F f;\n\npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_))\
     \ {}\n    template<class... Args>\n    constexpr auto operator()(Args&&... args)\n\
     \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
@@ -554,7 +554,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 12:15:27+09:00'
+  timestamp: '2022-11-12 14:20:38+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/point_add_range_sum.test.cpp

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: template/alias.hpp
+    title: template/alias.hpp
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   - icon: ':question:'
@@ -45,7 +48,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':x:'
@@ -54,34 +57,34 @@ data:
   - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
@@ -90,7 +93,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':x:'
@@ -114,7 +117,7 @@ data:
   - icon: ':x:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':x:'
@@ -156,7 +159,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -164,29 +167,29 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -195,10 +198,10 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -208,30 +211,30 @@ data:
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':x:'
@@ -298,7 +301,7 @@ data:
   - icon: ':x:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':x:'
@@ -438,106 +441,106 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -776,33 +779,46 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/in.hpp\"\n\n#line 2 \"template/macros.hpp\"\n\n\
-    #include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c)                                                   \
-    \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
-    #define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i <\
-    \ (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n\
-    #define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define\
-    \ rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define\
-    \ RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b) for\
-    \ (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll i =\
-    \ (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...)                             \
-    \                                \\\n    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3,\
-    \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
-    \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
-    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
-    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/type_traits.hpp\"\
+  bundledCode: "#line 2 \"template/in.hpp\"\n\n#include <bits/stdc++.h>\n#include\
+    \ <unistd.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...)                                                             \\\n\
+    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
+    using PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
     \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
     \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
     \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
@@ -855,88 +871,8 @@ data:
     \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
-    \ 6 \"template/in.hpp\"\n#include <unistd.h>\n\ntemplate<std::size_t buf_size\
-    \ = IO_BUFFER_SIZE> class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n\
-    \    std::array<char, buf_size> buffer;\n    inline void read_buf() {\n      \
-    \  sz = read(fd, buffer.begin(), buf_size);\n        idx = 0;\n        if (sz\
-    \ < 0) throw std::runtime_error(\"input failed\");\n    }\n\npublic:\n    static\
-    \ constexpr int get_buf_size() { return buf_size; }\n    Reader() noexcept : fd(0),\
-    \ idx(0), sz(0), state(true) {}\n    Reader(int fd) noexcept : fd(fd), idx(0),\
-    \ sz(0), state(true) {}\n    Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0),\
-    \ sz(0), state(true) {}\n\n    class iterator {\n    private:\n        Reader*\
-    \ reader;\n\n    public:\n        using difference_type = void;\n        using\
-    \ value_type = void;\n        using pointer = void;\n        using reference =\
-    \ void;\n        using iterator_category = std::input_iterator_tag;\n\n      \
-    \  iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
-    \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
-    \ {}\n\n        iterator& operator++() {\n            if (reader->idx == reader->sz)\
-    \ reader->read_buf();\n            ++reader->idx;\n            return *this;\n\
-    \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
-    \            ++(*this);\n            return res;\n        }\n        char operator*()\
-    \ const {\n            if (reader->idx == reader->sz) reader->read_buf();\n  \
-    \          if (reader->idx < reader->sz) return reader->buffer[reader->idx];\n\
-    \            reader->state = false;\n            return '\\0';\n        }\n  \
-    \      bool rdstate() const { return reader->state; }\n    };\n\n    iterator\
-    \ begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\ntemplate<class\
-    \ Iterator, std::size_t decimal_precision = 16> class Scanner {\npublic:\n   \
-    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, class = void>\
-    \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
-    \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
-    \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
-    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
-    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
-    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
-    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
-    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
-    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
-    \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
-    t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
-    \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
-    \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
-    \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
-    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
-    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
-    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
-    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
-    \                sgn = true;\n                ++itr;\n            }\n        }\n\
-    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
-    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
-    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
-    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
-    \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
-    \     }\n        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n      \
-    \      a = a * 10 + *itr - '0';\n            ++itr;\n        }\n        if (*itr\
-    \ == '.') {\n            ++itr;\n            T n = 0, d = 1;\n            for\
-    \ (int i = 0;\n                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;\n\
-    \                 ++i) {\n                n = n * 10 + *itr - '0';\n         \
-    \       d *= 10;\n                ++itr;\n            }\n            while ('0'\
-    \ <= *itr && *itr <= '9') ++itr;\n            a += n / d;\n        }\n       \
-    \ if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class... Args>\
-    \ void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
-    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
-    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
-    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
-    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
-    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
-    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        each_for (i : a) scan(i);\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
-    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
-    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
-    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
-    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
-    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
-    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
-    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
-    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
-    \    }\n    return scan;\n}\n"
-  code: "#pragma once\n\n#include \"macros.hpp\"\n#include \"type_traits.hpp\"\n#include\
-    \ <bits/stdc++.h>\n#include <unistd.h>\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
-    \ class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
+    \ 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class\
+    \ Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
     \ buf_size> buffer;\n    inline void read_buf() {\n        sz = read(fd, buffer.begin(),\
     \ buf_size);\n        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"\
     input failed\");\n    }\n\npublic:\n    static constexpr int get_buf_size() {\
@@ -1013,8 +949,89 @@ data:
     getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
     \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
     \    }\n    return scan;\n}\n"
+  code: "#pragma once\n\n#include <bits/stdc++.h>\n#include <unistd.h>\n#include \"\
+    macros.hpp\"\n#include \"alias.hpp\"\n#include \"type_traits.hpp\"\n\ntemplate<std::size_t\
+    \ buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n    int fd, idx, sz;\n\
+    \    bool state;\n    std::array<char, buf_size> buffer;\n    inline void read_buf()\
+    \ {\n        sz = read(fd, buffer.begin(), buf_size);\n        idx = 0;\n    \
+    \    if (sz < 0) throw std::runtime_error(\"input failed\");\n    }\n\npublic:\n\
+    \    static constexpr int get_buf_size() { return buf_size; }\n    Reader() noexcept\
+    \ : fd(0), idx(0), sz(0), state(true) {}\n    Reader(int fd) noexcept : fd(fd),\
+    \ idx(0), sz(0), state(true) {}\n    Reader(FILE* fp) noexcept : fd(fileno(fp)),\
+    \ idx(0), sz(0), state(true) {}\n\n    class iterator {\n    private:\n      \
+    \  Reader* reader;\n\n    public:\n        using difference_type = void;\n   \
+    \     using value_type = void;\n        using pointer = void;\n        using reference\
+    \ = void;\n        using iterator_category = std::input_iterator_tag;\n\n    \
+    \    iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
+    \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
+    \ {}\n\n        iterator& operator++() {\n            if (reader->idx == reader->sz)\
+    \ reader->read_buf();\n            ++reader->idx;\n            return *this;\n\
+    \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
+    \            ++(*this);\n            return res;\n        }\n        char operator*()\
+    \ const {\n            if (reader->idx == reader->sz) reader->read_buf();\n  \
+    \          if (reader->idx < reader->sz) return reader->buffer[reader->idx];\n\
+    \            reader->state = false;\n            return '\\0';\n        }\n  \
+    \      bool rdstate() const { return reader->state; }\n    };\n\n    iterator\
+    \ begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision = 16> class Scanner {\npublic:\n   \
+    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, class = void>\
+    \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
+    \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
+    \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
+    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
+    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
+    \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
+    r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
+    \        a = *itr;\n        ++itr;\n    }\n    void scan(bool& a) {\n        discard_space();\n\
+    \        a = *itr != '0';\n        ++itr;\n    }\n    void scan(std::string& a)\
+    \ {\n        discard_space();\n        a.clear();\n        while ((*itr < '\\\
+    t' || '\\r' < *itr) && *itr != ' ' && *itr != '\\0') {\n            a += *itr;\n\
+    \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
+    \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
+    \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
+    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
+    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
+    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
+    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
+    \                sgn = true;\n                ++itr;\n            }\n        }\n\
+    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
+    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
+    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
+    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
+    \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
+    \     }\n        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n      \
+    \      a = a * 10 + *itr - '0';\n            ++itr;\n        }\n        if (*itr\
+    \ == '.') {\n            ++itr;\n            T n = 0, d = 1;\n            for\
+    \ (int i = 0;\n                 '0' <= *itr && *itr <= '9' && i < (int)decimal_precision;\n\
+    \                 ++i) {\n                n = n * 10 + *itr - '0';\n         \
+    \       d *= 10;\n                ++itr;\n            }\n            while ('0'\
+    \ <= *itr && *itr <= '9') ++itr;\n            a += n / d;\n        }\n       \
+    \ if (sgn) a = -a;\n    }\n\nprivate:\n    template<std::size_t i, class... Args>\
+    \ void scan(std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (i < sizeof...(Args))\
+    \ {\n            scan(std::get<i>(a));\n            scan<i + 1, Args...>(a);\n\
+    \        }\n    }\n\npublic:\n    template<class... Args> void scan(std::tuple<Args...>&\
+    \ a) {\n        scan<0, Args...>(a);\n    }\n    template<class T, class U> void\
+    \ scan(std::pair<T, U>& a) {\n        scan(a.first);\n        scan(a.second);\n\
+    \    }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
+    \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        each_for (i : a) scan(i);\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<has_scan<T>::value>::type* = nullptr>\n\
+    \    void scan(T& a) {\n        a.scan(*this);\n    }\n\n    void operator()()\
+    \ {}\n    template<class Head, class... Args>\n    void operator()(Head& head,\
+    \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
+    \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
+    \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
+    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
+    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
+    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
+    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
+    \    }\n    return scan;\n}\n"
   dependsOn:
   - template/macros.hpp
+  - template/alias.hpp
   - template/type_traits.hpp
   isVerificationFile: false
   path: template/in.hpp
@@ -1121,7 +1138,7 @@ data:
   - geometry/Circle.hpp
   - geometry/template.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-11-12 12:15:27+09:00'
+  timestamp: '2022-11-12 14:20:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp

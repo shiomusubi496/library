@@ -35,7 +35,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -43,29 +43,29 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -74,10 +74,10 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -87,27 +87,27 @@ data:
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
@@ -132,55 +132,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
     title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -336,36 +336,36 @@ data:
     \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
-    \ 2 \"template/in.hpp\"\n\n#line 6 \"template/in.hpp\"\n#include <unistd.h>\n\n\
-    template<std::size_t buf_size = IO_BUFFER_SIZE> class Reader {\nprivate:\n   \
-    \ int fd, idx, sz;\n    bool state;\n    std::array<char, buf_size> buffer;\n\
-    \    inline void read_buf() {\n        sz = read(fd, buffer.begin(), buf_size);\n\
-    \        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"input failed\"\
-    );\n    }\n\npublic:\n    static constexpr int get_buf_size() { return buf_size;\
-    \ }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true) {}\n    Reader(int\
-    \ fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n    Reader(FILE* fp) noexcept\
-    \ : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\n    class iterator {\n  \
-    \  private:\n        Reader* reader;\n\n    public:\n        using difference_type\
-    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
-    \       using reference = void;\n        using iterator_category = std::input_iterator_tag;\n\
-    \n        iterator() : reader(nullptr) {}\n        explicit iterator(Reader& reader)\
-    \ : reader(&reader) {}\n        explicit iterator(Reader* reader) : reader(reader)\
-    \ {}\n\n        iterator& operator++() {\n            if (reader->idx == reader->sz)\
-    \ reader->read_buf();\n            ++reader->idx;\n            return *this;\n\
-    \        }\n        iterator operator++(int) {\n            iterator res = *this;\n\
-    \            ++(*this);\n            return res;\n        }\n        char operator*()\
-    \ const {\n            if (reader->idx == reader->sz) reader->read_buf();\n  \
-    \          if (reader->idx < reader->sz) return reader->buffer[reader->idx];\n\
-    \            reader->state = false;\n            return '\\0';\n        }\n  \
-    \      bool rdstate() const { return reader->state; }\n    };\n\n    iterator\
-    \ begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\ntemplate<class\
-    \ Iterator, std::size_t decimal_precision = 16> class Scanner {\npublic:\n   \
-    \ using iterator_type = Iterator;\n\nprivate:\n    template<class, class = void>\
-    \ struct has_scan : std::false_type {};\n    template<class T>\n    struct has_scan<\n\
-    \        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()), (void)0)>\n\
-    \        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner() = default;\n\
-    \    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char() {\n  \
-    \      char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
+    \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
+    #line 8 \"template/in.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
+    \ class Reader {\nprivate:\n    int fd, idx, sz;\n    bool state;\n    std::array<char,\
+    \ buf_size> buffer;\n    inline void read_buf() {\n        sz = read(fd, buffer.begin(),\
+    \ buf_size);\n        idx = 0;\n        if (sz < 0) throw std::runtime_error(\"\
+    input failed\");\n    }\n\npublic:\n    static constexpr int get_buf_size() {\
+    \ return buf_size; }\n    Reader() noexcept : fd(0), idx(0), sz(0), state(true)\
+    \ {}\n    Reader(int fd) noexcept : fd(fd), idx(0), sz(0), state(true) {}\n  \
+    \  Reader(FILE* fp) noexcept : fd(fileno(fp)), idx(0), sz(0), state(true) {}\n\
+    \n    class iterator {\n    private:\n        Reader* reader;\n\n    public:\n\
+    \        using difference_type = void;\n        using value_type = void;\n   \
+    \     using pointer = void;\n        using reference = void;\n        using iterator_category\
+    \ = std::input_iterator_tag;\n\n        iterator() : reader(nullptr) {}\n    \
+    \    explicit iterator(Reader& reader) : reader(&reader) {}\n        explicit\
+    \ iterator(Reader* reader) : reader(reader) {}\n\n        iterator& operator++()\
+    \ {\n            if (reader->idx == reader->sz) reader->read_buf();\n        \
+    \    ++reader->idx;\n            return *this;\n        }\n        iterator operator++(int)\
+    \ {\n            iterator res = *this;\n            ++(*this);\n            return\
+    \ res;\n        }\n        char operator*() const {\n            if (reader->idx\
+    \ == reader->sz) reader->read_buf();\n            if (reader->idx < reader->sz)\
+    \ return reader->buffer[reader->idx];\n            reader->state = false;\n  \
+    \          return '\\0';\n        }\n        bool rdstate() const { return reader->state;\
+    \ }\n    };\n\n    iterator begin() noexcept { return iterator(this); }\n};\n\n\
+    Reader<> reader(0);\n\ntemplate<class Iterator, std::size_t decimal_precision\
+    \ = 16> class Scanner {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n\
+    \    template<class, class = void> struct has_scan : std::false_type {};\n   \
+    \ template<class T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
+    \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char()\
+    \ {\n        char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
     \ ignore(int n = 1) {\n        rep (n) ++itr;\n        return *this;\n    }\n\n\
     \    inline void discard_space() {\n        while (('\\t' <= *itr && *itr <= '\\\
     r') || *itr == ' ') ++itr;\n    }\n    void scan(char& a) {\n        discard_space();\n\
@@ -414,7 +414,7 @@ data:
     \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
     getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
     \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
-    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 7 \"template/out.hpp\"\
+    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 8 \"template/out.hpp\"\
     \n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n\
     \    int fd, idx;\n    std::array<char, buf_size> buffer;\n    inline void write_buf()\
     \ {\n        int num = write(fd, buffer.begin(), idx);\n        idx = 0;\n   \
@@ -522,7 +522,7 @@ data:
     \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
     \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
     \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\
-    #line 2 \"template/bitop.hpp\"\n\n#line 5 \"template/bitop.hpp\"\n\nnamespace\
+    #line 2 \"template/bitop.hpp\"\n\n#line 6 \"template/bitop.hpp\"\n\nnamespace\
     \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
     \ (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0) return\
     \ 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 |\
@@ -571,7 +571,7 @@ data:
     \  ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
     \ -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x +=\
     \ mod;\n    assert(a == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\
-    \n#line 5 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
+    \n#line 6 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
     \    F f;\n\npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_))\
     \ {}\n    template<class... Args>\n    constexpr auto operator()(Args&&... args)\n\
     \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
@@ -744,7 +744,7 @@ data:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/DoublingLowestCommonAncestor.hpp
   - graph/tree/HeavyLightDecomposition.hpp
-  timestamp: '2022-11-12 12:15:27+09:00'
+  timestamp: '2022-11-12 14:20:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-LCA.test.cpp

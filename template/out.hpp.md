@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: template/alias.hpp
+    title: template/alias.hpp
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   - icon: ':question:'
@@ -45,7 +48,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':x:'
@@ -54,34 +57,34 @@ data:
   - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':x:'
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
@@ -90,7 +93,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':x:'
@@ -114,7 +117,7 @@ data:
   - icon: ':x:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':x:'
@@ -156,7 +159,7 @@ data:
   - icon: ':question:'
     path: graph/connected/ConnectedComponents.hpp
     title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/connected/StronglyConnectedComponents.hpp
     title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -164,29 +167,29 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
   - icon: ':x:'
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
   - icon: ':x:'
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/BellmanFord.hpp
     title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
   - icon: ':heavy_check_mark:'
@@ -195,10 +198,10 @@ data:
   - icon: ':question:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
@@ -208,30 +211,30 @@ data:
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':x:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':x:'
@@ -298,7 +301,7 @@ data:
   - icon: ':x:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':x:'
@@ -438,106 +441,106 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_A-UF.test.cpp
     title: test/aoj/DSL/DSL_1_A-UF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
     title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
     title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
     title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
     title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
     title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
     title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
     title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - icon: ':x:'
@@ -776,33 +779,46 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"template/out.hpp\"\n\n#line 2 \"template/macros.hpp\"\n\n\
-    #include <bits/stdc++.h>\n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n\
-    #endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b,\
-    \ c)\n#define REP1_1(b, c)                                                   \
-    \        \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n\
-    #define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i <\
-    \ (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n\
-    #define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define\
-    \ rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define\
-    \ RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b) for\
-    \ (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll i =\
-    \ (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) REP_SELECTER(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) REP_SELECTER(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...)                             \
-    \                                \\\n    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3,\
-    \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
-    \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
-    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
-    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/type_traits.hpp\"\
+  bundledCode: "#line 2 \"template/out.hpp\"\n\n#include <bits/stdc++.h>\n#include\
+    \ <unistd.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...)                                                             \\\n\
+    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
+    using PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
+    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
     \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
     \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
     \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
@@ -855,116 +871,8 @@ data:
     \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
-    \ 6 \"template/out.hpp\"\n#include <unistd.h>\n\ntemplate<std::size_t buf_size\
-    \ = IO_BUFFER_SIZE> class Writer {\nprivate:\n    int fd, idx;\n    std::array<char,\
-    \ buf_size> buffer;\n    inline void write_buf() {\n        int num = write(fd,\
-    \ buffer.begin(), idx);\n        idx = 0;\n        if (num < 0) throw std::runtime_error(\"\
-    output failed\");\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n\
-    \    Writer(int fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept\
-    \ : fd(fileno(fp)), idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator\
-    \ {\n    private:\n        Writer* writer;\n\n    public:\n        using difference_type\
-    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
-    \       using reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
-    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
-    \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
-    \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
-    \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
-    \            return *this;\n        }\n        iterator operator++(int) {\n  \
-    \          iterator res = *this;\n            ++(*this);\n            return res;\n\
-    \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
-    \ }\n        void flush() const { writer->write_buf(); }\n    };\n\n    iterator\
-    \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
-    \ntemplate<class Iterator, bool debug = false> class Printer {\npublic:\n    using\
-    \ iterator_type = Iterator;\n\nprivate:\n    template<class, bool = debug, class\
-    \ = void>\n    struct has_print : std::false_type {};\n    template<class T>\n\
-    \    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
-    \                              (void)0)> : std::true_type {};\n    template<class\
-    \ T>\n    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
-    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
-    \    std::size_t decimal_precision;\n\npublic:\n    void print_char(char c) {\n\
-    \        *itr = c;\n        ++itr;\n    }\n\n    void flush() { itr.flush(); }\n\
-    \n    Printer() noexcept = default;\n    explicit Printer(const Iterator& itr)\
-    \ noexcept\n        : itr(itr), decimal_precision(16) {}\n\n    void set_decimal_precision(std::size_t\
-    \ decimal_precision) {\n        this->decimal_precision = decimal_precision;\n\
-    \    }\n\n    void print(char c) {\n        if IF_CONSTEXPR (debug) print_char('\\\
-    '');\n        print_char(c);\n        if IF_CONSTEXPR (debug) print_char('\\'');\n\
-    \    }\n    void print(bool b) { print_char((char)(b + '0')); }\n    void print(const\
-    \ char* a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n        for (;\
-    \ *a != '\\0'; ++a) print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n    }\n    template<std::size_t len> void print(const char (&a)[len]) {\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
-    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
-    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
-    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
-    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
-    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
-    \                                  !has_print<T>::value>::type* = nullptr>\n \
-    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
-    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
-    \ {\n            if (a < 0) {\n                print_char('-');\n            \
-    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
-    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
-    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
-    \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
-    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
-    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
-    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
-    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
-    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
-    \        print_char('0');\n        }\n        else {\n            std::string\
-    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
-    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
-    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
-    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
-    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
-    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
-    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
-    \            print_char(' ');\n            print(std::get<i>(a));\n          \
-    \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
-    \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
-    \ print_char('(');\n        if IF_CONSTEXPR (sizeof...(Args) != 0) print(std::get<0>(a));\n\
-    \        print<1, Args...>(a);\n        if IF_CONSTEXPR (debug) print_char(')');\n\
-    \    }\n    template<class T, class U> void print(const std::pair<T, U>& a) {\n\
-    \        if IF_CONSTEXPR (debug) print_char('(');\n        print(a.first);\n \
-    \       if IF_CONSTEXPR (debug) print_char(',');\n        print_char(' ');\n \
-    \       print(a.second);\n        if IF_CONSTEXPR (debug) print_char(')');\n \
-    \   }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
-    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
-    \    void print(const T& a) {\n        if IF_CONSTEXPR (debug) print_char('{');\n\
-    \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
-    \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
-    \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
-    \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
-    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              debug>::type* = nullptr>\n    void\
-    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
-    \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
-    \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
-    \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
-    \        return *this;\n    }\n\n    Printer& operator<<(Printer& (*pf)(Printer&))\
-    \ { return pf(*this); }\n};\n\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
-    \ debug>& endl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n  \
-    \  pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
-    \ debug>& flush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return pr;\n\
-    }\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void print(Pr& pr) const\
-    \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
-    \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
-    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
-    \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
-    \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
-    class DebugIterator {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator&\
-    \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
-    \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
-    \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n"
-  code: "#pragma once\n\n#include \"macros.hpp\"\n#include \"type_traits.hpp\"\n#include\
-    \ <bits/stdc++.h>\n#include <unistd.h>\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
-    \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
+    \ 8 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class\
+    \ Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
     \    inline void write_buf() {\n        int num = write(fd, buffer.begin(), idx);\n\
     \        idx = 0;\n        if (num < 0) throw std::runtime_error(\"output failed\"\
     );\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int\
@@ -1070,8 +978,117 @@ data:
     \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
     \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
     \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n"
+  code: "#pragma once\n\n#include <bits/stdc++.h>\n#include <unistd.h>\n#include \"\
+    macros.hpp\"\n#include \"alias.hpp\"\n#include \"type_traits.hpp\"\n\ntemplate<std::size_t\
+    \ buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n    int fd, idx;\n    std::array<char,\
+    \ buf_size> buffer;\n    inline void write_buf() {\n        int num = write(fd,\
+    \ buffer.begin(), idx);\n        idx = 0;\n        if (num < 0) throw std::runtime_error(\"\
+    output failed\");\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n\
+    \    Writer(int fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept\
+    \ : fd(fileno(fp)), idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator\
+    \ {\n    private:\n        Writer* writer;\n\n    public:\n        using difference_type\
+    \ = void;\n        using value_type = void;\n        using pointer = void;\n \
+    \       using reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
+    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
+    \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
+    \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
+    \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
+    \            return *this;\n        }\n        iterator operator++(int) {\n  \
+    \          iterator res = *this;\n            ++(*this);\n            return res;\n\
+    \        }\n        char& operator*() const { return writer->buffer[writer->idx];\
+    \ }\n        void flush() const { writer->write_buf(); }\n    };\n\n    iterator\
+    \ begin() noexcept { return iterator(this); }\n};\n\nWriter<> writer(1), ewriter(2);\n\
+    \ntemplate<class Iterator, bool debug = false> class Printer {\npublic:\n    using\
+    \ iterator_type = Iterator;\n\nprivate:\n    template<class, bool = debug, class\
+    \ = void>\n    struct has_print : std::false_type {};\n    template<class T>\n\
+    \    struct has_print<T, false,\n                     decltype(std::declval<T>().print(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    template<class\
+    \ T>\n    struct has_print<T, true,\n                     decltype(std::declval<T>().debug(std::declval<Printer&>()),\n\
+    \                              (void)0)> : std::true_type {};\n    Iterator itr;\n\
+    \    std::size_t decimal_precision;\n\npublic:\n    void print_char(char c) {\n\
+    \        *itr = c;\n        ++itr;\n    }\n\n    void flush() { itr.flush(); }\n\
+    \n    Printer() noexcept = default;\n    explicit Printer(const Iterator& itr)\
+    \ noexcept\n        : itr(itr), decimal_precision(16) {}\n\n    void set_decimal_precision(std::size_t\
+    \ decimal_precision) {\n        this->decimal_precision = decimal_precision;\n\
+    \    }\n\n    void print(char c) {\n        if IF_CONSTEXPR (debug) print_char('\\\
+    '');\n        print_char(c);\n        if IF_CONSTEXPR (debug) print_char('\\'');\n\
+    \    }\n    void print(bool b) { print_char((char)(b + '0')); }\n    void print(const\
+    \ char* a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n        for (;\
+    \ *a != '\\0'; ++a) print_char(*a);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const char (&a)[len]) {\n\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n        for (auto i : a) print_char(i);\n\
+    \        if IF_CONSTEXPR (debug) print_char('\"');\n    }\n    void print(const\
+    \ std::string& a) {\n        if IF_CONSTEXPR (debug) print_char('\"');\n     \
+    \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
+    ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
+    \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
+    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
+    \                                  !has_print<T>::value>::type* = nullptr>\n \
+    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
+    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
+    \ {\n            if (a < 0) {\n                print_char('-');\n            \
+    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
+    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
+    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
+    \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
+    \            print(\"inf\");\n            return;\n        }\n        if (a ==\
+    \ -std::numeric_limits<T>::infinity()) {\n            print(\"-inf\");\n     \
+    \       return;\n        }\n        if (std::isnan(a)) {\n            print(\"\
+    nan\");\n            return;\n        }\n        if (a < 0) {\n            print_char('-');\n\
+    \            a = -a;\n        }\n        T b = a;\n        if (b < 1) {\n    \
+    \        print_char('0');\n        }\n        else {\n            std::string\
+    \ s;\n            while (b >= 1) {\n                s += (char)('0' + (int)std::fmod(b,\
+    \ 10.0));\n                b /= 10;\n            }\n            for (auto i =\
+    \ s.rbegin(); i != s.rend(); ++i) print_char(*i);\n        }\n        print_char('.');\n\
+    \        rep (decimal_precision) {\n            a *= 10;\n            print_char((char)('0'\
+    \ + (int)std::fmod(a, 10.0)));\n        }\n    }\n\nprivate:\n    template<std::size_t\
+    \ i, class... Args>\n    void print(const std::tuple<Args...>& a) {\n        if\
+    \ IF_CONSTEXPR (i < sizeof...(Args)) {\n            if IF_CONSTEXPR (debug) print_char(',');\n\
+    \            print_char(' ');\n            print(std::get<i>(a));\n          \
+    \  print<i + 1, Args...>(a);\n        }\n    }\n\npublic:\n    template<class...\
+    \ Args> void print(const std::tuple<Args...>& a) {\n        if IF_CONSTEXPR (debug)\
+    \ print_char('(');\n        if IF_CONSTEXPR (sizeof...(Args) != 0) print(std::get<0>(a));\n\
+    \        print<1, Args...>(a);\n        if IF_CONSTEXPR (debug) print_char(')');\n\
+    \    }\n    template<class T, class U> void print(const std::pair<T, U>& a) {\n\
+    \        if IF_CONSTEXPR (debug) print_char('(');\n        print(a.first);\n \
+    \       if IF_CONSTEXPR (debug) print_char(',');\n        print_char(' ');\n \
+    \       print(a.second);\n        if IF_CONSTEXPR (debug) print_char(')');\n \
+    \   }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
+    \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
+    \    void print(const T& a) {\n        if IF_CONSTEXPR (debug) print_char('{');\n\
+    \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
+    \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
+    \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
+    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
+    \ std::enable_if<has_print<T>::value &&\n                                    \
+    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
+    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
+    \                                              debug>::type* = nullptr>\n    void\
+    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
+    \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
+    \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
+    \        return *this;\n    }\n\n    Printer& operator<<(Printer& (*pf)(Printer&))\
+    \ { return pf(*this); }\n};\n\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
+    \ debug>& endl(Printer<Iterator, debug>& pr) {\n    pr.print_char('\\n');\n  \
+    \  pr.flush();\n    return pr;\n}\ntemplate<class Iterator, bool debug>\nPrinter<Iterator,\
+    \ debug>& flush(Printer<Iterator, debug>& pr) {\n    pr.flush();\n    return pr;\n\
+    }\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void print(Pr& pr) const\
+    \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
+    \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
+    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
+    \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
+    \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
+    class DebugIterator {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator&\
+    \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
+    \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
+    \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n"
   dependsOn:
   - template/macros.hpp
+  - template/alias.hpp
   - template/type_traits.hpp
   isVerificationFile: false
   path: template/out.hpp
@@ -1178,7 +1195,7 @@ data:
   - geometry/Circle.hpp
   - geometry/template.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-11-12 12:15:27+09:00'
+  timestamp: '2022-11-12 14:20:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
