@@ -4,7 +4,7 @@ MITLicense ですが、競技プログラミングのためにこのライブラ
 
 競技プログラミングの C++ ライブラリです。
 
-GCC, C++11 以降を想定しています。
+GCC, C++14 以降を想定しています。
 
 [![Actions Status](https://github.com/shiomusubi496/library/workflows/verify/badge.svg)](https://github.com/shiomusubi496/library/actions)
 [![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://shiomusubi496.github.io/library/)

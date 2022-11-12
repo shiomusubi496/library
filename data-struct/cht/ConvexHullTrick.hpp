@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 
 template<class T = ll, bool is_max = false,
-         class LargeT = typename double_size_int<T>::type>
+         class largeT = typename double_size_int<T>::type>
 class ConvexHullTrick {
 private:
     struct Line {
@@ -38,8 +38,10 @@ private:
         if (itr != prev(st.end()) && itr->a == next(itr)->a)
             return itr->b < next(itr)->b;
         if (itr == st.begin() || itr == prev(st.end())) return true;
-        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a) <
-               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);
+        return static_cast<largeT>(itr->b - prev(itr)->b) *
+                   static_cast<largeT>(next(itr)->a - itr->a) <
+               static_cast<largeT>(itr->b - next(itr)->b) *
+                   static_cast<largeT>(prev(itr)->a - itr->a);
     }
 
 public:

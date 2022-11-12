@@ -63,7 +63,7 @@ public:
     int set(int k, const T& x, int t) {
         assert(-1 <= t && t < last_time);
         assert(0 <= k && k < len[t + 1]);
-        root.push_back((node_ptr)root[t + 1]);
+        root.push_back(root[t + 1]);
         set_dfs(root.back(), k, x);
         len.push_back(len[t + 1]);
         return last_time++;
