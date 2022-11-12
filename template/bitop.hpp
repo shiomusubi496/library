@@ -1,7 +1,8 @@
 #pragma once
 
-#include "macros.hpp"
 #include <bits/stdc++.h>
+#include "macros.hpp"
+#include "alias.hpp"
 
 namespace bitop {
 

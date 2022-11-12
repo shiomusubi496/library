@@ -2,6 +2,7 @@
 
 #include <bits/stdc++.h>
 #include "macros.hpp"
+#include "alias.hpp"
 
 template<class F> class RecLambda {
 private:
