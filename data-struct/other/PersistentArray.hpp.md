@@ -453,25 +453,24 @@ data:
     \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
     \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
     \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
-    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
-    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
-    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
-    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
-    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    int pop_back(int t) {\n \
-    \       assert(-1 <= t && t < last_time);\n        assert(len[t + 1] > 0);\n \
-    \       root.push_back(std::make_shared<node>(*root[t + 1]));\n        len.push_back(len[t\
-    \ + 1] - 1);\n        return last_time++;\n    }\n    int pop_back_last() { return\
-    \ pop_back(last_time - 1); }\n    T get(int k, int t) const {\n        assert(-1\
-    \ <= t && t < last_time);\n        assert(0 <= k && k < len[t + 1]);\n       \
-    \ return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n    int size(int t) const {\n        assert(-1 <=\
-    \ t && t < last_time);\n        return len[t + 1];\n    }\n    int size_last()\
-    \ const { return size(last_time - 1); }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\
-    \u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
+    \ <= k && k < len[t + 1]);\n        root.push_back(root[t + 1]);\n        set_dfs(root.back(),\
+    \ k, x);\n        len.push_back(len[t + 1]);\n        return last_time++;\n  \
+    \  }\n    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }\n\
+    \    int push_back(const T& x, int t) {\n        assert(-1 <= t && t < last_time);\n\
+    \        root.push_back(std::make_shared<node>(*root[t + 1]));\n        push_back_dfs(root.back(),\
+    \ len[t + 1], x);\n        len.push_back(len[t + 1] + 1);\n        return last_time++;\n\
+    \    }\n    int push_back_last(const T& x) { return push_back(last_time - 1, x);\
+    \ }\n    int pop_back(int t) {\n        assert(-1 <= t && t < last_time);\n  \
+    \      assert(len[t + 1] > 0);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
+    \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
+    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
+    \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
+    \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PersistentArray.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ std::size_t sz = 2> class PersistentArray {\nprivate:\n    struct node;\n  \
     \  using node_ptr = std::shared_ptr<node>;\n    struct node {\n        T val;\n\
@@ -499,25 +498,24 @@ data:
     \ a, 0, 1);\n            len.assign(1, n);\n        }\n        last_time = 0;\n\
     \    }\n    int now() const { return last_time - 1; }\n    int set(int k, const\
     \ T& x, int t) {\n        assert(-1 <= t && t < last_time);\n        assert(0\
-    \ <= k && k < len[t + 1]);\n        root.push_back((node_ptr)root[t + 1]);\n \
-    \       set_dfs(root.back(), k, x);\n        len.push_back(len[t + 1]);\n    \
-    \    return last_time++;\n    }\n    int set_last(int k, const T& x) { return\
-    \ set(k, x, last_time - 1); }\n    int push_back(const T& x, int t) {\n      \
-    \  assert(-1 <= t && t < last_time);\n        root.push_back(std::make_shared<node>(*root[t\
-    \ + 1]));\n        push_back_dfs(root.back(), len[t + 1], x);\n        len.push_back(len[t\
-    \ + 1] + 1);\n        return last_time++;\n    }\n    int push_back_last(const\
-    \ T& x) { return push_back(last_time - 1, x); }\n    int pop_back(int t) {\n \
-    \       assert(-1 <= t && t < last_time);\n        assert(len[t + 1] > 0);\n \
-    \       root.push_back(std::make_shared<node>(*root[t + 1]));\n        len.push_back(len[t\
-    \ + 1] - 1);\n        return last_time++;\n    }\n    int pop_back_last() { return\
-    \ pop_back(last_time - 1); }\n    T get(int k, int t) const {\n        assert(-1\
-    \ <= t && t < last_time);\n        assert(0 <= k && k < len[t + 1]);\n       \
-    \ return get_dfs(root[t + 1], k);\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n    int size(int t) const {\n        assert(-1 <=\
-    \ t && t < last_time);\n        return len[t + 1];\n    }\n    int size_last()\
-    \ const { return size(last_time - 1); }\n};\n\n/**\n * @brief PersistentArray(\u5B8C\
-    \u5168\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PersistentArray.md\n\
-    \ */\n"
+    \ <= k && k < len[t + 1]);\n        root.push_back(root[t + 1]);\n        set_dfs(root.back(),\
+    \ k, x);\n        len.push_back(len[t + 1]);\n        return last_time++;\n  \
+    \  }\n    int set_last(int k, const T& x) { return set(k, x, last_time - 1); }\n\
+    \    int push_back(const T& x, int t) {\n        assert(-1 <= t && t < last_time);\n\
+    \        root.push_back(std::make_shared<node>(*root[t + 1]));\n        push_back_dfs(root.back(),\
+    \ len[t + 1], x);\n        len.push_back(len[t + 1] + 1);\n        return last_time++;\n\
+    \    }\n    int push_back_last(const T& x) { return push_back(last_time - 1, x);\
+    \ }\n    int pop_back(int t) {\n        assert(-1 <= t && t < last_time);\n  \
+    \      assert(len[t + 1] > 0);\n        root.push_back(std::make_shared<node>(*root[t\
+    \ + 1]));\n        len.push_back(len[t + 1] - 1);\n        return last_time++;\n\
+    \    }\n    int pop_back_last() { return pop_back(last_time - 1); }\n    T get(int\
+    \ k, int t) const {\n        assert(-1 <= t && t < last_time);\n        assert(0\
+    \ <= k && k < len[t + 1]);\n        return get_dfs(root[t + 1], k);\n    }\n \
+    \   T get_last(int k) const { return get(k, last_time - 1); }\n    int size(int\
+    \ t) const {\n        assert(-1 <= t && t < last_time);\n        return len[t\
+    \ + 1];\n    }\n    int size_last() const { return size(last_time - 1); }\n};\n\
+    \n/**\n * @brief PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PersistentArray.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -532,7 +530,7 @@ data:
   path: data-struct/other/PersistentArray.hpp
   requiredBy:
   - data-struct/unionfind/PersistentUnionFind.hpp
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 17:35:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind.test.cpp

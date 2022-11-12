@@ -421,7 +421,7 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrick.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false,\n         class LargeT = typename\
+    \n\ntemplate<class T = ll, bool is_max = false,\n         class largeT = typename\
     \ double_size_int<T>::type>\nclass ConvexHullTrick {\nprivate:\n    struct Line\
     \ {\n        T a, b;\n        int idx;\n        bool is_query;\n        mutable\
     \ ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T x) const {\
@@ -439,8 +439,9 @@ data:
     \ != st.begin() && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n\
     \        if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return\
     \ itr->b < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
+    \ return true;\n        return static_cast<largeT>(itr->b - prev(itr)->b) *\n\
+    \                   static_cast<largeT>(next(itr)->a - itr->a) <\n           \
+    \    static_cast<largeT>(itr->b - next(itr)->b) *\n                   static_cast<largeT>(prev(itr)->a\
     \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T\
     \ a, T b) {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max\
     \ ? -b : b, line_count).first;\n        if (!is_necessary(itr)) {\n          \
@@ -460,7 +461,7 @@ data:
     \    bool empty() const { return st.empty(); }\n};\n\n/**\n * @brief ConvexHullTrick\n\
     \ * @docs docs/data-struct/cht/ConvexHullTrick.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false,\n         class LargeT = typename double_size_int<T>::type>\n\
+    \ = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrick {\nprivate:\n    struct Line {\n        T a, b;\n      \
     \  int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n      \
     \  mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n   \
@@ -478,8 +479,9 @@ data:
     \ itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n       \
     \ if (itr != prev(st.end()) && itr->a == next(itr)->a)\n            return itr->b\
     \ < next(itr)->b;\n        if (itr == st.begin() || itr == prev(st.end())) return\
-    \ true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a - itr->a)\
-    \ <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a - itr->a);\n\
+    \ true;\n        return static_cast<largeT>(itr->b - prev(itr)->b) *\n       \
+    \            static_cast<largeT>(next(itr)->a - itr->a) <\n               static_cast<largeT>(itr->b\
+    \ - next(itr)->b) *\n                   static_cast<largeT>(prev(itr)->a - itr->a);\n\
     \    }\n\npublic:\n    ConvexHullTrick() = default;\n    int add_line(T a, T b)\
     \ {\n        auto itr =\n            st.emplace(is_max ? -a : a, is_max ? -b :\
     \ b, line_count).first;\n        if (!is_necessary(itr)) {\n            st.erase(itr);\n\
@@ -511,7 +513,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrick.hpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 17:35:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/line_add_get_min.test.cpp

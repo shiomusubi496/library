@@ -422,7 +422,7 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false,\n         class LargeT = typename\
+    \n\ntemplate<class T = ll, bool is_max = false,\n         class largeT = typename\
     \ double_size_int<T>::type>\nclass ConvexHullTrickAddMonotone {\nprivate:\n  \
     \  struct Line {\n        T a, b;\n        int idx;\n        bool is_query;\n\
     \        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T\
@@ -440,9 +440,10 @@ data:
     \ {\n        if (itr != que.begin() && itr->a == prev(itr)->a)\n            return\
     \ itr->b < prev(itr)->b;\n        if (itr != prev(que.end()) && itr->a == next(itr)->a)\n\
     \            return itr->b < next(itr)->b;\n        if (itr == que.begin() ||\
-    \ itr == prev(que.end())) return true;\n        return (LargeT)(itr->b - prev(itr)->b)\
-    \ * (next(itr)->a - itr->a) <\n               (LargeT)(itr->b - next(itr)->b)\
-    \ * (prev(itr)->a - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone()\
+    \ itr == prev(que.end())) return true;\n        return static_cast<largeT>(itr->b\
+    \ - prev(itr)->b) *\n                   static_cast<largeT>(next(itr)->a - itr->a)\
+    \ <\n               static_cast<largeT>(itr->b - next(itr)->b) *\n           \
+    \        static_cast<largeT>(prev(itr)->a - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone()\
     \ = default;\n    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a\
     \ = -a, b = -b;\n        typename std::deque<Line>::iterator itr;\n        if\
     \ (que.empty() || que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n\
@@ -478,7 +479,7 @@ data:
     \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
     \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false,\n         class LargeT = typename double_size_int<T>::type>\n\
+    \ = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
     class ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a,\
     \ b;\n        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
     \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
@@ -496,8 +497,9 @@ data:
     \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
     \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
     \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return (LargeT)(itr->b - prev(itr)->b) * (next(itr)->a\
-    \ - itr->a) <\n               (LargeT)(itr->b - next(itr)->b) * (prev(itr)->a\
+    \ return true;\n        return static_cast<largeT>(itr->b - prev(itr)->b) *\n\
+    \                   static_cast<largeT>(next(itr)->a - itr->a) <\n           \
+    \    static_cast<largeT>(itr->b - next(itr)->b) *\n                   static_cast<largeT>(prev(itr)->a\
     \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
     \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
     \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
@@ -546,7 +548,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 17:35:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2725-CHT.test.cpp
