@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: math/convolution/HadamardTransform.hpp
     title: HadmardTransform
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':x:'
