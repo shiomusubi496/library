@@ -2,11 +2,16 @@
 
 #include "../other/template.hpp"
 
-template<unsigned int mod> class StaticModInt {
-    static_assert(mod > 0, "mod must be greater than 0");
+template<class T, T mod> class StaticModInt {
+    static_assert(std::is_unsigned<T>::value, "T must be unsigned integer");
+    static_assert(mod > 0, "mod must be positive");
+    static_assert(mod <= std::numeric_limits<T>::max() / 2,
+                  "mod * 2 must be less than or equal to T::max()");
 
 private:
-    unsigned int val;
+    using large_t = typename double_size_uint<T>::type;
+    using signed_t = typename std::make_signed<T>::type;
+    T val;
     static constexpr unsigned int inv1000000007[] = {
         0,         1,         500000004, 333333336, 250000002, 400000003,
         166666668, 142857144, 125000001, 111111112, 700000005};
@@ -16,16 +21,21 @@ private:
 
 public:
     StaticModInt() : val(0) {}
-    template<class T, typename std::enable_if<
-                          std::is_integral<T>::value>::type* = nullptr>
-    StaticModInt(T v) {
-        v %= (long long)mod;
-        if (v < 0) v += (long long)mod;
-        val = v;
+    template<class U,
+             typename std::enable_if<std::is_signed<U>::value>::type* = nullptr>
+    StaticModInt(U v) {
+        v %= static_cast<signed_t>(mod);
+        if (v < 0) v += static_cast<signed_t>(mod);
+        val = static_cast<T>(v);
     }
-    unsigned int get() const { return val; }
-    static unsigned int get_mod() { return mod; }
-    static StaticModInt raw(unsigned int v) {
+    template<class U, typename std::enable_if<
+                          std::is_unsigned<U>::value>::type* = nullptr>
+    StaticModInt(U v) {
+        val = static_cast<T>(v % mod);
+    }
+    T get() const { return val; }
+    static T get_mod() { return mod; }
+    static StaticModInt raw(T v) {
         StaticModInt res;
         res.val = v;
         return res;
@@ -70,7 +80,7 @@ public:
         return *this;
     }
     StaticModInt& operator*=(const StaticModInt& other) {
-        unsigned long long a = val;
+        large_t a = val;
         a *= other.val;
         a %= mod;
         val = a;
@@ -97,7 +107,7 @@ public:
         return StaticModInt(lhs) /= rhs;
     }
     StaticModInt operator+() const { return StaticModInt(*this); }
-    StaticModInt operator-() const { return StaticModInt::raw(0) - *this; }
+    StaticModInt operator-() const { return StaticModInt() - *this; }
     friend bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {
         return lhs.val == rhs.val;
     }
@@ -138,30 +148,40 @@ template<unsigned int mod>
 constexpr unsigned int StaticModInt<mod>::inv998244353[];
 #endif
 
-using modint1000000007 = StaticModInt<1000000007>;
-using modint998244353 = StaticModInt<998244353>;
+using modint1000000007 = StaticModInt<unsigned int, 1000000007>;
+using modint998244353 = StaticModInt<unsigned int, 998244353>;
 
-template<int id> class DynamicModInt {
+template<class T, int id> class DynamicModInt {
+    static_assert(std::is_unsigned<T>::value, "T must be unsigned integer");
+
 private:
-    unsigned int val;
-    static unsigned int mod;
+    using large_t = typename double_size_uint<T>::type;
+    using signed_t = typename std::make_signed<T>::type;
+    T val;
+    static T mod;
 
 public:
     DynamicModInt() : val(0) {}
-    template<class T, typename std::enable_if<
-                          std::is_integral<T>::value>::type* = nullptr>
-    DynamicModInt(T v) {
-        v %= (long long)mod;
-        if (v < 0) v += (long long)mod;
-        val = v;
+    template<class U,
+             typename std::enable_if<std::is_signed<U>::value>::type* = nullptr>
+    DynamicModInt(U v) {
+        v %= static_cast<signed_t>(mod);
+        if (v < 0) v += static_cast<signed_t>(mod);
+        val = static_cast<T>(v);
     }
-    unsigned int get() const { return val; }
-    static unsigned int get_mod() { return mod; }
-    static void set_mod(unsigned int v) {
+    template<class U, typename std::enable_if<
+                          std::is_unsigned<U>::value>::type* = nullptr>
+    DynamicModInt(U v) {
+        val = static_cast<T>(v % mod);
+    }
+    T get() const { return val; }
+    static T get_mod() { return mod; }
+    static void set_mod(T v) {
         assert(v > 0);
+        assert(v <= std::numeric_limits<T>::max() / 2);
         mod = v;
     }
-    static DynamicModInt raw(unsigned int v) {
+    static DynamicModInt raw(T v) {
         DynamicModInt res;
         res.val = v;
         return res;
@@ -198,7 +218,7 @@ public:
         return *this;
     }
     DynamicModInt& operator*=(const DynamicModInt& other) {
-        unsigned long long a = val;
+        large_t a = val;
         a *= other.val;
         a %= mod;
         val = a;
@@ -225,7 +245,7 @@ public:
         return DynamicModInt(lhs) /= rhs;
     }
     DynamicModInt operator+() const { return DynamicModInt(*this); }
-    DynamicModInt operator-() const { return DynamicModInt::raw(0) - *this; }
+    DynamicModInt operator-() const { return DynamicModInt() - *this; }
     friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs) {
         return lhs.val == rhs.val;
     }
@@ -260,9 +280,9 @@ public:
     }
 };
 
-template<int id> unsigned int DynamicModInt<id>::mod = 998244353;
+template<class T, int id> T DynamicModInt<T, id>::mod = 998244353;
 
-using modint = DynamicModInt<-1>;
+using modint = DynamicModInt<unsigned int, -1>;
 
 /**
  * @brief ModInt
