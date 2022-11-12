@@ -131,7 +131,7 @@ data:
       title: WaveletMatrixPointAddRectangleSum.hpp
   - name: geometry
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: geometry/All.hpp
       title: geometry/All.hpp
     - icon: ':heavy_check_mark:'
@@ -780,6 +780,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - name: test/yosupo/geometry
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/geometry/sort_points_by_argument.test.cpp
+      title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   - name: test/yosupo/graph
     pages:
     - icon: ':heavy_check_mark:'

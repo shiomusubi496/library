@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
@@ -716,6 +716,9 @@ data:
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1123,6 +1126,7 @@ data:
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/enumerate_palindromes.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/sample/many_aplusb.test.cpp
 documentation_of: template/macros.hpp

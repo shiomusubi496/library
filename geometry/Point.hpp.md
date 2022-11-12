@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -507,48 +510,49 @@ data:
     \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
     \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
     \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
-    \ 0;\n}\n#endif\n#line 4 \"geometry/Point.hpp\"\n\nclass Point {\npublic:\n  \
-    \  Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x),\
-    \ y(y) {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n      \
-    \  y += p.y;\n        return *this;\n    }\n    Point& operator-=(const Point&\
-    \ p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n \
-    \   Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n        return\
-    \ *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n        y /=\
-    \ a;\n        return *this;\n    }\n    Point operator+() const { return *this;\
-    \ }\n    Point operator-() const { return Point(-x, -y); }\n    friend Point operator+(const\
-    \ Point& p1, const Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend\
-    \ Point operator-(const Point& p1, const Point& p2) {\n        return Point(p1)\
-    \ -= p2;\n    }\n    friend Point operator*(const Point& p, Real a) { return Point(p)\
-    \ *= a; }\n    friend Point operator*(Real a, const Point& p) { return Point(p)\
-    \ *= a; }\n    friend Point operator/(const Point& p, Real a) { return Point(p)\
-    \ /= a; }\n    friend bool operator==(const Point& p1, const Point& p2) {\n  \
-    \      return cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend\
-    \ bool operator!=(const Point& p1, const Point& p2) {\n        return !(p1 ==\
-    \ p2);\n    }\n    friend bool operator<(const Point& p1, const Point& p2) {\n\
-    \        return cmp(p1.x, p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 &&\
-    \ cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const Point& p1, const\
-    \ Point& p2) { return p2 < p1; }\n    friend bool operator<=(const Point& p1,\
-    \ const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend bool operator>=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    Real norm()\
-    \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
-    \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
-    \ abs(const Point& p) { return p.abs(); }\n    Real arg() const { return atan2(y,\
-    \ x); }\n    friend Real arg(const Point& p) { return p.arg(); }\n    Point& rotate(Real\
-    \ theta) {\n        Real c = cos(theta), s = sin(theta);\n        Real nx = x\
-    \ * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y = ny;\n       \
-    \ return *this;\n    }\n    friend Point rotate(const Point& p, Real theta) {\n\
-    \        return Point(p).rotate(theta);\n    }\n    Point& rotate90() {\n    \
-    \    Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n        return *this;\n\
-    \    }\n    friend Point rotate90(const Point& p) { return Point(p).rotate90();\
-    \ }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| * |p2| * cos(theta)\n\
-    \    friend Real dot(const Point& p1, const Point& p2) {\n        return p1.x\
-    \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
-    \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
-    \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
-    \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
-    \ print) const { print << x << ' ' << y; }\n    template<class Pr> void debug(Pr&\
-    \ print) const {\n        print.print_char('(');\n        print << x;\n      \
-    \  print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \ 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t = GEOMETRY_ANGLE_TYPE;\n\
+    #else\nusing angle_t = ld;\n#endif\n#line 4 \"geometry/Point.hpp\"\n\nclass Point\
+    \ {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real\
+    \ y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n\
+    \        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
+    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
+    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
+    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
+    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
+    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
+    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
+    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
+    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
+    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
+    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
+    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
+    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
+    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
+    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
+    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
+    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
+    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
+    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
+    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
+    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
+    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t\
+    \ arg() const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point&\
+    \ p) { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c =\
+    \ cos(theta), s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y\
+    \ * c;\n        x = nx;\n        y = ny;\n        return *this;\n    }\n    friend\
+    \ Point rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
+    \    }\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n\
+    \        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
+    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
+    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
+    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
+    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
+    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
+    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
     \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
     \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
     \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
@@ -582,23 +586,23 @@ data:
     \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    Real norm()\
     \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
     \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
-    \ abs(const Point& p) { return p.abs(); }\n    Real arg() const { return atan2(y,\
-    \ x); }\n    friend Real arg(const Point& p) { return p.arg(); }\n    Point& rotate(Real\
-    \ theta) {\n        Real c = cos(theta), s = sin(theta);\n        Real nx = x\
-    \ * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y = ny;\n       \
-    \ return *this;\n    }\n    friend Point rotate(const Point& p, Real theta) {\n\
-    \        return Point(p).rotate(theta);\n    }\n    Point& rotate90() {\n    \
-    \    Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n        return *this;\n\
-    \    }\n    friend Point rotate90(const Point& p) { return Point(p).rotate90();\
-    \ }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| * |p2| * cos(theta)\n\
-    \    friend Real dot(const Point& p1, const Point& p2) {\n        return p1.x\
-    \ * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\u7A4D), p1 ^ p2 =\
-    \ |p1| * |p2| * sin(theta)\n    friend Real cross(const Point& p1, const Point&\
-    \ p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n    template<class\
-    \ Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class Pr> void print(Pr&\
-    \ print) const { print << x << ' ' << y; }\n    template<class Pr> void debug(Pr&\
-    \ print) const {\n        print.print_char('(');\n        print << x;\n      \
-    \  print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
+    \ abs(const Point& p) { return p.abs(); }\n    inline angle_t arg() const { return\
+    \ atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg();\
+    \ }\n    Point& rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n\
+    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
+    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
+    \ p, angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
+    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
+    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
+    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
+    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
+    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
+    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
+    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
+    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
+    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
+    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
+    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
     \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
     \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
     \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
@@ -627,7 +631,7 @@ data:
   - geometry/All.hpp
   - geometry/Circle.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 23:31:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
@@ -651,6 +655,7 @@ data:
   - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/Point.hpp
 layout: document
 redirect_from:

@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
@@ -114,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -506,14 +509,17 @@ data:
     \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
     \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
     \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
-    \ 0;\n}\n#endif\n"
+    \ 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t = GEOMETRY_ANGLE_TYPE;\n\
+    #else\nusing angle_t = ld;\n#endif\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\n#ifdef GEOMETRY_EPS\n\
     constexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr ld geom_eps = EPS;\n#endif\n\
     \n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n// a <=> b  : \
     \ cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a > b) return 1;\n\
     \    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real = ld;\n// a <=>\
     \ b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if (a > b + geom_eps)\
-    \ return 1;\n    if (a < b - geom_eps) return -1;\n    return 0;\n}\n#endif\n"
+    \ return 1;\n    if (a < b - geom_eps) return -1;\n    return 0;\n}\n#endif\n\n\
+    #ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t = GEOMETRY_ANGLE_TYPE;\n#else\nusing\
+    \ angle_t = ld;\n#endif\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -534,7 +540,7 @@ data:
   - geometry/All.hpp
   - geometry/Circle.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-12 23:31:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
@@ -558,6 +564,7 @@ data:
   - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
   - test/aoj/CGL/CGL_7_D-intersection.test.cpp
   - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/template.hpp
 layout: document
 redirect_from:
