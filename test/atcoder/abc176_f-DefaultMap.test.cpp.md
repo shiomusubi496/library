@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc176/tasks/abc176_f
@@ -453,8 +453,8 @@ data:
     key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
     \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n#line\
     \ 4 \"test/atcoder/abc176_f-DefaultMap.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int N; cin >> N;\n    vector<int> A(3 * N); cin >> A;\n    rep (i, 3\
-    \ * N) --A[i];\n    auto dp = make_vec<int>(N, N, -INF<int>);\n    dp[A[0]][A[1]]\
+    \ {\n    int N; scan >> N;\n    vector<int> A(3 * N); scan >> A;\n    rep (i,\
+    \ 3 * N) --A[i];\n    auto dp = make_vec<int>(N, N, -INF<int>);\n    dp[A[0]][A[1]]\
     \ = dp[A[1]][A[0]] = 0;\n    int ans = 0;\n    vector<int> mx(N, -INF<int>); mx[A[0]]\
     \ = mx[A[1]] = 0;\n    rep (i, N - 1) {\n        int a = A[i * 3 + 2], b = A[i\
     \ * 3 + 3], c = A[i * 3 + 4];\n        if (a == b && b == c) {\n            ++ans;\n\
@@ -473,11 +473,11 @@ data:
     \ v); chmax(dp[k][j], v);\n                chmax(mx[j], v); chmax(mx[k], v);\n\
     \            }\n        }\n    }\n    ll res = 0;\n    rep (i, N) rep (j, N) {\n\
     \        chmax(res, dp[i][j]);\n        if (i == j && i == A[3 * N - 1]) chmax(res,\
-    \ dp[i][j] + 1);\n    }\n    cout << ans + res << endl;\n}\n"
+    \ dp[i][j] + 1);\n    }\n    print << ans + res << endl;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc176/tasks/abc176_f\"\n#include\
     \ \"../../../library/other/template.hpp\"\n#include \"../../../library/data-struct/other/DefaultMap.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N; cin >> N;\n    vector<int> A(3\
-    \ * N); cin >> A;\n    rep (i, 3 * N) --A[i];\n    auto dp = make_vec<int>(N,\
+    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<int> A(3\
+    \ * N); scan >> A;\n    rep (i, 3 * N) --A[i];\n    auto dp = make_vec<int>(N,\
     \ N, -INF<int>);\n    dp[A[0]][A[1]] = dp[A[1]][A[0]] = 0;\n    int ans = 0;\n\
     \    vector<int> mx(N, -INF<int>); mx[A[0]] = mx[A[1]] = 0;\n    rep (i, N - 1)\
     \ {\n        int a = A[i * 3 + 2], b = A[i * 3 + 3], c = A[i * 3 + 4];\n     \
@@ -496,8 +496,8 @@ data:
     \               chmax(dp[j][k], v); chmax(dp[k][j], v);\n                chmax(mx[j],\
     \ v); chmax(mx[k], v);\n            }\n        }\n    }\n    ll res = 0;\n   \
     \ rep (i, N) rep (j, N) {\n        chmax(res, dp[i][j]);\n        if (i == j &&\
-    \ i == A[3 * N - 1]) chmax(res, dp[i][j] + 1);\n    }\n    cout << ans + res <<\
-    \ endl;\n}\n"
+    \ i == A[3 * N - 1]) chmax(res, dp[i][j] + 1);\n    }\n    print << ans + res\
+    \ << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -512,8 +512,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc176_f-DefaultMap.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-12 15:35:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc176_f-DefaultMap.test.cpp
 layout: document
