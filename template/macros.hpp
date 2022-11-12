@@ -36,7 +36,7 @@
 #if __cplusplus >= 201402L
 #define rall(v) std::rbegin(v), std::rend(v)
 #else
-#define rall(v) v.begin(), v.end()
+#define rall(v) v.rbegin(), v.rend()
 #endif
 
 #if __cpp_constexpr >= 201304L

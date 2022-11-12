@@ -77,6 +77,17 @@ public:
     Scanner() = default;
     Scanner(const Iterator& itr) : itr(itr) {}
 
+    char scan_char() {
+        char c = *itr;
+        ++itr;
+        return c;
+    }
+
+    Scanner ignore(int n = 1) {
+        rep (n) ++itr;
+        return *this;
+    }
+
     inline void discard_space() {
         while (('\t' <= *itr && *itr <= '\r') || *itr == ' ') ++itr;
     }
@@ -201,3 +212,14 @@ public:
 };
 
 Scanner<Reader<>::iterator> scan(reader.begin());
+
+template<class Iterator, std::size_t decimal_precision>
+Scanner<Iterator, decimal_precision>&
+getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {
+    a.clear();
+    char c;
+    while ((c = scan.scan_char()) != '\n') {
+        a += c;
+    }
+    return scan;
+}
