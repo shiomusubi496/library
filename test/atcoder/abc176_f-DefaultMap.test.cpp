@@ -3,8 +3,8 @@
 #include "../../../library/data-struct/other/DefaultMap.hpp"
 using namespace std;
 int main() {
-    int N; cin >> N;
-    vector<int> A(3 * N); cin >> A;
+    int N; scan >> N;
+    vector<int> A(3 * N); scan >> A;
     rep (i, 3 * N) --A[i];
     auto dp = make_vec<int>(N, N, -INF<int>);
     dp[A[0]][A[1]] = dp[A[1]][A[0]] = 0;
@@ -53,5 +53,5 @@ int main() {
         chmax(res, dp[i][j]);
         if (i == j && i == A[3 * N - 1]) chmax(res, dp[i][j] + 1);
     }
-    cout << ans + res << endl;
+    print << ans + res << endl;
 }
