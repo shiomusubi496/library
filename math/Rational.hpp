@@ -101,17 +101,11 @@ public:
     friend bool operator>=(const Rational& lhs, const Rational& rhs) {
         return !(lhs < rhs);
     }
-    friend std::ostream& operator<<(std::ostream& ost, const Rational& rat) {
-        return ost << rat.get_ld();
-    }
     template<class Pr> void print(Pr& a) const { a.print(get_ld()); }
     template<class Pr> void debug(Pr& a) const {
         a.print(num);
         a.print_char('/');
         a.print(den);
-    }
-    friend std::istream& operator>>(std::istream& ist, Rational& rat) {
-        return ist >> rat.num >> rat.den;
     }
     template<class Sc> void scan(Sc& a) {
         a.scan(num);

@@ -3,7 +3,8 @@
 #include "../other/template.hpp"
 
 template<class T, T mod> class StaticModInt {
-    static_assert(std::is_unsigned<T>::value, "T must be unsigned integer");
+    static_assert(std::is_integral<T>::value, "T must be integral");
+    static_assert(std::is_unsigned<T>::value, "T must be unsigned");
     static_assert(mod > 0, "mod must be positive");
     static_assert(mod <= std::numeric_limits<T>::max() / 2,
                   "mod * 2 must be less than or equal to T::max()");
@@ -22,13 +23,15 @@ private:
 public:
     StaticModInt() : val(0) {}
     template<class U,
-             typename std::enable_if<std::is_signed<U>::value>::type* = nullptr>
+             typename std::enable_if<std::is_integral<U>::value &&
+                                     std::is_signed<U>::value>::type* = nullptr>
     StaticModInt(U v) {
         v %= static_cast<signed_t>(mod);
         if (v < 0) v += static_cast<signed_t>(mod);
         val = static_cast<T>(v);
     }
     template<class U, typename std::enable_if<
+                          std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
     StaticModInt(U v) {
         val = static_cast<T>(v % mod);
@@ -123,17 +126,8 @@ public:
         }
         return res;
     }
-    friend std::ostream& operator<<(std::ostream& ost, const StaticModInt& sm) {
-        return ost << sm.val;
-    }
     template<class Pr> void print(Pr& a) const { a.print(val); }
     template<class Pr> void debug(Pr& a) const { a.print(val); }
-    friend std::istream& operator>>(std::istream& ist, StaticModInt& sm) {
-        ll v;
-        ist >> v;
-        sm = v;
-        return ist;
-    }
     template<class Sc> void scan(Sc& a) {
         ll v;
         a.scan(v);
@@ -142,17 +136,18 @@ public:
 };
 
 #if __cplusplus < 201703L
-template<unsigned int mod>
-constexpr unsigned int StaticModInt<mod>::inv1000000007[];
-template<unsigned int mod>
-constexpr unsigned int StaticModInt<mod>::inv998244353[];
+template<class T, T mod>
+constexpr unsigned int StaticModInt<T, mod>::inv1000000007[];
+template<class T, T mod>
+constexpr unsigned int StaticModInt<T, mod>::inv998244353[];
 #endif
 
 using modint1000000007 = StaticModInt<unsigned int, 1000000007>;
 using modint998244353 = StaticModInt<unsigned int, 998244353>;
 
 template<class T, int id> class DynamicModInt {
-    static_assert(std::is_unsigned<T>::value, "T must be unsigned integer");
+    static_assert(std::is_integral<T>::value, "T must be integral");
+    static_assert(std::is_unsigned<T>::value, "T must be unsigned");
 
 private:
     using large_t = typename double_size_uint<T>::type;
@@ -163,13 +158,15 @@ private:
 public:
     DynamicModInt() : val(0) {}
     template<class U,
-             typename std::enable_if<std::is_signed<U>::value>::type* = nullptr>
+             typename std::enable_if<std::is_integral<U>::value &&
+                                     std::is_signed<U>::value>::type* = nullptr>
     DynamicModInt(U v) {
         v %= static_cast<signed_t>(mod);
         if (v < 0) v += static_cast<signed_t>(mod);
         val = static_cast<T>(v);
     }
     template<class U, typename std::enable_if<
+                          std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
     DynamicModInt(U v) {
         val = static_cast<T>(v % mod);
@@ -261,18 +258,8 @@ public:
         }
         return res;
     }
-    friend std::ostream& operator<<(std::ostream& ost,
-                                    const DynamicModInt& dm) {
-        return ost << dm.val;
-    }
     template<class Pr> void print(Pr& a) const { a.print(val); }
     template<class Pr> void debug(Pr& a) const { a.print(val); }
-    friend std::istream& operator>>(std::istream& ist, DynamicModInt& dm) {
-        ll v;
-        ist >> v;
-        dm = v;
-        return ist;
-    }
     template<class Sc> void scan(Sc& a) {
         ll v;
         a.scan(v);
