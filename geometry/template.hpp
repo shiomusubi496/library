@@ -25,3 +25,9 @@ inline int cmp(ld a, ld b) {
     return 0;
 }
 #endif
+
+#ifdef GEOMETRY_ANGLE_TYPE
+using angle_t = GEOMETRY_ANGLE_TYPE;
+#else
+using angle_t = ld;
+#endif

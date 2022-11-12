@@ -59,16 +59,16 @@ public:
     friend Real norm(const Point& p) { return p.norm(); }
     Real abs() const { return sqrt(norm()); }
     friend Real abs(const Point& p) { return p.abs(); }
-    Real arg() const { return atan2(y, x); }
-    friend Real arg(const Point& p) { return p.arg(); }
-    Point& rotate(Real theta) {
+    inline angle_t arg() const { return atan2((ld)y, (ld)x); }
+    friend angle_t arg(const Point& p) { return p.arg(); }
+    Point& rotate(angle_t theta) {
         Real c = cos(theta), s = sin(theta);
         Real nx = x * c - y * s, ny = x * s + y * c;
         x = nx;
         y = ny;
         return *this;
     }
-    friend Point rotate(const Point& p, Real theta) {
+    friend Point rotate(const Point& p, angle_t theta) {
         return Point(p).rotate(theta);
     }
     Point& rotate90() {
