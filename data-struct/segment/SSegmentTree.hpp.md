@@ -33,12 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SSegmentTree.md
     document_title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\
@@ -604,7 +604,7 @@ data:
   path: data-struct/segment/SSegmentTree.hpp
   requiredBy: []
   timestamp: '2022-11-12 14:20:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
 documentation_of: data-struct/segment/SSegmentTree.hpp
