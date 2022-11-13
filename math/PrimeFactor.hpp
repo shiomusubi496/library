@@ -5,54 +5,52 @@
 class PrimeFactor {
 private:
     ll MAX;
-    std::vector<ll> era;
+    std::vector<ll> era, primes;
 
 public:
-    PrimeFactor(ll MAX) : MAX(MAX), era(MAX + 1, -1) {
+    PrimeFactor(ll MAX) : MAX(MAX), era(MAX + 1, -1), primes() {
         rep (i, 2, MAX + 1) {
-            if (era[i] != -1) continue;
-            rep (j, i, MAX + 1, i) era[j] = i;
+            if (era[i] == -1) {
+                era[i] = i;
+                primes.push_back(i);
+            }
+            each_const (p : primes) {
+                if (i * p > MAX) break;
+                era[i * p] = p;
+            }
         }
     }
-    bool is_prime(ll x) { return era[x] == x; }
-    std::vector<ll> factorize(ll x) {
+    bool is_prime(ll x) const { return era[x] == x; }
+    std::vector<ll> factorize(ll x) const {
         std::vector<ll> res;
         for (; x > 1; x /= era[x]) res.push_back(era[x]);
         reverse(all(res));
         return res;
     }
-    std::vector<ll> get_primes(ll m = -1) {
-        if (m < 0) m = MAX;
-        std::vector<ll> res;
-        reps (i, m) {
-            if (era[i] == i) res.push_back(i);
-        }
-        return res;
-    }
+    const std::vector<ll>& get_primes() const& { return primes; }
+    std::vector<ll> get_primes() && { return std::move(primes); }
 };
 
 class IsPrime {
 private:
     ll MAX;
     std::vector<bool> era;
+    std::vector<ll> primes;
 
 public:
-    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {
+    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true), primes() {
         era[0] = era[1] = false;
         rep (i, 2, MAX + 1) {
-            if (!era[i]) continue;
-            rep (j, i * 2, MAX + 1, i) era[j] = false;
+            if (era[i]) primes.push_back(i);
+            each_const (p : primes) {
+                if (i * p > MAX) break;
+                era[i * p] = false;
+            }
         }
     }
     bool is_prime(ll x) { return era[x]; }
-    std::vector<ll> get_primes(ll m = -1) {
-        if (m < 0) m = MAX;
-        std::vector<ll> res;
-        reps (i, m) {
-            if (era[i]) res.push_back(i);
-        }
-        return res;
-    }
+    const std::vector<ll>& get_primes() const& { return primes; }
+    std::vector<ll> get_primes() && { return std::move(primes); }
 };
 
 /**
