@@ -47,5 +47,6 @@ PLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD) {
 
 /**
  * @brief Chinese Remainder(中国剰余定理)
+ * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd
  * @docs docs/math/ChineseRemainder.md
  */
