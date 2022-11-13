@@ -282,6 +282,9 @@ data:
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
     - icon: ':heavy_check_mark:'
+      path: math/PollardRho.hpp
+      title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+    - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
     - icon: ':heavy_check_mark:'
@@ -798,6 +801,9 @@ data:
       title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - name: test/yosupo/math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/factorize.test.cpp
+      title: test/yosupo/math/factorize.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp

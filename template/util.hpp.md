@@ -263,6 +263,9 @@ data:
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
   - icon: ':heavy_check_mark:'
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
@@ -716,6 +719,9 @@ data:
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/factorize.test.cpp
+    title: test/yosupo/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_root_integer.test.cpp
     title: test/yosupo/math/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1008,6 +1014,7 @@ data:
   - math/convolution/HadamardTransform.hpp
   - math/convolution/BitwiseXorConvolution.hpp
   - math/MontmortNumber.hpp
+  - math/PollardRho.hpp
   - math/PrimeFactor.hpp
   - math/Divisor.hpp
   - math/MontgomeryModInt.hpp
@@ -1193,6 +1200,7 @@ data:
   - test/yosupo/math/kth_root_integer.test.cpp
   - test/yosupo/math/sum_of_floor_of_linear.test.cpp
   - test/yosupo/math/montmort_number_mod.test.cpp
+  - test/yosupo/math/factorize.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp

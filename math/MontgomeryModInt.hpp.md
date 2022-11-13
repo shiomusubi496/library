@@ -33,7 +33,13 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
+  - icon: ':heavy_check_mark:'
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/factorize.test.cpp
+    title: test/yosupo/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
@@ -567,11 +573,13 @@ data:
   isVerificationFile: false
   path: math/MontgomeryModInt.hpp
   requiredBy:
+  - math/PollardRho.hpp
   - math/MillerRabin.hpp
   timestamp: '2022-11-12 19:29:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/3030-MRPrime.test.cpp
+  - test/yosupo/math/factorize.test.cpp
 documentation_of: math/MontgomeryModInt.hpp
 layout: document
 redirect_from:
