@@ -32,10 +32,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
+    path: math/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/primitive_root.test.cpp
+    title: test/yosupo/new/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
@@ -459,12 +465,14 @@ data:
   isVerificationFile: false
   path: string/RunLength.hpp
   requiredBy:
+  - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   timestamp: '2022-11-12 14:20:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1469-RunLength.test.cpp
   - test/yosupo/math/factorize.test.cpp
+  - test/yosupo/new/primitive_root.test.cpp
 documentation_of: string/RunLength.hpp
 layout: document
 redirect_from:

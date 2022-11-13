@@ -41,11 +41,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/primitive_root.test.cpp
+    title: test/yosupo/new/primitive_root.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -629,11 +635,13 @@ data:
   - string/RunLength.hpp
   isVerificationFile: false
   path: math/PollardRho.hpp
-  requiredBy: []
+  requiredBy:
+  - math/PrimitiveRoot.hpp
   timestamp: '2022-11-13 15:05:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/factorize.test.cpp
+  - test/yosupo/new/primitive_root.test.cpp
 documentation_of: math/PollardRho.hpp
 layout: document
 redirect_from:
@@ -645,5 +653,5 @@ title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
 
 素因数分解を高速に行う。フロイドの循環検出法に基づいている。
 
-- `vector<ull> factorize(ull n)` : `n` を素因数分解し、昇順に素因数を返す。期待 $O(\sqrt[4]{n} \log n)$ であると言われている。
+- `vector<ull> factorize(ull n)` : `n` を素因数分解し、昇順に素因数を返す。期待 $O(\sqrt[4]{n})$ であると言われている。
 - `vector<ll> divisors_pr(ll n)` : `n` の約数を昇順に返す。 $n$ の約数の個数に比例する計算量がかかる。

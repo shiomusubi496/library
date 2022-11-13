@@ -269,6 +269,9 @@ data:
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
+    path: math/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':heavy_check_mark:'
@@ -752,6 +755,9 @@ data:
     path: test/yosupo/new/longest_increasing_subsequence.test.cpp
     title: test/yosupo/new/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/primitive_root.test.cpp
+    title: test/yosupo/new/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1017,6 +1023,7 @@ data:
   - math/convolution/HadamardTransform.hpp
   - math/convolution/BitwiseXorConvolution.hpp
   - math/MontmortNumber.hpp
+  - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   - math/PrimeFactor.hpp
   - math/Divisor.hpp
@@ -1216,6 +1223,7 @@ data:
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/longest_increasing_subsequence.test.cpp
+  - test/yosupo/new/primitive_root.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp

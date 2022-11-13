@@ -288,6 +288,9 @@ data:
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
     - icon: ':heavy_check_mark:'
+      path: math/PrimitiveRoot.hpp
+      title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+    - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
   - name: math/convolution
@@ -838,6 +841,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/longest_increasing_subsequence.test.cpp
       title: test/yosupo/new/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/primitive_root.test.cpp
+      title: test/yosupo/new/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/range_affine_point_get.test.cpp
       title: test/yosupo/new/range_affine_point_get.test.cpp

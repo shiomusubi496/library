@@ -2,11 +2,24 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: math/MontgomeryModInt.hpp
   - icon: ':heavy_check_mark:'
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/Random.hpp
+    title: Random
+  - icon: ':heavy_check_mark:'
+    path: string/RunLength.hpp
+    title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -31,32 +44,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/PollardRho.hpp
-    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: math/PrimitiveRoot.hpp
-    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/factorize.test.cpp
-    title: test/yosupo/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/3030-MRPrime.test.cpp
-    title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/MillerRabin.md
-    document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
-      \u5B9A)"
+    _deprecated_at_docs: docs/math/PrimitiveRoot.md
+    document_title: "PrimitiveRoot(\u539F\u59CB\u6839)"
     links: []
-  bundledCode: "#line 2 \"math/MillerRabin.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/PrimitiveRoot.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -436,7 +436,37 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/MontgomeryModInt.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"random/Random.hpp\"\n\n\
+    #line 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\nprivate:\n\
+    \    Engine rnd;\n\npublic:\n    using result_type = typename Engine::result_type;\n\
+    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
+    \ : rnd(seed) {}\n    result_type operator()() { return rnd(); }\n    template<class\
+    \ IntType = ll> IntType uniform(IntType l, IntType r) {\n        static_assert(std::is_integral<IntType>::value,\n\
+    \                      \"template argument must be an integral type\");\n    \
+    \    assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double>\n    RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\n\
+    \                      \"template argument must be an floating point type\");\n\
+    \        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
+    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
+    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/MontgomeryModInt.hpp\"\
     \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T, int id> class MontgomeryModInt\
     \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
     \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
@@ -503,25 +533,8 @@ data:
     \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
     \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
     \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
-    #line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3] = {2,\
-    \ 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,   \
-    \   28178,\n                                         450775, 9780504, 1795265022};\n\
-    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
-    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
-    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
-    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
-    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
-    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
-    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
-    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
-    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"MontgomeryModInt.hpp\"\
-    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
+    #line 2 \"math/MillerRabin.hpp\"\n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr\
+    \ ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
     \ = {2,      325,     9375,      28178,\n                                    \
     \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
     \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
@@ -536,7 +549,64 @@ data:
     \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
     \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
     #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
+    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 2 \"math/PollardRho.hpp\"\
+    \n\n#line 2 \"string/RunLength.hpp\"\n\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class\
+    \ Cont, class Comp>\nstd::vector<std::pair<typename Cont::value_type, int>>\n\
+    RunLength(const Cont& str, const Comp& cmp) {\n    std::vector<std::pair<typename\
+    \ Cont::value_type, int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
+    \ 1);\n    rep (i, 1, str.size()) {\n        if (cmp(res.back().first, str[i]))\
+    \ ++res.back().second;\n        else res.emplace_back(str[i], 1);\n    }\n   \
+    \ return res;\n}\n\ntemplate<class Cont>\nstd::vector<std::pair<typename Cont::value_type,\
+    \ int>>\nRunLength(const Cont& str) {\n    return RunLength(str, std::equal_to<typename\
+    \ Cont::value_type>());\n}\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\
+    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/string/RunLength.md\n */\n#line 8 \"\
+    math/PollardRho.hpp\"\n\ntemplate<class T, class Rnd>\null pollard_rho(ull n,\
+    \ Rnd& rnd) {\n    if (~n & 1) return 2;\n    if (T::get_mod() != n) T::set_mod(n);\n\
+    \    T c, one = 1;\n    auto f = [&](T x) -> T { return x * x + c; };\n    constexpr\
+    \ int M = 128;\n    while (1) {\n        c = rnd.uniform(1ull, n - 1);\n     \
+    \   T x = rnd.uniform(2ull, n - 1), y = x;\n        ull g = 1;\n        while\
+    \ (g == 1) {\n            T p = one, tx = x, ty = y;\n            rep (M) {\n\
+    \                x = f(x);\n                y = f(f(y));\n                p *=\
+    \ x - y;\n            }\n            g = gcd(p.get(), n);\n            if (g ==\
+    \ 1) continue;\n            rep (M) {\n                tx = f(tx);\n         \
+    \       ty = f(f(ty));\n                g = gcd((tx - ty).get(), n);\n       \
+    \         if (g != 1) {\n                    if (g != n) return g;\n         \
+    \           break;\n                }\n            }\n        }\n    }\n    return\
+    \ -1;\n}\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\n\
+    std::vector<ull> factorize(ull n, Rnd& rnd = rand64) {\n    if (n == 1) return\
+    \ {};\n    std::vector<ull> res;\n    std::vector<ull> st = {n};\n    while (!st.empty())\
+    \ {\n        ull t = st.back();\n        st.pop_back();\n        if (t == 1) continue;\n\
+    \        if (is_prime_mr(t)) {\n            res.push_back(t);\n            continue;\n\
+    \        }\n        ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n\
+    \        st.push_back(t / f);\n    }\n    std::sort(all(res));\n    return res;\n\
+    }\n\nstd::vector<ll> divisors_pr(ll n) {\n    std::vector<ll> res;\n    auto f\
+    \ = factorize(n);\n    auto r = RunLength(f);\n    int m = r.size();\n    rec_lambda([&](auto&&\
+    \ self, int k, ll d) -> void {\n        if (k == m) {\n            res.push_back(d);\n\
+    \            return;\n        }\n        ll t = d;\n        rep (r[k].second)\
+    \ {\n            self(k + 1, d);\n            d *= r[k].first;\n        }\n  \
+    \      self(k + 1, d);\n        d = t;\n    })(0, 1);\n    std::sort(all(res));\n\
+    \    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\u56E0\u6570\u5206\u89E3\
+    )\n * @docs docs/math/PollardRho.md\n */\n#line 8 \"math/PrimitiveRoot.hpp\"\n\
+    \ntemplate<class T = MontgomeryModInt<ull, -4>>\null primitive_root(ull p) {\n\
+    \    assert(is_prime_mr(p));\n    if (p == 2) return 1;\n    if (T::get_mod()\
+    \ != p) T::set_mod(p);\n    auto pf = factorize(p - 1);\n    pf.erase(std::unique(all(pf)),\
+    \ pf.end());\n    each_for (x : pf) x = (p - 1) / x;\n    T one = 1;\n    while\
+    \ (1) {\n        ull g = rand64.uniform(2ull, p - 1);\n        bool ok = true;\n\
+    \        each_const (x : pf) {\n            if (T(g).pow(x) == one) {\n      \
+    \          ok = false;\n                break;\n            }\n        }\n   \
+    \     if (ok) return g;\n    }\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\u59CB\
+    \u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
+    \n#include \"MontgomeryModInt.hpp\"\n#include \"MillerRabin.hpp\"\n#include \"\
+    PollardRho.hpp\"\n\ntemplate<class T = MontgomeryModInt<ull, -4>>\null primitive_root(ull\
+    \ p) {\n    assert(is_prime_mr(p));\n    if (p == 2) return 1;\n    if (T::get_mod()\
+    \ != p) T::set_mod(p);\n    auto pf = factorize(p - 1);\n    pf.erase(std::unique(all(pf)),\
+    \ pf.end());\n    each_for (x : pf) x = (p - 1) / x;\n    T one = 1;\n    while\
+    \ (1) {\n        ull g = rand64.uniform(2ull, p - 1);\n        bool ok = true;\n\
+    \        each_const (x : pf) {\n            if (T(g).pow(x) == one) {\n      \
+    \          ok = false;\n                break;\n            }\n        }\n   \
+    \     if (ok) return g;\n    }\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\u59CB\
+    \u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -547,28 +617,27 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - random/Random.hpp
   - math/MontgomeryModInt.hpp
-  isVerificationFile: false
-  path: math/MillerRabin.hpp
-  requiredBy:
-  - math/PrimitiveRoot.hpp
+  - math/MillerRabin.hpp
   - math/PollardRho.hpp
-  timestamp: '2022-11-12 19:29:55+09:00'
+  - string/RunLength.hpp
+  isVerificationFile: false
+  path: math/PrimitiveRoot.hpp
+  requiredBy: []
+  timestamp: '2022-11-13 22:57:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/3030-MRPrime.test.cpp
-  - test/yosupo/math/factorize.test.cpp
   - test/yosupo/new/primitive_root.test.cpp
-documentation_of: math/MillerRabin.hpp
+documentation_of: math/PrimitiveRoot.hpp
 layout: document
 redirect_from:
-- /library/math/MillerRabin.hpp
-- /library/math/MillerRabin.hpp.html
-title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A)"
+- /library/math/PrimitiveRoot.hpp
+- /library/math/PrimitiveRoot.hpp.html
+title: "PrimitiveRoot(\u539F\u59CB\u6839)"
 ---
 ## 概要
 
-高速に素数判定を行う。本来確率的アルゴリズムだが、 $2^{63}$ 未満の値について決定的に判定できる。
+素数 $p$ に対し、 $\mod p$ における原始根、つまり $p-1$ 乗して始めて $1$ になる数を求める確率的アルゴリズム。
 
-- `bool is_prime_mr(ll n)` : `n` が素数であるか判定する。 $\Theta(\log n)$ 。
-- `constexpr bool is_prime_v<ll n>` : `n` が素数であるかを判定するメタ関数。
+- `ull primitive_root(ull n)` : `n` の原始根を求める。 $O(\sqrt[4]{n})$ 。
