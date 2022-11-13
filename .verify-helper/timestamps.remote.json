@@ -135,6 +135,7 @@
 "test/yosupo/new/gcd_convolution.test.cpp": "2022-11-12 18:01:12 +0900",
 "test/yosupo/new/lcm_convolution.test.cpp": "2022-11-12 18:01:12 +0900",
 "test/yosupo/new/longest_increasing_subsequence.test.cpp": "2022-11-12 14:20:38 +0900",
+"test/yosupo/new/primitive_root.test.cpp": "2022-11-13 22:57:54 +0900",
 "test/yosupo/new/range_affine_point_get.test.cpp": "2022-11-12 18:01:12 +0900",
 "test/yosupo/sample/aplusb.test.cpp": "2022-11-12 14:20:38 +0900",
 "test/yosupo/sample/many_aplusb.test.cpp": "2022-11-12 14:20:38 +0900",
