@@ -42,7 +42,8 @@ data:
   attributes:
     _deprecated_at_docs: docs/math/ChineseRemainder.md
     document_title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    links: []
+    links:
+    - https://qiita.com/drken/items/ae02240cd1f8edfc86fd
   bundledCode: "#line 2 \"math/ChineseRemainder.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
@@ -442,8 +443,8 @@ data:
     \ m[i]) % m[i];\n        if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1)\
     \ {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %=\
     \ m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese\
-    \ Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
-    \ */\n"
+    \ Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n\
+    \ * @docs docs/math/ChineseRemainder.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nPLL ChineseRemainder(ll\
     \ b1, ll m1, ll b2, ll m2) {\n    const PLL p = extGCD(m1, m2);\n    const ll\
     \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
@@ -463,7 +464,8 @@ data:
     \      if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1) {\n            (ans[j]\
     \ += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %= m[j];\n        }\n  \
     \  }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese Remainder(\u4E2D\
-    \u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n */\n"
+    \u56FD\u5270\u4F59\u5B9A\u7406)\n * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n\
+    \ * @docs docs/math/ChineseRemainder.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -477,7 +479,7 @@ data:
   isVerificationFile: false
   path: math/ChineseRemainder.hpp
   requiredBy: []
-  timestamp: '2022-11-13 00:30:13+09:00'
+  timestamp: '2022-11-13 10:38:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/447-CRT.test.cpp

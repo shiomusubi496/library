@@ -441,11 +441,12 @@ data:
     \ * mod_inv(pr[i], m[i]) % m[i];\n        if (t < 0) t += m[i];\n        rep (j,\
     \ i + 1, n + 1) {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j]\
     \ *= m[i]) %= m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n\
-    \ * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
-    \ */\n#line 4 \"test/yuki/448-Garner.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int n; scan >> n;\n    vector<ll> b(n), m(n);\n    rep (i, n) scan >>\
-    \ b[i] >> m[i];\n    auto res = Garner(b, m, 1000000007);\n    if (count(all(b),\
-    \ 0) == n) prints(res.second);\n    else prints(res.first);\n}\n"
+    \ * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n\
+    \ * @docs docs/math/ChineseRemainder.md\n */\n#line 4 \"test/yuki/448-Garner.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int n; scan >> n;\n    vector<ll> b(n),\
+    \ m(n);\n    rep (i, n) scan >> b[i] >> m[i];\n    auto res = Garner(b, m, 1000000007);\n\
+    \    if (count(all(b), 0) == n) prints(res.second);\n    else prints(res.first);\n\
+    }\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/448\"\n#include \"../../other/template.hpp\"\
     \n#include \"../../math/ChineseRemainder.hpp\"\nusing namespace std;\nint main()\
     \ {\n    int n; scan >> n;\n    vector<ll> b(n), m(n);\n    rep (i, n) scan >>\
@@ -465,7 +466,7 @@ data:
   isVerificationFile: true
   path: test/yuki/448-Garner.test.cpp
   requiredBy: []
-  timestamp: '2022-11-13 00:30:13+09:00'
+  timestamp: '2022-11-13 10:38:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/448-Garner.test.cpp
