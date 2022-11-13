@@ -722,6 +722,9 @@ data:
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/enumerate_primes.test.cpp
+    title: test/yosupo/math/enumerate_primes.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1183,6 +1186,7 @@ data:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - test/yosupo/data_structure/line_add_get_min.test.cpp
+  - test/yosupo/math/enumerate_primes.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/math/kth_root_integer.test.cpp
   - test/yosupo/math/sum_of_floor_of_linear.test.cpp

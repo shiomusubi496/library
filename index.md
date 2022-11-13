@@ -802,6 +802,9 @@ data:
   - name: test/yosupo/math
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/enumerate_primes.test.cpp
+      title: test/yosupo/math/enumerate_primes.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/factorize.test.cpp
       title: test/yosupo/math/factorize.test.cpp
     - icon: ':heavy_check_mark:'

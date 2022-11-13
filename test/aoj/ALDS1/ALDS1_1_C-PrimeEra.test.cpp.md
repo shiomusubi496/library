@@ -424,26 +424,28 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/PrimeFactor.hpp\"\n\
     \n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor {\nprivate:\n    ll MAX;\n\
-    \    std::vector<ll> era;\n\npublic:\n    PrimeFactor(ll MAX) : MAX(MAX), era(MAX\
-    \ + 1, -1) {\n        rep (i, 2, MAX + 1) {\n            if (era[i] != -1) continue;\n\
-    \            rep (j, i, MAX + 1, i) era[j] = i;\n        }\n    }\n    bool is_prime(ll\
-    \ x) { return era[x] == x; }\n    std::vector<ll> factorize(ll x) {\n        std::vector<ll>\
-    \ res;\n        for (; x > 1; x /= era[x]) res.push_back(era[x]);\n        reverse(all(res));\n\
-    \        return res;\n    }\n    std::vector<ll> get_primes(ll m = -1) {\n   \
-    \     if (m < 0) m = MAX;\n        std::vector<ll> res;\n        reps (i, m) {\n\
-    \            if (era[i] == i) res.push_back(i);\n        }\n        return res;\n\
-    \    }\n};\n\nclass IsPrime {\nprivate:\n    ll MAX;\n    std::vector<bool> era;\n\
-    \npublic:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true) {\n        era[0]\
-    \ = era[1] = false;\n        rep (i, 2, MAX + 1) {\n            if (!era[i]) continue;\n\
-    \            rep (j, i * 2, MAX + 1, i) era[j] = false;\n        }\n    }\n  \
-    \  bool is_prime(ll x) { return era[x]; }\n    std::vector<ll> get_primes(ll m\
-    \ = -1) {\n        if (m < 0) m = MAX;\n        std::vector<ll> res;\n       \
-    \ reps (i, m) {\n            if (era[i]) res.push_back(i);\n        }\n      \
-    \  return res;\n    }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\
-    \u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n */\n#line\
-    \ 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int n; scan >> n;\n    PrimeFactor PF(100000000);\n    int ans\
-    \ = 0;\n    rep (n) {\n        int a; scan >> a;\n        if (PF.is_prime(a))\
+    \    std::vector<ll> era, primes;\n\npublic:\n    PrimeFactor(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, -1), primes() {\n        rep (i, 2, MAX + 1) {\n            if\
+    \ (era[i] == -1) {\n                era[i] = i;\n                primes.push_back(i);\n\
+    \            }\n            each_const (p : primes) {\n                if (i *\
+    \ p > MAX) break;\n                era[i * p] = p;\n            }\n        }\n\
+    \    }\n    bool is_prime(ll x) const { return era[x] == x; }\n    std::vector<ll>\
+    \ factorize(ll x) const {\n        std::vector<ll> res;\n        for (; x > 1;\
+    \ x /= era[x]) res.push_back(era[x]);\n        reverse(all(res));\n        return\
+    \ res;\n    }\n    const std::vector<ll>& get_primes() const& { return primes;\
+    \ }\n    std::vector<ll> get_primes() && { return std::move(primes); }\n};\n\n\
+    class IsPrime {\nprivate:\n    ll MAX;\n    std::vector<bool> era;\n    std::vector<ll>\
+    \ primes;\n\npublic:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true), primes()\
+    \ {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n       \
+    \     if (era[i]) primes.push_back(i);\n            each_const (p : primes) {\n\
+    \                if (i * p > MAX) break;\n                era[i * p] = false;\n\
+    \            }\n        }\n    }\n    bool is_prime(ll x) { return era[x]; }\n\
+    \    const std::vector<ll>& get_primes() const& { return primes; }\n    std::vector<ll>\
+    \ get_primes() && { return std::move(primes); }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
+    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n\
+    \ */\n#line 4 \"test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n; scan >> n;\n    PrimeFactor PF(100000000);\n\
+    \    int ans = 0;\n    rep (n) {\n        int a; scan >> a;\n        if (PF.is_prime(a))\
     \ ans++;\n    }\n    print << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\
@@ -464,7 +466,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 14:20:38+09:00'
+  timestamp: '2022-11-13 16:42:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp

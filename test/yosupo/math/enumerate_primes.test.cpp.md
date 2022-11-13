@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/MontgomeryModInt.hpp
-    title: math/MontgomeryModInt.hpp
+    path: math/PrimeFactor.hpp
+    title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,26 +31,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/PollardRho.hpp
-    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/factorize.test.cpp
-    title: test/yosupo/math/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/3030-MRPrime.test.cpp
-    title: test/yuki/3030-MRPrime.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/MillerRabin.md
-    document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
-      \u5B9A)"
-    links: []
-  bundledCode: "#line 2 \"math/MillerRabin.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_primes
+    links:
+    - https://judge.yosupo.jp/problem/enumerate_primes
+  bundledCode: "#line 1 \"test/yosupo/math/enumerate_primes.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/enumerate_primes\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -430,107 +422,37 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/MontgomeryModInt.hpp\"\
-    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T, int id> class MontgomeryModInt\
-    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
-    \    using large_t = typename double_size_uint<T>::type;\n    using signed_t =\
-    \ typename std::make_signed<T>::type;\n    T val;\n\n    static constexpr int\
-    \ lg = std::numeric_limits<T>::digits; // r = 2^lg\n    static T mod;\n    static\
-    \ T r2; // r^2 mod m\n\n    static T calc_minv() {\n        T t = 0, res = 0;\n\
-    \        rep (i, lg) {\n            if (~t & 1) {\n                t += mod;\n\
-    \                res += static_cast<T>(1) << i;\n            }\n            t\
-    \ >>= 1;\n        }\n        return res;\n    }\n\n    static T minv; // mod *\
-    \ minv = -1 (mod r)\n\n    // x / R (mod mod)\n    static T reduce(large_t x)\
-    \ {\n        large_t tmp =\n            (x + static_cast<large_t>(static_cast<T>(x)\
-    \ * minv) * mod) >> lg;\n        return tmp >= mod ? tmp - mod : tmp;\n    }\n\
-    \    static T transrate(large_t x) { return reduce(x * r2); }\n\npublic:\n   \
-    \ MontgomeryModInt() : val(0) {}\n    template<class U, typename std::enable_if<\n\
-    \                          std::is_integral<U>::value &&\n                   \
-    \       std::is_unsigned<U>::value>::type* = nullptr>\n    MontgomeryModInt(U\
-    \ x)\n        : val(transrate(x < (static_cast<large_t>(mod) << lg) ? x : x %\
-    \ mod)) {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
-    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
-    \ (x < 0 && val) val = mod - val;\n    }\n\n    T get() const { return reduce(val);\
-    \ }\n    static T get_mod() { return mod; }\n\n    static void set_mod(T v) {\n\
-    \        assert(v > 0);\n        assert(v & 1);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n\
-    \        minv = calc_minv();\n    }\n\n    MontgomeryModInt operator+() const\
-    \ { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
-    \ res;\n        if (val) res.val = mod - val;\n        return res;\n    }\n  \
-    \  MontgomeryModInt& operator++() {\n        val = val + 1 < mod ? val + 1 : 0;\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator--() {\n        val\
-    \ = val ? val - 1 : mod - 1;\n        return *this;\n    }\n    MontgomeryModInt\
-    \ operator++(int) {\n        MontgomeryModInt res = *this;\n        ++*this;\n\
-    \        return res;\n    }\n    MontgomeryModInt operator--(int) {\n        MontgomeryModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    MontgomeryModInt&\
-    \ operator+=(const MontgomeryModInt& rhs) {\n        val += rhs.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    MontgomeryModInt&\
-    \ operator-=(const MontgomeryModInt& rhs) {\n        if (val < rhs.val) val +=\
-    \ mod;\n        val -= rhs.val;\n        return *this;\n    }\n    MontgomeryModInt&\
-    \ operator*=(const MontgomeryModInt& rhs) {\n        val = reduce(static_cast<large_t>(val)\
-    \ * rhs.val);\n        return *this;\n    }\n\n    MontgomeryModInt pow(ull n)\
-    \ const {\n        MontgomeryModInt res = 1, x = *this;\n        while (n) {\n\
-    \            if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n\
-    \        }\n        return res;\n    }\n    MontgomeryModInt inv() const { return\
-    \ pow(mod - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt&\
-    \ rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt\
-    \ operator+(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n\
-    \    }\n    friend MontgomeryModInt operator-(const MontgomeryModInt& lhs,\n \
-    \                                     const MontgomeryModInt& rhs) {\n       \
-    \ return MontgomeryModInt(lhs) -= rhs;\n    }\n    friend MontgomeryModInt operator*(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt\
-    \ operator/(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n\
-    \    }\n\n    friend bool operator==(const MontgomeryModInt& lhs,\n          \
-    \                 const MontgomeryModInt& rhs) {\n        return lhs.val == rhs.val;\n\
-    \    }\n    friend bool operator!=(const MontgomeryModInt& lhs,\n            \
-    \               const MontgomeryModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(reduce(val));\
-    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(reduce(val)); }\n\
-    \    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
-    \        *this = v;\n    }\n};\n\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
-    \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
-    #line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3] = {2,\
-    \ 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,   \
-    \   28178,\n                                         450775, 9780504, 1795265022};\n\
-    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
-    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
-    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
-    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
-    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
-    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
-    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
-    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
-    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"MontgomeryModInt.hpp\"\
-    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
-    \ = {2,      325,     9375,      28178,\n                                    \
-    \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
-    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
-    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/PrimeFactor.hpp\"\n\
+    \n#line 4 \"math/PrimeFactor.hpp\"\n\nclass PrimeFactor {\nprivate:\n    ll MAX;\n\
+    \    std::vector<ll> era, primes;\n\npublic:\n    PrimeFactor(ll MAX) : MAX(MAX),\
+    \ era(MAX + 1, -1), primes() {\n        rep (i, 2, MAX + 1) {\n            if\
+    \ (era[i] == -1) {\n                era[i] = i;\n                primes.push_back(i);\n\
+    \            }\n            each_const (p : primes) {\n                if (i *\
+    \ p > MAX) break;\n                era[i * p] = p;\n            }\n        }\n\
+    \    }\n    bool is_prime(ll x) const { return era[x] == x; }\n    std::vector<ll>\
+    \ factorize(ll x) const {\n        std::vector<ll> res;\n        for (; x > 1;\
+    \ x /= era[x]) res.push_back(era[x]);\n        reverse(all(res));\n        return\
+    \ res;\n    }\n    const std::vector<ll>& get_primes() const& { return primes;\
+    \ }\n    std::vector<ll> get_primes() && { return std::move(primes); }\n};\n\n\
+    class IsPrime {\nprivate:\n    ll MAX;\n    std::vector<bool> era;\n    std::vector<ll>\
+    \ primes;\n\npublic:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true), primes()\
+    \ {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n       \
+    \     if (era[i]) primes.push_back(i);\n            each_const (p : primes) {\n\
+    \                if (i * p > MAX) break;\n                era[i * p] = false;\n\
+    \            }\n        }\n    }\n    bool is_prime(ll x) { return era[x]; }\n\
+    \    const std::vector<ll>& get_primes() const& { return primes; }\n    std::vector<ll>\
+    \ get_primes() && { return std::move(primes); }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
+    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n\
+    \ */\n#line 4 \"test/yosupo/math/enumerate_primes.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, A, B; scan >> N >> A >> B;\n    auto v = IsPrime(N).get_primes();\n\
+    \    vector<int> ans; ans.reserve(v.size());\n    rep (i, B, v.size(), A) ans.push_back(v[i]);\n\
+    \    print << v.size() << \" \" << ans.size() << endl;\n    prints(ans);\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\n\
+    using namespace std;\nint main() {\n    int N, A, B; scan >> N >> A >> B;\n  \
+    \  auto v = IsPrime(N).get_primes();\n    vector<int> ans; ans.reserve(v.size());\n\
+    \    rep (i, B, v.size(), A) ans.push_back(v[i]);\n    print << v.size() << \"\
+    \ \" << ans.size() << endl;\n    prints(ans);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -541,26 +463,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/MontgomeryModInt.hpp
-  isVerificationFile: false
-  path: math/MillerRabin.hpp
-  requiredBy:
-  - math/PollardRho.hpp
-  timestamp: '2022-11-12 19:29:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yuki/3030-MRPrime.test.cpp
-  - test/yosupo/math/factorize.test.cpp
-documentation_of: math/MillerRabin.hpp
+  - math/PrimeFactor.hpp
+  isVerificationFile: true
+  path: test/yosupo/math/enumerate_primes.test.cpp
+  requiredBy: []
+  timestamp: '2022-11-13 16:42:32+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/math/enumerate_primes.test.cpp
 layout: document
 redirect_from:
-- /library/math/MillerRabin.hpp
-- /library/math/MillerRabin.hpp.html
-title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A)"
+- /verify/test/yosupo/math/enumerate_primes.test.cpp
+- /verify/test/yosupo/math/enumerate_primes.test.cpp.html
+title: test/yosupo/math/enumerate_primes.test.cpp
 ---
-## 概要
-
-高速に素数判定を行う。本来確率的アルゴリズムだが、 $2^{63}$ 未満の値について決定的に判定できる。
-
-- `bool is_prime_mr(ll n)` : `n` が素数であるか判定する。 $\Theta(\log n)$ 。
-- `constexpr bool is_prime_v<ll n>` : `n` が素数であるかを判定するメタ関数。
