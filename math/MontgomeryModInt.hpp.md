@@ -53,6 +53,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/math/MontgomeryModInt.md
+    document_title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
     links: []
   bundledCode: "#line 2 \"math/MontgomeryModInt.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
@@ -499,7 +501,9 @@ data:
     \        *this = v;\n    }\n};\n\ntemplate<class T, int id> T MontgomeryModInt<T,\
     \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
     \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n"
+    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
+    \n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)\n\
+    \ * @docs docs/math/MontgomeryModInt.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T, int\
     \ id> class MontgomeryModInt {\n    static_assert(std::is_integral<T>::value,\
     \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
@@ -565,7 +569,9 @@ data:
     \        *this = v;\n    }\n};\n\ntemplate<class T, int id> T MontgomeryModInt<T,\
     \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
     \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n"
+    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
+    \n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)\n\
+    \ * @docs docs/math/MontgomeryModInt.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -582,7 +588,7 @@ data:
   - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   - math/MillerRabin.hpp
-  timestamp: '2022-11-12 19:29:55+09:00'
+  timestamp: '2022-11-14 20:47:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/3030-MRPrime.test.cpp
@@ -593,5 +599,12 @@ layout: document
 redirect_from:
 - /library/math/MontgomeryModInt.hpp
 - /library/math/MontgomeryModInt.hpp.html
-title: math/MontgomeryModInt.hpp
+title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
 ---
+## 概要
+
+モンゴメリ乗算を用いた modint。割り算を `%` や `/` を用いず、加減乗とシフト演算などで行うため、実行時に mod が決まる場合に高速。
+
+[Wikipedia](https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%82%B4%E3%83%A1%E3%83%AA%E4%B9%97%E7%AE%97)
+
+基本的に使い方は `DynamicModInt` と同じなのでそちらを参照。 raw はあまり時間的な嬉しさがないので作ってないが、互換性を考えるとあった方が良いかも

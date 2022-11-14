@@ -7,7 +7,7 @@ data:
       )"
   - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
-    title: math/MontgomeryModInt.hpp
+    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -536,18 +536,20 @@ data:
     \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
     \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
     \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
-    #line 2 \"math/MillerRabin.hpp\"\n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr\
-    \ ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
-    \ = {2,      325,     9375,      28178,\n                                    \
-    \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
-    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
-    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)\n\
+    \ * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
+    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
+    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
+    \      28178,\n                                         450775, 9780504, 1795265022};\n\
+    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
+    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
+    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
+    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
+    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
+    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
+    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
+    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
+    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
     \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
     \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
     \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
@@ -637,7 +639,7 @@ data:
   path: math/PollardRho.hpp
   requiredBy:
   - math/PrimitiveRoot.hpp
-  timestamp: '2022-11-13 15:05:32+09:00'
+  timestamp: '2022-11-14 20:47:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/factorize.test.cpp
