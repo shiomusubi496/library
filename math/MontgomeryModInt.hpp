@@ -161,3 +161,8 @@ T MontgomeryModInt<T, id>::r2 = (-static_cast<large_t>(mod)) % mod;
 template<class T, int id> T MontgomeryModInt<T, id>::minv = calc_minv();
 
 using mmodint = MontgomeryModInt<unsigned int, -1>;
+
+/**
+ * @brief MontgomeryModInt(モンゴメリ乗算)
+ * @docs docs/math/MontgomeryModInt.md
+ */
