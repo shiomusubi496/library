@@ -6,8 +6,7 @@
 #include "MillerRabin.hpp"
 #include "../string/RunLength.hpp"
 
-template<class T, class Rnd>
-ull pollard_rho(ull n, Rnd& rnd) {
+template<class T, class Rnd> ull pollard_rho(ull n, Rnd& rnd) {
     if (~n & 1) return 2;
     if (T::get_mod() != n) T::set_mod(n);
     T c, one = 1;

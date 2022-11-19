@@ -21,11 +21,11 @@ private:
         166374059, 855638017, 873463809, 443664157, 299473306};
 
 public:
-    StaticModInt() : val(0) {}
+    constexpr StaticModInt() : val(0) {}
     template<class U,
              typename std::enable_if<std::is_integral<U>::value &&
                                      std::is_signed<U>::value>::type* = nullptr>
-    StaticModInt(U v) {
+    constexpr StaticModInt(U v) : val{} {
         v %= static_cast<signed_t>(mod);
         if (v < 0) v += static_cast<signed_t>(mod);
         val = static_cast<T>(v);
@@ -33,11 +33,9 @@ public:
     template<class U, typename std::enable_if<
                           std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
-    StaticModInt(U v) {
-        val = static_cast<T>(v % mod);
-    }
+    constexpr StaticModInt(U v) : val(v % mod) {}
     T get() const { return val; }
-    static T get_mod() { return mod; }
+    static constexpr T get_mod() { return mod; }
     static StaticModInt raw(T v) {
         StaticModInt res;
         res.val = v;
@@ -142,8 +140,9 @@ template<class T, T mod>
 constexpr unsigned int StaticModInt<T, mod>::inv998244353[];
 #endif
 
-using modint1000000007 = StaticModInt<unsigned int, 1000000007>;
-using modint998244353 = StaticModInt<unsigned int, 998244353>;
+template<unsigned int p> using static_modint = StaticModInt<unsigned int, p>;
+using modint1000000007 = static_modint<1000000007>;
+using modint998244353 = static_modint<998244353>;
 
 template<class T, int id> class DynamicModInt {
     static_assert(std::is_integral<T>::value, "T must be integral");
@@ -156,11 +155,11 @@ private:
     static T mod;
 
 public:
-    DynamicModInt() : val(0) {}
+    constexpr DynamicModInt() : val(0) {}
     template<class U,
              typename std::enable_if<std::is_integral<U>::value &&
                                      std::is_signed<U>::value>::type* = nullptr>
-    DynamicModInt(U v) {
+    constexpr DynamicModInt(U v) : val{} {
         v %= static_cast<signed_t>(mod);
         if (v < 0) v += static_cast<signed_t>(mod);
         val = static_cast<T>(v);
@@ -168,9 +167,7 @@ public:
     template<class U, typename std::enable_if<
                           std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
-    DynamicModInt(U v) {
-        val = static_cast<T>(v % mod);
-    }
+    constexpr DynamicModInt(U v) : val(v % mod) {}
     T get() const { return val; }
     static T get_mod() { return mod; }
     static void set_mod(T v) {
@@ -269,7 +266,8 @@ public:
 
 template<class T, int id> T DynamicModInt<T, id>::mod = 998244353;
 
-using modint = DynamicModInt<unsigned int, -1>;
+template<int id> using dynamic_modint = DynamicModInt<unsigned int, id>;
+using modint = dynamic_modint<-1>;
 
 /**
  * @brief ModInt

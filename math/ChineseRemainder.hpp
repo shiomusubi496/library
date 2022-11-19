@@ -21,16 +21,22 @@ PLL ChineseRemainder(const std::vector<ll>& b, const std::vector<ll>& m) {
 
 PLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD) {
     const int n = b.size();
-    rep (i, n) rep (j, i) {
-        ll g = gcd(m[i], m[j]);
-        if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};
-        m[i] /= g; m[j] /= g;
-        ll gi = gcd(m[i], g), gj = g / gi;
-        for (g = gcd(gi, gj); g != 1; g = gcd(gi, gj)) {
-            gi *= g; gj /= g;
+    rep (i, n) {
+        rep (j, i) {
+            ll g = gcd(m[i], m[j]);
+            if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};
+            m[i] /= g;
+            m[j] /= g;
+            ll gi = gcd(m[i], g), gj = g / gi;
+            for (g = gcd(gi, gj); g != 1; g = gcd(gi, gj)) {
+                gi *= g;
+                gj /= g;
+            }
+            m[i] *= gi;
+            m[j] *= gj;
+            b[i] %= m[i];
+            b[j] %= m[j];
         }
-        m[i] *= gi; m[j] *= gj;
-        b[i] %= m[i]; b[j] %= m[j];
     }
     m.push_back(MOD);
     std::vector<ll> ans(n + 1), pr(n + 1, 1);
