@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yuki/448-Garner.test.cpp
     title: test/yuki/448-Garner.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/ChineseRemainder.md
     document_title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
@@ -335,7 +335,14 @@ data:
     \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
     \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
-    \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n\ninline CONSTEXPR ull reverse(ull x)\
+    \ {\n    x = ((x & 0xAAAAAAAAAAAAAAAA) >> 1) | ((x & 0x5555555555555555) << 1);\n\
+    \    x = ((x & 0xCCCCCCCCCCCCCCCC) >> 2) | ((x & 0x3333333333333333) << 2);\n\
+    \    x = ((x & 0xF0F0F0F0F0F0F0F0) >> 4) | ((x & 0x0F0F0F0F0F0F0F0F) << 4);\n\
+    \    x = ((x & 0xFF00FF00FF00FF00) >> 8) | ((x & 0x00FF00FF00FF00FF) << 8);\n\
+    \    x = ((x & 0xFFFF0000FFFF0000) >> 16) | ((x & 0x0000FFFF0000FFFF) << 16);\n\
+    \    return (x >> 32) | (x << 32);\n}\n\ninline CONSTEXPR ull reverse(ull x, int\
+    \ n) { return reverse(x) >> (64 - n); }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);\n    x =\
@@ -433,18 +440,20 @@ data:
     \   PLL res{0, 1};\n    rep (i, b.size()) {\n        res = ChineseRemainder(res.first,\
     \ res.second, b[i], m[i]);\n        if (res.first == -1) return res;\n    }\n\
     \    return res;\n}\n\nPLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD)\
-    \ {\n    const int n = b.size();\n    rep (i, n) rep (j, i) {\n        ll g =\
-    \ gcd(m[i], m[j]);\n        if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};\n\
-    \        m[i] /= g; m[j] /= g;\n        ll gi = gcd(m[i], g), gj = g / gi;\n \
-    \       for (g = gcd(gi, gj); g != 1; g = gcd(gi, gj)) {\n            gi *= g;\
-    \ gj /= g;\n        }\n        m[i] *= gi; m[j] *= gj;\n        b[i] %= m[i];\
-    \ b[j] %= m[j];\n    }\n    m.push_back(MOD);\n    std::vector<ll> ans(n + 1),\
-    \ pr(n + 1, 1);\n    rep (i, n) {\n        ll t = (b[i] - ans[i]) * mod_inv(pr[i],\
-    \ m[i]) % m[i];\n        if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1)\
-    \ {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %=\
-    \ m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese\
-    \ Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
-    \ * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n */\n"
+    \ {\n    const int n = b.size();\n    rep (i, n) {\n        rep (j, i) {\n   \
+    \         ll g = gcd(m[i], m[j]);\n            if ((b[i] - b[j]) % g != 0) return\
+    \ PLL{-1, -1};\n            m[i] /= g;\n            m[j] /= g;\n            ll\
+    \ gi = gcd(m[i], g), gj = g / gi;\n            for (g = gcd(gi, gj); g != 1; g\
+    \ = gcd(gi, gj)) {\n                gi *= g;\n                gj /= g;\n     \
+    \       }\n            m[i] *= gi;\n            m[j] *= gj;\n            b[i]\
+    \ %= m[i];\n            b[j] %= m[j];\n        }\n    }\n    m.push_back(MOD);\n\
+    \    std::vector<ll> ans(n + 1), pr(n + 1, 1);\n    rep (i, n) {\n        ll t\
+    \ = (b[i] - ans[i]) * mod_inv(pr[i], m[i]) % m[i];\n        if (t < 0) t += m[i];\n\
+    \        rep (j, i + 1, n + 1) {\n            (ans[j] += t * pr[j]) %= m[j];\n\
+    \            (pr[j] *= m[i]) %= m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n\
+    }\n\n/**\n * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n\
+    \ * @docs docs/math/ChineseRemainder.md\n * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nPLL ChineseRemainder(ll\
     \ b1, ll m1, ll b2, ll m2) {\n    const PLL p = extGCD(m1, m2);\n    const ll\
     \ g = p.first * m1 + p.second * m2;\n    const ll l = m1 / g * m2;\n    if ((b2\
@@ -454,18 +463,19 @@ data:
     \ (i, b.size()) {\n        res = ChineseRemainder(res.first, res.second, b[i],\
     \ m[i]);\n        if (res.first == -1) return res;\n    }\n    return res;\n}\n\
     \nPLL Garner(std::vector<ll> b, std::vector<ll> m, ll MOD) {\n    const int n\
-    \ = b.size();\n    rep (i, n) rep (j, i) {\n        ll g = gcd(m[i], m[j]);\n\
-    \        if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};\n        m[i] /= g; m[j]\
-    \ /= g;\n        ll gi = gcd(m[i], g), gj = g / gi;\n        for (g = gcd(gi,\
-    \ gj); g != 1; g = gcd(gi, gj)) {\n            gi *= g; gj /= g;\n        }\n\
-    \        m[i] *= gi; m[j] *= gj;\n        b[i] %= m[i]; b[j] %= m[j];\n    }\n\
-    \    m.push_back(MOD);\n    std::vector<ll> ans(n + 1), pr(n + 1, 1);\n    rep\
-    \ (i, n) {\n        ll t = (b[i] - ans[i]) * mod_inv(pr[i], m[i]) % m[i];\n  \
-    \      if (t < 0) t += m[i];\n        rep (j, i + 1, n + 1) {\n            (ans[j]\
-    \ += t * pr[j]) %= m[j];\n            (pr[j] *= m[i]) %= m[j];\n        }\n  \
-    \  }\n    return {ans[n], pr[n]};\n}\n\n/**\n * @brief Chinese Remainder(\u4E2D\
-    \u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n * @see\
-    \ https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n */\n"
+    \ = b.size();\n    rep (i, n) {\n        rep (j, i) {\n            ll g = gcd(m[i],\
+    \ m[j]);\n            if ((b[i] - b[j]) % g != 0) return PLL{-1, -1};\n      \
+    \      m[i] /= g;\n            m[j] /= g;\n            ll gi = gcd(m[i], g), gj\
+    \ = g / gi;\n            for (g = gcd(gi, gj); g != 1; g = gcd(gi, gj)) {\n  \
+    \              gi *= g;\n                gj /= g;\n            }\n           \
+    \ m[i] *= gi;\n            m[j] *= gj;\n            b[i] %= m[i];\n          \
+    \  b[j] %= m[j];\n        }\n    }\n    m.push_back(MOD);\n    std::vector<ll>\
+    \ ans(n + 1), pr(n + 1, 1);\n    rep (i, n) {\n        ll t = (b[i] - ans[i])\
+    \ * mod_inv(pr[i], m[i]) % m[i];\n        if (t < 0) t += m[i];\n        rep (j,\
+    \ i + 1, n + 1) {\n            (ans[j] += t * pr[j]) %= m[j];\n            (pr[j]\
+    \ *= m[i]) %= m[j];\n        }\n    }\n    return {ans[n], pr[n]};\n}\n\n/**\n\
+    \ * @brief Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)\n * @docs docs/math/ChineseRemainder.md\n\
+    \ * @see https://qiita.com/drken/items/ae02240cd1f8edfc86fd\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -479,8 +489,8 @@ data:
   isVerificationFile: false
   path: math/ChineseRemainder.hpp
   requiredBy: []
-  timestamp: '2022-11-13 15:05:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-11-19 18:47:17+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yuki/447-CRT.test.cpp
   - test/yuki/448-Garner.test.cpp

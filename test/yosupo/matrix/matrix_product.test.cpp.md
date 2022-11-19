@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -336,7 +336,14 @@ data:
     \ 8;\n    if (x & 0xF0F0F0F0F0F0F0F0) x &= 0xF0F0F0F0F0F0F0F0, res += 4;\n   \
     \ if (x & 0xCCCCCCCCCCCCCCCC) x &= 0xCCCCCCCCCCCCCCCC, res += 2;\n    return res\
     \ + ((x & 0xAAAAAAAAAAAAAAAA) ? 1 : 0);\n}\n\ninline CONSTEXPR int ceil_log2(ull\
-    \ x) { return x ? msb(x - 1) + 1 : 0; }\n\n} // namespace bitop\n\ninline CONSTEXPR\
+    \ x) { return x ? msb(x - 1) + 1 : 0; }\n\ninline CONSTEXPR ull reverse(ull x)\
+    \ {\n    x = ((x & 0xAAAAAAAAAAAAAAAA) >> 1) | ((x & 0x5555555555555555) << 1);\n\
+    \    x = ((x & 0xCCCCCCCCCCCCCCCC) >> 2) | ((x & 0x3333333333333333) << 2);\n\
+    \    x = ((x & 0xF0F0F0F0F0F0F0F0) >> 4) | ((x & 0x0F0F0F0F0F0F0F0F) << 4);\n\
+    \    x = ((x & 0xFF00FF00FF00FF00) >> 8) | ((x & 0x00FF00FF00FF00FF) << 8);\n\
+    \    x = ((x & 0xFFFF0000FFFF0000) >> 16) | ((x & 0x0000FFFF0000FFFF) << 16);\n\
+    \    return (x >> 32) | (x << 32);\n}\n\ninline CONSTEXPR ull reverse(ull x, int\
+    \ n) { return reverse(x) >> (64 - n); }\n\n} // namespace bitop\n\ninline CONSTEXPR\
     \ int popcnt(ull x) noexcept {\n#if __cplusplus >= 202002L\n    return std::popcount(x);\n\
     #endif\n    x = (x & 0x5555555555555555) + ((x >> 1) & 0x5555555555555555);\n\
     \    x = (x & 0x3333333333333333) + ((x >> 2) & 0x3333333333333333);\n    x =\
@@ -437,140 +444,140 @@ data:
     \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
     \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
     \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    StaticModInt() : val(0) {}\n    template<class U,\n           \
-    \  typename std::enable_if<std::is_integral<U>::value &&\n                   \
-    \                  std::is_signed<U>::value>::type* = nullptr>\n    StaticModInt(U\
-    \ v) {\n        v %= static_cast<signed_t>(mod);\n        if (v < 0) v += static_cast<signed_t>(mod);\n\
-    \        val = static_cast<T>(v);\n    }\n    template<class U, typename std::enable_if<\n\
-    \                          std::is_integral<U>::value &&\n                   \
-    \       std::is_unsigned<U>::value>::type* = nullptr>\n    StaticModInt(U v) {\n\
-    \        val = static_cast<T>(v % mod);\n    }\n    T get() const { return val;\
-    \ }\n    static T get_mod() { return mod; }\n    static StaticModInt raw(T v)\
-    \ {\n        StaticModInt res;\n        res.val = v;\n        return res;\n  \
-    \  }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR (mod == 1000000007)\
-    \ {\n            if (val <= 10) return inv1000000007[val];\n        }\n      \
-    \  else if IF_CONSTEXPR (mod == 998244353) {\n            if (val <= 10) return\
-    \ inv998244353[val];\n        }\n        return mod_inv(val, mod);\n    }\n  \
-    \  StaticModInt& operator++() {\n        ++val;\n        if (val == mod) val =\
-    \ 0;\n        return *this;\n    }\n    StaticModInt operator++(int) {\n     \
-    \   StaticModInt res = *this;\n        ++*this;\n        return res;\n    }\n\
-    \    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n        --val;\n\
-    \        return *this;\n    }\n    StaticModInt operator--(int) {\n        StaticModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n    StaticModInt&\
-    \ operator+=(const StaticModInt& other) {\n        val += other.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator-=(const StaticModInt& other) {\n        if (val < other.val) val +=\
-    \ mod;\n        val -= other.val;\n        return *this;\n    }\n    StaticModInt&\
-    \ operator*=(const StaticModInt& other) {\n        large_t a = val;\n        a\
-    \ *= other.val;\n        a %= mod;\n        val = a;\n        return *this;\n\
-    \    }\n    StaticModInt& operator/=(const StaticModInt& other) {\n        *this\
-    \ *= other.inv();\n        return *this;\n    }\n    friend StaticModInt operator+(const\
-    \ StaticModInt& lhs,\n                                  const StaticModInt& rhs)\
-    \ {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend StaticModInt\
-    \ operator-(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n    }\n    friend\
-    \ StaticModInt operator*(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) *= rhs;\n\
-    \    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n         \
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
     \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ /= rhs;\n    }\n    StaticModInt operator+() const { return StaticModInt(*this);\
-    \ }\n    StaticModInt operator-() const { return StaticModInt() - *this; }\n \
-    \   friend bool operator==(const StaticModInt& lhs, const StaticModInt& rhs) {\n\
-    \        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const StaticModInt&\
-    \ lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n    }\n\
-    \    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res = 1;\n\
-    \        while (a) {\n            if (a & 1) res *= v;\n            a >>= 1;\n\
-    \            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
     \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
     \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
     \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
     \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\nusing modint1000000007 = StaticModInt<unsigned\
-    \ int, 1000000007>;\nusing modint998244353 = StaticModInt<unsigned int, 998244353>;\n\
-    \ntemplate<class T, int id> class DynamicModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n\
-    \    using signed_t = typename std::make_signed<T>::type;\n    T val;\n    static\
-    \ T mod;\n\npublic:\n    DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
     \             typename std::enable_if<std::is_integral<U>::value &&\n        \
     \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  DynamicModInt(U v) {\n        v %= static_cast<signed_t>(mod);\n        if\
-    \ (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
     \    }\n    template<class U, typename std::enable_if<\n                     \
     \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    DynamicModInt(U v) {\n        val = static_cast<T>(v % mod);\n\
-    \    }\n    T get() const { return val; }\n    static T get_mod() { return mod;\
-    \ }\n    static void set_mod(T v) {\n        assert(v > 0);\n        assert(v\
-    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n    }\n    static\
-    \ DynamicModInt raw(T v) {\n        DynamicModInt res;\n        res.val = v;\n\
-    \        return res;\n    }\n    DynamicModInt inv() const { return mod_inv(val,\
-    \ mod); }\n    DynamicModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    DynamicModInt operator++(int)\
-    \ {\n        DynamicModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    DynamicModInt& operator--() {\n        if (val == 0) val = mod;\n\
-    \        --val;\n        return *this;\n    }\n    DynamicModInt operator--(int)\
-    \ {\n        DynamicModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    DynamicModInt& operator+=(const DynamicModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    DynamicModInt& operator-=(const DynamicModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    DynamicModInt& operator*=(const DynamicModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    DynamicModInt& operator/=(const DynamicModInt&\
-    \ other) {\n        *this *= other.inv();\n        return *this;\n    }\n    friend\
-    \ DynamicModInt operator+(const DynamicModInt& lhs,\n                        \
-    \           const DynamicModInt& rhs) {\n        return DynamicModInt(lhs) +=\
-    \ rhs;\n    }\n    friend DynamicModInt operator-(const DynamicModInt& lhs,\n\
-    \                                   const DynamicModInt& rhs) {\n        return\
-    \ DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt operator*(const\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
     \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n    friend DynamicModInt\
-    \ operator/(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) /= rhs;\n    }\n  \
-    \  DynamicModInt operator+() const { return DynamicModInt(*this); }\n    DynamicModInt\
-    \ operator-() const { return DynamicModInt() - *this; }\n    friend bool operator==(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val == rhs.val;\n\
-    \    }\n    friend bool operator!=(const DynamicModInt& lhs, const DynamicModInt&\
-    \ rhs) {\n        return lhs.val != rhs.val;\n    }\n    DynamicModInt pow(ll\
-    \ a) const {\n        DynamicModInt v = *this, res = 1;\n        while (a) {\n\
-    \            if (a & 1) res *= v;\n            a >>= 1;\n            v *= v;\n\
-    \        }\n        return res;\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(val); }\n    template<class Pr> void debug(Pr& a) const {\
-    \ a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n\
-    \        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class T, int id>\
-    \ T DynamicModInt<T, id>::mod = 998244353;\n\nusing modint = DynamicModInt<unsigned\
-    \ int, -1>;\n\n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line\
-    \ 2 \"math/matrix/Matrix.hpp\"\n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class\
-    \ T> class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using\
-    \ Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n  \
-    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
-    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base& v)\
-    \ : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
-    \ get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i]\
-    \ = T{1};\n        return res;\n    }\n    int height() const { return this->size();\
-    \ }\n    int width() const { return (*this)[0].size(); }\n    Matrix& operator+=(const\
-    \ Matrix& other) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] += other[i][j];\n        }\n        return *this;\n    }\n   \
-    \ Matrix& operator-=(const Matrix& other) {\n        rep (i, this->size()) {\n\
-    \            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];\n      \
-    \  }\n        return *this;\n    }\n    Matrix& operator*=(const Matrix& other)\
-    \ {\n        assert(this->width() == other.height());\n        Matrix res(this->size(),\
-    \ other[0].size());\n        rep (i, this->size()) {\n            rep (k, other.size())\
-    \ {\n                rep (j, other[0].size())\n                    res[i][j] +=\
-    \ (*this)[i][k] * other[k][j];\n            }\n        }\n        return *this\
-    \ = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n        rep (i, this->size())\
-    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] *= s;\n        }\n \
-    \       return *this;\n    }\n    friend Matrix operator+(const Matrix& lhs, const\
-    \ Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend Matrix\
-    \ operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, int rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    Matrix\
-    \ pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n       \
-    \ while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n       \
-    \     b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\
-    \u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
+    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
+    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
+    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
+    \            rep (k, other.size()) {\n                rep (j, other[0].size())\n\
+    \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
+    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
+    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
     int main() {\n    int N, M, K; scan >> N >> M >> K;\n    Mat A(N, M); scan >>\
     \ A;\n    Mat B(M, K); scan >> B;\n    Mat C = A * B;\n    each_const (v : C)\
@@ -596,8 +603,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-11-12 18:01:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-19 18:47:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_product.test.cpp
 layout: document
