@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -31,14 +31,20 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/mst/CountSpanningTree.hpp
+    title: graph/mst/CountSpanningTree.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Determinant.md
     document_title: "Determinant(\u884C\u5217\u5F0F)"
@@ -438,54 +444,54 @@ data:
     \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
     \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
     \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
-    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
-    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
-    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
-    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
-    \            rep (k, other.size()) {\n                rep (j, other[0].size())\n\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    Matrix& operator+=(const Matrix& other) {\n\
+    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
+    \ Matrix& other) {\n        rep (i, this->height()) {\n            rep (j, this->width())\
+    \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
+    \        Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \ s) {\n        rep (i, height()) {\n            rep (j, width()) (*this)[i][j]\
+    \ *= s;\n        }\n        return *this;\n    }\n    friend Matrix operator+(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n\
+    \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs) *=\
+    \ rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(height());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
     \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
     \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.height()\
-    \ == mat.width());\n    const int n = mat.height();\n    T res = 1;\n    rep (i,\
-    \ n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n     \
-    \           if (mat[j][i] != 0) {\n                    swap(mat[i], mat[j]);\n\
-    \                    res = -res;\n                    break;\n               \
-    \ }\n            }\n        }\n        if (mat[i][i] == 0) {\n            return\
-    \ T{0};\n        }\n        {\n            const T s = mat[i][i];\n          \
-    \  res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n        rep (j,\
-    \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
-    \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    T res2\
-    \ = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return res * res2;\n}\n\n/**\n\
-    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
+    \ == mat.width());\n    const int n = mat.height();\n    if (n == 0) return 1;\n\
+    \    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n           \
+    \ rep (j, i + 1, n) {\n                if (mat[j][i] != 0) {\n               \
+    \     swap(mat[i], mat[j]);\n                    res = -res;\n               \
+    \     break;\n                }\n            }\n        }\n        if (mat[i][i]\
+    \ == 0) {\n            return T{0};\n        }\n        {\n            const T\
+    \ s = mat[i][i];\n            res *= s;\n            rep (j, n) mat[i][j] /= s;\n\
+    \        }\n        rep (j, n) {\n            if (j == i) continue;\n        \
+    \    const T s = mat[j][i];\n            rep (k, n) mat[j][k] -= mat[i][k] * s;\n\
+    \        }\n    }\n    T res2 = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return\
+    \ res * res2;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.height()\
-    \ == mat.width());\n    const int n = mat.height();\n    T res = 1;\n    rep (i,\
-    \ n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n     \
-    \           if (mat[j][i] != 0) {\n                    swap(mat[i], mat[j]);\n\
-    \                    res = -res;\n                    break;\n               \
-    \ }\n            }\n        }\n        if (mat[i][i] == 0) {\n            return\
-    \ T{0};\n        }\n        {\n            const T s = mat[i][i];\n          \
-    \  res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n        rep (j,\
-    \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
-    \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    T res2\
-    \ = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return res * res2;\n}\n\n/**\n\
-    \ * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
+    \ == mat.width());\n    const int n = mat.height();\n    if (n == 0) return 1;\n\
+    \    T res = 1;\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n           \
+    \ rep (j, i + 1, n) {\n                if (mat[j][i] != 0) {\n               \
+    \     swap(mat[i], mat[j]);\n                    res = -res;\n               \
+    \     break;\n                }\n            }\n        }\n        if (mat[i][i]\
+    \ == 0) {\n            return T{0};\n        }\n        {\n            const T\
+    \ s = mat[i][i];\n            res *= s;\n            rep (j, n) mat[i][j] /= s;\n\
+    \        }\n        rep (j, n) {\n            if (j == i) continue;\n        \
+    \    const T s = mat[j][i];\n            rep (k, n) mat[j][k] -= mat[i][k] * s;\n\
+    \        }\n    }\n    T res2 = 1;\n    rep (i, n) res2 *= mat[i][i];\n    return\
+    \ res * res2;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -500,10 +506,12 @@ data:
   - math/matrix/Matrix.hpp
   isVerificationFile: false
   path: math/matrix/Determinant.hpp
-  requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - graph/mst/CountSpanningTree.hpp
+  timestamp: '2022-11-20 13:02:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document

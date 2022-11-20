@@ -1,16 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LinearRMQ.hpp
-    title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
-      RMQ)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SparseTable.hpp
-    title: SparseTable
-  - icon: ':heavy_check_mark:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+  - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':question:'
+    path: math/matrix/Determinant.hpp
+    title: "Determinant(\u884C\u5217\u5F0F)"
+  - icon: ':question:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -39,35 +38,35 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
-    links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#line 1 \"test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    links: []
+  bundledCode: "#line 2 \"graph/mst/CountSpanningTree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -436,158 +435,103 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/segment/LinearRMQ.hpp\"\
-    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
-    \n\n#line 5 \"data-struct/segment/SparseTable.hpp\"\n\ntemplate<class M> class\
-    \ SparseTable {\nprivate:\n    using T = typename M::value_type;\n    int h, ori;\n\
-    \    std::vector<int> logtable;\n    std::vector<std::vector<T>> data;\n    T\
-    \ internal_prod(int l, int r) const {\n        assert(0 <= l && l < r && r <=\
-    \ ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l], data[d][r\
-    \ - (1 << d)]);\n    }\n\npublic:\n    SparseTable() = default;\n    SparseTable(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<Monoid::has_id<M>::value &&\n          \
-    \                           AlwaysTrue>::type* = nullptr>\n    T prod(int l, int\
-    \ r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
-    \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
-    \ */\n#line 6 \"data-struct/segment/LinearRMQ.hpp\"\n\ntemplate<class M> class\
-    \ LinearRMQ {\nprivate:\n    using T = typename M::value_type;\n    int n, b,\
-    \ m;\n    std::vector<T> v;\n    std::vector<std::vector<int>> bt;\n    SparseTable<M>\
-    \ st;\n    std::vector<int> lsbtable;\n    int prod_in_backet(int k, int l, int\
-    \ r) const {\n        int a = bt[k][r] & ~((1 << l) - 1);\n        if (a == 0)\
-    \ return r;\n        return lsbtable[a];\n    }\n    T internal_prod(int l, int\
-    \ r) const {\n        assert(0 <= l && l < r && r <= n);\n        --r;\n     \
-    \   int lb = l / b, rb = r / b;\n        int lp = l - lb * b, rp = r - rb * b;\n\
-    \        if (lb == rb) return v[lb * b + prod_in_backet(lb, lp, rp)];\n      \
-    \  if (lb + 1 == rb) {\n            int x = lb * b + prod_in_backet(lb, lp, b\
-    \ - 1),\n                y = rb * b + prod_in_backet(rb, 0, rp);\n           \
-    \ return M::op(v[x], v[y]);\n        }\n        T res = st.prod(lb + 1, rb);\n\
-    \        {\n            int a = lb * b + prod_in_backet(lb, lp, b - 1);\n    \
-    \        res = M::op(v[a], res);\n        }\n        {\n            int a = rb\
-    \ * b + prod_in_backet(rb, 0, rp);\n            res = M::op(res, v[a]);\n    \
-    \    }\n        return res;\n    }\n\npublic:\n    LinearRMQ() = default;\n  \
-    \  LinearRMQ(const std::vector<T>& v_) { init(v_); }\n    void init(const std::vector<T>&\
-    \ v_) {\n        v = v_;\n        n = v.size();\n        b = bitop::msb(n) / 2\
-    \ + 1;\n        m = (n + b - 1) / b;\n        bt.assign(m, std::vector<int>(b,\
-    \ 0));\n        std::vector<int> sta;\n        sta.reserve(b);\n        rep (i,\
-    \ m) {\n            rep (j, b) {\n                if (i * b + j >= n) break;\n\
-    \                while (!sta.empty() && M::op(v[i * b + sta.back()],\n       \
-    \                                      v[i * b + j]) == v[i * b + j])\n      \
-    \              sta.pop_back();\n                if (!sta.empty()) {\n        \
-    \            int t = sta.back();\n                    bt[i][j] = bt[i][t] | (1\
-    \ << t);\n                }\n                sta.push_back(j);\n            }\n\
-    \            sta.clear();\n        }\n        std::vector<T> stv(m);\n       \
-    \ rep (i, m) {\n            stv[i] = v[i * b];\n            rep (j, i * b + 1,\
-    \ (i + 1) * b) {\n                if (j >= n) break;\n                stv[i] =\
-    \ M::op(stv[i], v[j]);\n            }\n        }\n        st.init(stv);\n    \
-    \    lsbtable.resize(1 << b);\n        rep (i, b) {\n            rep (j, 1 <<\
-    \ i, 1 << b, 1 << (i + 1)) lsbtable[j] = i;\n        }\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T prod(int l, int r) const {\n        if (l == r) return M::id();\n        return\
-    \ internal_prod(l, r);\n    }\n    template<bool AlwaysTrue = true,\n        \
-    \     typename std::enable_if<!Monoid::has_id<M>::value &&\n                 \
-    \                    AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r) const\
-    \ {\n        return internal_prod(l, r);\n    }\n};\n\n/**\n * @brief LinearRMQ(\u524D\
-    \u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306ERMQ)\n * @docs\
-    \ docs/data-struct/segment/LinearRMQ.md\n */\n#line 4 \"test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
-    \ A(N); scan >> A;\n    LinearRMQ<Monoid::Min<int>> RMQ(A);\n    rep (Q) {\n \
-    \       int l, r; scan >> l >> r;\n        print << RMQ.prod(l, r) << endl;\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
-    ../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LinearRMQ.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
-    \ A(N); scan >> A;\n    LinearRMQ<Monoid::Min<int>> RMQ(A);\n    rep (Q) {\n \
-    \       int l, r; scan >> l >> r;\n        print << RMQ.prod(l, r) << endl;\n\
-    \    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line\
+    \ 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
+    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
+    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
+    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \ get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz) res[i][i]\
+    \ = T{1};\n        return res;\n    }\n    int height() const { return this->size();\
+    \ }\n    int width() const { return this->size() ? (*this)[0].size() : 0; }\n\
+    \    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
+    \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
+    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, height()) {\n            rep (j, width()) (*this)[i][j]\
+    \ *= s;\n        }\n        return *this;\n    }\n    friend Matrix operator+(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n\
+    \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs) *=\
+    \ rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
+    \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 2 \"math/matrix/Determinant.hpp\"\
+    \n\n#line 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
+    \ mat) {\n    assert(mat.height() == mat.width());\n    const int n = mat.height();\n\
+    \    if (n == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i]\
+    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
+    \ {\n                    swap(mat[i], mat[j]);\n                    res = -res;\n\
+    \                    break;\n                }\n            }\n        }\n   \
+    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        {\n\
+    \            const T s = mat[i][i];\n            res *= s;\n            rep (j,\
+    \ n) mat[i][j] /= s;\n        }\n        rep (j, n) {\n            if (j == i)\
+    \ continue;\n            const T s = mat[j][i];\n            rep (k, n) mat[j][k]\
+    \ -= mat[i][k] * s;\n        }\n    }\n    T res2 = 1;\n    rep (i, n) res2 *=\
+    \ mat[i][i];\n    return res * res2;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\
+    \u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
+    \n\ntemplate<class T, class U> T CountSpanningTree(const Graph<U>& G) {\n    const\
+    \ int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i]\
+    \ += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i]) {\n\
+    \            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n   \
+    \     }\n    }\n    return determinant(A);\n}\n"
+  code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../../math/matrix/Matrix.hpp\"\
+    \n#include \"../../math/matrix/Determinant.hpp\"\n\ntemplate<class T, class U>\
+    \ T CountSpanningTree(const Graph<U>& G) {\n    const int N = G.size();\n    Matrix<T>\
+    \ A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i] += G[i + 1].size();\n    rep (i,\
+    \ 1, N) {\n        each_const (e : G[i]) {\n            if (e.to == 0) continue;\n\
+    \            --A[i - 1][e.to - 1];\n        }\n    }\n    return determinant(A);\n\
+    }\n"
   dependsOn:
+  - graph/Graph.hpp
   - other/template.hpp
   - template/macros.hpp
   - template/alias.hpp
@@ -597,19 +541,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - other/monoid.hpp
-  - data-struct/segment/SparseTable.hpp
-  isVerificationFile: true
-  path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - math/matrix/Matrix.hpp
+  - math/matrix/Determinant.hpp
+  isVerificationFile: false
+  path: graph/mst/CountSpanningTree.hpp
   requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  timestamp: '2022-11-20 13:02:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-- /verify/test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp.html
-title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+- /library/graph/mst/CountSpanningTree.hpp
+- /library/graph/mst/CountSpanningTree.hpp.html
+title: graph/mst/CountSpanningTree.hpp
 ---

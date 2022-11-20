@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/CartesianTree.md
     document_title: CartesianTree
@@ -525,7 +525,7 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp

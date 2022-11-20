@@ -51,12 +51,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
     title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/unionfind/UnionFind.md
     document_title: UnionFind
@@ -496,13 +499,14 @@ data:
   - graph/mst/Prim.hpp
   - graph/mst/Kruskal.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document

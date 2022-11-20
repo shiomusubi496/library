@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product
@@ -556,25 +556,25 @@ data:
     \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
     \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
     \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
-    \ const { return this->size(); }\n    int width() const { return (*this)[0].size();\
-    \ }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->size())\
-    \ {\n            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];\n  \
-    \      }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
-    \ {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->size(), other[0].size());\n        rep (i, this->size()) {\n\
-    \            rep (k, other.size()) {\n                rep (j, other[0].size())\n\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    Matrix& operator+=(const Matrix& other) {\n\
+    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
+    \ Matrix& other) {\n        rep (i, this->height()) {\n            rep (j, this->width())\
+    \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
+    \        Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, this->size()) {\n            rep (j, (*this)[0].size())\
-    \ (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(this->size());\n\
+    \ s) {\n        rep (i, height()) {\n            rep (j, width()) (*this)[i][j]\
+    \ *= s;\n        }\n        return *this;\n    }\n    friend Matrix operator+(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n\
+    \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs) *=\
+    \ rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(height());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
     \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
     \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
@@ -603,8 +603,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-11-20 13:02:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_product.test.cpp
 layout: document

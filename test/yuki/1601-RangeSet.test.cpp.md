@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -34,9 +34,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/1601
@@ -517,7 +517,7 @@ data:
   path: test/yuki/1601-RangeSet.test.cpp
   requiredBy: []
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/1601-RangeSet.test.cpp
 layout: document

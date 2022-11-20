@@ -47,14 +47,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
@@ -249,27 +249,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -858,7 +858,7 @@ data:
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp

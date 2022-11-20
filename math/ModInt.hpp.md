@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
@@ -105,19 +108,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
   _isVerificationFailed: true
@@ -774,6 +777,7 @@ data:
   - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
   - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

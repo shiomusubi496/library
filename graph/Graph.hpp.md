@@ -43,6 +43,9 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
+  - icon: ':x:'
+    path: graph/mst/CountSpanningTree.hpp
+    title: graph/mst/CountSpanningTree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -74,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -84,10 +87,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -98,7 +101,7 @@ data:
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -107,7 +110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   _extendedVerifiedWith:
@@ -189,6 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
@@ -225,16 +231,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
   _isVerificationFailed: true
@@ -727,6 +733,7 @@ data:
   path: graph/Graph.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
+  - graph/mst/CountSpanningTree.hpp
   - graph/mst/Prim.hpp
   - graph/mst/Kruskal.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
@@ -779,6 +786,7 @@ data:
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp

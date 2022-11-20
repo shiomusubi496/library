@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/PersistentArray.hpp
     title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
@@ -54,14 +54,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
     path: data-struct/segment/SSegmentTree.hpp
     title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
       \u6B8A\u306A\u30BB\u30B0\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -108,7 +108,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/PersistentUnionFind.hpp
     title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':heavy_check_mark:'
@@ -164,6 +164,9 @@ data:
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
+  - icon: ':x:'
+    path: graph/mst/CountSpanningTree.hpp
+    title: graph/mst/CountSpanningTree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -195,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Dijkstra.hpp
     title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/Restore.hpp
     title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
   - icon: ':heavy_check_mark:'
@@ -205,10 +208,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -219,7 +222,7 @@ data:
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -228,10 +231,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
@@ -249,26 +252,26 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
     path: math/PrimeFactor.hpp
     title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
@@ -286,20 +289,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/DivisorZetaMoebiusTransform.hpp
     title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/GcdConvolution.hpp
     title: GCDConvolution
   - icon: ':heavy_check_mark:'
     path: math/convolution/HadamardTransform.hpp
     title: HadmardTransform
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/LcmConvolution.hpp
     title: LCMConvolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/MultipleZetaMoebiusTransform.hpp
     title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
@@ -311,41 +314,41 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/LongestIncreasingSubsequence.hpp
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
   _extendedVerifiedWith:
@@ -598,6 +601,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
@@ -751,70 +757,70 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/gcd_convolution.test.cpp
     title: test/yosupo/new/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/lcm_convolution.test.cpp
     title: test/yosupo/new/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/longest_increasing_subsequence.test.cpp
     title: test/yosupo/new/longest_increasing_subsequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/range_affine_point_get.test.cpp
     title: test/yosupo/new/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/aplusb.test.cpp
     title: test/yosupo/sample/aplusb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/many_aplusb.test.cpp
     title: test/yosupo/sample/many_aplusb.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/enumerate_palindromes.test.cpp
     title: test/yosupo/string/enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/jump_on_tree.test.cpp
     title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/lca-HLD.test.cpp
     title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_diameter.test.cpp
     title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_SegTree-BinarySearch.test.cpp
     title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/448-Garner.test.cpp
     title: test/yuki/448-Garner.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: true
@@ -993,6 +999,7 @@ data:
   - math/EulerPhi.hpp
   - math/FloorSum.hpp
   - math/MillerRabin.hpp
+  - graph/mst/CountSpanningTree.hpp
   - graph/mst/Prim.hpp
   - graph/mst/Kruskal.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
@@ -1121,6 +1128,7 @@ data:
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
+  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/atcoder/abc265_c-Timer.test.cpp

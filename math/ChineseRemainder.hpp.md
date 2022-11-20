@@ -30,15 +30,15 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/448-Garner.test.cpp
     title: test/yuki/448-Garner.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/ChineseRemainder.md
     document_title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
@@ -490,7 +490,7 @@ data:
   path: math/ChineseRemainder.hpp
   requiredBy: []
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/447-CRT.test.cpp
   - test/yuki/448-Garner.test.cpp

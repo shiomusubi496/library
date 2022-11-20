@@ -29,10 +29,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
@@ -48,15 +48,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1469-RunLength.test.cpp
     title: test/yuki/1469-RunLength.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/RunLength.md
     document_title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
@@ -485,7 +485,7 @@ data:
   - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1469-RunLength.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
