@@ -33,7 +33,7 @@ public:
     }
     Matrix& operator*=(const Matrix& other) {
         assert(this->width() == other.height());
-        Matrix res(this->height(), other->width());
+        Matrix res(this->height(), other.width());
         rep (i, this->height()) {
             rep (k, other.height()) {
                 rep (j, other.width())
