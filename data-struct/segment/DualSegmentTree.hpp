@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A, bool = Monoid::is_action<A>::value> class DualSegmentTree {
+template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
     static_assert(Monoid::is_semigroup<typename A::M>::value,
                   "M must be semigroup");
     static_assert(Monoid::is_semigroup<typename A::E>::value,
@@ -112,7 +112,7 @@ public:
 };
 
 template<class E>
-class DualSegmentTree<E, false>
+class DualSegmentTree<E, true>
     : public DualSegmentTree<Monoid::AttachMonoid<E>> {
 private:
     using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;
