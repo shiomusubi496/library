@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
+template<class A, bool = Monoid::is_action<A>::value> class DualSegmentTree {
     static_assert(Monoid::is_semigroup<typename A::M>::value,
                   "M must be semigroup");
     static_assert(Monoid::is_semigroup<typename A::E>::value,
@@ -19,6 +19,21 @@ private:
     std::vector<T> data;
     std::vector<U> lazy;
     std::vector<bool> lazyflag;
+
+
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int) {
+        return A::op(a, b);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<Monoid::has_mul_op<A>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    static inline T Aop(const U& a, const T& b, int c) {
+        return A::mul_op(a, c, b);
+    }
+
     void all_apply(int k, U x) {
         if (k < n) {
             if (lazyflag[k]) {
@@ -30,7 +45,7 @@ private:
             }
         }
         else if (k < n + ori) {
-            data[k - n] = A::op(x, data[k - n]);
+            data[k - n] = Aop(x, data[k - n], 1);
         }
     }
     void eval(int k) {
@@ -97,7 +112,7 @@ public:
 };
 
 template<class E>
-class DualSegmentTree<E, true>
+class DualSegmentTree<E, false>
     : public DualSegmentTree<Monoid::AttachMonoid<E>> {
 private:
     using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;
