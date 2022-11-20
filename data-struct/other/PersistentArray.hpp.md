@@ -33,7 +33,7 @@ data:
     path: data-struct/unionfind/PersistentUnionFind.hpp
     title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_queue-Array.test.cpp
     title: test/yosupo/data_structure/persistent_queue-Array.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yosupo/data_structure/persistent_unionfind.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/PersistentArray.md
     document_title: "PersistentArray(\u5B8C\u5168\u6C38\u7D9A\u914D\u5217)"
@@ -538,7 +538,7 @@ data:
   requiredBy:
   - data-struct/unionfind/PersistentUnionFind.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/persistent_unionfind.test.cpp
   - test/yosupo/data_structure/persistent_queue-Array.test.cpp
