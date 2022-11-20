@@ -661,40 +661,47 @@ data:
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\
     \n\n#line 5 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class A, bool\
-    \ = Monoid::is_semigroup<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
+    \ = Monoid::is_action<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
     \ A::M>::value,\n                  \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename\
     \ A::E>::value,\n                  \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value,\
     \ \"A must have op\");\n\nprivate:\n    using M = typename A::M;\n    using E\
     \ = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
     \ E::value_type;\n    int n, h, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n    void all_apply(int k, U x) {\n \
-    \       if (k < n) {\n            if (lazyflag[k]) {\n                lazy[k]\
-    \ = E::op(lazy[k], x);\n            }\n            else {\n                lazy[k]\
-    \ = x;\n                lazyflag[k] = true;\n            }\n        }\n      \
-    \  else if (k < n + ori) {\n            data[k - n] = A::op(x, data[k - n]);\n\
-    \        }\n    }\n    void eval(int k) {\n        if (lazyflag[k]) {\n      \
-    \      all_apply(k << 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n\
-    \            lazyflag[k] = false;\n        }\n    }\n\npublic:\n    DualSegmentTree()\
-    \ : DualSegmentTree(0) {}\n    DualSegmentTree(int n) : DualSegmentTree(n, T{})\
-    \ {}\n    DualSegmentTree(int n_, const T& v)\n        : DualSegmentTree(std::vector<T>(n_,\
-    \ v)) {}\n    DualSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1 << h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n,\
-    \ false);\n    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n \
-    \       k += n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n\
-    \    }\n    template<class Upd> void update(int k, const Upd& upd) {\n       \
-    \ assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >>\
-    \ i);\n        data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x)\
-    \ {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int\
-    \ k, U x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n\
-    \    void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <=\
-    \ ori);\n\n        l += n;\n        r += n;\n        rreps (i, h) {\n        \
-    \    bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen\
-    \ = true;\n            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n\
-    \            if (!seen) break;\n        }\n\n        while (l != r) {\n      \
-    \      if (l & 1) all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
+    \ c, b);\n    }\n\n    void all_apply(int k, U x) {\n        if (k < n) {\n  \
+    \          if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n\
+    \            }\n            else {\n                lazy[k] = x;\n           \
+    \     lazyflag[k] = true;\n            }\n        }\n        else if (k < n +\
+    \ ori) {\n            data[k - n] = Aop(x, data[k - n], 1);\n        }\n    }\n\
+    \    void eval(int k) {\n        if (lazyflag[k]) {\n            all_apply(k <<\
+    \ 1, lazy[k]);\n            all_apply(k << 1 ^ 1, lazy[k]);\n            lazyflag[k]\
+    \ = false;\n        }\n    }\n\npublic:\n    DualSegmentTree() : DualSegmentTree(0)\
+    \ {}\n    DualSegmentTree(int n) : DualSegmentTree(n, T{}) {}\n    DualSegmentTree(int\
+    \ n_, const T& v)\n        : DualSegmentTree(std::vector<T>(n_, v)) {}\n    DualSegmentTree(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        data = v;\n        lazy.resize(n);\n        lazyflag.assign(n, false);\n\
+    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
+    \ n;\n        rreps (i, h) eval(k >> i);\n        return data[k - n];\n    }\n\
+    \    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >> i);\n \
+    \       data[k - n] = upd(data[k - n]);\n    }\n    void set(int k, T x) {\n \
+    \       update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, U\
+    \ x) {\n        update(k, [&](T a) -> T { return A::op(x, a); });\n    }\n   \
+    \ void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \n        l += n;\n        r += n;\n        rreps (i, h) {\n            bool seen\
+    \ = false;\n            if (((l >> i) << i) != l) eval(l >> i), seen = true;\n\
+    \            if (((r >> i) << i) != r) eval((r - 1) >> i), seen = true;\n    \
+    \        if (!seen) break;\n        }\n\n        while (l != r) {\n          \
+    \  if (l & 1) all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n\
     \            l >>= 1;\n            r >>= 1;\n        }\n    }\n};\n\ntemplate<class\
-    \ E>\nclass DualSegmentTree<E, true>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
+    \ E>\nclass DualSegmentTree<E, false>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
     \ {\nprivate:\n    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n\n\
     public:\n    using Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\n\
     template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\
@@ -743,7 +750,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
+  timestamp: '2022-11-20 10:48:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/range_affine_point_get.test.cpp

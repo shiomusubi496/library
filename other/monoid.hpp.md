@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
     title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
     title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - icon: ':heavy_check_mark:'
