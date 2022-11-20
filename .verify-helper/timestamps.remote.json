@@ -122,5 +122,16 @@
 "test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp": "2022-11-19 18:47:17 +0900",
 "test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp": "2022-11-19 18:47:17 +0900",
 "test/yosupo/data_structure/vertex_set_path_composite.test.cpp": "2022-11-19 18:47:17 +0900",
-"test/yosupo/geometry/sort_points_by_argument.test.cpp": "2022-11-19 18:47:17 +0900"
+"test/yosupo/geometry/sort_points_by_argument.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/graph/cycle_detection.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/graph/shortest_path.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/graph/two_edge_connected_components.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/enumerate_primes.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/factorize.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/kth_root_integer.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/montmort_number_mod.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/sum_of_floor_of_linear.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/math/two_sat.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/matrix/matrix_det.test.cpp": "2022-11-19 18:47:17 +0900",
+"test/yosupo/matrix/matrix_product.test.cpp": "2022-11-19 18:47:17 +0900"
 }
