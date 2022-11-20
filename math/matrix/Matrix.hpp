@@ -18,33 +18,33 @@ public:
         return res;
     }
     int height() const { return this->size(); }
-    int width() const { return (*this)[0].size(); }
+    int width() const { return this->size() ? (*this)[0].size() : 0; }
     Matrix& operator+=(const Matrix& other) {
-        rep (i, this->size()) {
-            rep (j, (*this)[0].size()) (*this)[i][j] += other[i][j];
+        rep (i, this->height()) {
+            rep (j, this->width()) (*this)[i][j] += other[i][j];
         }
         return *this;
     }
     Matrix& operator-=(const Matrix& other) {
-        rep (i, this->size()) {
-            rep (j, (*this)[0].size()) (*this)[i][j] -= other[i][j];
+        rep (i, this->height()) {
+            rep (j, this->width()) (*this)[i][j] -= other[i][j];
         }
         return *this;
     }
     Matrix& operator*=(const Matrix& other) {
         assert(this->width() == other.height());
-        Matrix res(this->size(), other[0].size());
-        rep (i, this->size()) {
-            rep (k, other.size()) {
-                rep (j, other[0].size())
+        Matrix res(this->height(), other->width());
+        rep (i, this->height()) {
+            rep (k, other.height()) {
+                rep (j, other.width())
                     res[i][j] += (*this)[i][k] * other[k][j];
             }
         }
         return *this = std::move(res);
     }
     Matrix& operator*=(T s) {
-        rep (i, this->size()) {
-            rep (j, (*this)[0].size()) (*this)[i][j] *= s;
+        rep (i, height()) {
+            rep (j, width()) (*this)[i][j] *= s;
         }
         return *this;
     }
@@ -61,7 +61,7 @@ public:
         return Matrix(lhs) *= rhs;
     }
     Matrix pow(ll b) {
-        Matrix a = *this, res = get_id(this->size());
+        Matrix a = *this, res = get_id(height());
         while (b) {
             if (b & 1) res *= a;
             a *= a;

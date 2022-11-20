@@ -6,6 +6,7 @@
 template<class T> T determinant(Matrix<T> mat) {
     assert(mat.height() == mat.width());
     const int n = mat.height();
+    if (n == 0) return 1;
     T res = 1;
     rep (i, n) {
         if (mat[i][i] == 0) {
