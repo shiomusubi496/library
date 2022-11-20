@@ -661,7 +661,7 @@ data:
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/DualSegmentTree.hpp\"\
     \n\n#line 5 \"data-struct/segment/DualSegmentTree.hpp\"\n\ntemplate<class A, bool\
-    \ = Monoid::is_action<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
+    \ = Monoid::is_semigroup<A>::value> class DualSegmentTree {\n    static_assert(Monoid::is_semigroup<typename\
     \ A::M>::value,\n                  \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename\
     \ A::E>::value,\n                  \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value,\
     \ \"A must have op\");\n\nprivate:\n    using M = typename A::M;\n    using E\
@@ -701,7 +701,7 @@ data:
     \        if (!seen) break;\n        }\n\n        while (l != r) {\n          \
     \  if (l & 1) all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n\
     \            l >>= 1;\n            r >>= 1;\n        }\n    }\n};\n\ntemplate<class\
-    \ E>\nclass DualSegmentTree<E, false>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
+    \ E>\nclass DualSegmentTree<E, true>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
     \ {\nprivate:\n    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n\n\
     public:\n    using Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\n\
     template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\
@@ -750,7 +750,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/range_affine_point_get.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 10:48:04+09:00'
+  timestamp: '2022-11-20 11:31:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/range_affine_point_get.test.cpp

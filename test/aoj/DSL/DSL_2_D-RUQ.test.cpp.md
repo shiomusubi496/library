@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_D
@@ -512,7 +512,7 @@ data:
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DualSegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::is_action<A>::value> class DualSegmentTree\
+    \n\ntemplate<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree\
     \ {\n    static_assert(Monoid::is_semigroup<typename A::M>::value,\n         \
     \         \"M must be semigroup\");\n    static_assert(Monoid::is_semigroup<typename\
     \ A::E>::value,\n                  \"E must be semigroup\");\n    static_assert(Monoid::has_op<A>::value,\
@@ -553,7 +553,7 @@ data:
     \        if (!seen) break;\n        }\n\n        while (l != r) {\n          \
     \  if (l & 1) all_apply(l++, x);\n            if (r & 1) all_apply(--r, x);\n\
     \            l >>= 1;\n            r >>= 1;\n        }\n    }\n};\n\ntemplate<class\
-    \ E>\nclass DualSegmentTree<E, false>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
+    \ E>\nclass DualSegmentTree<E, true>\n    : public DualSegmentTree<Monoid::AttachMonoid<E>>\
     \ {\nprivate:\n    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;\n\n\
     public:\n    using Base::Base;\n};\n\n// verified with test/aoj/DSL/DSL_2_D-RUQ.test.cpp\n\
     template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;\n\
@@ -591,8 +591,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 10:48:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-11-20 11:31:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 layout: document
