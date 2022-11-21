@@ -109,7 +109,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -157,7 +157,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -175,9 +175,9 @@ data:
         \u89E3)"
   - name: graph/mst
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: graph/mst/CountSpanningTree.hpp
-      title: graph/mst/CountSpanningTree.hpp
+      title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
       path: graph/mst/Kruskal.hpp
       title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -275,7 +275,7 @@ data:
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -337,10 +337,10 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: math/matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Determinant.hpp
       title: "Determinant(\u884C\u5217\u5F0F)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: other
@@ -351,7 +351,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -382,28 +382,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -674,9 +674,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/arc099_c-Bipartite.test.cpp
       title: test/atcoder/arc099_c-Bipartite.test.cpp
-    - icon: ':x:'
-      path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
-      title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - name: test/yosupo/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -842,7 +839,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_det.test.cpp
       title: test/yosupo/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp
   - name: test/yosupo/new

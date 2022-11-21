@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -566,7 +566,7 @@ data:
     \ Matrix& other) {\n        rep (i, this->height()) {\n            rep (j, this->width())\
     \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
     \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
@@ -619,7 +619,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_det.test.cpp
   requiredBy: []
-  timestamp: '2022-11-20 13:02:37+09:00'
+  timestamp: '2022-11-20 17:54:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_det.test.cpp

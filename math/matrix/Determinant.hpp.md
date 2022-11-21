@@ -1,50 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
-    title: graph/mst/CountSpanningTree.hpp
+    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
-    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Determinant.md
     document_title: "Determinant(\u884C\u5217\u5F0F)"
@@ -451,7 +448,7 @@ data:
     \ Matrix& other) {\n        rep (i, this->height()) {\n            rep (j, this->width())\
     \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
     \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
@@ -508,10 +505,9 @@ data:
   path: math/matrix/Determinant.hpp
   requiredBy:
   - graph/mst/CountSpanningTree.hpp
-  timestamp: '2022-11-20 13:02:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-11-20 17:54:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
 documentation_of: math/matrix/Determinant.hpp
 layout: document

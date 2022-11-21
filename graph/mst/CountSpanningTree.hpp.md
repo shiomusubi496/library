@@ -1,51 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
-    title: test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
+    _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
+    document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
     links: []
   bundledCode: "#line 2 \"graph/mst/CountSpanningTree.hpp\"\n\n#line 2 \"graph/Graph.hpp\"\
     \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
@@ -490,7 +489,7 @@ data:
     \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
     \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
     \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->height(), other->width());\n        rep (i, this->height())\
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
@@ -522,14 +521,16 @@ data:
     \ int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i]\
     \ += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i]) {\n\
     \            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n   \
-    \     }\n    }\n    return determinant(A);\n}\n"
+    \     }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
+    \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../../math/matrix/Matrix.hpp\"\
     \n#include \"../../math/matrix/Determinant.hpp\"\n\ntemplate<class T, class U>\
     \ T CountSpanningTree(const Graph<U>& G) {\n    const int N = G.size();\n    Matrix<T>\
     \ A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i] += G[i + 1].size();\n    rep (i,\
     \ 1, N) {\n        each_const (e : G[i]) {\n            if (e.to == 0) continue;\n\
     \            --A[i - 1][e.to - 1];\n        }\n    }\n    return determinant(A);\n\
-    }\n"
+    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
+    \ docs/graph/mst/CountSpanningTree.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -546,14 +547,24 @@ data:
   isVerificationFile: false
   path: graph/mst/CountSpanningTree.hpp
   requiredBy: []
-  timestamp: '2022-11-20 13:02:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/atcoder/jsc2021_g-CountSpanningTree.test.cpp
+  timestamp: '2022-11-21 22:17:33+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:
 - /library/graph/mst/CountSpanningTree.hpp
 - /library/graph/mst/CountSpanningTree.hpp.html
-title: graph/mst/CountSpanningTree.hpp
+title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
 ---
+## 概要
+
+全域木の個数を求める。行列木定理を用いている。
+
+- `T CountSpanningTree(Graph<U> G)` : グラフ `G` の全域木の個数を返す。 $\Theta(N^3)$ 。
+
+## Verifiwd with
+
+https://atcoder.jp/contests/jsc2021/submissions/36658828
+
+https://atcoder.jp/contests/arc018/submissions/36703818
