@@ -16,3 +16,8 @@ template<class T, class U> T CountSpanningTree(const Graph<U>& G) {
     }
     return determinant(A);
 }
+
+/**
+ * @brief CountSpanningTree(行列木定理)
+ * @docs docs/graph/mst/CountSpanningTree.md
+ */
