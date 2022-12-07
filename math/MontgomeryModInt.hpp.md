@@ -601,8 +601,8 @@ data:
   isVerificationFile: false
   path: math/MontgomeryModInt.hpp
   requiredBy:
-  - math/convolution/Convolution.hpp
   - math/PrimitiveRoot.hpp
+  - math/convolution/Convolution.hpp
   - math/PollardRho.hpp
   - math/MillerRabin.hpp
   timestamp: '2022-11-19 18:47:17+09:00'

@@ -470,25 +470,28 @@ data:
     \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
     \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
-    \    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {\n\
-    \        RangeSet res = lhs;\n        each_const (p : rhs) res.insert(p.first,\
-    \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
-    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
-    \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
-    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
-    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
-    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
-    \          else ++itr2;\n        }\n        return res;\n    }\n    friend bool\
-    \ operator==(const RangeSet& a, const RangeSet& b) {\n        return a.st == b.st;\n\
-    \    }\n    friend bool operator!=(const RangeSet& a, const RangeSet& b) {\n \
-    \       return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st > b.st;\n    }\n    friend bool\
-    \ operator>=(const RangeSet& a, const RangeSet& b) {\n        return a.st >= b.st;\n\
-    \    }\n    friend bool operator<(const RangeSet& a, const RangeSet& b) {\n  \
-    \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
-    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n */\n"
+    \    ll lower_bound(ll k) {\n        auto itr = st.lower_bound({k, k});\n    \
+    \    if (itr == st.end()) return inf;\n        if (itr == st.begin() || prev(itr)->second\
+    \ <= k) return itr->first;\n        return k;\n    }\n    friend RangeSet operator||(const\
+    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n       \
+    \ each_const (p : rhs) res.insert(p.first, p.second);\n        return res;\n \
+    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
+    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
+    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
+    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
+    \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
+    \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
+    \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
+    \ {\n        return a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st != b.st;\n    }\n    friend bool\
+    \ operator>(const RangeSet& a, const RangeSet& b) {\n        return a.st > b.st;\n\
+    \    }\n    friend bool operator>=(const RangeSet& a, const RangeSet& b) {\n \
+    \       return a.st >= b.st;\n    }\n    friend bool operator<(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st < b.st;\n    }\n    friend bool\
+    \ operator<=(const RangeSet& a, const RangeSet& b) {\n        return a.st <= b.st;\n\
+    \    }\n};\n\n/**\n * @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\
+    \u3059\u308B\u4F8B\u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass RangeSet {\n\
     private:\n    using iterator = typename std::set<std::pair<ll, ll>>::iterator;\n\
     \    ll sz;\n    std::set<std::pair<ll, ll>> st;\n    iterator st_emplace_hint(const\
@@ -530,25 +533,28 @@ data:
     \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
     \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
-    \    friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {\n\
-    \        RangeSet res = lhs;\n        each_const (p : rhs) res.insert(p.first,\
-    \ p.second);\n        return res;\n    }\n    friend RangeSet operator&&(const\
-    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res;\n        auto itr1\
-    \ = lhs.begin(), itr2 = rhs.begin();\n        while (itr1 != lhs.end() && itr2\
-    \ != rhs.end()) {\n            ll l = std::max(itr1->first, itr2->first);\n  \
-    \          ll r = std::min(itr1->second, itr2->second);\n            if (l < r)\
-    \ res.insert(l, r);\n            if (itr1->second < itr2->second) ++itr1;\n  \
-    \          else ++itr2;\n        }\n        return res;\n    }\n    friend bool\
-    \ operator==(const RangeSet& a, const RangeSet& b) {\n        return a.st == b.st;\n\
-    \    }\n    friend bool operator!=(const RangeSet& a, const RangeSet& b) {\n \
-    \       return a.st != b.st;\n    }\n    friend bool operator>(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st > b.st;\n    }\n    friend bool\
-    \ operator>=(const RangeSet& a, const RangeSet& b) {\n        return a.st >= b.st;\n\
-    \    }\n    friend bool operator<(const RangeSet& a, const RangeSet& b) {\n  \
-    \      return a.st < b.st;\n    }\n    friend bool operator<=(const RangeSet&\
-    \ a, const RangeSet& b) {\n        return a.st <= b.st;\n    }\n};\n\n/**\n *\
-    \ @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
-    \u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n */\n"
+    \    ll lower_bound(ll k) {\n        auto itr = st.lower_bound({k, k});\n    \
+    \    if (itr == st.end()) return inf;\n        if (itr == st.begin() || prev(itr)->second\
+    \ <= k) return itr->first;\n        return k;\n    }\n    friend RangeSet operator||(const\
+    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n       \
+    \ each_const (p : rhs) res.insert(p.first, p.second);\n        return res;\n \
+    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
+    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
+    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
+    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
+    \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
+    \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
+    \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
+    \ {\n        return a.st == b.st;\n    }\n    friend bool operator!=(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st != b.st;\n    }\n    friend bool\
+    \ operator>(const RangeSet& a, const RangeSet& b) {\n        return a.st > b.st;\n\
+    \    }\n    friend bool operator>=(const RangeSet& a, const RangeSet& b) {\n \
+    \       return a.st >= b.st;\n    }\n    friend bool operator<(const RangeSet&\
+    \ a, const RangeSet& b) {\n        return a.st < b.st;\n    }\n    friend bool\
+    \ operator<=(const RangeSet& a, const RangeSet& b) {\n        return a.st <= b.st;\n\
+    \    }\n};\n\n/**\n * @brief RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\
+    \u3059\u308B\u4F8B\u306E\u3084\u3064)\n * @docs docs/data-struct/other/RangeSet.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -562,7 +568,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
+  timestamp: '2022-12-07 19:25:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601-RangeSet.test.cpp

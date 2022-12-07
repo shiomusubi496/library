@@ -706,8 +706,8 @@ data:
   timestamp: '2022-11-19 18:47:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
 documentation_of: graph/tree/PMORMQLCA.hpp
 layout: document
 redirect_from:

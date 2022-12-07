@@ -605,23 +605,23 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SparseTable.hpp
   requiredBy:
+  - data-struct/segment/LCARMQ.hpp
   - data-struct/segment/LinearRMQ.hpp
   - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/LCARMQ.hpp
-  - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
+  - graph/tree/EulerTour.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
 documentation_of: data-struct/segment/SparseTable.hpp
 layout: document
 redirect_from:

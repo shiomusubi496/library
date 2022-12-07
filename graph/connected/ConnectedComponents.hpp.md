@@ -520,8 +520,8 @@ data:
   timestamp: '2022-11-19 18:47:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
 documentation_of: graph/connected/ConnectedComponents.hpp
 layout: document
 redirect_from:

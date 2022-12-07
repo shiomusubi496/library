@@ -654,8 +654,8 @@ data:
   isVerificationFile: false
   path: math/PollardRho.hpp
   requiredBy:
-  - math/convolution/Convolution.hpp
   - math/PrimitiveRoot.hpp
+  - math/convolution/Convolution.hpp
   timestamp: '2022-11-19 18:47:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

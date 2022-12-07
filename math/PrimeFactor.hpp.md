@@ -489,8 +489,8 @@ data:
   timestamp: '2022-11-19 18:47:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
   - test/yosupo/math/enumerate_primes.test.cpp
+  - test/aoj/ALDS1/ALDS1_1_C-PrimeEra.test.cpp
 documentation_of: math/PrimeFactor.hpp
 layout: document
 redirect_from:
