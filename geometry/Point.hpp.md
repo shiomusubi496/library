@@ -1,117 +1,117 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: geometry/All.hpp
     title: geometry/All.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Polygon.hpp
     title: geometry/Polygon.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_A-projection.test.cpp
     title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
     title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
     title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
     title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
     title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
     title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_D-distance.test.cpp
     title: test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_A-area.test.cpp
     title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
     title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_3_C-contain.test.cpp
     title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
     title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
     title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
     title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
     title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - icon: ':x:'
@@ -119,7 +119,7 @@ data:
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -435,15 +435,15 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    a = std::abs(a);\n    b = std::abs(b);\n    while (b)\
-    \ {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
-    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a, b) *\
-    \ b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1) return\
-    \ false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return\
-    \ false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll N)\
-    \ {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n       \
-    \ while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n \
-    \       }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
+    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
+    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
+    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
+    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
+    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
+    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
+    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
+    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
+    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
     \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
     \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
     \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
@@ -638,8 +638,8 @@ data:
   - geometry/Segment.hpp
   - geometry/Circle.hpp
   - geometry/Triangle.hpp
-  timestamp: '2022-12-07 21:07:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-07 21:25:52+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp

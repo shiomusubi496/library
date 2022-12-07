@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':x:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -358,15 +358,15 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    a = std::abs(a);\n    b = std::abs(b);\n    while (b)\
-    \ {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
-    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a, b) *\
-    \ b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1) return\
-    \ false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return\
-    \ false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll N)\
-    \ {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n       \
-    \ while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n \
-    \       }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
+    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
+    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
+    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
+    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
+    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
+    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
+    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
+    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
+    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
     \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
     \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
     \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
@@ -578,7 +578,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/montmort_number_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:07:55+09:00'
+  timestamp: '2022-12-07 21:25:52+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/montmort_number_mod.test.cpp
