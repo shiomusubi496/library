@@ -4,7 +4,7 @@
 #include "Matrix.hpp"
 
 template<class T> T determinant(Matrix<T> mat) {
-    assert(mat.height() == mat.width());
+    assert(mat.is_square());
     const int n = mat.height();
     if (n == 0) return 1;
     T res = 1;
@@ -32,9 +32,8 @@ template<class T> T determinant(Matrix<T> mat) {
             rep (k, n) mat[j][k] -= mat[i][k] * s;
         }
     }
-    T res2 = 1;
-    rep (i, n) res2 *= mat[i][i];
-    return res * res2;
+    rep (i, n) res *= mat[i][i];
+    return res;
 }
 
 /**
