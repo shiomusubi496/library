@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -364,42 +364,42 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    while (b) {\n        const ll c = a;\n        a = b;\n\
-    \        b = c % b;\n    }\n    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll\
-    \ b) noexcept { return a / gcd(a, b) * b; }\n\ninline CONSTEXPR bool is_prime(ll\
-    \ N) noexcept {\n    if (N <= 1) return false;\n    for (ll i = 2; i * i <= N;\
-    \ ++i) {\n        if (N % i == 0) return false;\n    }\n    return true;\n}\n\
-    inline std::vector<ll> prime_factor(ll N) {\n    std::vector<ll> res;\n    for\
-    \ (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n            res.push_back(i);\n\
-    \            N /= i;\n        }\n    }\n    if (N != 1) res.push_back(N);\n  \
-    \  return res;\n}\n\ninline CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll\
-    \ res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n        b >>= 1;\n\
-    \        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR ll mod_pow(ll a,\
-    \ ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return 0;\n    a %=\
-    \ mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res *= a) %= mod;\n\
-    \        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return res;\n}\n\ninline\
-    \ PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n    ll x = 1, y = 0, u\
-    \ = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
-    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n        std::swap(y -= t *\
-    \ v, v);\n    }\n    if (x < 0) {\n        x += m;\n        y -= n;\n    }\n \
-    \   return {x, y};\n}\ninline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n  \
-    \  ll x = 1, u = 0;\n    ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a\
-    \ -= t * b, b);\n        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x +=\
-    \ mod;\n    assert(a == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\
-    \n#line 6 \"template/util.hpp\"\n\ntemplate<class F> class RecLambda {\nprivate:\n\
-    \    F f;\n\npublic:\n    explicit constexpr RecLambda(F&& f_) : f(std::forward<F>(f_))\
-    \ {}\n    template<class... Args>\n    constexpr auto operator()(Args&&... args)\n\
-    \        -> decltype(f(*this, std::forward<Args>(args)...)) {\n        return\
-    \ f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class F> inline\
-    \ constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
-    }\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
-    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
-    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
-    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
-    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
-    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
-    \                                        Args&&... args) {\n    return typename\
-    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    \ a, ll b) noexcept {\n    a = std::abs(a);\n    b = std::abs(b);\n    while (b)\
+    \ {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
+    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a, b) *\
+    \ b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1) return\
+    \ false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return\
+    \ false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll N)\
+    \ {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n       \
+    \ while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n \
+    \       }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
+    \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
+    \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
+    \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
+    \ 0);\n    if (mod == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while\
+    \ (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *=\
+    \ a) %= mod;\n    }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n \
+    \   const ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n  \
+    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
+    \  std::swap(x -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if\
+    \ (x < 0) {\n        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\n\
+    inline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n    ll x = 1, u = 0;\n   \
+    \ ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n\
+    \        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a\
+    \ == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\
+    \n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
+    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
+    \ Args>\n    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this,\
+    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
+    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
+    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
+    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
+    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
+    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
+    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
+    \                                                         Args&&... args) {\n\
+    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
     }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
     \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
@@ -672,8 +672,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   requiredBy: []
-  timestamp: '2022-11-19 18:47:17+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-12-07 21:07:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
 layout: document
