@@ -16,6 +16,8 @@ inline constexpr bool chmax(T& a, const U& b,
 }
 
 inline CONSTEXPR ll gcd(ll a, ll b) noexcept {
+    a = std::abs(a);
+    b = std::abs(b);
     while (b) {
         const ll c = a;
         a = b;
