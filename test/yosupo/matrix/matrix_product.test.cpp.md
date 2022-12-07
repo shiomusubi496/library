@@ -554,16 +554,17 @@ data:
     \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
     \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
     \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
-    \ {}\n    static Matrix get_id(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
     \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
     \ const { return this->size(); }\n    int width() const { return this->size()\
-    \ ? (*this)[0].size() : 0; }\n    Matrix& operator+=(const Matrix& other) {\n\
-    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
-    \ Matrix& other) {\n        rep (i, this->height()) {\n            rep (j, this->width())\
-    \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
     \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
     \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
@@ -573,15 +574,34 @@ data:
     \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
     \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
     \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
-    \ Matrix operator*(const Matrix& lhs, int rhs) {\n        return Matrix(lhs) *=\
-    \ rhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_id(height());\n\
-    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
-    int main() {\n    int N, M, K; scan >> N >> M >> K;\n    Mat A(N, M); scan >>\
-    \ A;\n    Mat B(M, K); scan >> B;\n    Mat C = A * B;\n    each_const (v : C)\
-    \ print << v << endl;\n}\n"
+    \ Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs) *=\
+    \ rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n   \
+    \     return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix\
+    \ a = *this, res = get_identity(height());\n        while (b) {\n            if\
+    \ (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n        }\n  \
+    \      return res;\n    }\n    Matrix transpose() const {\n        Matrix res(width(),\
+    \ height());\n        rep (i, height()) {\n            rep (j, width()) res[j][i]\
+    \ = (*this)[i][j];\n        }\n        return res;\n    }\n    friend Matrix gauss(Matrix\
+    \ mat) {\n        int h = mat.height(), w = mat.width();\n        int r = 0;\n\
+    \        rep (i, w) {\n            int pivot = -1;\n            rep (j, r, h)\
+    \ {\n                if (mat[j][i] != 0) {\n                    pivot = j;\n \
+    \                   break;\n                }\n            }\n            if (pivot\
+    \ == -1) continue;\n            swap(mat[pivot], mat[r]);\n            const T\
+    \ s = mat[r][i];\n            rep (j, i, w) mat[r][j] /= s;\n            rep (j,\
+    \ h) {\n                if (j == r) continue;\n                const T s = mat[j][i];\n\
+    \                if (s == 0) continue;\n                rep (k, i, w) mat[j][k]\
+    \ -= mat[r][k] * s;\n            }\n            ++r;\n        }\n    }\n    Matrix&\
+    \ gauss() { return *this = gauss(std::move(*this)); }\n    int rank(bool is_gaussed\
+    \ = false) const {\n        if (!is_gaussed) return gauss(*this).rank(true);\n\
+    \        const int h = height(), w = width();\n        int r = 0;\n        rep\
+    \ (i, h) {\n            while (r < w && (*this)[i][r] == 0) ++r;\n           \
+    \ if (r == w) return i;\n            ++r;\n        }\n        return h;\n    }\n\
+    };\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
+    \ */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\nint main() {\n\
+    \    int N, M, K; scan >> N >> M >> K;\n    Mat A(N, M); scan >> A;\n    Mat B(M,\
+    \ K); scan >> B;\n    Mat C = A * B;\n    each_const (v : C) print << v << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/matrix/Matrix.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
@@ -603,7 +623,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
+  timestamp: '2022-12-08 00:03:13+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_product.test.cpp
