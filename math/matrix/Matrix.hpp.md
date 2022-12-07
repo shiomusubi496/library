@@ -35,7 +35,13 @@ data:
   - icon: ':x:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
+  - icon: ':x:'
+    path: math/matrix/Inverse.hpp
+    title: "Inverse(\u9006\u884C\u5217)"
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/matrix/inverse_matrix.test.cpp
+    title: test/yosupo/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
@@ -548,6 +554,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
+  - math/matrix/Inverse.hpp
   - math/matrix/Determinant.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2022-12-08 00:03:13+09:00'
@@ -555,6 +562,7 @@ data:
   verifiedWith:
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':x:'
@@ -202,7 +202,7 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
   - icon: ':x:'
@@ -240,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':x:'
@@ -315,6 +315,9 @@ data:
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':x:'
+    path: math/matrix/Inverse.hpp
+    title: "Inverse(\u9006\u884C\u5217)"
+  - icon: ':x:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -329,7 +332,7 @@ data:
   - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
   - icon: ':x:'
@@ -571,31 +574,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
     title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc265_c-Timer.test.cpp
     title: test/atcoder/abc265_c-Timer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
   - icon: ':x:'
@@ -754,6 +757,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/matrix/inverse_matrix.test.cpp
+    title: test/yosupo/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
@@ -1041,6 +1047,7 @@ data:
   - math/MillerRabin.hpp
   - math/Divisor.hpp
   - math/FloorSum.hpp
+  - math/matrix/Inverse.hpp
   - math/matrix/Determinant.hpp
   - math/matrix/Matrix.hpp
   - math/PrimeFactor.hpp
@@ -1111,6 +1118,7 @@ data:
   - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
   - test/yosupo/data_structure/rectangle_sum.test.cpp

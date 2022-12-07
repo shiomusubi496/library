@@ -103,6 +103,9 @@ data:
     path: test/yosupo/math/montmort_number_mod.test.cpp
     title: test/yosupo/math/montmort_number_mod.test.cpp
   - icon: ':x:'
+    path: test/yosupo/matrix/inverse_matrix.test.cpp
+    title: test/yosupo/matrix/inverse_matrix.test.cpp
+  - icon: ':x:'
     path: test/yosupo/matrix/matrix_det.test.cpp
     title: test/yosupo/matrix/matrix_det.test.cpp
   - icon: ':x:'
@@ -780,6 +783,7 @@ data:
   - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp

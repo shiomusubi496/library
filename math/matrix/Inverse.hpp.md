@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -30,17 +33,17 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/abc176_f-DefaultMap.test.cpp
-    title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/matrix/inverse_matrix.test.cpp
+    title: test/yosupo/matrix/inverse_matrix.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/DefaultMap.md
-    document_title: DefaultMap
+    _deprecated_at_docs: docs/math/matrix/Inverse.md
+    document_title: "Inverse(\u9006\u884C\u5217)"
     links: []
-  bundledCode: "#line 2 \"data-struct/other/DefaultMap.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/matrix/Inverse.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -427,64 +430,86 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/DefaultMap.hpp\"\
-    \n\ntemplate<class Key, class T, class Comp = std::less<Key>,\n         class\
-    \ Alloc = std::allocator<std::pair<const Key, T>>>\nclass default_map : public\
-    \ std::map<Key, T, Comp, Alloc> {\nprivate:\n    using base = std::map<Key, T,\
-    \ Comp, Alloc>;\n    T default_value;\n\npublic:\n    default_map(const T& default_value,\
-    \ const Comp& comp = Comp(),\n                const Alloc& alloc = Alloc())\n\
-    \        : base(comp, alloc), default_value(default_value) {}\n    template<class\
-    \ InputIterator>\n    default_map(InputIterator first, InputIterator last, const\
-    \ T& default_value,\n                const Comp& comp = Comp(), const Alloc& alloc\
-    \ = Alloc())\n        : base(first, last, comp, alloc), default_value(default_value)\
-    \ {}\n    default_map(std::initializer_list<typename base::value_type> init,\n\
-    \                const T& default_value, const Comp& comp = Comp(),\n        \
-    \        const Alloc& alloc = Alloc())\n        : base(init, comp, alloc), default_value(default_value)\
-    \ {}\n    default_map(const default_map& other)\n        : base(other), default_value(other.default_value)\
-    \ {}\n    default_map(default_map&& other)\n        : base(move(other)), default_value(std::move(other.default_value))\
-    \ {}\n    T& operator[](const Key& key) {\n        auto itr = this->lower_bound(key);\n\
-    \        if (itr == this->end() || this->key_comp()(key, itr->first)) {\n    \
-    \        itr = this->emplace_hint(itr, key, default_value);\n        }\n     \
-    \   return itr->second;\n    }\n    T& operator[](Key&& key) {\n        auto itr\
-    \ = this->lower_bound(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            itr = this->emplace_hint(itr, std::move(key), default_value);\n\
-    \        }\n        return itr->second;\n    }\n    T& at(const Key& key) {\n\
-    \        auto itr = this->find(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            throw std::out_of_range(\"key not found\");\n  \
-    \      }\n        return itr->second;\n    }\n    const T& at(const Key& key)\
-    \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
-    \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
-    key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class Key,\
-    \ class T, class Comp = std::less<Key>,\n         class Alloc = std::allocator<std::pair<const\
-    \ Key, T>>>\nclass default_map : public std::map<Key, T, Comp, Alloc> {\nprivate:\n\
-    \    using base = std::map<Key, T, Comp, Alloc>;\n    T default_value;\n\npublic:\n\
-    \    default_map(const T& default_value, const Comp& comp = Comp(),\n        \
-    \        const Alloc& alloc = Alloc())\n        : base(comp, alloc), default_value(default_value)\
-    \ {}\n    template<class InputIterator>\n    default_map(InputIterator first,\
-    \ InputIterator last, const T& default_value,\n                const Comp& comp\
-    \ = Comp(), const Alloc& alloc = Alloc())\n        : base(first, last, comp, alloc),\
-    \ default_value(default_value) {}\n    default_map(std::initializer_list<typename\
-    \ base::value_type> init,\n                const T& default_value, const Comp&\
-    \ comp = Comp(),\n                const Alloc& alloc = Alloc())\n        : base(init,\
-    \ comp, alloc), default_value(default_value) {}\n    default_map(const default_map&\
-    \ other)\n        : base(other), default_value(other.default_value) {}\n    default_map(default_map&&\
-    \ other)\n        : base(move(other)), default_value(std::move(other.default_value))\
-    \ {}\n    T& operator[](const Key& key) {\n        auto itr = this->lower_bound(key);\n\
-    \        if (itr == this->end() || this->key_comp()(key, itr->first)) {\n    \
-    \        itr = this->emplace_hint(itr, key, default_value);\n        }\n     \
-    \   return itr->second;\n    }\n    T& operator[](Key&& key) {\n        auto itr\
-    \ = this->lower_bound(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            itr = this->emplace_hint(itr, std::move(key), default_value);\n\
-    \        }\n        return itr->second;\n    }\n    T& at(const Key& key) {\n\
-    \        auto itr = this->find(key);\n        if (itr == this->end() || this->key_comp()(key,\
-    \ itr->first)) {\n            throw std::out_of_range(\"key not found\");\n  \
-    \      }\n        return itr->second;\n    }\n    const T& at(const Key& key)\
-    \ const {\n        auto itr = this->find(key);\n        if (itr == this->end()\
-    \ || this->key_comp()(key, itr->first)) {\n            throw std::out_of_range(\"\
-    key not found\");\n        }\n        return itr->second;\n    }\n};\n\n/**\n\
-    \ * @brief DefaultMap\n * @docs docs/data-struct/other/DefaultMap.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
+    \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
+    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
+    \ s) {\n        rep (i, height()) {\n            rep (j, width()) (*this)[i][j]\
+    \ *= s;\n        }\n        return *this;\n    }\n    friend Matrix operator+(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n\
+    \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs) *=\
+    \ rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n   \
+    \     return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix\
+    \ a = *this, res = get_identity(height());\n        while (b) {\n            if\
+    \ (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n        }\n  \
+    \      return res;\n    }\n    Matrix transpose() const {\n        Matrix res(width(),\
+    \ height());\n        rep (i, height()) {\n            rep (j, width()) res[j][i]\
+    \ = (*this)[i][j];\n        }\n        return res;\n    }\n    friend Matrix gauss(Matrix\
+    \ mat) {\n        int h = mat.height(), w = mat.width();\n        int r = 0;\n\
+    \        rep (i, w) {\n            int pivot = -1;\n            rep (j, r, h)\
+    \ {\n                if (mat[j][i] != 0) {\n                    pivot = j;\n \
+    \                   break;\n                }\n            }\n            if (pivot\
+    \ == -1) continue;\n            swap(mat[pivot], mat[r]);\n            const T\
+    \ s = mat[r][i];\n            rep (j, i, w) mat[r][j] /= s;\n            rep (j,\
+    \ h) {\n                if (j == r) continue;\n                const T s = mat[j][i];\n\
+    \                if (s == 0) continue;\n                rep (k, i, w) mat[j][k]\
+    \ -= mat[r][k] * s;\n            }\n            ++r;\n        }\n    }\n    Matrix&\
+    \ gauss() { return *this = gauss(std::move(*this)); }\n    int rank(bool is_gaussed\
+    \ = false) const {\n        if (!is_gaussed) return gauss(*this).rank(true);\n\
+    \        const int h = height(), w = width();\n        int r = 0;\n        rep\
+    \ (i, h) {\n            while (r < w && (*this)[i][r] == 0) ++r;\n           \
+    \ if (r == w) return i;\n            ++r;\n        }\n        return h;\n    }\n\
+    };\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
+    \ */\n#line 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class T> Matrix<T> inverse(Matrix<T>\
+    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    rep\
+    \ (i, n) {\n        mat[i].resize(n * 2, T{0});\n        mat[i][n + i] = T{1};\n\
+    \    }\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i\
+    \ + 1, n) {\n                if (mat[j][i] != 0) {\n                    swap(mat[i],\
+    \ mat[j]);\n                    break;\n                }\n            }\n   \
+    \     }\n        if (mat[i][i] == 0) {\n            return Matrix<T>{};\n    \
+    \    }\n        {\n            const T s = mat[i][i];\n            rep (j, n *\
+    \ 2) mat[i][j] /= s;\n        }\n        rep (j, i + 1, n) {\n            const\
+    \ T s = mat[j][i];\n            rep (k, n * 2) mat[j][k] -= mat[i][k] * s;\n \
+    \       }\n    }\n    rrep (i, n) {\n        rep (j, i) {\n            const T\
+    \ s = mat[j][i];\n            rep (k, n, n * 2) mat[j][k] -= mat[i][k] * s;\n\
+    \        }\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n        rep (j,\
+    \ n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\
+    \u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
+    \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
+    \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
+    \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    rep (i, n) {\n        if\
+    \ (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i]\
+    \ != 0) {\n                    swap(mat[i], mat[j]);\n                    break;\n\
+    \                }\n            }\n        }\n        if (mat[i][i] == 0) {\n\
+    \            return Matrix<T>{};\n        }\n        {\n            const T s\
+    \ = mat[i][i];\n            rep (j, n * 2) mat[i][j] /= s;\n        }\n      \
+    \  rep (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep (k,\
+    \ n * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rrep (i, n) {\n  \
+    \      rep (j, i) {\n            const T s = mat[j][i];\n            rep (k, n,\
+    \ n * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    Matrix<T> res(n, n);\n\
+    \    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return\
+    \ res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -495,20 +520,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - math/matrix/Matrix.hpp
   isVerificationFile: false
-  path: data-struct/other/DefaultMap.hpp
+  path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-12-08 00:19:14+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/atcoder/abc176_f-DefaultMap.test.cpp
-documentation_of: data-struct/other/DefaultMap.hpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
+documentation_of: math/matrix/Inverse.hpp
 layout: document
 redirect_from:
-- /library/data-struct/other/DefaultMap.hpp
-- /library/data-struct/other/DefaultMap.hpp.html
-title: DefaultMap
+- /library/math/matrix/Inverse.hpp
+- /library/math/matrix/Inverse.hpp.html
+title: "Inverse(\u9006\u884C\u5217)"
 ---
 ## 概要
 
-デフォルト値を設定できる map。 std::map を継承している。
+正則行列 $A$ が与えれたとき、 $A^{-1}A = AA^{-1} = I$ なる逆行列 $A^{-1}$ を求める。
+
+- `Matrix inverse(Matrix mat)` : $mat^{-1}$ を返す。 $mat$ が正則行列で無かった場合、空の行列を返す。 $\Theta(n^3)$ 。
