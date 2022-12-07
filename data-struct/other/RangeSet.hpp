@@ -87,6 +87,12 @@ public:
         if (itr->second <= k) return {-1, -1};
         return *itr;
     }
+    ll lower_bound(ll k) {
+        auto itr = st.lower_bound({k, k});
+        if (itr == st.end()) return inf;
+        if (itr == st.begin() || prev(itr)->second <= k) return itr->first;
+        return k;
+    }
     friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {
         RangeSet res = lhs;
         each_const (p : rhs) res.insert(p.first, p.second);
