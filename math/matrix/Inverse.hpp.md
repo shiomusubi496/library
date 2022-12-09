@@ -447,53 +447,54 @@ data:
     \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
     \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
     \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
-    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\n\
-    \                    res[i][j] += (*this)[i][k] * other[k][j];\n            }\n\
-    \        }\n        return *this = std::move(res);\n    }\n    Matrix& operator*=(T\
-    \ s) {\n        rep (i, height()) {\n            rep (j, width()) (*this)[i][j]\
-    \ *= s;\n        }\n        return *this;\n    }\n    friend Matrix operator+(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n\
-    \    friend Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n       \
-    \ return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
-    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
-    \ Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs) *=\
-    \ rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n   \
-    \     return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix\
-    \ a = *this, res = get_identity(height());\n        while (b) {\n            if\
-    \ (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n        }\n  \
-    \      return res;\n    }\n    Matrix transpose() const {\n        Matrix res(width(),\
-    \ height());\n        rep (i, height()) {\n            rep (j, width()) res[j][i]\
-    \ = (*this)[i][j];\n        }\n        return res;\n    }\n    friend Matrix gauss(Matrix\
-    \ mat) {\n        int h = mat.height(), w = mat.width();\n        int r = 0;\n\
-    \        rep (i, w) {\n            int pivot = -1;\n            rep (j, r, h)\
-    \ {\n                if (mat[j][i] != 0) {\n                    pivot = j;\n \
-    \                   break;\n                }\n            }\n            if (pivot\
-    \ == -1) continue;\n            swap(mat[pivot], mat[r]);\n            const T\
-    \ s = mat[r][i];\n            rep (j, i, w) mat[r][j] /= s;\n            rep (j,\
-    \ h) {\n                if (j == r) continue;\n                const T s = mat[j][i];\n\
-    \                if (s == 0) continue;\n                rep (k, i, w) mat[j][k]\
-    \ -= mat[r][k] * s;\n            }\n            ++r;\n        }\n    }\n    Matrix&\
-    \ gauss() { return *this = gauss(std::move(*this)); }\n    int rank(bool is_gaussed\
-    \ = false) const {\n        if (!is_gaussed) return gauss(*this).rank(true);\n\
-    \        const int h = height(), w = width();\n        int r = 0;\n        rep\
-    \ (i, h) {\n            while (r < w && (*this)[i][r] == 0) ++r;\n           \
-    \ if (r == w) return i;\n            ++r;\n        }\n        return h;\n    }\n\
-    };\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
-    \ */\n#line 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class T> Matrix<T> inverse(Matrix<T>\
-    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    rep\
-    \ (i, n) {\n        mat[i].resize(n * 2, T{0});\n        mat[i][n + i] = T{1};\n\
-    \    }\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i\
-    \ + 1, n) {\n                if (mat[j][i] != 0) {\n                    swap(mat[i],\
-    \ mat[j]);\n                    break;\n                }\n            }\n   \
-    \     }\n        if (mat[i][i] == 0) {\n            return Matrix<T>{};\n    \
-    \    }\n        {\n            const T s = mat[i][i];\n            rep (j, n *\
-    \ 2) mat[i][j] /= s;\n        }\n        rep (j, i + 1, n) {\n            const\
-    \ T s = mat[j][i];\n            rep (k, n * 2) mat[j][k] -= mat[i][k] * s;\n \
-    \       }\n    }\n    rrep (i, n) {\n        rep (j, i) {\n            const T\
-    \ s = mat[j][i];\n            rep (k, n, n * 2) mat[j][k] -= mat[i][k] * s;\n\
-    \        }\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n        rep (j,\
-    \ n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\
-    \u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  return *this = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n    \
+    \    rep (i, height()) {\n            rep (j, width()) (*this)[i][j] *= s;\n \
+    \       }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
+    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
+    \ lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
+    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
+    \           pivot = j;\n                    break;\n                }\n      \
+    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
+    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
+    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
+    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
+    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
+    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
+    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class\
+    \ T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n    const\
+    \ int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n * 2, T{0});\n\
+    \        mat[i][n + i] = T{1};\n    }\n    rep (i, n) {\n        if (mat[i][i]\
+    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
+    \ {\n                    swap(mat[i], mat[j]);\n                    break;\n \
+    \               }\n            }\n        }\n        if (mat[i][i] == 0) {\n \
+    \           return Matrix<T>{};\n        }\n        {\n            const T s =\
+    \ mat[i][i];\n            rep (j, n * 2) mat[i][j] /= s;\n        }\n        rep\
+    \ (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep (k, n *\
+    \ 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rrep (i, n) {\n      \
+    \  rep (j, i) {\n            const T s = mat[j][i];\n            rep (k, n, n\
+    \ * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    Matrix<T> res(n, n);\n\
+    \    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return\
+    \ res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
@@ -524,7 +525,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2022-12-08 00:19:14+09:00'
+  timestamp: '2022-12-09 20:02:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp

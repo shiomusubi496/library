@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -28,47 +31,37 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrix.hpp
-    title: WaveletMatrix
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-    title: WaveletMatrixPointAddRectangleSum.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/matrix/system_of_linear_equations.test.cpp
+    title: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
-    document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+    _deprecated_at_docs: docs/math/matrix/LinearEquations.md
+    document_title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
     links: []
-  bundledCode: "#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+  bundledCode: "#line 2 \"math/matrix/LinearEquations.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -437,36 +430,125 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
-    \n\nclass FullyIndexableDictionary {\nprivate:\n    int n, b;\n    std::vector<unsigned\
-    \ int> bit, sm;\n\npublic:\n    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int\
-    \ n) : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >>\
-    \ 5] |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >>\
-    \ 5] >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass FullyIndexableDictionary\
-    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
-    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
-    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
-    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
-    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  return *this = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n    \
+    \    rep (i, height()) {\n            rep (j, width()) (*this)[i][j] *= s;\n \
+    \       }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
+    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
+    \ lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
+    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
+    \           pivot = j;\n                    break;\n                }\n      \
+    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
+    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
+    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
+    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
+    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
+    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
+    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/LinearEquations.hpp\"\
+    \n\ntemplate<class T> class LinearEquations {\nprivate:\n    Matrix<T> A;\n  \
+    \  int n, m;\n    bool is_solved = false;\n    std::vector<T> solution;\n    Matrix<T>\
+    \ solution_space;\n\npublic:\n    LinearEquations() = default;\n    LinearEquations(int\
+    \ n) : m(n) {}\n    LinearEquations(const Matrix<T>& A_, bool sol = true)\n  \
+    \      : A(A_), n(A.height()), m(A.width() - 1) {\n        if (sol) solve();\n\
+    \    }\n    LinearEquations(const Matrix<T>& A_, const std::vector<T>& b, bool\
+    \ sol = true) {\n        assert(A_.height() == (int)b.size());\n        n = A_.height();\n\
+    \        m = A_.width();\n        A = Matrix<T>(n, m + 1);\n        rep (i, n)\
+    \ {\n            rep (j, m) A[i][j] = A_[i][j];\n            A[i][m] = b[i];\n\
+    \        }\n        if (sol) solve();\n    }\n    void add_equation(const std::vector<T>&\
+    \ a, T b) {\n        assert(!is_solved);\n        assert(a.size() == m);\n   \
+    \     A.push_back(a);\n        A.back().push_back(b);\n    }\n    void add_equation(const\
+    \ std::vector<T>& a) {\n        assert(!is_solved);\n        assert(a.size() ==\
+    \ m + 1);\n        A.push_back(a);\n    }\n    bool solve() {\n        assert(!is_solved);\n\
+    \        is_solved = true;\n        A.gauss();\n        int r = A.rank(true);\n\
+    \        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m && A[r - 1][m] !=\
+    \ 0) {\n            return false;\n        }\n        solution = std::vector<T>(m,\
+    \ T{0});\n        solution_space = Matrix<T>(0, m);\n        std::vector<int>\
+    \ p(m, -1);\n        rep (i, r) {\n            int j = 0;\n            while (A[i][j]\
+    \ == 0) ++j;\n            p[j] = i;\n            solution[j] = A[i][m];\n    \
+    \    }\n        rep (i, m) {\n            if (p[i] == -1) {\n                std::vector<T>\
+    \ v(m, T{0});\n                v[i] = T{1};\n                rep (j, m) {\n  \
+    \                  if (p[j] != -1) v[j] = -A[p[j]][i];\n                }\n  \
+    \              solution_space.push_back(std::move(v));\n            }\n      \
+    \  }\n        return true;\n    }\n    bool has_solution() const {\n        assert(is_solved);\n\
+    \        return solution.size() != 0;\n    }\n    int dimension() const {\n  \
+    \      assert(is_solved);\n        return solution_space.height();\n    }\n  \
+    \  std::vector<T> get_solution() const& {\n        assert(is_solved);\n      \
+    \  return solution;\n    }\n    std::vector<T> get_solution() && {\n        assert(is_solved);\n\
+    \        return std::move(solution);\n    }\n    Matrix<T> get_solution_space()\
+    \ const& {\n        assert(is_solved);\n        return solution_space;\n    }\n\
+    \    Matrix<T> get_solution_space() && {\n        assert(is_solved);\n       \
+    \ return std::move(solution_space);\n    }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\
+    \u5F62\u65B9\u7A0B\u5F0F)\n * @docs docs/math/matrix/LinearEquations.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
+    \n\ntemplate<class T> class LinearEquations {\nprivate:\n    Matrix<T> A;\n  \
+    \  int n, m;\n    bool is_solved = false;\n    std::vector<T> solution;\n    Matrix<T>\
+    \ solution_space;\n\npublic:\n    LinearEquations() = default;\n    LinearEquations(int\
+    \ n) : m(n) {}\n    LinearEquations(const Matrix<T>& A_, bool sol = true)\n  \
+    \      : A(A_), n(A.height()), m(A.width() - 1) {\n        if (sol) solve();\n\
+    \    }\n    LinearEquations(const Matrix<T>& A_, const std::vector<T>& b, bool\
+    \ sol = true) {\n        assert(A_.height() == (int)b.size());\n        n = A_.height();\n\
+    \        m = A_.width();\n        A = Matrix<T>(n, m + 1);\n        rep (i, n)\
+    \ {\n            rep (j, m) A[i][j] = A_[i][j];\n            A[i][m] = b[i];\n\
+    \        }\n        if (sol) solve();\n    }\n    void add_equation(const std::vector<T>&\
+    \ a, T b) {\n        assert(!is_solved);\n        assert(a.size() == m);\n   \
+    \     A.push_back(a);\n        A.back().push_back(b);\n    }\n    void add_equation(const\
+    \ std::vector<T>& a) {\n        assert(!is_solved);\n        assert(a.size() ==\
+    \ m + 1);\n        A.push_back(a);\n    }\n    bool solve() {\n        assert(!is_solved);\n\
+    \        is_solved = true;\n        A.gauss();\n        int r = A.rank(true);\n\
+    \        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m && A[r - 1][m] !=\
+    \ 0) {\n            return false;\n        }\n        solution = std::vector<T>(m,\
+    \ T{0});\n        solution_space = Matrix<T>(0, m);\n        std::vector<int>\
+    \ p(m, -1);\n        rep (i, r) {\n            int j = 0;\n            while (A[i][j]\
+    \ == 0) ++j;\n            p[j] = i;\n            solution[j] = A[i][m];\n    \
+    \    }\n        rep (i, m) {\n            if (p[i] == -1) {\n                std::vector<T>\
+    \ v(m, T{0});\n                v[i] = T{1};\n                rep (j, m) {\n  \
+    \                  if (p[j] != -1) v[j] = -A[p[j]][i];\n                }\n  \
+    \              solution_space.push_back(std::move(v));\n            }\n      \
+    \  }\n        return true;\n    }\n    bool has_solution() const {\n        assert(is_solved);\n\
+    \        return solution.size() != 0;\n    }\n    int dimension() const {\n  \
+    \      assert(is_solved);\n        return solution_space.height();\n    }\n  \
+    \  std::vector<T> get_solution() const& {\n        assert(is_solved);\n      \
+    \  return solution;\n    }\n    std::vector<T> get_solution() && {\n        assert(is_solved);\n\
+    \        return std::move(solution);\n    }\n    Matrix<T> get_solution_space()\
+    \ const& {\n        assert(is_solved);\n        return solution_space;\n    }\n\
+    \    Matrix<T> get_solution_space() && {\n        assert(is_solved);\n       \
+    \ return std::move(solution_space);\n    }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\
+    \u5F62\u65B9\u7A0B\u5F0F)\n * @docs docs/math/matrix/LinearEquations.md\n */"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -477,30 +559,27 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - math/matrix/Matrix.hpp
   isVerificationFile: false
-  path: data-struct/wavelet/FullyIndexableDictionary.hpp
-  requiredBy:
-  - data-struct/wavelet/WaveletMatrix.hpp
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-  timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  path: math/matrix/LinearEquations.hpp
+  requiredBy: []
+  timestamp: '2022-12-09 20:02:55+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
+  - test/yosupo/matrix/system_of_linear_equations.test.cpp
+documentation_of: math/matrix/LinearEquations.hpp
 layout: document
 redirect_from:
-- /library/data-struct/wavelet/FullyIndexableDictionary.hpp
-- /library/data-struct/wavelet/FullyIndexableDictionary.hpp.html
-title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+- /library/math/matrix/LinearEquations.hpp
+- /library/math/matrix/LinearEquations.hpp.html
+title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
 ---
 ## 概要
 
-$2N+o(N)$ bit のメモリ量で 01 配列の累積和を求める。
+線形連立方程式を解く。解が存在する場合は解の一つと、解空間の基底を返す。
 
-- `FullyIndexableDictionary()` : コンストラクタ。
-- `FullyIndexableDictionary(int n)` : $\Theta(n)$ 。
-- `void set(int i)` : `a[i]` を 1 にする。 $\Theta(1)$ 。
-- `void build()` : 計算する。 $\Theta(1)$ 。
-- `int rank(int i)` : `a[0, i)` のうち $1$ の個数を返す。 $\Theta(1)$ 。
-- `int rank(bool x, int i)` : `a[0, i)` のうち $x$ の個数を返す。 $\Theta(1)$ 。
+- `LinearEquations(Matrix A, vector b)` : 行列 `A` とベクトル `b` で初期化する。 $\Theta(n^2)$ 。
+- `void add_equation(vector<int> a, int b)` : 線形方程式を一つ追加する。 $\Theta(n)$ 。
+- `bool solve()` : $Ax = b$ なるベクトル $x$ を求める。 $\Theta(n^3)$ 。
+- `Matrix get_solution()` : 解の一つを返す。 $\Theta(n)$ 。
+- `Matrix get_solution_space()` : 解空間の基底を返す。 $\Theta(n^2)$ 。

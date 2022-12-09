@@ -769,22 +769,23 @@ data:
     \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
     \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
     \n} // namespace internal\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            const\
-    \ std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution(const std::vector<static_modint<p>>& a,\n            const std::vector<static_modint<p>>&\
-    \ b) {\n    unsigned int n = a.size(), m = b.size();\n    if (n == 0 || m == 0)\
-    \ return {};\n    if (n <= 60 || m <= 60) return internal::convolution_naive(a,\
-    \ b);\n    if (n + m - 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a,\
-    \ b);\n    return internal::convolution(a, b);\n}\n\ntemplate<unsigned int p>\n\
-    std::vector<ll> convolution(const std::vector<ll>& a,\n                      \
-    \      const std::vector<ll>& b) {\n    int n = a.size(), m = b.size();\n    std::vector<static_modint<p>>\
-    \ a2(n), b2(m);\n    rep (i, n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n\
-    \    auto c2 = convolution(a2, b2);\n    std::vector<ll> c(n + m - 1);\n    rep\
-    \ (i, n + m - 1) c[i] = c2[i].get();\n    return c;\n}\n\ntemplate<unsigned int\
-    \ p>\nstd::vector<static_modint<p>>\nconvolution_for_any_mod(const std::vector<static_modint<p>>&\
-    \ a,\n                        const std::vector<static_modint<p>>& b) {\n    int\
-    \ n = a.size(), m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll>\
-    \ a2(n), b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
+    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
+    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
+    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
+    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
+    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    return internal::convolution(a,\
+    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
+    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
+    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
+    \ b2);\n    std::vector<ll> c(n + m - 1);\n    rep (i, n + m - 1) c[i] = c2[i].get();\n\
+    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
     \    static constexpr ull MOD1 = 469762049;\n    static constexpr ull MOD2 = 1811939329;\n\
     \    static constexpr ull MOD3 = 2013265921;\n    static constexpr ull INV1_2\
     \ = mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ull INV1_3 = mod_pow(MOD1,\
@@ -793,12 +794,12 @@ data:
     \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<static_modint<p>>\
     \ res(n + m - 1);\n    rep (i, n + m - 1) {\n        ull t1 = c1[i];\n       \
     \ ull t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
-    \        ull t3 = ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 %\
-    \ MOD3;\n        if (t3 < 0) t3 += MOD3;\n        assert(0 <= t1 && t1 < MOD1);\n\
-    \        assert(0 <= t2 && t2 < MOD2);\n        assert(0 <= t3 && t3 < MOD3);\n\
-    \        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n\
-    \ * @docs docs/math/convolution.md\n */\n#line 5 \"test/yosupo/convolution/convolution_mod.test.cpp\"\
+    \        ull t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
+    \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        assert(0 <= t1 &&\
+    \ t1 < MOD1);\n        assert(0 <= t2 && t2 < MOD2);\n        assert(0 <= t3 &&\
+    \ t3 < MOD3);\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
+    )\n * @docs docs/math/convolution.md\n */\n#line 5 \"test/yosupo/convolution/convolution_mod.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
     \ m; scan >> n >> m;\n    vector<mint> a(n), b(m); scan >> a >> b;\n    prints(convolution(a,\
     \ b));\n}\n"
@@ -828,7 +829,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/convolution_mod.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
+  timestamp: '2022-12-09 20:02:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/convolution_mod.test.cpp

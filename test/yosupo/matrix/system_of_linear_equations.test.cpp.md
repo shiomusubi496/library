@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':x:'
+    path: math/matrix/LinearEquations.hpp
+    title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
+  - icon: ':x:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -28,29 +37,19 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrix.hpp
-    title: WaveletMatrix
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-    title: WaveletMatrixPointAddRectangleSum.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/wavelet/FullyIndexableDictionary.md
-    document_title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
-    links: []
-  bundledCode: "#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
+    links:
+    - https://judge.yosupo.jp/problem/system_of_linear_equations
+  bundledCode: "#line 1 \"test/yosupo/matrix/system_of_linear_equations.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -437,36 +436,222 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\
-    \n\nclass FullyIndexableDictionary {\nprivate:\n    int n, b;\n    std::vector<unsigned\
-    \ int> bit, sm;\n\npublic:\n    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int\
-    \ n) : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >>\
-    \ 5] |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >>\
-    \ 5] >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\nclass FullyIndexableDictionary\
-    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
-    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
-    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
-    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
-    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
+    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
+    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
+    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
+    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  return *this = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n    \
+    \    rep (i, height()) {\n            rep (j, width()) (*this)[i][j] *= s;\n \
+    \       }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
+    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
+    \ lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
+    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
+    \           pivot = j;\n                    break;\n                }\n      \
+    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
+    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
+    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
+    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
+    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
+    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
+    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Matrix.md\n */\n#line 2 \"math/matrix/LinearEquations.hpp\"\
+    \n\n#line 5 \"math/matrix/LinearEquations.hpp\"\n\ntemplate<class T> class LinearEquations\
+    \ {\nprivate:\n    Matrix<T> A;\n    int n, m;\n    bool is_solved = false;\n\
+    \    std::vector<T> solution;\n    Matrix<T> solution_space;\n\npublic:\n    LinearEquations()\
+    \ = default;\n    LinearEquations(int n) : m(n) {}\n    LinearEquations(const\
+    \ Matrix<T>& A_, bool sol = true)\n        : A(A_), n(A.height()), m(A.width()\
+    \ - 1) {\n        if (sol) solve();\n    }\n    LinearEquations(const Matrix<T>&\
+    \ A_, const std::vector<T>& b, bool sol = true) {\n        assert(A_.height()\
+    \ == (int)b.size());\n        n = A_.height();\n        m = A_.width();\n    \
+    \    A = Matrix<T>(n, m + 1);\n        rep (i, n) {\n            rep (j, m) A[i][j]\
+    \ = A_[i][j];\n            A[i][m] = b[i];\n        }\n        if (sol) solve();\n\
+    \    }\n    void add_equation(const std::vector<T>& a, T b) {\n        assert(!is_solved);\n\
+    \        assert(a.size() == m);\n        A.push_back(a);\n        A.back().push_back(b);\n\
+    \    }\n    void add_equation(const std::vector<T>& a) {\n        assert(!is_solved);\n\
+    \        assert(a.size() == m + 1);\n        A.push_back(a);\n    }\n    bool\
+    \ solve() {\n        assert(!is_solved);\n        is_solved = true;\n        A.gauss();\n\
+    \        int r = A.rank(true);\n        if (r != 0 && std::count(all(A[r - 1]),\
+    \ T{0}) == m && A[r - 1][m] != 0) {\n            return false;\n        }\n  \
+    \      solution = std::vector<T>(m, T{0});\n        solution_space = Matrix<T>(0,\
+    \ m);\n        std::vector<int> p(m, -1);\n        rep (i, r) {\n            int\
+    \ j = 0;\n            while (A[i][j] == 0) ++j;\n            p[j] = i;\n     \
+    \       solution[j] = A[i][m];\n        }\n        rep (i, m) {\n            if\
+    \ (p[i] == -1) {\n                std::vector<T> v(m, T{0});\n               \
+    \ v[i] = T{1};\n                rep (j, m) {\n                    if (p[j] !=\
+    \ -1) v[j] = -A[p[j]][i];\n                }\n                solution_space.push_back(std::move(v));\n\
+    \            }\n        }\n        return true;\n    }\n    bool has_solution()\
+    \ const {\n        assert(is_solved);\n        return solution.size() != 0;\n\
+    \    }\n    int dimension() const {\n        assert(is_solved);\n        return\
+    \ solution_space.height();\n    }\n    std::vector<T> get_solution() const& {\n\
+    \        assert(is_solved);\n        return solution;\n    }\n    std::vector<T>\
+    \ get_solution() && {\n        assert(is_solved);\n        return std::move(solution);\n\
+    \    }\n    Matrix<T> get_solution_space() const& {\n        assert(is_solved);\n\
+    \        return solution_space;\n    }\n    Matrix<T> get_solution_space() &&\
+    \ {\n        assert(is_solved);\n        return std::move(solution_space);\n \
+    \   }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)\n\
+    \ * @docs docs/math/matrix/LinearEquations.md\n */\n#line 6 \"test/yosupo/matrix/system_of_linear_equations.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ M; scan >> N >> M;\n    Matrix<mint> A(N, M); scan >> A;\n    vector<mint> B(N);\
+    \ scan >> B;\n    LinearEquations<mint> le(A, B);\n    if (!le.has_solution())\
+    \ {\n        prints(-1);\n        return 0;\n    }\n    prints(le.dimension());\n\
+    \    prints(le.get_solution());\n    each_const (v : le.get_solution_space())\
+    \ prints(v);\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/LinearEquations.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ M; scan >> N >> M;\n    Matrix<mint> A(N, M); scan >> A;\n    vector<mint> B(N);\
+    \ scan >> B;\n    LinearEquations<mint> le(A, B);\n    if (!le.has_solution())\
+    \ {\n        prints(-1);\n        return 0;\n    }\n    prints(le.dimension());\n\
+    \    prints(le.get_solution());\n    each_const (v : le.get_solution_space())\
+    \ prints(v);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -477,30 +662,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: data-struct/wavelet/FullyIndexableDictionary.hpp
-  requiredBy:
-  - data-struct/wavelet/WaveletMatrix.hpp
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-  timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-documentation_of: data-struct/wavelet/FullyIndexableDictionary.hpp
+  - math/ModInt.hpp
+  - math/matrix/Matrix.hpp
+  - math/matrix/LinearEquations.hpp
+  isVerificationFile: true
+  path: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  requiredBy: []
+  timestamp: '2022-12-09 20:02:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/matrix/system_of_linear_equations.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/wavelet/FullyIndexableDictionary.hpp
-- /library/data-struct/wavelet/FullyIndexableDictionary.hpp.html
-title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+- /verify/test/yosupo/matrix/system_of_linear_equations.test.cpp
+- /verify/test/yosupo/matrix/system_of_linear_equations.test.cpp.html
+title: test/yosupo/matrix/system_of_linear_equations.test.cpp
 ---
-## 概要
-
-$2N+o(N)$ bit のメモリ量で 01 配列の累積和を求める。
-
-- `FullyIndexableDictionary()` : コンストラクタ。
-- `FullyIndexableDictionary(int n)` : $\Theta(n)$ 。
-- `void set(int i)` : `a[i]` を 1 にする。 $\Theta(1)$ 。
-- `void build()` : 計算する。 $\Theta(1)$ 。
-- `int rank(int i)` : `a[0, i)` のうち $1$ の個数を返す。 $\Theta(1)$ 。
-- `int rank(bool x, int i)` : `a[0, i)` のうち $x$ の個数を返す。 $\Theta(1)$ 。
