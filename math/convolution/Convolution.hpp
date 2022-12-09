@@ -99,7 +99,7 @@ std::vector<T> convolution_naive(const std::vector<T>& a,
 template<unsigned int p>
 std::vector<static_modint<p>>
 convolution_for_any_mod(const std::vector<static_modint<p>>& a,
-            const std::vector<static_modint<p>>& b);
+                        const std::vector<static_modint<p>>& b);
 
 template<unsigned int p>
 std::vector<static_modint<p>>
@@ -148,7 +148,8 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
         ull t1 = c1[i];
         ull t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;
         if (t2 < 0) t2 += MOD2;
-        ull t3 = ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
+        ull t3 =
+            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
         if (t3 < 0) t3 += MOD3;
         assert(0 <= t1 && t1 < MOD1);
         assert(0 <= t2 && t2 < MOD2);

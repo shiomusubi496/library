@@ -37,8 +37,7 @@ public:
         Matrix res(this->height(), other.width());
         rep (i, this->height()) {
             rep (k, other.height()) {
-                rep (j, other.width())
-                    res[i][j] += (*this)[i][k] * other[k][j];
+                rep (j, other.width()) res[i][j] += (*this)[i][k] * other[k][j];
             }
         }
         return *this = std::move(res);
@@ -80,33 +79,34 @@ public:
         }
         return res;
     }
-    friend Matrix gauss(Matrix mat) {
-        int h = mat.height(), w = mat.width();
+    Matrix& gauss() {
+        int h = height(), w = width();
         int r = 0;
         rep (i, w) {
             int pivot = -1;
             rep (j, r, h) {
-                if (mat[j][i] != 0) {
+                if ((*this)[j][i] != 0) {
                     pivot = j;
                     break;
                 }
             }
             if (pivot == -1) continue;
-            swap(mat[pivot], mat[r]);
-            const T s = mat[r][i];
-            rep (j, i, w) mat[r][j] /= s;
+            swap((*this)[pivot], (*this)[r]);
+            const T s = (*this)[r][i];
+            rep (j, i, w) (*this)[r][j] /= s;
             rep (j, h) {
                 if (j == r) continue;
-                const T s = mat[j][i];
+                const T s = (*this)[j][i];
                 if (s == 0) continue;
-                rep (k, i, w) mat[j][k] -= mat[r][k] * s;
+                rep (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;
             }
             ++r;
         }
+        return *this;
     }
-    Matrix& gauss() { return *this = gauss(std::move(*this)); }
+    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss(); }
     int rank(bool is_gaussed = false) const {
-        if (!is_gaussed) return gauss(*this).rank(true);
+        if (!is_gaussed) return Matrix(*this).gauss().rank(true);
         const int h = height(), w = width();
         int r = 0;
         rep (i, h) {
