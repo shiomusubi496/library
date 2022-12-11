@@ -1,45 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/3030
@@ -435,73 +435,77 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/MillerRabin.hpp\"\n\
     \n#line 2 \"math/MontgomeryModInt.hpp\"\n\n#line 4 \"math/MontgomeryModInt.hpp\"\
-    \n\ntemplate<class T, int id> class MontgomeryModInt {\n    static_assert(std::is_integral<T>::value,\
+    \n\ntemplate<class T> class MontgomeryReduction {\n    static_assert(std::is_integral<T>::value,\
     \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
     \ must be unsigned\");\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n\
-    \    using signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static\
-    \ constexpr int lg = std::numeric_limits<T>::digits; // r = 2^lg\n    static T\
-    \ mod;\n    static T r2; // r^2 mod m\n\n    static T calc_minv() {\n        T\
-    \ t = 0, res = 0;\n        rep (i, lg) {\n            if (~t & 1) {\n        \
-    \        t += mod;\n                res += static_cast<T>(1) << i;\n         \
-    \   }\n            t >>= 1;\n        }\n        return res;\n    }\n\n    static\
-    \ T minv; // mod * minv = -1 (mod r)\n\n    // x / R (mod mod)\n    static T reduce(large_t\
-    \ x) {\n        large_t tmp =\n            (x + static_cast<large_t>(static_cast<T>(x)\
-    \ * minv) * mod) >> lg;\n        return tmp >= mod ? tmp - mod : tmp;\n    }\n\
-    \    static T transrate(large_t x) { return reduce(x * r2); }\n\npublic:\n   \
-    \ MontgomeryModInt() : val(0) {}\n    template<class U, typename std::enable_if<\n\
-    \                          std::is_integral<U>::value &&\n                   \
-    \       std::is_unsigned<U>::value>::type* = nullptr>\n    MontgomeryModInt(U\
-    \ x)\n        : val(transrate(x < (static_cast<large_t>(mod) << lg) ? x : x %\
-    \ mod)) {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
-    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
-    \ (x < 0 && val) val = mod - val;\n    }\n\n    T get() const { return reduce(val);\
-    \ }\n    static T get_mod() { return mod; }\n\n    static void set_mod(T v) {\n\
-    \        assert(v > 0);\n        assert(v & 1);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n\
-    \        minv = calc_minv();\n    }\n\n    MontgomeryModInt operator+() const\
-    \ { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
-    \ res;\n        if (val) res.val = mod - val;\n        return res;\n    }\n  \
-    \  MontgomeryModInt& operator++() {\n        val = val + 1 < mod ? val + 1 : 0;\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator--() {\n        val\
-    \ = val ? val - 1 : mod - 1;\n        return *this;\n    }\n    MontgomeryModInt\
-    \ operator++(int) {\n        MontgomeryModInt res = *this;\n        ++*this;\n\
-    \        return res;\n    }\n    MontgomeryModInt operator--(int) {\n        MontgomeryModInt\
-    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    MontgomeryModInt&\
+    \    static constexpr int lg = std::numeric_limits<T>::digits;\n    T mod;\n \
+    \   T r2; // r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n     \
+    \   rep (i, lg) {\n            if (~t & 1) {\n                t += mod;\n    \
+    \            res += static_cast<T>(1) << i;\n            }\n            t >>=\
+    \ 1;\n        }\n        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r2 = (-static_cast<large_t>(mod))\
+    \ % mod;\n        minv = calc_minv();\n    }\n    T get_mod() const { return mod;\
+    \ }\n    T reduce(large_t x) const {\n        large_t tmp =\n            (x +\
+    \ static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n        return\
+    \ tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x) const { return\
+    \ reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt {\n\
+    private:\n    using large_t = typename double_size_uint<T>::type;\n    using signed_t\
+    \ = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg()) ? x\n                                                    \
+    \               : x % mont.get_mod())) {\n    }\n    template<class U,\n     \
+    \        typename std::enable_if<std::is_integral<U>::value &&\n             \
+    \                        std::is_signed<U>::value>::type* = nullptr>\n    MontgomeryModInt(U\
+    \ x)\n        : MontgomeryModInt(static_cast<typename std::make_unsigned<U>::type>(\n\
+    \              x < 0 ? -x : x)) {\n        if (x < 0 && val) val = mont.get_mod()\
+    \ - val;\n    }\n\n    T get() const { return mont.reduce(val); }\n    static\
+    \ T get_mod() { return mont.get_mod(); }\n\n    static void set_mod(T v) { mont.set_mod(v);\
+    \ }\n\n    MontgomeryModInt operator+() const { return *this; }\n    MontgomeryModInt\
+    \ operator-() const {\n        MontgomeryModInt res;\n        if (val) res.val\
+    \ = mont.get_mod() - val;\n        return res;\n    }\n    MontgomeryModInt& operator++()\
+    \ {\n        val = val + 1 < mont.get_mod() ? val + 1 : 0;\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        val = val ? val - 1 : mont.get_mod()\
+    \ - 1;\n        return *this;\n    }\n    MontgomeryModInt operator++(int) {\n\
+    \        MontgomeryModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    MontgomeryModInt operator--(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        --*this;\n        return res;\n    }\n\n    MontgomeryModInt&\
     \ operator+=(const MontgomeryModInt& rhs) {\n        val += rhs.val;\n       \
-    \ if (val >= mod) val -= mod;\n        return *this;\n    }\n    MontgomeryModInt&\
-    \ operator-=(const MontgomeryModInt& rhs) {\n        if (val < rhs.val) val +=\
-    \ mod;\n        val -= rhs.val;\n        return *this;\n    }\n    MontgomeryModInt&\
-    \ operator*=(const MontgomeryModInt& rhs) {\n        val = reduce(static_cast<large_t>(val)\
-    \ * rhs.val);\n        return *this;\n    }\n\n    MontgomeryModInt pow(ull n)\
-    \ const {\n        MontgomeryModInt res = 1, x = *this;\n        while (n) {\n\
-    \            if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n\
-    \        }\n        return res;\n    }\n    MontgomeryModInt inv() const { return\
-    \ pow(mod - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt&\
-    \ rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt\
-    \ operator+(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n\
-    \    }\n    friend MontgomeryModInt operator-(const MontgomeryModInt& lhs,\n \
-    \                                     const MontgomeryModInt& rhs) {\n       \
-    \ return MontgomeryModInt(lhs) -= rhs;\n    }\n    friend MontgomeryModInt operator*(const\
+    \ if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n \
+    \   }\n    MontgomeryModInt& operator-=(const MontgomeryModInt& rhs) {\n     \
+    \   if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n     \
+    \   return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
+    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
+    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
+    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
+    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
+    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
+    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
     \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt\
-    \ operator/(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n\
-    \    }\n\n    friend bool operator==(const MontgomeryModInt& lhs,\n          \
-    \                 const MontgomeryModInt& rhs) {\n        return lhs.val == rhs.val;\n\
-    \    }\n    friend bool operator!=(const MontgomeryModInt& lhs,\n            \
-    \               const MontgomeryModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(reduce(val));\
-    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(reduce(val)); }\n\
-    \    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
-    \        *this = v;\n    }\n};\n\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::mod = 998244353;\ntemplate<class T, int id>\nT MontgomeryModInt<T, id>::r2\
-    \ = (-static_cast<large_t>(mod)) % mod;\ntemplate<class T, int id> T MontgomeryModInt<T,\
-    \ id>::minv = calc_minv();\n\nusing mmodint = MontgomeryModInt<unsigned int, -1>;\n\
-    \n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)\n\
-    \ * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/MillerRabin.hpp\"\
+    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
+    \ operator-(const MontgomeryModInt& lhs,\n                                   \
+    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
+    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
+    \                                     const MontgomeryModInt& rhs) {\n       \
+    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
+    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
+    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
+    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
+    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
+    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
+    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
+    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/MillerRabin.hpp\"\
     \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
     \ = {2,      325,     9375,      28178,\n                                    \
     \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
@@ -540,8 +544,8 @@ data:
   isVerificationFile: true
   path: test/yuki/3030-MRPrime.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-11 09:12:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/3030-MRPrime.test.cpp
 layout: document
