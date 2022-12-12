@@ -35,7 +35,7 @@ public:
         r2 = (-static_cast<large_t>(mod)) % mod;
         minv = calc_minv();
     }
-    T get_mod() const { return mod; }
+    inline T get_mod() const { return mod; }
     T reduce(large_t x) const {
         large_t tmp =
             (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;
@@ -58,9 +58,10 @@ public:
                           std::is_integral<U>::value &&
                           std::is_unsigned<U>::value>::type* = nullptr>
     MontgomeryModInt(U x)
-        : val(mont.transform(x < (static_cast<large_t>(mont.get_mod()) << mont.get_lg()) ? x
-                                                                   : x % mont.get_mod())) {
-    }
+        : val(mont.transform(
+              x < (static_cast<large_t>(mont.get_mod()) << mont.get_lg())
+                  ? x
+                  : x % mont.get_mod())) {}
     template<class U,
              typename std::enable_if<std::is_integral<U>::value &&
                                      std::is_signed<U>::value>::type* = nullptr>

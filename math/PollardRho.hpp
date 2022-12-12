@@ -60,10 +60,15 @@ std::vector<ull> factorize(ull n, Rnd& rnd = rand64) {
     return res;
 }
 
+template<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>
+std::vector<std::pair<ull, int>> expfactorize(ull n, Rnd& rnd = rand64) {
+    auto f = factorize<T, Rnd>(n, rnd);
+    return RunLength(f);
+}
+
 std::vector<ll> divisors_pr(ll n) {
     std::vector<ll> res;
-    auto f = factorize(n);
-    auto r = RunLength(f);
+    auto r = expfactorize(n);
     int m = r.size();
     rec_lambda([&](auto&& self, int k, ll d) -> void {
         if (k == m) {

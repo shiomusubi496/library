@@ -18,7 +18,8 @@ public:
         : A(A_), n(A.height()), m(A.width() - 1) {
         if (sol) solve();
     }
-    LinearEquations(const Matrix<T>& A_, const std::vector<T>& b, bool sol = true) {
+    LinearEquations(const Matrix<T>& A_, const std::vector<T>& b,
+                    bool sol = true) {
         assert(A_.height() == (int)b.size());
         n = A_.height();
         m = A_.width();
@@ -45,7 +46,8 @@ public:
         is_solved = true;
         A.gauss();
         int r = A.rank(true);
-        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m && A[r - 1][m] != 0) {
+        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m &&
+            A[r - 1][m] != 0) {
             return false;
         }
         solution = std::vector<T>(m, T{0});
