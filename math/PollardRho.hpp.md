@@ -498,38 +498,38 @@ data:
     \    static constexpr int get_lg() { return lg; }\n    void set_mod(T v) {\n \
     \       assert(v > 0);\n        assert(v & 1);\n        assert(v <= std::numeric_limits<T>::max()\
     \ / 2);\n        mod = v;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n\
-    \        minv = calc_minv();\n    }\n    T get_mod() const { return mod; }\n \
-    \   T reduce(large_t x) const {\n        large_t tmp =\n            (x + static_cast<large_t>(static_cast<T>(x)\
-    \ * minv) * mod) >> lg;\n        return tmp >= mod ? tmp - mod : tmp;\n    }\n\
-    \    T transform(large_t x) const { return reduce(x * r2); }\n};\n\ntemplate<class\
-    \ T, int id> class MontgomeryModInt {\nprivate:\n    using large_t = typename\
-    \ double_size_uint<T>::type;\n    using signed_t = typename std::make_signed<T>::type;\n\
-    \    T val;\n\n    static MontgomeryReduction<T> mont;\n\npublic:\n    MontgomeryModInt()\
-    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
-    \            std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    MontgomeryModInt(U x)\n        : val(mont.transform(x < (static_cast<large_t>(mont.get_mod())\
-    \ << mont.get_lg()) ? x\n                                                    \
-    \               : x % mont.get_mod())) {\n    }\n    template<class U,\n     \
-    \        typename std::enable_if<std::is_integral<U>::value &&\n             \
-    \                        std::is_signed<U>::value>::type* = nullptr>\n    MontgomeryModInt(U\
-    \ x)\n        : MontgomeryModInt(static_cast<typename std::make_unsigned<U>::type>(\n\
-    \              x < 0 ? -x : x)) {\n        if (x < 0 && val) val = mont.get_mod()\
-    \ - val;\n    }\n\n    T get() const { return mont.reduce(val); }\n    static\
-    \ T get_mod() { return mont.get_mod(); }\n\n    static void set_mod(T v) { mont.set_mod(v);\
-    \ }\n\n    MontgomeryModInt operator+() const { return *this; }\n    MontgomeryModInt\
-    \ operator-() const {\n        MontgomeryModInt res;\n        if (val) res.val\
-    \ = mont.get_mod() - val;\n        return res;\n    }\n    MontgomeryModInt& operator++()\
-    \ {\n        val = val + 1 < mont.get_mod() ? val + 1 : 0;\n        return *this;\n\
-    \    }\n    MontgomeryModInt& operator--() {\n        val = val ? val - 1 : mont.get_mod()\
-    \ - 1;\n        return *this;\n    }\n    MontgomeryModInt operator++(int) {\n\
-    \        MontgomeryModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    MontgomeryModInt operator--(int) {\n        MontgomeryModInt res =\
-    \ *this;\n        --*this;\n        return res;\n    }\n\n    MontgomeryModInt&\
-    \ operator+=(const MontgomeryModInt& rhs) {\n        val += rhs.val;\n       \
-    \ if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n \
-    \   }\n    MontgomeryModInt& operator-=(const MontgomeryModInt& rhs) {\n     \
-    \   if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n     \
-    \   return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \        minv = calc_minv();\n    }\n    inline T get_mod() const { return mod;\
+    \ }\n    T reduce(large_t x) const {\n        large_t tmp =\n            (x +\
+    \ static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n        return\
+    \ tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x) const { return\
+    \ reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt {\n\
+    private:\n    using large_t = typename double_size_uint<T>::type;\n    using signed_t\
+    \ = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
+    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \ &&\n                                     std::is_signed<U>::value>::type* =\
+    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
+    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
+    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
+    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
+    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
+    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
+    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val = val + 1 < mont.get_mod()\
+    \ ? val + 1 : 0;\n        return *this;\n    }\n    MontgomeryModInt& operator--()\
+    \ {\n        val = val ? val - 1 : mont.get_mod() - 1;\n        return *this;\n\
+    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
+    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
+    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
+    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
     \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
     \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
     \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
@@ -602,15 +602,17 @@ data:
     \        st.pop_back();\n        if (t == 1) continue;\n        if (is_prime_mr(t))\
     \ {\n            res.push_back(t);\n            continue;\n        }\n       \
     \ ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n        st.push_back(t\
-    \ / f);\n    }\n    std::sort(all(res));\n    return res;\n}\n\nstd::vector<ll>\
-    \ divisors_pr(ll n) {\n    std::vector<ll> res;\n    auto f = factorize(n);\n\
-    \    auto r = RunLength(f);\n    int m = r.size();\n    rec_lambda([&](auto&&\
-    \ self, int k, ll d) -> void {\n        if (k == m) {\n            res.push_back(d);\n\
-    \            return;\n        }\n        ll t = d;\n        rep (r[k].second)\
-    \ {\n            self(k + 1, d);\n            d *= r[k].first;\n        }\n  \
-    \      self(k + 1, d);\n        d = t;\n    })(0, 1);\n    std::sort(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\u56E0\u6570\u5206\u89E3\
-    )\n * @docs docs/math/PollardRho.md\n */\n"
+    \ / f);\n    }\n    std::sort(all(res));\n    return res;\n}\n\ntemplate<class\
+    \ T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
+    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
+    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
+    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
+    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
+    \            res.push_back(d);\n            return;\n        }\n        ll t =\
+    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
+    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
+    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
+    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
     \n#include \"MontgomeryModInt.hpp\"\n#include \"MillerRabin.hpp\"\n#include \"\
     ../string/RunLength.hpp\"\n\ntemplate<class T, class Rnd> ull pollard_rho(ull\
@@ -632,14 +634,16 @@ data:
     \        if (is_prime_mr(t)) {\n            res.push_back(t);\n            continue;\n\
     \        }\n        ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n\
     \        st.push_back(t / f);\n    }\n    std::sort(all(res));\n    return res;\n\
-    }\n\nstd::vector<ll> divisors_pr(ll n) {\n    std::vector<ll> res;\n    auto f\
-    \ = factorize(n);\n    auto r = RunLength(f);\n    int m = r.size();\n    rec_lambda([&](auto&&\
-    \ self, int k, ll d) -> void {\n        if (k == m) {\n            res.push_back(d);\n\
-    \            return;\n        }\n        ll t = d;\n        rep (r[k].second)\
-    \ {\n            self(k + 1, d);\n            d *= r[k].first;\n        }\n  \
-    \      self(k + 1, d);\n        d = t;\n    })(0, 1);\n    std::sort(all(res));\n\
-    \    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\u56E0\u6570\u5206\u89E3\
-    )\n * @docs docs/math/PollardRho.md\n */\n"
+    }\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
+    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
+    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
+    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
+    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
+    \            res.push_back(d);\n            return;\n        }\n        ll t =\
+    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
+    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
+    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
+    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -659,7 +663,7 @@ data:
   requiredBy:
   - math/PrimitiveRoot.hpp
   - math/convolution/Convolution.hpp
-  timestamp: '2022-12-11 09:12:17+09:00'
+  timestamp: '2022-12-12 16:40:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/convolution_mod.test.cpp
@@ -678,4 +682,5 @@ title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
 素因数分解を高速に行う。フロイドの循環検出法に基づいている。
 
 - `vector<ull> factorize(ull n)` : `n` を素因数分解し、昇順に素因数を返す。期待 $O(\sqrt[4]{n})$ であると言われている。
+- `vector<pair<ull, int>> expfactorize(ull n)` : `n` を素因数分解したものを素冪の積の形で返す。
 - `vector<ll> divisors_pr(ll n)` : `n` の約数を昇順に返す。 $n$ の約数の個数に比例する計算量がかかる。

@@ -608,41 +608,41 @@ data:
     \ = default;\n    LinearEquations(int n) : m(n) {}\n    LinearEquations(const\
     \ Matrix<T>& A_, bool sol = true)\n        : A(A_), n(A.height()), m(A.width()\
     \ - 1) {\n        if (sol) solve();\n    }\n    LinearEquations(const Matrix<T>&\
-    \ A_, const std::vector<T>& b, bool sol = true) {\n        assert(A_.height()\
-    \ == (int)b.size());\n        n = A_.height();\n        m = A_.width();\n    \
-    \    A = Matrix<T>(n, m + 1);\n        rep (i, n) {\n            rep (j, m) A[i][j]\
-    \ = A_[i][j];\n            A[i][m] = b[i];\n        }\n        if (sol) solve();\n\
-    \    }\n    void add_equation(const std::vector<T>& a, T b) {\n        assert(!is_solved);\n\
-    \        assert(a.size() == m);\n        A.push_back(a);\n        A.back().push_back(b);\n\
-    \    }\n    void add_equation(const std::vector<T>& a) {\n        assert(!is_solved);\n\
-    \        assert(a.size() == m + 1);\n        A.push_back(a);\n    }\n    bool\
-    \ solve() {\n        assert(!is_solved);\n        is_solved = true;\n        A.gauss();\n\
-    \        int r = A.rank(true);\n        if (r != 0 && std::count(all(A[r - 1]),\
-    \ T{0}) == m && A[r - 1][m] != 0) {\n            return false;\n        }\n  \
-    \      solution = std::vector<T>(m, T{0});\n        solution_space = Matrix<T>(0,\
-    \ m);\n        std::vector<int> p(m, -1);\n        rep (i, r) {\n            int\
-    \ j = 0;\n            while (A[i][j] == 0) ++j;\n            p[j] = i;\n     \
-    \       solution[j] = A[i][m];\n        }\n        rep (i, m) {\n            if\
-    \ (p[i] == -1) {\n                std::vector<T> v(m, T{0});\n               \
-    \ v[i] = T{1};\n                rep (j, m) {\n                    if (p[j] !=\
-    \ -1) v[j] = -A[p[j]][i];\n                }\n                solution_space.push_back(std::move(v));\n\
-    \            }\n        }\n        return true;\n    }\n    bool has_solution()\
-    \ const {\n        assert(is_solved);\n        return solution.size() != 0;\n\
-    \    }\n    int dimension() const {\n        assert(is_solved);\n        return\
-    \ solution_space.height();\n    }\n    std::vector<T> get_solution() const& {\n\
-    \        assert(is_solved);\n        return solution;\n    }\n    std::vector<T>\
-    \ get_solution() && {\n        assert(is_solved);\n        return std::move(solution);\n\
-    \    }\n    Matrix<T> get_solution_space() const& {\n        assert(is_solved);\n\
-    \        return solution_space;\n    }\n    Matrix<T> get_solution_space() &&\
-    \ {\n        assert(is_solved);\n        return std::move(solution_space);\n \
-    \   }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)\n\
-    \ * @docs docs/math/matrix/LinearEquations.md\n */\n#line 6 \"test/yosupo/matrix/system_of_linear_equations.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
-    \ M; scan >> N >> M;\n    Matrix<mint> A(N, M); scan >> A;\n    vector<mint> B(N);\
-    \ scan >> B;\n    LinearEquations<mint> le(A, B);\n    if (!le.has_solution())\
-    \ {\n        prints(-1);\n        return 0;\n    }\n    prints(le.dimension());\n\
-    \    prints(le.get_solution());\n    each_const (v : le.get_solution_space())\
-    \ prints(v);\n}\n"
+    \ A_, const std::vector<T>& b,\n                    bool sol = true) {\n     \
+    \   assert(A_.height() == (int)b.size());\n        n = A_.height();\n        m\
+    \ = A_.width();\n        A = Matrix<T>(n, m + 1);\n        rep (i, n) {\n    \
+    \        rep (j, m) A[i][j] = A_[i][j];\n            A[i][m] = b[i];\n       \
+    \ }\n        if (sol) solve();\n    }\n    void add_equation(const std::vector<T>&\
+    \ a, T b) {\n        assert(!is_solved);\n        assert(a.size() == m);\n   \
+    \     A.push_back(a);\n        A.back().push_back(b);\n    }\n    void add_equation(const\
+    \ std::vector<T>& a) {\n        assert(!is_solved);\n        assert(a.size() ==\
+    \ m + 1);\n        A.push_back(a);\n    }\n    bool solve() {\n        assert(!is_solved);\n\
+    \        is_solved = true;\n        A.gauss();\n        int r = A.rank(true);\n\
+    \        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m &&\n            A[r\
+    \ - 1][m] != 0) {\n            return false;\n        }\n        solution = std::vector<T>(m,\
+    \ T{0});\n        solution_space = Matrix<T>(0, m);\n        std::vector<int>\
+    \ p(m, -1);\n        rep (i, r) {\n            int j = 0;\n            while (A[i][j]\
+    \ == 0) ++j;\n            p[j] = i;\n            solution[j] = A[i][m];\n    \
+    \    }\n        rep (i, m) {\n            if (p[i] == -1) {\n                std::vector<T>\
+    \ v(m, T{0});\n                v[i] = T{1};\n                rep (j, m) {\n  \
+    \                  if (p[j] != -1) v[j] = -A[p[j]][i];\n                }\n  \
+    \              solution_space.push_back(std::move(v));\n            }\n      \
+    \  }\n        return true;\n    }\n    bool has_solution() const {\n        assert(is_solved);\n\
+    \        return solution.size() != 0;\n    }\n    int dimension() const {\n  \
+    \      assert(is_solved);\n        return solution_space.height();\n    }\n  \
+    \  std::vector<T> get_solution() const& {\n        assert(is_solved);\n      \
+    \  return solution;\n    }\n    std::vector<T> get_solution() && {\n        assert(is_solved);\n\
+    \        return std::move(solution);\n    }\n    Matrix<T> get_solution_space()\
+    \ const& {\n        assert(is_solved);\n        return solution_space;\n    }\n\
+    \    Matrix<T> get_solution_space() && {\n        assert(is_solved);\n       \
+    \ return std::move(solution_space);\n    }\n};\n\n/**\n * @brief LinearEquations(\u7DDA\
+    \u5F62\u65B9\u7A0B\u5F0F)\n * @docs docs/math/matrix/LinearEquations.md\n */\n\
+    #line 6 \"test/yosupo/matrix/system_of_linear_equations.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int N, M; scan >> N >>\
+    \ M;\n    Matrix<mint> A(N, M); scan >> A;\n    vector<mint> B(N); scan >> B;\n\
+    \    LinearEquations<mint> le(A, B);\n    if (!le.has_solution()) {\n        prints(-1);\n\
+    \        return 0;\n    }\n    prints(le.dimension());\n    prints(le.get_solution());\n\
+    \    each_const (v : le.get_solution_space()) prints(v);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/LinearEquations.hpp\"\
@@ -668,7 +668,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/system_of_linear_equations.test.cpp
   requiredBy: []
-  timestamp: '2022-12-09 20:02:55+09:00'
+  timestamp: '2022-12-12 16:40:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/matrix/system_of_linear_equations.test.cpp
