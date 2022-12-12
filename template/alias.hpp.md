@@ -229,6 +229,12 @@ data:
     path: graph/tree/TreeDiameter.hpp
     title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - icon: ':heavy_check_mark:'
+    path: math/ArbitraryModCombinatorics.hpp
+    title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
+  - icon: ':heavy_check_mark:'
+    path: math/BarrettReduction.hpp
+    title: math/BarrettReduction.hpp
+  - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
@@ -749,6 +755,9 @@ data:
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/binomial_coefficient.test.cpp
+    title: test/yosupo/math/binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/enumerate_primes.test.cpp
     title: test/yosupo/math/enumerate_primes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -958,7 +967,9 @@ data:
   - math/matrix/Determinant.hpp
   - math/matrix/Matrix.hpp
   - math/PrimeFactor.hpp
+  - math/BarrettReduction.hpp
   - math/KthRoot.hpp
+  - math/ArbitraryModCombinatorics.hpp
   - template/func.hpp
   - template/bitop.hpp
   - template/out.hpp
@@ -1015,6 +1026,7 @@ data:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/enumerate_primes.test.cpp
   - test/yosupo/math/kth_root_integer.test.cpp
+  - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/montmort_number_mod.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/tree/jump_on_tree.test.cpp

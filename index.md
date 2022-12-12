@@ -254,6 +254,12 @@ data:
   - name: math
     pages:
     - icon: ':heavy_check_mark:'
+      path: math/ArbitraryModCombinatorics.hpp
+      title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
+    - icon: ':heavy_check_mark:'
+      path: math/BarrettReduction.hpp
+      title: math/BarrettReduction.hpp
+    - icon: ':heavy_check_mark:'
       path: math/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
     - icon: ':heavy_check_mark:'
@@ -822,6 +828,9 @@ data:
       title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - name: test/yosupo/math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/binomial_coefficient.test.cpp
+      title: test/yosupo/math/binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/enumerate_primes.test.cpp
       title: test/yosupo/math/enumerate_primes.test.cpp
