@@ -10,6 +10,7 @@ private:
     using large_t = typename double_size_uint<T>::type;
     static constexpr int lg = std::numeric_limits<T>::digits;
     T mod;
+    T r;
     T r2; // r^2 mod m
     T calc_minv() {
         T t = 0, res = 0;
@@ -32,10 +33,12 @@ public:
         assert(v & 1);
         assert(v <= std::numeric_limits<T>::max() / 2);
         mod = v;
+        r = (-static_cast<T>(mod)) % mod;
         r2 = (-static_cast<large_t>(mod)) % mod;
         minv = calc_minv();
     }
     inline T get_mod() const { return mod; }
+    inline T get_r() const { return r; }
     T reduce(large_t x) const {
         large_t tmp =
             (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;
@@ -83,11 +86,13 @@ public:
         return res;
     }
     MontgomeryModInt& operator++() {
-        val = val + 1 < mont.get_mod() ? val + 1 : 0;
+        val += mont.get_r();
+        if (val >= mont.get_mod()) val -= mont.get_mod();
         return *this;
     }
     MontgomeryModInt& operator--() {
-        val = val ? val - 1 : mont.get_mod() - 1;
+        if (val < mont.get_r()) val += mont.get_mod();
+        val -= mont.get_r();
         return *this;
     }
     MontgomeryModInt operator++(int) {
