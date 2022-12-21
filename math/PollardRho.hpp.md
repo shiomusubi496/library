@@ -490,21 +490,22 @@ data:
     \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
     \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
     \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
-    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r2; // r^2 mod m\n\
-    \    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg) {\n     \
-    \       if (~t & 1) {\n                t += mod;\n                res += static_cast<T>(1)\
-    \ << i;\n            }\n            t >>= 1;\n        }\n        return res;\n\
-    \    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T v) { set_mod(v); }\n\
-    \    static constexpr int get_lg() { return lg; }\n    void set_mod(T v) {\n \
-    \       assert(v > 0);\n        assert(v & 1);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n\
-    \        minv = calc_minv();\n    }\n    inline T get_mod() const { return mod;\
-    \ }\n    T reduce(large_t x) const {\n        large_t tmp =\n            (x +\
-    \ static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n        return\
-    \ tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x) const { return\
-    \ reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt {\n\
-    private:\n    using large_t = typename double_size_uint<T>::type;\n    using signed_t\
-    \ = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
+    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
+    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
+    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
+    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
+    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
+    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
+    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
+    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
+    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
+    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
+    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
     \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
     \ typename std::enable_if<\n                          std::is_integral<U>::value\
     \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
@@ -519,9 +520,10 @@ data:
     \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
     \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
     \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
-    \    }\n    MontgomeryModInt& operator++() {\n        val = val + 1 < mont.get_mod()\
-    \ ? val + 1 : 0;\n        return *this;\n    }\n    MontgomeryModInt& operator--()\
-    \ {\n        val = val ? val - 1 : mont.get_mod() - 1;\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
+    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
+    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
     \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
     \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
     \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
@@ -661,15 +663,15 @@ data:
   isVerificationFile: false
   path: math/PollardRho.hpp
   requiredBy:
-  - math/PrimitiveRoot.hpp
   - math/convolution/Convolution.hpp
-  timestamp: '2022-12-12 16:40:13+09:00'
+  - math/PrimitiveRoot.hpp
+  timestamp: '2022-12-21 22:28:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/primitive_root.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/new/primitive_root.test.cpp
 documentation_of: math/PollardRho.hpp
 layout: document
 redirect_from:

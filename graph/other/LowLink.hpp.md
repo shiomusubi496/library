@@ -539,9 +539,9 @@ data:
   timestamp: '2022-12-07 21:25:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
 documentation_of: graph/other/LowLink.hpp
 layout: document
 redirect_from:

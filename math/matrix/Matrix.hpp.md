@@ -561,10 +561,10 @@ data:
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
+  - graph/mst/CountSpanningTree.hpp
   - math/matrix/Inverse.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Determinant.hpp
-  - graph/mst/CountSpanningTree.hpp
   timestamp: '2022-12-09 20:02:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
