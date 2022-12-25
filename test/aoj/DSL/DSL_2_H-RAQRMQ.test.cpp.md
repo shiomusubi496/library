@@ -551,17 +551,17 @@ data:
     \ i, 1 << i);\n        return data[k];\n    }\n    T all_prod() const { return\
     \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
     \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
-    \ >> i, i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k >> i);\n\
-    \    }\n    void set(int k, const T& x) {\n        update(k, [&](const T&) ->\
-    \ T { return x; });\n    }\n    void apply(int k, const U& x) {\n        update(k,\
-    \ [&](const T& a) -> T { return A::op(x, a); });\n    }\n    void apply(int l,\
-    \ int r, const U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n      \
-    \  if (l == r) return;\n\n        l += n, r += n;\n        int lst = h + 1;\n\
-    \        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >> i, 1\
-    \ << i), lst = i;\n            if (((r >> i) << i) != r) eval((r - 1) >> i, 1\
-    \ << i), lst = i;\n            if (lst != i) break;\n        }\n\n        for\
-    \ (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {\n     \
-    \       if (l2 & 1) all_apply(l2++, x, d);\n            if (r2 & 1) all_apply(--r2,\
+    \ >> i, 1 << i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k\
+    \ >> i);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const\
+    \ T&) -> T { return x; });\n    }\n    void apply(int k, const U& x) {\n     \
+    \   update(k, [&](const T& a) -> T { return A::op(x, a); });\n    }\n    void\
+    \ apply(int l, int r, const U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        if (l == r) return;\n\n        l += n, r += n;\n        int lst = h +\
+    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
+    \ i, 1 << i), lst = i;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
+    \ i, 1 << i), lst = i;\n            if (lst != i) break;\n        }\n\n      \
+    \  for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {\n\
+    \            if (l2 & 1) all_apply(l2++, x, d);\n            if (r2 & 1) all_apply(--r2,\
     \ x, d);\n        }\n\n        rep (i, lst, h + 1) {\n            if (((l >> i)\
     \ << i) != l) calc(l >> i);\n            if (((r >> i) << i) != r) calc((r - 1)\
     \ >> i);\n        }\n    }\n    template<class C> int max_right(int l, const C&\
@@ -631,7 +631,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
+  timestamp: '2022-12-26 08:07:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
