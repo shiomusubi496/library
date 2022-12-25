@@ -98,7 +98,7 @@ public:
         assert(0 <= k && k < ori);
 
         k += n;
-        rreps (i, h) eval(k >> i, i);
+        rreps (i, h) eval(k >> i, 1 << i);
         data[k] = upd(data[k]);
         reps (i, h) calc(k >> i);
     }
