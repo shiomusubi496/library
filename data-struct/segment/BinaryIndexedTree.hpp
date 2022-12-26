@@ -41,7 +41,7 @@ public:
         return M::inv(prod(r), prod(l));
     }
     T get(int k) const { return prod(k, k + 1); }
-    void set(int k, T x) { apply(k, M::inv(x, prod(k))); }
+    void set(int k, T x) { apply(k, M::inv(x, get(k))); }
 };
 
 template<class T>
