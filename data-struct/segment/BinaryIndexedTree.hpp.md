@@ -546,7 +546,7 @@ data:
     \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
     \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
     \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
+    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
     \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
@@ -568,7 +568,7 @@ data:
     \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
     \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
     \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, prod(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
+    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
     \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
     \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
     \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
@@ -589,7 +589,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
+  timestamp: '2022-12-27 08:05:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
