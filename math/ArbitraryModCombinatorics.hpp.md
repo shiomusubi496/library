@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -448,7 +448,7 @@ data:
     \ class PrimePowerModCombinatorics {\nprivate:\n    unsigned int p, e;\n    barrett\
     \ bar, bar2;\n    std::vector<unsigned int> factorial, factinv;\n\npublic:\n \
     \   PrimePowerModCombinatorics(unsigned int p_, unsigned int e_)\n        : p(p_),\
-    \ e(e_), bar(my_pow(p, e)),\n          bar2(p), factorial(1, 1), factinv(1, 1)\
+    \ e(e_), bar(my_pow(p, e)), bar2(p), factorial(1, 1),\n          factinv(1, 1)\
     \ {}\n\n    unsigned int get_mod() const { return bar.get_mod(); }\n    unsigned\
     \ int get_prime() const { return p; }\n    unsigned int get_power() const { return\
     \ e; }\n\n    void init(int n) {\n        const int b = factorial.size();\n  \
@@ -469,24 +469,24 @@ data:
     \ *= p;\n                if (e1 == bar.get_mod()) return 0;\n                if\
     \ (i + 1 >= e) ++e2;\n            }\n        }\n        if ((e2 & 1) && (p !=\
     \ 2 || e == 2)) res = bar.get_mod() - res;\n        return bar.mul(res, e1);\n\
-    \    }\n};\n\ntemplate<class barrett = BarrettReduction>\nclass ArbitraryModCombinatorics\
+    \    }\n};\n\ntemplate<class barrett = BarrettReduction> class ArbitraryModCombinatorics\
     \ {\nprivate:\n    static std::vector<PrimePowerModCombinatorics<barrett>> ppmc;\n\
     \n    static std::vector<PLL> extgcds;\n\n    static ll CRT(ll b1, ll m1, ll b2,\
     \ ll m2, int k) {\n        const PLL p = extgcds[k];\n        const ll l = m1\
     \ * m2;\n        const ll x = (b2 - b1) * p.first % m2;\n        return (x * m1\
-    \ + b1 + l) % l;\n    }\n\npublic:\n\n    static void set_mod(unsigned int m)\
-    \ {\n        ppmc.clear();\n        for (unsigned int i = 2; i * i <= m; ++i)\
-    \ {\n            if (m % i == 0) {\n                unsigned int e = 0;\n    \
-    \            while (m % i == 0) {\n                    m /= i;\n             \
-    \       ++e;\n                }\n                ppmc.emplace_back(i, e);\n  \
-    \          }\n        }\n        if (m != 1) ppmc.emplace_back(m, 1);\n\n    \
-    \    if (ppmc.empty()) return;\n        extgcds.resize(ppmc.size() - 1);\n   \
-    \     unsigned int prod = 1;\n        rep (i, ppmc.size() - 1) {\n           \
-    \ prod *= ppmc[i].get_mod();\n            extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n\
-    \        }\n    }\n\n    static int comb(ll n, ll r) {\n        if (r < 0 || r\
-    \ > n) return 0;\n        if (n < 0) return 0;\n        if (ppmc.empty()) return\
-    \ 0;\n        unsigned int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n\
-    \        rep (i, 1, ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n,\
+    \ + b1 + l) % l;\n    }\n\npublic:\n    static void set_mod(unsigned int m) {\n\
+    \        ppmc.clear();\n        for (unsigned int i = 2; i * i <= m; ++i) {\n\
+    \            if (m % i == 0) {\n                unsigned int e = 0;\n        \
+    \        while (m % i == 0) {\n                    m /= i;\n                 \
+    \   ++e;\n                }\n                ppmc.emplace_back(i, e);\n      \
+    \      }\n        }\n        if (m != 1) ppmc.emplace_back(m, 1);\n\n        if\
+    \ (ppmc.empty()) return;\n        extgcds.resize(ppmc.size() - 1);\n        unsigned\
+    \ int prod = 1;\n        rep (i, ppmc.size() - 1) {\n            prod *= ppmc[i].get_mod();\n\
+    \            extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n        }\n  \
+    \  }\n\n    static int comb(ll n, ll r) {\n        if (r < 0 || r > n) return\
+    \ 0;\n        if (n < 0) return 0;\n        if (ppmc.empty()) return 0;\n    \
+    \    unsigned int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n      \
+    \  rep (i, 1, ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n,\
     \ r);\n            res = CRT(res, prod, m, ppmc[i].get_mod(), i - 1);\n      \
     \      prod *= ppmc[i].get_mod();\n        }\n        return res;\n    }\n};\n\
     \ntemplate<class barrett>\nstd::vector<PrimePowerModCombinatorics<barrett>>\n\
@@ -498,8 +498,8 @@ data:
     \n\ntemplate<class barrett> class PrimePowerModCombinatorics {\nprivate:\n   \
     \ unsigned int p, e;\n    barrett bar, bar2;\n    std::vector<unsigned int> factorial,\
     \ factinv;\n\npublic:\n    PrimePowerModCombinatorics(unsigned int p_, unsigned\
-    \ int e_)\n        : p(p_), e(e_), bar(my_pow(p, e)),\n          bar2(p), factorial(1,\
-    \ 1), factinv(1, 1) {}\n\n    unsigned int get_mod() const { return bar.get_mod();\
+    \ int e_)\n        : p(p_), e(e_), bar(my_pow(p, e)), bar2(p), factorial(1, 1),\n\
+    \          factinv(1, 1) {}\n\n    unsigned int get_mod() const { return bar.get_mod();\
     \ }\n    unsigned int get_prime() const { return p; }\n    unsigned int get_power()\
     \ const { return e; }\n\n    void init(int n) {\n        const int b = factorial.size();\n\
     \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
@@ -519,24 +519,24 @@ data:
     \ *= p;\n                if (e1 == bar.get_mod()) return 0;\n                if\
     \ (i + 1 >= e) ++e2;\n            }\n        }\n        if ((e2 & 1) && (p !=\
     \ 2 || e == 2)) res = bar.get_mod() - res;\n        return bar.mul(res, e1);\n\
-    \    }\n};\n\ntemplate<class barrett = BarrettReduction>\nclass ArbitraryModCombinatorics\
+    \    }\n};\n\ntemplate<class barrett = BarrettReduction> class ArbitraryModCombinatorics\
     \ {\nprivate:\n    static std::vector<PrimePowerModCombinatorics<barrett>> ppmc;\n\
     \n    static std::vector<PLL> extgcds;\n\n    static ll CRT(ll b1, ll m1, ll b2,\
     \ ll m2, int k) {\n        const PLL p = extgcds[k];\n        const ll l = m1\
     \ * m2;\n        const ll x = (b2 - b1) * p.first % m2;\n        return (x * m1\
-    \ + b1 + l) % l;\n    }\n\npublic:\n\n    static void set_mod(unsigned int m)\
-    \ {\n        ppmc.clear();\n        for (unsigned int i = 2; i * i <= m; ++i)\
-    \ {\n            if (m % i == 0) {\n                unsigned int e = 0;\n    \
-    \            while (m % i == 0) {\n                    m /= i;\n             \
-    \       ++e;\n                }\n                ppmc.emplace_back(i, e);\n  \
-    \          }\n        }\n        if (m != 1) ppmc.emplace_back(m, 1);\n\n    \
-    \    if (ppmc.empty()) return;\n        extgcds.resize(ppmc.size() - 1);\n   \
-    \     unsigned int prod = 1;\n        rep (i, ppmc.size() - 1) {\n           \
-    \ prod *= ppmc[i].get_mod();\n            extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n\
-    \        }\n    }\n\n    static int comb(ll n, ll r) {\n        if (r < 0 || r\
-    \ > n) return 0;\n        if (n < 0) return 0;\n        if (ppmc.empty()) return\
-    \ 0;\n        unsigned int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n\
-    \        rep (i, 1, ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n,\
+    \ + b1 + l) % l;\n    }\n\npublic:\n    static void set_mod(unsigned int m) {\n\
+    \        ppmc.clear();\n        for (unsigned int i = 2; i * i <= m; ++i) {\n\
+    \            if (m % i == 0) {\n                unsigned int e = 0;\n        \
+    \        while (m % i == 0) {\n                    m /= i;\n                 \
+    \   ++e;\n                }\n                ppmc.emplace_back(i, e);\n      \
+    \      }\n        }\n        if (m != 1) ppmc.emplace_back(m, 1);\n\n        if\
+    \ (ppmc.empty()) return;\n        extgcds.resize(ppmc.size() - 1);\n        unsigned\
+    \ int prod = 1;\n        rep (i, ppmc.size() - 1) {\n            prod *= ppmc[i].get_mod();\n\
+    \            extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n        }\n  \
+    \  }\n\n    static int comb(ll n, ll r) {\n        if (r < 0 || r > n) return\
+    \ 0;\n        if (n < 0) return 0;\n        if (ppmc.empty()) return 0;\n    \
+    \    unsigned int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n      \
+    \  rep (i, 1, ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n,\
     \ r);\n            res = CRT(res, prod, m, ppmc[i].get_mod(), i - 1);\n      \
     \      prod *= ppmc[i].get_mod();\n        }\n        return res;\n    }\n};\n\
     \ntemplate<class barrett>\nstd::vector<PrimePowerModCombinatorics<barrett>>\n\
@@ -558,7 +558,7 @@ data:
   isVerificationFile: false
   path: math/ArbitraryModCombinatorics.hpp
   requiredBy: []
-  timestamp: '2022-12-12 19:59:41+09:00'
+  timestamp: '2023-01-14 19:22:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/binomial_coefficient.test.cpp
