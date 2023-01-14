@@ -1,60 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/primitive_root
@@ -669,19 +669,19 @@ data:
     \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
     \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
     \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
-    \n\n#line 5 \"math/MillerRabin.hpp\"\n\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
-    \ bool is_prime_mr(ll n) {\n    static constexpr ull base_miller_rabin_int[3]\
-    \ = {2, 7, 61};\n    static constexpr ull base_miller_rabin_ll[7] = {\n      \
-    \  2, 325, 9375, 28178, 450775, 9780504, 1795265022};\n    if (n == 2) return\
-    \ true;\n    if (n < 2 || n % 2 == 0) return false;\n    if (n < (1u << 31))\n\
-    \        return miller_rabin<MontgomeryModInt<unsigned int, -2>>(\n          \
-    \  n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
+    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
+    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
+    \      28178,\n                                         450775, 9780504, 1795265022};\n\
+    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
+    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
+    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
+    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
+    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
+    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
+    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
+    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
+    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
     \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
     \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
     #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
@@ -764,8 +764,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2023-01-14 19:22:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-01-14 19:28:53+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/primitive_root.test.cpp
 layout: document
