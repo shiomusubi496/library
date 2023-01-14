@@ -3,6 +3,9 @@
 #include "../other/template.hpp"
 #include "MontgomeryModInt.hpp"
 
+constexpr ull base_miller_rabin_int[3] = {2, 7, 61};
+constexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,      28178,
+                                         450775, 9780504, 1795265022};
 
 template<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s) {
     if (T::get_mod() != n) T::set_mod(n);
@@ -24,9 +27,6 @@ template<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s) {
 }
 
 CONSTEXPR bool is_prime_mr(ll n) {
-    static constexpr ull base_miller_rabin_int[3] = {2, 7, 61};
-    static constexpr ull base_miller_rabin_ll[7] = {
-        2, 325, 9375, 28178, 450775, 9780504, 1795265022};
     if (n == 2) return true;
     if (n < 2 || n % 2 == 0) return false;
     if (n < (1u << 31))
