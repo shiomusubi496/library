@@ -11,8 +11,8 @@ private:
 
 public:
     PrimePowerModCombinatorics(unsigned int p_, unsigned int e_)
-        : p(p_), e(e_), bar(my_pow(p, e)),
-          bar2(p), factorial(1, 1), factinv(1, 1) {}
+        : p(p_), e(e_), bar(my_pow(p, e)), bar2(p), factorial(1, 1),
+          factinv(1, 1) {}
 
     unsigned int get_mod() const { return bar.get_mod(); }
     unsigned int get_prime() const { return p; }
@@ -59,8 +59,7 @@ public:
     }
 };
 
-template<class barrett = BarrettReduction>
-class ArbitraryModCombinatorics {
+template<class barrett = BarrettReduction> class ArbitraryModCombinatorics {
 private:
     static std::vector<PrimePowerModCombinatorics<barrett>> ppmc;
 
@@ -74,7 +73,6 @@ private:
     }
 
 public:
-
     static void set_mod(unsigned int m) {
         ppmc.clear();
         for (unsigned int i = 2; i * i <= m; ++i) {
