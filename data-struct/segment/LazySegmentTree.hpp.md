@@ -729,11 +729,11 @@ data:
   timestamp: '2022-12-26 08:07:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
+  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
 documentation_of: data-struct/segment/LazySegmentTree.hpp
 layout: document

@@ -701,12 +701,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/EulerTour.hpp
 layout: document
 redirect_from:

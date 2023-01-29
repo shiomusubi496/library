@@ -540,8 +540,8 @@ data:
   timestamp: '2022-12-07 21:25:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/persistent_unionfind.test.cpp
   - test/yosupo/data_structure/persistent_queue-Array.test.cpp
+  - test/yosupo/data_structure/persistent_unionfind.test.cpp
 documentation_of: data-struct/other/PersistentArray.hpp
 layout: document
 redirect_from:

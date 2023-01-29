@@ -483,10 +483,14 @@ data:
     \    }\n    friend bool operator>(const Point& p1, const Point& p2) { return p2\
     \ < p1; }\n    friend bool operator<=(const Point& p1, const Point& p2) {\n  \
     \      return !(p2 < p1);\n    }\n    friend bool operator>=(const Point& p1,\
-    \ const Point& p2) {\n        return !(p1 < p2);\n    }\n    Real norm() const\
-    \ { return x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm();\
-    \ }\n    Real abs() const { return sqrt(norm()); }\n    friend Real abs(const\
-    \ Point& p) { return p.abs(); }\n    inline angle_t arg() const { return atan2((ld)y,\
+    \ const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend bool comp_arg(const\
+    \ Point& p1, const Point& p2) {\n        // -pi < theta <= pi\n        int a1\
+    \ = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n        int a2 = p2.y <\
+    \ 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1 != a2) return a1 <\
+    \ a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm() const { return\
+    \ x * x + y * y; }\n    friend Real norm(const Point& p) { return p.norm(); }\n\
+    \    Real abs() const { return sqrt(norm()); }\n    friend Real abs(const Point&\
+    \ p) { return p.abs(); }\n    inline angle_t arg() const { return atan2((ld)y,\
     \ (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg(); }\n    Point&\
     \ rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n    \
     \    Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n        y\
@@ -740,15 +744,14 @@ data:
     \ std::back_inserter(res));\n        }\n    }\n    return res;\n}\n#line 5 \"\
     test/yosupo/geometry/sort_points_by_argument.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int n; scan >> n;\n    vector<Point> ps(n); scan >> ps;\n  \
-    \  sort(all(ps), [&](const Point& a, const Point& b) { return atan2((ld)a.y, (ld)a.x)\
-    \ < atan2((ld)b.y, (ld)b.x); });\n    each_const (p : ps) print << p << endl;\n\
-    }\n"
+    \  sort(all(ps), [&](const Point& a, const Point& b) { return comp_arg(a, b);\
+    \ });\n    each_const (p : ps) print << p << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sort_points_by_argument\"\
     \n#include \"../../../other/template.hpp\"\n#define GEOMETRY_REAL_TYPE ll\n#include\
     \ \"../../../geometry/All.hpp\"\nusing namespace std;\nint main() {\n    int n;\
     \ scan >> n;\n    vector<Point> ps(n); scan >> ps;\n    sort(all(ps), [&](const\
-    \ Point& a, const Point& b) { return atan2((ld)a.y, (ld)a.x) < atan2((ld)b.y,\
-    \ (ld)b.x); });\n    each_const (p : ps) print << p << endl;\n}\n"
+    \ Point& a, const Point& b) { return comp_arg(a, b); });\n    each_const (p :\
+    \ ps) print << p << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -770,7 +773,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
+  timestamp: '2023-01-29 15:56:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/geometry/sort_points_by_argument.test.cpp

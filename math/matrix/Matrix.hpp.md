@@ -563,15 +563,15 @@ data:
   requiredBy:
   - graph/mst/CountSpanningTree.hpp
   - math/matrix/Inverse.hpp
-  - math/matrix/LinearEquations.hpp
   - math/matrix/Determinant.hpp
+  - math/matrix/LinearEquations.hpp
   timestamp: '2022-12-09 20:02:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
-  - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/matrix_product.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

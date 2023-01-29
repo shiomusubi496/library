@@ -600,9 +600,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
 documentation_of: graph/tree/HeavyLightDecomposition.hpp
 layout: document
 redirect_from:

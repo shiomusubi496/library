@@ -541,7 +541,11 @@ data:
     \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
     \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
     \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
-    \    }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
+    \    }\n    friend bool comp_arg(const Point& p1, const Point& p2) {\n       \
+    \ // -pi < theta <= pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >=\
+    \ 0 ? 1 : 3;\n        int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n\
+    \        if (a1 != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n  \
+    \  }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
     \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
     \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t\
     \ arg() const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point&\
@@ -590,7 +594,11 @@ data:
     \ cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const Point& p1, const\
     \ Point& p2) { return p2 < p1; }\n    friend bool operator<=(const Point& p1,\
     \ const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend bool operator>=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    Real norm()\
+    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend\
+    \ bool comp_arg(const Point& p1, const Point& p2) {\n        // -pi < theta <=\
+    \ pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n    \
+    \    int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1\
+    \ != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm()\
     \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
     \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
     \ abs(const Point& p) { return p.abs(); }\n    inline angle_t arg() const { return\
@@ -632,36 +640,36 @@ data:
   isVerificationFile: false
   path: geometry/Point.hpp
   requiredBy:
-  - geometry/Polygon.hpp
-  - geometry/Segment.hpp
+  - geometry/Line.hpp
   - geometry/Triangle.hpp
   - geometry/Circle.hpp
   - geometry/All.hpp
-  - geometry/Line.hpp
-  timestamp: '2022-12-07 21:25:52+09:00'
+  - geometry/Polygon.hpp
+  - geometry/Segment.hpp
+  timestamp: '2023-01-29 15:56:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
+  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
   - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
   - test/aoj/CGL/CGL_7_B-incenter.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
+  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
+  - test/aoj/CGL/CGL_4_C-cut.test.cpp
+  - test/aoj/CGL/CGL_1_A-projection.test.cpp
+  - test/aoj/CGL/CGL_2_D-distance.test.cpp
+  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp
+  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
+  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
+  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
+  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
+  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
+  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
+  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
+  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
+  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
+  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
+  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
 documentation_of: geometry/Point.hpp
 layout: document
