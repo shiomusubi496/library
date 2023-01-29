@@ -55,6 +55,13 @@ public:
     friend bool operator>=(const Point& p1, const Point& p2) {
         return !(p1 < p2);
     }
+    friend bool comp_arg(const Point& p1, const Point& p2) {
+        // -pi < theta <= pi
+        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;
+        int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;
+        if (a1 != a2) return a1 < a2;
+        return cross(p1, p2) > 0;
+    }
     Real norm() const { return x * x + y * y; }
     friend Real norm(const Point& p) { return p.norm(); }
     Real abs() const { return sqrt(norm()); }
