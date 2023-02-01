@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -320,7 +320,7 @@ data:
     }\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void print(Pr& pr) const\
     \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
     \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
-    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());\n\
     \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
     \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
     \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
@@ -564,7 +564,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
   requiredBy: []
-  timestamp: '2023-01-29 15:56:17+09:00'
+  timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL/CGL_1_B-reflection.test.cpp

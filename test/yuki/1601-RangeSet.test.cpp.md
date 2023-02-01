@@ -1,42 +1,42 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/1601
@@ -313,7 +313,7 @@ data:
     }\n\nstruct SetPrec {\n    int n;\n    template<class Pr> void print(Pr& pr) const\
     \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
     \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
-    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());\n\
+    \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());\n\
     \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
     \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
     \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
@@ -518,8 +518,8 @@ data:
   isVerificationFile: true
   path: test/yuki/1601-RangeSet.test.cpp
   requiredBy: []
-  timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-02-01 23:58:17+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yuki/1601-RangeSet.test.cpp
 layout: document
