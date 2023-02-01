@@ -260,7 +260,7 @@ struct SetPrec {
 };
 SetPrec setprec(int n) { return SetPrec{n}; };
 
-Printer<Writer<>::iterator> print(writer.begin()), eprint(writer.begin());
+Printer<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());
 
 template<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {
     print << v;
