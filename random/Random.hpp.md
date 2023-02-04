@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':question:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'

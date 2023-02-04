@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -563,7 +563,7 @@ data:
   path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   requiredBy: []
   timestamp: '2023-02-01 23:58:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
 layout: document
