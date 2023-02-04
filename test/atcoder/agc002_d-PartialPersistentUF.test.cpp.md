@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/PartialPersistentUnionFind.hpp
     title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc002/tasks/agc002_d
@@ -495,7 +495,7 @@ data:
   path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   requiredBy: []
   timestamp: '2023-02-01 23:58:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
 layout: document
