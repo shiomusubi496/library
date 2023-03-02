@@ -12,7 +12,7 @@
 
 また、木の重心とそれに接続する辺を全て削除し、各連結成分に対し同じように重心を求めていくと、その再帰の深さはたかだか $\lceil\log N\rceil$ となる。これは一度の再帰で連結成分の頂点数の最大値が半分以下になることに由来する。
 
-よって、各再帰の深さで各連結成分の頂点数に対し線形や準線形の時間計算量の操作を行うとき、全体での時間計算量はそれが $\log N$ 倍になるだけであり、これを重心分解と呼ぶ。これは様々な場面で使われており、例として [Frequency Table of Tree Distance](https://shiomusubi.github.io/library/graph/tree/FrequencyTableofDistance.hpp) などがある。
+よって、各再帰の深さで各連結成分の頂点数に対し線形や準線形の時間計算量の操作を行うとき、全体での時間計算量はそれが $\log N$ 倍になるだけであり、これを重心分解と呼ぶ。これは様々な場面で使われており、例として [Frequency Table of Tree Distance](https://shiomusubi496.github.io/library/graph/tree/FrequencyTableofDistance.hpp) などがある。
 
 - `TreeDecomposition(Graph<T> G)` : 木を重心分解する。 $\Theta(N \log N)$ 。
 - `int get_root()` : 最初の重心を返す。 $\Theta(1)$ 。
