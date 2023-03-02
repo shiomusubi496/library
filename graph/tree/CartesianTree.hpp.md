@@ -527,8 +527,8 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/tree/cartesian_tree.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/tree/cartesian_tree.test.cpp
 documentation_of: graph/tree/CartesianTree.hpp
 layout: document
 redirect_from:

@@ -28,8 +28,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/447-CRT.test.cpp
     title: test/yuki/447-CRT.test.cpp
@@ -488,12 +494,14 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: math/ChineseRemainder.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/448-Garner.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yuki/447-CRT.test.cpp
+  - test/yuki/448-Garner.test.cpp
 documentation_of: math/ChineseRemainder.hpp
 layout: document
 redirect_from:

@@ -50,7 +50,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
@@ -58,6 +61,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -894,10 +900,12 @@ data:
   - string/RunLength.hpp
   isVerificationFile: false
   path: math/convolution/Convolution.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
 documentation_of: math/convolution/Convolution.hpp

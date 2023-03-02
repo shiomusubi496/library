@@ -549,8 +549,8 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/yosupo/math/two_sat.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:

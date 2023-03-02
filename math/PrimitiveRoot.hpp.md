@@ -49,6 +49,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
@@ -61,6 +64,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -780,9 +786,11 @@ data:
   path: math/PrimitiveRoot.hpp
   requiredBy:
   - math/convolution/Convolution.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/new/primitive_root.test.cpp

@@ -30,6 +30,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/tree/FrequencyTableofTreeDistance.hpp
+    title: Frequency Table of Tree Distance
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
@@ -55,6 +58,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primitive_root.test.cpp
     title: test/yosupo/new/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
@@ -611,16 +617,18 @@ data:
   isVerificationFile: false
   path: math/MontgomeryModInt.hpp
   requiredBy:
+  - math/MillerRabin.hpp
+  - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   - math/convolution/Convolution.hpp
-  - math/PrimitiveRoot.hpp
-  - math/MillerRabin.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/math/factorize.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/math/factorize.test.cpp
   - test/yosupo/new/primitive_root.test.cpp
   - test/yuki/3030-MRPrime.test.cpp
 documentation_of: math/MontgomeryModInt.hpp
