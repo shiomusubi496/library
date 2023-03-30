@@ -49,6 +49,10 @@ public:
         }
         return v;
     }
+    int kth_pow_of_2_ancestor(int v, int k) const {
+        if (k >= h) return -1;
+        return dbl[v][k];
+    }
     int next_vertex(int s, int t) const {
         assert(s != t);
         if (dep[s] >= dep[t]) return parent(s);
