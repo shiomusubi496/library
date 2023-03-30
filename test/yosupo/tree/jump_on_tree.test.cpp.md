@@ -492,30 +492,31 @@ data:
     \ { return dep[v]; }\n    int parent(int v) const { return par[v].to; }\n    int\
     \ kth_ancestor(int v, int k) const {\n        if (dep[v] < k) return -1;\n   \
     \     rrep (i, h) {\n            if ((k >> i) & 1) v = dbl[v][i];\n        }\n\
-    \        return v;\n    }\n    int next_vertex(int s, int t) const {\n       \
-    \ assert(s != t);\n        if (dep[s] >= dep[t]) return parent(s);\n        int\
-    \ u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return parent(u) == s ? u\
-    \ : parent(s);\n    }\n    int kth_next_vertext(int s, int t, int k) const {\n\
-    \        int l = lca(s, t);\n        int d = dep[s] + dep[t] - 2 * dep[l];\n \
-    \       if (d < k) return -1;\n        if (dep[s] - dep[l] >= k) return kth_ancestor(s,\
-    \ k);\n        return kth_ancestor(t, d - k);\n    }\n    Edges<T> path(int s,\
-    \ int t) const {\n        Edges<T> pre, suf;\n        while (dep[s] > dep[t])\
-    \ pre.push_back(par[s]), s = par[s].to;\n        while (dep[t] > dep[s]) suf.push_back(par[t]),\
-    \ t = par[t].to;\n        while (s != t) {\n            pre.push_back(par[s]),\
-    \ s = par[s].to;\n            suf.push_back(par[t]), t = par[t].to;\n        }\n\
-    \        rrep (i, suf.size())\n            pre.emplace_back(suf[i].to, suf[i].from,\
-    \ suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int lca(int u, int\
-    \ v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u, dep[u] - dep[v]);\n\
-    \        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] - dep[u]);\n        if\
-    \ (u == v) return u;\n        rrep (i, h) {\n            if (dbl[u][i] != dbl[v][i])\
-    \ {\n                u = dbl[u][i];\n                v = dbl[v][i];\n        \
-    \    }\n        }\n        return parent(u);\n    }\n    int dist(int u, int v)\
-    \ const {\n        return dep[u] + dep[v] - 2 * dep[lca(u, v)];\n    }\n};\n\n\
-    /**\n * @brief DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\
-    \u3088\u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n */\n\
-    #line 5 \"test/yosupo/tree/jump_on_tree.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N -\
-    \ 1) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n\
+    \        return v;\n    }\n    int kth_pow_of_2_ancestor(int v, int k) const {\n\
+    \        if (k >= h) return -1;\n        return dbl[v][k];\n    }\n    int next_vertex(int\
+    \ s, int t) const {\n        assert(s != t);\n        if (dep[s] >= dep[t]) return\
+    \ parent(s);\n        int u = kth_ancestor(t, dep[t] - dep[s] - 1);\n        return\
+    \ parent(u) == s ? u : parent(s);\n    }\n    int kth_next_vertext(int s, int\
+    \ t, int k) const {\n        int l = lca(s, t);\n        int d = dep[s] + dep[t]\
+    \ - 2 * dep[l];\n        if (d < k) return -1;\n        if (dep[s] - dep[l] >=\
+    \ k) return kth_ancestor(s, k);\n        return kth_ancestor(t, d - k);\n    }\n\
+    \    Edges<T> path(int s, int t) const {\n        Edges<T> pre, suf;\n       \
+    \ while (dep[s] > dep[t]) pre.push_back(par[s]), s = par[s].to;\n        while\
+    \ (dep[t] > dep[s]) suf.push_back(par[t]), t = par[t].to;\n        while (s !=\
+    \ t) {\n            pre.push_back(par[s]), s = par[s].to;\n            suf.push_back(par[t]),\
+    \ t = par[t].to;\n        }\n        rrep (i, suf.size())\n            pre.emplace_back(suf[i].to,\
+    \ suf[i].from, suf[i].cost, suf[i].idx);\n        return pre;\n    }\n    int\
+    \ lca(int u, int v) const {\n        if (dep[u] > dep[v]) u = kth_ancestor(u,\
+    \ dep[u] - dep[v]);\n        if (dep[u] < dep[v]) v = kth_ancestor(v, dep[v] -\
+    \ dep[u]);\n        if (u == v) return u;\n        rrep (i, h) {\n           \
+    \ if (dbl[u][i] != dbl[v][i]) {\n                u = dbl[u][i];\n            \
+    \    v = dbl[v][i];\n            }\n        }\n        return parent(u);\n   \
+    \ }\n    int dist(int u, int v) const {\n        return dep[u] + dep[v] - 2 *\
+    \ dep[lca(u, v)];\n    }\n};\n\n/**\n * @brief DoublingLowestCommonAncestor(\u30C0\
+    \u30D6\u30EA\u30F3\u30B0\u306B\u3088\u308BLCA)\n * @docs docs/graph/tree/DoublingLowestCommonAncestor.md\n\
+    \ */\n#line 5 \"test/yosupo/tree/jump_on_tree.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N, Q; scan >> N >> Q;\n    Graph<int> G(N);\n    rep (N\
+    \ - 1) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n\
     \    DoublingLCA<int> dlca(G);\n    rep (Q) {\n        int s, t, k; scan >> s\
     \ >> t >> k;\n        print << dlca.kth_next_vertext(s, t, k) << endl;\n    }\n\
     }\n"
@@ -542,7 +543,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/jump_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:58:17+09:00'
+  timestamp: '2023-03-31 00:40:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/tree/jump_on_tree.test.cpp

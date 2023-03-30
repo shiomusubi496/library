@@ -730,11 +730,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
 documentation_of: data-struct/segment/LazySegmentTree.hpp
 layout: document
 redirect_from:

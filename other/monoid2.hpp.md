@@ -621,26 +621,26 @@ data:
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy:
-  - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
+  - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/new/lcm_convolution.test.cpp
   - test/yosupo/new/range_affine_point_get.test.cpp
   - test/yosupo/new/gcd_convolution.test.cpp
-  - test/yosupo/new/lcm_convolution.test.cpp
 documentation_of: other/monoid2.hpp
 layout: document
 redirect_from:

@@ -785,8 +785,8 @@ data:
   isVerificationFile: false
   path: math/PrimitiveRoot.hpp
   requiredBy:
-  - math/convolution/Convolution.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
+  - math/convolution/Convolution.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
