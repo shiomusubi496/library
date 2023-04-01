@@ -130,6 +130,18 @@ data:
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
+    path: dp/DivideAndConquerOptimization.hpp
+    title: Divide and Conquer Optimization
+  - icon: ':heavy_check_mark:'
+    path: dp/MonotoneMinima.hpp
+    title: MonotoneMinima
+  - icon: ':heavy_check_mark:'
+    path: dp/OnlineOfflineDP.hpp
+    title: Online Offline DP
+  - icon: ':heavy_check_mark:'
+    path: dp/SMAWK.hpp
+    title: SMAWK
+  - icon: ':heavy_check_mark:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   - icon: ':heavy_check_mark:'
@@ -602,6 +614,9 @@ data:
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/other/2603-SMAWK.test.cpp
+    title: test/aoj/other/2603-SMAWK.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
   - icon: ':heavy_check_mark:'
@@ -850,6 +865,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/448-Garner.test.cpp
     title: test/yuki/448-Garner.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/705-Monge.test.cpp
+    title: test/yuki/705-Monge.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
@@ -1161,6 +1179,10 @@ data:
   - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/StaticRangeFrequency.hpp
   - data-struct/segment/SSegmentTree.hpp
+  - dp/OnlineOfflineDP.hpp
+  - dp/DivideAndConquerOptimization.hpp
+  - dp/MonotoneMinima.hpp
+  - dp/SMAWK.hpp
   - graph/Graph.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/LowLink.hpp
@@ -1353,6 +1375,7 @@ data:
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
   - test/aoj/other/2725-CHT.test.cpp
+  - test/aoj/other/2603-SMAWK.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
@@ -1389,6 +1412,7 @@ data:
   - test/yuki/448-Garner.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1469-RunLength.test.cpp
+  - test/yuki/705-Monge.test.cpp
   - test/yuki/447-CRT.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp

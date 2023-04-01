@@ -939,23 +939,23 @@ data:
     \                    else ++dist.back()[d];\n                    each_const (e\
     \ : G[u]) {\n                        if (e.to == p || seen[e.to]) continue;\n\
     \                        st2.emplace_back(e.to, u, d + 1);\n                 \
-    \   }\n                }\n            }\n            sort(all(dist), [](const\
-    \ std::vector<M>& a, const std::vector<M>& b) {\n                return a.size()\
-    \ < b.size();\n            });\n            std::vector<M> tmp;\n            each_const\
-    \ (d : dist) {\n                if (tmp.empty()) {\n                    tmp =\
-    \ d;\n                    continue;\n                }\n                auto tmp2\
-    \ = convolution(tmp, d);\n                rep (i, tmp2.size()) ans[i] += tmp2[i];\n\
-    \                tmp.resize(d.size());\n                rep (i, d.size()) tmp[i]\
-    \ += d[i];\n            }\n            rep (i, tmp.size()) ans[i] += tmp[i];\n\
-    \            each_const (e : C.get()[v]) st.push_back(e.to);\n        }\n    }\n\
-    \npublic:\n    FrequencyTableofTreeDistance(const Graph<T>& G_)\n        : n(G_.size()),\
-    \ G(G_), C(G_), ans1(n, 0), ans2(n, 0) {\n        build(ans1);\n        build(ans2);\n\
-    \        ans.resize(n);\n        ans[0] = n;\n        rep (i, 1, n) {\n      \
-    \      ans[i] = ChineseRemainder(ans1[i].get(), MOD1, ans2[i].get(), MOD2).first;\n\
-    \        }\n    }\n    const std::vector<ll>& get() const& { return ans; }\n \
-    \   std::vector<ll> get() && { return std::move(ans); }\n};\n\n/**\n * @brief\
-    \ Frequency Table of Tree Distance\n * @docs docs/graph/tree/FrequencyTableofTreeDistance.md\n\
-    \ */\n"
+    \   }\n                }\n            }\n            sort(all(dist),\n       \
+    \          [](const std::vector<M>& a, const std::vector<M>& b) {\n          \
+    \           return a.size() < b.size();\n                 });\n            std::vector<M>\
+    \ tmp;\n            each_const (d : dist) {\n                if (tmp.empty())\
+    \ {\n                    tmp = d;\n                    continue;\n           \
+    \     }\n                auto tmp2 = convolution(tmp, d);\n                rep\
+    \ (i, tmp2.size()) ans[i] += tmp2[i];\n                tmp.resize(d.size());\n\
+    \                rep (i, d.size()) tmp[i] += d[i];\n            }\n          \
+    \  rep (i, tmp.size()) ans[i] += tmp[i];\n            each_const (e : C.get()[v])\
+    \ st.push_back(e.to);\n        }\n    }\n\npublic:\n    FrequencyTableofTreeDistance(const\
+    \ Graph<T>& G_)\n        : n(G_.size()), G(G_), C(G_), ans1(n, 0), ans2(n, 0)\
+    \ {\n        build(ans1);\n        build(ans2);\n        ans.resize(n);\n    \
+    \    ans[0] = n;\n        rep (i, 1, n) {\n            ans[i] = ChineseRemainder(ans1[i].get(),\
+    \ MOD1, ans2[i].get(), MOD2)\n                         .first;\n        }\n  \
+    \  }\n    const std::vector<ll>& get() const& { return ans; }\n    std::vector<ll>\
+    \ get() && { return std::move(ans); }\n};\n\n/**\n * @brief Frequency Table of\
+    \ Tree Distance\n * @docs docs/graph/tree/FrequencyTableofTreeDistance.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../math/ChineseRemainder.hpp\"\
     \n#include \"../../math/ModInt.hpp\"\n#include \"../../math/convolution/Convolution.hpp\"\
     \n#include \"../Graph.hpp\"\n#include \"TreeCentroid.hpp\"\n\ntemplate<class T>\
@@ -977,23 +977,23 @@ data:
     \                    else ++dist.back()[d];\n                    each_const (e\
     \ : G[u]) {\n                        if (e.to == p || seen[e.to]) continue;\n\
     \                        st2.emplace_back(e.to, u, d + 1);\n                 \
-    \   }\n                }\n            }\n            sort(all(dist), [](const\
-    \ std::vector<M>& a, const std::vector<M>& b) {\n                return a.size()\
-    \ < b.size();\n            });\n            std::vector<M> tmp;\n            each_const\
-    \ (d : dist) {\n                if (tmp.empty()) {\n                    tmp =\
-    \ d;\n                    continue;\n                }\n                auto tmp2\
-    \ = convolution(tmp, d);\n                rep (i, tmp2.size()) ans[i] += tmp2[i];\n\
-    \                tmp.resize(d.size());\n                rep (i, d.size()) tmp[i]\
-    \ += d[i];\n            }\n            rep (i, tmp.size()) ans[i] += tmp[i];\n\
-    \            each_const (e : C.get()[v]) st.push_back(e.to);\n        }\n    }\n\
-    \npublic:\n    FrequencyTableofTreeDistance(const Graph<T>& G_)\n        : n(G_.size()),\
-    \ G(G_), C(G_), ans1(n, 0), ans2(n, 0) {\n        build(ans1);\n        build(ans2);\n\
-    \        ans.resize(n);\n        ans[0] = n;\n        rep (i, 1, n) {\n      \
-    \      ans[i] = ChineseRemainder(ans1[i].get(), MOD1, ans2[i].get(), MOD2).first;\n\
-    \        }\n    }\n    const std::vector<ll>& get() const& { return ans; }\n \
-    \   std::vector<ll> get() && { return std::move(ans); }\n};\n\n/**\n * @brief\
-    \ Frequency Table of Tree Distance\n * @docs docs/graph/tree/FrequencyTableofTreeDistance.md\n\
-    \ */\n"
+    \   }\n                }\n            }\n            sort(all(dist),\n       \
+    \          [](const std::vector<M>& a, const std::vector<M>& b) {\n          \
+    \           return a.size() < b.size();\n                 });\n            std::vector<M>\
+    \ tmp;\n            each_const (d : dist) {\n                if (tmp.empty())\
+    \ {\n                    tmp = d;\n                    continue;\n           \
+    \     }\n                auto tmp2 = convolution(tmp, d);\n                rep\
+    \ (i, tmp2.size()) ans[i] += tmp2[i];\n                tmp.resize(d.size());\n\
+    \                rep (i, d.size()) tmp[i] += d[i];\n            }\n          \
+    \  rep (i, tmp.size()) ans[i] += tmp[i];\n            each_const (e : C.get()[v])\
+    \ st.push_back(e.to);\n        }\n    }\n\npublic:\n    FrequencyTableofTreeDistance(const\
+    \ Graph<T>& G_)\n        : n(G_.size()), G(G_), C(G_), ans1(n, 0), ans2(n, 0)\
+    \ {\n        build(ans1);\n        build(ans2);\n        ans.resize(n);\n    \
+    \    ans[0] = n;\n        rep (i, 1, n) {\n            ans[i] = ChineseRemainder(ans1[i].get(),\
+    \ MOD1, ans2[i].get(), MOD2)\n                         .first;\n        }\n  \
+    \  }\n    const std::vector<ll>& get() const& { return ans; }\n    std::vector<ll>\
+    \ get() && { return std::move(ans); }\n};\n\n/**\n * @brief Frequency Table of\
+    \ Tree Distance\n * @docs docs/graph/tree/FrequencyTableofTreeDistance.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1018,7 +1018,7 @@ data:
   isVerificationFile: false
   path: graph/tree/FrequencyTableofTreeDistance.hpp
   requiredBy: []
-  timestamp: '2023-03-02 14:54:28+09:00'
+  timestamp: '2023-04-01 19:00:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
