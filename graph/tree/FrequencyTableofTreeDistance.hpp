@@ -49,9 +49,10 @@ private:
                     }
                 }
             }
-            sort(all(dist), [](const std::vector<M>& a, const std::vector<M>& b) {
-                return a.size() < b.size();
-            });
+            sort(all(dist),
+                 [](const std::vector<M>& a, const std::vector<M>& b) {
+                     return a.size() < b.size();
+                 });
             std::vector<M> tmp;
             each_const (d : dist) {
                 if (tmp.empty()) {
@@ -76,7 +77,8 @@ public:
         ans.resize(n);
         ans[0] = n;
         rep (i, 1, n) {
-            ans[i] = ChineseRemainder(ans1[i].get(), MOD1, ans2[i].get(), MOD2).first;
+            ans[i] = ChineseRemainder(ans1[i].get(), MOD1, ans2[i].get(), MOD2)
+                         .first;
         }
     }
     const std::vector<ll>& get() const& { return ans; }
