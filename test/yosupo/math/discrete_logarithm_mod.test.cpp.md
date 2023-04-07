@@ -2,15 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/ModInt.hpp
-    title: ModInt
+    path: math/BarrettReduction.hpp
+    title: math/BarrettReduction.hpp
   - icon: ':heavy_check_mark:'
-    path: math/convolution/GcdConvolution.hpp
-    title: GCDConvolution
+    path: math/DiscreteLogarithm.hpp
+    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   - icon: ':heavy_check_mark:'
-    path: math/convolution/MultipleZetaMoebiusTransform.hpp
-    title: "MultipleZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
-      \u30A6\u30B9\u5909\u63DB)"
+    path: math/KthRoot.hpp
+    title: "KthRoot(k\u4E57\u6839)"
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -51,29 +50,30 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/gcd_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/discrete_logarithm_mod
     links:
-    - https://judge.yosupo.jp/problem/gcd_convolution
-  bundledCode: "#line 1 \"test/yosupo/new/gcd_convolution.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    - https://judge.yosupo.jp/problem/discrete_logarithm_mod
+  bundledCode: "#line 1 \"test/yosupo/math/discrete_logarithm_mod.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -442,20 +442,20 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/DiscreteLogarithm.hpp\"\
+    \n\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
+    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void> class\
+    \ has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -521,180 +521,135 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\
-    \n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Product {\n    using value_type = T;\n    static T op(const T& a, const T& b)\
-    \ { return a * b; }\n    static T id() { return T{1}; }\n    static T inv(const\
-    \ T& a, const T& b) { return a / b; }\n    static T get_inv(const T& a) { return\
-    \ T{1} / a; }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() { return {T{1}, T{0}}; }\n    static value_type\
-    \ get_inv(const value_type& a) {\n        return {T{1} / a.first, -a.second /\
-    \ a.first};\n    }\n    static value_type inv(const value_type& a, const value_type&\
-    \ b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct\
-    \ GCD {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a,\
-    \ b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n\
-    \    using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n\
-    \    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n\
-    \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
+    \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
+    \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
+    \ T> struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
+    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
+    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
+    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
+    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
+    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
+    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
+    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
+    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
+    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
+    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
+    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
     \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\
-    \n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt\
-    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n    static_assert(mod\
-    \ > 0, \"mod must be positive\");\n    static_assert(mod <= std::numeric_limits<T>::max()\
-    \ / 2,\n                  \"mod * 2 must be less than or equal to T::max()\");\n\
-    \nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static constexpr\
-    \ unsigned int inv1000000007[] = {\n        0,         1,         500000004, 333333336,\
-    \ 250000002, 400000003,\n        166666668, 142857144, 125000001, 111111112, 700000005};\n\
-    \    static constexpr unsigned int inv998244353[] = {\n        0,         1, \
-    \        499122177, 332748118, 748683265, 598946612,\n        166374059, 855638017,\
-    \ 873463809, 443664157, 299473306};\n\npublic:\n    constexpr StaticModInt() :\
-    \ val(0) {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\
+    \n\n#line 4 \"math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <=\
+    \ 1 || k == 1) return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull\
+    \ x) -> bool {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b;\
+    \ b >>= 1, a *= a) {\n            if (b & 1) res *= a;\n        }\n        return\
+    \ res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1))\
+    \ ++res;\n    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief\
+    \ KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\
+    \n\n#line 4 \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n\
+    \    unsigned int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
+    \ int m_)\n        : m(m_), im((unsigned long long)(-1) / m + 1) {}\n\n    inline\
+    \ void set_mod(unsigned int m_) {\n        m = m_;\n        im = (unsigned long\
+    \ long)(-1) / m + 1;\n    }\n\n    inline unsigned int get_mod() const { return\
+    \ m; }\n\n    unsigned int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
+    \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
     \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/GcdConvolution.hpp\"\
-    \n\n#line 2 \"math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
-    math/convolution/MultipleZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
-    \ multiple_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
-    \ n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for (ll\
-    \ i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps (j,\
-    \ n / i) {\n            v[j] = Sum::op(v[j], v[j * i]);\n            is_prime[j\
-    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid multiple_moebius_transform(std::vector<typename\
-    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
-    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
-    \        reps (j, n / i) {\n            v[j] = Sum::inv(v[j], v[j * i]);\n   \
-    \         is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief MultipleZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/MultipleZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/GcdConvolution.hpp\"\n\ntemplate<class Sum, class\
-    \ Prod>\nstd::vector<typename Sum::value_type>\ngcd_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
-    \ {\n    multiple_zeta_transform<Sum>(a);\n    multiple_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    multiple_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief GCDConvolution\n * @docs docs/math/convolution/GcdConvolution.md\n\
-    \ */\n#line 7 \"test/yosupo/new/gcd_convolution.test.cpp\"\nusing namespace std;\n\
-    using mint = modint998244353;\nint main() {\n    int N; scan >> N;\n    vector<mint>\
-    \ A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps (i, N) scan >>\
-    \ B[i];\n    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/gcd_convolution\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\n#include\
-    \ \"../../../other/monoid2.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/convolution/GcdConvolution.hpp\"\nusing namespace std;\nusing\
-    \ mint = modint998244353;\nint main() {\n    int N; scan >> N;\n    vector<mint>\
-    \ A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps (i, N) scan >>\
-    \ B[i];\n    auto v = gcd_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
+    \ 7 \"math/DiscreteLogarithm.hpp\"\n\ntemplate<class A,\n         class Container\
+    \ = std::unordered_map<typename A::M::value_type, ll>>\nll baby_step_giant_step(const\
+    \ typename A::M::value_type& a,\n                        const typename A::M::value_type&\
+    \ b,\n                        const typename A::E::value_type& f, ll MAX) {\n\
+    \    using T = typename A::M::value_type;\n    using U = typename A::E::value_type;\n\
+    \    ll s = kth_root(MAX, 2) + 1;\n    Container mp;\n    {\n        const U g\
+    \ = A::E::get_inv(f);\n        T x = b;\n        rep (i, s) {\n            if\
+    \ (mp.count(x) == 0) mp[x] = i;\n            x = A::op(g, x);\n        }\n   \
+    \ }\n    {\n        U g = A::E::id();\n        rep (s) g = A::E::op(g, f);\n \
+    \       T x = a;\n        rep (i, s) {\n            if (mp.count(x)) return i\
+    \ * s + mp[x];\n            x = A::op(g, x);\n        }\n    }\n    return -1;\n\
+    }\n\nnamespace Monoid {\n\ntemplate<class T> struct ProductAction {\n    using\
+    \ M = Product<T>;\n    using E = Product<T>;\n    static T op(T a, T b) { return\
+    \ a * b; }\n};\n\n} // namespace Monoid\n\ntemplate<class T> struct hash_mint_for_discrete_logarithm\
+    \ {\n    std::size_t operator()(const T& x) const {\n        return std::hash<unsigned\
+    \ int>()(x.get());\n    }\n};\n\n// min k (a*x^k=b)\ntemplate<class T> ll discrete_logarithm_mint(T\
+    \ a, T x, T b) {\n    return baby_step_giant_step<\n        Monoid::ProductAction<T>,\n\
+    \        std::unordered_map<T, ll, hash_mint_for_discrete_logarithm<T>>>(\n  \
+    \      a, b, x, T::get_mod());\n}\n\ntemplate<class T> ll discrete_logarithm_mint(T\
+    \ x, T b) {\n    return discrete_logarithm_mint<T>(T{1}, x, b);\n}\n\n// min k\
+    \ (a*x^k = b (mod m))\nll discrete_logarithm(ll a, ll x, ll b, ll m) {\n    if\
+    \ (a == b) return 0;\n\n    ll g = 1, tmp = x;\n    int cnt = 0;\n    ll cur =\
+    \ a;\n    while ((tmp = gcd(tmp, m / g)) != 1) {\n        g *= tmp;\n        ++cnt;\n\
+    \        (cur *= x) %= m;\n        if (cur == b) return cnt;\n    }\n    if (g\
+    \ != 1) {\n        if (b % g != 0) return -1;\n        b /= g;\n        cur /=\
+    \ g;\n        m /= g;\n    }\n\n    using mint = bmodint;\n    mint::set_mod(m);\n\
+    \n    const ll ans = discrete_logarithm_mint<mint>(mint{cur}, mint{x}, mint{b});\n\
+    \    if (ans == -1) return -1;\n    return ans + cnt;\n}\n\nll discrete_logarithm(ll\
+    \ x, ll b, ll m) {\n    return discrete_logarithm(m == 1 ? 0 : 1, x, b, m);\n\
+    }\n\n/**\n * @brief Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)\n * @docs docs/math/DiscreteLogarithm.md\n\
+    \ */\n#line 4 \"test/yosupo/math/discrete_logarithm_mod.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int t; scan >> t;\n    rep (t) {\n        ll x, y, m;\
+    \ scan >> x >> y >> m;\n        prints(discrete_logarithm(x, y, m));\n    }\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/discrete_logarithm_mod\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/DiscreteLogarithm.hpp\"\
+    \nusing namespace std;\nint main() {\n    int t; scan >> t;\n    rep (t) {\n \
+    \       ll x, y, m; scan >> x >> y >> m;\n        prints(discrete_logarithm(x,\
+    \ y, m));\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -705,21 +660,21 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
+  - math/DiscreteLogarithm.hpp
   - other/monoid2.hpp
-  - math/ModInt.hpp
-  - math/convolution/GcdConvolution.hpp
-  - math/convolution/MultipleZetaMoebiusTransform.hpp
+  - other/monoid.hpp
+  - math/KthRoot.hpp
+  - math/BarrettReduction.hpp
   isVerificationFile: true
-  path: test/yosupo/new/gcd_convolution.test.cpp
+  path: test/yosupo/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:58:17+09:00'
+  timestamp: '2023-04-07 13:35:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/gcd_convolution.test.cpp
+documentation_of: test/yosupo/math/discrete_logarithm_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/gcd_convolution.test.cpp
-- /verify/test/yosupo/new/gcd_convolution.test.cpp.html
-title: test/yosupo/new/gcd_convolution.test.cpp
+- /verify/test/yosupo/math/discrete_logarithm_mod.test.cpp
+- /verify/test/yosupo/math/discrete_logarithm_mod.test.cpp.html
+title: test/yosupo/math/discrete_logarithm_mod.test.cpp
 ---

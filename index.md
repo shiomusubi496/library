@@ -286,6 +286,9 @@ data:
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
+      path: math/DiscreteLogarithm.hpp
+      title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
+    - icon: ':heavy_check_mark:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
     - icon: ':heavy_check_mark:'
@@ -726,6 +729,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
       title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/gcd_convolution.test.cpp
+      title: test/yosupo/convolution/gcd_convolution.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/convolution/lcm_convolution.test.cpp
+      title: test/yosupo/convolution/lcm_convolution.test.cpp
   - name: test/yosupo/data_structure
     pages:
     - icon: ':heavy_check_mark:'
@@ -758,6 +767,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_affine_point_get.test.cpp
+      title: test/yosupo/data_structure/range_affine_point_get.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
@@ -855,6 +867,9 @@ data:
       path: test/yosupo/math/binomial_coefficient.test.cpp
       title: test/yosupo/math/binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/discrete_logarithm_mod.test.cpp
+      title: test/yosupo/math/discrete_logarithm_mod.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/enumerate_primes.test.cpp
       title: test/yosupo/math/enumerate_primes.test.cpp
     - icon: ':heavy_check_mark:'
@@ -864,8 +879,14 @@ data:
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/longest_increasing_subsequence.test.cpp
+      title: test/yosupo/math/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/montmort_number_mod.test.cpp
       title: test/yosupo/math/montmort_number_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/primitive_root.test.cpp
+      title: test/yosupo/math/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
@@ -886,23 +907,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/system_of_linear_equations.test.cpp
       title: test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - name: test/yosupo/new
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/gcd_convolution.test.cpp
-      title: test/yosupo/new/gcd_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/lcm_convolution.test.cpp
-      title: test/yosupo/new/lcm_convolution.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/longest_increasing_subsequence.test.cpp
-      title: test/yosupo/new/longest_increasing_subsequence.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/primitive_root.test.cpp
-      title: test/yosupo/new/primitive_root.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/range_affine_point_get.test.cpp
-      title: test/yosupo/new/range_affine_point_get.test.cpp
   - name: test/yosupo/sample
     pages:
     - icon: ':heavy_check_mark:'

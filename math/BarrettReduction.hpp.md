@@ -32,10 +32,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
+  - icon: ':heavy_check_mark:'
+    path: math/DiscreteLogarithm.hpp
+    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/binomial_coefficient.test.cpp
     title: test/yosupo/math/binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/discrete_logarithm_mod.test.cpp
+    title: test/yosupo/math/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -441,7 +447,51 @@ data:
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
-    \    }\n};\n"
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nclass BarrettReduction\
     \ {\nprivate:\n    unsigned int m;\n    unsigned long long im;\n\npublic:\n  \
     \  BarrettReduction(unsigned int m_)\n        : m(m_), im((unsigned long long)(-1)\
@@ -455,7 +505,51 @@ data:
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
-    \    }\n};\n"
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -469,10 +563,12 @@ data:
   isVerificationFile: false
   path: math/BarrettReduction.hpp
   requiredBy:
+  - math/DiscreteLogarithm.hpp
   - math/ArbitraryModCombinatorics.hpp
-  timestamp: '2023-02-01 23:58:17+09:00'
+  timestamp: '2023-04-07 13:35:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp
 documentation_of: math/BarrettReduction.hpp
 layout: document

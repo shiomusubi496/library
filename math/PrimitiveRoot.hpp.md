@@ -62,8 +62,8 @@ data:
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/primitive_root.test.cpp
-    title: test/yosupo/new/primitive_root.test.cpp
+    path: test/yosupo/math/primitive_root.test.cpp
+    title: test/yosupo/math/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
@@ -791,9 +791,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/new/primitive_root.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
 documentation_of: math/PrimitiveRoot.hpp
 layout: document
 redirect_from:

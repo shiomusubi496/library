@@ -34,8 +34,8 @@ data:
     title: LCMConvolution
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/lcm_convolution.test.cpp
-    title: test/yosupo/new/lcm_convolution.test.cpp
+    path: test/yosupo/convolution/lcm_convolution.test.cpp
+    title: test/yosupo/convolution/lcm_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -474,7 +474,7 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/lcm_convolution.test.cpp
+  - test/yosupo/convolution/lcm_convolution.test.cpp
 documentation_of: math/convolution/DivisorZetaMoebiusTransform.hpp
 layout: document
 redirect_from:

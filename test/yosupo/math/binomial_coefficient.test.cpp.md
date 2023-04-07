@@ -447,60 +447,104 @@ data:
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
-    \    }\n};\n#line 5 \"math/ArbitraryModCombinatorics.hpp\"\n\ntemplate<class barrett>\
-    \ class PrimePowerModCombinatorics {\nprivate:\n    unsigned int p, e;\n    barrett\
-    \ bar, bar2;\n    std::vector<unsigned int> factorial, factinv;\n\npublic:\n \
-    \   PrimePowerModCombinatorics(unsigned int p_, unsigned int e_)\n        : p(p_),\
-    \ e(e_), bar(my_pow(p, e)), bar2(p), factorial(1, 1),\n          factinv(1, 1)\
-    \ {}\n\n    unsigned int get_mod() const { return bar.get_mod(); }\n    unsigned\
-    \ int get_prime() const { return p; }\n    unsigned int get_power() const { return\
-    \ e; }\n\n    void init(int n) {\n        const int b = factorial.size();\n  \
-    \      if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i, b,\
-    \ n + 1) {\n            if (i % p != 0) factorial[i] = bar.mul(factorial[i - 1],\
-    \ i);\n            else factorial[i] = factorial[i - 1];\n        }\n        factinv.resize(n\
-    \ + 1);\n        factinv[n] = mod_inv(factorial[n], bar.get_mod());\n        rreps\
-    \ (i, n, b) {\n            if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i],\
-    \ i);\n            else factinv[i - 1] = factinv[i];\n        }\n    }\n    unsigned\
-    \ int comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        if (n\
-    \ < 0) return 0;\n        ll k = n - r;\n        unsigned int res = 1;\n     \
-    \   unsigned int e1 = 1, e2 = 0;\n        for (unsigned int i = 0; n; ++i) {\n\
-    \            const int n1 = bar.rem(n), r1 = bar.rem(r), k1 = bar.rem(k);\n  \
-    \          init(std::max({n1, r1, k1}));\n            res = bar.mul(res, factorial[n1]);\n\
-    \            res = bar.mul(res, factinv[r1]);\n            res = bar.mul(res,\
-    \ factinv[k1]);\n            n = bar2.quo(n);\n            r = bar2.quo(r);\n\
-    \            k = bar2.quo(k);\n            if (n - r - k) {\n                e1\
-    \ *= p;\n                if (e1 == bar.get_mod()) return 0;\n                if\
-    \ (i + 1 >= e) ++e2;\n            }\n        }\n        if ((e2 & 1) && (p !=\
-    \ 2 || e == 2)) res = bar.get_mod() - res;\n        return bar.mul(res, e1);\n\
-    \    }\n};\n\ntemplate<class barrett = BarrettReduction> class ArbitraryModCombinatorics\
-    \ {\nprivate:\n    static std::vector<PrimePowerModCombinatorics<barrett>> ppmc;\n\
-    \n    static std::vector<PLL> extgcds;\n\n    static ll CRT(ll b1, ll m1, ll b2,\
-    \ ll m2, int k) {\n        const PLL p = extgcds[k];\n        const ll l = m1\
-    \ * m2;\n        const ll x = (b2 - b1) * p.first % m2;\n        return (x * m1\
-    \ + b1 + l) % l;\n    }\n\npublic:\n    static void set_mod(unsigned int m) {\n\
-    \        ppmc.clear();\n        for (unsigned int i = 2; i * i <= m; ++i) {\n\
-    \            if (m % i == 0) {\n                unsigned int e = 0;\n        \
-    \        while (m % i == 0) {\n                    m /= i;\n                 \
-    \   ++e;\n                }\n                ppmc.emplace_back(i, e);\n      \
-    \      }\n        }\n        if (m != 1) ppmc.emplace_back(m, 1);\n\n        if\
-    \ (ppmc.empty()) return;\n        extgcds.resize(ppmc.size() - 1);\n        unsigned\
-    \ int prod = 1;\n        rep (i, ppmc.size() - 1) {\n            prod *= ppmc[i].get_mod();\n\
-    \            extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n        }\n  \
-    \  }\n\n    static int comb(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        if (n < 0) return 0;\n        if (ppmc.empty()) return 0;\n    \
-    \    unsigned int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n      \
-    \  rep (i, 1, ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n,\
-    \ r);\n            res = CRT(res, prod, m, ppmc[i].get_mod(), i - 1);\n      \
-    \      prod *= ppmc[i].get_mod();\n        }\n        return res;\n    }\n};\n\
-    \ntemplate<class barrett>\nstd::vector<PrimePowerModCombinatorics<barrett>>\n\
-    \    ArbitraryModCombinatorics<barrett>::ppmc;\n\ntemplate<class barrett>\nstd::vector<PLL>\
-    \ ArbitraryModCombinatorics<barrett>::extgcds;\n\n/**\n * @brief ArbitraryModCombinatorics(\u4EFB\
-    \u610FmodCombination)\n * @docs docs/math/ArbitraryModCombinatorics.md\n * @see\
-    \ https://nyaannyaan.github.io/library/modulo/arbitrary-mod-binomial.hpp\n */\n\
-    #line 4 \"test/yosupo/math/binomial_coefficient.test.cpp\"\nusing namespace std;\n\
-    using comb = ArbitraryModCombinatorics<>;\nint main() {\n    int q, m; scan >>\
-    \ q >> m;\n    comb::set_mod(m);\n    rep (q) {\n        ll n, k; scan >> n >>\
-    \ k;\n        prints(comb::comb(n, k));\n    }\n}\n\n"
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
+    \ 5 \"math/ArbitraryModCombinatorics.hpp\"\n\ntemplate<class barrett> class PrimePowerModCombinatorics\
+    \ {\nprivate:\n    unsigned int p, e;\n    barrett bar, bar2;\n    std::vector<unsigned\
+    \ int> factorial, factinv;\n\npublic:\n    PrimePowerModCombinatorics(unsigned\
+    \ int p_, unsigned int e_)\n        : p(p_), e(e_), bar(my_pow(p, e)), bar2(p),\
+    \ factorial(1, 1),\n          factinv(1, 1) {}\n\n    unsigned int get_mod() const\
+    \ { return bar.get_mod(); }\n    unsigned int get_prime() const { return p; }\n\
+    \    unsigned int get_power() const { return e; }\n\n    void init(int n) {\n\
+    \        const int b = factorial.size();\n        if (n < b) return;\n       \
+    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) {\n            if (i % p\
+    \ != 0) factorial[i] = bar.mul(factorial[i - 1], i);\n            else factorial[i]\
+    \ = factorial[i - 1];\n        }\n        factinv.resize(n + 1);\n        factinv[n]\
+    \ = mod_inv(factorial[n], bar.get_mod());\n        rreps (i, n, b) {\n       \
+    \     if (i % p != 0) factinv[i - 1] = bar.mul(factinv[i], i);\n            else\
+    \ factinv[i - 1] = factinv[i];\n        }\n    }\n    unsigned int comb(ll n,\
+    \ ll r) {\n        if (r < 0 || r > n) return 0;\n        if (n < 0) return 0;\n\
+    \        ll k = n - r;\n        unsigned int res = 1;\n        unsigned int e1\
+    \ = 1, e2 = 0;\n        for (unsigned int i = 0; n; ++i) {\n            const\
+    \ int n1 = bar.rem(n), r1 = bar.rem(r), k1 = bar.rem(k);\n            init(std::max({n1,\
+    \ r1, k1}));\n            res = bar.mul(res, factorial[n1]);\n            res\
+    \ = bar.mul(res, factinv[r1]);\n            res = bar.mul(res, factinv[k1]);\n\
+    \            n = bar2.quo(n);\n            r = bar2.quo(r);\n            k = bar2.quo(k);\n\
+    \            if (n - r - k) {\n                e1 *= p;\n                if (e1\
+    \ == bar.get_mod()) return 0;\n                if (i + 1 >= e) ++e2;\n       \
+    \     }\n        }\n        if ((e2 & 1) && (p != 2 || e == 2)) res = bar.get_mod()\
+    \ - res;\n        return bar.mul(res, e1);\n    }\n};\n\ntemplate<class barrett\
+    \ = BarrettReduction> class ArbitraryModCombinatorics {\nprivate:\n    static\
+    \ std::vector<PrimePowerModCombinatorics<barrett>> ppmc;\n\n    static std::vector<PLL>\
+    \ extgcds;\n\n    static ll CRT(ll b1, ll m1, ll b2, ll m2, int k) {\n       \
+    \ const PLL p = extgcds[k];\n        const ll l = m1 * m2;\n        const ll x\
+    \ = (b2 - b1) * p.first % m2;\n        return (x * m1 + b1 + l) % l;\n    }\n\n\
+    public:\n    static void set_mod(unsigned int m) {\n        ppmc.clear();\n  \
+    \      for (unsigned int i = 2; i * i <= m; ++i) {\n            if (m % i == 0)\
+    \ {\n                unsigned int e = 0;\n                while (m % i == 0) {\n\
+    \                    m /= i;\n                    ++e;\n                }\n  \
+    \              ppmc.emplace_back(i, e);\n            }\n        }\n        if\
+    \ (m != 1) ppmc.emplace_back(m, 1);\n\n        if (ppmc.empty()) return;\n   \
+    \     extgcds.resize(ppmc.size() - 1);\n        unsigned int prod = 1;\n     \
+    \   rep (i, ppmc.size() - 1) {\n            prod *= ppmc[i].get_mod();\n     \
+    \       extgcds[i] = extGCD(prod, ppmc[i + 1].get_mod());\n        }\n    }\n\n\
+    \    static int comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n  \
+    \      if (n < 0) return 0;\n        if (ppmc.empty()) return 0;\n        unsigned\
+    \ int res = ppmc[0].comb(n, r), prod = ppmc[0].get_mod();\n        rep (i, 1,\
+    \ ppmc.size()) {\n            const unsigned int m = ppmc[i].comb(n, r);\n   \
+    \         res = CRT(res, prod, m, ppmc[i].get_mod(), i - 1);\n            prod\
+    \ *= ppmc[i].get_mod();\n        }\n        return res;\n    }\n};\n\ntemplate<class\
+    \ barrett>\nstd::vector<PrimePowerModCombinatorics<barrett>>\n    ArbitraryModCombinatorics<barrett>::ppmc;\n\
+    \ntemplate<class barrett>\nstd::vector<PLL> ArbitraryModCombinatorics<barrett>::extgcds;\n\
+    \n/**\n * @brief ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)\n * @docs\
+    \ docs/math/ArbitraryModCombinatorics.md\n * @see https://nyaannyaan.github.io/library/modulo/arbitrary-mod-binomial.hpp\n\
+    \ */\n#line 4 \"test/yosupo/math/binomial_coefficient.test.cpp\"\nusing namespace\
+    \ std;\nusing comb = ArbitraryModCombinatorics<>;\nint main() {\n    int q, m;\
+    \ scan >> q >> m;\n    comb::set_mod(m);\n    rep (q) {\n        ll n, k; scan\
+    \ >> n >> k;\n        prints(comb::comb(n, k));\n    }\n}\n\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/ArbitraryModCombinatorics.hpp\"\
     \nusing namespace std;\nusing comb = ArbitraryModCombinatorics<>;\nint main()\
@@ -521,7 +565,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:58:17+09:00'
+  timestamp: '2023-04-07 13:35:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/binomial_coefficient.test.cpp

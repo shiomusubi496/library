@@ -31,8 +31,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/longest_increasing_subsequence.test.cpp
-    title: test/yosupo/new/longest_increasing_subsequence.test.cpp
+    path: test/yosupo/math/longest_increasing_subsequence.test.cpp
+    title: test/yosupo/math/longest_increasing_subsequence.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -489,7 +489,7 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/longest_increasing_subsequence.test.cpp
+  - test/yosupo/math/longest_increasing_subsequence.test.cpp
 documentation_of: string/LongestIncreasingSubsequence.hpp
 layout: document
 redirect_from:

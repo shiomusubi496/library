@@ -641,14 +641,14 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yosupo/data_structure/rectangle_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/yuki/1435_SegTree-BinarySearch.test.cpp
 documentation_of: data-struct/segment/SegmentTree.hpp
 layout: document
 redirect_from:

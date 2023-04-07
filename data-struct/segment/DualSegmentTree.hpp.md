@@ -40,8 +40,8 @@ data:
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/range_affine_point_get.test.cpp
-    title: test/yosupo/new/range_affine_point_get.test.cpp
+    path: test/yosupo/data_structure/range_affine_point_get.test.cpp
+    title: test/yosupo/data_structure/range_affine_point_get.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -640,7 +640,7 @@ data:
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/range_affine_point_get.test.cpp
+  - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 documentation_of: data-struct/segment/DualSegmentTree.hpp

@@ -52,8 +52,8 @@ data:
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/primitive_root.test.cpp
-    title: test/yosupo/new/primitive_root.test.cpp
+    path: test/yosupo/math/primitive_root.test.cpp
+    title: test/yosupo/math/primitive_root.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
@@ -488,18 +488,18 @@ data:
   path: string/RunLength.hpp
   requiredBy:
   - graph/tree/FrequencyTableofTreeDistance.hpp
-  - math/PrimitiveRoot.hpp
   - math/PollardRho.hpp
   - math/convolution/Convolution.hpp
+  - math/PrimitiveRoot.hpp
   timestamp: '2023-02-01 23:58:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yuki/1469-RunLength.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/new/primitive_root.test.cpp
-  - test/yuki/1469-RunLength.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
 documentation_of: string/RunLength.hpp
 layout: document
 redirect_from:

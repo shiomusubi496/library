@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/MontgomeryModInt.hpp
-    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
+    path: math/BarrettReduction.hpp
+    title: math/BarrettReduction.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/KthRoot.hpp
+    title: "KthRoot(k\u4E57\u6839)"
+  - icon: ':heavy_check_mark:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
+    path: other/monoid2.hpp
+    title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,47 +40,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
-    path: math/PollardRho.hpp
-    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: math/PrimitiveRoot.hpp
-    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/Convolution.hpp
-    title: "Convolution(\u7573\u307F\u8FBC\u307F)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/convolution_mod.test.cpp
-    title: test/yosupo/convolution/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-    title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/factorize.test.cpp
-    title: test/yosupo/math/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/primitive_root.test.cpp
-    title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/3030-MRPrime.test.cpp
-    title: test/yuki/3030-MRPrime.test.cpp
+    path: test/yosupo/math/discrete_logarithm_mod.test.cpp
+    title: test/yosupo/math/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/MillerRabin.md
-    document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
-      \u5B9A)"
+    _deprecated_at_docs: docs/math/DiscreteLogarithm.md
+    document_title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
     links: []
-  bundledCode: "#line 2 \"math/MillerRabin.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"math/DiscreteLogarithm.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -458,113 +439,239 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/MontgomeryModInt.hpp\"\
-    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
-    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
-    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
-    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
-    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
-    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
-    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
-    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
-    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
-    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
-    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
-    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
-    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
-    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
-    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
-    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
-    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
-    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
-    \ typename std::enable_if<\n                          std::is_integral<U>::value\
-    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
-    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
-    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
-    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
-    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
-    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
-    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
-    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
-    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
-    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
-    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
-    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
-    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
-    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
-    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
-    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
-    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
-    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
-    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
-    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
-    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
-    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
-    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
-    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
-    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
-    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
-    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
-    \ operator-(const MontgomeryModInt& lhs,\n                                   \
-    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
-    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
-    \                                     const MontgomeryModInt& rhs) {\n       \
-    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
-    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
-    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
-    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
-    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
-    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
-    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
-    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
-    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
-    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
-    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
-    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/MillerRabin.hpp\"\
-    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
-    \ = {2,      325,     9375,      28178,\n                                    \
-    \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
-    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
-    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"MontgomeryModInt.hpp\"\
-    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
-    \ = {2,      325,     9375,      28178,\n                                    \
-    \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
-    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
-    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
-    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
-    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
-    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
-    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
-    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
-    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid2.hpp\"\n\n\
+    #line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid\
+    \ {\n\ntemplate<class M, class = void> class has_op : public std::false_type {};\n\
+    template<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
+    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
+    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\
+    \nnamespace Monoid {\n\ntemplate<class T> struct Product {\n    using value_type\
+    \ = T;\n    static T op(const T& a, const T& b) { return a * b; }\n    static\
+    \ T id() { return T{1}; }\n    static T inv(const T& a, const T& b) { return a\
+    \ / b; }\n    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class\
+    \ T> struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
+    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
+    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
+    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
+    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
+    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
+    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
+    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
+    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
+    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
+    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
+    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
+    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
+    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
+    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
+    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\
+    \n\n#line 4 \"math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <=\
+    \ 1 || k == 1) return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull\
+    \ x) -> bool {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b;\
+    \ b >>= 1, a *= a) {\n            if (b & 1) res *= a;\n        }\n        return\
+    \ res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1))\
+    \ ++res;\n    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief\
+    \ KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\
+    \n\n#line 4 \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n\
+    \    unsigned int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
+    \ int m_)\n        : m(m_), im((unsigned long long)(-1) / m + 1) {}\n\n    inline\
+    \ void set_mod(unsigned int m_) {\n        m = m_;\n        im = (unsigned long\
+    \ long)(-1) / m + 1;\n    }\n\n    inline unsigned int get_mod() const { return\
+    \ m; }\n\n    unsigned int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
+    \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
+    \ 7 \"math/DiscreteLogarithm.hpp\"\n\ntemplate<class A,\n         class Container\
+    \ = std::unordered_map<typename A::M::value_type, ll>>\nll baby_step_giant_step(const\
+    \ typename A::M::value_type& a,\n                        const typename A::M::value_type&\
+    \ b,\n                        const typename A::E::value_type& f, ll MAX) {\n\
+    \    using T = typename A::M::value_type;\n    using U = typename A::E::value_type;\n\
+    \    ll s = kth_root(MAX, 2) + 1;\n    Container mp;\n    {\n        const U g\
+    \ = A::E::get_inv(f);\n        T x = b;\n        rep (i, s) {\n            if\
+    \ (mp.count(x) == 0) mp[x] = i;\n            x = A::op(g, x);\n        }\n   \
+    \ }\n    {\n        U g = A::E::id();\n        rep (s) g = A::E::op(g, f);\n \
+    \       T x = a;\n        rep (i, s) {\n            if (mp.count(x)) return i\
+    \ * s + mp[x];\n            x = A::op(g, x);\n        }\n    }\n    return -1;\n\
+    }\n\nnamespace Monoid {\n\ntemplate<class T> struct ProductAction {\n    using\
+    \ M = Product<T>;\n    using E = Product<T>;\n    static T op(T a, T b) { return\
+    \ a * b; }\n};\n\n} // namespace Monoid\n\ntemplate<class T> struct hash_mint_for_discrete_logarithm\
+    \ {\n    std::size_t operator()(const T& x) const {\n        return std::hash<unsigned\
+    \ int>()(x.get());\n    }\n};\n\n// min k (a*x^k=b)\ntemplate<class T> ll discrete_logarithm_mint(T\
+    \ a, T x, T b) {\n    return baby_step_giant_step<\n        Monoid::ProductAction<T>,\n\
+    \        std::unordered_map<T, ll, hash_mint_for_discrete_logarithm<T>>>(\n  \
+    \      a, b, x, T::get_mod());\n}\n\ntemplate<class T> ll discrete_logarithm_mint(T\
+    \ x, T b) {\n    return discrete_logarithm_mint<T>(T{1}, x, b);\n}\n\n// min k\
+    \ (a*x^k = b (mod m))\nll discrete_logarithm(ll a, ll x, ll b, ll m) {\n    if\
+    \ (a == b) return 0;\n\n    ll g = 1, tmp = x;\n    int cnt = 0;\n    ll cur =\
+    \ a;\n    while ((tmp = gcd(tmp, m / g)) != 1) {\n        g *= tmp;\n        ++cnt;\n\
+    \        (cur *= x) %= m;\n        if (cur == b) return cnt;\n    }\n    if (g\
+    \ != 1) {\n        if (b % g != 0) return -1;\n        b /= g;\n        cur /=\
+    \ g;\n        m /= g;\n    }\n\n    using mint = bmodint;\n    mint::set_mod(m);\n\
+    \n    const ll ans = discrete_logarithm_mint<mint>(mint{cur}, mint{x}, mint{b});\n\
+    \    if (ans == -1) return -1;\n    return ans + cnt;\n}\n\nll discrete_logarithm(ll\
+    \ x, ll b, ll m) {\n    return discrete_logarithm(m == 1 ? 0 : 1, x, b, m);\n\
+    }\n\n/**\n * @brief Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)\n * @docs docs/math/DiscreteLogarithm.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../other/monoid2.hpp\"\
+    \n#include \"KthRoot.hpp\"\n#include \"BarrettReduction.hpp\"\n\ntemplate<class\
+    \ A,\n         class Container = std::unordered_map<typename A::M::value_type,\
+    \ ll>>\nll baby_step_giant_step(const typename A::M::value_type& a,\n        \
+    \                const typename A::M::value_type& b,\n                       \
+    \ const typename A::E::value_type& f, ll MAX) {\n    using T = typename A::M::value_type;\n\
+    \    using U = typename A::E::value_type;\n    ll s = kth_root(MAX, 2) + 1;\n\
+    \    Container mp;\n    {\n        const U g = A::E::get_inv(f);\n        T x\
+    \ = b;\n        rep (i, s) {\n            if (mp.count(x) == 0) mp[x] = i;\n \
+    \           x = A::op(g, x);\n        }\n    }\n    {\n        U g = A::E::id();\n\
+    \        rep (s) g = A::E::op(g, f);\n        T x = a;\n        rep (i, s) {\n\
+    \            if (mp.count(x)) return i * s + mp[x];\n            x = A::op(g,\
+    \ x);\n        }\n    }\n    return -1;\n}\n\nnamespace Monoid {\n\ntemplate<class\
+    \ T> struct ProductAction {\n    using M = Product<T>;\n    using E = Product<T>;\n\
+    \    static T op(T a, T b) { return a * b; }\n};\n\n} // namespace Monoid\n\n\
+    template<class T> struct hash_mint_for_discrete_logarithm {\n    std::size_t operator()(const\
+    \ T& x) const {\n        return std::hash<unsigned int>()(x.get());\n    }\n};\n\
+    \n// min k (a*x^k=b)\ntemplate<class T> ll discrete_logarithm_mint(T a, T x, T\
+    \ b) {\n    return baby_step_giant_step<\n        Monoid::ProductAction<T>,\n\
+    \        std::unordered_map<T, ll, hash_mint_for_discrete_logarithm<T>>>(\n  \
+    \      a, b, x, T::get_mod());\n}\n\ntemplate<class T> ll discrete_logarithm_mint(T\
+    \ x, T b) {\n    return discrete_logarithm_mint<T>(T{1}, x, b);\n}\n\n// min k\
+    \ (a*x^k = b (mod m))\nll discrete_logarithm(ll a, ll x, ll b, ll m) {\n    if\
+    \ (a == b) return 0;\n\n    ll g = 1, tmp = x;\n    int cnt = 0;\n    ll cur =\
+    \ a;\n    while ((tmp = gcd(tmp, m / g)) != 1) {\n        g *= tmp;\n        ++cnt;\n\
+    \        (cur *= x) %= m;\n        if (cur == b) return cnt;\n    }\n    if (g\
+    \ != 1) {\n        if (b % g != 0) return -1;\n        b /= g;\n        cur /=\
+    \ g;\n        m /= g;\n    }\n\n    using mint = bmodint;\n    mint::set_mod(m);\n\
+    \n    const ll ans = discrete_logarithm_mint<mint>(mint{cur}, mint{x}, mint{b});\n\
+    \    if (ans == -1) return -1;\n    return ans + cnt;\n}\n\nll discrete_logarithm(ll\
+    \ x, ll b, ll m) {\n    return discrete_logarithm(m == 1 ? 0 : 1, x, b, m);\n\
+    }\n\n/**\n * @brief Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)\n * @docs docs/math/DiscreteLogarithm.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -575,33 +682,28 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/MontgomeryModInt.hpp
+  - other/monoid2.hpp
+  - other/monoid.hpp
+  - math/KthRoot.hpp
+  - math/BarrettReduction.hpp
   isVerificationFile: false
-  path: math/MillerRabin.hpp
-  requiredBy:
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  - math/PollardRho.hpp
-  - math/convolution/Convolution.hpp
-  - math/PrimitiveRoot.hpp
-  timestamp: '2023-02-01 23:58:17+09:00'
+  path: math/DiscreteLogarithm.hpp
+  requiredBy: []
+  timestamp: '2023-04-07 13:35:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yuki/3030-MRPrime.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-documentation_of: math/MillerRabin.hpp
+  - test/yosupo/math/discrete_logarithm_mod.test.cpp
+documentation_of: math/DiscreteLogarithm.hpp
 layout: document
 redirect_from:
-- /library/math/MillerRabin.hpp
-- /library/math/MillerRabin.hpp.html
-title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A)"
+- /library/math/DiscreteLogarithm.hpp
+- /library/math/DiscreteLogarithm.hpp.html
+title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
 ---
 ## 概要
 
-高速に素数判定を行う。本来確率的アルゴリズムだが、 $2^{63}$ 未満の値について決定的に判定できる。
+$x, b, m$ が与えられたとき、 $x^k \equiv b \pmod m$ なる最小の非負整数 $k$ を求める。
 
-- `bool is_prime_mr(ll n)` : `n` が素数であるか判定する。 $\Theta(\log n)$ 。
-- `constexpr bool is_prime_v<ll n>` : `n` が素数であるかを判定するメタ関数。
+- `ll baby_step_giant_step(T a, T b, U f, ll MAX)` : $f$ がたかだか $MAX$ の周期を持つとき、 $f^k(a)=b$ なる最小の非負整数 $k$ を返す。存在しない場合は $-1$ 。 $\Theta(\sqrt{MAX})$ 。
+- `ll discrete_logarithm(ll a, ll x, ll b, ll m)` : $a \times x^k \equiv b \pmod m$ なる最小の非負整数 $k$ を返す。存在しない場合は $-1$ 。 $\Theta(\sqrt{m})$ 。
+- `ll discrete_logarithm(ll x, ll b, ll m)` : $a=1$ の場合。離散対数。 $\Theta(\sqrt{m})$ 。

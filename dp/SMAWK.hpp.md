@@ -492,8 +492,8 @@ data:
   timestamp: '2023-04-01 19:00:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/other/2603-SMAWK.test.cpp
   - test/yuki/705-Monge.test.cpp
+  - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/SMAWK.hpp
 layout: document
 redirect_from:

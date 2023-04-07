@@ -2,24 +2,30 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
-    path: math/convolution/DivisorZetaMoebiusTransform.hpp
-    title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
-      \u30A6\u30B9\u5909\u63DB)"
+    path: math/MontgomeryModInt.hpp
+    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
-    path: math/convolution/LcmConvolution.hpp
-    title: LCMConvolution
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/monoid2.hpp
-    title: other/monoid2.hpp
+    path: math/PrimitiveRoot.hpp
+    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/Random.hpp
+    title: Random
+  - icon: ':heavy_check_mark:'
+    path: string/RunLength.hpp
+    title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -51,11 +57,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
+    PROBLEM: https://judge.yosupo.jp/problem/primitive_root
     links:
-    - https://judge.yosupo.jp/problem/lcm_convolution
-  bundledCode: "#line 1 \"test/yosupo/new/lcm_convolution.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/lcm_convolution\"\n#line 2 \"other/template.hpp\"\
+    - https://judge.yosupo.jp/problem/primitive_root
+  bundledCode: "#line 1 \"test/yosupo/math/primitive_root.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/primitive_root\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -442,112 +448,38 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 2 \"other/monoid2.hpp\"\n\
-    \n#line 5 \"other/monoid2.hpp\"\n\nnamespace Monoid {\n\ntemplate<class T> struct\
-    \ Product {\n    using value_type = T;\n    static T op(const T& a, const T& b)\
-    \ { return a * b; }\n    static T id() { return T{1}; }\n    static T inv(const\
-    \ T& a, const T& b) { return a / b; }\n    static T get_inv(const T& a) { return\
-    \ T{1} / a; }\n};\n\ntemplate<class T> struct Composite {\n    using value_type\
-    \ = std::pair<T, T>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        return {b.first * a.first, b.first * a.second + b.second};\n \
-    \   }\n    static value_type id() { return {T{1}, T{0}}; }\n    static value_type\
-    \ get_inv(const value_type& a) {\n        return {T{1} / a.first, -a.second /\
-    \ a.first};\n    }\n    static value_type inv(const value_type& a, const value_type&\
-    \ b) {\n        return op(a, get_inv(b));\n    }\n};\n\ntemplate<class T> struct\
-    \ GCD {\n    using value_type = T;\n    static T op(T a, T b) { return gcd(a,\
-    \ b); }\n    static T id() { return 0; }\n};\ntemplate<class T> struct LCM {\n\
-    \    using value_type = T;\n    static T op(T a, T b) { return lcm(a, b); }\n\
-    \    static T id() { return 1; }\n};\n\ntemplate<class T> struct AddAssign {\n\
-    \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
-    \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/PrimitiveRoot.hpp\"\
+    \n\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"random/Random.hpp\"\n\ntemplate<class\
+    \ Engine> class Random {\nprivate:\n    Engine rnd;\n\npublic:\n    using result_type\
+    \ = typename Engine::result_type;\n    Random() : Random(std::random_device{}())\
+    \ {}\n    Random(result_type seed) : rnd(seed) {}\n    result_type operator()()\
+    \ { return rnd(); }\n    template<class IntType = ll> IntType uniform(IntType\
+    \ l, IntType r) {\n        static_assert(std::is_integral<IntType>::value,\n \
+    \                     \"template argument must be an integral type\");\n     \
+    \   assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double>\n    RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\n\
+    \                      \"template argument must be an floating point type\");\n\
+    \        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
+    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
+    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/ModInt.hpp\"\
     \n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt\
     \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
     \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n    static_assert(mod\
@@ -663,38 +595,155 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/convolution/LcmConvolution.hpp\"\
-    \n\n#line 2 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
-    math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
-    \ divisor_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
-    \ n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for (ll\
-    \ i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        reps (j,\
-    \ n / i) {\n            v[j * i] = Sum::op(v[j * i], v[j]);\n            is_prime[j\
-    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid divisor_moebius_transform(std::vector<typename\
-    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
-    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
-    \        rreps (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n\
-    \            is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
-    \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
-    \ */\n#line 5 \"math/convolution/LcmConvolution.hpp\"\n\ntemplate<class Sum, class\
-    \ Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
-    \ Sum::value_type> a,\n                std::vector<typename Sum::value_type> b)\
-    \ {\n    divisor_zeta_transform<Sum>(a);\n    divisor_zeta_transform<Sum>(b);\n\
-    \    rep (i, a.size()) a[i] = Prod::op(a[i], b[i]);\n    divisor_moebius_transform<Sum>(a);\n\
-    \    return a;\n}\n\n/**\n * @brief LCMConvolution\n * @docs docs/math/convolution/LcmConvolution.md\n\
-    \ */\n#line 7 \"test/yosupo/new/lcm_convolution.test.cpp\"\nusing namespace std;\n\
-    using mint = modint998244353;\nint main() {\n    int N; scan >> N;\n    vector<mint>\
-    \ A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps (i, N) scan >>\
-    \ B[i];\n    auto v = lcm_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lcm_convolution\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\n#include\
-    \ \"../../../other/monoid2.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/convolution/LcmConvolution.hpp\"\nusing namespace std;\nusing\
-    \ mint = modint998244353;\nint main() {\n    int N; scan >> N;\n    vector<mint>\
-    \ A(N + 1), B(N + 1);\n    reps (i, N) scan >> A[i];\n    reps (i, N) scan >>\
-    \ B[i];\n    auto v = lcm_convolution<Monoid::Sum<mint>, Monoid::Product<mint>>(A,\
-    \ B);\n    reps (i, N) print << v[i] << \" \\n\"[i == N];\n}\n"
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/MontgomeryModInt.hpp\"\
+    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
+    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
+    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
+    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
+    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
+    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
+    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
+    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
+    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
+    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
+    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
+    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
+    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
+    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
+    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
+    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
+    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \ &&\n                                     std::is_signed<U>::value>::type* =\
+    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
+    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
+    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
+    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
+    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
+    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
+    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
+    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
+    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
+    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
+    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
+    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
+    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
+    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
+    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
+    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
+    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
+    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
+    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
+    \ operator-(const MontgomeryModInt& lhs,\n                                   \
+    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
+    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
+    \                                     const MontgomeryModInt& rhs) {\n       \
+    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
+    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
+    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
+    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
+    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
+    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
+    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
+    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
+    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
+    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
+    \      28178,\n                                         450775, 9780504, 1795265022};\n\
+    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
+    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
+    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
+    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
+    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
+    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
+    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
+    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
+    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
+    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
+    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
+    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
+    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 2 \"math/PollardRho.hpp\"\
+    \n\n#line 2 \"string/RunLength.hpp\"\n\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class\
+    \ Cont, class Comp>\nstd::vector<std::pair<typename Cont::value_type, int>>\n\
+    RunLength(const Cont& str, const Comp& cmp) {\n    std::vector<std::pair<typename\
+    \ Cont::value_type, int>> res;\n    if (str.size() == 0) return res;\n    res.emplace_back(str[0],\
+    \ 1);\n    rep (i, 1, str.size()) {\n        if (cmp(res.back().first, str[i]))\
+    \ ++res.back().second;\n        else res.emplace_back(str[i], 1);\n    }\n   \
+    \ return res;\n}\n\ntemplate<class Cont>\nstd::vector<std::pair<typename Cont::value_type,\
+    \ int>>\nRunLength(const Cont& str) {\n    return RunLength(str, std::equal_to<typename\
+    \ Cont::value_type>());\n}\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\
+    \u30B0\u30B9\u5727\u7E2E)\n * @docs docs/string/RunLength.md\n */\n#line 8 \"\
+    math/PollardRho.hpp\"\n\ntemplate<class T, class Rnd> ull pollard_rho(ull n, Rnd&\
+    \ rnd) {\n    if (~n & 1) return 2;\n    if (T::get_mod() != n) T::set_mod(n);\n\
+    \    T c, one = 1;\n    auto f = [&](T x) -> T { return x * x + c; };\n    constexpr\
+    \ int M = 128;\n    while (1) {\n        c = rnd.uniform(1ull, n - 1);\n     \
+    \   T x = rnd.uniform(2ull, n - 1), y = x;\n        ull g = 1;\n        while\
+    \ (g == 1) {\n            T p = one, tx = x, ty = y;\n            rep (M) {\n\
+    \                x = f(x);\n                y = f(f(y));\n                p *=\
+    \ x - y;\n            }\n            g = gcd(p.get(), n);\n            if (g ==\
+    \ 1) continue;\n            rep (M) {\n                tx = f(tx);\n         \
+    \       ty = f(f(ty));\n                g = gcd((tx - ty).get(), n);\n       \
+    \         if (g != 1) {\n                    if (g != n) return g;\n         \
+    \           break;\n                }\n            }\n        }\n    }\n    return\
+    \ -1;\n}\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\n\
+    std::vector<ull> factorize(ull n, Rnd& rnd = rand64) {\n    if (n == 1) return\
+    \ {};\n    std::vector<ull> res;\n    std::vector<ull> st = {n};\n    while (!st.empty())\
+    \ {\n        ull t = st.back();\n        st.pop_back();\n        if (t == 1) continue;\n\
+    \        if (is_prime_mr(t)) {\n            res.push_back(t);\n            continue;\n\
+    \        }\n        ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n\
+    \        st.push_back(t / f);\n    }\n    std::sort(all(res));\n    return res;\n\
+    }\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
+    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
+    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
+    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
+    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
+    \            res.push_back(d);\n            return;\n        }\n        ll t =\
+    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
+    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
+    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
+    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n#line 9 \"math/PrimitiveRoot.hpp\"\
+    \n\ntemplate<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {\n\
+    \    assert(is_prime_mr(p));\n    if (p == 2) return 1;\n    if (T::get_mod()\
+    \ != p) T::set_mod(p);\n    auto pf = factorize(p - 1);\n    pf.erase(std::unique(all(pf)),\
+    \ pf.end());\n    each_for (x : pf) x = (p - 1) / x;\n    T one = 1;\n    while\
+    \ (1) {\n        ull g = rand64.uniform(2ull, p - 1);\n        bool ok = true;\n\
+    \        each_const (x : pf) {\n            if (T(g).pow(x) == one) {\n      \
+    \          ok = false;\n                break;\n            }\n        }\n   \
+    \     if (ok) return g;\n    }\n}\n\nCONSTEXPR ull primitive_root_for_convolution(ull\
+    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
+    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
+    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
+    \ 1) return g;\n    }\n    return -1;\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\
+    \u59CB\u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n#line 4 \"test/yosupo/math/primitive_root.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n \
+    \       ull p; scan >> p;\n        prints(primitive_root(p));\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/PrimitiveRoot.hpp\"\
+    \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n \
+    \       ull p; scan >> p;\n        prints(primitive_root(p));\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -705,21 +754,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
-  - other/monoid2.hpp
+  - math/PrimitiveRoot.hpp
+  - random/Random.hpp
   - math/ModInt.hpp
-  - math/convolution/LcmConvolution.hpp
-  - math/convolution/DivisorZetaMoebiusTransform.hpp
+  - math/MontgomeryModInt.hpp
+  - math/MillerRabin.hpp
+  - math/PollardRho.hpp
+  - string/RunLength.hpp
   isVerificationFile: true
-  path: test/yosupo/new/lcm_convolution.test.cpp
+  path: test/yosupo/math/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2023-02-01 23:58:17+09:00'
+  timestamp: '2023-04-07 13:35:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/lcm_convolution.test.cpp
+documentation_of: test/yosupo/math/primitive_root.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/lcm_convolution.test.cpp
-- /verify/test/yosupo/new/lcm_convolution.test.cpp.html
-title: test/yosupo/new/lcm_convolution.test.cpp
+- /verify/test/yosupo/math/primitive_root.test.cpp
+- /verify/test/yosupo/math/primitive_root.test.cpp.html
+title: test/yosupo/math/primitive_root.test.cpp
 ---
