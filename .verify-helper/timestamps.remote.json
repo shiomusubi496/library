@@ -69,5 +69,16 @@
 "test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/aoj/GRL/GRL_5_D-EulerTour.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/aoj/GRL/GRL_5_E-HLD.test.cpp": "2023-05-05 20:13:51 +0900",
-"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp": "2023-05-05 20:13:51 +0900"
+"test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/NTL/NTL_1_A-Prime.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/NTL/NTL_1_B-Pow.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/NTL/NTL_1_C-LCM.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/NTL/NTL_1_D-Phi.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/other/2603-SMAWK.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/other/2725-CHT.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/aoj/other/2945-01BFS.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/atcoder/abc176_f-DefaultMap.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/atcoder/abc265_c-Timer.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/atcoder/agc002_d-PartialPersistentArray.test.cpp": "2023-05-05 20:13:51 +0900"
 }
