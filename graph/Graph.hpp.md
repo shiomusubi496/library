@@ -46,9 +46,12 @@ data:
   - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
+  - icon: ':x:'
+    path: graph/mst/ManhattanMST.hpp
+    title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
@@ -198,7 +201,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
     title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - icon: ':x:'
@@ -228,6 +231,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/graph/manhattanmst.test.cpp
+    title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':x:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
@@ -759,6 +765,7 @@ data:
   - graph/other/TopologicalSort.hpp
   - graph/other/LowLink.hpp
   - graph/other/TwoSatisfiability.hpp
+  - graph/mst/ManhattanMST.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/CountSpanningTree.hpp
   - graph/mst/Prim.hpp
@@ -783,6 +790,7 @@ data:
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp

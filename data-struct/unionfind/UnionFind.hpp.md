@@ -29,9 +29,12 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
+  - icon: ':x:'
+    path: graph/mst/ManhattanMST.hpp
+    title: Manhattan Minimum Spanning Tree
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
@@ -54,6 +57,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/graph/manhattanmst.test.cpp
+    title: test/yosupo/graph/manhattanmst.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -500,11 +506,13 @@ data:
   isVerificationFile: false
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
+  - graph/mst/ManhattanMST.hpp
   - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/graph/manhattanmst.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp

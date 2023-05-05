@@ -34,7 +34,10 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/mst/ManhattanMST.hpp
+    title: Manhattan Minimum Spanning Tree
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
@@ -42,9 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
     title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/yosupo/graph/manhattanmst.test.cpp
+    title: test/yosupo/graph/manhattanmst.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/Kruskal.md
     document_title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -530,10 +536,12 @@ data:
   - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: false
   path: graph/mst/Kruskal.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/mst/ManhattanMST.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/graph/manhattanmst.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
 documentation_of: graph/mst/Kruskal.hpp

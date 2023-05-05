@@ -1,12 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/UnionFindUndo.hpp
-    title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
+  - icon: ':question:'
+    path: data-struct/unionfind/UnionFind.hpp
+    title: UnionFind
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
+  - icon: ':question:'
+    path: graph/mst/Kruskal.hpp
+    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
+  - icon: ':x:'
+    path: graph/mst/ManhattanMST.hpp
+    title: Manhattan Minimum Spanning Tree
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -36,35 +42,34 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
+    PROBLEM: https://judge.yosupo.jp/problem/manhattanmst
     links:
-    - https://judge.yosupo.jp/problem/persistent_unionfind
-  bundledCode: "#line 1 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    - https://judge.yosupo.jp/problem/manhattanmst
+  bundledCode: "#line 1 \"test/yosupo/graph/manhattanmst.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/manhattanmst\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -481,55 +486,60 @@ data:
     \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"data-struct/unionfind/UnionFindUndo.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFindUndo.hpp\"\
-    \n\nclass UnionFindUndo {\nprivate:\n    int n;\n    std::vector<int> par;\n \
-    \   std::stack<std::pair<int, int>> hist;\n\npublic:\n    UnionFindUndo() : UnionFindUndo(0)\
-    \ {}\n    UnionFindUndo(int n) : n(n), par(n, -1) {}\n    int find(int x) const\
-    \ {\n        assert(0 <= x && x < n);\n        return par[x] < 0 ? x : find(par[x]);\n\
-    \    }\n    std::pair<int, int> merge(int x, int y) {\n        x = find(x);\n\
-    \        y = find(y);\n        hist.emplace(x, par[x]);\n        hist.emplace(y,\
-    \ par[y]);\n        if (x == y) return {x, -1};\n        if (par[x] > par[y])\
-    \ std::swap(x, y);\n        par[x] += par[y];\n        par[y] = x;\n        return\
-    \ {x, y};\n    }\n    bool same(int x, int y) const { return find(x) == find(y);\
-    \ }\n    int size(int x) const { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() const {\n        std::vector<std::vector<int>> res(n);\n        rep\
-    \ (i, n) res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
-    \    void undo() {\n        par[hist.top().first] = hist.top().second;\n     \
-    \   hist.pop();\n        par[hist.top().first] = hist.top().second;\n        hist.pop();\n\
-    \    }\n    void snapshot() {\n        while (!hist.empty()) hist.pop();\n   \
-    \ }\n    void rollback() {\n        while (!hist.empty()) undo();\n    }\n};\n\
-    \n/**\n * @brief UnionFindUndo(Undo\u53EF\u80FDUnionFind)\n * @docs docs/data-struct/unionfind/UnionFindUndo.md\n\
-    \ */\n#line 5 \"test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    Graph<PLL>\
-    \ G(Q + 1);\n    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n \
-    \       int t, k, u, v; scan >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k\
-    \ + 1, i + 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n\
-    \    }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n\
-    \        Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n            each_const\
-    \ (e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n    \
-    \            this->operator()(e.to);\n                UFU.undo();\n          \
-    \  }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q) {\n\
-    \        if (ans[i] != -1) print << ans[i] << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../data-struct/unionfind/UnionFindUndo.hpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    Graph<PLL> G(Q + 1);\n\
-    \    vector<vector<array<int, 3>>> A(Q + 1);\n    rep (i, Q) {\n        int t,\
-    \ k, u, v; scan >> t >> k >> u >> v;\n        if (t == 0) G.add_edge(k + 1, i\
-    \ + 1, PLL{u, v}, true);\n        else A[k + 1].push_back({(int)i, u, v});\n \
-    \   }\n    vector<int> ans(Q, -1);\n    UnionFindUndo UFU(N);\n    struct {\n\
-    \        Graph<PLL>& G;\n        vector<vector<array<int, 3>>>& A;\n        vector<int>&\
-    \ ans;\n        UnionFindUndo& UFU;\n        void operator()(int v) {\n      \
-    \      each_const (a : A[v]) ans[a[0]] = UFU.same(a[1], a[2]);\n            each_const\
-    \ (e : G[v]) {\n                UFU.merge(e.cost.first, e.cost.second);\n    \
-    \            this->operator()(e.to);\n                UFU.undo();\n          \
-    \  }\n        }\n    } func{G, A, ans, UFU};\n    func(0);\n    rep (i, Q) {\n\
-    \        if (ans[i] != -1) print << ans[i] << endl;\n    }\n}\n"
+    \ */\n#line 2 \"graph/mst/ManhattanMST.hpp\"\n\n#line 2 \"graph/mst/Kruskal.hpp\"\
+    \n\n#line 2 \"data-struct/unionfind/UnionFind.hpp\"\n\n#line 4 \"data-struct/unionfind/UnionFind.hpp\"\
+    \n\nclass UnionFind {\nprivate:\n    int n;\n    std::vector<int> par;\n\npublic:\n\
+    \    UnionFind() : UnionFind(0) {}\n    UnionFind(int n) : n(n), par(n, -1) {}\n\
+    \    int find(int x) {\n        assert(0 <= x && x < n);\n        return par[x]\
+    \ < 0 ? x : par[x] = find(par[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y) {\n        x = find(x);\n        y = find(y);\n        if (x == y) return\
+    \ {x, -1};\n        if (par[x] > par[y]) std::swap(x, y);\n        par[x] += par[y];\n\
+    \        par[y] = x;\n        return {x, y};\n    }\n    bool same(int x, int\
+    \ y) { return find(x) == find(y); }\n    int size(int x) { return -par[find(x)];\
+    \ }\n    std::vector<std::vector<int>> groups() {\n        std::vector<std::vector<int>>\
+    \ res(n);\n        rep (i, n) res[find(i)].push_back(i);\n        res.erase(\n\
+    \            remove_if(all(res),\n                      [](const std::vector<int>&\
+    \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
+    \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
+    \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
+    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> T Kruskal(int N,\
+    \ Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    T res = 0;\n\
+    \    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res\
+    \ += e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int\
+    \ N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T>\
+    \ res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >=\
+    \ 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\
+    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n#line\
+    \ 6 \"graph/mst/ManhattanMST.hpp\"\n\ntemplate<class T>\nclass ManhattanMST {\n\
+    private:\n    std::vector<std::pair<T, T>> ps;\n    Edges<T> edges;\n\npublic:\n\
+    \    ManhattanMST(const std::vector<std::pair<T, T>>& ps_) : ps(ps_) {\n     \
+    \   int n = ps.size();\n        std::vector<T> xs(n), ys(n);\n        rep (i,\
+    \ n) {\n            xs[i] = ps[i].first;\n            ys[i] = ps[i].second;\n\
+    \        }\n        std::vector<int> ord(n);\n        std::iota(all(ord), 0);\n\
+    \        rep (s, 2) {\n            rep (t, 2) {\n                std::sort(all(ord),\
+    \ [&](int i, int j) { return xs[i] + ys[i] < xs[j] + ys[j]; });\n            \
+    \    std::map<T, int> mp;\n                for (int i : ord) {\n             \
+    \       for (auto it = mp.lower_bound(-ys[i]); it != mp.end(); it = mp.erase(it))\
+    \ {\n                        int j = it->second;\n                        if (xs[i]\
+    \ - ys[i] < xs[j] - ys[j]) break;\n                        edges.emplace_back(i,\
+    \ j, std::abs(xs[i] - xs[j]) + std::abs(ys[i] - ys[j]));\n                   \
+    \ }\n                    mp[-ys[i]] = i;\n                }\n                swap(xs,\
+    \ ys);\n            }\n            rep (i, n) xs[i] = -xs[i];\n        }\n   \
+    \     edges = Kruskal_vec(n, edges);\n    }\n    T get() const {\n        T res\
+    \ = 0;\n        each_const (e : edges) res += e.cost;\n        return res;\n \
+    \   }\n    const Edges<T>& get_edges() const& { return edges; }\n    Edges<T>\
+    \ get_edges() && { return std::move(edges); }\n};\n\n/**\n * @brief Manhattan\
+    \ Minimum Spanning Tree\n * @docs docs/graph/mst/ManhattanMST.md\n */\n#line 5\
+    \ \"test/yosupo/graph/manhattanmst.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N; scan >> N;\n    vector<PLL> A(N); scan >> A;\n    auto mst = ManhattanMST(A);\n\
+    \    prints(mst.get());\n    for (auto e : mst.get_edges()) prints(e.from, e.to);\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/manhattanmst\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/mst/ManhattanMST.hpp\"\nusing namespace std;\nint main() {\n\
+    \    int N; scan >> N;\n    vector<PLL> A(N); scan >> A;\n    auto mst = ManhattanMST(A);\n\
+    \    prints(mst.get());\n    for (auto e : mst.get_edges()) prints(e.from, e.to);\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -541,17 +551,19 @@ data:
   - template/func.hpp
   - template/util.hpp
   - graph/Graph.hpp
-  - data-struct/unionfind/UnionFindUndo.hpp
+  - graph/mst/ManhattanMST.hpp
+  - graph/mst/Kruskal.hpp
+  - data-struct/unionfind/UnionFind.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+  path: test/yosupo/graph/manhattanmst.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-05 22:04:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+documentation_of: test/yosupo/graph/manhattanmst.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-- /verify/test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp.html
-title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+- /verify/test/yosupo/graph/manhattanmst.test.cpp
+- /verify/test/yosupo/graph/manhattanmst.test.cpp.html
+title: test/yosupo/graph/manhattanmst.test.cpp
 ---
