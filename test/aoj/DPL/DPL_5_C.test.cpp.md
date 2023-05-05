@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C
@@ -587,20 +587,19 @@ data:
     \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
     \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
     \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
-    \ n - r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n       \
-    \ return res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res\
-    \ = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return res;\n\
-    \    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r);\
-    \ }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1,\
-    \ 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1,\
-    \ 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n\
-    #line 5 \"test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint =\
-    \ modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll n,\
-    \ k; scan >> n >> k;\n    mint ans = 0;\n    rep (i, k + 1) {\n        ans +=\
-    \ mint(-1).pow(k - i) * comb::comb(k, i) * mint(i).pow(n);\n    }\n    print <<\
-    \ ans << endl;\n}\n"
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
+    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
+    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
+    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
+    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 5 \"\
+    test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
+    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
+    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
+    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
@@ -622,8 +621,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-05-05 20:57:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_C.test.cpp
 layout: document
