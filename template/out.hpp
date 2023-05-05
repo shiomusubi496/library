@@ -206,8 +206,8 @@ public:
                                      !has_print<T>::value>::type* = nullptr>
     void print(const T& a) {
         if IF_CONSTEXPR (debug) print_char('{');
-        for (auto i = a.begin(); i != a.end(); ++i) {
-            if (i != a.begin()) {
+        for (auto i = std::begin(a); i != std::end(a); ++i) {
+            if (i != std::begin(a)) {
                 if IF_CONSTEXPR (debug) print_char(',');
                 print_char(' ');
             }
@@ -267,6 +267,14 @@ template<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {
     print.print_char('\n');
 }
 
+template<class Head, class... Tail>
+auto prints(const Head& head, const Tail&... tail)
+    -> decltype(print << head, (void)0) {
+    print << head;
+    print.print_char(' ');
+    prints(tail...);
+}
+
 #ifdef SHIO_LOCAL
 Printer<Writer<>::iterator, true> debug(writer.begin()),
     edebug(ewriter.begin());
@@ -282,3 +290,16 @@ public:
 };
 Printer<DebugIterator> debug, edebug;
 #endif
+
+template<class T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {
+    debug << v;
+    debug.print_char('\n');
+}
+
+template<class Head, class... Tail>
+auto debugs(const Head& head, const Tail&... tail)
+    -> decltype(debug << head, (void)0) {
+    debug << head;
+    debug.print_char(' ');
+    debugs(tail...);
+}
