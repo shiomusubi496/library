@@ -1,9 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/EulerPhi.hpp
-    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':question:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':x:'
+    path: graph/flow/MaxFlow.hpp
+    title: "MaxFlow(\u6700\u5927\u6D41)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -33,16 +36,16 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
+    PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
-  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#line 2 \"other/template.hpp\"\
+    - https://judge.yosupo.jp/problem/bipartitematching
+  bundledCode: "#line 1 \"test/yosupo/graph/bipartitematching.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -436,24 +439,101 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/EulerPhi.hpp\"\n\n\
-    #line 4 \"math/EulerPhi.hpp\"\n\nll euler_phi(ll n) {\n    ll res = n;\n    for\
-    \ (ll i = 2; i * i <= n; ++i) {\n        if (n % i == 0) {\n            res =\
-    \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
-    \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nclass EulerPhi\
-    \ {\nprivate:\n    ll MAX;\n    std::vector<ll> data;\n\npublic:\n    EulerPhi(ll\
-    \ MAX) : MAX(MAX), data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n\
-    \        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n    \
-    \        rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i\
-    \ - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x]; }\n\
-    };\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570\
-    )\n * @docs docs/math/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    print << euler_phi(N)\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/EulerPhi.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    ll N; scan >> N;\n    print << euler_phi(N)\
-    \ << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
+    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
+    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
+    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 2 \"graph/flow/MaxFlow.hpp\"\n\n#line 4 \"graph/flow/MaxFlow.hpp\"\
+    \n\ntemplate<class T> class MaxFlow {\nprivate:\n    struct edge_ {\n        int\
+    \ to, rev;\n        T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>>\
+    \ g;\n    std::vector<std::pair<int, int>> pos;\n\npublic:\n    struct edge {\n\
+    \        int from, to;\n        T cap, flow;\n    };\n\n    MaxFlow() : n(0) {}\n\
+    \    explicit MaxFlow(int n) : n(n), g(n) {}\n\n    int add_edge(int from, int\
+    \ to, T cap) {\n        assert(0 <= from && from < n);\n        assert(0 <= to\
+    \ && to < n);\n        assert(0 <= cap);\n        pos.emplace_back(from, (int)(g[from].size()));\n\
+    \        g[from].push_back({to, (int)(g[to].size()), cap});\n        g[to].push_back({from,\
+    \ (int)(g[from].size()) - 1, T{0}});\n        return (int)(pos.size()) - 1;\n\
+    \    }\n    edge get_edge(int i) {\n        int m = (int)(pos.size());\n     \
+    \   assert(0 <= i && i < m);\n        const auto& e = g[pos[i].first][pos[i].second];\n\
+    \        const auto& re = g[e.to][e.rev];\n        return edge{pos[i].first, e.to,\
+    \ e.cap + re.cap, re.cap};\n    }\n    std::vector<edge> edges() {\n        int\
+    \ m = (int)(pos.size());\n        std::vector<edge> res(m);\n        for (int\
+    \ i = 0; i < m; i++) res[i] = get_edge(i);\n        return res;\n    }\n    T\
+    \ flow(int s, int t) { return flow(s, t, infinity<T>::max); }\n    T flow(int\
+    \ s, int t, T flow_limit) {\n        assert(0 <= s && s < n);\n        assert(0\
+    \ <= t && t < n);\n        assert(s != t);\n        T res = T{0};\n        while\
+    \ (res < flow_limit) {\n            std::vector<int> dist(n, -1);\n          \
+    \  {\n                std::queue<int> que;\n                que.push(s);\n   \
+    \             dist[s] = 0;\n                while (!que.empty()) {\n         \
+    \           int v = que.front(); que.pop();\n                    each_const (e\
+    \ : g[v]) {\n                        if (e.cap > T{0} && dist[e.to] == -1) {\n\
+    \                            dist[e.to] = dist[v] + 1;\n                     \
+    \       que.push(e.to);\n                        }\n                    }\n  \
+    \              }\n            }\n            std::vector<int> idx(n, 0);\n   \
+    \         T f = rec_lambda([&](auto&& self, int v, T f) -> T {\n             \
+    \   if (v == t) return f;\n                T res = 0;\n                for (int&\
+    \ i = idx[v]; i < (int)(g[v].size()); i++) {\n                    auto& e = g[v][i];\n\
+    \                    if (e.cap > T{0} && dist[v] + 1 == dist[e.to]) {\n      \
+    \                  T d = self(e.to, std::min(f, e.cap));\n                   \
+    \     if (d == T{0}) continue;\n                        e.cap -= d;\n        \
+    \                g[e.to][e.rev].cap += d;\n                        res += d;\n\
+    \                        if (res == f) return res;\n                    }\n  \
+    \              }\n                return res;\n            })(s, flow_limit -\
+    \ res);\n            if (f == T{0}) break;\n            res += f;\n        }\n\
+    \        return res;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\u6D41)\n\
+    \ * @docs docs/graph/flow/MaxFlow.md\n */\n#line 5 \"test/yosupo/graph/bipartitematching.test.cpp\"\
+    \nint main() {\n    int L, R, M; scan >> L >> R >> M;\n    MaxFlow<int> mf(L +\
+    \ R + 2);\n    int s = L + R, t = L + R + 1;\n    rep (i, L) mf.add_edge(s, i,\
+    \ 1);\n    rep (i, R) mf.add_edge(L + i, t, 1);\n    rep (M) {\n        int a,\
+    \ b; scan >> a >> b;\n        mf.add_edge(a, L + b, 1);\n    }\n    prints(mf.flow(s,\
+    \ t));\n    for (auto e : mf.edges()) {\n        if (e.from == s || e.to == t\
+    \ || e.flow == 0) continue;\n        prints(e.from, e.to - L);\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
+    \ \"../../../graph/flow/MaxFlow.hpp\"\nint main() {\n    int L, R, M; scan >>\
+    \ L >> R >> M;\n    MaxFlow<int> mf(L + R + 2);\n    int s = L + R, t = L + R\
+    \ + 1;\n    rep (i, L) mf.add_edge(s, i, 1);\n    rep (i, R) mf.add_edge(L + i,\
+    \ t, 1);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        mf.add_edge(a,\
+    \ L + b, 1);\n    }\n    prints(mf.flow(s, t));\n    for (auto e : mf.edges())\
+    \ {\n        if (e.from == s || e.to == t || e.flow == 0) continue;\n        prints(e.from,\
+    \ e.to - L);\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -464,17 +544,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/EulerPhi.hpp
+  - graph/Graph.hpp
+  - graph/flow/MaxFlow.hpp
   isVerificationFile: true
-  path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  path: test/yosupo/graph/bipartitematching.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-05 21:16:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+documentation_of: test/yosupo/graph/bipartitematching.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp
-- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp.html
-title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+- /verify/test/yosupo/graph/bipartitematching.test.cpp
+- /verify/test/yosupo/graph/bipartitematching.test.cpp.html
+title: test/yosupo/graph/bipartitematching.test.cpp
 ---

@@ -6,7 +6,7 @@ data:
     - icon: ':x:'
       path: data-struct/cht/ConvexHullTrick.hpp
       title: ConvexHullTrick
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
       title: ConvexHullTrickAddMonotone
     - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/DefaultMap.hpp
       title: DefaultMap
     - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     - icon: ':x:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/PartialPersistentArray.hpp
       title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
     - icon: ':x:'
@@ -131,16 +131,16 @@ data:
       title: WaveletMatrixPointAddRectangleSum.hpp
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
     - icon: ':x:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
-    - icon: ':x:'
+    - icon: ':question:'
       path: dp/SMAWK.hpp
       title: SMAWK
   - name: geometry
@@ -187,6 +187,11 @@ data:
       path: graph/connected/TwoEdgeConnectedComponents.hpp
       title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
         \u89E3)"
+  - name: graph/flow
+    pages:
+    - icon: ':x:'
+      path: graph/flow/MaxFlow.hpp
+      title: "MaxFlow(\u6700\u5927\u6D41)"
   - name: graph/mst
     pages:
     - icon: ':warning:'
@@ -234,7 +239,7 @@ data:
       path: graph/shortest-path/WarshallFloyd.hpp
       title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\
         \u6CD5)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/ZeroOneBFS.hpp
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
@@ -291,7 +296,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':x:'
@@ -394,7 +399,7 @@ data:
     - icon: ':question:'
       path: random/Random.hpp
       title: Random
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: random/Timer.hpp
       title: Timer
   - name: string
@@ -669,41 +674,41 @@ data:
       title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - name: test/aoj/NTL
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
       title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
       title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
       title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
       title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
       title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
   - name: test/aoj/other
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2603-SMAWK.test.cpp
       title: test/aoj/other/2603-SMAWK.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2725-CHT.test.cpp
       title: test/aoj/other/2725-CHT.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2945-01BFS.test.cpp
       title: test/aoj/other/2945-01BFS.test.cpp
   - name: test/atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc265_c-Timer.test.cpp
       title: test/atcoder/abc265_c-Timer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
       title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     - icon: ':x:'
@@ -852,6 +857,9 @@ data:
       title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   - name: test/yosupo/graph
     pages:
+    - icon: ':x:'
+      path: test/yosupo/graph/bipartitematching.test.cpp
+      title: test/yosupo/graph/bipartitematching.test.cpp
     - icon: ':x:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp

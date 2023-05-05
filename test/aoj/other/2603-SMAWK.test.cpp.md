@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2603
@@ -522,7 +522,7 @@ data:
   path: test/aoj/other/2603-SMAWK.test.cpp
   requiredBy: []
   timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/other/2603-SMAWK.test.cpp
 layout: document

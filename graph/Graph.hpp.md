@@ -84,7 +84,7 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
   - icon: ':x:'
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
   - icon: ':x:'
@@ -222,6 +222,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/graph/bipartitematching.test.cpp
+    title: test/yosupo/graph/bipartitematching.test.cpp
   - icon: ':x:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
@@ -777,6 +780,7 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp

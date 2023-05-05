@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/EulerPhi.hpp
-    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -32,17 +29,18 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/graph/bipartitematching.test.cpp
+    title: test/yosupo/graph/bipartitematching.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
-    links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D
-  bundledCode: "#line 1 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\n#define PROBLEM \"\
-    https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#line 2 \"other/template.hpp\"\
+    _deprecated_at_docs: docs/graph/flow/MaxFlow.md
+    document_title: "MaxFlow(\u6700\u5927\u6D41)"
+    links: []
+  bundledCode: "#line 2 \"graph/flow/MaxFlow.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -436,24 +434,83 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/EulerPhi.hpp\"\n\n\
-    #line 4 \"math/EulerPhi.hpp\"\n\nll euler_phi(ll n) {\n    ll res = n;\n    for\
-    \ (ll i = 2; i * i <= n; ++i) {\n        if (n % i == 0) {\n            res =\
-    \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
-    \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nclass EulerPhi\
-    \ {\nprivate:\n    ll MAX;\n    std::vector<ll> data;\n\npublic:\n    EulerPhi(ll\
-    \ MAX) : MAX(MAX), data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n\
-    \        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n    \
-    \        rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i\
-    \ - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x]; }\n\
-    };\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570\
-    )\n * @docs docs/math/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    print << euler_phi(N)\
-    \ << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/EulerPhi.hpp\"\nusing\
-    \ namespace std;\nint main() {\n    ll N; scan >> N;\n    print << euler_phi(N)\
-    \ << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"graph/flow/MaxFlow.hpp\"\
+    \n\ntemplate<class T> class MaxFlow {\nprivate:\n    struct edge_ {\n        int\
+    \ to, rev;\n        T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>>\
+    \ g;\n    std::vector<std::pair<int, int>> pos;\n\npublic:\n    struct edge {\n\
+    \        int from, to;\n        T cap, flow;\n    };\n\n    MaxFlow() : n(0) {}\n\
+    \    explicit MaxFlow(int n) : n(n), g(n) {}\n\n    int add_edge(int from, int\
+    \ to, T cap) {\n        assert(0 <= from && from < n);\n        assert(0 <= to\
+    \ && to < n);\n        assert(0 <= cap);\n        pos.emplace_back(from, (int)(g[from].size()));\n\
+    \        g[from].push_back({to, (int)(g[to].size()), cap});\n        g[to].push_back({from,\
+    \ (int)(g[from].size()) - 1, T{0}});\n        return (int)(pos.size()) - 1;\n\
+    \    }\n    edge get_edge(int i) {\n        int m = (int)(pos.size());\n     \
+    \   assert(0 <= i && i < m);\n        const auto& e = g[pos[i].first][pos[i].second];\n\
+    \        const auto& re = g[e.to][e.rev];\n        return edge{pos[i].first, e.to,\
+    \ e.cap + re.cap, re.cap};\n    }\n    std::vector<edge> edges() {\n        int\
+    \ m = (int)(pos.size());\n        std::vector<edge> res(m);\n        for (int\
+    \ i = 0; i < m; i++) res[i] = get_edge(i);\n        return res;\n    }\n    T\
+    \ flow(int s, int t) { return flow(s, t, infinity<T>::max); }\n    T flow(int\
+    \ s, int t, T flow_limit) {\n        assert(0 <= s && s < n);\n        assert(0\
+    \ <= t && t < n);\n        assert(s != t);\n        T res = T{0};\n        while\
+    \ (res < flow_limit) {\n            std::vector<int> dist(n, -1);\n          \
+    \  {\n                std::queue<int> que;\n                que.push(s);\n   \
+    \             dist[s] = 0;\n                while (!que.empty()) {\n         \
+    \           int v = que.front(); que.pop();\n                    each_const (e\
+    \ : g[v]) {\n                        if (e.cap > T{0} && dist[e.to] == -1) {\n\
+    \                            dist[e.to] = dist[v] + 1;\n                     \
+    \       que.push(e.to);\n                        }\n                    }\n  \
+    \              }\n            }\n            std::vector<int> idx(n, 0);\n   \
+    \         T f = rec_lambda([&](auto&& self, int v, T f) -> T {\n             \
+    \   if (v == t) return f;\n                T res = 0;\n                for (int&\
+    \ i = idx[v]; i < (int)(g[v].size()); i++) {\n                    auto& e = g[v][i];\n\
+    \                    if (e.cap > T{0} && dist[v] + 1 == dist[e.to]) {\n      \
+    \                  T d = self(e.to, std::min(f, e.cap));\n                   \
+    \     if (d == T{0}) continue;\n                        e.cap -= d;\n        \
+    \                g[e.to][e.rev].cap += d;\n                        res += d;\n\
+    \                        if (res == f) return res;\n                    }\n  \
+    \              }\n                return res;\n            })(s, flow_limit -\
+    \ res);\n            if (f == T{0}) break;\n            res += f;\n        }\n\
+    \        return res;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\u6D41)\n\
+    \ * @docs docs/graph/flow/MaxFlow.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
+    \ class MaxFlow {\nprivate:\n    struct edge_ {\n        int to, rev;\n      \
+    \  T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>> g;\n    std::vector<std::pair<int,\
+    \ int>> pos;\n\npublic:\n    struct edge {\n        int from, to;\n        T cap,\
+    \ flow;\n    };\n\n    MaxFlow() : n(0) {}\n    explicit MaxFlow(int n) : n(n),\
+    \ g(n) {}\n\n    int add_edge(int from, int to, T cap) {\n        assert(0 <=\
+    \ from && from < n);\n        assert(0 <= to && to < n);\n        assert(0 <=\
+    \ cap);\n        pos.emplace_back(from, (int)(g[from].size()));\n        g[from].push_back({to,\
+    \ (int)(g[to].size()), cap});\n        g[to].push_back({from, (int)(g[from].size())\
+    \ - 1, T{0}});\n        return (int)(pos.size()) - 1;\n    }\n    edge get_edge(int\
+    \ i) {\n        int m = (int)(pos.size());\n        assert(0 <= i && i < m);\n\
+    \        const auto& e = g[pos[i].first][pos[i].second];\n        const auto&\
+    \ re = g[e.to][e.rev];\n        return edge{pos[i].first, e.to, e.cap + re.cap,\
+    \ re.cap};\n    }\n    std::vector<edge> edges() {\n        int m = (int)(pos.size());\n\
+    \        std::vector<edge> res(m);\n        for (int i = 0; i < m; i++) res[i]\
+    \ = get_edge(i);\n        return res;\n    }\n    T flow(int s, int t) { return\
+    \ flow(s, t, infinity<T>::max); }\n    T flow(int s, int t, T flow_limit) {\n\
+    \        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n        assert(s\
+    \ != t);\n        T res = T{0};\n        while (res < flow_limit) {\n        \
+    \    std::vector<int> dist(n, -1);\n            {\n                std::queue<int>\
+    \ que;\n                que.push(s);\n                dist[s] = 0;\n         \
+    \       while (!que.empty()) {\n                    int v = que.front(); que.pop();\n\
+    \                    each_const (e : g[v]) {\n                        if (e.cap\
+    \ > T{0} && dist[e.to] == -1) {\n                            dist[e.to] = dist[v]\
+    \ + 1;\n                            que.push(e.to);\n                        }\n\
+    \                    }\n                }\n            }\n            std::vector<int>\
+    \ idx(n, 0);\n            T f = rec_lambda([&](auto&& self, int v, T f) -> T {\n\
+    \                if (v == t) return f;\n                T res = 0;\n         \
+    \       for (int& i = idx[v]; i < (int)(g[v].size()); i++) {\n               \
+    \     auto& e = g[v][i];\n                    if (e.cap > T{0} && dist[v] + 1\
+    \ == dist[e.to]) {\n                        T d = self(e.to, std::min(f, e.cap));\n\
+    \                        if (d == T{0}) continue;\n                        e.cap\
+    \ -= d;\n                        g[e.to][e.rev].cap += d;\n                  \
+    \      res += d;\n                        if (res == f) return res;\n        \
+    \            }\n                }\n                return res;\n            })(s,\
+    \ flow_limit - res);\n            if (f == T{0}) break;\n            res += f;\n\
+    \        }\n        return res;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\
+    \u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -464,17 +521,36 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/EulerPhi.hpp
-  isVerificationFile: true
-  path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  isVerificationFile: false
+  path: graph/flow/MaxFlow.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  timestamp: '2023-05-05 21:16:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/graph/bipartitematching.test.cpp
+documentation_of: graph/flow/MaxFlow.hpp
 layout: document
 redirect_from:
-- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp
-- /verify/test/aoj/NTL/NTL_1_D-Phi.test.cpp.html
-title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+- /library/graph/flow/MaxFlow.hpp
+- /library/graph/flow/MaxFlow.hpp.html
+title: "MaxFlow(\u6700\u5927\u6D41)"
 ---
+## 概要
+
+最大流を求める。 Dinic 法を用いている。
+
+内部に構造体 `edge` があり、以下のようになっている。
+
+```
+struct edge {
+    int from, to;
+    T cap, flow;
+};
+```
+
+- `MaxFlow(int n)` : $n$ 頂点のグラフを作る。
+- `int add_edge(int from, int to, T cap)` : 頂点 `from` から頂点 `to` へと容量 `cap` の辺を張る。返り値は何番目の辺か。 $O(1)$ 。
+- `edge get_edge(int i)` : $i$ 番目の辺を返す。 $O(1)$ 。
+- `vector<edge> edges()` : 辺を全て返す。順番は追加された順と同じ。 $O(m)$ 。
+- `T flow(int s, int t)` : 頂点 `s` から頂点 `t` へフローを流す。 $O(n^2m)$ だが、実用上かなり速く動く。特に容量が全て $1$ の場合、 $O(\min(n^\frac{2}{3}, m^\frac{1}{2}) m)$ となることが知られている。
+- `T flow(int s, int t, T flow_limit)` : 流量制限付きでフローを流す。計算量は同様。
