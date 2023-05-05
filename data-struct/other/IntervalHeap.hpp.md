@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -34,16 +31,16 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
+    path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+    title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/BipartiteGraph.md
-    document_title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
+    _deprecated_at_docs: docs/data-struct/other/IntervalHeap.md
+    document_title: IntervalHeap
     links: []
-  bundledCode: "#line 2 \"graph/other/BipartiteGraph.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/other/IntervalHeap.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -437,77 +434,78 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/BipartiteGraph.hpp\"\n\ntemplate<class T> class BipartiteGraph\
-    \ {\nprivate:\n    int n;\n    bool is_bip;\n    const Graph<T>& G;\n    std::vector<bool>\
-    \ used, label;\n    void dfs(int v) {\n        used[v] = true;\n        each_const\
-    \ (e : G[v]) {\n            if (!used[e.to]) {\n                used[e.to] = true;\n\
-    \                label[e.to] = !label[v];\n                dfs(e.to);\n      \
-    \      }\n            else if (label[e.to] == label[v]) {\n                is_bip\
-    \ = false;\n            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const\
-    \ Graph<T>& G) : G(G) {\n        n = G.size();\n        is_bip = true;\n     \
-    \   label.assign(n, false);\n        used.assign(n, false);\n        rep (i, n)\
-    \ {\n            if (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite()\
-    \ const { return is_bip; }\n    bool get_label(int k) const { return label[k];\
-    \ }\n    const std::vector<bool>& labels() const& { return label; }\n    std::vector<bool>\
-    \ labels() && { return std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
-    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
-    \ v) {\n        used[v] = true;\n        each_const (e : G[v]) {\n           \
-    \ if (!used[e.to]) {\n                used[e.to] = true;\n                label[e.to]\
-    \ = !label[v];\n                dfs(e.to);\n            }\n            else if\
-    \ (label[e.to] == label[v]) {\n                is_bip = false;\n            }\n\
-    \        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n\
-    \        n = G.size();\n        is_bip = true;\n        label.assign(n, false);\n\
-    \        used.assign(n, false);\n        rep (i, n) {\n            if (!used[i])\
-    \ dfs(i);\n        }\n    }\n    bool is_bipartite() const { return is_bip; }\n\
-    \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
-    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
-    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/IntervalHeap.hpp\"\
+    \n\ntemplate<class T, class Comp = std::less<T>>\nclass IntervalHeap {\nprivate:\n\
+    \    std::vector<T> dat;\n    Comp cmp;\n\n    int par(int k) const { return (k\
+    \ - 2) / 4 * 2; }\n    int up(int k, int root = 1) {\n        int n = dat.size();\n\
+    \        if ((k | 1) < n && cmp(dat[k & ~1], dat[k | 1])) {\n            std::swap(dat[k\
+    \ & ~1], dat[k | 1]);\n            k ^= 1;\n        }\n        int p;\n      \
+    \  while (root < k && cmp(dat[p = par(k)], dat[k])) {\n            std::swap(dat[p],\
+    \ dat[k]);\n            k = p;\n        }\n        while (root < k && cmp(dat[k],\
+    \ dat[p = (par(k) | 1)])) {\n            std::swap(dat[p], dat[k]);\n        \
+    \    k = p;\n        }\n        return k;\n    }\n    int down(int k, int root\
+    \ = 1) {\n        int n = dat.size();\n        if (k & 1) {\n            while\
+    \ ((k & 1) && 2 * k < n) {\n                int l = 2 * k + 1, r = 2 * k + 3;\n\
+    \                if (l == n) --l;\n                if (r == n) --r;\n        \
+    \        if (r < n && cmp(dat[r], dat[l])) l = r;\n                if (cmp(dat[l],\
+    \ dat[k])) {\n                    std::swap(dat[k], dat[l]);\n               \
+    \     k = l;\n                }\n                else break;\n            }\n\
+    \        }\n        else {\n            while (2 * k + 2 < n) {\n            \
+    \    int l = 2 * k + 2, r = 2 * k + 4;\n                if (r < n && cmp(dat[l],\
+    \ dat[r])) l = r;\n                if (cmp(dat[k], dat[l])) {\n              \
+    \      std::swap(dat[k], dat[l]);\n                    k = l;\n              \
+    \  }\n                else break;\n            }\n        }\n        return up(k,\
+    \ root);\n    }\n\npublic:\n    IntervalHeap() {}\n    IntervalHeap(std::vector<T>\
+    \ v) : dat(v) {\n        rrep (i, dat.size()) {\n            if ((i & 1) && cmp(dat[i\
+    \ - 1], dat[i])) std::swap(dat[i - 1], dat[i]);\n            down(i, i | 1);\n\
+    \        }\n    }\n\n    int size() const { return dat.size(); }\n    bool empty()\
+    \ const { return dat.empty(); }\n    void push(const T& x) {\n        dat.push_back(x);\n\
+    \        up(dat.size() - 1);\n    }\n    void pop_max() {\n        assert(!dat.empty());\n\
+    \        if (size() == 1) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[0], dat.back());\n        dat.pop_back();\n\
+    \        down(0);\n    }\n    void pop_min() {\n        assert(!dat.empty());\n\
+    \        if (size() <= 2) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[1], dat.back());\n        dat.pop_back();\n\
+    \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
+    \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
+    \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
+    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ class Comp = std::less<T>>\nclass IntervalHeap {\nprivate:\n    std::vector<T>\
+    \ dat;\n    Comp cmp;\n\n    int par(int k) const { return (k - 2) / 4 * 2; }\n\
+    \    int up(int k, int root = 1) {\n        int n = dat.size();\n        if ((k\
+    \ | 1) < n && cmp(dat[k & ~1], dat[k | 1])) {\n            std::swap(dat[k & ~1],\
+    \ dat[k | 1]);\n            k ^= 1;\n        }\n        int p;\n        while\
+    \ (root < k && cmp(dat[p = par(k)], dat[k])) {\n            std::swap(dat[p],\
+    \ dat[k]);\n            k = p;\n        }\n        while (root < k && cmp(dat[k],\
+    \ dat[p = (par(k) | 1)])) {\n            std::swap(dat[p], dat[k]);\n        \
+    \    k = p;\n        }\n        return k;\n    }\n    int down(int k, int root\
+    \ = 1) {\n        int n = dat.size();\n        if (k & 1) {\n            while\
+    \ ((k & 1) && 2 * k < n) {\n                int l = 2 * k + 1, r = 2 * k + 3;\n\
+    \                if (l == n) --l;\n                if (r == n) --r;\n        \
+    \        if (r < n && cmp(dat[r], dat[l])) l = r;\n                if (cmp(dat[l],\
+    \ dat[k])) {\n                    std::swap(dat[k], dat[l]);\n               \
+    \     k = l;\n                }\n                else break;\n            }\n\
+    \        }\n        else {\n            while (2 * k + 2 < n) {\n            \
+    \    int l = 2 * k + 2, r = 2 * k + 4;\n                if (r < n && cmp(dat[l],\
+    \ dat[r])) l = r;\n                if (cmp(dat[k], dat[l])) {\n              \
+    \      std::swap(dat[k], dat[l]);\n                    k = l;\n              \
+    \  }\n                else break;\n            }\n        }\n        return up(k,\
+    \ root);\n    }\n\npublic:\n    IntervalHeap() {}\n    IntervalHeap(std::vector<T>\
+    \ v) : dat(v) {\n        rrep (i, dat.size()) {\n            if ((i & 1) && cmp(dat[i\
+    \ - 1], dat[i])) std::swap(dat[i - 1], dat[i]);\n            down(i, i | 1);\n\
+    \        }\n    }\n\n    int size() const { return dat.size(); }\n    bool empty()\
+    \ const { return dat.empty(); }\n    void push(const T& x) {\n        dat.push_back(x);\n\
+    \        up(dat.size() - 1);\n    }\n    void pop_max() {\n        assert(!dat.empty());\n\
+    \        if (size() == 1) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[0], dat.back());\n        dat.pop_back();\n\
+    \        down(0);\n    }\n    void pop_min() {\n        assert(!dat.empty());\n\
+    \        if (size() <= 2) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[1], dat.back());\n        dat.pop_back();\n\
+    \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
+    \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
+    \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
+    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -518,26 +516,32 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/other/BipartiteGraph.hpp
+  path: data-struct/other/IntervalHeap.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
+  timestamp: '2023-05-05 21:31:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/arc099_c-Bipartite.test.cpp
-documentation_of: graph/other/BipartiteGraph.hpp
+  - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+documentation_of: data-struct/other/IntervalHeap.hpp
 layout: document
 redirect_from:
-- /library/graph/other/BipartiteGraph.hpp
-- /library/graph/other/BipartiteGraph.hpp.html
-title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
+- /library/data-struct/other/IntervalHeap.hpp
+- /library/data-struct/other/IntervalHeap.hpp.html
+title: IntervalHeap
 ---
 ## 概要
 
-二部グラフ判定をする。
+二分木の各ノードに 2 つの値を持たせることで、最小値と最大値を両方取り出せるようにした二分ヒープ。
 
-- `BipartiteGraph(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool is_bipartite()` : グラフ `G` が二部グラフであるかを返す。 $\Theta(1)$ 。
-- `bool get_label(int k)` : 頂点 `k` のラベルを返す。 $\Theta(1)$ 。
-- `vector<bool> labels()` : 各頂点がどちらに割り当てられたかを返す。二部グラフでない場合は未定義。 $\Theta(1)$ 。
+`multiset` でも同様のことができるが、定数倍はこちらの方が速い。
+
+- `IntervalHeap()` : デフォルトコンストラクタ。
+- `IntervalHeap(vector<T> a)` : `a` でヒープを初期化する。 $\Theta(N)$ 。
+- `int size()` : 要素数を取得する。 $\Theta(1)$ 。
+- `bool empty()` : 空かどうかを返す。 $\Theta(1)$ 。
+- `void push(T x)` : `x` を挿入する。 $\Theta(\log N)$ 。
+- `T max()` : 最大値を取得する。 $\Theta(1)$ 。
+- `T min()` : 最小値を取得する。 $\Theta(1)$ 。
+- `void pop_max()` : 最大値を削除する。 $\Theta(\log N)$ 。
+- `void pop_min()` : 最小値を削除する。 $\Theta(\log N)$ 。

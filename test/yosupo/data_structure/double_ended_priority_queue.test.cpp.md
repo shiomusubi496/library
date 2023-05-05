@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: graph/Graph.hpp
-    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: data-struct/other/IntervalHeap.hpp
+    title: IntervalHeap
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -32,36 +32,36 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/BipartiteGraph.md
-    document_title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-    links: []
-  bundledCode: "#line 2 \"graph/other/BipartiteGraph.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
+    links:
+    - https://judge.yosupo.jp/problem/double_ended_priority_queue
+  bundledCode: "#line 1 \"test/yosupo/data_structure/double_ended_priority_queue.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -437,77 +437,57 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 5 \"graph/other/BipartiteGraph.hpp\"\n\ntemplate<class T> class BipartiteGraph\
-    \ {\nprivate:\n    int n;\n    bool is_bip;\n    const Graph<T>& G;\n    std::vector<bool>\
-    \ used, label;\n    void dfs(int v) {\n        used[v] = true;\n        each_const\
-    \ (e : G[v]) {\n            if (!used[e.to]) {\n                used[e.to] = true;\n\
-    \                label[e.to] = !label[v];\n                dfs(e.to);\n      \
-    \      }\n            else if (label[e.to] == label[v]) {\n                is_bip\
-    \ = false;\n            }\n        }\n    }\n\npublic:\n    BipartiteGraph(const\
-    \ Graph<T>& G) : G(G) {\n        n = G.size();\n        is_bip = true;\n     \
-    \   label.assign(n, false);\n        used.assign(n, false);\n        rep (i, n)\
-    \ {\n            if (!used[i]) dfs(i);\n        }\n    }\n    bool is_bipartite()\
-    \ const { return is_bip; }\n    bool get_label(int k) const { return label[k];\
-    \ }\n    const std::vector<bool>& labels() const& { return label; }\n    std::vector<bool>\
-    \ labels() && { return std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\
-    \u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T> class BipartiteGraph {\nprivate:\n    int n;\n    bool is_bip;\n\
-    \    const Graph<T>& G;\n    std::vector<bool> used, label;\n    void dfs(int\
-    \ v) {\n        used[v] = true;\n        each_const (e : G[v]) {\n           \
-    \ if (!used[e.to]) {\n                used[e.to] = true;\n                label[e.to]\
-    \ = !label[v];\n                dfs(e.to);\n            }\n            else if\
-    \ (label[e.to] == label[v]) {\n                is_bip = false;\n            }\n\
-    \        }\n    }\n\npublic:\n    BipartiteGraph(const Graph<T>& G) : G(G) {\n\
-    \        n = G.size();\n        is_bip = true;\n        label.assign(n, false);\n\
-    \        used.assign(n, false);\n        rep (i, n) {\n            if (!used[i])\
-    \ dfs(i);\n        }\n    }\n    bool is_bipartite() const { return is_bip; }\n\
-    \    bool get_label(int k) const { return label[k]; }\n    const std::vector<bool>&\
-    \ labels() const& { return label; }\n    std::vector<bool> labels() && { return\
-    \ std::move(label); }\n};\n\n/**\n * @brief BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u5224\u5B9A)\n * @docs docs/graph/other/BipartiteGraph.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/IntervalHeap.hpp\"\
+    \n\n#line 4 \"data-struct/other/IntervalHeap.hpp\"\n\ntemplate<class T, class\
+    \ Comp = std::less<T>>\nclass IntervalHeap {\nprivate:\n    std::vector<T> dat;\n\
+    \    Comp cmp;\n\n    int par(int k) const { return (k - 2) / 4 * 2; }\n    int\
+    \ up(int k, int root = 1) {\n        int n = dat.size();\n        if ((k | 1)\
+    \ < n && cmp(dat[k & ~1], dat[k | 1])) {\n            std::swap(dat[k & ~1], dat[k\
+    \ | 1]);\n            k ^= 1;\n        }\n        int p;\n        while (root\
+    \ < k && cmp(dat[p = par(k)], dat[k])) {\n            std::swap(dat[p], dat[k]);\n\
+    \            k = p;\n        }\n        while (root < k && cmp(dat[k], dat[p =\
+    \ (par(k) | 1)])) {\n            std::swap(dat[p], dat[k]);\n            k = p;\n\
+    \        }\n        return k;\n    }\n    int down(int k, int root = 1) {\n  \
+    \      int n = dat.size();\n        if (k & 1) {\n            while ((k & 1) &&\
+    \ 2 * k < n) {\n                int l = 2 * k + 1, r = 2 * k + 3;\n          \
+    \      if (l == n) --l;\n                if (r == n) --r;\n                if\
+    \ (r < n && cmp(dat[r], dat[l])) l = r;\n                if (cmp(dat[l], dat[k]))\
+    \ {\n                    std::swap(dat[k], dat[l]);\n                    k = l;\n\
+    \                }\n                else break;\n            }\n        }\n  \
+    \      else {\n            while (2 * k + 2 < n) {\n                int l = 2\
+    \ * k + 2, r = 2 * k + 4;\n                if (r < n && cmp(dat[l], dat[r])) l\
+    \ = r;\n                if (cmp(dat[k], dat[l])) {\n                    std::swap(dat[k],\
+    \ dat[l]);\n                    k = l;\n                }\n                else\
+    \ break;\n            }\n        }\n        return up(k, root);\n    }\n\npublic:\n\
+    \    IntervalHeap() {}\n    IntervalHeap(std::vector<T> v) : dat(v) {\n      \
+    \  rrep (i, dat.size()) {\n            if ((i & 1) && cmp(dat[i - 1], dat[i]))\
+    \ std::swap(dat[i - 1], dat[i]);\n            down(i, i | 1);\n        }\n   \
+    \ }\n\n    int size() const { return dat.size(); }\n    bool empty() const { return\
+    \ dat.empty(); }\n    void push(const T& x) {\n        dat.push_back(x);\n   \
+    \     up(dat.size() - 1);\n    }\n    void pop_max() {\n        assert(!dat.empty());\n\
+    \        if (size() == 1) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[0], dat.back());\n        dat.pop_back();\n\
+    \        down(0);\n    }\n    void pop_min() {\n        assert(!dat.empty());\n\
+    \        if (size() <= 2) {\n            dat.pop_back();\n            return;\n\
+    \        }\n        std::swap(dat[1], dat.back());\n        dat.pop_back();\n\
+    \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
+    \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
+    \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
+    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n#line 4 \"test/yosupo/data_structure/double_ended_priority_queue.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
+    \ S(N); scan >> S;\n    IntervalHeap<int> que(S);\n    rep (Q) {\n        int\
+    \ t; scan >> t;\n        if (t == 0) {\n            int x; scan >> x;\n      \
+    \      que.push(x);\n        }\n        else if (t == 1) {\n            prints(que.min());\n\
+    \            que.pop_min();\n        }\n        else {\n            prints(que.max());\n\
+    \            que.pop_max();\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/IntervalHeap.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
+    \ S(N); scan >> S;\n    IntervalHeap<int> que(S);\n    rep (Q) {\n        int\
+    \ t; scan >> t;\n        if (t == 0) {\n            int x; scan >> x;\n      \
+    \      que.push(x);\n        }\n        else if (t == 1) {\n            prints(que.min());\n\
+    \            que.pop_min();\n        }\n        else {\n            prints(que.max());\n\
+    \            que.pop_max();\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -518,26 +498,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
-  isVerificationFile: false
-  path: graph/other/BipartiteGraph.hpp
+  - data-struct/other/IntervalHeap.hpp
+  isVerificationFile: true
+  path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/atcoder/arc099_c-Bipartite.test.cpp
-documentation_of: graph/other/BipartiteGraph.hpp
+  timestamp: '2023-05-05 21:31:54+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
 layout: document
 redirect_from:
-- /library/graph/other/BipartiteGraph.hpp
-- /library/graph/other/BipartiteGraph.hpp.html
-title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
+- /verify/test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+- /verify/test/yosupo/data_structure/double_ended_priority_queue.test.cpp.html
+title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
 ---
-## 概要
-
-二部グラフ判定をする。
-
-- `BipartiteGraph(Graph<T> G)` : グラフ `G` で初期化する。 $\Theta(V + E)$ 。
-- `bool is_bipartite()` : グラフ `G` が二部グラフであるかを返す。 $\Theta(1)$ 。
-- `bool get_label(int k)` : 頂点 `k` のラベルを返す。 $\Theta(1)$ 。
-- `vector<bool> labels()` : 各頂点がどちらに割り当てられたかを返す。二部グラフでない場合は未定義。 $\Theta(1)$ 。

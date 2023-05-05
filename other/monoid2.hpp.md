@@ -35,35 +35,35 @@ data:
   - icon: ':x:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseOrConvolution.hpp
     title: BitwiseOrConvolution
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/gcd_convolution.test.cpp
     title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
   - icon: ':x:'
@@ -92,7 +92,7 @@ data:
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
@@ -639,7 +639,7 @@ data:
   - math/convolution/BitwiseAndConvolution.hpp
   - math/DiscreteLogarithm.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
