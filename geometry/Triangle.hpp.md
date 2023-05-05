@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Line.hpp
     title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/Point.hpp
     title: geometry/Point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geometry/All.hpp
     title: geometry/All.hpp
   _extendedVerifiedWith:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
     title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/geometry/sort_points_by_argument.test.cpp
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Triangle.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -307,15 +307,15 @@ data:
     \   }\n    template<class T,\n             typename std::enable_if<is_range<T>::value\
     \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
     \    void print(const T& a) {\n        if IF_CONSTEXPR (debug) print_char('{');\n\
-    \        for (auto i = a.begin(); i != a.end(); ++i) {\n            if (i != a.begin())\
-    \ {\n                if IF_CONSTEXPR (debug) print_char(',');\n              \
-    \  print_char(' ');\n            }\n            print(*i);\n        }\n      \
-    \  if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class T, typename\
-    \ std::enable_if<has_print<T>::value &&\n                                    \
-    \          !debug>::type* = nullptr>\n    void print(const T& a) {\n        a.print(*this);\n\
-    \    }\n    template<class T, typename std::enable_if<has_print<T>::value &&\n\
-    \                                              debug>::type* = nullptr>\n    void\
-    \ print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
+    \        for (auto i = std::begin(a); i != std::end(a); ++i) {\n            if\
+    \ (i != std::begin(a)) {\n                if IF_CONSTEXPR (debug) print_char(',');\n\
+    \                print_char(' ');\n            }\n            print(*i);\n   \
+    \     }\n        if IF_CONSTEXPR (debug) print_char('}');\n    }\n    template<class\
+    \ T, typename std::enable_if<has_print<T>::value &&\n                        \
+    \                      !debug>::type* = nullptr>\n    void print(const T& a) {\n\
+    \        a.print(*this);\n    }\n    template<class T, typename std::enable_if<has_print<T>::value\
+    \ &&\n                                              debug>::type* = nullptr>\n\
+    \    void print(const T& a) {\n        a.debug(*this);\n    }\n\n    void operator()()\
     \ {}\n    template<class Head, class... Args>\n    void operator()(const Head&\
     \ head, const Args&... args) {\n        print(head);\n        operator()(args...);\n\
     \    }\n\n    template<class T> Printer& operator<<(const T& a) {\n        print(a);\n\
@@ -329,13 +329,20 @@ data:
     \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
     \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());\n\
     \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
-    \    print << v;\n    print.print_char('\\n');\n}\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator,\
-    \ true> debug(writer.begin()),\n    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\n\
-    class DebugIterator {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator&\
-    \ operator++() { return *this; }\n    DebugIterator& operator++(int) { return\
-    \ *this; }\n    char& operator*() const { return debug_iterator_character; }\n\
-    \    void flush() const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\
-    #line 2 \"template/bitop.hpp\"\n\n#line 6 \"template/bitop.hpp\"\n\nnamespace\
+    \    print << v;\n    print.print_char('\\n');\n}\n\ntemplate<class Head, class...\
+    \ Tail>\nauto prints(const Head& head, const Tail&... tail)\n    -> decltype(print\
+    \ << head, (void)0) {\n    print << head;\n    print.print_char(' ');\n    prints(tail...);\n\
+    }\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
+    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
+    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
+    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
+    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
+    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\ntemplate<class\
+    \ T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {\n    debug <<\
+    \ v;\n    debug.print_char('\\n');\n}\n\ntemplate<class Head, class... Tail>\n\
+    auto debugs(const Head& head, const Tail&... tail)\n    -> decltype(debug << head,\
+    \ (void)0) {\n    debug << head;\n    debug.print_char(' ');\n    debugs(tail...);\n\
+    }\n#line 2 \"template/bitop.hpp\"\n\n#line 6 \"template/bitop.hpp\"\n\nnamespace\
     \ bitop {\n\n#define KTH_BIT(b, k) (((b) >> (k)) & 1)\n#define POW2(k) (1ull <<\
     \ (k))\n\ninline ull next_combination(int n, ull x) {\n    if (n == 0) return\
     \ 1;\n    ull a = x & -x;\n    ull b = x + a;\n    return (x & ~b) / a >> 1 |\
@@ -618,8 +625,8 @@ data:
   path: geometry/Triangle.hpp
   requiredBy:
   - geometry/All.hpp
-  timestamp: '2023-02-01 23:58:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-05 20:13:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
