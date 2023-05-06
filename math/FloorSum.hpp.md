@@ -30,12 +30,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/FloorSum.md
     document_title: FloorSum
@@ -477,7 +477,7 @@ data:
   path: math/FloorSum.hpp
   requiredBy: []
   timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/sum_of_floor_of_linear.test.cpp
 documentation_of: math/FloorSum.hpp

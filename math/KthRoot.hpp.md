@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/discrete_logarithm_mod.test.cpp
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_root_integer.test.cpp
     title: test/yosupo/math/kth_root_integer.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/KthRoot.md
     document_title: "KthRoot(k\u4E57\u6839)"
@@ -471,7 +471,7 @@ data:
   requiredBy:
   - math/DiscreteLogarithm.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/kth_root_integer.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
