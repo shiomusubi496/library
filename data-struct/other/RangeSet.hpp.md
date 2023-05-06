@@ -471,21 +471,23 @@ data:
     \ st_erase(prev(itr));\n            }\n        }\n        if (itr != st.begin()\
     \ && prev(itr)->first == l) st_erase(prev(itr));\n        else if (itr != st.begin()\
     \ && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr), prev(itr)->first,\
-    \ l);\n            st_erase(prev(itr));\n        }\n    }\n    void erase(ll l)\
-    \ { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
+    \ l);\n            if (r < prev(itr)->second) {\n                st_emplace_hint(itr,\
+    \ r, prev(itr)->second);\n                st_erase(prev(prev(itr)));\n       \
+    \     }\n            else st_erase(prev(itr));\n        }\n    }\n    void erase(ll\
+    \ l) { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        return itr != st.begin() && k < prev(itr)->second;\n\
     \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
     \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
     \    ll lower_bound(ll k) {\n        auto itr = st.lower_bound({k, k});\n    \
-    \    if (itr == st.end()) return inf;\n        if (itr == st.begin() || prev(itr)->second\
-    \ <= k) return itr->first;\n        return k;\n    }\n    friend RangeSet operator||(const\
-    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n       \
-    \ each_const (p : rhs) res.insert(p.first, p.second);\n        return res;\n \
-    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
-    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
-    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
-    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
+    \    if (itr != st.begin() && k < prev(itr)->second) return k;\n        if (itr\
+    \ != st.end()) return itr->first;\n        return inf;\n    }\n    friend RangeSet\
+    \ operator||(const RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res\
+    \ = lhs;\n        each_const (p : rhs) res.insert(p.first, p.second);\n      \
+    \  return res;\n    }\n    friend RangeSet operator&&(const RangeSet& lhs, const\
+    \ RangeSet& rhs) {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2\
+    \ = rhs.begin();\n        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n \
+    \           ll l = std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
     \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
     \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
     \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
@@ -534,21 +536,23 @@ data:
     \ st_erase(prev(itr));\n            }\n        }\n        if (itr != st.begin()\
     \ && prev(itr)->first == l) st_erase(prev(itr));\n        else if (itr != st.begin()\
     \ && l < prev(itr)->second) {\n            st_emplace_hint(prev(itr), prev(itr)->first,\
-    \ l);\n            st_erase(prev(itr));\n        }\n    }\n    void erase(ll l)\
-    \ { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
+    \ l);\n            if (r < prev(itr)->second) {\n                st_emplace_hint(itr,\
+    \ r, prev(itr)->second);\n                st_erase(prev(prev(itr)));\n       \
+    \     }\n            else st_erase(prev(itr));\n        }\n    }\n    void erase(ll\
+    \ l) { erase(l, l + 1); }\n    bool include(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        return itr != st.begin() && k < prev(itr)->second;\n\
     \    }\n    std::pair<ll, ll> find(ll k) {\n        auto itr = st.lower_bound({k\
     \ + 1, k + 1});\n        if (itr == st.begin()) return {-1, -1};\n        --itr;\n\
     \        if (itr->second <= k) return {-1, -1};\n        return *itr;\n    }\n\
     \    ll lower_bound(ll k) {\n        auto itr = st.lower_bound({k, k});\n    \
-    \    if (itr == st.end()) return inf;\n        if (itr == st.begin() || prev(itr)->second\
-    \ <= k) return itr->first;\n        return k;\n    }\n    friend RangeSet operator||(const\
-    \ RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res = lhs;\n       \
-    \ each_const (p : rhs) res.insert(p.first, p.second);\n        return res;\n \
-    \   }\n    friend RangeSet operator&&(const RangeSet& lhs, const RangeSet& rhs)\
-    \ {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2 = rhs.begin();\n\
-    \        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n            ll l =\
-    \ std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
+    \    if (itr != st.begin() && k < prev(itr)->second) return k;\n        if (itr\
+    \ != st.end()) return itr->first;\n        return inf;\n    }\n    friend RangeSet\
+    \ operator||(const RangeSet& lhs, const RangeSet& rhs) {\n        RangeSet res\
+    \ = lhs;\n        each_const (p : rhs) res.insert(p.first, p.second);\n      \
+    \  return res;\n    }\n    friend RangeSet operator&&(const RangeSet& lhs, const\
+    \ RangeSet& rhs) {\n        RangeSet res;\n        auto itr1 = lhs.begin(), itr2\
+    \ = rhs.begin();\n        while (itr1 != lhs.end() && itr2 != rhs.end()) {\n \
+    \           ll l = std::max(itr1->first, itr2->first);\n            ll r = std::min(itr1->second,\
     \ itr2->second);\n            if (l < r) res.insert(l, r);\n            if (itr1->second\
     \ < itr2->second) ++itr1;\n            else ++itr2;\n        }\n        return\
     \ res;\n    }\n    friend bool operator==(const RangeSet& a, const RangeSet& b)\
@@ -575,7 +579,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/RangeSet.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
+  timestamp: '2023-05-07 08:22:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/1601-RangeSet.test.cpp
