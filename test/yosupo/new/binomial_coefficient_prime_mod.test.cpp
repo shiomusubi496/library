@@ -11,6 +11,5 @@ int main() {
     rep (T) {
         int n, k; scan >> n >> k;
         prints(comb::comb(n, k));
-        print << flush;
     }
 }
