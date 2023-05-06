@@ -72,7 +72,11 @@ public:
         if (itr != st.begin() && prev(itr)->first == l) st_erase(prev(itr));
         else if (itr != st.begin() && l < prev(itr)->second) {
             st_emplace_hint(prev(itr), prev(itr)->first, l);
-            st_erase(prev(itr));
+            if (r < prev(itr)->second) {
+                st_emplace_hint(itr, r, prev(itr)->second);
+                st_erase(prev(prev(itr)));
+            }
+            else st_erase(prev(itr));
         }
     }
     void erase(ll l) { erase(l, l + 1); }
@@ -89,9 +93,9 @@ public:
     }
     ll lower_bound(ll k) {
         auto itr = st.lower_bound({k, k});
-        if (itr == st.end()) return inf;
-        if (itr == st.begin() || prev(itr)->second <= k) return itr->first;
-        return k;
+        if (itr != st.begin() && k < prev(itr)->second) return k;
+        if (itr != st.end()) return itr->first;
+        return inf;
     }
     friend RangeSet operator||(const RangeSet& lhs, const RangeSet& rhs) {
         RangeSet res = lhs;
