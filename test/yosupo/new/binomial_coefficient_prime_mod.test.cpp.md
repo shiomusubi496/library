@@ -661,15 +661,13 @@ data:
     \ 5 \"test/yosupo/new/binomial_coefficient_prime_mod.test.cpp\"\nusing namespace\
     \ std;\nusing mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n\
     \    int T, P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n       \
-    \ int n, k; scan >> n >> k;\n        prints(comb::comb(n, k));\n        print\
-    \ << flush;\n    }\n}\n"
+    \ int n, k; scan >> n >> k;\n        prints(comb::comb(n, k));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/Combinatorics.hpp\"\
     \n#include \"../../../math/BarrettReduction.hpp\"\nusing namespace std;\nusing\
     \ mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n    int T,\
     \ P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n        int n, k;\
-    \ scan >> n >> k;\n        prints(comb::comb(n, k));\n        print << flush;\n\
-    \    }\n}\n"
+    \ scan >> n >> k;\n        prints(comb::comb(n, k));\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -686,7 +684,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-05-06 21:25:18+09:00'
+  timestamp: '2023-05-07 08:06:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
