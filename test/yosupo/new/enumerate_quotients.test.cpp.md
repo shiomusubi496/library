@@ -2,11 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
-  - icon: ':heavy_check_mark:'
-    path: math/ModInt.hpp
-    title: ModInt
+    path: math/EnumerateQuotients.hpp
+    title: "Enumerate Quotients(\u5546\u5217\u6319)"
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -41,11 +38,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C
-  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/enumerate_quotients
+  bundledCode: "#line 1 \"test/yosupo/new/enumerate_quotients.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -439,173 +437,19 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
-    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
-    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
-    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
-    \ {\nprivate:\n    static std::vector<T> factorial;\n\npublic:\n    static void\
-    \ init(ll n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return T(0);\n\
-    \        if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n    \
-    \    reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
-    \        init(r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n\
-    \        return res / factorial[r];\n    }\n    static T small_homo(ll n, ll r)\
-    \ { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T>\
-    \ IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\ntemplate<class T>\
-    \ class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n    static\
-    \ std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n        const\
-    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
-    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
-    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
-    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n   \
-    \     init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n \
-    \   }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 5 \"\
-    test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
-    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
-    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
-    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
-    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/EnumerateQuotients.hpp\"\
+    \n\n#line 4 \"math/EnumerateQuotients.hpp\"\n\nstd::vector<ll> enumurate_quotients(ll\
+    \ n) {\n    std::vector<ll> res{1};\n    while (res.back() <= n) res.push_back(n\
+    \ / (n / res.back()) + 1);\n    return res;\n}\n\n/**\n * @brief Enumerate Quotients(\u5546\
+    \u5217\u6319)\n * @docs docs/math/EnumerateQuotients.md\n */\n#line 4 \"test/yosupo/new/enumerate_quotients.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumurate_quotients(N);\n\
+    \    v.pop_back();\n    reverse(all(v));\n    for (auto& x : v) x = N / x;\n \
+    \   prints(v.size());\n    prints(v);\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/EnumerateQuotients.hpp\"\
+    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumurate_quotients(N);\n\
+    \    v.pop_back();\n    reverse(all(v));\n    for (auto& x : v) x = N / x;\n \
+    \   prints(v.size());\n    prints(v);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -616,18 +460,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/ModInt.hpp
-  - math/Combinatorics.hpp
+  - math/EnumerateQuotients.hpp
   isVerificationFile: true
-  path: test/aoj/DPL/DPL_5_C.test.cpp
+  path: test/yosupo/new/enumerate_quotients.test.cpp
   requiredBy: []
   timestamp: '2023-05-06 21:25:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DPL/DPL_5_C.test.cpp
+documentation_of: test/yosupo/new/enumerate_quotients.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL/DPL_5_C.test.cpp
-- /verify/test/aoj/DPL/DPL_5_C.test.cpp.html
-title: test/aoj/DPL/DPL_5_C.test.cpp
+- /verify/test/yosupo/new/enumerate_quotients.test.cpp
+- /verify/test/yosupo/new/enumerate_quotients.test.cpp.html
+title: test/yosupo/new/enumerate_quotients.test.cpp
 ---

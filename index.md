@@ -303,6 +303,9 @@ data:
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
     - icon: ':heavy_check_mark:'
+      path: math/EnumerateQuotients.hpp
+      title: "Enumerate Quotients(\u5546\u5217\u6319)"
+    - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
     - icon: ':heavy_check_mark:'
@@ -927,6 +930,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/system_of_linear_equations.test.cpp
       title: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - name: test/yosupo/new
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+      title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/enumerate_quotients.test.cpp
+      title: test/yosupo/new/enumerate_quotients.test.cpp
   - name: test/yosupo/sample
     pages:
     - icon: ':heavy_check_mark:'

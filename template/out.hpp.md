@@ -283,6 +283,9 @@ data:
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
   - icon: ':heavy_check_mark:'
+    path: math/EnumerateQuotients.hpp
+    title: "Enumerate Quotients(\u5546\u5217\u6319)"
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
@@ -842,6 +845,12 @@ data:
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/enumerate_quotients.test.cpp
+    title: test/yosupo/new/enumerate_quotients.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/sample/aplusb.test.cpp
     title: test/yosupo/sample/aplusb.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1332,6 +1341,7 @@ data:
   - math/MillerRabin.hpp
   - math/PollardRho.hpp
   - math/ModInt.hpp
+  - math/EnumerateQuotients.hpp
   - math/PrimitiveRoot.hpp
   - math/MontgomeryModInt.hpp
   - math/matrix/Matrix.hpp
@@ -1443,6 +1453,8 @@ data:
   - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/new/enumerate_quotients.test.cpp
+  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/aoj/CGL/CGL_5_A-closest.test.cpp
   - test/aoj/CGL/CGL_1_A-projection.test.cpp
   - test/aoj/CGL/CGL_3_C-contain.test.cpp

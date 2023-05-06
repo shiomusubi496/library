@@ -48,6 +48,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -585,27 +588,27 @@ data:
     \ }\n};\n\ntemplate<class T>\nstd::vector<T> IntCombinatorics<T>::factorial =\
     \ std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\nprivate:\n\
     \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n\n\
-    public:\n    static void init(ll n) {\n        chmax(n, 1000000);\n        const\
-    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
-    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
-    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
-    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n   \
-    \     init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n \
-    \   }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n"
+    public:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
+    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0)\
+    \ return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n       \
+    \ return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll\
+    \ n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r)\
+    \ {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n        reps (i,\
+    \ r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
+    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
+    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
     \n\ntemplate<class T> class IntCombinatorics {\nprivate:\n    static std::vector<T>\
     \ factorial;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
@@ -626,27 +629,27 @@ data:
     \ }\n};\n\ntemplate<class T>\nstd::vector<T> IntCombinatorics<T>::factorial =\
     \ std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\nprivate:\n\
     \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n\n\
-    public:\n    static void init(ll n) {\n        chmax(n, 1000000);\n        const\
-    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
-    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
-    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
-    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n   \
-    \     init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n \
-    \   }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n"
+    public:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
+    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0)\
+    \ return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n       \
+    \ return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll\
+    \ n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r)\
+    \ {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n        reps (i,\
+    \ r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
+    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
+    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -661,9 +664,10 @@ data:
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:57:29+09:00'
+  timestamp: '2023-05-06 21:25:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp

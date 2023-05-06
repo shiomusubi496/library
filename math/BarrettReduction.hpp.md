@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/discrete_logarithm_mod.test.cpp
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+    title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -577,6 +580,7 @@ data:
   verifiedWith:
   - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
 documentation_of: math/BarrettReduction.hpp
 layout: document
 redirect_from:

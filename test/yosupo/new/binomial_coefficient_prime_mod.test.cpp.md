@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/BarrettReduction.hpp
+    title: math/BarrettReduction.hpp
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':heavy_check_mark:'
@@ -41,10 +44,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C
+    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C
-  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_C.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\
+    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+  bundledCode: "#line 1 \"test/yosupo/new/binomial_coefficient_prime_mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -439,12 +443,13 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
     \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
     \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
     \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
@@ -555,57 +560,116 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
-    \ {\nprivate:\n    static std::vector<T> factorial;\n\npublic:\n    static void\
-    \ init(ll n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return T(0);\n\
-    \        if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n    \
-    \    reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\
+    \n\ntemplate<class T> class IntCombinatorics {\nprivate:\n    static std::vector<T>\
+    \ factorial;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n    }\n    static T fact(ll\
+    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T perm(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return T(0);\n        init(n);\n   \
+    \     return factorial[n] / factorial[n - r];\n    }\n    static T comb(ll n,\
+    \ ll r) {\n        if (n < 0) return T(0);\n        if (r < 0 || r > n) return\
+    \ T(0);\n        init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
+    \ n - r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n       \
+    \ return res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res\
+    \ = 1;\n        reps (i, r) res *= n - r + i;\n        return res / factorial[r];\n\
+    \    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r);\
+    \ }\n};\n\ntemplate<class T>\nstd::vector<T> IntCombinatorics<T>::factorial =\
+    \ std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\nprivate:\n\
+    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n\n\
+    public:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
+    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
+    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0)\
+    \ return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n       \
+    \ return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll\
+    \ n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r)\
+    \ {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n        reps (i,\
+    \ r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
     \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
-    \        init(r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n\
-    \        return res / factorial[r];\n    }\n    static T small_homo(ll n, ll r)\
-    \ { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T>\
-    \ IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\ntemplate<class T>\
-    \ class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n    static\
-    \ std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n        const\
-    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
-    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
-    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
-    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n   \
-    \     init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n \
-    \   }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 5 \"\
-    test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
-    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
-    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
-    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
-    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
+    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
+    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\
+    \n\nclass BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long\
+    \ long im;\n\npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_),\
+    \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
+    \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
+    \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
+    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
+    \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
+    \ 5 \"test/yosupo/new/binomial_coefficient_prime_mod.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n\
+    \    int T, P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n       \
+    \ int n, k; scan >> n >> k;\n        prints(comb::comb(n, k));\n        print\
+    \ << flush;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/Combinatorics.hpp\"\
+    \n#include \"../../../math/BarrettReduction.hpp\"\nusing namespace std;\nusing\
+    \ mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n    int T,\
+    \ P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n        int n, k;\
+    \ scan >> n >> k;\n        prints(comb::comb(n, k));\n        print << flush;\n\
+    \    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -616,18 +680,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/ModInt.hpp
   - math/Combinatorics.hpp
+  - math/ModInt.hpp
+  - math/BarrettReduction.hpp
   isVerificationFile: true
-  path: test/aoj/DPL/DPL_5_C.test.cpp
+  path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
   timestamp: '2023-05-06 21:25:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DPL/DPL_5_C.test.cpp
+documentation_of: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL/DPL_5_C.test.cpp
-- /verify/test/aoj/DPL/DPL_5_C.test.cpp.html
-title: test/aoj/DPL/DPL_5_C.test.cpp
+- /verify/test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+- /verify/test/yosupo/new/binomial_coefficient_prime_mod.test.cpp.html
+title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
 ---
