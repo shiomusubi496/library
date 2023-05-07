@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../other/template.hpp"
+#include "PollardRho.hpp"
 
 ll euler_phi(ll n) {
     ll res = n;
@@ -12,6 +13,11 @@ ll euler_phi(ll n) {
     }
     if (n != 1) res = res / n * (n - 1);
     return res;
+}
+
+ll euler_phi_pollardrho(ll n) {
+    for (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);
+    return n;
 }
 
 class EulerPhi {
