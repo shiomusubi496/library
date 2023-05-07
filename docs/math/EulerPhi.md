@@ -3,6 +3,7 @@
 オイラーの $\phi$ 関数。読み方はトーシェント、ファイなど。
 
 - `ll euler_phi(ll N)` : $\phi(N)$ を返す。 $\Theta(\sqrt N)$ 。
+- `ll euler_phi_pollardrho(ll N)` : $\phi(N)$ を返す。素因数分解に Pollard の Rho 法を用いている。計算量は PollardRho 参照。
 
 また、エラトステネスの篩を応用して、多くのクエリに効率よく答えることもできる。
 

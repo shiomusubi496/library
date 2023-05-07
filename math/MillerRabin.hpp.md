@@ -36,6 +36,9 @@ data:
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
+    path: math/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -45,6 +48,9 @@ data:
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
     title: test/yosupo/convolution/convolution_mod.test.cpp
@@ -589,6 +595,7 @@ data:
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - math/PollardRho.hpp
   - math/PrimitiveRoot.hpp
+  - math/EulerPhi.hpp
   - math/convolution/Convolution.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -599,6 +606,7 @@ data:
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: math/MillerRabin.hpp
 layout: document
 redirect_from:

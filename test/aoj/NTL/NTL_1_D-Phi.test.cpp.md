@@ -5,8 +5,24 @@ data:
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':heavy_check_mark:'
+    path: math/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':heavy_check_mark:'
+    path: math/MontgomeryModInt.hpp
+    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
+  - icon: ':heavy_check_mark:'
+    path: math/PollardRho.hpp
+    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/Random.hpp
+    title: Random
+  - icon: ':heavy_check_mark:'
+    path: string/RunLength.hpp
+    title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
@@ -437,17 +453,178 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/EulerPhi.hpp\"\n\n\
-    #line 4 \"math/EulerPhi.hpp\"\n\nll euler_phi(ll n) {\n    ll res = n;\n    for\
-    \ (ll i = 2; i * i <= n; ++i) {\n        if (n % i == 0) {\n            res =\
-    \ res / i * (i - 1);\n            while (n % i == 0) n /= i;\n        }\n    }\n\
-    \    if (n != 1) res = res / n * (n - 1);\n    return res;\n}\n\nclass EulerPhi\
-    \ {\nprivate:\n    ll MAX;\n    std::vector<ll> data;\n\npublic:\n    EulerPhi(ll\
-    \ MAX) : MAX(MAX), data(MAX + 1, 0) {\n        rep (i, MAX + 1) data[i] = i;\n\
-    \        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n    \
-    \        rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i * (i\
-    \ - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x]; }\n\
-    };\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570\
-    )\n * @docs docs/math/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\
+    #line 2 \"math/PollardRho.hpp\"\n\n#line 2 \"random/Random.hpp\"\n\n#line 4 \"\
+    random/Random.hpp\"\n\ntemplate<class Engine> class Random {\nprivate:\n    Engine\
+    \ rnd;\n\npublic:\n    using result_type = typename Engine::result_type;\n   \
+    \ Random() : Random(std::random_device{}()) {}\n    Random(result_type seed) :\
+    \ rnd(seed) {}\n    result_type operator()() { return rnd(); }\n    template<class\
+    \ IntType = ll> IntType uniform(IntType l, IntType r) {\n        static_assert(std::is_integral<IntType>::value,\n\
+    \                      \"template argument must be an integral type\");\n    \
+    \    assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
+    \ r}(rnd);\n    }\n    template<class RealType = double>\n    RealType uniform_real(RealType\
+    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\n\
+    \                      \"template argument must be an floating point type\");\n\
+    \        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
+    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
+    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
+    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
+    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
+    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
+    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
+    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
+    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
+    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
+    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
+    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
+    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
+    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
+    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
+    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
+    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
+    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
+    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/MontgomeryModInt.hpp\"\
+    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
+    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
+    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
+    \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
+    \ int lg = std::numeric_limits<T>::digits;\n    T mod;\n    T r;\n    T r2; //\
+    \ r^2 mod m\n    T calc_minv() {\n        T t = 0, res = 0;\n        rep (i, lg)\
+    \ {\n            if (~t & 1) {\n                t += mod;\n                res\
+    \ += static_cast<T>(1) << i;\n            }\n            t >>= 1;\n        }\n\
+    \        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
+    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
+    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
+    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
+    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
+    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
+    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
+    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
+    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \ &&\n                                     std::is_signed<U>::value>::type* =\
+    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
+    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
+    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
+    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
+    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
+    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
+    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
+    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
+    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
+    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
+    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
+    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
+    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
+    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
+    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
+    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
+    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
+    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
+    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
+    \ operator-(const MontgomeryModInt& lhs,\n                                   \
+    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
+    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
+    \                                     const MontgomeryModInt& rhs) {\n       \
+    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
+    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
+    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
+    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
+    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
+    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
+    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
+    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
+    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
+    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
+    \      28178,\n                                         450775, 9780504, 1795265022};\n\
+    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
+    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
+    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
+    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
+    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
+    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
+    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
+    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
+    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
+    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
+    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
+    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
+    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 2 \"string/RunLength.hpp\"\
+    \n\n#line 4 \"string/RunLength.hpp\"\n\ntemplate<class Cont, class Comp>\nstd::vector<std::pair<typename\
+    \ Cont::value_type, int>>\nRunLength(const Cont& str, const Comp& cmp) {\n   \
+    \ std::vector<std::pair<typename Cont::value_type, int>> res;\n    if (str.size()\
+    \ == 0) return res;\n    res.emplace_back(str[0], 1);\n    rep (i, 1, str.size())\
+    \ {\n        if (cmp(res.back().first, str[i])) ++res.back().second;\n       \
+    \ else res.emplace_back(str[i], 1);\n    }\n    return res;\n}\n\ntemplate<class\
+    \ Cont>\nstd::vector<std::pair<typename Cont::value_type, int>>\nRunLength(const\
+    \ Cont& str) {\n    return RunLength(str, std::equal_to<typename Cont::value_type>());\n\
+    }\n\n/**\n * @brief RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E\
+    )\n * @docs docs/string/RunLength.md\n */\n#line 8 \"math/PollardRho.hpp\"\n\n\
+    template<class T, class Rnd> ull pollard_rho(ull n, Rnd& rnd) {\n    if (~n &\
+    \ 1) return 2;\n    if (T::get_mod() != n) T::set_mod(n);\n    T c, one = 1;\n\
+    \    auto f = [&](T x) -> T { return x * x + c; };\n    constexpr int M = 128;\n\
+    \    while (1) {\n        c = rnd.uniform(1ull, n - 1);\n        T x = rnd.uniform(2ull,\
+    \ n - 1), y = x;\n        ull g = 1;\n        while (g == 1) {\n            T\
+    \ p = one, tx = x, ty = y;\n            rep (M) {\n                x = f(x);\n\
+    \                y = f(f(y));\n                p *= x - y;\n            }\n  \
+    \          g = gcd(p.get(), n);\n            if (g == 1) continue;\n         \
+    \   rep (M) {\n                tx = f(tx);\n                ty = f(f(ty));\n \
+    \               g = gcd((tx - ty).get(), n);\n                if (g != 1) {\n\
+    \                    if (g != n) return g;\n                    break;\n     \
+    \           }\n            }\n        }\n    }\n    return -1;\n}\n\ntemplate<class\
+    \ T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<ull> factorize(ull\
+    \ n, Rnd& rnd = rand64) {\n    if (n == 1) return {};\n    std::vector<ull> res;\n\
+    \    std::vector<ull> st = {n};\n    while (!st.empty()) {\n        ull t = st.back();\n\
+    \        st.pop_back();\n        if (t == 1) continue;\n        if (is_prime_mr(t))\
+    \ {\n            res.push_back(t);\n            continue;\n        }\n       \
+    \ ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n        st.push_back(t\
+    \ / f);\n    }\n    std::sort(all(res));\n    return res;\n}\n\ntemplate<class\
+    \ T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
+    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
+    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
+    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
+    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
+    \            res.push_back(d);\n            return;\n        }\n        ll t =\
+    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
+    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
+    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
+    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n#line 5 \"math/EulerPhi.hpp\"\
+    \n\nll euler_phi(ll n) {\n    ll res = n;\n    for (ll i = 2; i * i <= n; ++i)\
+    \ {\n        if (n % i == 0) {\n            res = res / i * (i - 1);\n       \
+    \     while (n % i == 0) n /= i;\n        }\n    }\n    if (n != 1) res = res\
+    \ / n * (n - 1);\n    return res;\n}\n\nll euler_phi_pollardrho(ll n) {\n    for\
+    \ (auto p : expfactorize(n)) n = n / p.first * (p.first - 1);\n    return n;\n\
+    }\n\nclass EulerPhi {\nprivate:\n    ll MAX;\n    std::vector<ll> data;\n\npublic:\n\
+    \    EulerPhi(ll MAX) : MAX(MAX), data(MAX + 1, 0) {\n        rep (i, MAX + 1)\
+    \ data[i] = i;\n        rep (i, 2, MAX + 1) {\n            if (data[i] != i) continue;\n\
+    \            rep (j, i, MAX + 1, i) {\n                data[j] = data[j] / i *\
+    \ (i - 1);\n            }\n        }\n    }\n    ll phi(ll x) { return data[x];\
+    \ }\n};\n\n/**\n * @brief Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\
+    \u6570)\n * @docs docs/math/EulerPhi.md\n */\n#line 4 \"test/aoj/NTL/NTL_1_D-Phi.test.cpp\"\
     \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    print << euler_phi(N)\
     \ << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/NTL_1_D\"\n#include\
@@ -465,10 +642,15 @@ data:
   - template/func.hpp
   - template/util.hpp
   - math/EulerPhi.hpp
+  - math/PollardRho.hpp
+  - random/Random.hpp
+  - math/MontgomeryModInt.hpp
+  - math/MillerRabin.hpp
+  - string/RunLength.hpp
   isVerificationFile: true
   path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
+  timestamp: '2023-05-07 11:07:15+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL/NTL_1_D-Phi.test.cpp

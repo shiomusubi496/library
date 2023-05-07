@@ -36,6 +36,9 @@ data:
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
+    path: math/EulerPhi.hpp
+    title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+    title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
     title: test/yosupo/convolution/convolution_mod.test.cpp
@@ -550,6 +556,7 @@ data:
   - data-struct/other/SkipList.hpp
   - math/PollardRho.hpp
   - math/PrimitiveRoot.hpp
+  - math/EulerPhi.hpp
   - math/convolution/Convolution.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -560,6 +567,7 @@ data:
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: random/Random.hpp
 layout: document
