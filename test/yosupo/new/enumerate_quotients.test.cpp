@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     ll N; scan >> N;
-    auto v = enumurate_quotients(N);
+    auto v = enumerate_quotients(N);
     v.pop_back();
     reverse(all(v));
     for (auto& x : v) x = N / x;

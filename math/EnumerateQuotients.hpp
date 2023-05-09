@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 
-std::vector<ll> enumurate_quotients(ll n) {
+std::vector<ll> enumerate_quotients(ll n) {
     std::vector<ll> res{1};
     while (res.back() <= n) res.push_back(n / (n / res.back()) + 1);
     return res;
