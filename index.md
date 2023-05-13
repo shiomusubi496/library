@@ -215,6 +215,9 @@ data:
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     - icon: ':heavy_check_mark:'
+      path: graph/other/EnumerateTriangles.hpp
+      title: EnumerateTriangles
+    - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
@@ -876,6 +879,9 @@ data:
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/enumerate_triangles.test.cpp
+      title: test/yosupo/graph/enumerate_triangles.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/manhattanmst.test.cpp
       title: test/yosupo/graph/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -938,6 +944,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/enumerate_quotients.test.cpp
       title: test/yosupo/new/enumerate_quotients.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/tree_path_composite_sum.test.cpp
+      title: test/yosupo/new/tree_path_composite_sum.test.cpp
   - name: test/yosupo/sample
     pages:
     - icon: ':heavy_check_mark:'

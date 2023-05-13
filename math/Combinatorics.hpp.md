@@ -668,11 +668,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_B.test.cpp
 documentation_of: math/Combinatorics.hpp
 layout: document
 redirect_from:

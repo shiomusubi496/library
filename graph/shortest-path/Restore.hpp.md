@@ -541,8 +541,8 @@ data:
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
 documentation_of: graph/shortest-path/Restore.hpp
 layout: document

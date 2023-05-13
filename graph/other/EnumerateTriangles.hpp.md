@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: geometry/template.hpp
-    title: geometry/template.hpp
+    path: graph/Graph.hpp
+    title: Graph-template
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,117 +31,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: geometry/All.hpp
-    title: geometry/All.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Circle.hpp
-    title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Line.hpp
-    title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Polygon.hpp
-    title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Segment.hpp
-    title: geometry/Segment.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Triangle.hpp
-    title: geometry/Triangle.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_A-projection.test.cpp
-    title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-    title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-    title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-    title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-    title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-    title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_D-distance.test.cpp
-    title: test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_A-area.test.cpp
-    title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_C-contain.test.cpp
-    title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-    title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-    title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_C-cut.test.cpp
-    title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_5_A-closest.test.cpp
-    title: test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-    title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-    title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-    title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
-    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+    path: test/yosupo/graph/enumerate_triangles.test.cpp
+    title: test/yosupo/graph/enumerate_triangles.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/graph/other/EnumerateTriangles.md
+    document_title: EnumerateTriangles
     links: []
-  bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
-    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+  bundledCode: "#line 2 \"graph/other/EnumerateTriangles.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -517,124 +437,75 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"geometry/template.hpp\"\n\
-    \n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr\
-    \ ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
-    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
-    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
-    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
-    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
-    \ 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t = GEOMETRY_ANGLE_TYPE;\n\
-    #else\nusing angle_t = ld;\n#endif\n#line 4 \"geometry/Point.hpp\"\n\nclass Point\
-    \ {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real\
-    \ y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n\
-    \        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
-    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
-    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
-    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
-    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
-    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
-    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
-    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
-    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
-    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
-    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
-    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
-    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
-    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
-    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
-    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
-    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
-    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
-    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
-    \    }\n    friend bool comp_arg(const Point& p1, const Point& p2) {\n       \
-    \ // -pi < theta <= pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >=\
-    \ 0 ? 1 : 3;\n        int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n\
-    \        if (a1 != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n  \
-    \  }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
-    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
-    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t\
-    \ arg() const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point&\
-    \ p) { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c =\
-    \ cos(theta), s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y\
-    \ * c;\n        x = nx;\n        y = ny;\n        return *this;\n    }\n    friend\
-    \ Point rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
-    \    }\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n\
-    \        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
-    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
-    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
-    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
-    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
-    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
-    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n\nclass Point {\npublic:\n   \
-    \ Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y)\
-    \ {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point& operator-=(const Point& p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point&\
-    \ operator*=(Real a) {\n        x *= a;\n        y *= a;\n        return *this;\n\
-    \    }\n    Point& operator/=(Real a) {\n        x /= a;\n        y /= a;\n  \
-    \      return *this;\n    }\n    Point operator+() const { return *this; }\n \
-    \   Point operator-() const { return Point(-x, -y); }\n    friend Point operator+(const\
-    \ Point& p1, const Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend\
-    \ Point operator-(const Point& p1, const Point& p2) {\n        return Point(p1)\
-    \ -= p2;\n    }\n    friend Point operator*(const Point& p, Real a) { return Point(p)\
-    \ *= a; }\n    friend Point operator*(Real a, const Point& p) { return Point(p)\
-    \ *= a; }\n    friend Point operator/(const Point& p, Real a) { return Point(p)\
-    \ /= a; }\n    friend bool operator==(const Point& p1, const Point& p2) {\n  \
-    \      return cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend\
-    \ bool operator!=(const Point& p1, const Point& p2) {\n        return !(p1 ==\
-    \ p2);\n    }\n    friend bool operator<(const Point& p1, const Point& p2) {\n\
-    \        return cmp(p1.x, p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 &&\
-    \ cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const Point& p1, const\
-    \ Point& p2) { return p2 < p1; }\n    friend bool operator<=(const Point& p1,\
-    \ const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend bool operator>=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend\
-    \ bool comp_arg(const Point& p1, const Point& p2) {\n        // -pi < theta <=\
-    \ pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n    \
-    \    int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1\
-    \ != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm()\
-    \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
-    \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
-    \ abs(const Point& p) { return p.abs(); }\n    inline angle_t arg() const { return\
-    \ atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg();\
-    \ }\n    Point& rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n\
-    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
-    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
-    \ p, angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
-    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
-    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
-    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
-    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
-    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
-    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
-    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
-    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
+    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
+    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
+    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
+    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
+    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
+    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
+    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
+    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
+    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
+    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
+    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
+    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
+    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
+    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
+    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
+    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
+    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
+    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
+    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
+    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
+    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
+    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
+    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
+    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
+    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
+    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
+    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
+    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
+    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
+    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
+    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
+    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
+    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
+    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
+    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
+    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
+    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
+    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
+    \ */\n#line 5 \"graph/other/EnumerateTriangles.hpp\"\n\ntemplate<class T>\nstd::vector<std::array<int,\
+    \ 3>> enumerate_triangles(const Graph<T>& G) {\n    int n = G.size();\n    std::vector<int>\
+    \ ord(n); std::iota(all(ord), 0);\n    std::sort(all(ord), [&](int a, int b) {\
+    \ return G[a].size() < G[b].size(); });\n    UnweightedGraph H(n);\n    {\n  \
+    \      std::vector<bool> used(n, false);\n        each_const (i : ord) {\n   \
+    \         each_const (e : G[i]) {\n                if (!used[e.to]) H.add_edge(i,\
+    \ e.to, true);\n            }\n            used[i] = true;\n        }\n    }\n\
+    \    std::vector<std::array<int, 3>> res;\n    std::vector<bool> used(n, false);\n\
+    \    rep (i, n) {\n        each_const (e : H[i]) used[e.to] = true;\n        each_const\
+    \ (e : H[i]) {\n            each_const (f : H[e.to]) {\n                if (used[f.to])\
+    \ res.push_back({(int)i, e.to, f.to});\n            }\n        }\n        each_const\
+    \ (e : H[i]) used[e.to] = false;\n    }\n    return res;\n}\n\n/**\n * @brief\
+    \ EnumerateTriangles\n * @docs docs/graph/other/EnumerateTriangles.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n\ntemplate<class T>\nstd::vector<std::array<int, 3>> enumerate_triangles(const\
+    \ Graph<T>& G) {\n    int n = G.size();\n    std::vector<int> ord(n); std::iota(all(ord),\
+    \ 0);\n    std::sort(all(ord), [&](int a, int b) { return G[a].size() < G[b].size();\
+    \ });\n    UnweightedGraph H(n);\n    {\n        std::vector<bool> used(n, false);\n\
+    \        each_const (i : ord) {\n            each_const (e : G[i]) {\n       \
+    \         if (!used[e.to]) H.add_edge(i, e.to, true);\n            }\n       \
+    \     used[i] = true;\n        }\n    }\n    std::vector<std::array<int, 3>> res;\n\
+    \    std::vector<bool> used(n, false);\n    rep (i, n) {\n        each_const (e\
+    \ : H[i]) used[e.to] = true;\n        each_const (e : H[i]) {\n            each_const\
+    \ (f : H[e.to]) {\n                if (used[f.to]) res.push_back({(int)i, e.to,\
+    \ f.to});\n            }\n        }\n        each_const (e : H[i]) used[e.to]\
+    \ = false;\n    }\n    return res;\n}\n\n/**\n * @brief EnumerateTriangles\n *\
+    \ @docs docs/graph/other/EnumerateTriangles.md\n */\n"
   dependsOn:
-  - geometry/template.hpp
   - other/template.hpp
   - template/macros.hpp
   - template/alias.hpp
@@ -644,44 +515,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - graph/Graph.hpp
   isVerificationFile: false
-  path: geometry/Point.hpp
-  requiredBy:
-  - geometry/Triangle.hpp
-  - geometry/Polygon.hpp
-  - geometry/Circle.hpp
-  - geometry/Line.hpp
-  - geometry/All.hpp
-  - geometry/Segment.hpp
-  timestamp: '2023-05-05 20:13:51+09:00'
+  path: graph/other/EnumerateTriangles.hpp
+  requiredBy: []
+  timestamp: '2023-05-09 21:50:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-documentation_of: geometry/Point.hpp
+  - test/yosupo/graph/enumerate_triangles.test.cpp
+documentation_of: graph/other/EnumerateTriangles.hpp
 layout: document
 redirect_from:
-- /library/geometry/Point.hpp
-- /library/geometry/Point.hpp.html
-title: geometry/Point.hpp
+- /library/graph/other/EnumerateTriangles.hpp
+- /library/graph/other/EnumerateTriangles.hpp.html
+title: EnumerateTriangles
 ---
+## 概要
+
+無向グラフ G に対して、 (a, b), (b, c), (c, a) の全てに辺があるような 3 頂点 a, b, c の組を全て返す。これは最大で $O(M \sqrt{M})$ 個存在する。
+
+- `vector<array<int, 3>> enumerate_triangles(Graph<T> G)` : triangle を全て返す。 $\Theta(M \sqrt{M})$ 。

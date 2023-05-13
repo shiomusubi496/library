@@ -2,8 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: geometry/template.hpp
-    title: geometry/template.hpp
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/tree/ReRooting.hpp
+    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
+  - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,99 +40,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: geometry/All.hpp
-    title: geometry/All.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Circle.hpp
-    title: geometry/Circle.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Line.hpp
-    title: geometry/Line.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Polygon.hpp
-    title: geometry/Polygon.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Segment.hpp
-    title: geometry/Segment.hpp
-  - icon: ':heavy_check_mark:'
-    path: geometry/Triangle.hpp
-    title: geometry/Triangle.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_A-projection.test.cpp
-    title: test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-    title: test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-    title: test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-    title: test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-    title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-    title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_2_D-distance.test.cpp
-    title: test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_A-area.test.cpp
-    title: test/aoj/CGL/CGL_3_A-area.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-    title: test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_3_C-contain.test.cpp
-    title: test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-    title: test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-    title: test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_4_C-cut.test.cpp
-    title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_5_A-closest.test.cpp
-    title: test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-    title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-    title: test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-    title: test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-    title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-    title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/geometry/sort_points_by_argument.test.cpp
-    title: test/yosupo/geometry/sort_points_by_argument.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"geometry/Point.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
-    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/tree_path_composite_sum
+    links:
+    - https://judge.yosupo.jp/problem/tree_path_composite_sum
+  bundledCode: "#line 1 \"test/yosupo/new/tree_path_composite_sum.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -517,124 +446,310 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"geometry/template.hpp\"\n\
-    \n#ifdef GEOMETRY_EPS\nconstexpr ld geom_eps = GEOMETRY_EPS;\n#else\nconstexpr\
-    \ ld geom_eps = EPS;\n#endif\n\n#ifdef GEOMETRY_REAL_TYPE\nusing Real = GEOMETRY_REAL_TYPE;\n\
-    // a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(Real a, Real b) {\n    if (a >\
-    \ b) return 1;\n    if (a < b) return -1;\n    return 0;\n}\n#else\nusing Real\
-    \ = ld;\n// a <=> b  :  cmp(a, b) <=> 0\ninline int cmp(ld a, ld b) {\n    if\
-    \ (a > b + geom_eps) return 1;\n    if (a < b - geom_eps) return -1;\n    return\
-    \ 0;\n}\n#endif\n\n#ifdef GEOMETRY_ANGLE_TYPE\nusing angle_t = GEOMETRY_ANGLE_TYPE;\n\
-    #else\nusing angle_t = ld;\n#endif\n#line 4 \"geometry/Point.hpp\"\n\nclass Point\
-    \ {\npublic:\n    Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real\
-    \ y) : x(x), y(y) {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n\
-    \        y += p.y;\n        return *this;\n    }\n    Point& operator-=(const\
-    \ Point& p) {\n        x -= p.x;\n        y -= p.y;\n        return *this;\n \
-    \   }\n    Point& operator*=(Real a) {\n        x *= a;\n        y *= a;\n   \
-    \     return *this;\n    }\n    Point& operator/=(Real a) {\n        x /= a;\n\
-    \        y /= a;\n        return *this;\n    }\n    Point operator+() const {\
-    \ return *this; }\n    Point operator-() const { return Point(-x, -y); }\n   \
-    \ friend Point operator+(const Point& p1, const Point& p2) {\n        return Point(p1)\
-    \ += p2;\n    }\n    friend Point operator-(const Point& p1, const Point& p2)\
-    \ {\n        return Point(p1) -= p2;\n    }\n    friend Point operator*(const\
-    \ Point& p, Real a) { return Point(p) *= a; }\n    friend Point operator*(Real\
-    \ a, const Point& p) { return Point(p) *= a; }\n    friend Point operator/(const\
-    \ Point& p, Real a) { return Point(p) /= a; }\n    friend bool operator==(const\
-    \ Point& p1, const Point& p2) {\n        return cmp(p1.x, p2.x) == 0 && cmp(p1.y,\
-    \ p2.y) == 0;\n    }\n    friend bool operator!=(const Point& p1, const Point&\
-    \ p2) {\n        return !(p1 == p2);\n    }\n    friend bool operator<(const Point&\
-    \ p1, const Point& p2) {\n        return cmp(p1.x, p2.x) < 0 ||\n            \
-    \   (cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const\
-    \ Point& p1, const Point& p2) { return p2 < p1; }\n    friend bool operator<=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend\
-    \ bool operator>=(const Point& p1, const Point& p2) {\n        return !(p1 < p2);\n\
-    \    }\n    friend bool comp_arg(const Point& p1, const Point& p2) {\n       \
-    \ // -pi < theta <= pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >=\
-    \ 0 ? 1 : 3;\n        int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n\
-    \        if (a1 != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n  \
-    \  }\n    Real norm() const { return x * x + y * y; }\n    friend Real norm(const\
-    \ Point& p) { return p.norm(); }\n    Real abs() const { return sqrt(norm());\
-    \ }\n    friend Real abs(const Point& p) { return p.abs(); }\n    inline angle_t\
-    \ arg() const { return atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point&\
-    \ p) { return p.arg(); }\n    Point& rotate(angle_t theta) {\n        Real c =\
-    \ cos(theta), s = sin(theta);\n        Real nx = x * c - y * s, ny = x * s + y\
-    \ * c;\n        x = nx;\n        y = ny;\n        return *this;\n    }\n    friend\
-    \ Point rotate(const Point& p, angle_t theta) {\n        return Point(p).rotate(theta);\n\
-    \    }\n    Point& rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n\
-    \        y = ny;\n        return *this;\n    }\n    friend Point rotate90(const\
-    \ Point& p) { return Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D\
-    ), p1 * p2 = |p1| * |p2| * cos(theta)\n    friend Real dot(const Point& p1, const\
-    \ Point& p2) {\n        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer\
-    \ product(\u5916\u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const\
-    \ Point& p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n \
-    \   }\n    template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n\nclass Point {\npublic:\n   \
-    \ Real x, y;\n    Point() : x(0), y(0) {}\n    Point(Real x, Real y) : x(x), y(y)\
-    \ {}\n    Point& operator+=(const Point& p) {\n        x += p.x;\n        y +=\
-    \ p.y;\n        return *this;\n    }\n    Point& operator-=(const Point& p) {\n\
-    \        x -= p.x;\n        y -= p.y;\n        return *this;\n    }\n    Point&\
-    \ operator*=(Real a) {\n        x *= a;\n        y *= a;\n        return *this;\n\
-    \    }\n    Point& operator/=(Real a) {\n        x /= a;\n        y /= a;\n  \
-    \      return *this;\n    }\n    Point operator+() const { return *this; }\n \
-    \   Point operator-() const { return Point(-x, -y); }\n    friend Point operator+(const\
-    \ Point& p1, const Point& p2) {\n        return Point(p1) += p2;\n    }\n    friend\
-    \ Point operator-(const Point& p1, const Point& p2) {\n        return Point(p1)\
-    \ -= p2;\n    }\n    friend Point operator*(const Point& p, Real a) { return Point(p)\
-    \ *= a; }\n    friend Point operator*(Real a, const Point& p) { return Point(p)\
-    \ *= a; }\n    friend Point operator/(const Point& p, Real a) { return Point(p)\
-    \ /= a; }\n    friend bool operator==(const Point& p1, const Point& p2) {\n  \
-    \      return cmp(p1.x, p2.x) == 0 && cmp(p1.y, p2.y) == 0;\n    }\n    friend\
-    \ bool operator!=(const Point& p1, const Point& p2) {\n        return !(p1 ==\
-    \ p2);\n    }\n    friend bool operator<(const Point& p1, const Point& p2) {\n\
-    \        return cmp(p1.x, p2.x) < 0 ||\n               (cmp(p1.x, p2.x) == 0 &&\
-    \ cmp(p1.y, p2.y) < 0);\n    }\n    friend bool operator>(const Point& p1, const\
-    \ Point& p2) { return p2 < p1; }\n    friend bool operator<=(const Point& p1,\
-    \ const Point& p2) {\n        return !(p2 < p1);\n    }\n    friend bool operator>=(const\
-    \ Point& p1, const Point& p2) {\n        return !(p1 < p2);\n    }\n    friend\
-    \ bool comp_arg(const Point& p1, const Point& p2) {\n        // -pi < theta <=\
-    \ pi\n        int a1 = p1.y < 0 ? 0 : p1.y > 0 ? 2 : p1.x >= 0 ? 1 : 3;\n    \
-    \    int a2 = p2.y < 0 ? 0 : p2.y > 0 ? 2 : p2.x >= 0 ? 1 : 3;\n        if (a1\
-    \ != a2) return a1 < a2;\n        return cross(p1, p2) > 0;\n    }\n    Real norm()\
-    \ const { return x * x + y * y; }\n    friend Real norm(const Point& p) { return\
-    \ p.norm(); }\n    Real abs() const { return sqrt(norm()); }\n    friend Real\
-    \ abs(const Point& p) { return p.abs(); }\n    inline angle_t arg() const { return\
-    \ atan2((ld)y, (ld)x); }\n    friend angle_t arg(const Point& p) { return p.arg();\
-    \ }\n    Point& rotate(angle_t theta) {\n        Real c = cos(theta), s = sin(theta);\n\
-    \        Real nx = x * c - y * s, ny = x * s + y * c;\n        x = nx;\n     \
-    \   y = ny;\n        return *this;\n    }\n    friend Point rotate(const Point&\
-    \ p, angle_t theta) {\n        return Point(p).rotate(theta);\n    }\n    Point&\
-    \ rotate90() {\n        Real nx = -y, ny = x;\n        x = nx;\n        y = ny;\n\
-    \        return *this;\n    }\n    friend Point rotate90(const Point& p) { return\
-    \ Point(p).rotate90(); }\n    // inner product(\u5185\u7A4D), p1 * p2 = |p1| *\
-    \ |p2| * cos(theta)\n    friend Real dot(const Point& p1, const Point& p2) {\n\
-    \        return p1.x * p2.x + p1.y * p2.y;\n    }\n    // outer product(\u5916\
-    \u7A4D), p1 ^ p2 = |p1| * |p2| * sin(theta)\n    friend Real cross(const Point&\
-    \ p1, const Point& p2) {\n        return p1.x * p2.y - p1.y * p2.x;\n    }\n \
-    \   template<class Sc> void scan(Sc& scan) { scan >> x >> y; }\n    template<class\
-    \ Pr> void print(Pr& print) const { print << x << ' ' << y; }\n    template<class\
-    \ Pr> void debug(Pr& print) const {\n        print.print_char('(');\n        print\
-    \ << x;\n        print.print_char(',');\n        print << y;\n        print.print_char(')');\n\
-    \    }\n};\n\nReal distance(const Point& p1, const Point& p2) { return abs(p1\
-    \ - p2); }\n\nenum class CCW {\n    COUNTER_CLOCKWISE = 1,\n    CLOCKWISE = -1,\n\
-    \    ONLINE_BACK = 2,\n    ONLINE_FRONT = -2,\n    ON_SEGMENT = 0,\n};\n\nCCW\
-    \ ccw(const Point& p0, const Point& p1, const Point& p2) {\n    Point a = p1 -\
-    \ p0, b = p2 - p0;\n    if (cmp(cross(a, b), 0) > 0) return CCW::COUNTER_CLOCKWISE;\n\
-    \    if (cmp(cross(a, b), 0) < 0) return CCW::CLOCKWISE;\n    if (cmp(dot(a, b),\
-    \ 0) < 0) return CCW::ONLINE_BACK;\n    if (a.norm() < b.norm()) return CCW::ONLINE_FRONT;\n\
-    \    return CCW::ON_SEGMENT;\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
+    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
+    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
+    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
+    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
+    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
+    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
+    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/ReRooting.hpp\"\n\n#line\
+    \ 4 \"graph/tree/ReRooting.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
+    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void> class\
+    \ has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
+    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
+    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
+    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
+    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
+    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
+    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
+    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
+    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
+    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
+    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
+    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
+    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
+    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
+    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
+    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
+    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
+    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
+    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
+    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
+    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
+    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
+    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
+    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
+    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
+    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
+    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
+    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\
+    \n\ntemplate<class M, class T, class F> class ReRooting {\nprivate:\n    using\
+    \ U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
+    \ G;\n    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n   \
+    \ std::vector<U> res;\n    std::vector<int> par;\n    void dfs1(int v, int p)\
+    \ {\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n  \
+    \          if (e.to == p) par[v] = i;\n            else dfs1(e.to, v);\n     \
+    \   }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
+    \            if (e.to == p) continue;\n            dp[v][par[v]] =\n         \
+    \       M::op(dp[v][par[v]],\n                      f(dp[e.to][par[e.to]], edge<T>{e.to,\
+    \ v, e.cost, e.idx}));\n        }\n        if (p != -1 && G[v].size() == 1) {\n\
+    \            dp[v][par[v]] = init_data[v];\n        }\n    }\n    void dfs2(int\
+    \ v, int p, int v_id) {\n        std::vector<U> memo(G[v].size());\n        rep\
+    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            memo[i]\
+    \ = f(dp[e.to][e.to == p ? v_id : par[e.to]],\n                        edge<T>{e.to,\
+    \ v, e.cost, e.idx});\n        }\n        dp[v][G[v].size() - 1] = M::id();\n\
+    \        rrep (i, (int)G[v].size() - 1) {\n            dp[v][i] = M::op(memo[i\
+    \ + 1], dp[v][i + 1]);\n        }\n        U sml = M::id();\n        rep (i, G[v].size())\
+    \ {\n            dp[v][i] = M::op(sml, dp[v][i]);\n            sml = M::op(sml,\
+    \ std::move(memo[i]));\n        }\n        dp[v].back() = std::move(sml);\n  \
+    \      if (G[v].size() == 1) {\n            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);\n\
+    \        }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
+    \            if (e.to != p) dfs2(e.to, v, i);\n        }\n    }\n    void init()\
+    \ {\n        n = G.size();\n        if (n == 1) {\n            res = std::move(init_data);\n\
+    \            dp.assign(1, std::vector<U>{});\n            return;\n        }\n\
+    \        dp.resize(n);\n        rep (i, n) dp[i].assign(G[i].size() + 1, M::id());\n\
+    \        par.resize(n);\n        par[0] = G[0].size();\n        dfs1(0, -1);\n\
+    \        dfs2(0, -1, -1);\n        res.resize(n);\n        rep (i, n) {\n    \
+    \        res[i] = std::move(dp[i].back());\n            dp[i].pop_back();\n  \
+    \      }\n    }\n\npublic:\n    ReRooting(const Graph<T>& G, const F& f)\n   \
+    \     : ReRooting(G, f, std::vector<U>(G.size(), M::id())) {}\n    ReRooting(const\
+    \ Graph<T>& G, const F& f, const std::vector<U>& ind)\n        : f(f), G(G), init_data(ind)\
+    \ {\n        init();\n    }\n    ReRooting(const Graph<T>& G, const F& f, std::vector<U>&&\
+    \ ind)\n        : f(f), G(G), init_data(std::move(ind)) {\n        init();\n \
+    \   }\n    const std::vector<U>& get_res() const& { return res; }\n    std::vector<U>\
+    \ get_res() && { return std::move(res); }\n    const U& operator[](int v) const&\
+    \ { return res[v]; }\n    U operator[](int v) && { return std::move(res[v]); }\n\
+    \    const std::vector<std::vector<U>>& get_dp() const& { return dp; }\n    std::vector<std::vector<U>>\
+    \ get_dp() && { return std::move(dp); }\n    const U& get_dp(int v, int p_idx)\
+    \ const& { return dp[v][p_idx]; }\n    U get_dp(int v, int p_idx) && { return\
+    \ std::move(dp[v][p_idx]); }\n};\n\n/**\n * @brief ReRooting(\u5168\u65B9\u4F4D\
+    \u6728DP)\n * @docs docs/graph/tree/ReRooting.md\n */\n#line 6 \"test/yosupo/new/tree_path_composite_sum.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nstruct PairSum {\n    using\
+    \ value_type = pair<mint, mint>;\n    static value_type op(const value_type& a,\
+    \ const value_type& b) {\n        return {a.first + b.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {0, 0}; }\n};\nint main() {\n    int\
+    \ n; scan >> n;\n    vector<mint> a(n); scan >> a;\n    Graph<pair<mint, mint>>\
+    \ G(n);\n    rep (n - 1) {\n        int a, b; scan >> a >> b;\n        mint c,\
+    \ d; scan >> c >> d;\n        G.add_edge(a, b, {c, d});\n    }\n    auto f = [&](pair<mint,\
+    \ mint> x, const edge<pair<mint, mint>>& e) -> pair<mint, mint> {\n        return\
+    \ {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second\
+    \ + 1};\n    };\n    ReRooting<PairSum, pair<mint, mint>, decltype(f)> rr(G, f);\n\
+    \    rep (i, n) print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/tree_path_composite_sum\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/ReRooting.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nstruct PairSum {\n    using\
+    \ value_type = pair<mint, mint>;\n    static value_type op(const value_type& a,\
+    \ const value_type& b) {\n        return {a.first + b.first, a.second + b.second};\n\
+    \    }\n    static value_type id() { return {0, 0}; }\n};\nint main() {\n    int\
+    \ n; scan >> n;\n    vector<mint> a(n); scan >> a;\n    Graph<pair<mint, mint>>\
+    \ G(n);\n    rep (n - 1) {\n        int a, b; scan >> a >> b;\n        mint c,\
+    \ d; scan >> c >> d;\n        G.add_edge(a, b, {c, d});\n    }\n    auto f = [&](pair<mint,\
+    \ mint> x, const edge<pair<mint, mint>>& e) -> pair<mint, mint> {\n        return\
+    \ {e.cost.first * (x.first + a[e.from]) + e.cost.second * (x.second + 1), x.second\
+    \ + 1};\n    };\n    ReRooting<PairSum, pair<mint, mint>, decltype(f)> rr(G, f);\n\
+    \    rep (i, n) print << rr[i].first + a[i] << \" \\n\"[i == n - 1];\n}\n"
   dependsOn:
-  - geometry/template.hpp
   - other/template.hpp
   - template/macros.hpp
   - template/alias.hpp
@@ -644,44 +759,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: geometry/Point.hpp
-  requiredBy:
-  - geometry/Triangle.hpp
-  - geometry/Polygon.hpp
-  - geometry/Circle.hpp
-  - geometry/Line.hpp
-  - geometry/All.hpp
-  - geometry/Segment.hpp
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/geometry/sort_points_by_argument.test.cpp
-  - test/aoj/CGL/CGL_2_A-parallel-orthogonal.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
-  - test/aoj/CGL/CGL_3_B-isconvex.test.cpp
-  - test/aoj/CGL/CGL_1_C-ccw.test.cpp
-  - test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - test/aoj/CGL/CGL_3_A-area.test.cpp
-  - test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - test/aoj/CGL/CGL_4_A-convex-hull.test.cpp
-  - test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - test/aoj/CGL/CGL_5_A-closest.test.cpp
-  - test/aoj/CGL/CGL_7_B-incenter.test.cpp
-  - test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - test/aoj/CGL/CGL_3_C-contain.test.cpp
-  - test/aoj/CGL/CGL_7_C-circumcenter.test.cpp
-  - test/aoj/CGL/CGL_1_A-projection.test.cpp
-  - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
-  - test/aoj/CGL/CGL_1_B-reflection.test.cpp
-  - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_4_B-diameter.test.cpp
-  - test/aoj/CGL/CGL_7_A-intersect.test.cpp
-documentation_of: geometry/Point.hpp
+  - math/ModInt.hpp
+  - graph/Graph.hpp
+  - graph/tree/ReRooting.hpp
+  - other/monoid.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/tree_path_composite_sum.test.cpp
+  requiredBy: []
+  timestamp: '2023-05-09 21:50:47+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/new/tree_path_composite_sum.test.cpp
 layout: document
 redirect_from:
-- /library/geometry/Point.hpp
-- /library/geometry/Point.hpp.html
-title: geometry/Point.hpp
+- /verify/test/yosupo/new/tree_path_composite_sum.test.cpp
+- /verify/test/yosupo/new/tree_path_composite_sum.test.cpp.html
+title: test/yosupo/new/tree_path_composite_sum.test.cpp
 ---

@@ -573,14 +573,14 @@ data:
   isVerificationFile: false
   path: math/BarrettReduction.hpp
   requiredBy:
-  - math/ArbitraryModCombinatorics.hpp
   - math/DiscreteLogarithm.hpp
+  - math/ArbitraryModCombinatorics.hpp
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/math/binomial_coefficient.test.cpp
-  - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - test/yosupo/math/binomial_coefficient.test.cpp
 documentation_of: math/BarrettReduction.hpp
 layout: document
 redirect_from:

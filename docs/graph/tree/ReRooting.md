@@ -2,6 +2,8 @@
 
 全方位木 DP をする。
 
+テンプレート引数にモノイド M 、辺のコスト T 、辺のコストを適用させる関数 F の 3 つの型を取る。
+
 - `ReRooting(Graph<T> G, F f)` : グラフ `g` と関数 `f` で初期化する。 $\Theta(V)$ 。
 - `ReRooting(Graph<T> G, F f, vector<U> it)` : 各葉の初期値を設定する。 $\Theta(V)$ 。
 - `vector<U> get_res()` : 各頂点を根としたときの結果を返す。 $\Theta(V)$ 。

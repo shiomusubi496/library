@@ -650,9 +650,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
+  - test/aoj/CGL/CGL_2_D-distance.test.cpp
   - test/aoj/CGL/CGL_2_B-intersect.test.cpp
   - test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - test/aoj/CGL/CGL_2_D-distance.test.cpp
 documentation_of: geometry/Segment.hpp
 layout: document
 redirect_from:

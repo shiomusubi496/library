@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/tree_path_composite_sum.test.cpp
+    title: test/yosupo/new/tree_path_composite_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -662,6 +665,7 @@ data:
   timestamp: '2023-05-05 20:13:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/new/tree_path_composite_sum.test.cpp
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
 documentation_of: graph/tree/ReRooting.hpp
 layout: document
@@ -673,6 +677,8 @@ title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
 ## 概要
 
 全方位木 DP をする。
+
+テンプレート引数にモノイド M 、辺のコスト T 、辺のコストを適用させる関数 F の 3 つの型を取る。
 
 - `ReRooting(Graph<T> G, F f)` : グラフ `g` と関数 `f` で初期化する。 $\Theta(V)$ 。
 - `ReRooting(Graph<T> G, F f, vector<U> it)` : 各葉の初期値を設定する。 $\Theta(V)$ 。

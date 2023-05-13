@@ -438,16 +438,16 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/EnumerateQuotients.hpp\"\
-    \n\n#line 4 \"math/EnumerateQuotients.hpp\"\n\nstd::vector<ll> enumurate_quotients(ll\
+    \n\n#line 4 \"math/EnumerateQuotients.hpp\"\n\nstd::vector<ll> enumerate_quotients(ll\
     \ n) {\n    std::vector<ll> res{1};\n    while (res.back() <= n) res.push_back(n\
     \ / (n / res.back()) + 1);\n    return res;\n}\n\n/**\n * @brief Enumerate Quotients(\u5546\
     \u5217\u6319)\n * @docs docs/math/EnumerateQuotients.md\n */\n#line 4 \"test/yosupo/new/enumerate_quotients.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumurate_quotients(N);\n\
+    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumerate_quotients(N);\n\
     \    v.pop_back();\n    reverse(all(v));\n    for (auto& x : v) x = N / x;\n \
     \   prints(v.size());\n    prints(v);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/EnumerateQuotients.hpp\"\
-    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumurate_quotients(N);\n\
+    \nusing namespace std;\nint main() {\n    ll N; scan >> N;\n    auto v = enumerate_quotients(N);\n\
     \    v.pop_back();\n    reverse(all(v));\n    for (auto& x : v) x = N / x;\n \
     \   prints(v.size());\n    prints(v);\n}\n"
   dependsOn:
@@ -464,7 +464,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2023-05-06 21:25:18+09:00'
+  timestamp: '2023-05-09 21:50:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/enumerate_quotients.test.cpp

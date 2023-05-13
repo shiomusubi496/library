@@ -435,11 +435,11 @@ data:
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"math/EnumerateQuotients.hpp\"\
-    \n\nstd::vector<ll> enumurate_quotients(ll n) {\n    std::vector<ll> res{1};\n\
+    \n\nstd::vector<ll> enumerate_quotients(ll n) {\n    std::vector<ll> res{1};\n\
     \    while (res.back() <= n) res.push_back(n / (n / res.back()) + 1);\n    return\
     \ res;\n}\n\n/**\n * @brief Enumerate Quotients(\u5546\u5217\u6319)\n * @docs\
     \ docs/math/EnumerateQuotients.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nstd::vector<ll> enumurate_quotients(ll\
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nstd::vector<ll> enumerate_quotients(ll\
     \ n) {\n    std::vector<ll> res{1};\n    while (res.back() <= n) res.push_back(n\
     \ / (n / res.back()) + 1);\n    return res;\n}\n\n/**\n * @brief Enumerate Quotients(\u5546\
     \u5217\u6319)\n * @docs docs/math/EnumerateQuotients.md\n */\n"
@@ -456,7 +456,7 @@ data:
   isVerificationFile: false
   path: math/EnumerateQuotients.hpp
   requiredBy: []
-  timestamp: '2023-05-06 21:25:18+09:00'
+  timestamp: '2023-05-09 21:50:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/enumerate_quotients.test.cpp
@@ -467,3 +467,8 @@ redirect_from:
 - /library/math/EnumerateQuotients.hpp.html
 title: "Enumerate Quotients(\u5546\u5217\u6319)"
 ---
+## 概要
+
+正整数 $n$ に対して、 $1 \leq i \leq n$ について $\lfloor \frac{n}{i} \rfloor$ の値はたかだか $2\lceil \sqrt{n} \rceil$ で抑えられる。これを列挙する。
+
+- `vector<ll> enumerate_quotients(ll N)` : 返り値を $Q=(Q_1,Q_2,\ldots,Q_K)$ とすると、 $Q_1 = 1, Q_K = N+1$ で、 $\lfloor \frac{N}{Q_i} \rfloor = \lfloor \frac{N}{Q_{i+1}-1} \rfloor$ かつ $\lfloor \frac{N}{Q_i-1} \rfloor \neq \lfloor \frac{N}{Q_i} \rfloor$ を満たす。 $\{\lfloor \frac{N}{Q_i} \rfloor\}$ があり得る商の集合となる。 $\Theta(K)$ 。
