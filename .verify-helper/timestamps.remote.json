@@ -130,6 +130,7 @@
 "test/yosupo/geometry/sort_points_by_argument.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/yosupo/graph/bipartitematching.test.cpp": "2023-05-05 21:16:16 +0900",
 "test/yosupo/graph/cycle_detection.test.cpp": "2023-05-05 20:13:51 +0900",
+"test/yosupo/graph/enumerate_cliques.test.cpp": "2023-05-13 19:58:39 +0900",
 "test/yosupo/graph/enumerate_triangles.test.cpp": "2023-05-09 21:50:47 +0900",
 "test/yosupo/graph/manhattanmst.test.cpp": "2023-05-05 22:04:29 +0900",
 "test/yosupo/graph/maximum_independent_set.test.cpp": "2023-05-13 19:23:51 +0900",
