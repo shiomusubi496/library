@@ -210,6 +210,9 @@ data:
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/MaximumIndependentSet.hpp
+    title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
+  - icon: ':heavy_check_mark:'
     path: graph/other/TopologicalSort.hpp
     title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
       )"
@@ -803,6 +806,9 @@ data:
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/maximum_independent_set.test.cpp
+    title: test/yosupo/graph/maximum_independent_set.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/shortest_path.test.cpp
     title: test/yosupo/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1280,6 +1286,7 @@ data:
   - graph/other/BipartiteGraph.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/TopologicalSort.hpp
+  - graph/other/MaximumIndependentSet.hpp
   - graph/other/GraphCycle.hpp
   - graph/other/TwoSatisfiability.hpp
   - graph/shortest-path/Dijkstra.hpp
@@ -1374,6 +1381,7 @@ data:
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
