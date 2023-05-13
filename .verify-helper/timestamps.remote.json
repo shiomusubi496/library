@@ -132,6 +132,7 @@
 "test/yosupo/graph/cycle_detection.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/yosupo/graph/enumerate_triangles.test.cpp": "2023-05-09 21:50:47 +0900",
 "test/yosupo/graph/manhattanmst.test.cpp": "2023-05-05 22:04:29 +0900",
+"test/yosupo/graph/maximum_independent_set.test.cpp": "2023-05-13 19:23:51 +0900",
 "test/yosupo/graph/shortest_path.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/yosupo/graph/two_edge_connected_components.test.cpp": "2023-05-05 20:13:51 +0900",
 "test/yosupo/math/binomial_coefficient.test.cpp": "2023-05-05 20:13:51 +0900",
