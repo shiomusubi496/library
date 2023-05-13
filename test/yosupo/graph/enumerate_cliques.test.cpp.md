@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: graph/Graph.hpp
+    title: Graph-template
+  - icon: ':heavy_check_mark:'
+    path: graph/other/EnumerateCliques.hpp
+    title: EnumerateCliques
+  - icon: ':heavy_check_mark:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -28,131 +37,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
-    path: math/Combinatorics.hpp
-    title: Combinatorics
-  - icon: ':heavy_check_mark:'
-    path: math/MontmortNumber.hpp
-    title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':heavy_check_mark:'
-    path: math/PrimitiveRoot.hpp
-    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/Convolution.hpp
-    title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_A.test.cpp
-    title: test/aoj/DPL/DPL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_B.test.cpp
-    title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_C.test.cpp
-    title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_D.test.cpp
-    title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_E.test.cpp
-    title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL/DPL_5_F.test.cpp
-    title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/convolution_mod.test.cpp
-    title: test/yosupo/convolution/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-    title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/gcd_convolution.test.cpp
-    title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/lcm_convolution.test.cpp
-    title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_cliques.test.cpp
-    title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_triangles.test.cpp
-    title: test/yosupo/graph/enumerate_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/montmort_number_mod.test.cpp
-    title: test/yosupo/math/montmort_number_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/primitive_root.test.cpp
-    title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/inverse_matrix.test.cpp
-    title: test/yosupo/matrix/inverse_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/matrix_det.test.cpp
-    title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/matrix_product.test.cpp
-    title: test/yosupo/matrix/matrix_product.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/system_of_linear_equations.test.cpp
-    title: test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-    title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/tree_path_composite_sum.test.cpp
-    title: test/yosupo/new/tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/ModInt.md
-    document_title: ModInt
-    links: []
-  bundledCode: "#line 2 \"math/ModInt.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
+    links:
+    - https://judge.yosupo.jp/problem/enumerate_cliques
+  bundledCode: "#line 1 \"test/yosupo/graph/enumerate_cliques.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -545,12 +442,12 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
-    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
+    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
+    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
+    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
+    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
     \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
     \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
     \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
@@ -661,124 +558,83 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T, T\
-    \ mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value, \"\
-    T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must\
-    \ be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n   \
-    \ static_assert(mod <= std::numeric_limits<T>::max() / 2,\n                  \"\
-    mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using large_t\
-    \ = typename double_size_uint<T>::type;\n    using signed_t = typename std::make_signed<T>::type;\n\
-    \    T val;\n    static constexpr unsigned int inv1000000007[] = {\n        0,\
-    \         1,         500000004, 333333336, 250000002, 400000003,\n        166666668,\
-    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr unsigned\
-    \ int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
-    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
-    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
-    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n"
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"graph/Graph.hpp\"\
+    \n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n   \
+    \ int from, to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n\
+    \    edge(int f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t),\
+    \ cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f),\
+    \ to(t), cost(std::move(c)), idx(i) {}\n    operator int() const { return to;\
+    \ }\n    friend bool operator<(const edge<T>& lhs, const edge<T>& rhs) {\n   \
+    \     return lhs.cost < rhs.cost;\n    }\n    friend bool operator>(const edge<T>&\
+    \ lhs, const edge<T>& rhs) {\n        return lhs.cost > rhs.cost;\n    }\n};\n\
+    \ntemplate<class T = int> using Edges = std::vector<edge<T>>;\ntemplate<class\
+    \ T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class T =\
+    \ int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n  \
+    \  using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/EnumerateCliques.hpp\"\
+    \n\n#line 5 \"graph/other/EnumerateCliques.hpp\"\n\ntemplate<class T>\nstd::vector<std::vector<int>>\
+    \ enumerate_cliques(const Graph<T>& G) {\n    int n = G.size();\n    std::vector<std::vector<bool>>\
+    \ adj(n, std::vector<bool>(n, false));\n    rep (i, n) {\n        each_const (e\
+    \ : G[i]) adj[i][e.to] = true;\n    }\n    std::vector<int> vert(n); std::iota(all(vert),\
+    \ 0);\n    std::vector<std::vector<int>> res;\n    while (!vert.empty()) {\n \
+    \       int v = -1, mn_d = n + 1;\n        each_const (i : vert) {\n         \
+    \   int d = 0;\n            each_const (j : vert) {\n                if (adj[i][j])\
+    \ ++d;\n            }\n            if (chmin(mn_d, d)) v = i;\n        }\n   \
+    \     std::vector<int> clique{v};\n        rec_lambda([&](auto&& self, int i)\
+    \ -> void {\n            if (i == (int)vert.size()) {\n                res.push_back(clique);\n\
+    \                return;\n            }\n            if (vert[i] == v) {\n   \
+    \             self(i + 1);\n                return;\n            }\n         \
+    \   self(i + 1);\n            bool f = true;\n            each_const (j : clique)\
+    \ {\n                if (!adj[vert[i]][j]) {\n                    f = false;\n\
+    \                    break;\n                }\n            }\n            if\
+    \ (f) {\n                clique.push_back(vert[i]);\n                self(i +\
+    \ 1);\n                clique.pop_back();\n            }\n        })(0);\n   \
+    \     vert.erase(std::find(all(vert), v));\n    }\n    return res;\n}\n\n/**\n\
+    \ * @brief EnumerateCliques\n * @docs docs/graph/other/EnumerateCliques.md\n */\n\
+    #line 6 \"test/yosupo/graph/enumerate_cliques.test.cpp\"\nusing namespace std;\n\
+    using mint = modint998244353;\nint main() {\n    int n, m; scan >> n >> m;\n \
+    \   vector<mint> a(n); scan >> a;\n    Graph<int> G(n);\n    rep (m) {\n     \
+    \   int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    mint ans\
+    \ = 0;\n    for (auto v : enumerate_cliques(G)) {\n        mint p = 1;\n     \
+    \   each_const (i : v) p *= a[i];\n        ans += p;\n    }\n    prints(ans);\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
+    \ \"../../../graph/Graph.hpp\"\n#include \"../../../graph/other/EnumerateCliques.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
+    \ m; scan >> n >> m;\n    vector<mint> a(n); scan >> a;\n    Graph<int> G(n);\n\
+    \    rep (m) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n\
+    \    }\n    mint ans = 0;\n    for (auto v : enumerate_cliques(G)) {\n       \
+    \ mint p = 1;\n        each_const (i : v) p *= a[i];\n        ans += p;\n    }\n\
+    \    prints(ans);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -789,100 +645,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: math/ModInt.hpp
-  requiredBy:
-  - math/PrimitiveRoot.hpp
-  - math/convolution/Convolution.hpp
-  - math/Combinatorics.hpp
-  - math/MontmortNumber.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-  - test/yosupo/new/tree_path_composite_sum.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
-  - test/yosupo/math/montmort_number_mod.test.cpp
-  - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
-  - test/yosupo/matrix/inverse_matrix.test.cpp
-  - test/yosupo/matrix/matrix_product.test.cpp
-  - test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - test/yosupo/matrix/matrix_det.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_B.test.cpp
-documentation_of: math/ModInt.hpp
+  - math/ModInt.hpp
+  - graph/Graph.hpp
+  - graph/other/EnumerateCliques.hpp
+  isVerificationFile: true
+  path: test/yosupo/graph/enumerate_cliques.test.cpp
+  requiredBy: []
+  timestamp: '2023-05-13 19:58:39+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/graph/enumerate_cliques.test.cpp
 layout: document
 redirect_from:
-- /library/math/ModInt.hpp
-- /library/math/ModInt.hpp.html
-title: ModInt
+- /verify/test/yosupo/graph/enumerate_cliques.test.cpp
+- /verify/test/yosupo/graph/enumerate_cliques.test.cpp.html
+title: test/yosupo/graph/enumerate_cliques.test.cpp
 ---
-## 概要
-
-様々な演算で自動で mod を取ってくれる構造体。
-
-- `StaticModInt` : mod が問題で与えられる等の場合に使う
-- `DynamicModInt` : mod が入力で与えられる等の場合に使う
-
-以下のメンバを持つ。
-
-- `ll get()` : modint の持つ値を返す。 $\Theta(1)$ 。
-- `ll get_mod()` : 現在の mod を返す。 $\Theta(1)$ 。
-- `void set_mod(ll m)` : (`DynamicModInt` のみ) mod を `m` にセットする。 $\Theta(1)$ 。
-- `modint inv()` : 逆数を返す。 $\Theta(\log mod)$ 。
-- `modint pow(ll x)` : `x` 乗を返す。 $\Theta(\log x)$ 。
-
-### 演算
-
-以下の演算が動く。
-
-```
-+modint
--modint
-
-modint++
-modint--
-++modint
---modint
-
-modint += modint
-modint -= modint
-modint *= modint
-modint /= modint
-
-modint + modint
-modint - modint
-modint * modint
-modint / modint
-
-modint == modint
-modint != modint
-
-cin >> modint
-cout << modint
-```
-
-割り算は $\Theta(\log mod)$ 、それ以外は $\Theta(1)$ 。

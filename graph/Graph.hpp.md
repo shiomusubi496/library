@@ -59,6 +59,9 @@ data:
     path: graph/other/BipartiteGraph.hpp
     title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
   - icon: ':heavy_check_mark:'
+    path: graph/other/EnumerateCliques.hpp
+    title: EnumerateCliques
+  - icon: ':heavy_check_mark:'
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
   - icon: ':heavy_check_mark:'
@@ -237,6 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/enumerate_cliques.test.cpp
+    title: test/yosupo/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
@@ -785,6 +791,7 @@ data:
   - graph/connected/ConnectedComponents.hpp
   - graph/other/LowLink.hpp
   - graph/other/BipartiteGraph.hpp
+  - graph/other/EnumerateCliques.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/TopologicalSort.hpp
   - graph/other/MaximumIndependentSet.hpp
@@ -825,6 +832,7 @@ data:
   - test/yosupo/graph/shortest_path.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
+  - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
