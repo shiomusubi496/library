@@ -470,27 +470,30 @@ data:
     \    }\n    friend Rational operator*(const Rational& lhs, const Rational& rhs)\
     \ {\n        return Rational(lhs) *= rhs;\n    }\n    friend Rational operator/(const\
     \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) /= rhs;\n\
-    \    }\n    Rational operator+() { return Rational(*this); }\n    Rational operator-()\
-    \ { return Rational(-num, den); }\n    friend bool operator==(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return lhs.num == rhs.num && lhs.den ==\
-    \ rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n  \
-    \  friend bool operator<(const Rational& lhs, const Rational& rhs) {\n       \
-    \ return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n    friend\
-    \ bool operator>(const Rational& lhs, const Rational& rhs) {\n        return rhs\
-    \ < lhs;\n    }\n    friend bool operator<=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool operator>=(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return !(lhs < rhs);\n    }\n\
-    \    template<class Pr> void print(Pr& a) const { a.print(get_ld()); }\n    template<class\
-    \ Pr> void debug(Pr& a) const {\n        a.print(num);\n        a.print_char('/');\n\
-    \        a.print(den);\n    }\n    template<class Sc> void scan(Sc& a) {\n   \
-    \     a.scan(num);\n        a.scan(den);\n    }\n};\n\nusing Fraction = Rational<ll>;\n\
-    \n/**\n * @brief Rational(\u6709\u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n\
-    \ */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\nusing namespace std;\nint\
-    \ main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction> A(N); scan >>\
-    \ A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n    each_const\
-    \ (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n        W -= f.get_den();\n\
-    \        chmax(W, 0);\n    }\n    print << ans << endl;\n}\n"
+    \    }\n    Rational operator+() const { return Rational(*this); }\n    Rational\
+    \ operator-() const { return Rational(-num, den); }\n    friend bool operator==(const\
+    \ Rational& lhs, const Rational& rhs) {\n        return lhs.num == rhs.num &&\
+    \ lhs.den == rhs.den;\n    }\n    friend bool operator!=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return lhs.num != rhs.num || lhs.den != rhs.den;\n\
+    \    }\n    friend bool operator<(const Rational& lhs, const Rational& rhs) {\n\
+    \        return (LargeT)lhs.num * rhs.den < (LargeT)rhs.num * lhs.den;\n    }\n\
+    \    friend bool operator>(const Rational& lhs, const Rational& rhs) {\n     \
+    \   return rhs < lhs;\n    }\n    friend bool operator<=(const Rational& lhs,\
+    \ const Rational& rhs) {\n        return !(rhs < lhs);\n    }\n    friend bool\
+    \ operator>=(const Rational& lhs, const Rational& rhs) {\n        return !(lhs\
+    \ < rhs);\n    }\n    template<class Pr> void print(Pr& a) const { a.print(get_ld());\
+    \ }\n    template<class Pr> void debug(Pr& a) const {\n        a.print(num);\n\
+    \        a.print_char('/');\n        a.print(den);\n    }\n    template<class\
+    \ Sc> void scan(Sc& a) {\n        a.scan(num);\n        a.scan(den);\n    }\n\
+    };\n\nnamespace std {\n\ntemplate<class T>\nRational<T> abs(const Rational<T>&\
+    \ x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n}\n\n}\n\nusing\
+    \ Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\u7406\u6570\u578B\
+    )\n * @docs docs/math/Rational.md\n */\n#line 5 \"test/aoj/ALDS1/ALDS1_15_B.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction>\
+    \ A(N); scan >> A;\n    sort(all(A), greater<Fraction>());\n    Fraction ans;\n\
+    \    each_const (f : A) {\n        ans += min<ll>(W, f.get_den()) * f;\n     \
+    \   W -= f.get_den();\n        chmax(W, 0);\n    }\n    print << ans << endl;\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_15_B\"\n\
     #define ERROR 1e-6\n#include \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, W; scan >> N >> W;\n    vector<Fraction>\
@@ -512,7 +515,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
+  timestamp: '2023-05-21 19:05:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_15_B.test.cpp
