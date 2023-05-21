@@ -81,8 +81,8 @@ public:
     friend Rational operator/(const Rational& lhs, const Rational& rhs) {
         return Rational(lhs) /= rhs;
     }
-    Rational operator+() { return Rational(*this); }
-    Rational operator-() { return Rational(-num, den); }
+    Rational operator+() const { return Rational(*this); }
+    Rational operator-() const { return Rational(-num, den); }
     friend bool operator==(const Rational& lhs, const Rational& rhs) {
         return lhs.num == rhs.num && lhs.den == rhs.den;
     }
@@ -112,6 +112,15 @@ public:
         a.scan(den);
     }
 };
+
+namespace std {
+
+template<class T>
+Rational<T> abs(const Rational<T>& x) {
+    return Rational<T>(abs(x.get_num()), x.get_den());
+}
+
+}
 
 using Fraction = Rational<ll>;
 
