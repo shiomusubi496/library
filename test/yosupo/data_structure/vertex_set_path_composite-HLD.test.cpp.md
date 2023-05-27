@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -122,8 +122,18 @@ data:
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
     \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
     \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T, class = void> struct is_range : std::false_type {};\ntemplate<class T>\n\
-    struct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
+    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
+    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
+    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
+    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
+    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
+    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
+    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
+    \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
     struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
     \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
@@ -147,7 +157,7 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<is_signed_int<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
@@ -190,15 +200,19 @@ data:
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
     \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
     \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
-    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
-    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
-    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
-    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
-    \                sgn = true;\n                ++itr;\n            }\n        }\n\
-    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
-    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
-    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
-    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
+    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        if (*itr == '-') {\n            ++itr;\n\
+    \            a = 0;\n            while ('0' <= *itr && *itr <= '9') {\n      \
+    \          a = a * 10 - (*itr - '0');\n                ++itr;\n            }\n\
+    \        }\n        else {\n            a = 0;\n            while ('0' <= *itr\
+    \ && *itr <= '9') {\n                a = a * 10 + (*itr - '0');\n            \
+    \    ++itr;\n            }\n        }\n    }\n    template<class T,\n        \
+    \     typename std::enable_if<is_unsigned_int<T>::value &&\n                 \
+    \                    !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        a = 0;\n        while ('0' <= *itr &&\
+    \ *itr <= '9') {\n            a = a * 10 + *itr - '0';\n            ++itr;\n \
+    \       }\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
     \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
@@ -272,14 +286,15 @@ data:
     \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
     ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
     \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
-    \                                  !has_print<T>::value>::type* = nullptr>\n \
-    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
-    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
-    \ {\n            if (a < 0) {\n                print_char('-');\n            \
-    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
-    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
-    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
+    \ T,\n             typename std::enable_if<is_int<T>::value &&\n             \
+    \                        !has_print<T>::value>::type* = nullptr>\n    void print(T\
+    \ a) {\n        if (!a) {\n            print_char('0');\n            return;\n\
+    \        }\n        if IF_CONSTEXPR (is_signed_int<T>::value) {\n            if\
+    \ (a < 0) {\n                print_char('-');\n                using U = typename\
+    \ make_unsigned_int<T>::type;\n                print(static_cast<U>(-static_cast<U>(a)));\n\
+    \                return;\n            }\n        }\n        std::string s;\n \
+    \       while (a) {\n            s += (char)(a % 10 + '0');\n            a /=\
+    \ 10;\n        }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
     \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
     \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
@@ -447,10 +462,10 @@ data:
     \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
     \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
     \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
-    \                      \"template argument must be convertible from int type\"\
-    );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
-    \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
+    \ int>::value,\n                      \"template argument must be convertible\
+    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid2.hpp\"\n\n\
     #line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid\
@@ -563,45 +578,45 @@ data:
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
     \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) {\n        return {a + b.first, b.second};\n\
-    \    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class\
-    \ SegmentTree {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n\
-    \    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0) {}\n\
-    \    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int\
-    \ n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
-    \ << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i,\
-    \ n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
-    \ = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n\
-    \        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
-    \ x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n   \
-    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        l += n;\n        r += n;\n        T lsm = M::id(), rsm = M::id();\n \
-    \       while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1;\n \
-    \           r >>= 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T\
-    \ all_prod() const { return data[1]; }\n    T get(int k) const { return data[k\
-    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) const\
-    \ {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n   \
-    \     if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n  \
-    \      do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
+    };\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\n\
+    \n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class SegmentTree\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n    std::vector<T>\
+    \ data;\n\npublic:\n    SegmentTree() : SegmentTree(0) {}\n    SegmentTree(int\
+    \ n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int n, const\
+    \ T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        ori = v.size();\n\
+    \        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n\
+    \        rep (i, ori) data[n + i] = v[i];\n        rrep (i, n, 1) data[i] = M::op(data[i\
+    \ << 1], data[i << 1 ^ 1]);\n    }\n    template<class Upd> void update(int k,\
+    \ const Upd& upd) {\n        assert(0 <= k && k < ori);\n        k += n;\n   \
+    \     data[k] = upd(data[k]);\n        while (k >>= 1) data[k] = M::op(data[k\
+    \ << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n        update(k,\
+    \ [&](T) -> T { return x; });\n    }\n    void apply(int k, T x) {\n        update(k,\
+    \ [&](T a) -> T { return M::op(a, x); });\n    }\n    T prod(int l, int r) const\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        l += n;\n        r\
+    \ += n;\n        T lsm = M::id(), rsm = M::id();\n        while (l < r) {\n  \
+    \          if (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm\
+    \ = M::op(data[--r], rsm);\n            l >>= 1;\n            r >>= 1;\n     \
+    \   }\n        return M::op(lsm, rsm);\n    }\n    T all_prod() const { return\
+    \ data[1]; }\n    T get(int k) const { return data[k + n]; }\n    template<class\
+    \ Cond> int max_right(int l, const Cond& cond) const {\n        assert(0 <= l\
+    \ && l <= ori);\n        assert(cond(M::id()));\n        if (l == ori) return\
+    \ ori;\n        l += n;\n        T sm = M::id();\n        do {\n            while\
+    \ ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm, data[l]))) {\n    \
+    \            while (l < n) {\n                    l <<= 1;\n                 \
+    \   if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n               \
+    \ }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class Cond> int min_left(int r, const Cond& cond) const {\n    \
+    \    assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r\
+    \ == 0) return 0;\n        r += n;\n        T sm = M::id();\n        do {\n  \
+    \          --r;\n            while ((r & 1) && r > 1) r >>= 1;\n            if\
+    \ (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n           \
+    \         r = r << 1 ^ 1;\n                    if (cond(M::op(data[r], sm))) sm\
+    \ = M::op(data[r--], sm);\n                }\n                return r + 1 - n;\n\
+    \            }\n            sm = M::op(data[r], sm);\n        } while ((r & -r)\
+    \ != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
     template<class T, T max_value = infinity<T>::max>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
     \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeMaximumQuery\
     \ = SegmentTree<Monoid::Max<T, min_value>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\n\
@@ -874,7 +889,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 11:16:06+09:00'
+  timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp

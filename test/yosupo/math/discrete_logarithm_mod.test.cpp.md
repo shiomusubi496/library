@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
   - icon: ':x:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -119,8 +119,18 @@ data:
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
     \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
     \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T, class = void> struct is_range : std::false_type {};\ntemplate<class T>\n\
-    struct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
+    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
+    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
+    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
+    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
+    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
+    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
+    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
+    \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
     struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
     \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
@@ -144,7 +154,7 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<is_signed_int<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
@@ -187,15 +197,19 @@ data:
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
     \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
     \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
-    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
-    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
-    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
-    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
-    \                sgn = true;\n                ++itr;\n            }\n        }\n\
-    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
-    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
-    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
-    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
+    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        if (*itr == '-') {\n            ++itr;\n\
+    \            a = 0;\n            while ('0' <= *itr && *itr <= '9') {\n      \
+    \          a = a * 10 - (*itr - '0');\n                ++itr;\n            }\n\
+    \        }\n        else {\n            a = 0;\n            while ('0' <= *itr\
+    \ && *itr <= '9') {\n                a = a * 10 + (*itr - '0');\n            \
+    \    ++itr;\n            }\n        }\n    }\n    template<class T,\n        \
+    \     typename std::enable_if<is_unsigned_int<T>::value &&\n                 \
+    \                    !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        a = 0;\n        while ('0' <= *itr &&\
+    \ *itr <= '9') {\n            a = a * 10 + *itr - '0';\n            ++itr;\n \
+    \       }\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
     \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
@@ -269,14 +283,15 @@ data:
     \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
     ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
     \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
-    \                                  !has_print<T>::value>::type* = nullptr>\n \
-    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
-    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
-    \ {\n            if (a < 0) {\n                print_char('-');\n            \
-    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
-    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
-    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
+    \ T,\n             typename std::enable_if<is_int<T>::value &&\n             \
+    \                        !has_print<T>::value>::type* = nullptr>\n    void print(T\
+    \ a) {\n        if (!a) {\n            print_char('0');\n            return;\n\
+    \        }\n        if IF_CONSTEXPR (is_signed_int<T>::value) {\n            if\
+    \ (a < 0) {\n                print_char('-');\n                using U = typename\
+    \ make_unsigned_int<T>::type;\n                print(static_cast<U>(-static_cast<U>(a)));\n\
+    \                return;\n            }\n        }\n        std::string s;\n \
+    \       while (a) {\n            s += (char)(a % 10 + '0');\n            a /=\
+    \ 10;\n        }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
     \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
     \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
@@ -444,10 +459,10 @@ data:
     \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
     \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
     \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
-    \                      \"template argument must be convertible from int type\"\
-    );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
-    \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
+    \ int>::value,\n                      \"template argument must be convertible\
+    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/DiscreteLogarithm.hpp\"\
     \n\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
@@ -560,17 +575,17 @@ data:
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
     \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) {\n        return {a + b.first, b.second};\n\
-    \    }\n};\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\n\n#line 4 \"\
-    math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1)\
-    \ return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool\
-    \ {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b; b >>= 1,\
-    \ a *= a) {\n            if (b & 1) res *= a;\n        }\n        return res >\
-    \ n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n\
-    \    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\
-    \u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\
-    \n\n#line 4 \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n\
-    \    unsigned int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
+    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
+    };\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\n\n#line 4 \"math/KthRoot.hpp\"\
+    \n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1) return n;\n    if\
+    \ (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        __uint128_t\
+    \ res = 1, a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n           \
+    \ if (b & 1) res *= a;\n        }\n        return res > n;\n    };\n    ll res\
+    \ = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res))\
+    \ --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs\
+    \ docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4\
+    \ \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n    unsigned\
+    \ int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
     \ int m_)\n        : m(m_), im((unsigned long long)(-1) / m + 1) {}\n\n    inline\
     \ void set_mod(unsigned int m_) {\n        m = m_;\n        im = (unsigned long\
     \ long)(-1) / m + 1;\n    }\n\n    inline unsigned int get_mod() const { return\
@@ -683,7 +698,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 11:16:06+09:00'
+  timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/discrete_logarithm_mod.test.cpp

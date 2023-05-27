@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_triangles
@@ -113,8 +113,18 @@ data:
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
     \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
     \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T, class = void> struct is_range : std::false_type {};\ntemplate<class T>\n\
-    struct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
+    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
+    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
+    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
+    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
+    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
+    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
+    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
+    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
+    \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
     struct range_rank : std::integral_constant<std::size_t, 0> {};\ntemplate<class\
     \ T>\nstruct range_rank<T, true>\n    : std::integral_constant<std::size_t,\n\
@@ -138,7 +148,7 @@ data:
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
-    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<std::is_signed<T>::value,\
+    \ntemplate<class T>\nusing double_size =\n    typename std::conditional<is_signed_int<T>::value,\
     \ double_size_int<T>,\n                              double_size_uint<T>>::type;\n\
     template<class T> using double_size_t = typename double_size<T>::type;\n#line\
     \ 2 \"template/in.hpp\"\n\n#line 4 \"template/in.hpp\"\n#include <unistd.h>\n\
@@ -181,15 +191,19 @@ data:
     \            ++itr;\n        }\n    }\n    template<std::size_t len> void scan(std::bitset<len>&\
     \ a) {\n        discard_space();\n        rrep (i, len) {\n            a[i] =\
     \ *itr != '0';\n            ++itr;\n        }\n    }\n    template<class T,\n\
-    \             typename std::enable_if<std::is_integral<T>::value &&\n        \
-    \                             !has_scan<T>::value>::type* = nullptr>\n    void\
-    \ scan(T& a) {\n        discard_space();\n        bool sgn = false;\n        if\
-    \ IF_CONSTEXPR (std::is_signed<T>::value) {\n            if (*itr == '-') {\n\
-    \                sgn = true;\n                ++itr;\n            }\n        }\n\
-    \        a = 0;\n        while ('0' <= *itr && *itr <= '9') {\n            a =\
-    \ a * 10 + *itr - '0';\n            ++itr;\n        }\n        if IF_CONSTEXPR\
-    \ (std::is_signed<T>::value) {\n            if (sgn) a = -a;\n        }\n    }\n\
-    \    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
+    \             typename std::enable_if<is_signed_int<T>::value &&\n           \
+    \                          !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        if (*itr == '-') {\n            ++itr;\n\
+    \            a = 0;\n            while ('0' <= *itr && *itr <= '9') {\n      \
+    \          a = a * 10 - (*itr - '0');\n                ++itr;\n            }\n\
+    \        }\n        else {\n            a = 0;\n            while ('0' <= *itr\
+    \ && *itr <= '9') {\n                a = a * 10 + (*itr - '0');\n            \
+    \    ++itr;\n            }\n        }\n    }\n    template<class T,\n        \
+    \     typename std::enable_if<is_unsigned_int<T>::value &&\n                 \
+    \                    !has_scan<T>::value>::type* = nullptr>\n    void scan(T&\
+    \ a) {\n        discard_space();\n        a = 0;\n        while ('0' <= *itr &&\
+    \ *itr <= '9') {\n            a = a * 10 + *itr - '0';\n            ++itr;\n \
+    \       }\n    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_scan<T>::value>::type* = nullptr>\n\
     \    void scan(T& a) {\n        discard_space();\n        bool sgn = false;\n\
     \        if (*itr == '-') {\n            sgn = true;\n            ++itr;\n   \
@@ -263,14 +277,15 @@ data:
     \   for (auto i : a) print_char(i);\n        if IF_CONSTEXPR (debug) print_char('\"\
     ');\n    }\n    template<std::size_t len> void print(const std::bitset<len>& a)\
     \ {\n        rrep (i, len) print_char((char)(a[i] + '0'));\n    }\n    template<class\
-    \ T,\n             typename std::enable_if<std::is_integral<T>::value &&\n   \
-    \                                  !has_print<T>::value>::type* = nullptr>\n \
-    \   void print(T a) {\n        if (!a) {\n            print_char('0');\n     \
-    \       return;\n        }\n        if IF_CONSTEXPR (std::is_signed<T>::value)\
-    \ {\n            if (a < 0) {\n                print_char('-');\n            \
-    \    a = -a;\n            }\n        }\n        std::string s;\n        while\
-    \ (a) {\n            s += (char)(a % 10 + '0');\n            a /= 10;\n      \
-    \  }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
+    \ T,\n             typename std::enable_if<is_int<T>::value &&\n             \
+    \                        !has_print<T>::value>::type* = nullptr>\n    void print(T\
+    \ a) {\n        if (!a) {\n            print_char('0');\n            return;\n\
+    \        }\n        if IF_CONSTEXPR (is_signed_int<T>::value) {\n            if\
+    \ (a < 0) {\n                print_char('-');\n                using U = typename\
+    \ make_unsigned_int<T>::type;\n                print(static_cast<U>(-static_cast<U>(a)));\n\
+    \                return;\n            }\n        }\n        std::string s;\n \
+    \       while (a) {\n            s += (char)(a % 10 + '0');\n            a /=\
+    \ 10;\n        }\n        for (auto i = s.rbegin(); i != s.rend(); ++i) print_char(*i);\n\
     \    }\n    template<class T,\n             typename std::enable_if<std::is_floating_point<T>::value\
     \ &&\n                                     !has_print<T>::value>::type* = nullptr>\n\
     \    void print(T a) {\n        if (a == std::numeric_limits<T>::infinity()) {\n\
@@ -438,10 +453,10 @@ data:
     \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
     \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
     \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_integral<T>::value,\n\
-    \                      \"template argument must be convertible from int type\"\
-    );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
-    \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
+    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
+    \ int>::value,\n                      \"template argument must be convertible\
+    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
+    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/ModInt.hpp\"\n\n#line\
     \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
@@ -603,23 +618,23 @@ data:
     \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/EnumerateTriangles.hpp\"\
     \n\n#line 5 \"graph/other/EnumerateTriangles.hpp\"\n\ntemplate<class T>\nstd::vector<std::array<int,\
     \ 3>> enumerate_triangles(const Graph<T>& G) {\n    int n = G.size();\n    std::vector<int>\
-    \ ord(n); std::iota(all(ord), 0);\n    std::sort(all(ord), [&](int a, int b) {\
-    \ return G[a].size() < G[b].size(); });\n    UnweightedGraph H(n);\n    {\n  \
-    \      std::vector<bool> used(n, false);\n        each_const (i : ord) {\n   \
-    \         each_const (e : G[i]) {\n                if (!used[e.to]) H.add_edge(i,\
-    \ e.to, true);\n            }\n            used[i] = true;\n        }\n    }\n\
-    \    std::vector<std::array<int, 3>> res;\n    std::vector<bool> used(n, false);\n\
-    \    rep (i, n) {\n        each_const (e : H[i]) used[e.to] = true;\n        each_const\
-    \ (e : H[i]) {\n            each_const (f : H[e.to]) {\n                if (used[f.to])\
-    \ res.push_back({(int)i, e.to, f.to});\n            }\n        }\n        each_const\
-    \ (e : H[i]) used[e.to] = false;\n    }\n    return res;\n}\n\n/**\n * @brief\
-    \ EnumerateTriangles\n * @docs docs/graph/other/EnumerateTriangles.md\n */\n#line\
-    \ 6 \"test/yosupo/graph/enumerate_triangles.test.cpp\"\nusing namespace std;\n\
-    using mint = modint998244353;\nint main() {\n    int N, M; scan >> N >> M;\n \
-    \   vector<mint> A(N); scan >> A;\n    Graph<int> G(N);\n    rep (M) {\n     \
-    \   int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    mint ans\
-    \ = 0;\n    for (auto [a, b, c] : enumerate_triangles(G)) ans += A[a] * A[b] *\
-    \ A[c];\n    prints(ans);\n}\n"
+    \ ord(n);\n    std::iota(all(ord), 0);\n    std::sort(all(ord),\n            \
+    \  [&](int a, int b) { return G[a].size() < G[b].size(); });\n    UnweightedGraph\
+    \ H(n);\n    {\n        std::vector<bool> used(n, false);\n        each_const\
+    \ (i : ord) {\n            each_const (e : G[i]) {\n                if (!used[e.to])\
+    \ H.add_edge(i, e.to, true);\n            }\n            used[i] = true;\n   \
+    \     }\n    }\n    std::vector<std::array<int, 3>> res;\n    std::vector<bool>\
+    \ used(n, false);\n    rep (i, n) {\n        each_const (e : H[i]) used[e.to]\
+    \ = true;\n        each_const (e : H[i]) {\n            each_const (f : H[e.to])\
+    \ {\n                if (used[f.to]) res.push_back({(int)i, e.to, f.to});\n  \
+    \          }\n        }\n        each_const (e : H[i]) used[e.to] = false;\n \
+    \   }\n    return res;\n}\n\n/**\n * @brief EnumerateTriangles\n * @docs docs/graph/other/EnumerateTriangles.md\n\
+    \ */\n#line 6 \"test/yosupo/graph/enumerate_triangles.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = modint998244353;\nint main() {\n    int N, M; scan >> N >>\
+    \ M;\n    vector<mint> A(N); scan >> A;\n    Graph<int> G(N);\n    rep (M) {\n\
+    \        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n    }\n    mint\
+    \ ans = 0;\n    for (auto [a, b, c] : enumerate_triangles(G)) ans += A[a] * A[b]\
+    \ * A[c];\n    prints(ans);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_triangles\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
     \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/other/EnumerateTriangles.hpp\"\
@@ -644,8 +659,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2023-05-09 21:50:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-05-27 16:39:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/enumerate_triangles.test.cpp
 layout: document
