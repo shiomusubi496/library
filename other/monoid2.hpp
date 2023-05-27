@@ -47,6 +47,16 @@ template<class T> struct AddAssign {
     static value_type id() { return {false, T{0}}; }
 };
 
+template<class T, T max_value = infinity<T>::max> struct MinCount {
+    using value_type = std::pair<T, ll>;
+    static value_type op(const value_type& a, const value_type& b) {
+        if (a.first < b.first) return a;
+        if (a.first > b.first) return b;
+        return {a.first, a.second + b.second};
+    }
+    static value_type id() { return {max_value, 0}; }
+};
+
 
 template<class T> struct AffineSum {
     using M = Sum<T>;
@@ -64,6 +74,15 @@ template<class T> struct AddAssignSum {
     static T mul_op(const U& a, int b, const T& c) {
         if (a.first) return a.second * b;
         return c + a.second * b;
+    }
+};
+
+template<class T> struct AddMinCount {
+    using M = MinCount<T>;
+    using E = Sum<T>;
+    using U = typename M::value_type;
+    static U op(const T& a, const U& b) {
+        return {a + b.first, b.second};
     }
 };
 
