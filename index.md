@@ -15,6 +15,9 @@ data:
   - name: data-struct/other
     pages:
     - icon: ':heavy_check_mark:'
+      path: data-struct/other/AreaofUnionofRectangles.hpp
+      title: data-struct/other/AreaofUnionofRectangles.hpp
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
     - icon: ':heavy_check_mark:'
@@ -56,7 +59,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -69,7 +72,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/LCARMQ.hpp
       title: LCARMQ
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/LazySegmentTree.hpp
       title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -83,7 +86,7 @@ data:
       path: data-struct/segment/SSegmentTree.hpp
       title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\
         \u7279\u6B8A\u306A\u30BB\u30B0\u6728)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -92,10 +95,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/SqrtDecomposition.hpp
       title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     - icon: ':heavy_check_mark:'
@@ -174,7 +177,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -266,7 +269,7 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
@@ -276,7 +279,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
@@ -296,7 +299,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/ArbitraryModCombinatorics.hpp
       title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/BarrettReduction.hpp
       title: math/BarrettReduction.hpp
     - icon: ':heavy_check_mark:'
@@ -305,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/DiscreteLogarithm.hpp
       title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
     - icon: ':heavy_check_mark:'
@@ -320,17 +323,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/FloorSum.hpp
       title: FloorSum
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/MontgomeryModInt.hpp
       title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
     - icon: ':heavy_check_mark:'
@@ -403,13 +406,13 @@ data:
       title: "Matrix(\u884C\u5217)"
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -440,28 +443,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -761,6 +764,9 @@ data:
   - name: test/yosupo/data_structure
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+      title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -793,13 +799,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/range_affine_point_get.test.cpp
       title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -865,10 +871,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - name: test/yosupo/geometry
@@ -907,7 +913,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/binomial_coefficient.test.cpp
       title: test/yosupo/math/binomial_coefficient.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/math/discrete_logarithm_mod.test.cpp
       title: test/yosupo/math/discrete_logarithm_mod.test.cpp
     - icon: ':heavy_check_mark:'
@@ -956,6 +962,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/enumerate_quotients.test.cpp
       title: test/yosupo/new/enumerate_quotients.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/new/primality_test.test.cpp
+      title: test/yosupo/new/primality_test.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/tree_path_composite_sum.test.cpp
       title: test/yosupo/new/tree_path_composite_sum.test.cpp

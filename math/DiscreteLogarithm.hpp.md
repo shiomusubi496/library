@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/discrete_logarithm_mod.test.cpp
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/DiscreteLogarithm.md
     document_title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
@@ -543,21 +543,29 @@ data:
     \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
     \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
     \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class\
-    \ T> struct AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class\
-    \ T> struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
+    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
+    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
+    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
+    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
+    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
+    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
+    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
+    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
+    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
+    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
     \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
     \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\
-    \n\n#line 4 \"math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <=\
-    \ 1 || k == 1) return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull\
-    \ x) -> bool {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b;\
-    \ b >>= 1, a *= a) {\n            if (b & 1) res *= a;\n        }\n        return\
-    \ res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1))\
-    \ ++res;\n    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief\
-    \ KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\
+    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
+    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
+    \    static U op(const T& a, const U& b) {\n        return {a + b.first, b.second};\n\
+    \    }\n};\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\n\n#line 4 \"\
+    math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1)\
+    \ return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool\
+    \ {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b; b >>= 1,\
+    \ a *= a) {\n            if (b & 1) res *= a;\n        }\n        return res >\
+    \ n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n\
+    \    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\
+    \u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\
     \n\n#line 4 \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n\
     \    unsigned int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
     \ int m_)\n        : m(m_), im((unsigned long long)(-1) / m + 1) {}\n\n    inline\
@@ -696,8 +704,8 @@ data:
   isVerificationFile: false
   path: math/DiscreteLogarithm.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-05-27 11:16:06+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
 documentation_of: math/DiscreteLogarithm.hpp

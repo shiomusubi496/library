@@ -5,37 +5,37 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -543,14 +543,22 @@ data:
     \    using value_type = std::pair<bool, T>; // false: add, true: assign\n    static\
     \ value_type op(const value_type& a, const value_type& b) {\n        if (b.first)\
     \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {false, T{0}}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\n} // namespace Monoid\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\
+    \ value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max> struct MinCount {\n    using value_type = std::pair<T, ll>;\n\
+    \    static value_type op(const value_type& a, const value_type& b) {\n      \
+    \  if (a.first < b.first) return a;\n        if (a.first > b.first) return b;\n\
+    \        return {a.first, a.second + b.second};\n    }\n    static value_type\
+    \ id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct AffineSum\
+    \ {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U = typename\
+    \ E::value_type;\n    static T mul_op(const U& a, int b, const T& c) {\n     \
+    \   return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T> struct\
+    \ AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n    using\
+    \ U = typename E::value_type;\n    static T mul_op(const U& a, int b, const T&\
+    \ c) {\n        if (a.first) return a.second * b;\n        return c + a.second\
+    \ * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using M = MinCount<T>;\n\
+    \    using E = Sum<T>;\n    using U = typename M::value_type;\n    static U op(const\
+    \ T& a, const U& b) {\n        return {a + b.first, b.second};\n    }\n};\n\n\
+    } // namespace Monoid\n#line 2 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\
     \n\n#line 4 \"math/convolution/SupersetZetaMoebiusTransform.hpp\"\n\ntemplate<class\
     \ Sum>\nvoid superset_zeta_transform(std::vector<typename Sum::value_type>& v)\
     \ {\n    int n = v.size();\n    for (ll i = 1; i < n; i <<= 1) {\n        rep\
@@ -597,7 +605,7 @@ data:
   isVerificationFile: false
   path: math/convolution/BitwiseAndConvolution.hpp
   requiredBy: []
-  timestamp: '2023-05-05 20:13:51+09:00'
+  timestamp: '2023-05-27 11:16:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp

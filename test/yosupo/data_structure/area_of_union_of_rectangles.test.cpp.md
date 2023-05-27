@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/other/DequeOperateAggregation.hpp
-    title: DequeOperateAggregation
+    path: data-struct/other/AreaofUnionofRectangles.hpp
+    title: data-struct/other/AreaofUnionofRectangles.hpp
   - icon: ':question:'
-    path: math/ModInt.hpp
-    title: ModInt
+    path: data-struct/segment/LazySegmentTree.hpp
+    title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -47,11 +47,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/deque_operate_all_composite
+    PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
     links:
-    - https://judge.yosupo.jp/problem/deque_operate_all_composite
-  bundledCode: "#line 1 \"test/yosupo/data_structure/deque_operate_all_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
+    - https://judge.yosupo.jp/problem/area_of_union_of_rectangles
+  bundledCode: "#line 1 \"test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -446,18 +446,18 @@ data:
     );\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n \
     \   int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid2.hpp\"\n\n\
-    #line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid\
-    \ {\n\ntemplate<class M, class = void> class has_op : public std::false_type {};\n\
-    template<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/AreaofUnionofRectangles.hpp\"\
+    \n\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
+    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void> class\
+    \ has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
+    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
+    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
     \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
     \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
@@ -558,191 +558,119 @@ data:
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
     \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
     \    static U op(const T& a, const U& b) {\n        return {a + b.first, b.second};\n\
-    \    }\n};\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"\
-    math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
-    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
-    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
-    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/other/DequeOperateAggregation.hpp\"\
-    \n\n#line 5 \"data-struct/other/DequeOperateAggregation.hpp\"\n\ntemplate<class\
-    \ M> class DequeOperateAggregation {\nprivate:\n    using T = typename M::value_type;\n\
-    \    std::stack<T> lst, rst;\n    std::stack<T> lsm, rsm;\n    T internal_all_prod()\
-    \ const {\n        assert(!empty());\n        if (lst.empty()) return rsm.top();\n\
-    \        if (rst.empty()) return lsm.top();\n        return M::op(lsm.top(), rsm.top());\n\
-    \    }\n\npublic:\n    DequeOperateAggregation() = default;\n    int size() const\
-    \ { return lst.size() + rst.size(); }\n    bool empty() const { return lst.empty()\
-    \ && rst.empty(); }\n    void push_front(const T& x) {\n        lst.push(x);\n\
-    \        if (lsm.empty()) lsm.push(lst.top());\n        else lsm.push(M::op(lst.top(),\
-    \ lsm.top()));\n    }\n    template<class... Args> void emplace_front(Args&&...\
-    \ args) {\n        lst.emplace(std::forward<Args>(args)...);\n        if (lsm.empty())\
-    \ lsm.push(lst.top());\n        else lsm.push(M::op(lst.top(), lsm.top()));\n\
-    \    }\n    void push_back(const T& x) {\n        rst.push(x);\n        if (rsm.empty())\
-    \ rsm.push(rst.top());\n        else rsm.push(M::op(rsm.top(), rst.top()));\n\
-    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
-    \    rst.emplace(std::forward<Args>(args)...);\n        if (rsm.empty()) rsm.push(rst.top());\n\
-    \        else rsm.push(M::op(rsm.top(), rst.top()));\n    }\n    void pop_front()\
-    \ {\n        assert(!empty());\n        if (lst.empty()) {\n            const\
-    \ int rn = rst.size() / 2;\n            const int ln = rst.size() - rn;\n    \
-    \        std::vector<T> rv;\n            rv.reserve(rn);\n            while (!rsm.empty())\
-    \ rsm.pop();\n            rep (rn) {\n                rv.push_back(rst.top());\n\
-    \                rst.pop();\n            }\n            rep (ln) {\n         \
-    \       lst.push(rst.top());\n                rst.pop();\n                if (lsm.empty())\
-    \ lsm.push(lst.top());\n                else lsm.push(M::op(lst.top(), lsm.top()));\n\
-    \            }\n            rep (rn) {\n                rst.push(rv.back());\n\
-    \                rv.pop_back();\n                if (rsm.empty()) rsm.push(rst.top());\n\
-    \                else rsm.push(M::op(rsm.top(), rst.top()));\n            }\n\
-    \        }\n        lst.pop();\n        lsm.pop();\n    }\n    void pop_back()\
-    \ {\n        assert(!empty());\n        if (rst.empty()) {\n            const\
-    \ int ln = lst.size() / 2;\n            const int rn = lst.size() - ln;\n    \
-    \        std::vector<T> lv;\n            lv.reserve(ln);\n            while (!lsm.empty())\
-    \ lsm.pop();\n            rep (ln) {\n                lv.push_back(lst.top());\n\
-    \                lst.pop();\n            }\n            rep (rn) {\n         \
-    \       rst.push(lst.top());\n                lst.pop();\n                if (rsm.empty())\
-    \ rsm.push(rst.top());\n                else rsm.push(M::op(rsm.top(), rst.top()));\n\
-    \            }\n            rep (ln) {\n                lst.push(lv.back());\n\
-    \                lv.pop_back();\n                if (lsm.empty()) lsm.push(lst.top());\n\
-    \                else lsm.push(M::op(lst.top(), lsm.top()));\n            }\n\
-    \        }\n        rst.pop();\n        rsm.pop();\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<Monoid::has_id<M>::value &&\n\
-    \                                     AlwaysTrue>::type* = nullptr>\n    T all_prod()\
-    \ const {\n        if (empty()) return M::id();\n        return internal_all_prod();\n\
-    \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
+    \    }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \n\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A, bool\
+    \ = Monoid::has_mul_op<A>::value> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T all_prod() const {\n        return internal_all_prod();\n    }\n};\n\n/**\n\
-    \ * @brief DequeOperateAggregation\n * @docs docs/data-struct/other/DequeOperateAggregation.md\n\
-    \ */\n#line 6 \"test/yosupo/data_structure/deque_operate_all_composite.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
-    \ scan >> Q;\n    DequeOperateAggregation<Monoid::Composite<mint>> d;\n    rep\
-    \ (Q) {\n        int t; scan >> t;\n        if (t == 0) {\n            mint a,\
-    \ b; scan >> a >> b;\n            d.push_front({a, b});\n        }\n        else\
-    \ if (t == 1) {\n            mint a, b; scan >> a >> b;\n            d.push_back({a,\
-    \ b});\n        }\n        else if (t == 2) d.pop_front();\n        else if (t\
-    \ == 3) d.pop_back();\n        else {\n            mint x; scan >> x;\n      \
-    \      auto a = d.all_prod();\n            print << a.first * x + a.second <<\
-    \ endl;\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/deque_operate_all_composite\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid2.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\n#include \"../../../data-struct/other/DequeOperateAggregation.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int Q;\
-    \ scan >> Q;\n    DequeOperateAggregation<Monoid::Composite<mint>> d;\n    rep\
-    \ (Q) {\n        int t; scan >> t;\n        if (t == 0) {\n            mint a,\
-    \ b; scan >> a >> b;\n            d.push_front({a, b});\n        }\n        else\
-    \ if (t == 1) {\n            mint a, b; scan >> a >> b;\n            d.push_back({a,\
-    \ b});\n        }\n        else if (t == 2) d.pop_front();\n        else if (t\
-    \ == 3) d.pop_back();\n        else {\n            mint x; scan >> x;\n      \
-    \      auto a = d.all_prod();\n            print << a.first * x + a.second <<\
-    \ endl;\n        }\n    }\n}\n"
+    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
+    \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
+    \ = Aop(x, data[k], d);\n        if (k < n) {\n            if (lazyflag[k]) {\n\
+    \                lazy[k] = E::op(lazy[k], x);\n            }\n            else\
+    \ {\n                lazy[k] = x;\n                lazyflag[k] = true;\n     \
+    \       }\n        }\n    }\n    void eval(int k, int d) {\n        if (lazyflag[k])\
+    \ {\n            all_apply(k << 1, lazy[k], d >> 1);\n            all_apply(k\
+    \ << 1 ^ 1, lazy[k], d >> 1);\n            lazyflag[k] = false;\n        }\n \
+    \   }\n    void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\
+    \ }\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
+    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    LazySegmentTree(int\
+    \ n, const T& v)\n        : LazySegmentTree(std::vector<T>(n, v)) {}\n    LazySegmentTree(const\
+    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
+    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
+    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
+    \ false);\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r\
+    \ && r <= ori);\n        if (l == r) return M::id();\n\n        l += n, r += n;\n\
+    \        rreps (i, h) {\n            bool seen = false;\n            if (((l >>\
+    \ i) << i) != l) eval(l >> i, 1 << i), seen = true;\n            if (((r >> i)\
+    \ << i) != r) eval((r - 1) >> i, 1 << i), seen = true;\n            if (!seen)\
+    \ break;\n        }\n\n        T lsm = M::id(), rsm = M::id();\n        while\
+    \ (l != r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n          \
+    \  if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1, r >>= 1;\n  \
+    \      }\n        return M::op(lsm, rsm);\n    }\n    T get(int k) {\n       \
+    \ assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >>\
+    \ i, 1 << i);\n        return data[k];\n    }\n    T all_prod() const { return\
+    \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
+    \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
+    \ >> i, 1 << i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k\
+    \ >> i);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const\
+    \ T&) -> T { return x; });\n    }\n    void apply(int k, const U& x) {\n     \
+    \   update(k, [&](const T& a) -> T { return A::op(x, a); });\n    }\n    void\
+    \ apply(int l, int r, const U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        if (l == r) return;\n\n        l += n, r += n;\n        int lst = h +\
+    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
+    \ i, 1 << i), lst = i;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
+    \ i, 1 << i), lst = i;\n            if (lst != i) break;\n        }\n\n      \
+    \  for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {\n\
+    \            if (l2 & 1) all_apply(l2++, x, d);\n            if (r2 & 1) all_apply(--r2,\
+    \ x, d);\n        }\n\n        rep (i, lst, h + 1) {\n            if (((l >> i)\
+    \ << i) != l) calc(l >> i);\n            if (((r >> i) << i) != r) calc((r - 1)\
+    \ >> i);\n        }\n    }\n    template<class C> int max_right(int l, const C&\
+    \ cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
+    \            if (((l >> i) << i) != l) eval(l >> i, 1 << i);\n            else\
+    \ break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n        do\
+    \ {\n            while ((l & 1) == 0) l >>= 1, d <<= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    eval(l, d);\n\
+    \                    l <<= 1;\n                    d >>= 1;\n                \
+    \    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n              \
+    \  }\n                return l - n;\n            }\n            sm = M::op(sm,\
+    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
+    \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
+    \ <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r == 0) return\
+    \ 0;\n\n        r += n;\n        rreps (i, h) {\n            if (((r >> i) <<\
+    \ i) != r) eval((r - 1) >> i, 1 << i);\n            else break;\n        }\n\n\
+    \        T sm = M::id();\n        int d = 1;\n        do {\n            --r;\n\
+    \            while ((r & 1) && r > 1) r >>= 1, d <<= 1;\n            if (!cond(M::op(data[r],\
+    \ sm))) {\n                while (r < n) {\n                    eval(r, d);\n\
+    \                    r = r << 1 ^ 1;\n                    d >>= 1;\n         \
+    \           if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);\n       \
+    \         }\n                return r + 1 - n;\n            }\n            sm\
+    \ = M::op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
+    \    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeUpdateQueryRangeMinimumQuery\
+    \ =\n    LazySegmentTree<Monoid::AssignMin<T, max_value>>;\n\ntemplate<class T,\
+    \ T min_value = infinity<T>::min>\nusing RangeUpdateQueryRangeMaximumQuery =\n\
+    \    LazySegmentTree<Monoid::AssignMax<T, min_value>>;\n\ntemplate<class T>\n\
+    using RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\
+    \ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeAddQueryRangeMinimumQuery\
+    \ =\n    LazySegmentTree<Monoid::AddMin<T, max_value>>;\n\ntemplate<class T, T\
+    \ min_value = infinity<T>::min>\nusing RangeAddQueryRangeMaximumQuery =\n    LazySegmentTree<Monoid::AddMax<T,\
+    \ min_value>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery = LazySegmentTree<Monoid::AddSum<T>>;\n\
+    \ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeChminQueryRangeMinimumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChminMin<T, max_value>>;\n\ntemplate<class T,\
+    \ T min_value = infinity<T>::min>\nusing RangeChminQueryRangeMaximumQuery =\n\
+    \    LazySegmentTree<Monoid::ChminMax<T, min_value>>;\n\ntemplate<class T, T max_value\
+    \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
+    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
+    \ */\n#line 6 \"data-struct/other/AreaofUnionofRectangles.hpp\"\n\nll area_of_union_of_rectangles(const\
+    \ std::vector<std::array<ll, 4>>& A) {\n    const int N = A.size();\n    presser<ll>\
+    \ ps;\n    rep (i, N) {\n        ps.push_back(A[i][0]);\n        ps.push_back(A[i][2]);\n\
+    \    }\n    ps.build();\n    std::vector<std::array<ll, 4>> B(2 * N);\n    rep\
+    \ (i, N) {\n        const ll l = ps.get(A[i][0]), r = ps.get(A[i][2]);\n     \
+    \   B[2 * i] = {A[i][1], l, r, 1};\n        B[2 * i + 1] = {A[i][3], l, r, -1};\n\
+    \    }\n    std::sort(all(B));\n    LazySegmentTree<Monoid::AddMinCount<ll>> seg([&]\
+    \ {\n        std::vector<std::pair<ll, ll>> v(ps.size() - 1);\n        rep (i,\
+    \ ps.size() - 1) v[i] = {0, ps[i + 1] - ps[i]};\n        return v;\n    }());\n\
+    \    const ll w = ps[ps.size() - 1] - ps[0];\n    ll res = 0;\n    rep (i, 2 *\
+    \ N - 1) {\n        seg.apply(B[i][1], B[i][2], B[i][3]);\n        const auto\
+    \ p = seg.all_prod();\n        const ll t = p.first == 0 ? p.second : 0;\n   \
+    \     res += (w - t) * (B[i + 1][0] - B[i][0]);\n    }\n    return res;\n}\n#line\
+    \ 4 \"test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp\"\nusing\
+    \ namespace std;\nint main() {\n    int N; scan >> N;\n    vector<array<ll, 4>>\
+    \ A(N); scan >> A;\n    prints(area_of_union_of_rectangles(A));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/AreaofUnionofRectangles.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<array<ll,\
+    \ 4>> A(N); scan >> A;\n    prints(area_of_union_of_rectangles(A));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -753,20 +681,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - data-struct/other/AreaofUnionofRectangles.hpp
   - other/monoid2.hpp
   - other/monoid.hpp
-  - math/ModInt.hpp
-  - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/segment/LazySegmentTree.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
   timestamp: '2023-05-27 11:16:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+documentation_of: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-- /verify/test/yosupo/data_structure/deque_operate_all_composite.test.cpp.html
-title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+- /verify/test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+- /verify/test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp.html
+title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
 ---
