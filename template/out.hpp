@@ -116,17 +116,19 @@ public:
         rrep (i, len) print_char((char)(a[i] + '0'));
     }
     template<class T,
-             typename std::enable_if<std::is_integral<T>::value &&
+             typename std::enable_if<is_int<T>::value &&
                                      !has_print<T>::value>::type* = nullptr>
     void print(T a) {
         if (!a) {
             print_char('0');
             return;
         }
-        if IF_CONSTEXPR (std::is_signed<T>::value) {
+        if IF_CONSTEXPR (is_signed_int<T>::value) {
             if (a < 0) {
                 print_char('-');
-                a = -a;
+                using U = typename make_unsigned_int<T>::type;
+                print(static_cast<U>(-static_cast<U>(a)));
+                return;
             }
         }
         std::string s;

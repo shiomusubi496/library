@@ -2,8 +2,7 @@
 
 #include "../../other/template.hpp"
 
-template<class T, class Comp = std::less<T>>
-class IntervalHeap {
+template<class T, class Comp = std::less<T>> class IntervalHeap {
 private:
     std::vector<T> dat;
     Comp cmp;
@@ -59,7 +58,8 @@ public:
     IntervalHeap() {}
     IntervalHeap(std::vector<T> v) : dat(v) {
         rrep (i, dat.size()) {
-            if ((i & 1) && cmp(dat[i - 1], dat[i])) std::swap(dat[i - 1], dat[i]);
+            if ((i & 1) && cmp(dat[i - 1], dat[i]))
+                std::swap(dat[i - 1], dat[i]);
             down(i, i | 1);
         }
     }

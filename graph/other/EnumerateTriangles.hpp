@@ -6,8 +6,10 @@
 template<class T>
 std::vector<std::array<int, 3>> enumerate_triangles(const Graph<T>& G) {
     int n = G.size();
-    std::vector<int> ord(n); std::iota(all(ord), 0);
-    std::sort(all(ord), [&](int a, int b) { return G[a].size() < G[b].size(); });
+    std::vector<int> ord(n);
+    std::iota(all(ord), 0);
+    std::sort(all(ord),
+              [&](int a, int b) { return G[a].size() < G[b].size(); });
     UnweightedGraph H(n);
     {
         std::vector<bool> used(n, false);

@@ -55,6 +55,26 @@ using function_traits =
     typename function_traits_helper<decltype(&F::operator())>::type;
 
 
+template<class T>
+using is_signed_int =
+    std::disjunction<std::conjunction<std::is_integral<T>, std::is_signed<T>>,
+                     std::is_same<T, __int128_t>>;
+template<class T>
+using is_unsigned_int =
+    std::disjunction<std::conjunction<std::is_integral<T>, std::is_unsigned<T>>,
+                     std::is_same<T, __uint128_t>>;
+template<class T>
+using is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;
+template<class T>
+using make_signed_int = typename std::conditional<
+    std::is_same<T, __int128_t>::value || std::is_same<T, __uint128_t>::value,
+    std::common_type<__int128_t>, std::make_signed<T>>::type;
+template<class T>
+using make_unsigned_int = typename std::conditional<
+    std::is_same<T, __int128_t>::value || std::is_same<T, __uint128_t>::value,
+    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;
+
+
 template<class T, class = void> struct is_range : std::false_type {};
 template<class T>
 struct is_range<
@@ -110,6 +130,6 @@ template<class T> using double_size_uint_t = typename double_size_uint<T>::type;
 
 template<class T>
 using double_size =
-    typename std::conditional<std::is_signed<T>::value, double_size_int<T>,
+    typename std::conditional<is_signed_int<T>::value, double_size_int<T>,
                               double_size_uint<T>>::type;
 template<class T> using double_size_t = typename double_size<T>::type;

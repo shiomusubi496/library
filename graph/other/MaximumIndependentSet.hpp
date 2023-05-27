@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "../Graph.hpp"
 
-template<unsigned int SZ = 64>
-class MinimumVertexCover {
+template<unsigned int SZ = 64> class MinimumVertexCover {
 private:
     int n;
     std::vector<std::bitset<SZ>> G;
@@ -13,19 +12,20 @@ private:
     void dfs(std::bitset<SZ> used, std::bitset<SZ> flag) {
         if (used.count() >= ans.count()) return;
         int v = -1, deg = -1;
-        rep (i, n) if (flag[i]) {
-            auto tmp = flag & G[i];
-            int d = tmp.count();
-            if (d <= 1) {
-                flag.reset(i);
-                dfs(used | tmp, flag ^ tmp);
-                return;
+        rep (i, n)
+            if (flag[i]) {
+                auto tmp = flag & G[i];
+                int d = tmp.count();
+                if (d <= 1) {
+                    flag.reset(i);
+                    dfs(used | tmp, flag ^ tmp);
+                    return;
+                }
+                if (d > deg) {
+                    deg = d;
+                    v = i;
+                }
             }
-            if (d > deg) {
-                deg = d;
-                v = i;
-            }
-        }
         if (v == -1) {
             ans = used;
             return;
@@ -46,8 +46,7 @@ private:
     }
 
 public:
-    template<class T>
-    MinimumVertexCover(const Graph<T>& G_) {
+    template<class T> MinimumVertexCover(const Graph<T>& G_) {
         n = G_.size();
         G.assign(n, std::bitset<SZ>());
         rep (i, n) {
@@ -66,14 +65,12 @@ public:
     std::bitset<SZ> get_bitset() && { return std::move(ans); }
 };
 
-template<unsigned int SZ = 64>
-class MaximumIndependentSet {
+template<unsigned int SZ = 64> class MaximumIndependentSet {
 private:
     std::vector<int> res;
 
 public:
-    template<class T>
-    MaximumIndependentSet(const Graph<T>& G) {
+    template<class T> MaximumIndependentSet(const Graph<T>& G) {
         int n = G.size();
         auto bit = MinimumVertexCover<SZ>(G).get_bitset();
         rep (i, n) {

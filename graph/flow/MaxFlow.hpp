@@ -57,7 +57,8 @@ public:
                 que.push(s);
                 dist[s] = 0;
                 while (!que.empty()) {
-                    int v = que.front(); que.pop();
+                    int v = que.front();
+                    que.pop();
                     each_const (e : g[v]) {
                         if (e.cap > T{0} && dist[e.to] == -1) {
                             dist[e.to] = dist[v] + 1;

@@ -10,7 +10,8 @@ std::vector<std::vector<int>> enumerate_cliques(const Graph<T>& G) {
     rep (i, n) {
         each_const (e : G[i]) adj[i][e.to] = true;
     }
-    std::vector<int> vert(n); std::iota(all(vert), 0);
+    std::vector<int> vert(n);
+    std::iota(all(vert), 0);
     std::vector<std::vector<int>> res;
     while (!vert.empty()) {
         int v = -1, mn_d = n + 1;

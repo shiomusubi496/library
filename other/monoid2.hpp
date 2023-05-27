@@ -81,9 +81,7 @@ template<class T> struct AddMinCount {
     using M = MinCount<T>;
     using E = Sum<T>;
     using U = typename M::value_type;
-    static U op(const T& a, const U& b) {
-        return {a + b.first, b.second};
-    }
+    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }
 };
 
 } // namespace Monoid

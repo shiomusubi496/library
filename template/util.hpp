@@ -122,7 +122,7 @@ public:
         return res;
     }
     void press(std::vector<T>& vec) const {
-        static_assert(std::is_integral<T>::value,
+        static_assert(std::is_convertible<T, int>::value,
                       "template argument must be convertible from int type");
         assert(sorted);
         each_for (i : vec) i = get(i);

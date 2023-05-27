@@ -115,12 +115,11 @@ public:
 
 namespace std {
 
-template<class T>
-Rational<T> abs(const Rational<T>& x) {
+template<class T> Rational<T> abs(const Rational<T>& x) {
     return Rational<T>(abs(x.get_num()), x.get_den());
 }
 
-}
+} // namespace std
 
 using Fraction = Rational<ll>;
 

@@ -4,8 +4,7 @@
 #include "../Graph.hpp"
 #include "Kruskal.hpp"
 
-template<class T>
-class ManhattanMST {
+template<class T> class ManhattanMST {
 private:
     std::vector<std::pair<T, T>> ps;
     Edges<T> edges;
@@ -22,13 +21,18 @@ public:
         std::iota(all(ord), 0);
         rep (s, 2) {
             rep (t, 2) {
-                std::sort(all(ord), [&](int i, int j) { return xs[i] + ys[i] < xs[j] + ys[j]; });
+                std::sort(all(ord), [&](int i, int j) {
+                    return xs[i] + ys[i] < xs[j] + ys[j];
+                });
                 std::map<T, int> mp;
                 for (int i : ord) {
-                    for (auto it = mp.lower_bound(-ys[i]); it != mp.end(); it = mp.erase(it)) {
+                    for (auto it = mp.lower_bound(-ys[i]); it != mp.end();
+                         it = mp.erase(it)) {
                         int j = it->second;
                         if (xs[i] - ys[i] < xs[j] - ys[j]) break;
-                        edges.emplace_back(i, j, std::abs(xs[i] - xs[j]) + std::abs(ys[i] - ys[j]));
+                        edges.emplace_back(i, j,
+                                           std::abs(xs[i] - xs[j]) +
+                                               std::abs(ys[i] - ys[j]));
                     }
                     mp[-ys[i]] = i;
                 }

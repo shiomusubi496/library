@@ -118,24 +118,35 @@ public:
         }
     }
     template<class T,
-             typename std::enable_if<std::is_integral<T>::value &&
+             typename std::enable_if<is_signed_int<T>::value &&
                                      !has_scan<T>::value>::type* = nullptr>
     void scan(T& a) {
         discard_space();
-        bool sgn = false;
-        if IF_CONSTEXPR (std::is_signed<T>::value) {
-            if (*itr == '-') {
-                sgn = true;
+        if (*itr == '-') {
+            ++itr;
+            a = 0;
+            while ('0' <= *itr && *itr <= '9') {
+                a = a * 10 - (*itr - '0');
                 ++itr;
             }
         }
+        else {
+            a = 0;
+            while ('0' <= *itr && *itr <= '9') {
+                a = a * 10 + (*itr - '0');
+                ++itr;
+            }
+        }
+    }
+    template<class T,
+             typename std::enable_if<is_unsigned_int<T>::value &&
+                                     !has_scan<T>::value>::type* = nullptr>
+    void scan(T& a) {
+        discard_space();
         a = 0;
         while ('0' <= *itr && *itr <= '9') {
             a = a * 10 + *itr - '0';
             ++itr;
-        }
-        if IF_CONSTEXPR (std::is_signed<T>::value) {
-            if (sgn) a = -a;
         }
     }
     template<class T,
