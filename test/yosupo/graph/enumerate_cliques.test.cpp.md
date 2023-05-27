@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: graph/other/EnumerateCliques.hpp
     title: EnumerateCliques
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'

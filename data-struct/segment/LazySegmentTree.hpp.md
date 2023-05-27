@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -36,16 +36,16 @@ data:
     path: data-struct/other/AreaofUnionofRectangles.hpp
     title: data-struct/other/AreaofUnionofRectangles.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
     title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/LazySegmentTree.md
     document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
@@ -555,15 +555,15 @@ data:
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value> class LazySegmentTree\
-    \ {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\");\n\n\
-    private:\n    using M = typename A::M;\n    using E = typename A::E;\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n    int\
-    \ h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
     \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
@@ -648,15 +648,15 @@ data:
     \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value> class LazySegmentTree\
-    \ {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\");\n\n\
-    private:\n    using M = typename A::M;\n    using E = typename A::E;\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n    int\
-    \ h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
     \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
@@ -755,8 +755,8 @@ data:
   path: data-struct/segment/LazySegmentTree.hpp
   requiredBy:
   - data-struct/other/AreaofUnionofRectangles.hpp
-  timestamp: '2023-05-27 16:39:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-05-27 17:06:19+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp

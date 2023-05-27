@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_B-intersect.test.cpp
     title: test/aoj/CGL/CGL_2_B-intersect.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_C-intersection.test.cpp
     title: test/aoj/CGL/CGL_2_C-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_2_D-distance.test.cpp
     title: test/aoj/CGL/CGL_2_D-distance.test.cpp
   - icon: ':x:'

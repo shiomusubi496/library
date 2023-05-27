@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -540,15 +540,15 @@ data:
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value> class LazySegmentTree\
-    \ {\n    static_assert(Monoid::is_action<A>::value, \"A must be action\");\n\n\
-    private:\n    using M = typename A::M;\n    using E = typename A::E;\n    using\
-    \ T = typename M::value_type;\n    using U = typename E::value_type;\n    int\
-    \ h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
-    \ lazyflag;\n\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
+    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
+    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
+    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
+    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
+    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
+    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
+    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
     \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
@@ -765,7 +765,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2023-05-27 16:39:47+09:00'
+  timestamp: '2023-05-27 17:06:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp

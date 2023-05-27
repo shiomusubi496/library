@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':x:'
@@ -570,16 +570,15 @@ data:
     \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
     \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
     };\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A, bool\
-    \ = Monoid::has_mul_op<A>::value> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
-    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
-    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
-    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
-    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
-    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \n\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\n\ntemplate<class A> class\
+    \ LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value, \"A must be\
+    \ action\");\n\nprivate:\n    using M = typename A::M;\n    using E = typename\
+    \ A::E;\n    using T = typename M::value_type;\n    using U = typename E::value_type;\n\
+    \    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U> lazy;\n    std::vector<bool>\
+    \ lazyflag;\n\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
+    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
     \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
@@ -705,7 +704,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/AreaofUnionofRectangles.hpp
   requiredBy: []
-  timestamp: '2023-05-27 16:39:47+09:00'
+  timestamp: '2023-05-27 17:06:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
