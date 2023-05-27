@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/DivisorZetaMoebiusTransform.hpp
     title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/LcmConvolution.hpp
     title: LCMConvolution
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   - icon: ':question:'
@@ -46,9 +46,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lcm_convolution
@@ -744,7 +744,7 @@ data:
   path: test/yosupo/convolution/lcm_convolution.test.cpp
   requiredBy: []
   timestamp: '2023-05-27 16:39:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/lcm_convolution.test.cpp
 layout: document

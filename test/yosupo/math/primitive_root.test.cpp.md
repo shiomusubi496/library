@@ -14,7 +14,7 @@ data:
   - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':question:'

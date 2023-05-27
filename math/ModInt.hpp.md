@@ -38,10 +38,10 @@ data:
   - icon: ':x:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
@@ -63,25 +63,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
     title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
     title: test/yosupo/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/gcd_convolution.test.cpp
     title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
   - icon: ':x:'
