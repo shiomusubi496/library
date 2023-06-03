@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
   - icon: ':question:'
@@ -565,8 +565,8 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
 documentation_of: graph/mst/Prim.hpp
 layout: document
 redirect_from:

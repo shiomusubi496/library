@@ -812,10 +812,10 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: math/PrimitiveRoot.hpp
 layout: document
 redirect_from:

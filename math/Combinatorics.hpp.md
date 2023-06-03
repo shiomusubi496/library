@@ -682,12 +682,12 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
 documentation_of: math/Combinatorics.hpp
 layout: document
 redirect_from:

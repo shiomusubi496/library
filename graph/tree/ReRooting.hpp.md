@@ -680,8 +680,8 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/tree_path_composite_sum.test.cpp
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
+  - test/yosupo/new/tree_path_composite_sum.test.cpp
 documentation_of: graph/tree/ReRooting.hpp
 layout: document
 redirect_from:

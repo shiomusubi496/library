@@ -571,8 +571,8 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/two_sat.test.cpp
   - test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - test/yosupo/math/two_sat.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:

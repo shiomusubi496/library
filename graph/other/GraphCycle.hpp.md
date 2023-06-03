@@ -547,8 +547,8 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/cycle_detection.test.cpp
   - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
+  - test/yosupo/graph/cycle_detection.test.cpp
 documentation_of: graph/other/GraphCycle.hpp
 layout: document
 redirect_from:

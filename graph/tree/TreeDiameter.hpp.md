@@ -560,8 +560,8 @@ data:
   timestamp: '2023-05-27 16:39:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/tree/tree_diameter.test.cpp
   - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/yosupo/tree/tree_diameter.test.cpp
 documentation_of: graph/tree/TreeDiameter.hpp
 layout: document
 redirect_from:
