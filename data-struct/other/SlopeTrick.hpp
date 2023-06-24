@@ -19,13 +19,13 @@ public:
     }
     void add(T a) { minval += a; }
     void a_x(T a) {
-        minval += max<T>(a - (R.top() + addR), 0);
+        minval += std::max<T>(a - (R.top() + addR), 0);
         R.push(a - addR);
         L.push((R.top() + addR) - addL);
         R.pop();
     }
     void x_a(T a) {
-        minval += max<T>((L.top() + addL) - a, 0);
+        minval += std::max<T>((L.top() + addL) - a, 0);
         L.push(a - addL);
         R.push((L.top() + addL) - addR);
         L.pop();
