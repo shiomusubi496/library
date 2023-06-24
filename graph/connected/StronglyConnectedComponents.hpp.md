@@ -36,7 +36,7 @@ data:
     path: graph/other/TwoSatisfiability.hpp
     title: TwoSatisfiability(2-SAT)
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
     title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yosupo/math/two_sat.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/connected/StronglyConnectedComponents.md
     document_title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\
@@ -175,11 +175,12 @@ data:
     \ == reader->sz) reader->read_buf();\n            if (reader->idx < reader->sz)\
     \ return reader->buffer[reader->idx];\n            reader->state = false;\n  \
     \          return '\\0';\n        }\n        bool rdstate() const { return reader->state;\
-    \ }\n    };\n\n    iterator begin() noexcept { return iterator(this); }\n};\n\n\
-    Reader<> reader(0);\n\ntemplate<class Iterator, std::size_t decimal_precision\
-    \ = 16> class Scanner {\npublic:\n    using iterator_type = Iterator;\n\nprivate:\n\
-    \    template<class, class = void> struct has_scan : std::false_type {};\n   \
-    \ template<class T>\n    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
+    \ }\n        void setstate(bool state) { reader->state = state; }\n    };\n\n\
+    \    iterator begin() noexcept { return iterator(this); }\n};\n\nReader<> reader(0);\n\
+    \ntemplate<class Iterator, std::size_t decimal_precision = 16> class Scanner {\n\
+    public:\n    using iterator_type = Iterator;\n\nprivate:\n    template<class,\
+    \ class = void> struct has_scan : std::false_type {};\n    template<class T>\n\
+    \    struct has_scan<\n        T, decltype(std::declval<T>().scan(std::declval<Scanner&>()),\
     \ (void)0)>\n        : std::true_type {};\n    Iterator itr;\n\npublic:\n    Scanner()\
     \ = default;\n    Scanner(const Iterator& itr) : itr(itr) {}\n\n    char scan_char()\
     \ {\n        char c = *itr;\n        ++itr;\n        return c;\n    }\n\n    Scanner\
@@ -231,22 +232,22 @@ data:
     \ Args&... args) {\n        scan(head);\n        operator()(args...);\n    }\n\
     \n    template<class T> Scanner& operator>>(T& a) {\n        scan(a);\n      \
     \  return *this;\n    }\n\n    explicit operator bool() const { return itr.rdstate();\
-    \ }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n\ntemplate<class\
-    \ Iterator, std::size_t decimal_precision>\nScanner<Iterator, decimal_precision>&\n\
-    getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {\n    a.clear();\n\
-    \    char c;\n    while ((c = scan.scan_char()) != '\\n') {\n        a += c;\n\
-    \    }\n    return scan;\n}\n#line 2 \"template/out.hpp\"\n\n#line 8 \"template/out.hpp\"\
-    \n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE> class Writer {\nprivate:\n\
-    \    int fd, idx;\n    std::array<char, buf_size> buffer;\n    inline void write_buf()\
-    \ {\n        int num = write(fd, buffer.begin(), idx);\n        idx = 0;\n   \
-    \     if (num < 0) throw std::runtime_error(\"output failed\");\n    }\n\npublic:\n\
-    \    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int fd) noexcept : fd(fd),\
-    \ idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)), idx(0) {}\n\n   \
-    \ ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n        Writer*\
-    \ writer;\n\n    public:\n        using difference_type = void;\n        using\
-    \ value_type = void;\n        using pointer = void;\n        using reference =\
-    \ void;\n        using iterator_category = std::output_iterator_tag;\n\n     \
-    \   iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
+    \ }\n\n    friend Scanner& getline(Scanner& scan, std::string& a) {\n        a.erase();\n\
+    \        char c;\n        if ((c = scan.scan_char()) == '\\n' || c == '\\0') return\
+    \ scan;\n        a += c;\n        while ((c = scan.scan_char()) != '\\n' && c\
+    \ != '\\0') a += c;\n        scan.itr.setstate(true);\n        return scan;\n\
+    \    }\n};\n\nScanner<Reader<>::iterator> scan(reader.begin());\n#line 2 \"template/out.hpp\"\
+    \n\n#line 8 \"template/out.hpp\"\n\ntemplate<std::size_t buf_size = IO_BUFFER_SIZE>\
+    \ class Writer {\nprivate:\n    int fd, idx;\n    std::array<char, buf_size> buffer;\n\
+    \    inline void write_buf() {\n        int num = write(fd, buffer.begin(), idx);\n\
+    \        idx = 0;\n        if (num < 0) throw std::runtime_error(\"output failed\"\
+    );\n    }\n\npublic:\n    Writer() noexcept : fd(1), idx(0) {}\n    Writer(int\
+    \ fd) noexcept : fd(fd), idx(0) {}\n    Writer(FILE* fp) noexcept : fd(fileno(fp)),\
+    \ idx(0) {}\n\n    ~Writer() { write_buf(); }\n\n    class iterator {\n    private:\n\
+    \        Writer* writer;\n\n    public:\n        using difference_type = void;\n\
+    \        using value_type = void;\n        using pointer = void;\n        using\
+    \ reference = void;\n        using iterator_category = std::output_iterator_tag;\n\
+    \n        iterator() noexcept : writer(nullptr) {}\n        explicit iterator(Writer&\
     \ writer) noexcept : writer(&writer) {}\n        explicit iterator(Writer* writer)\
     \ noexcept : writer(writer) {}\n\n        iterator& operator++() {\n         \
     \   ++writer->idx;\n            if (writer->idx == buf_size) writer->write_buf();\n\
@@ -568,11 +569,11 @@ data:
   path: graph/connected/StronglyConnectedComponents.hpp
   requiredBy:
   - graph/other/TwoSatisfiability.hpp
-  timestamp: '2023-05-27 16:39:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-06-24 12:49:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
   - test/yosupo/math/two_sat.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
 documentation_of: graph/connected/StronglyConnectedComponents.hpp
 layout: document
 redirect_from:
