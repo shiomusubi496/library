@@ -42,19 +42,19 @@ data:
     path: geometry/All.hpp
     title: geometry/All.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_A-intersect.test.cpp
     title: test/aoj/CGL/CGL_7_A-intersect.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_D-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_D-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_E-intersection.test.cpp
     title: test/aoj/CGL/CGL_7_E-intersection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_F-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_F-tangent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
     title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geometry/Circle.hpp\"\n\n#line 2 \"geometry/template.hpp\"\
@@ -715,7 +715,7 @@ data:
   requiredBy:
   - geometry/All.hpp
   timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/aoj/CGL/CGL_7_G-common-tangent.test.cpp

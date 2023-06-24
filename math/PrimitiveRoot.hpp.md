@@ -5,7 +5,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':x:'

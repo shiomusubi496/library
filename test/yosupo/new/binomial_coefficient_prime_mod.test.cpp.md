@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'

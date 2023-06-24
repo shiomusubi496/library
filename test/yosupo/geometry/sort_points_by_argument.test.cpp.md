@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: geometry/All.hpp
     title: geometry/All.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Circle.hpp
     title: geometry/Circle.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: geometry/Segment.hpp
     title: geometry/Segment.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geometry/Triangle.hpp
     title: geometry/Triangle.hpp
   - icon: ':question:'

@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_4_C-cut.test.cpp
     title: test/aoj/CGL/CGL_4_C-cut.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL/CGL_5_A-closest.test.cpp
     title: test/aoj/CGL/CGL_5_A-closest.test.cpp
   - icon: ':x:'

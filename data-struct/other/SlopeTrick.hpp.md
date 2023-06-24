@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -32,37 +29,33 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/SegmentTreeBeats.md
-    document_title: SegmentTreeBeats!
+    _deprecated_at_docs: docs/other/SlopeTrick.md
+    document_title: SlopeTrick
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/SegmentTreeBeats.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+  bundledCode: "#line 2 \"data-struct/other/SlopeTrick.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -454,331 +447,40 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"other/monoid.hpp\"\n\n#line\
-    \ 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\
-    \ class has_op : public std::false_type {};\ntemplate<class M>\nclass has_op<M,\
-    \ decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_id : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SegmentTreeBeats.hpp\"\
-    \n\ntemplate<class A> class SegmentTreeBeats {\nprivate:\n    using M = typename\
-    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
-    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(int k, const U& x) {\n        data[k] =\
-    \ Aop(x, data[k], 1 << (h - bitop::msb(k)));\n        if (k < n) {\n         \
-    \   if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n       \
-    \     }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n    }\n    void eval(int k) {\n        if\
-    \ (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  \
-    \  void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]); }\n\n \
-    \   template<class Upd>\n    void update(int k, int a, int b, int p, const Upd&\
-    \ upd) {\n        if (a + 1 == b) {\n            data[k] = upd(data[k]);\n   \
-    \         return;\n        }\n        eval(k);\n        int m = (a + b) >> 1;\n\
-    \        if (p < m) update(k << 1, a, m, p, upd);\n        else update(k << 1\
-    \ ^ 1, m, b, p, upd);\n        calc(k);\n    }\n    void apply(int k, int a, int\
-    \ b, int l, int r, const U& x) {\n        if (r <= a || b <= l || A::break_cond(data[k],\
-    \ x)) return;\n        if (l <= a && b <= r && A::tag_cond(data[k], x)) {\n  \
-    \          all_apply(k, x);\n            return;\n        }\n        eval(k);\n\
-    \        int m = (a + b) >> 1;\n        apply(k << 1, a, m, l, r, x);\n      \
-    \  apply(k << 1 ^ 1, m, b, l, r, x);\n        calc(k);\n    }\n    T prod(int\
-    \ k, int a, int b, int l, int r) {\n        if (r <= a || b <= l) return M::id();\n\
-    \        if (l <= a && b <= r) return data[k];\n        eval(k);\n        int\
-    \ m = (a + b) >> 1;\n        return M::op(prod(k << 1, a, m, l, r), prod(k <<\
-    \ 1 ^ 1, m, b, l, r));\n    }\n\npublic:\n    SegmentTreeBeats() : SegmentTreeBeats(0)\
-    \ {}\n    SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n, M::id()))\
-    \ {}\n    SegmentTreeBeats(int n, const T& v)\n        : SegmentTreeBeats(std::vector<T>(n,\
-    \ v)) {}\n    SegmentTreeBeats(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n\
-    \        lazyflag.resize(n, false);\n    }\n    template<class Upd> void update(int\
-    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(1,\
-    \ 0, n, k, upd);\n    }\n    void set(int k, const T& x) {\n        update(k,\
-    \ [&](const T&) -> T { return x; });\n    }\n    void apply(int k, const U& x)\
-    \ {\n        update(k, [&](const T& a) -> T { return A::op(x, a); });\n    }\n\
-    \    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l <= r &&\
-    \ r <= ori);\n        apply(1, 0, n, l, r, x);\n    }\n    T prod(int l, int r)\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(1, 0,\
-    \ n, l, r);\n    }\n    T all_prod() const { return data[1]; }\n    T get(int\
-    \ k) { return prod(k, k + 1); }\n};\n\nnamespace Monoid {\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max,\n         T min_value = infinity<T>::min>\n\
-    struct ChmaxChminAddAssignMaxMinSum {\n    struct M {\n        struct value_type\
-    \ {\n            T mx, smx, cmx;\n            T mn, smn, cmn;\n            T sm;\n\
-    \        };\n        static value_type id() {\n            return {min_value,\
-    \ min_value, T{0}, max_value,\n                    max_value, T{0},      T{0}};\n\
-    \        }\n        static value_type get(T a) {\n            value_type res =\
-    \ id();\n            res.mx = res.mn = a;\n            res.cmx = res.cmn = 1;\n\
-    \            res.sm = a;\n            return res;\n        }\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            value_type res;\n\
-    \            if (a.mx > b.mx) {\n                res.mx = a.mx;\n            \
-    \    res.smx = std::max(a.smx, b.mx);\n                res.cmx = a.cmx;\n    \
-    \        }\n            else if (a.mx < b.mx) {\n                res.mx = b.mx;\n\
-    \                res.smx = std::max(a.mx, b.smx);\n                res.cmx = b.cmx;\n\
-    \            }\n            else {\n                res.mx = a.mx;\n         \
-    \       res.smx = std::max(a.smx, b.smx);\n                res.cmx = a.cmx + b.cmx;\n\
-    \            }\n            if (a.mn < b.mn) {\n                res.mn = a.mn;\n\
-    \                res.smn = std::min(a.smn, b.mn);\n                res.cmn = a.cmn;\n\
-    \            }\n            else if (a.mn > b.mn) {\n                res.mn =\
-    \ b.mn;\n                res.smn = std::min(a.mn, b.smn);\n                res.cmn\
-    \ = b.cmn;\n            }\n            else {\n                res.mn = a.mn;\n\
-    \                res.smn = std::min(a.smn, b.smn);\n                res.cmn =\
-    \ a.cmn + b.cmn;\n            }\n            res.sm = a.sm + b.sm;\n         \
-    \   return res;\n        }\n    };\n    struct E {\n        struct value_type\
-    \ {\n            T mx, mn, ad;\n            value_type() : mx(min_value), mn(max_value),\
-    \ ad(0) {}\n            value_type(const T& chmx, const T& chmn, const T& ad)\n\
-    \                : mx(chmx), mn(chmn), ad(ad) {}\n        };\n        static value_type\
-    \ id() { return value_type{}; }\n        static value_type op(const value_type&\
-    \ a, const value_type& b) {\n            T bmx = b.mx == min_value ? min_value\
-    \ : b.mx - a.ad;\n            T bmn = b.mn == max_value ? max_value : b.mn - a.ad;\n\
-    \            return {std::min(std::max(a.mx, bmx), bmn),\n                   \
-    \ std::min(std::max(a.mn, bmx), bmn), a.ad + b.ad};\n        }\n    };\n    using\
-    \ S = typename M::value_type;\n    using U = typename E::value_type;\n    static\
-    \ S mul_op(const U& a, int c, const S& b) {\n        S res = b;\n        if (a.mx\
-    \ > res.mn) {\n            assert(a.mx < res.smn);\n            res.sm += (a.mx\
-    \ - res.mn) * res.cmn;\n            if (res.mn == res.mx) res.mn = res.mx = a.mx;\n\
-    \            else if (res.mn == res.smx) res.mn = res.smx = a.mx;\n          \
-    \  else res.mn = a.mx;\n        }\n        if (a.mn < res.mx) {\n            assert(a.mn\
-    \ > res.smx);\n            res.sm += (a.mn - res.mx) * res.cmx;\n            if\
-    \ (res.mx == res.mn) res.mx = res.mn = a.mn;\n            else if (res.mx == res.smn)\
-    \ res.mx = res.smn = a.mn;\n            else res.mx = a.mn;\n        }\n     \
-    \   if (res.mx != min_value) res.mx += a.ad;\n        if (res.smx != min_value)\
-    \ res.smx += a.ad;\n        if (res.mn != max_value) res.mn += a.ad;\n       \
-    \ if (res.smn != max_value) res.smn += a.ad;\n        res.sm += a.ad * c;\n  \
-    \      return res;\n    }\n    static bool break_cond(const S& a, const U& b)\
-    \ {\n        if (b.mx != min_value) return a.mn >= b.mx;\n        if (b.mn !=\
-    \ max_value) return a.mx <= b.mn;\n        return false;\n    }\n    static bool\
-    \ tag_cond(const S& a, const U& b) {\n        if (b.mx != min_value) return a.smn\
-    \ > b.mx;\n        if (b.mn != max_value) return a.smx < b.mn;\n        return\
-    \ true;\n    }\n};\n\n} // namespace Monoid\n\n// range chmin chmax add assign\
-    \ query, range max min sum query\ntemplate<class T, T max_value = infinity<T>::max,\n\
-    \         T min_value = infinity<T>::min>\nclass SegTreeBeats {\nprivate:\n  \
-    \  using A = Monoid::ChmaxChminAddAssignMaxMinSum<T, max_value, min_value>;\n\
-    \    SegmentTreeBeats<A> seg;\n    static inline std::vector<typename A::M::value_type>\n\
-    \    convert_vec(const std::vector<T>& v) {\n        std::vector<typename A::M::value_type>\
-    \ res(v.size());\n        rep (i, v.size()) res[i] = A::M::get(v[i]);\n      \
-    \  return res;\n    }\n\npublic:\n    SegTreeBeats() = default;\n    SegTreeBeats(int\
-    \ n) : seg(n) {}\n    SegTreeBeats(int n, const T& v) : seg(n, A::M::get(v)) {}\n\
-    \    SegTreeBeats(const std::vector<T>& v) : seg(convert_vec(v)) {}\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        seg.update(k, upd);\n   \
-    \ }\n    void set(int k, const T& x) { seg.set(k, A::M::get(x)); }\n    void chmin(int\
-    \ l, int r, const T& x) {\n        auto y = A::E::id();\n        y.mn = x;\n \
-    \       seg.apply(l, r, y);\n    }\n    void chmax(int l, int r, const T& x) {\n\
-    \        auto y = A::E::id();\n        y.mx = x;\n        seg.apply(l, r, y);\n\
-    \    }\n    void add(int l, int r, const T& x) {\n        auto y = A::E::id();\n\
-    \        y.ad = x;\n        seg.apply(l, r, y);\n    }\n    void assign(int l,\
-    \ int r, const T& x) {\n        chmin(l, r, x);\n        chmax(l, r, x);\n   \
-    \ }\n    void chmin(int k, const T& x) { chmin(k, k + 1, x); }\n    void chmax(int\
-    \ k, const T& x) { chmax(k, k + 1, x); }\n    void add(int k, const T& x) { add(k,\
-    \ k + 1, x); }\n    void assign(int k, const T& x) { assign(k, k + 1, x); }\n\
-    \    T prod_max(int l, int r) { return seg.prod(l, r).mx; }\n    T prod_min(int\
-    \ l, int r) { return seg.prod(l, r).mn; }\n    T prod_sum(int l, int r) { return\
-    \ seg.prod(l, r).sm; }\n    T get(int k) { return seg.get(k).mx; }\n};\n\n/**\n\
-    \ * @brief SegmentTreeBeats!\n * @docs docs/data-struct/segment/SegmentTreeBeats.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A> class SegmentTreeBeats {\nprivate:\n    using M = typename\
-    \ A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
-    \    using U = typename E::value_type;\n    int h, n, ori;\n    std::vector<T>\
-    \ data;\n    std::vector<U> lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(int k, const U& x) {\n        data[k] =\
-    \ Aop(x, data[k], 1 << (h - bitop::msb(k)));\n        if (k < n) {\n         \
-    \   if (lazyflag[k]) {\n                lazy[k] = E::op(lazy[k], x);\n       \
-    \     }\n            else {\n                lazy[k] = x;\n                lazyflag[k]\
-    \ = true;\n            }\n        }\n    }\n    void eval(int k) {\n        if\
-    \ (lazyflag[k]) {\n            all_apply(k << 1, lazy[k]);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k]);\n            lazyflag[k] = false;\n        }\n    }\n  \
-    \  void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]); }\n\n \
-    \   template<class Upd>\n    void update(int k, int a, int b, int p, const Upd&\
-    \ upd) {\n        if (a + 1 == b) {\n            data[k] = upd(data[k]);\n   \
-    \         return;\n        }\n        eval(k);\n        int m = (a + b) >> 1;\n\
-    \        if (p < m) update(k << 1, a, m, p, upd);\n        else update(k << 1\
-    \ ^ 1, m, b, p, upd);\n        calc(k);\n    }\n    void apply(int k, int a, int\
-    \ b, int l, int r, const U& x) {\n        if (r <= a || b <= l || A::break_cond(data[k],\
-    \ x)) return;\n        if (l <= a && b <= r && A::tag_cond(data[k], x)) {\n  \
-    \          all_apply(k, x);\n            return;\n        }\n        eval(k);\n\
-    \        int m = (a + b) >> 1;\n        apply(k << 1, a, m, l, r, x);\n      \
-    \  apply(k << 1 ^ 1, m, b, l, r, x);\n        calc(k);\n    }\n    T prod(int\
-    \ k, int a, int b, int l, int r) {\n        if (r <= a || b <= l) return M::id();\n\
-    \        if (l <= a && b <= r) return data[k];\n        eval(k);\n        int\
-    \ m = (a + b) >> 1;\n        return M::op(prod(k << 1, a, m, l, r), prod(k <<\
-    \ 1 ^ 1, m, b, l, r));\n    }\n\npublic:\n    SegmentTreeBeats() : SegmentTreeBeats(0)\
-    \ {}\n    SegmentTreeBeats(int n) : SegmentTreeBeats(std::vector<T>(n, M::id()))\
-    \ {}\n    SegmentTreeBeats(int n, const T& v)\n        : SegmentTreeBeats(std::vector<T>(n,\
-    \ v)) {}\n    SegmentTreeBeats(const std::vector<T>& v) { init(v); }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n\
-    \        n = 1 << h;\n        data.assign(n << 1, M::id());\n        rep (i, ori)\
-    \ data[n + i] = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n\
-    \        lazyflag.resize(n, false);\n    }\n    template<class Upd> void update(int\
-    \ k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n        update(1,\
-    \ 0, n, k, upd);\n    }\n    void set(int k, const T& x) {\n        update(k,\
-    \ [&](const T&) -> T { return x; });\n    }\n    void apply(int k, const U& x)\
-    \ {\n        update(k, [&](const T& a) -> T { return A::op(x, a); });\n    }\n\
-    \    void apply(int l, int r, const U& x) {\n        assert(0 <= l && l <= r &&\
-    \ r <= ori);\n        apply(1, 0, n, l, r, x);\n    }\n    T prod(int l, int r)\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        return prod(1, 0,\
-    \ n, l, r);\n    }\n    T all_prod() const { return data[1]; }\n    T get(int\
-    \ k) { return prod(k, k + 1); }\n};\n\nnamespace Monoid {\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max,\n         T min_value = infinity<T>::min>\n\
-    struct ChmaxChminAddAssignMaxMinSum {\n    struct M {\n        struct value_type\
-    \ {\n            T mx, smx, cmx;\n            T mn, smn, cmn;\n            T sm;\n\
-    \        };\n        static value_type id() {\n            return {min_value,\
-    \ min_value, T{0}, max_value,\n                    max_value, T{0},      T{0}};\n\
-    \        }\n        static value_type get(T a) {\n            value_type res =\
-    \ id();\n            res.mx = res.mn = a;\n            res.cmx = res.cmn = 1;\n\
-    \            res.sm = a;\n            return res;\n        }\n        static value_type\
-    \ op(const value_type& a, const value_type& b) {\n            value_type res;\n\
-    \            if (a.mx > b.mx) {\n                res.mx = a.mx;\n            \
-    \    res.smx = std::max(a.smx, b.mx);\n                res.cmx = a.cmx;\n    \
-    \        }\n            else if (a.mx < b.mx) {\n                res.mx = b.mx;\n\
-    \                res.smx = std::max(a.mx, b.smx);\n                res.cmx = b.cmx;\n\
-    \            }\n            else {\n                res.mx = a.mx;\n         \
-    \       res.smx = std::max(a.smx, b.smx);\n                res.cmx = a.cmx + b.cmx;\n\
-    \            }\n            if (a.mn < b.mn) {\n                res.mn = a.mn;\n\
-    \                res.smn = std::min(a.smn, b.mn);\n                res.cmn = a.cmn;\n\
-    \            }\n            else if (a.mn > b.mn) {\n                res.mn =\
-    \ b.mn;\n                res.smn = std::min(a.mn, b.smn);\n                res.cmn\
-    \ = b.cmn;\n            }\n            else {\n                res.mn = a.mn;\n\
-    \                res.smn = std::min(a.smn, b.smn);\n                res.cmn =\
-    \ a.cmn + b.cmn;\n            }\n            res.sm = a.sm + b.sm;\n         \
-    \   return res;\n        }\n    };\n    struct E {\n        struct value_type\
-    \ {\n            T mx, mn, ad;\n            value_type() : mx(min_value), mn(max_value),\
-    \ ad(0) {}\n            value_type(const T& chmx, const T& chmn, const T& ad)\n\
-    \                : mx(chmx), mn(chmn), ad(ad) {}\n        };\n        static value_type\
-    \ id() { return value_type{}; }\n        static value_type op(const value_type&\
-    \ a, const value_type& b) {\n            T bmx = b.mx == min_value ? min_value\
-    \ : b.mx - a.ad;\n            T bmn = b.mn == max_value ? max_value : b.mn - a.ad;\n\
-    \            return {std::min(std::max(a.mx, bmx), bmn),\n                   \
-    \ std::min(std::max(a.mn, bmx), bmn), a.ad + b.ad};\n        }\n    };\n    using\
-    \ S = typename M::value_type;\n    using U = typename E::value_type;\n    static\
-    \ S mul_op(const U& a, int c, const S& b) {\n        S res = b;\n        if (a.mx\
-    \ > res.mn) {\n            assert(a.mx < res.smn);\n            res.sm += (a.mx\
-    \ - res.mn) * res.cmn;\n            if (res.mn == res.mx) res.mn = res.mx = a.mx;\n\
-    \            else if (res.mn == res.smx) res.mn = res.smx = a.mx;\n          \
-    \  else res.mn = a.mx;\n        }\n        if (a.mn < res.mx) {\n            assert(a.mn\
-    \ > res.smx);\n            res.sm += (a.mn - res.mx) * res.cmx;\n            if\
-    \ (res.mx == res.mn) res.mx = res.mn = a.mn;\n            else if (res.mx == res.smn)\
-    \ res.mx = res.smn = a.mn;\n            else res.mx = a.mn;\n        }\n     \
-    \   if (res.mx != min_value) res.mx += a.ad;\n        if (res.smx != min_value)\
-    \ res.smx += a.ad;\n        if (res.mn != max_value) res.mn += a.ad;\n       \
-    \ if (res.smn != max_value) res.smn += a.ad;\n        res.sm += a.ad * c;\n  \
-    \      return res;\n    }\n    static bool break_cond(const S& a, const U& b)\
-    \ {\n        if (b.mx != min_value) return a.mn >= b.mx;\n        if (b.mn !=\
-    \ max_value) return a.mx <= b.mn;\n        return false;\n    }\n    static bool\
-    \ tag_cond(const S& a, const U& b) {\n        if (b.mx != min_value) return a.smn\
-    \ > b.mx;\n        if (b.mn != max_value) return a.smx < b.mn;\n        return\
-    \ true;\n    }\n};\n\n} // namespace Monoid\n\n// range chmin chmax add assign\
-    \ query, range max min sum query\ntemplate<class T, T max_value = infinity<T>::max,\n\
-    \         T min_value = infinity<T>::min>\nclass SegTreeBeats {\nprivate:\n  \
-    \  using A = Monoid::ChmaxChminAddAssignMaxMinSum<T, max_value, min_value>;\n\
-    \    SegmentTreeBeats<A> seg;\n    static inline std::vector<typename A::M::value_type>\n\
-    \    convert_vec(const std::vector<T>& v) {\n        std::vector<typename A::M::value_type>\
-    \ res(v.size());\n        rep (i, v.size()) res[i] = A::M::get(v[i]);\n      \
-    \  return res;\n    }\n\npublic:\n    SegTreeBeats() = default;\n    SegTreeBeats(int\
-    \ n) : seg(n) {}\n    SegTreeBeats(int n, const T& v) : seg(n, A::M::get(v)) {}\n\
-    \    SegTreeBeats(const std::vector<T>& v) : seg(convert_vec(v)) {}\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        seg.update(k, upd);\n   \
-    \ }\n    void set(int k, const T& x) { seg.set(k, A::M::get(x)); }\n    void chmin(int\
-    \ l, int r, const T& x) {\n        auto y = A::E::id();\n        y.mn = x;\n \
-    \       seg.apply(l, r, y);\n    }\n    void chmax(int l, int r, const T& x) {\n\
-    \        auto y = A::E::id();\n        y.mx = x;\n        seg.apply(l, r, y);\n\
-    \    }\n    void add(int l, int r, const T& x) {\n        auto y = A::E::id();\n\
-    \        y.ad = x;\n        seg.apply(l, r, y);\n    }\n    void assign(int l,\
-    \ int r, const T& x) {\n        chmin(l, r, x);\n        chmax(l, r, x);\n   \
-    \ }\n    void chmin(int k, const T& x) { chmin(k, k + 1, x); }\n    void chmax(int\
-    \ k, const T& x) { chmax(k, k + 1, x); }\n    void add(int k, const T& x) { add(k,\
-    \ k + 1, x); }\n    void assign(int k, const T& x) { assign(k, k + 1, x); }\n\
-    \    T prod_max(int l, int r) { return seg.prod(l, r).mx; }\n    T prod_min(int\
-    \ l, int r) { return seg.prod(l, r).mn; }\n    T prod_sum(int l, int r) { return\
-    \ seg.prod(l, r).sm; }\n    T get(int k) { return seg.get(k).mx; }\n};\n\n/**\n\
-    \ * @brief SegmentTreeBeats!\n * @docs docs/data-struct/segment/SegmentTreeBeats.md\n\
-    \ */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/other/SlopeTrick.hpp\"\
+    \n\ntemplate<class T, class MaxQueue = std::priority_queue<T>,\n         class\
+    \ MinQueue = prique<T>>\nclass SlopeTrick {\n    T minval;\n    T addL, addR;\n\
+    \    MaxQueue L;\n    MinQueue R;\n\npublic:\n    SlopeTrick(T a = 0) {\n    \
+    \    addL = addR = 0;\n        minval = a;\n        L.push(-inf);\n        R.push(inf);\n\
+    \    }\n    void add(T a) { minval += a; }\n    void a_x(T a) {\n        minval\
+    \ += max<T>(a - (R.top() + addR), 0);\n        R.push(a - addR);\n        L.push((R.top()\
+    \ + addR) - addL);\n        R.pop();\n    }\n    void x_a(T a) {\n        minval\
+    \ += max<T>((L.top() + addL) - a, 0);\n        L.push(a - addL);\n        R.push((L.top()\
+    \ + addL) - addR);\n        L.pop();\n    }\n    void abs(T a) {\n        a_x(a);\n\
+    \        x_a(a);\n    }\n    void prefix_min() {\n        R = {};\n        R.push(inf);\n\
+    \    }\n    void suffix_min() {\n        L = {};\n        L.push(-inf);\n    }\n\
+    \    void slide(T a) {\n        addL += a;\n        addR += a;\n    }\n    void\
+    \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
+    \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
+    \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
+    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
+    \ class MaxQueue = std::priority_queue<T>,\n         class MinQueue = prique<T>>\n\
+    class SlopeTrick {\n    T minval;\n    T addL, addR;\n    MaxQueue L;\n    MinQueue\
+    \ R;\n\npublic:\n    SlopeTrick(T a = 0) {\n        addL = addR = 0;\n       \
+    \ minval = a;\n        L.push(-inf);\n        R.push(inf);\n    }\n    void add(T\
+    \ a) { minval += a; }\n    void a_x(T a) {\n        minval += max<T>(a - (R.top()\
+    \ + addR), 0);\n        R.push(a - addR);\n        L.push((R.top() + addR) - addL);\n\
+    \        R.pop();\n    }\n    void x_a(T a) {\n        minval += max<T>((L.top()\
+    \ + addL) - a, 0);\n        L.push(a - addL);\n        R.push((L.top() + addL)\
+    \ - addR);\n        L.pop();\n    }\n    void abs(T a) {\n        a_x(a);\n  \
+    \      x_a(a);\n    }\n    void prefix_min() {\n        R = {};\n        R.push(inf);\n\
+    \    }\n    void suffix_min() {\n        L = {};\n        L.push(-inf);\n    }\n\
+    \    void slide(T a) {\n        addL += a;\n        addR += a;\n    }\n    void\
+    \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
+    \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
+    \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
+    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -789,27 +491,16 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/segment/SegmentTreeBeats.hpp
+  path: data-struct/other/SlopeTrick.hpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-documentation_of: data-struct/segment/SegmentTreeBeats.hpp
+  timestamp: '2023-06-24 13:34:16+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: data-struct/other/SlopeTrick.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/SegmentTreeBeats.hpp
-- /library/data-struct/segment/SegmentTreeBeats.hpp.html
-title: SegmentTreeBeats!
+- /library/data-struct/other/SlopeTrick.hpp
+- /library/data-struct/other/SlopeTrick.hpp.html
+title: SlopeTrick
 ---
-## 概要
-
-Range Chmin Chmax Add Assign Query と Range Min Max Sum Query を $\Theta(\log^2 N)$ で行えるすごい遅延セグ木。
-
-基本的に使い方は遅延セグ木と同じだが、与える作用付きモノイドにおいて静的メンバ `break_cond` と `tag_cond` が必要。
-
-抽象化されたのは `SegmentTreeBeats` から、 Range Chmin Chmax Add Assign Query Range Min Max Sum Query は `SegTreeBeats` から使う。
-
-`add` クエリがない場合 $\Theta(\log N)$ になるらしい。
