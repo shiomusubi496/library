@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':question:'
@@ -33,16 +33,18 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_c
+    PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_e
     links:
     - https://atcoder.jp/contests/arc070/tasks/arc070_c
+    - https://atcoder.jp/contests/arc070/tasks/arc070_e
   bundledCode: "#line 1 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\n#define PROBLEM\
-    \ \"https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#line 2 \"other/template.hpp\"\
+    \ \"https://atcoder.jp/contests/arc070/tasks/arc070_e\"\n// #define PROBLEM \"\
+    https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -469,12 +471,13 @@ data:
     \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
     \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
     \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
-    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n#line 4 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\
+    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n#line 5 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
     \ scan >> A;\n    SlopeTrick<ll> st;\n    st.abs(A[0].first);\n    rep (i, 1,\
     \ N) {\n        st.slide_min(A[i].first - A[i].second, A[i - 1].second - A[i -\
     \ 1].first);\n        st.abs(A[i].first);\n    }\n    prints(st.min());\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#include\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_e\"\n//\
+    \ #define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../data-struct/other/SlopeTrick.hpp\"\
     \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
     \ scan >> A;\n    SlopeTrick<ll> st;\n    st.abs(A[0].first);\n    rep (i, 1,\
@@ -494,8 +497,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc070_c-SlopeTrick.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 14:05:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-06-24 16:18:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/arc070_c-SlopeTrick.test.cpp
 layout: document
