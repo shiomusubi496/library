@@ -14,7 +14,7 @@ data:
   - icon: ':x:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
     title: ConvexHullTrickAddMonotone
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':warning:'
+  - icon: ':x:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':question:'
@@ -86,7 +86,7 @@ data:
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':x:'
@@ -138,16 +138,16 @@ data:
   - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
   - icon: ':x:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':x:'
@@ -244,13 +244,13 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
   - icon: ':x:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/DoublingLowestCommonAncestor.hpp
     title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
       \u308BLCA)"
@@ -264,10 +264,10 @@ data:
   - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':question:'
@@ -294,13 +294,13 @@ data:
   - icon: ':x:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Divisor.hpp
     title: "Divisors(\u7D04\u6570\u5217\u6319)"
   - icon: ':x:'
     path: math/EnumerateQuotients.hpp
     title: "Enumerate Quotients(\u5546\u5217\u6319)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':x:'
@@ -309,20 +309,20 @@ data:
   - icon: ':x:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':x:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':question:'
@@ -395,7 +395,7 @@ data:
   - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
   - icon: ':x:'
@@ -408,7 +408,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':x:'
@@ -613,57 +613,60 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
     title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
     title: test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_A-Prime.test.cpp
     title: test/aoj/NTL/NTL_1_A-Prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_B-Pow.test.cpp
     title: test/aoj/NTL/NTL_1_B-Pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_C-LCM.test.cpp
     title: test/aoj/NTL/NTL_1_C-LCM.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
     title: test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc265_c-Timer.test.cpp
     title: test/atcoder/abc265_c-Timer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
   - icon: ':x:'
     path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/arc070_c-SlopeTrick.test.cpp
+    title: test/atcoder/arc070_c-SlopeTrick.test.cpp
   - icon: ':x:'
     path: test/atcoder/arc099_c-Bipartite.test.cpp
     title: test/atcoder/arc099_c-Bipartite.test.cpp
@@ -1356,6 +1359,7 @@ data:
   - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - test/atcoder/abc265_c-Timer.test.cpp
+  - test/atcoder/arc070_c-SlopeTrick.test.cpp
   - test/yosupo/sample/aplusb.test.cpp
   - test/yosupo/sample/many_aplusb.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp

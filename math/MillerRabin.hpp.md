@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':question:'
@@ -35,10 +35,10 @@ data:
   - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
   - icon: ':x:'
@@ -48,7 +48,7 @@ data:
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
     title: test/yuki/3030-MRPrime.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/MillerRabin.md
     document_title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\
@@ -617,7 +617,7 @@ data:
   - math/PrimitiveRoot.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primitive_root.test.cpp

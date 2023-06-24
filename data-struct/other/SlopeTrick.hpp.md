@@ -29,10 +29,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/atcoder/arc070_c-SlopeTrick.test.cpp
+    title: test/atcoder/arc070_c-SlopeTrick.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/other/SlopeTrick.md
     document_title: SlopeTrick
@@ -453,34 +456,36 @@ data:
     \    MaxQueue L;\n    MinQueue R;\n\npublic:\n    SlopeTrick(T a = 0) {\n    \
     \    addL = addR = 0;\n        minval = a;\n        L.push(-inf);\n        R.push(inf);\n\
     \    }\n    void add(T a) { minval += a; }\n    void a_x(T a) {\n        minval\
-    \ += max<T>(a - (R.top() + addR), 0);\n        R.push(a - addR);\n        L.push((R.top()\
-    \ + addR) - addL);\n        R.pop();\n    }\n    void x_a(T a) {\n        minval\
-    \ += max<T>((L.top() + addL) - a, 0);\n        L.push(a - addL);\n        R.push((L.top()\
-    \ + addL) - addR);\n        L.pop();\n    }\n    void abs(T a) {\n        a_x(a);\n\
-    \        x_a(a);\n    }\n    void prefix_min() {\n        R = {};\n        R.push(inf);\n\
-    \    }\n    void suffix_min() {\n        L = {};\n        L.push(-inf);\n    }\n\
-    \    void slide(T a) {\n        addL += a;\n        addR += a;\n    }\n    void\
-    \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
-    \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
-    \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
-    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n"
+    \ += std::max<T>(a - (R.top() + addR), 0);\n        R.push(a - addR);\n      \
+    \  L.push((R.top() + addR) - addL);\n        R.pop();\n    }\n    void x_a(T a)\
+    \ {\n        minval += std::max<T>((L.top() + addL) - a, 0);\n        L.push(a\
+    \ - addL);\n        R.push((L.top() + addL) - addR);\n        L.pop();\n    }\n\
+    \    void abs(T a) {\n        a_x(a);\n        x_a(a);\n    }\n    void prefix_min()\
+    \ {\n        R = {};\n        R.push(inf);\n    }\n    void suffix_min() {\n \
+    \       L = {};\n        L.push(-inf);\n    }\n    void slide(T a) {\n       \
+    \ addL += a;\n        addR += a;\n    }\n    void slide_min(T a, T b) {\n    \
+    \    assert(a <= b);\n        addL += a;\n        addR += b;\n    }\n    T min()\
+    \ const { return minval; }\n    std::pair<T, T> argmin() const { return {L.top()\
+    \ + addL, R.top() + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/other/SlopeTrick.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ class MaxQueue = std::priority_queue<T>,\n         class MinQueue = prique<T>>\n\
     class SlopeTrick {\n    T minval;\n    T addL, addR;\n    MaxQueue L;\n    MinQueue\
     \ R;\n\npublic:\n    SlopeTrick(T a = 0) {\n        addL = addR = 0;\n       \
     \ minval = a;\n        L.push(-inf);\n        R.push(inf);\n    }\n    void add(T\
-    \ a) { minval += a; }\n    void a_x(T a) {\n        minval += max<T>(a - (R.top()\
-    \ + addR), 0);\n        R.push(a - addR);\n        L.push((R.top() + addR) - addL);\n\
-    \        R.pop();\n    }\n    void x_a(T a) {\n        minval += max<T>((L.top()\
-    \ + addL) - a, 0);\n        L.push(a - addL);\n        R.push((L.top() + addL)\
-    \ - addR);\n        L.pop();\n    }\n    void abs(T a) {\n        a_x(a);\n  \
-    \      x_a(a);\n    }\n    void prefix_min() {\n        R = {};\n        R.push(inf);\n\
-    \    }\n    void suffix_min() {\n        L = {};\n        L.push(-inf);\n    }\n\
-    \    void slide(T a) {\n        addL += a;\n        addR += a;\n    }\n    void\
-    \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
-    \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
-    \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
-    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n"
+    \ a) { minval += a; }\n    void a_x(T a) {\n        minval += std::max<T>(a -\
+    \ (R.top() + addR), 0);\n        R.push(a - addR);\n        L.push((R.top() +\
+    \ addR) - addL);\n        R.pop();\n    }\n    void x_a(T a) {\n        minval\
+    \ += std::max<T>((L.top() + addL) - a, 0);\n        L.push(a - addL);\n      \
+    \  R.push((L.top() + addL) - addR);\n        L.pop();\n    }\n    void abs(T a)\
+    \ {\n        a_x(a);\n        x_a(a);\n    }\n    void prefix_min() {\n      \
+    \  R = {};\n        R.push(inf);\n    }\n    void suffix_min() {\n        L =\
+    \ {};\n        L.push(-inf);\n    }\n    void slide(T a) {\n        addL += a;\n\
+    \        addR += a;\n    }\n    void slide_min(T a, T b) {\n        assert(a <=\
+    \ b);\n        addL += a;\n        addR += b;\n    }\n    T min() const { return\
+    \ minval; }\n    std::pair<T, T> argmin() const { return {L.top() + addL, R.top()\
+    \ + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/other/SlopeTrick.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -494,9 +499,10 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlopeTrick.hpp
   requiredBy: []
-  timestamp: '2023-06-24 13:34:16+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2023-06-24 14:05:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/atcoder/arc070_c-SlopeTrick.test.cpp
 documentation_of: data-struct/other/SlopeTrick.hpp
 layout: document
 redirect_from:

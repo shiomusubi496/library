@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: data-struct/other/SlopeTrick.hpp
+    title: SlopeTrick
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -29,37 +32,35 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/other/2725-CHT.test.cpp
-    title: test/aoj/other/2725-CHT.test.cpp
-  _isVerificationFailed: false
-  _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/cht/ConvexHullTrickAddMonotone.md
-    document_title: ConvexHullTrickAddMonotone
-    links: []
-  bundledCode: "#line 2 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\n\n#line\
-    \ 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_c
+    links:
+    - https://atcoder.jp/contests/arc070/tasks/arc070_c
+  bundledCode: "#line 1 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\n#define PROBLEM\
+    \ \"https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -451,120 +452,34 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"data-struct/cht/ConvexHullTrickAddMonotone.hpp\"\
-    \n\ntemplate<class T = ll, bool is_max = false,\n         class largeT = typename\
-    \ double_size_int<T>::type>\nclass ConvexHullTrickAddMonotone {\nprivate:\n  \
-    \  struct Line {\n        T a, b;\n        int idx;\n        bool is_query;\n\
-    \        mutable ll nxt_a, nxt_b;\n        mutable bool has_nxt;\n        T get(T\
-    \ x) const { return a * x + b; }\n        T get_nxt(T x) const { return nxt_a\
-    \ * x + nxt_b; }\n        Line() = default;\n        Line(T a, T b, int id, bool\
-    \ i = false)\n            : a(a), b(b), idx(id), is_query(i), has_nxt(false) {}\n\
-    \        friend bool operator<(const Line& lhs, const Line& rhs) {\n         \
-    \   assert(!lhs.is_query || !rhs.is_query);\n            if (lhs.is_query) {\n\
-    \                if (!rhs.has_nxt) return true;\n                return rhs.get(lhs.a)\
-    \ < rhs.get_nxt(lhs.a);\n            }\n            if (rhs.is_query) {\n    \
-    \            if (!lhs.has_nxt) return false;\n                return lhs.get(rhs.a)\
-    \ > lhs.get_nxt(rhs.a);\n            }\n            return lhs.a == rhs.a ? lhs.b\
-    \ < rhs.b : lhs.a < rhs.a;\n        }\n    };\n    int line_count = 0;\n    std::deque<Line>\
-    \ que;\n    bool is_necessary(const typename std::deque<Line>::iterator& itr)\
-    \ {\n        if (itr != que.begin() && itr->a == prev(itr)->a)\n            return\
-    \ itr->b < prev(itr)->b;\n        if (itr != prev(que.end()) && itr->a == next(itr)->a)\n\
-    \            return itr->b < next(itr)->b;\n        if (itr == que.begin() ||\
-    \ itr == prev(que.end())) return true;\n        return static_cast<largeT>(itr->b\
-    \ - prev(itr)->b) *\n                   static_cast<largeT>(next(itr)->a - itr->a)\
-    \ <\n               static_cast<largeT>(itr->b - next(itr)->b) *\n           \
-    \        static_cast<largeT>(prev(itr)->a - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone()\
-    \ = default;\n    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a\
-    \ = -a, b = -b;\n        typename std::deque<Line>::iterator itr;\n        if\
-    \ (que.empty() || que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
-    \ = ll, bool is_max = false,\n         class largeT = typename double_size_int<T>::type>\n\
-    class ConvexHullTrickAddMonotone {\nprivate:\n    struct Line {\n        T a,\
-    \ b;\n        int idx;\n        bool is_query;\n        mutable ll nxt_a, nxt_b;\n\
-    \        mutable bool has_nxt;\n        T get(T x) const { return a * x + b; }\n\
-    \        T get_nxt(T x) const { return nxt_a * x + nxt_b; }\n        Line() =\
-    \ default;\n        Line(T a, T b, int id, bool i = false)\n            : a(a),\
-    \ b(b), idx(id), is_query(i), has_nxt(false) {}\n        friend bool operator<(const\
-    \ Line& lhs, const Line& rhs) {\n            assert(!lhs.is_query || !rhs.is_query);\n\
-    \            if (lhs.is_query) {\n                if (!rhs.has_nxt) return true;\n\
-    \                return rhs.get(lhs.a) < rhs.get_nxt(lhs.a);\n            }\n\
-    \            if (rhs.is_query) {\n                if (!lhs.has_nxt) return false;\n\
-    \                return lhs.get(rhs.a) > lhs.get_nxt(rhs.a);\n            }\n\
-    \            return lhs.a == rhs.a ? lhs.b < rhs.b : lhs.a < rhs.a;\n        }\n\
-    \    };\n    int line_count = 0;\n    std::deque<Line> que;\n    bool is_necessary(const\
-    \ typename std::deque<Line>::iterator& itr) {\n        if (itr != que.begin()\
-    \ && itr->a == prev(itr)->a)\n            return itr->b < prev(itr)->b;\n    \
-    \    if (itr != prev(que.end()) && itr->a == next(itr)->a)\n            return\
-    \ itr->b < next(itr)->b;\n        if (itr == que.begin() || itr == prev(que.end()))\
-    \ return true;\n        return static_cast<largeT>(itr->b - prev(itr)->b) *\n\
-    \                   static_cast<largeT>(next(itr)->a - itr->a) <\n           \
-    \    static_cast<largeT>(itr->b - next(itr)->b) *\n                   static_cast<largeT>(prev(itr)->a\
-    \ - itr->a);\n    }\n\npublic:\n    ConvexHullTrickAddMonotone() = default;\n\
-    \    int add_line(T a, T b) {\n        if IF_CONSTEXPR (is_max) a = -a, b = -b;\n\
-    \        typename std::deque<Line>::iterator itr;\n        if (que.empty() ||\
-    \ que.back().a <= a) {\n            que.emplace_back(a, b, line_count);\n    \
-    \        itr = prev(que.end());\n        }\n        else {\n            assert(a\
-    \ <= que.front().a);\n            que.emplace_front(a, b, line_count);\n     \
-    \       itr = que.begin();\n        }\n        if (!is_necessary(itr)) {\n   \
-    \         que.erase(itr);\n            return line_count++;\n        }\n     \
-    \   while (itr != que.begin() && !is_necessary(prev(itr))) {\n            que.pop_back();\n\
-    \            que.pop_back();\n            que.emplace_back(a, b, line_count);\n\
-    \            itr = prev(que.end());\n        }\n        while (itr != prev(que.end())\
-    \ && !is_necessary(next(itr))) {\n            que.pop_front();\n            que.pop_front();\n\
-    \            que.emplace_front(a, b, line_count);\n            itr = que.begin();\n\
-    \        }\n        if (itr != que.begin()) {\n            prev(itr)->nxt_a =\
-    \ itr->a;\n            prev(itr)->nxt_b = itr->b;\n            prev(itr)->has_nxt\
-    \ = true;\n        }\n        if (itr != prev(que.end())) {\n            itr->nxt_a\
-    \ = next(itr)->a;\n            itr->nxt_b = next(itr)->b;\n            itr->has_nxt\
-    \ = true;\n        }\n        else itr->has_nxt = false;\n        return line_count++;\n\
-    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
-    \ get_min_line(T x) const {\n        auto itr = lower_bound(all(que), Line{x,\
-    \ 0, -1, true});\n        Line res{*itr};\n        return line{is_max ? -res.a\
-    \ : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n    T get_min(T x) const\
-    \ {\n        const auto& l = get_min_line(x);\n        return l.a * x + l.b;\n\
-    \    }\n    line dec_get_min_line(T x) {\n        while (que.size() > 1 &&\n \
-    \              que.begin()->get(x) > next(que.begin())->get(x))\n            que.pop_front();\n\
-    \        Line res{que.front()};\n        return line{is_max ? -res.a : res.a,\
-    \ is_max ? -res.b : res.b, res.idx};\n    }\n    T dec_get_min(T x) {\n      \
-    \  const auto& l = dec_get_min_line(x);\n        return l.a * x + l.b;\n    }\n\
-    \    line inc_get_min_line(T x) {\n        while (que.size() > 1 &&\n        \
-    \       prev(que.end())->get(x) > prev(que.end(), 2)->get(x))\n            que.pop_back();\n\
-    \        Line res{que.back()};\n        return line{is_max ? -res.a : res.a, is_max\
-    \ ? -res.b : res.b, res.idx};\n    }\n    T inc_get_min(T x) {\n        const\
-    \ auto& l = inc_get_min_line(x);\n        return l.a * x + l.b;\n    }\n    bool\
-    \ empty() const { return que.empty(); }\n};\n\n/**\n * @brief ConvexHullTrickAddMonotone\n\
-    \ * @docs docs/data-struct/cht/ConvexHullTrickAddMonotone.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/SlopeTrick.hpp\"\
+    \n\n#line 4 \"data-struct/other/SlopeTrick.hpp\"\n\ntemplate<class T, class MaxQueue\
+    \ = std::priority_queue<T>,\n         class MinQueue = prique<T>>\nclass SlopeTrick\
+    \ {\n    T minval;\n    T addL, addR;\n    MaxQueue L;\n    MinQueue R;\n\npublic:\n\
+    \    SlopeTrick(T a = 0) {\n        addL = addR = 0;\n        minval = a;\n  \
+    \      L.push(-inf);\n        R.push(inf);\n    }\n    void add(T a) { minval\
+    \ += a; }\n    void a_x(T a) {\n        minval += std::max<T>(a - (R.top() + addR),\
+    \ 0);\n        R.push(a - addR);\n        L.push((R.top() + addR) - addL);\n \
+    \       R.pop();\n    }\n    void x_a(T a) {\n        minval += std::max<T>((L.top()\
+    \ + addL) - a, 0);\n        L.push(a - addL);\n        R.push((L.top() + addL)\
+    \ - addR);\n        L.pop();\n    }\n    void abs(T a) {\n        a_x(a);\n  \
+    \      x_a(a);\n    }\n    void prefix_min() {\n        R = {};\n        R.push(inf);\n\
+    \    }\n    void suffix_min() {\n        L = {};\n        L.push(-inf);\n    }\n\
+    \    void slide(T a) {\n        addL += a;\n        addR += a;\n    }\n    void\
+    \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
+    \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
+    \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
+    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n#line 4 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
+    \ scan >> A;\n    SlopeTrick<ll> st;\n    st.abs(A[0].first);\n    rep (i, 1,\
+    \ N) {\n        st.slide_min(A[i].first - A[i].second, A[i - 1].second - A[i -\
+    \ 1].first);\n        st.abs(A[i].first);\n    }\n    prints(st.min());\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc070/tasks/arc070_c\"\n#include\
+    \ \"../../other/template.hpp\"\n#include \"../../data-struct/other/SlopeTrick.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
+    \ scan >> A;\n    SlopeTrick<ll> st;\n    st.abs(A[0].first);\n    rep (i, 1,\
+    \ N) {\n        st.slide_min(A[i].first - A[i].second, A[i - 1].second - A[i -\
+    \ 1].first);\n        st.abs(A[i].first);\n    }\n    prints(st.min());\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -575,41 +490,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  - data-struct/other/SlopeTrick.hpp
+  isVerificationFile: true
+  path: test/atcoder/arc070_c-SlopeTrick.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/other/2725-CHT.test.cpp
-documentation_of: data-struct/cht/ConvexHullTrickAddMonotone.hpp
+  timestamp: '2023-06-24 14:05:25+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/atcoder/arc070_c-SlopeTrick.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp
-- /library/data-struct/cht/ConvexHullTrickAddMonotone.hpp.html
-title: ConvexHullTrickAddMonotone
+- /verify/test/atcoder/arc070_c-SlopeTrick.test.cpp
+- /verify/test/atcoder/arc070_c-SlopeTrick.test.cpp.html
+title: test/atcoder/arc070_c-SlopeTrick.test.cpp
 ---
-## Overview
-
-Convex Hull Trick のうち、追加クエリで与えられる直線の傾きが単調増加あるいは単調減少であるような場合に使える。
-
-通常の Convex Hull Trick は `std::set` などを使う必要があるのに対して、単調増加あるいは単調減少の場合は `std::deque` を用いればよいため、二分探索をしない追加クエリの計算量が落ちる。
-
-さらに、取得クエリの `x` が単調増加あるいは単調減少のときは二分探索をせず要らなくなった直線を消していけばいいので、取得クエリの計算量も落ちる。当然、 `get_min` `inc_get_min` `dec_get_min` のうち 2 つを同時に使ってはいけない。
-
-## Usage
-
-### Template Arguments
-
-- `T` : 一次関数 $y = ax + b$ を扱うときの、 $a, b$ の型。デフォルトは `ll` 。
-- `is_max` : 最小値クエリではなく最大値クエリを扱うか。デフォルトは `false` 。
-- `LargeT` : オーバーフロー防止のために使われる、 `T` よりサイズの大きい型。デフォルトは `T` の 2 倍の桁を持つ型。
-
-### Member Function
-
-- `ConvexHullTrickAddMonotone()` : `ConvexHullTrick` を作成する。ここで、関数集合を $s$ と表す。 $\Theta(1)$ 。
-- `void add_line(T a, T b)` : $s$ に `f(x) = ax + b` を追加する。 $\Theta(1)$ 。
-- `T get_min(T x)` : $\min_{f \in s} f(x)$ を返す。 $\Theta(\log N)$ 。
-- `T inc_get_min(T x)` : `x` が単調増加であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
-- `T dec_get_min(T x)` : `x` が単調減少であるときに使う。機能は `get_min` と同等。ならし $\Theta(1)$ 。
-- `bool empty()` : $s = \emptyset$ であるかを返す。 $\Theta(1)$ 。
