@@ -55,6 +55,7 @@ public:
             return '\0';
         }
         bool rdstate() const { return reader->state; }
+        void setstate(bool state) { reader->state = state; }
     };
 
     iterator begin() noexcept { return iterator(this); }
@@ -221,17 +222,16 @@ public:
     }
 
     explicit operator bool() const { return itr.rdstate(); }
+
+    friend Scanner& getline(Scanner& scan, std::string& a) {
+        a.erase();
+        char c;
+        if ((c = scan.scan_char()) == '\n' || c == '\0') return scan;
+        a += c;
+        while ((c = scan.scan_char()) != '\n' && c != '\0') a += c;
+        scan.itr.setstate(true);
+        return scan;
+    }
 };
 
 Scanner<Reader<>::iterator> scan(reader.begin());
-
-template<class Iterator, std::size_t decimal_precision>
-Scanner<Iterator, decimal_precision>&
-getline(Scanner<Iterator, decimal_precision>& scan, std::string& a) {
-    a.clear();
-    char c;
-    while ((c = scan.scan_char()) != '\n') {
-        a += c;
-    }
-    return scan;
-}
