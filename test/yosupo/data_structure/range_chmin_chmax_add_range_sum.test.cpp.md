@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
@@ -698,7 +698,7 @@ data:
   path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
   timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
 layout: document
