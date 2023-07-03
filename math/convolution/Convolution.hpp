@@ -11,75 +11,96 @@ private:
     static constexpr unsigned int lg = bitop::msb((p - 1) & (1 - p));
     unsigned int root[lg + 1];
     unsigned int inv_root[lg + 1];
+    unsigned int rate[lg - 1];
+    unsigned int inv_rate[lg - 1];
 
 public:
-    constexpr NthRoot() : root{}, inv_root{} {
+    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {
         root[lg] = mod_pow(primitive_root_for_convolution(p), (p - 1) >> lg, p);
         inv_root[lg] = mod_pow(root[lg], p - 2, p);
         rrep (i, lg) {
             root[i] = (ull)root[i + 1] * root[i + 1] % p;
             inv_root[i] = (ull)inv_root[i + 1] * inv_root[i + 1] % p;
         }
+        ull r = 1;
+        rep (i, 2, lg + 1) {
+            rate[i - 2] = r * root[i] % p;
+            r = r * inv_root[i] % p;
+        }
+        r = 1;
+        rep (i, 2, lg + 1) {
+            inv_rate[i - 2] = r * inv_root[i] % p;
+            r = r * root[i] % p;
+        }
     }
     static constexpr unsigned int get_lg() { return lg; }
     constexpr unsigned int get(int n) const { return root[n]; }
     constexpr unsigned int inv(int n) const { return inv_root[n]; }
+    constexpr unsigned int get_rate(int n) const { return rate[n]; }
+    constexpr unsigned int get_inv_rate(int n) const { return inv_rate[n]; }
 };
 
 template<unsigned int p> constexpr NthRoot<p> nth_root;
+
+template<class T>
+void number_theoretic_transform(std::vector<T>& a) {
+    int n = a.size();
+    int lg = bitop::msb(n - 1) + 1;
+    rrep (i, lg) {
+        T z = T(1);
+        rep (j, 1 << (lg - i - 1)) {
+            int offset = j << (i + 1);
+            rep (k, 1 << i) {
+                T x = a[offset + k];
+                T y = a[offset + k + (1 << i)] * z;
+                a[offset + k] = x + y;
+                a[offset + k + (1 << i)] = x - y;
+            }
+            z *= nth_root<T::get_mod()>.get_rate(popcnt(j & ~(j + 1)));
+        }
+    }
+}
+template<class T>
+void inverse_number_theoretic_transform(std::vector<T>& a) {
+    int n = a.size();
+    int lg = bitop::msb(n - 1) + 1;
+    rep (i, lg) {
+        T z = T(1);
+        rep (j, 1 << (lg - i - 1)) {
+            int offset = j << (i + 1);
+            rep (k, 1 << i) {
+                T x = a[offset + k];
+                T y = a[offset + k + (1 << i)];
+                a[offset + k] = x + y;
+                a[offset + k + (1 << i)] = (x - y) * z;
+            }
+            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j & ~(j + 1)));
+        }
+    }
+    T inv_n = T(1) / n;
+    each_for (x : a) x *= inv_n;
+}
 
 template<class T>
 std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
     int n = a.size() + b.size() - 1;
     int lg = bitop::msb(n - 1) + 1;
     int m = 1 << lg;
+    if (a.size() == b.size() && a == b) {
+        a.resize(m);
+        number_theoretic_transform(a);
+        rep (i, m) a[i] *= a[i];
+        inverse_number_theoretic_transform(a);
+        a.resize(n);
+        return a;
+    }
     a.resize(m);
     b.resize(m);
-    rep (i, m) {
-        int j = bitop::reverse(i, lg);
-        if (i < j) {
-            std::swap(a[i], a[j]);
-            std::swap(b[i], b[j]);
-        }
-    }
-    rep (i, lg) {
-        const T w = nth_root<T::get_mod()>.get(i + 1);
-        rep (j, 0, m, 1 << (i + 1)) {
-            T z = 1;
-            rep (k, 1 << i) {
-                T x = a[j + k];
-                T y = a[j + k + (1 << i)] * z;
-                a[j + k] = x + y;
-                a[j + k + (1 << i)] = x - y;
-                x = b[j + k];
-                y = b[j + k + (1 << i)] * z;
-                b[j + k] = x + y;
-                b[j + k + (1 << i)] = x - y;
-                z *= w;
-            }
-        }
-    }
+    number_theoretic_transform(a);
+    number_theoretic_transform(b);
     rep (i, m) a[i] *= b[i];
-    rep (i, m) {
-        int j = bitop::reverse(i, lg);
-        if (i < j) std::swap(a[i], a[j]);
-    }
-    rep (i, lg) {
-        const T w = nth_root<T::get_mod()>.inv(i + 1);
-        rep (j, 0, m, 1 << (i + 1)) {
-            T z = 1;
-            rep (k, 1 << i) {
-                T x = a[j + k];
-                T y = a[j + k + (1 << i)] * z;
-                a[j + k] = x + y;
-                a[j + k + (1 << i)] = x - y;
-                z *= w;
-            }
-        }
-    }
+    inverse_number_theoretic_transform(a);
     a.resize(n);
-    T inv_m = T(1) / m;
-    each_for (x : a) x *= inv_m;
     return a;
 }
 
@@ -95,6 +116,9 @@ std::vector<T> convolution_naive(const std::vector<T>& a,
 }
 
 } // namespace internal
+
+using internal::number_theoretic_transform;
+using internal::inverse_number_theoretic_transform;
 
 template<unsigned int p>
 std::vector<static_modint<p>>
