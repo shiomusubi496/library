@@ -45,6 +45,9 @@ data:
   - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
+  - icon: ':heavy_check_mark:'
+    path: math/SqrtMod.hpp
+    title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -58,12 +61,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/sqrt_mod.test.cpp
+    title: test/yosupo/math/sqrt_mod.test.cpp
   - icon: ':x:'
     path: test/yosupo/new/primality_test.test.cpp
     title: test/yosupo/new/primality_test.test.cpp
@@ -652,6 +658,7 @@ data:
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - math/PrimitiveRoot.hpp
   - math/convolution/Convolution.hpp
+  - math/SqrtMod.hpp
   - math/EulerPhi.hpp
   - math/PollardRho.hpp
   - math/MillerRabin.hpp
@@ -661,6 +668,7 @@ data:
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/convolution_mod.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/math/sqrt_mod.test.cpp
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/new/primality_test.test.cpp

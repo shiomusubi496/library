@@ -188,7 +188,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/connected/ConnectedComponents.hpp
       title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
@@ -239,7 +239,7 @@ data:
       path: graph/other/TopologicalSort.hpp
       title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/TwoSatisfiability.hpp
       title: TwoSatisfiability(2-SAT)
   - name: graph/shortest-path
@@ -311,7 +311,7 @@ data:
     - icon: ':question:'
       path: math/Combinatorics.hpp
       title: Combinatorics
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/DiscreteLogarithm.hpp
       title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
     - icon: ':heavy_check_mark:'
@@ -323,10 +323,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/EulerPhi.hpp
       title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/FloorSum.hpp
       title: FloorSum
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
     - icon: ':question:'
@@ -339,13 +339,13 @@ data:
     - icon: ':question:'
       path: math/MontgomeryModInt.hpp
       title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
     - icon: ':question:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
     - icon: ':question:'
@@ -354,6 +354,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
+    - icon: ':heavy_check_mark:'
+      path: math/SqrtMod.hpp
+      title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - name: math/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -395,16 +398,16 @@ data:
         \u30A6\u30B9\u5909\u63DB)"
   - name: math/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Determinant.hpp
       title: "Determinant(\u884C\u5217\u5F0F)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Inverse.hpp
       title: "Inverse(\u9006\u884C\u5217)"
     - icon: ':x:'
       path: math/matrix/LinearEquations.hpp
       title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: other
@@ -412,7 +415,7 @@ data:
     - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
     - icon: ':question:'
@@ -428,7 +431,7 @@ data:
       title: Timer
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/LongestIncreasingSubsequence.hpp
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
@@ -919,42 +922,45 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/binomial_coefficient.test.cpp
       title: test/yosupo/math/binomial_coefficient.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/discrete_logarithm_mod.test.cpp
       title: test/yosupo/math/discrete_logarithm_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/enumerate_primes.test.cpp
       title: test/yosupo/math/enumerate_primes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/factorize.test.cpp
       title: test/yosupo/math/factorize.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/longest_increasing_subsequence.test.cpp
       title: test/yosupo/math/longest_increasing_subsequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/montmort_number_mod.test.cpp
       title: test/yosupo/math/montmort_number_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/primitive_root.test.cpp
       title: test/yosupo/math/primitive_root.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/sqrt_mod.test.cpp
+      title: test/yosupo/math/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/two_sat.test.cpp
       title: test/yosupo/math/two_sat.test.cpp
   - name: test/yosupo/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/inverse_matrix.test.cpp
       title: test/yosupo/matrix/inverse_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_det.test.cpp
       title: test/yosupo/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp
     - icon: ':x:'
