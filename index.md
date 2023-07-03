@@ -53,7 +53,7 @@ data:
       title: SlopeTrick
   - name: data-struct/segment
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/BinaryIndexedTree.hpp
       title: BinaryIndexedTree(FenwickTree, BIT)
     - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
     - icon: ':heavy_check_mark:'
@@ -118,7 +118,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -154,28 +154,28 @@ data:
       title: SMAWK
   - name: geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geometry/All.hpp
       title: geometry/All.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Circle.hpp
       title: geometry/Circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Line.hpp
       title: geometry/Line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Point.hpp
       title: geometry/Point.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Polygon.hpp
       title: geometry/Polygon.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Segment.hpp
       title: geometry/Segment.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/Triangle.hpp
       title: geometry/Triangle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geometry/template.hpp
       title: geometry/template.hpp
   - name: graph
@@ -192,13 +192,13 @@ data:
       path: graph/connected/StronglyConnectedComponents.hpp
       title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
         )"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/connected/TwoEdgeConnectedComponents.hpp
       title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\
         \u89E3)"
   - name: graph/flow
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/flow/MaxFlow.hpp
       title: "MaxFlow(\u6700\u5927\u6D41)"
   - name: graph/mst
@@ -206,10 +206,10 @@ data:
     - icon: ':warning:'
       path: graph/mst/CountSpanningTree.hpp
       title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/Kruskal.hpp
       title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/mst/ManhattanMST.hpp
       title: Manhattan Minimum Spanning Tree
     - icon: ':heavy_check_mark:'
@@ -220,19 +220,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/EnumerateCliques.hpp
       title: EnumerateCliques
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/EnumerateTriangles.hpp
       title: EnumerateTriangles
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/LowLink.hpp
       title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/other/MaximumIndependentSet.hpp
       title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
     - icon: ':heavy_check_mark:'
@@ -250,7 +250,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest-path/BreadthFirstSearch.hpp
       title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest-path/Dijkstra.hpp
       title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
     - icon: ':question:'
@@ -272,7 +272,7 @@ data:
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/EulerTour.hpp
       title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
     - icon: ':heavy_check_mark:'
@@ -299,10 +299,10 @@ data:
       title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
   - name: math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/ArbitraryModCombinatorics.hpp
       title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/BarrettReduction.hpp
       title: math/BarrettReduction.hpp
     - icon: ':x:'
@@ -874,49 +874,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
       title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
       title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - name: test/yosupo/geometry
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/geometry/sort_points_by_argument.test.cpp
       title: test/yosupo/geometry/sort_points_by_argument.test.cpp
   - name: test/yosupo/graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/bipartitematching.test.cpp
       title: test/yosupo/graph/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/enumerate_cliques.test.cpp
       title: test/yosupo/graph/enumerate_cliques.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/enumerate_triangles.test.cpp
       title: test/yosupo/graph/enumerate_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/manhattanmst.test.cpp
       title: test/yosupo/graph/manhattanmst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/maximum_independent_set.test.cpp
       title: test/yosupo/graph/maximum_independent_set.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/shortest_path.test.cpp
       title: test/yosupo/graph/shortest_path.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/two_edge_connected_components.test.cpp
       title: test/yosupo/graph/two_edge_connected_components.test.cpp
   - name: test/yosupo/math
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/binomial_coefficient.test.cpp
       title: test/yosupo/math/binomial_coefficient.test.cpp
     - icon: ':x:'

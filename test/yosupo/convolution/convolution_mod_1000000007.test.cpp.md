@@ -767,42 +767,52 @@ data:
     \u59CB\u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n#line 6 \"math/convolution/Convolution.hpp\"\
     \n\nnamespace internal {\n\ntemplate<unsigned int p> class NthRoot {\nprivate:\n\
     \    static constexpr unsigned int lg = bitop::msb((p - 1) & (1 - p));\n    unsigned\
-    \ int root[lg + 1];\n    unsigned int inv_root[lg + 1];\n\npublic:\n    constexpr\
-    \ NthRoot() : root{}, inv_root{} {\n        root[lg] = mod_pow(primitive_root_for_convolution(p),\
+    \ int root[lg + 1];\n    unsigned int inv_root[lg + 1];\n    unsigned int rate[lg\
+    \ - 1];\n    unsigned int inv_rate[lg - 1];\n\npublic:\n    constexpr NthRoot()\
+    \ : root{}, inv_root{}, rate{}, inv_rate{} {\n        root[lg] = mod_pow(primitive_root_for_convolution(p),\
     \ (p - 1) >> lg, p);\n        inv_root[lg] = mod_pow(root[lg], p - 2, p);\n  \
     \      rrep (i, lg) {\n            root[i] = (ull)root[i + 1] * root[i + 1] %\
     \ p;\n            inv_root[i] = (ull)inv_root[i + 1] * inv_root[i + 1] % p;\n\
-    \        }\n    }\n    static constexpr unsigned int get_lg() { return lg; }\n\
-    \    constexpr unsigned int get(int n) const { return root[n]; }\n    constexpr\
-    \ unsigned int inv(int n) const { return inv_root[n]; }\n};\n\ntemplate<unsigned\
-    \ int p> constexpr NthRoot<p> nth_root;\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \        }\n        ull r = 1;\n        rep (i, 2, lg + 1) {\n            rate[i\
+    \ - 2] = r * root[i] % p;\n            r = r * inv_root[i] % p;\n        }\n \
+    \       r = 1;\n        rep (i, 2, lg + 1) {\n            inv_rate[i - 2] = r\
+    \ * inv_root[i] % p;\n            r = r * root[i] % p;\n        }\n    }\n   \
+    \ static constexpr unsigned int get_lg() { return lg; }\n    constexpr unsigned\
+    \ int get(int n) const { return root[n]; }\n    constexpr unsigned int inv(int\
+    \ n) const { return inv_root[n]; }\n    constexpr unsigned int get_rate(int n)\
+    \ const { return rate[n]; }\n    constexpr unsigned int get_inv_rate(int n) const\
+    \ { return inv_rate[n]; }\n};\n\ntemplate<unsigned int p> constexpr NthRoot<p>\
+    \ nth_root;\n\ntemplate<class T>\nvoid number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    int lg = bitop::msb(n - 1) + 1;\n    rrep (i,\
+    \ lg) {\n        T z = T(1);\n        rep (j, 1 << (lg - i - 1)) {\n         \
+    \   int offset = j << (i + 1);\n            rep (k, 1 << i) {\n              \
+    \  T x = a[offset + k];\n                T y = a[offset + k + (1 << i)] * z;\n\
+    \                a[offset + k] = x + y;\n                a[offset + k + (1 <<\
+    \ i)] = x - y;\n            }\n            z *= nth_root<T::get_mod()>.get_rate(popcnt(j\
+    \ & ~(j + 1)));\n        }\n    }\n}\ntemplate<class T>\nvoid inverse_number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    int lg = bitop::msb(n - 1) + 1;\n    rep (i,\
+    \ lg) {\n        T z = T(1);\n        rep (j, 1 << (lg - i - 1)) {\n         \
+    \   int offset = j << (i + 1);\n            rep (k, 1 << i) {\n              \
+    \  T x = a[offset + k];\n                T y = a[offset + k + (1 << i)];\n   \
+    \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
+    \ = (x - y) * z;\n            }\n            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j\
+    \ & ~(j + 1)));\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for (x :\
+    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
     \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    a.resize(m);\n    b.resize(m);\n    rep\
-    \ (i, m) {\n        int j = bitop::reverse(i, lg);\n        if (i < j) {\n   \
-    \         std::swap(a[i], a[j]);\n            std::swap(b[i], b[j]);\n       \
-    \ }\n    }\n    rep (i, lg) {\n        const T w = nth_root<T::get_mod()>.get(i\
-    \ + 1);\n        rep (j, 0, m, 1 << (i + 1)) {\n            T z = 1;\n       \
-    \     rep (k, 1 << i) {\n                T x = a[j + k];\n                T y\
-    \ = a[j + k + (1 << i)] * z;\n                a[j + k] = x + y;\n            \
-    \    a[j + k + (1 << i)] = x - y;\n                x = b[j + k];\n           \
-    \     y = b[j + k + (1 << i)] * z;\n                b[j + k] = x + y;\n      \
-    \          b[j + k + (1 << i)] = x - y;\n                z *= w;\n           \
-    \ }\n        }\n    }\n    rep (i, m) a[i] *= b[i];\n    rep (i, m) {\n      \
-    \  int j = bitop::reverse(i, lg);\n        if (i < j) std::swap(a[i], a[j]);\n\
-    \    }\n    rep (i, lg) {\n        const T w = nth_root<T::get_mod()>.inv(i +\
-    \ 1);\n        rep (j, 0, m, 1 << (i + 1)) {\n            T z = 1;\n         \
-    \   rep (k, 1 << i) {\n                T x = a[j + k];\n                T y =\
-    \ a[j + k + (1 << i)] * z;\n                a[j + k] = x + y;\n              \
-    \  a[j + k + (1 << i)] = x - y;\n                z *= w;\n            }\n    \
-    \    }\n    }\n    a.resize(n);\n    T inv_m = T(1) / m;\n    each_for (x : a)\
-    \ x *= inv_m;\n    return a;\n}\n\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
+    \ - 1) + 1;\n    int m = 1 << lg;\n    if (a.size() == b.size() && a == b) {\n\
+    \        a.resize(m);\n        number_theoretic_transform(a);\n        rep (i,\
+    \ m) a[i] *= a[i];\n        inverse_number_theoretic_transform(a);\n        a.resize(n);\n\
+    \        return a;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
     \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
     \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
     \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
-    \n} // namespace internal\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
-    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
+    \n} // namespace internal\n\nusing internal::number_theoretic_transform;\nusing\
+    \ internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
+    std::vector<static_modint<p>>\nconvolution_for_any_mod(const std::vector<static_modint<p>>&\
+    \ a,\n                        const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned\
+    \ int p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
     \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
     \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
     \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
@@ -861,7 +871,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
+  timestamp: '2023-07-03 14:55:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/convolution_mod_1000000007.test.cpp

@@ -584,17 +584,17 @@ data:
   isVerificationFile: false
   path: math/matrix/Matrix.hpp
   requiredBy:
-  - math/matrix/Inverse.hpp
-  - math/matrix/Determinant.hpp
-  - math/matrix/LinearEquations.hpp
   - graph/mst/CountSpanningTree.hpp
+  - math/matrix/Inverse.hpp
+  - math/matrix/LinearEquations.hpp
+  - math/matrix/Determinant.hpp
   timestamp: '2023-06-24 12:49:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp
+  - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
-  - test/yosupo/matrix/matrix_det.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:
