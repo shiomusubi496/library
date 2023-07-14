@@ -265,10 +265,10 @@ data:
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -279,19 +279,19 @@ data:
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/HeavyLightDecomposition.hpp
       title: "HeavyLightDecomposition(HL\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: graph/tree/PMORMQLCA.hpp
       title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/TreeCentroid.hpp
       title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
     - icon: ':question:'
@@ -302,13 +302,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/ArbitraryModCombinatorics.hpp
       title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/BarrettReduction.hpp
       title: math/BarrettReduction.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -317,7 +317,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/Divisor.hpp
       title: "Divisors(\u7D04\u6570\u5217\u6319)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/EnumerateQuotients.hpp
       title: "Enumerate Quotients(\u5546\u5217\u6319)"
     - icon: ':heavy_check_mark:'
@@ -333,7 +333,7 @@ data:
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':question:'
@@ -342,13 +342,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/PrimitiveRoot.hpp
       title: "PrimitiveRoot(\u539F\u59CB\u6839)"
     - icon: ':heavy_check_mark:'
@@ -368,7 +368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseXorConvolution.hpp
       title: BitwiseXorConvolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/Convolution.hpp
       title: "Convolution(\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -404,10 +404,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/Inverse.hpp
       title: "Inverse(\u9006\u884C\u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/LinearEquations.hpp
       title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
   - name: other
@@ -423,7 +423,7 @@ data:
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -435,7 +435,7 @@ data:
       path: string/LongestIncreasingSubsequence.hpp
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/Manacher.hpp
       title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
@@ -444,7 +444,7 @@ data:
     - icon: ':question:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/ZAlgorithm.hpp
       title: Z-Algorithm
   - name: template
@@ -963,51 +963,51 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/system_of_linear_equations.test.cpp
       title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - name: test/yosupo/new
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
       title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/enumerate_quotients.test.cpp
       title: test/yosupo/new/enumerate_quotients.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/primality_test.test.cpp
       title: test/yosupo/new/primality_test.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/tree_path_composite_sum.test.cpp
       title: test/yosupo/new/tree_path_composite_sum.test.cpp
   - name: test/yosupo/sample
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/aplusb.test.cpp
       title: test/yosupo/sample/aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/many_aplusb.test.cpp
       title: test/yosupo/sample/many_aplusb.test.cpp
   - name: test/yosupo/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/enumerate_palindromes.test.cpp
       title: test/yosupo/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp
   - name: test/yosupo/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/cartesian_tree.test.cpp
       title: test/yosupo/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/jump_on_tree.test.cpp
       title: test/yosupo/tree/jump_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/lca-HLD.test.cpp
       title: test/yosupo/tree/lca-HLD.test.cpp
     - icon: ':x:'

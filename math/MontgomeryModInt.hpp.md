@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
@@ -39,16 +39,16 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   _extendedVerifiedWith:
@@ -70,10 +70,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sqrt_mod.test.cpp
     title: test/yosupo/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primality_test.test.cpp
     title: test/yosupo/new/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':x:'
@@ -655,25 +655,25 @@ data:
   isVerificationFile: false
   path: math/MontgomeryModInt.hpp
   requiredBy:
-  - graph/tree/FrequencyTableofTreeDistance.hpp
+  - math/MillerRabin.hpp
+  - math/PollardRho.hpp
   - math/PrimitiveRoot.hpp
-  - math/convolution/Convolution.hpp
   - math/SqrtMod.hpp
   - math/EulerPhi.hpp
-  - math/PollardRho.hpp
-  - math/MillerRabin.hpp
+  - math/convolution/Convolution.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-06-24 12:49:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/math/sqrt_mod.test.cpp
+  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/yuki/3030-MRPrime.test.cpp
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/sqrt_mod.test.cpp
   - test/yosupo/new/primality_test.test.cpp
-  - test/yuki/3030-MRPrime.test.cpp
-  - test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
 documentation_of: math/MontgomeryModInt.hpp
 layout: document
 redirect_from:

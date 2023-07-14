@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
@@ -577,53 +577,37 @@ data:
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\
-    \n\ntemplate<class T> class IntCombinatorics {\nprivate:\n    static std::vector<T>\
-    \ factorial;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
-    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
-    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return T(0);\n        init(n);\n   \
-    \     return factorial[n] / factorial[n - r];\n    }\n    static T comb(ll n,\
-    \ ll r) {\n        if (n < 0) return T(0);\n        if (r < 0 || r > n) return\
-    \ T(0);\n        init(n);\n        return factorial[n] / factorial[n - r] / factorial[r];\n\
-    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r,\
-    \ n - r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n       \
-    \ return res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0\
-    \ || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res\
-    \ = 1;\n        reps (i, r) res *= n - r + i;\n        return res / factorial[r];\n\
-    \    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r - 1, r);\
-    \ }\n};\n\ntemplate<class T>\nstd::vector<T> IntCombinatorics<T>::factorial =\
-    \ std::vector<T>(1, 1);\n\ntemplate<class T> class Combinatorics {\nprivate:\n\
-    \    static std::vector<T> factorial;\n    static std::vector<T> factinv;\n\n\
-    public:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
-    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
-    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
-    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if\
-    \ (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n] *\
-    \ factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0)\
-    \ return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n       \
-    \ return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll\
-    \ n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r)\
-    \ {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n        reps (i,\
-    \ r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
-    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
-    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\
-    \n\nclass BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long\
-    \ long im;\n\npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_),\
-    \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
-    \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
-    \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
-    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
-    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
+    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
+    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
+    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
+    \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
+    \ T finv(ll x) {\n        init(x);\n        return factinv[x];\n    }\n    static\
+    \ T inv(ll x) {\n        init(x);\n        return factorial[x - 1] * factinv[x];\n\
+    \    }\n    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        init(n);\n        return factorial[n] * factinv[n - r];\n    }\n    static\
+    \ T comb(ll n, ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r >\
+    \ n) return 0;\n        init(n);\n        return factorial[n] * factinv[n - r]\
+    \ * factinv[r];\n    }\n    static T homo(ll n, ll r) { return comb(n + r - 1,\
+    \ r); }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
+    \ 0;\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n        return\
+    \ res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0 || r >\
+    \ n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n\
+    \        reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
+    \ T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 2 \"\
+    math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\n\nclass\
+    \ BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long long im;\n\
+    \npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_), im((unsigned\
+    \ long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned int m_) {\n \
+    \       m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n    }\n\n   \
+    \ inline unsigned int get_mod() const { return m; }\n\n    unsigned int reduce(ull\
+    \ a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a) *\
+    \ im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
     \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
@@ -700,8 +684,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-14 20:30:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
 layout: document

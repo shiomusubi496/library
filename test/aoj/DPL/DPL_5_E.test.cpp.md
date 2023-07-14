@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -572,49 +572,32 @@ data:
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/Combinatorics.hpp\"\
-    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class IntCombinatorics\
-    \ {\nprivate:\n    static std::vector<T> factorial;\n\npublic:\n    static void\
-    \ init(ll n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
-    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
-    \ - 1] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n        return\
-    \ factorial[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0 ||\
-    \ r > n) return T(0);\n        init(n);\n        return factorial[n] / factorial[n\
-    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return T(0);\n\
-    \        if (r < 0 || r > n) return T(0);\n        init(n);\n        return factorial[n]\
-    \ / factorial[n - r] / factorial[r];\n    }\n    static T homo(ll n, ll r) { return\
-    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
-    \ < 0 || r > n) return 0;\n        chmin(r, n - r);\n        T res = 1;\n    \
+    \n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class T> class Combinatorics\
+    \ {\nprivate:\n    static std::vector<T> factorial;\n    static std::vector<T>\
+    \ factinv;\n\npublic:\n    static void init(ll n) {\n        const int b = factorial.size();\n\
+    \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
+    \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
+    \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
+    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
+    \        return factinv[x];\n    }\n    static T inv(ll x) {\n        init(x);\n\
+    \        return factorial[x - 1] * factinv[x];\n    }\n    static T perm(ll n,\
+    \ ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n        return\
+    \ factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n   \
+    \     if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
+    \        return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static\
+    \ T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll\
+    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n    \
     \    reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
     \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
-    \        init(r);\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n\
-    \        return res / factorial[r];\n    }\n    static T small_homo(ll n, ll r)\
-    \ { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T>\
-    \ IntCombinatorics<T>::factorial = std::vector<T>(1, 1);\n\ntemplate<class T>\
-    \ class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n    static\
-    \ std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n        const\
-    \ int b = factorial.size();\n        if (n < b) return;\n        factorial.resize(n\
-    \ + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i - 1] * i;\n    \
-    \    factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n     \
-    \   rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T fact(ll\
-    \ x) {\n        init(x);\n        return factorial[x];\n    }\n    static T finv(ll\
-    \ x) {\n        init(x);\n        return factinv[x];\n    }\n    static T perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n      \
-    \  return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r)\
-    \ {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n   \
-    \     init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n \
-    \   }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
-    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
-    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
-    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
-    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
-    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 5 \"\
-    test/aoj/DPL/DPL_5_E.test.cpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
-    \    print << comb::comb(k, n) << endl;\n}\n"
+    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
+    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n#line 5 \"test/aoj/DPL/DPL_5_E.test.cpp\"\nusing namespace std;\nusing mint\
+    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
+    \ n, k; scan >> n >> k;\n    print << comb::comb(k, n) << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_E\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
@@ -635,7 +618,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
+  timestamp: '2023-07-14 20:30:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_E.test.cpp
