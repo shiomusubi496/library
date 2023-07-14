@@ -82,17 +82,57 @@ void inverse_number_theoretic_transform(std::vector<T>& a) {
 }
 
 template<class T>
+std::vector<T> convolution_naive(const std::vector<T>& a,
+                                 const std::vector<T>& b) {
+    int n = a.size(), m = b.size();
+    std::vector<T> c(n + m - 1);
+    rep (i, n)
+        rep (j, m) c[i + j] += a[i] * b[j];
+    return c;
+}
+
+template<class T>
+std::vector<T> convolution_pow2(std::vector<T> a) {
+    int n = a.size() * 2 - 1;
+    int lg = bitop::msb(n - 1) + 1;
+    if (n - (1 << (lg - 1)) <= 5) {
+        --lg;
+        int m = a.size() - (1 << (lg - 1));
+        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());
+        std::vector<T> c(n);
+        std::vector<T> c1 = convolution_naive(a1, a1);
+        std::vector<T> c2 = convolution_naive(a1, a2);
+        std::vector<T> c3 = convolution_pow2(a2);
+        rep (i, c1.size()) c[i] += c1[i];
+        rep (i, c2.size()) c[i + m] += c2[i] * 2;
+        rep (i, c3.size()) c[i + m * 2] += c3[i];
+        return c;
+    }
+    int m = 1 << lg;
+    a.resize(m);
+    number_theoretic_transform(a);
+    rep (i, m) a[i] *= a[i];
+    inverse_number_theoretic_transform(a);
+    a.resize(n);
+    return a;
+}
+
+template<class T>
 std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
     int n = a.size() + b.size() - 1;
     int lg = bitop::msb(n - 1) + 1;
     int m = 1 << lg;
-    if (a.size() == b.size() && a == b) {
-        a.resize(m);
-        number_theoretic_transform(a);
-        rep (i, m) a[i] *= a[i];
-        inverse_number_theoretic_transform(a);
-        a.resize(n);
-        return a;
+    if (n - (1 << (lg - 1)) <= 5) {
+        --lg;
+        if (a.size() < b.size()) std::swap(a, b);
+        int m = n - (1 << lg);
+        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());
+        std::vector<T> c(n);
+        std::vector<T> c1 = convolution_naive(a1, b);
+        std::vector<T> c2 = convolution(a2, b);
+        rep (i, c1.size()) c[i] += c1[i];
+        rep (i, c2.size()) c[i + m] += c2[i];
+        return c;
     }
     a.resize(m);
     b.resize(m);
@@ -102,17 +142,6 @@ std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
     inverse_number_theoretic_transform(a);
     a.resize(n);
     return a;
-}
-
-
-template<class T>
-std::vector<T> convolution_naive(const std::vector<T>& a,
-                                 const std::vector<T>& b) {
-    int n = a.size(), m = b.size();
-    std::vector<T> c(n + m - 1);
-    rep (i, n)
-        rep (j, m) c[i + j] += a[i] * b[j];
-    return c;
 }
 
 } // namespace internal
@@ -133,6 +162,7 @@ convolution(const std::vector<static_modint<p>>& a,
     if (n == 0 || m == 0) return {};
     if (n <= 60 || m <= 60) return internal::convolution_naive(a, b);
     if (n + m - 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);
+    if (n == m && a == b) return internal::convolution_pow2(a);
     return internal::convolution(a, b);
 }
 
@@ -181,6 +211,21 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
         res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);
     }
     return res;
+}
+
+template<class T>
+void ntt_doubling_(std::vector<T>& a) {
+    int n = a.size();
+    auto b = a;
+    inverse_number_theoretic_transform(b);
+    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n) + 1);
+    T r = 1;
+    rep (i, n) {
+        b[i] *= r;
+        r *= z;
+    }
+    number_theoretic_transform(b);
+    std::copy(all(b), std::back_inserter(a));
 }
 
 /**
