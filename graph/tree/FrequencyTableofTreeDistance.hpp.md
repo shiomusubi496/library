@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -29,37 +29,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -829,26 +829,40 @@ data:
     \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
     \ = (x - y) * z;\n            }\n            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j\
     \ & ~(j + 1)));\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for (x :\
-    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    if (a.size() == b.size() && a == b) {\n\
-    \        a.resize(m);\n        number_theoretic_transform(a);\n        rep (i,\
-    \ m) a[i] *= a[i];\n        inverse_number_theoretic_transform(a);\n        a.resize(n);\n\
-    \        return a;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
-    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
-    \    a.resize(n);\n    return a;\n}\n\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
+    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
     \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
     \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
     \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
-    \n} // namespace internal\n\nusing internal::number_theoretic_transform;\nusing\
-    \ internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
+    \ntemplate<class T>\nstd::vector<T> convolution_pow2(std::vector<T> a) {\n   \
+    \ int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n    if (n -\
+    \ (1 << (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() - (1 << (lg\
+    \ - 1));\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() +\
+    \ m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
+    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
+    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
+    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
+    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
+    \ - 1) + 1;\n    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n     \
+    \   --lg;\n        if (a.size() < b.size()) std::swap(a, b);\n        int m =\
+    \ n - (1 << lg);\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
+    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
+    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
+    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::number_theoretic_transform;\n\
+    using internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
     std::vector<static_modint<p>>\nconvolution_for_any_mod(const std::vector<static_modint<p>>&\
     \ a,\n                        const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned\
     \ int p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
     \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
     \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
     \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    return internal::convolution(a,\
+    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    if (n ==\
+    \ m && a == b) return internal::convolution_pow2(a);\n    return internal::convolution(a,\
     \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
     \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
     \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
@@ -871,93 +885,97 @@ data:
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        assert(0 <= t1 &&\
     \ t1 < MOD1);\n        assert(0 <= t2 && t2 < MOD2);\n        assert(0 <= t3 &&\
     \ t3 < MOD3);\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution.md\n */\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
-    \n\ntemplate<class T> class TreeCentroids {\nprivate:\n    int n;\n    const Graph<T>&\
-    \ G;\n    std::vector<int> sz;\n    std::vector<int> cent;\n    int dfs(int v,\
-    \ int p) {\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
-    \            sz[v] += dfs(e.to, v);\n        }\n        return sz[v];\n    }\n\
-    \    void init() {\n        n = G.size();\n        sz.assign(n, 1);\n        int\
-    \ s = dfs(0, -1);\n        int v = 0, p = -1;\n        while (true) {\n      \
-    \      bool ok = true;\n            each_const (e : G[v]) {\n                if\
-    \ (e.to == p) continue;\n                if (sz[e.to] * 2 > s) {\n           \
-    \         p = v;\n                    v = e.to;\n                    ok = false;\n\
-    \                    break;\n                }\n                if (sz[e.to] *\
-    \ 2 == s) {\n                    cent = {v, e.to};\n                    return;\n\
-    \                }\n            }\n            if (ok) {\n                cent\
-    \ = {v};\n                return;\n            }\n        }\n    }\n\npublic:\n\
-    \    TreeCentroids(const Graph<T>& G) : G(G) { init(); }\n    bool has_one_centroid()\
-    \ const { return cent.size() == 1; }\n    std::vector<int> get() { return cent;\
-    \ }\n};\n\ntemplate<class T> class CentroidDecomposition {\nprivate:\n    int\
-    \ n;\n    const Graph<T>& G;\n    std::vector<bool> seen;\n    std::vector<int>\
-    \ sz;\n    int root;\n    UnweightedGraph C;\n    int dfs(int v, int p) {\n  \
-    \      sz[v] = 1;\n        each_const (e : G[v]) {\n            if (e.to == p)\
-    \ continue;\n            if (seen[e.to]) continue;\n            sz[v] += dfs(e.to,\
+    \    }\n    return res;\n}\n\ntemplate<class T>\nvoid ntt_doubling_(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
+    \    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n) + 1);\n  \
+    \  T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n  \
+    \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
+    }\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n\
+    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\n\n\
+    #line 5 \"graph/tree/TreeCentroid.hpp\"\n\ntemplate<class T> class TreeCentroids\
+    \ {\nprivate:\n    int n;\n    const Graph<T>& G;\n    std::vector<int> sz;\n\
+    \    std::vector<int> cent;\n    int dfs(int v, int p) {\n        each_const (e\
+    \ : G[v]) {\n            if (e.to == p) continue;\n            sz[v] += dfs(e.to,\
     \ v);\n        }\n        return sz[v];\n    }\n    void init() {\n        n =\
-    \ G.size();\n        seen.assign(n, false);\n        sz.assign(n, 1);\n      \
-    \  std::vector<std::pair<int, int>> st = {{0, -1}};\n        st.reserve(n);\n\
-    \        C = UnweightedGraph(n);\n        while (!st.empty()) {\n            int\
-    \ v = st.back().first, vp = st.back().second;\n            st.pop_back();\n  \
-    \          int s = dfs(v, -1);\n            int p = -1;\n            while (true)\
-    \ {\n                bool ok = true;\n                each_const (e : G[v]) {\n\
-    \                    if (e.to == p) continue;\n                    if (seen[e.to])\
-    \ continue;\n                    if (sz[e.to] * 2 > s) {\n                   \
-    \     p = v;\n                        v = e.to;\n                        ok =\
-    \ false;\n                        break;\n                    }\n            \
-    \    }\n                if (ok) break;\n            }\n            seen[v] = true;\n\
-    \            if (vp != -1) C.add_edge(vp, v, true);\n            else root = v;\n\
-    \            each_const (e : G[v]) {\n                if (seen[e.to]) continue;\n\
-    \                st.emplace_back(e.to, v);\n            }\n        }\n    }\n\n\
-    public:\n    CentroidDecomposition(const Graph<T>& G) : G(G) { init(); }\n   \
-    \ int get_root() { return root; }\n    const UnweightedGraph& get() const& { return\
-    \ C; }\n    UnweightedGraph get() && { return std::move(C); }\n};\n\n/**\n * @brief\
-    \ TreeCentroid(\u6728\u306E\u91CD\u5FC3)\n * @docs docs/graph/tree/TreeCentroid.md\n\
-    \ */\n#line 9 \"graph/tree/FrequencyTableofTreeDistance.hpp\"\n\ntemplate<class\
-    \ T> class FrequencyTableofTreeDistance {\nprivate:\n    static constexpr int\
-    \ MOD1 = 469762049;\n    static constexpr int MOD2 = 1811939329;\n    using mint1\
-    \ = static_modint<MOD1>;\n    using mint2 = static_modint<MOD2>;\n\n    int n;\n\
-    \    const Graph<T>& G;\n    CentroidDecomposition<T> C;\n    std::vector<mint1>\
+    \ G.size();\n        sz.assign(n, 1);\n        int s = dfs(0, -1);\n        int\
+    \ v = 0, p = -1;\n        while (true) {\n            bool ok = true;\n      \
+    \      each_const (e : G[v]) {\n                if (e.to == p) continue;\n   \
+    \             if (sz[e.to] * 2 > s) {\n                    p = v;\n          \
+    \          v = e.to;\n                    ok = false;\n                    break;\n\
+    \                }\n                if (sz[e.to] * 2 == s) {\n               \
+    \     cent = {v, e.to};\n                    return;\n                }\n    \
+    \        }\n            if (ok) {\n                cent = {v};\n             \
+    \   return;\n            }\n        }\n    }\n\npublic:\n    TreeCentroids(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    bool has_one_centroid() const { return\
+    \ cent.size() == 1; }\n    std::vector<int> get() { return cent; }\n};\n\ntemplate<class\
+    \ T> class CentroidDecomposition {\nprivate:\n    int n;\n    const Graph<T>&\
+    \ G;\n    std::vector<bool> seen;\n    std::vector<int> sz;\n    int root;\n \
+    \   UnweightedGraph C;\n    int dfs(int v, int p) {\n        sz[v] = 1;\n    \
+    \    each_const (e : G[v]) {\n            if (e.to == p) continue;\n         \
+    \   if (seen[e.to]) continue;\n            sz[v] += dfs(e.to, v);\n        }\n\
+    \        return sz[v];\n    }\n    void init() {\n        n = G.size();\n    \
+    \    seen.assign(n, false);\n        sz.assign(n, 1);\n        std::vector<std::pair<int,\
+    \ int>> st = {{0, -1}};\n        st.reserve(n);\n        C = UnweightedGraph(n);\n\
+    \        while (!st.empty()) {\n            int v = st.back().first, vp = st.back().second;\n\
+    \            st.pop_back();\n            int s = dfs(v, -1);\n            int\
+    \ p = -1;\n            while (true) {\n                bool ok = true;\n     \
+    \           each_const (e : G[v]) {\n                    if (e.to == p) continue;\n\
+    \                    if (seen[e.to]) continue;\n                    if (sz[e.to]\
+    \ * 2 > s) {\n                        p = v;\n                        v = e.to;\n\
+    \                        ok = false;\n                        break;\n       \
+    \             }\n                }\n                if (ok) break;\n         \
+    \   }\n            seen[v] = true;\n            if (vp != -1) C.add_edge(vp, v,\
+    \ true);\n            else root = v;\n            each_const (e : G[v]) {\n  \
+    \              if (seen[e.to]) continue;\n                st.emplace_back(e.to,\
+    \ v);\n            }\n        }\n    }\n\npublic:\n    CentroidDecomposition(const\
+    \ Graph<T>& G) : G(G) { init(); }\n    int get_root() { return root; }\n    const\
+    \ UnweightedGraph& get() const& { return C; }\n    UnweightedGraph get() && {\
+    \ return std::move(C); }\n};\n\n/**\n * @brief TreeCentroid(\u6728\u306E\u91CD\
+    \u5FC3)\n * @docs docs/graph/tree/TreeCentroid.md\n */\n#line 9 \"graph/tree/FrequencyTableofTreeDistance.hpp\"\
+    \n\ntemplate<class T> class FrequencyTableofTreeDistance {\nprivate:\n    static\
+    \ constexpr int MOD1 = 469762049;\n    static constexpr int MOD2 = 1811939329;\n\
+    \    using mint1 = static_modint<MOD1>;\n    using mint2 = static_modint<MOD2>;\n\
+    \n    int n;\n    const Graph<T>& G;\n    CentroidDecomposition<T> C;\n    std::vector<mint1>\
     \ ans1;\n    std::vector<mint2> ans2;\n    std::vector<ll> ans;\n\n    template<class\
     \ M> void build(std::vector<M>& ans) {\n        std::vector<int> st = {C.get_root()};\n\
     \        st.reserve(n);\n        std::vector<bool> seen(n, false);\n        std::vector<std::tuple<int,\
@@ -1051,7 +1069,7 @@ data:
   isVerificationFile: false
   path: graph/tree/FrequencyTableofTreeDistance.hpp
   requiredBy: []
-  timestamp: '2023-07-03 14:55:56+09:00'
+  timestamp: '2023-07-14 21:37:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

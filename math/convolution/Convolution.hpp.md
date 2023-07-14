@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -17,37 +17,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -803,26 +803,40 @@ data:
     \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
     \ = (x - y) * z;\n            }\n            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j\
     \ & ~(j + 1)));\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for (x :\
-    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    if (a.size() == b.size() && a == b) {\n\
-    \        a.resize(m);\n        number_theoretic_transform(a);\n        rep (i,\
-    \ m) a[i] *= a[i];\n        inverse_number_theoretic_transform(a);\n        a.resize(n);\n\
-    \        return a;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
-    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
-    \    a.resize(n);\n    return a;\n}\n\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
+    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
     \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
     \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
     \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
-    \n} // namespace internal\n\nusing internal::number_theoretic_transform;\nusing\
-    \ internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
+    \ntemplate<class T>\nstd::vector<T> convolution_pow2(std::vector<T> a) {\n   \
+    \ int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n    if (n -\
+    \ (1 << (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() - (1 << (lg\
+    \ - 1));\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() +\
+    \ m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
+    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
+    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
+    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
+    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
+    \ - 1) + 1;\n    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n     \
+    \   --lg;\n        if (a.size() < b.size()) std::swap(a, b);\n        int m =\
+    \ n - (1 << lg);\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
+    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
+    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
+    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::number_theoretic_transform;\n\
+    using internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
     std::vector<static_modint<p>>\nconvolution_for_any_mod(const std::vector<static_modint<p>>&\
     \ a,\n                        const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned\
     \ int p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
     \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
     \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
     \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    return internal::convolution(a,\
+    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    if (n ==\
+    \ m && a == b) return internal::convolution_pow2(a);\n    return internal::convolution(a,\
     \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
     \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
     \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
@@ -845,8 +859,13 @@ data:
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        assert(0 <= t1 &&\
     \ t1 < MOD1);\n        assert(0 <= t2 && t2 < MOD2);\n        assert(0 <= t3 &&\
     \ t3 < MOD3);\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution.md\n */\n"
+    \    }\n    return res;\n}\n\ntemplate<class T>\nvoid ntt_doubling_(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
+    \    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n) + 1);\n  \
+    \  T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n  \
+    \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
+    }\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../ModInt.hpp\"\
     \n#include \"../PrimitiveRoot.hpp\"\n\nnamespace internal {\n\ntemplate<unsigned\
     \ int p> class NthRoot {\nprivate:\n    static constexpr unsigned int lg = bitop::msb((p\
@@ -881,26 +900,40 @@ data:
     \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
     \ = (x - y) * z;\n            }\n            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j\
     \ & ~(j + 1)));\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for (x :\
-    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    if (a.size() == b.size() && a == b) {\n\
-    \        a.resize(m);\n        number_theoretic_transform(a);\n        rep (i,\
-    \ m) a[i] *= a[i];\n        inverse_number_theoretic_transform(a);\n        a.resize(n);\n\
-    \        return a;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
-    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
-    \    a.resize(n);\n    return a;\n}\n\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
+    \ a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
     \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
     \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
     \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
-    \n} // namespace internal\n\nusing internal::number_theoretic_transform;\nusing\
-    \ internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
+    \ntemplate<class T>\nstd::vector<T> convolution_pow2(std::vector<T> a) {\n   \
+    \ int n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n    if (n -\
+    \ (1 << (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() - (1 << (lg\
+    \ - 1));\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() +\
+    \ m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
+    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
+    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
+    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
+    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
+    \ - 1) + 1;\n    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n     \
+    \   --lg;\n        if (a.size() < b.size()) std::swap(a, b);\n        int m =\
+    \ n - (1 << lg);\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
+    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
+    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
+    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::number_theoretic_transform;\n\
+    using internal::inverse_number_theoretic_transform;\n\ntemplate<unsigned int p>\n\
     std::vector<static_modint<p>>\nconvolution_for_any_mod(const std::vector<static_modint<p>>&\
     \ a,\n                        const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned\
     \ int p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
     \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
     \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
     \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    return internal::convolution(a,\
+    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    if (n ==\
+    \ m && a == b) return internal::convolution_pow2(a);\n    return internal::convolution(a,\
     \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
     \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
     \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
@@ -923,8 +956,13 @@ data:
     \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        assert(0 <= t1 &&\
     \ t1 < MOD1);\n        assert(0 <= t2 && t2 < MOD2);\n        assert(0 <= t3 &&\
     \ t3 < MOD3);\n        res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);\n\
-    \    }\n    return res;\n}\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F\
-    )\n * @docs docs/math/convolution.md\n */\n"
+    \    }\n    return res;\n}\n\ntemplate<class T>\nvoid ntt_doubling_(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    auto b = a;\n    inverse_number_theoretic_transform(b);\n\
+    \    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n) + 1);\n  \
+    \  T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n    }\n  \
+    \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
+    }\n\n/**\n * @brief Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -946,7 +984,7 @@ data:
   path: math/convolution/Convolution.hpp
   requiredBy:
   - graph/tree/FrequencyTableofTreeDistance.hpp
-  timestamp: '2023-07-03 14:55:56+09:00'
+  timestamp: '2023-07-14 21:37:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
