@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
       , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':question:'
@@ -72,16 +72,16 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/partition_number
+    PROBLEM: https://judge.yosupo.jp/problem/partition_function
     links:
-    - https://judge.yosupo.jp/problem/partition_number
-  bundledCode: "#line 1 \"test/yosupo/math/partition_number.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/partition_number\"\n#line 2 \"other/template.hpp\"\
+    - https://judge.yosupo.jp/problem/partition_function
+  bundledCode: "#line 1 \"test/yosupo/math/partition_function.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -903,18 +903,18 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/SqrtMod.hpp\"\n\n\
-    #line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const\
-    \ ll p = T::get_mod();\n    if (p == 2) return a;\n    if (a == 0) return 0;\n\
-    \    if (T{a}.pow((p - 1) >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p\
-    \ - 1) >> 1) == 1) ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t\
-    \ >>= 1, ++s;\n    T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n   \
-    \ T v = T{b}.pow(t);\n    while (w != 1) {\n        ll k = 0;\n        T y = w;\n\
-    \        while (y != 1) {\n            y *= y;\n            ++k;\n        }\n\
-    \        T z = v;\n        rep (s - k - 1) z *= z;\n        x *= z;\n        w\
-    \ *= z * z;\n    }\n    return std::min<ll>(x.get(), p - x.get());\n}\n\nll sqrt_mod(ll\
-    \ a, ll p) {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/SqrtMod.hpp\"\
+    \n\n#line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class T> ll sqrt_mod(ll a) {\n  \
+    \  const ll p = T::get_mod();\n    if (p == 2) return a;\n    if (a == 0) return\
+    \ 0;\n    if (T{a}.pow((p - 1) >> 1) != 1) return -1;\n    T b = 2;\n    while\
+    \ (T{b}.pow((p - 1) >> 1) == 1) ++b;\n    ll s = 0, t = p - 1;\n    while ((t\
+    \ & 1) == 0) t >>= 1, ++s;\n    T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n\
+    \    T v = T{b}.pow(t);\n    while (w != 1) {\n        ll k = 0;\n        T y\
+    \ = w;\n        while (y != 1) {\n            y *= y;\n            ++k;\n    \
+    \    }\n        T z = v;\n        rep (s - k - 1) z *= z;\n        x *= z;\n \
+    \       w *= z * z;\n    }\n    return std::min<ll>(x.get(), p - x.get());\n}\n\
+    \nll sqrt_mod(ll a, ll p) {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned\
     \ int, 493174342>;\n    mint::set_mod(p);\n    return sqrt_mod<mint>(a);\n}\n\n\
     /**\n * @brief SqrtMod(\u5E73\u65B9\u5270\u4F59)\n * @docs docs/math/SqrtMod.md\n\
     \ * @see https://37zigen.com/tonelli-shanks-algorithm/\n */\n#line 7 \"math/poly/FormalPowerSeries.hpp\"\
@@ -1121,11 +1121,11 @@ data:
     }\n\n/**\n * @brief StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\
     \u30B0\u6570, \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
     \u30EB\u6570,\n * \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n\
-    \ * @docs docs/math/StirlingNumber.md\n */\n#line 5 \"test/yosupo/math/partition_number.test.cpp\"\
+    \ * @docs docs/math/StirlingNumber.md\n */\n#line 5 \"test/yosupo/math/partition_function.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N;\
     \ scan >> N;\n    prints(partition_number<mint>(N));\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_number\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/StirlingNumber.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/partition_function\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/StirlingNumber.hpp\"\
     \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
     int main() {\n    int N; scan >> N;\n    prints(partition_number<mint>(N));\n\
     }\n"
@@ -1153,15 +1153,15 @@ data:
   - math/SqrtMod.hpp
   - math/poly/TaylorShift.hpp
   isVerificationFile: true
-  path: test/yosupo/math/partition_number.test.cpp
+  path: test/yosupo/math/partition_function.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 19:35:58+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/math/partition_number.test.cpp
+documentation_of: test/yosupo/math/partition_function.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/math/partition_number.test.cpp
-- /verify/test/yosupo/math/partition_number.test.cpp.html
-title: test/yosupo/math/partition_number.test.cpp
+- /verify/test/yosupo/math/partition_function.test.cpp
+- /verify/test/yosupo/math/partition_function.test.cpp.html
+title: test/yosupo/math/partition_function.test.cpp
 ---

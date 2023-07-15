@@ -898,8 +898,8 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"math/SqrtMod.hpp\"\n\n#line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"math/SqrtMod.hpp\"\n\n#line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class\
     \ T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n    if (p == 2) return\
     \ a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1) >> 1) != 1) return -1;\n\
     \    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1) ++b;\n    ll s = 0, t =\
@@ -1126,7 +1126,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 19:35:58+09:00'
+  timestamp: '2023-07-15 20:33:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/sharp_p_subset_sum.test.cpp

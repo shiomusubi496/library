@@ -60,7 +60,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
       , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -78,7 +78,7 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -88,9 +88,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/math/partition_number.test.cpp
-    title: test/yosupo/math/partition_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/partition_function.test.cpp
+    title: test/yosupo/math/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
@@ -130,7 +130,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -951,12 +951,12 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
-    \ T> class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n \
-    \   static std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n\
-    \        const int b = factorial.size();\n        if (n < b) return;\n       \
-    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\
+    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
+    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
+    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
     \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
     \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
@@ -1360,13 +1360,13 @@ data:
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  timestamp: '2023-07-15 19:35:58+09:00'
+  timestamp: '2023-07-15 20:33:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/partition_number.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp

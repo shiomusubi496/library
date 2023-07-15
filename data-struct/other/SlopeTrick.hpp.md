@@ -30,14 +30,14 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/other/SlopeTrick.md
+    _deprecated_at_docs: docs/data-struct/other/SlopeTrick.md
     document_title: SlopeTrick
     links: []
   bundledCode: "#line 2 \"data-struct/other/SlopeTrick.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -466,7 +466,7 @@ data:
     \ addL += a;\n        addR += a;\n    }\n    void slide_min(T a, T b) {\n    \
     \    assert(a <= b);\n        addL += a;\n        addR += b;\n    }\n    T min()\
     \ const { return minval; }\n    std::pair<T, T> argmin() const { return {L.top()\
-    \ + addL, R.top() + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/other/SlopeTrick.md\n\
+    \ + addL, R.top() + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/data-struct/other/SlopeTrick.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ class MaxQueue = std::priority_queue<T>,\n         class MinQueue = prique<T>>\n\
@@ -484,7 +484,7 @@ data:
     \        addR += a;\n    }\n    void slide_min(T a, T b) {\n        assert(a <=\
     \ b);\n        addL += a;\n        addR += b;\n    }\n    T min() const { return\
     \ minval; }\n    std::pair<T, T> argmin() const { return {L.top() + addL, R.top()\
-    \ + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/other/SlopeTrick.md\n\
+    \ + addR}; }\n};\n\n/**\n * @brief SlopeTrick\n * @docs docs/data-struct/other/SlopeTrick.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -499,8 +499,8 @@ data:
   isVerificationFile: false
   path: data-struct/other/SlopeTrick.hpp
   requiredBy: []
-  timestamp: '2023-06-24 14:05:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/arc070_c-SlopeTrick.test.cpp
 documentation_of: data-struct/other/SlopeTrick.hpp
@@ -510,3 +510,18 @@ redirect_from:
 - /library/data-struct/other/SlopeTrick.hpp.html
 title: SlopeTrick
 ---
+## 概要
+
+絶対値の和の形をした関数などを効率よく扱うことができる。
+
+- `SlopeTrick(T a = 0)` : 関数を定数関数 $f(x) = a$ で初期化する。 $\Theta(1)$ 。
+- `void add(T a)` : 関数を $g(x) = f(x) + a$ にする。 $\Theta(1)$ 。
+- `void a_x(T a)` : 関数を $g(x) = f(x) + \max(a-x, 0)$ にする。 $\Theta(\log N)$ 。
+- `void x_a(T a)` : 関数を $g(x) = f(x) + \max(x-a, 0)$ にする。 $\Theta(\log N)$ 。
+- `void abs(T a)` : 関数を $g(x) = f(x) + \lvert x-a \rvert$ にする。 $\Theta(\log N)$ 。
+- `void prefix_min(T a)` : 関数を $g(x) = \min_{y \leq x} f(y)$ にする。償却 $\Theta(1)$ 。
+- `void suffix_min(T a)` : 関数を $g(x) = \min_{y \geq x} f(y)$ にする。償却 $\Theta(1)$ 。
+- `void slide(T a)` : 関数を $g(x) = f(x-a)$ にする。 $\Theta(1)$ 。
+- `void slide_min(T a, T b)` : 関数を $g(x) = \min_{x-b \leq y \leq x-a} f(y)$ にする。 $\Theta(1)$ 。
+- `T min()` : $\min_x f(x)$ を返す。 $\Theta(1)$ 。
+- `pair<T, T> argmin()` : $\argmin_x f(x) = \{x \mid l \leq x \leq r\}$ なる $l, r$ を返す。 $\Theta(1)$ 。

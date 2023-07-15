@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':heavy_check_mark:'
@@ -171,7 +171,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
   - icon: ':heavy_check_mark:'
@@ -282,7 +282,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/BarrettReduction.hpp
     title: math/BarrettReduction.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':question:'
@@ -334,7 +334,7 @@ data:
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
       , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -404,7 +404,7 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':heavy_check_mark:'
@@ -691,7 +691,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
   - icon: ':heavy_check_mark:'
@@ -883,9 +883,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/montmort_number_mod.test.cpp
     title: test/yosupo/math/montmort_number_mod.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/math/partition_number.test.cpp
-    title: test/yosupo/math/partition_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/partition_function.test.cpp
+    title: test/yosupo/math/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
@@ -961,7 +961,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -991,7 +991,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1440,8 +1440,8 @@ data:
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/partition_number.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/longest_increasing_subsequence.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp

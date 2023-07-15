@@ -42,7 +42,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
       , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -75,7 +75,7 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -97,9 +97,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/math/partition_number.test.cpp
-    title: test/yosupo/math/partition_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/partition_function.test.cpp
+    title: test/yosupo/math/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
@@ -142,7 +142,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -157,7 +157,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
@@ -804,8 +804,8 @@ data:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/partition_number.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp

@@ -64,9 +64,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
@@ -872,12 +872,12 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\n\ntemplate<class\
-    \ T> class Combinatorics {\nprivate:\n    static std::vector<T> factorial;\n \
-    \   static std::vector<T> factinv;\n\npublic:\n    static void init(ll n) {\n\
-    \        const int b = factorial.size();\n        if (n < b) return;\n       \
-    \ factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"math/Combinatorics.hpp\"\n\n#line 5 \"math/Combinatorics.hpp\"\
+    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
+    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
+    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
     \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
     \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
@@ -1113,8 +1113,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 19:35:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
 layout: document

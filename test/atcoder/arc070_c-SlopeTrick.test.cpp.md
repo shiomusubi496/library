@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_e
@@ -471,7 +471,7 @@ data:
     \ slide_min(T a, T b) {\n        assert(a <= b);\n        addL += a;\n       \
     \ addR += b;\n    }\n    T min() const { return minval; }\n    std::pair<T, T>\
     \ argmin() const { return {L.top() + addL, R.top() + addR}; }\n};\n\n/**\n * @brief\
-    \ SlopeTrick\n * @docs docs/other/SlopeTrick.md\n */\n#line 5 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\
+    \ SlopeTrick\n * @docs docs/data-struct/other/SlopeTrick.md\n */\n#line 5 \"test/atcoder/arc070_c-SlopeTrick.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<PLL> A(N);\
     \ scan >> A;\n    SlopeTrick<ll> st;\n    st.abs(A[0].first);\n    rep (i, 1,\
     \ N) {\n        st.slide_min(A[i].first - A[i].second, A[i - 1].second - A[i -\
@@ -497,8 +497,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/arc070_c-SlopeTrick.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 16:18:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/arc070_c-SlopeTrick.test.cpp
 layout: document

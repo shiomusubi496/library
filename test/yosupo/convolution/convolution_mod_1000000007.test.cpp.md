@@ -862,10 +862,10 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 5 \"test/yosupo/convolution/convolution_mod_1000000007.test.cpp\"\nusing\
-    \ namespace std;\nusing mint = modint1000000007;\nint main() {\n    int n, m;\
-    \ scan >> n >> m;\n    vector<mint> a(n), b(m); scan >> a >> b;\n    prints(convolution(a,\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 5 \"test/yosupo/convolution/convolution_mod_1000000007.test.cpp\"\n\
+    using namespace std;\nusing mint = modint1000000007;\nint main() {\n    int n,\
+    \ m; scan >> n >> m;\n    vector<mint> a(n), b(m); scan >> a >> b;\n    prints(convolution(a,\
     \ b));\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_1000000007\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
@@ -894,7 +894,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 18:51:27+09:00'
+  timestamp: '2023-07-15 20:33:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/convolution_mod_1000000007.test.cpp

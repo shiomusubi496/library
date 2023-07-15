@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':question:'
@@ -67,9 +67,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -937,8 +937,8 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"graph/tree/TreeCentroid.hpp\"\n\n#line 5 \"graph/tree/TreeCentroid.hpp\"\
     \n\ntemplate<class T> class TreeCentroids {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    std::vector<int> sz;\n    std::vector<int> cent;\n    int dfs(int v,\
     \ int p) {\n        each_const (e : G[v]) {\n            if (e.to == p) continue;\n\
@@ -1051,8 +1051,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 18:51:27+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 layout: document

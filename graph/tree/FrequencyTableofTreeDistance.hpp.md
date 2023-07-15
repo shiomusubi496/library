@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/TreeCentroid.hpp
     title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ChineseRemainder.hpp
     title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
   - icon: ':question:'
@@ -64,12 +64,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/FrequencyTableofTreeDistance.md
     document_title: Frequency Table of Tree Distance
@@ -894,9 +894,9 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n\
-    #line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class T\
-    \ = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
     \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
     \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
     \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
@@ -1073,8 +1073,8 @@ data:
   isVerificationFile: false
   path: graph/tree/FrequencyTableofTreeDistance.hpp
   requiredBy: []
-  timestamp: '2023-07-15 18:51:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-07-15 20:33:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree/FrequencyTableofTreeDistance.hpp

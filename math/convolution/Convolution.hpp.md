@@ -51,10 +51,10 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
       , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -75,7 +75,7 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -91,9 +91,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/math/partition_number.test.cpp
-    title: test/yosupo/math/partition_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/partition_function.test.cpp
+    title: test/yosupo/math/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
@@ -133,7 +133,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -148,14 +148,14 @@ data:
   - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    _deprecated_at_docs: docs/math/convolution.md
+    _deprecated_at_docs: docs/math/convolution/Convolution.md
     document_title: "Convolution(\u7573\u307F\u8FBC\u307F)"
     links: []
   bundledCode: "#line 2 \"math/convolution/Convolution.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -955,7 +955,8 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n"
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../ModInt.hpp\"\
     \n#include \"../PrimitiveRoot.hpp\"\n\nnamespace internal {\n\ntemplate<unsigned\
     \ int p> class NthRoot {\nprivate:\n    static constexpr unsigned int lg = bitop::msb((p\
@@ -1054,7 +1055,8 @@ data:
     \  number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution.md\n */\n"
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1083,13 +1085,13 @@ data:
   - math/poly/MultipointEvaluation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
-  timestamp: '2023-07-15 18:51:27+09:00'
+  timestamp: '2023-07-15 20:33:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/partition_number.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
@@ -1117,3 +1119,17 @@ redirect_from:
 - /library/math/convolution/Convolution.hpp.html
 title: "Convolution(\u7573\u307F\u8FBC\u307F)"
 ---
+## 概要
+
+畳み込み。長さ $N, M$ の数列 $a, b$ に対して、
+
+$\displaystyle c_i = \sum_{j=0}^i a_j b_{i-j}$
+
+で定義される長さ $N+M-1$ の数列 $c$ を返す。
+
+高速フーリエ変換を用いている。
+
+`998244353` など、 $p-1$ が大きい 2 冪の約数を持つ場合はそれ以外に対して 3 倍ほど高速。
+
+- `template<unsigned int p> vector<ll> convolution(vector<ll> a, vector<ll> b)` : $\mod p$ で畳み込む。 $\Theta(N \log N)$ 。
+- `vector<mint<p>> convolution(vector<mint<p>> a, vector<mint<p>> b)` : 同上。 $\Theta(N \log N)$ 。

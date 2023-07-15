@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFindUndo.hpp
     title: "UnionFindUndo(Undo\u53EF\u80FDUnionFind)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
