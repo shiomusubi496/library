@@ -528,8 +528,8 @@ data:
     \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
     \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
     \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/SqrtMod.hpp\"\
-    \n\ntemplate<class T>\nll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n \
-    \   if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
+    \n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n  \
+    \  if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
     \ >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1)\
     \ ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t >>= 1, ++s;\n   \
     \ T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n    T v = T{b}.pow(t);\n\
@@ -542,8 +542,8 @@ data:
     \ * @brief SqrtMod(\u5E73\u65B9\u5270\u4F59)\n * @docs docs/math/SqrtMod.md\n\
     \ * @see https://37zigen.com/tonelli-shanks-algorithm/\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"MontgomeryModInt.hpp\"\
-    \n\ntemplate<class T>\nll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n \
-    \   if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
+    \n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n  \
+    \  if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
     \ >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1)\
     \ ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t >>= 1, ++s;\n   \
     \ T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n    T v = T{b}.pow(t);\n\
@@ -569,7 +569,7 @@ data:
   isVerificationFile: false
   path: math/SqrtMod.hpp
   requiredBy: []
-  timestamp: '2023-07-03 15:15:36+09:00'
+  timestamp: '2023-07-15 18:51:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/sqrt_mod.test.cpp
