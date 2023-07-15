@@ -11,8 +11,8 @@ private:
     static constexpr unsigned int lg = bitop::msb((p - 1) & (1 - p));
     unsigned int root[lg + 1];
     unsigned int inv_root[lg + 1];
-    unsigned int rate[lg - 1];
-    unsigned int inv_rate[lg - 1];
+    unsigned int rate[lg + 1];
+    unsigned int inv_rate[lg + 1];
 
 public:
     constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {
@@ -42,8 +42,7 @@ public:
 
 template<unsigned int p> constexpr NthRoot<p> nth_root;
 
-template<class T>
-void number_theoretic_transform(std::vector<T>& a) {
+template<class T> void number_theoretic_transform(std::vector<T>& a) {
     int n = a.size();
     int lg = bitop::msb(n - 1) + 1;
     rrep (i, lg) {
@@ -56,12 +55,13 @@ void number_theoretic_transform(std::vector<T>& a) {
                 a[offset + k] = x + y;
                 a[offset + k + (1 << i)] = x - y;
             }
-            z *= nth_root<T::get_mod()>.get_rate(popcnt(j & ~(j + 1)));
+            if (j != (1 << (lg - i - 1)) - 1) {
+                z *= nth_root<T::get_mod()>.get_rate(popcnt(j & ~(j + 1)));
+            }
         }
     }
 }
-template<class T>
-void inverse_number_theoretic_transform(std::vector<T>& a) {
+template<class T> void inverse_number_theoretic_transform(std::vector<T>& a) {
     int n = a.size();
     int lg = bitop::msb(n - 1) + 1;
     rep (i, lg) {
@@ -74,7 +74,9 @@ void inverse_number_theoretic_transform(std::vector<T>& a) {
                 a[offset + k] = x + y;
                 a[offset + k + (1 << i)] = (x - y) * z;
             }
-            z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j & ~(j + 1)));
+            if (j != (1 << (lg - i - 1)) - 1) {
+                z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j & ~(j + 1)));
+            }
         }
     }
     T inv_n = T(1) / n;
@@ -91,8 +93,7 @@ std::vector<T> convolution_naive(const std::vector<T>& a,
     return c;
 }
 
-template<class T>
-std::vector<T> convolution_pow2(std::vector<T> a) {
+template<class T> std::vector<T> convolution_pow2(std::vector<T> a) {
     int n = a.size() * 2 - 1;
     int lg = bitop::msb(n - 1) + 1;
     if (n - (1 << (lg - 1)) <= 5) {
@@ -146,8 +147,8 @@ std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
 
 } // namespace internal
 
-using internal::number_theoretic_transform;
 using internal::inverse_number_theoretic_transform;
+using internal::number_theoretic_transform;
 
 template<unsigned int p>
 std::vector<static_modint<p>>
@@ -213,8 +214,7 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
     return res;
 }
 
-template<class T>
-void ntt_doubling_(std::vector<T>& a) {
+template<class T> void ntt_doubling_(std::vector<T>& a) {
     int n = a.size();
     auto b = a;
     inverse_number_theoretic_transform(b);
@@ -227,6 +227,10 @@ void ntt_doubling_(std::vector<T>& a) {
     number_theoretic_transform(b);
     std::copy(all(b), std::back_inserter(a));
 }
+
+template<unsigned int p> struct is_ntt_friendly : std::false_type {};
+
+template<> struct is_ntt_friendly<998244353> : std::true_type {};
 
 /**
  * @brief Convolution(畳み込み)

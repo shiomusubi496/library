@@ -3,8 +3,7 @@
 #include "../other/template.hpp"
 #include "MontgomeryModInt.hpp"
 
-template<class T>
-ll sqrt_mod(ll a) {
+template<class T> ll sqrt_mod(ll a) {
     const ll p = T::get_mod();
     if (p == 2) return a;
     if (a == 0) return 0;
