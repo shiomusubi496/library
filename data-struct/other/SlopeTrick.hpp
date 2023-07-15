@@ -57,5 +57,5 @@ public:
 
 /**
  * @brief SlopeTrick
- * @docs docs/other/SlopeTrick.md
+ * @docs docs/data-struct/other/SlopeTrick.md
  */

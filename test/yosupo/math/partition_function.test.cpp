@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/partition_number"
+#define PROBLEM "https://judge.yosupo.jp/problem/partition_function"
 #include "../../../other/template.hpp"
 #include "../../../math/StirlingNumber.hpp"
 #include "../../../math/ModInt.hpp"

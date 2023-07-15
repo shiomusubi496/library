@@ -234,5 +234,5 @@ template<> struct is_ntt_friendly<998244353> : std::true_type {};
 
 /**
  * @brief Convolution(畳み込み)
- * @docs docs/math/convolution.md
+ * @docs docs/math/convolution/Convolution.md
  */
