@@ -308,7 +308,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -329,34 +329,42 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/MontgomeryModInt.hpp
       title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
     - icon: ':heavy_check_mark:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/PrimitiveRoot.hpp
       title: "PrimitiveRoot(\u539F\u59CB\u6839)"
     - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
+    - icon: ':question:'
+      path: math/StirlingNumber.hpp
+      title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\
+        \u6570, \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
+        \u30EB\u6570,"
+    - icon: ':heavy_check_mark:'
+      path: math/SubsetSum.hpp
+      title: SubsetSum
   - name: math/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -368,7 +376,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseXorConvolution.hpp
       title: BitwiseXorConvolution
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/convolution/Convolution.hpp
       title: "Convolution(\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -410,6 +418,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/matrix/Matrix.hpp
       title: "Matrix(\u884C\u5217)"
+  - name: math/poly
+    pages:
+    - icon: ':question:'
+      path: math/poly/FormalPowerSeries.hpp
+      title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
+    - icon: ':heavy_check_mark:'
+      path: math/poly/MultipointEvaluation.hpp
+      title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
+    - icon: ':heavy_check_mark:'
+      path: math/poly/PolynomialInterpolation.hpp
+      title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
+    - icon: ':question:'
+      path: math/poly/SparseFormalPowerSeries.hpp
+      title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
+        )"
+    - icon: ':question:'
+      path: math/poly/TaylorShift.hpp
+      title: TaylorShift
   - name: other
     pages:
     - icon: ':heavy_check_mark:'
@@ -418,12 +444,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -441,7 +467,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/RollingHash.hpp
       title: "RollingHash(\u30ED\u30EA\u30CF)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
     - icon: ':heavy_check_mark:'
@@ -449,28 +475,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -597,6 +623,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_F.test.cpp
       title: test/aoj/DPL/DPL_5_F.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL/DPL_5_G.test.cpp
+      title: test/aoj/DPL/DPL_5_G.test.cpp
   - name: test/aoj/DSL
     pages:
     - icon: ':heavy_check_mark:'
@@ -920,6 +949,9 @@ data:
   - name: test/yosupo/math
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/bernoulli_number.test.cpp
+      title: test/yosupo/math/bernoulli_number.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/binomial_coefficient.test.cpp
       title: test/yosupo/math/binomial_coefficient.test.cpp
     - icon: ':heavy_check_mark:'
@@ -940,12 +972,24 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/montmort_number_mod.test.cpp
       title: test/yosupo/math/montmort_number_mod.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/math/partition_number.test.cpp
+      title: test/yosupo/math/partition_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/primitive_root.test.cpp
       title: test/yosupo/math/primitive_root.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/sharp_p_subset_sum.test.cpp
+      title: test/yosupo/math/sharp_p_subset_sum.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sqrt_mod.test.cpp
       title: test/yosupo/math/sqrt_mod.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+      title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+      title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
@@ -980,6 +1024,53 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/tree_path_composite_sum.test.cpp
       title: test/yosupo/new/tree_path_composite_sum.test.cpp
+  - name: test/yosupo/polynomial
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/division_of_polynomials.test.cpp
+      title: test/yosupo/polynomial/division_of_polynomials.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+      title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+      title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+      title: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+      title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+      title: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+      title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
+      title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
+      title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+      title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+      title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+      title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+      title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+      title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+      title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/yosupo/sample
     pages:
     - icon: ':heavy_check_mark:'
