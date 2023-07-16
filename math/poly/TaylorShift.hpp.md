@@ -1,65 +1,65 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -67,6 +67,9 @@ data:
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
+  - icon: ':heavy_check_mark:'
+    path: math/poly/SamplingPointsShift.hpp
+    title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
@@ -77,6 +80,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
@@ -1102,19 +1108,20 @@ data:
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 7 \"math/poly/TaylorShift.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
     FormalPowerSeries<T> taylor_shift(FormalPowerSeries<T> f, T a) {\n    const int\
-    \ n = f.size();\n    rep (i, n) f[i] *= Comb::fact(i);\n    FormalPowerSeries<T>\
-    \ g(n);\n    T p = 1;\n    rep (i, n) {\n        g[n - 1 - i] = p * Comb::finv(i);\n\
-    \        p *= a;\n    }\n    f *= g;\n    f >>= n - 1;\n    rep (i, n) f[i] *=\
-    \ Comb::finv(i);\n    return f;\n}\n\n/**\n * @brief TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../convolution/Convolution.hpp\"\
-    \n#include \"../Combinatorics.hpp\"\n#include \"FormalPowerSeries.hpp\"\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> taylor_shift(FormalPowerSeries<T>\
-    \ f, T a) {\n    const int n = f.size();\n    rep (i, n) f[i] *= Comb::fact(i);\n\
-    \    FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i, n) {\n        g[n -\
+    \ n = f.size();\n    Comb::init(n);\n    rep (i, n) f[i] *= Comb::fact(i);\n \
+    \   FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i, n) {\n        g[n -\
     \ 1 - i] = p * Comb::finv(i);\n        p *= a;\n    }\n    f *= g;\n    f >>=\
     \ n - 1;\n    rep (i, n) f[i] *= Comb::finv(i);\n    return f;\n}\n\n/**\n * @brief\
     \ TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../convolution/Convolution.hpp\"\
+    \n#include \"../Combinatorics.hpp\"\n#include \"FormalPowerSeries.hpp\"\n\ntemplate<class\
+    \ T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> taylor_shift(FormalPowerSeries<T>\
+    \ f, T a) {\n    const int n = f.size();\n    Comb::init(n);\n    rep (i, n) f[i]\
+    \ *= Comb::fact(i);\n    FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i,\
+    \ n) {\n        g[n - 1 - i] = p * Comb::finv(i);\n        p *= a;\n    }\n  \
+    \  f *= g;\n    f >>= n - 1;\n    rep (i, n) f[i] *= Comb::finv(i);\n    return\
+    \ f;\n}\n\n/**\n * @brief TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1140,10 +1147,12 @@ data:
   path: math/poly/TaylorShift.hpp
   requiredBy:
   - math/StirlingNumber.hpp
-  timestamp: '2023-07-15 20:33:00+09:00'
+  - math/poly/SamplingPointsShift.hpp
+  timestamp: '2023-07-16 15:21:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
+  - test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
@@ -1160,4 +1169,11 @@ title: TaylorShift
 
 多項式 $f(x)$ と定数 $c$ が与えられたとき、 $f(x+c)$ を計算する。
 
-- `FormalPowerSeries<T> taylor_shift(FormalPowerSeries<T> f, T a)` : $f(x+a)$ を返す。展開すると畳み込み $1$ つで簡潔に表せる。 $\Theta(n \log n)$ 。
+$$\begin{align*}
+f(x+c) &= \sum_{i=0}^{n-1} a_i \sum_{j=0}^i \binom{i}{j}c^{i-j}x^j \\
+&= \sum_{i=0}^{n-1} \left(\sum_{j=i}^{n-1} a_jj!\frac{c^{j-i}}{(j-i)!}\right)\frac{x^i}{i!}
+\end{align*}$$
+
+より、 $\displaystyle\left(\sum_{i=0}^{n-1}a_ii!x^i\right)$ と $\displaystyle\left(\sum_{i=0}^{n-1}\frac{c^i}{i!}x^{-i}\right)$ を畳み込めば良い。
+
+- `FormalPowerSeries<T> taylor_shift(FormalPowerSeries<T> f, T c)` : $f(x+c)$ を返す。展開すると畳み込み $1$ つで簡潔に表せる。 $\Theta(n \log n)$ 。

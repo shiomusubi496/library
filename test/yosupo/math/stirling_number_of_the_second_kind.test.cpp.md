@@ -1,72 +1,72 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -1090,39 +1090,41 @@ data:
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 2 \"math/poly/TaylorShift.hpp\"\n\n#line 7 \"math/poly/TaylorShift.hpp\"\n\n\
     template<class T, class Comb = Combinatorics<T>>\nFormalPowerSeries<T> taylor_shift(FormalPowerSeries<T>\
-    \ f, T a) {\n    const int n = f.size();\n    rep (i, n) f[i] *= Comb::fact(i);\n\
-    \    FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i, n) {\n        g[n -\
-    \ 1 - i] = p * Comb::finv(i);\n        p *= a;\n    }\n    f *= g;\n    f >>=\
-    \ n - 1;\n    rep (i, n) f[i] *= Comb::finv(i);\n    return f;\n}\n\n/**\n * @brief\
-    \ TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n */\n#line 8 \"math/StirlingNumber.hpp\"\
-    \n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> stirling_number_1st(int\
-    \ n) {\n    if (n == 0) return {1};\n    if (n == 1) return {0, 1};\n    int lg\
-    \ = bitop::msb(n);\n    FormalPowerSeries<T> f{0, 1};\n    rrep (i, lg) {\n  \
-    \      int m = n >> i;\n        f *= taylor_shift<T, Comb>(f, -(m >> 1));\n  \
-    \      if (m & 1) f = (f << 1) - f * (m - 1);\n    }\n    return std::vector<T>(f);\n\
-    }\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> stirling_number_2nd(int\
-    \ n) {\n    std::vector<T> a(n + 1), b(n + 1);\n    rep (i, n + 1) {\n       \
-    \ a[i] = i & 1 ? -Comb::finv(i) : Comb::finv(i);\n        b[i] = T{i}.pow(n) *\
-    \ Comb::finv(i);\n    }\n    auto c = convolution(a, b);\n    c.resize(n + 1);\n\
-    \    return c;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T>\
-    \ bell_number(int n) {\n    FormalPowerSeries<T> f(n + 1);\n    reps (i, n) f[i]\
-    \ = Comb::finv(i);\n    auto c = f.exp();\n    rep (i, n + 1) c[i] *= Comb::fact(i);\n\
-    \    return std::vector<T>(c);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    \ f, T a) {\n    const int n = f.size();\n    Comb::init(n);\n    rep (i, n) f[i]\
+    \ *= Comb::fact(i);\n    FormalPowerSeries<T> g(n);\n    T p = 1;\n    rep (i,\
+    \ n) {\n        g[n - 1 - i] = p * Comb::finv(i);\n        p *= a;\n    }\n  \
+    \  f *= g;\n    f >>= n - 1;\n    rep (i, n) f[i] *= Comb::finv(i);\n    return\
+    \ f;\n}\n\n/**\n * @brief TaylorShift\n * @docs docs/math/poly/TaylorShift.md\n\
+    \ */\n#line 8 \"math/StirlingNumber.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> stirling_number_1st(int n) {\n    if (n == 0) return {1};\n   \
+    \ if (n == 1) return {0, 1};\n    int lg = bitop::msb(n);\n    FormalPowerSeries<T>\
+    \ f{0, 1};\n    rrep (i, lg) {\n        int m = n >> i;\n        f *= taylor_shift<T,\
+    \ Comb>(f, -(m >> 1));\n        if (m & 1) f = (f << 1) - f * (m - 1);\n    }\n\
+    \    return std::vector<T>(f);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> stirling_number_2nd(int n) {\n    Comb::init(n);\n    std::vector<T>\
+    \ a(n + 1), b(n + 1);\n    rep (i, n + 1) {\n        a[i] = i & 1 ? -Comb::finv(i)\
+    \ : Comb::finv(i);\n        b[i] = T{i}.pow(n) * Comb::finv(i);\n    }\n    auto\
+    \ c = convolution(a, b);\n    c.resize(n + 1);\n    return c;\n}\n\ntemplate<class\
+    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bell_number(int n) {\n   \
+    \ Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    reps (i, n) f[i] = Comb::finv(i);\n\
+    \    auto c = f.exp();\n    rep (i, n + 1) c[i] *= Comb::fact(i);\n    return\
+    \ std::vector<T>(c);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
     std::vector<T> bell_number_fixed_n(int n) {\n    auto a = stirling_number_2nd<T,\
     \ Comb>(n);\n    rep (i, n) a[i + 1] += a[i];\n    return a;\n}\n\ntemplate<class\
     \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bernoulli_number(int n) {\n\
-    \    FormalPowerSeries<T> f(n + 1);\n    rep (i, n + 1) f[i] = Comb::finv(i +\
-    \ 1);\n    auto res = f.inv(n + 1);\n    rep (i, n + 1) res[i] *= Comb::fact(i);\n\
-    \    return std::vector<T>(res);\n}\n\ntemplate<class T> std::vector<T> partition_number(int\
-    \ n) {\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n + 1) {\n        ll s\
-    \ = i * (3 * i - 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1\
-    \ : 1;\n        if (i == 0) continue;\n        s = i * (3 * i + 1) / 2;\n    \
-    \    if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n\
-    }\n\n/**\n * @brief StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-    , \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570\
-    )\n * @docs docs/math/StirlingNumber.md\n */\n#line 5 \"test/yosupo/math/stirling_number_of_the_second_kind.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N;\
-    \ scan >> N;\n    prints(stirling_number_2nd<mint>(N));\n}\n"
+    \    Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n + 1) f[i]\
+    \ = Comb::finv(i + 1);\n    auto res = f.inv(n + 1);\n    rep (i, n + 1) res[i]\
+    \ *= Comb::fact(i);\n    return std::vector<T>(res);\n}\n\ntemplate<class T> std::vector<T>\
+    \ partition_number(int n) {\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n\
+    \ + 1) {\n        ll s = i * (3 * i - 1) / 2;\n        if (s > n) break;\n   \
+    \     f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n        s = i *\
+    \ (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n\
+    \    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief StirlingNumber(\u30B9\
+    \u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\
+    \u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n */\n\
+    #line 5 \"test/yosupo/math/stirling_number_of_the_second_kind.test.cpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N; scan\
+    \ >> N;\n    prints(stirling_number_2nd<mint>(N));\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/StirlingNumber.hpp\"\
     \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
@@ -1154,7 +1156,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2023-07-16 11:15:08+09:00'
+  timestamp: '2023-07-16 15:21:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
