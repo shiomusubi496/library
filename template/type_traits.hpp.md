@@ -904,9 +904,6 @@ data:
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sqrt_mod.test.cpp
     title: test/yosupo/math/sqrt_mod.test.cpp
   - icon: ':heavy_check_mark:'
@@ -984,6 +981,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
@@ -1459,7 +1459,6 @@ data:
   - test/yosupo/math/primitive_root.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/math/two_sat.test.cpp
-  - test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp
   - test/yosupo/math/partition_function.test.cpp
@@ -1486,6 +1485,7 @@ data:
   - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp

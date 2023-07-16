@@ -78,7 +78,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
     links:
     - https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
-  bundledCode: "#line 1 \"test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp\"\
+  bundledCode: "#line 1 \"test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
@@ -1105,7 +1105,7 @@ data:
     \    rep (i, m) g[i] = Comb::finv(i);\n    f = (f * g).prefix(m);\n    rep (i,\
     \ m) f[i] *= Comb::fact(i);\n    return std::vector<T>(f);\n}\n\n/**\n * @brief\
     \ SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)\n * @docs docs/math/poly/SamplingPointsShift.md\n\
-    \ */\n#line 5 \"test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \ */\n#line 5 \"test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
     \ m; scan >> n >> m;\n    mint c; scan >> c;\n    vector<mint> a(n); scan >> a;\n\
     \    prints(sampling_points_shift(a, m, c));\n}\n"
@@ -1139,15 +1139,15 @@ data:
   - math/SqrtMod.hpp
   - math/poly/TaylorShift.hpp
   isVerificationFile: true
-  path: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+  path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2023-07-16 15:21:41+09:00'
+  timestamp: '2023-07-16 15:50:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+documentation_of: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-- /verify/test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp.html
-title: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+- /verify/test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+- /verify/test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp.html
+title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 ---

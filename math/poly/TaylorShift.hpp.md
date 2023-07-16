@@ -81,9 +81,6 @@ data:
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -92,6 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1152,11 +1152,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
-  - test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document

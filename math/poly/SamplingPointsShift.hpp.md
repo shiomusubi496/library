@@ -68,8 +68,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+    path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1144,7 +1144,7 @@ data:
   timestamp: '2023-07-16 15:21:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/math/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: math/poly/SamplingPointsShift.hpp
 layout: document
 redirect_from:
