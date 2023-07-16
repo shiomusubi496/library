@@ -72,7 +72,6 @@ template<class T> std::vector<T> partition_number(int n) {
 }
 
 /**
- * @brief StirlingNumber(第一種スターリング数, 第二種スターリング数, ベル数,
- * ベルヌーイ数, 分割数)
+ * @brief StirlingNumber(スターリング数, ベル数, ベルヌーイ数, 分割数)
  * @docs docs/math/StirlingNumber.md
  */
