@@ -467,6 +467,9 @@ data:
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
     - icon: ':heavy_check_mark:'
+      path: string/LyndonFactorization.hpp
+      title: Lyndon Factorization
+    - icon: ':heavy_check_mark:'
       path: string/Manacher.hpp
       title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
@@ -1026,6 +1029,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/enumerate_quotients.test.cpp
       title: test/yosupo/new/enumerate_quotients.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/lyndon_factorization.test.cpp
+      title: test/yosupo/new/lyndon_factorization.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/primality_test.test.cpp
       title: test/yosupo/new/primality_test.test.cpp

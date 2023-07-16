@@ -429,6 +429,9 @@ data:
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
   - icon: ':heavy_check_mark:'
+    path: string/LyndonFactorization.hpp
+    title: Lyndon Factorization
+  - icon: ':heavy_check_mark:'
     path: string/Manacher.hpp
     title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
   - icon: ':heavy_check_mark:'
@@ -937,6 +940,9 @@ data:
     path: test/yosupo/new/enumerate_quotients.test.cpp
     title: test/yosupo/new/enumerate_quotients.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/lyndon_factorization.test.cpp
+    title: test/yosupo/new/lyndon_factorization.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/primality_test.test.cpp
     title: test/yosupo/new/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1208,6 +1214,7 @@ data:
   - string/LongestIncreasingSubsequence.hpp
   - string/ZAlgorithm.hpp
   - string/Manacher.hpp
+  - string/LyndonFactorization.hpp
   - string/RunLength.hpp
   - string/RollingHash.hpp
   - math/MillerRabin.hpp
@@ -1471,6 +1478,7 @@ data:
   - test/yosupo/math/kth_root_integer.test.cpp
   - test/yosupo/geometry/sort_points_by_argument.test.cpp
   - test/yosupo/new/primality_test.test.cpp
+  - test/yosupo/new/lyndon_factorization.test.cpp
   - test/yosupo/new/enumerate_quotients.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/new/tree_path_composite_sum.test.cpp
