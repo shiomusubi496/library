@@ -22,6 +22,7 @@ std::vector<T> stirling_number_1st(int n) {
 
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> stirling_number_2nd(int n) {
+    Comb::init(n);
     std::vector<T> a(n + 1), b(n + 1);
     rep (i, n + 1) {
         a[i] = i & 1 ? -Comb::finv(i) : Comb::finv(i);
@@ -34,6 +35,7 @@ std::vector<T> stirling_number_2nd(int n) {
 
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> bell_number(int n) {
+    Comb::init(n);
     FormalPowerSeries<T> f(n + 1);
     reps (i, n) f[i] = Comb::finv(i);
     auto c = f.exp();
@@ -50,6 +52,7 @@ std::vector<T> bell_number_fixed_n(int n) {
 
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> bernoulli_number(int n) {
+    Comb::init(n);
     FormalPowerSeries<T> f(n + 1);
     rep (i, n + 1) f[i] = Comb::finv(i + 1);
     auto res = f.inv(n + 1);

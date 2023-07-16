@@ -8,6 +8,7 @@
 template<class T, class Comb = Combinatorics<T>>
 FormalPowerSeries<T> taylor_shift(FormalPowerSeries<T> f, T a) {
     const int n = f.size();
+    Comb::init(n);
     rep (i, n) f[i] *= Comb::fact(i);
     FormalPowerSeries<T> g(n);
     T p = 1;
