@@ -87,9 +87,8 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/StirlingNumber.md
-    document_title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\
-      \u30B0\u6570, \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570,\
-      \ \u30D9\u30EB\u6570,"
+    document_title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
+      \u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
     links: []
   bundledCode: "#line 2 \"math/StirlingNumber.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
@@ -1128,10 +1127,9 @@ data:
     \ = i * (3 * i - 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1\
     \ : 1;\n        if (i == 0) continue;\n        s = i * (3 * i + 1) / 2;\n    \
     \    if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n\
-    }\n\n/**\n * @brief StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\
-    \u30B0\u6570, \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
-    \u30EB\u6570,\n * \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n\
-    \ * @docs docs/math/StirlingNumber.md\n */\n"
+    }\n\n/**\n * @brief StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
+    , \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570\
+    )\n * @docs docs/math/StirlingNumber.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"Combinatorics.hpp\"\
     \n#include \"convolution/Convolution.hpp\"\n#include \"poly/FormalPowerSeries.hpp\"\
     \n#include \"poly/TaylorShift.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
@@ -1158,9 +1156,8 @@ data:
     \   if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n\
     \        s = i * (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] +=\
     \ i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief\
-    \ StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-    , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
-    ,\n * \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
+    \ StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
+    , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -1187,7 +1184,7 @@ data:
   isVerificationFile: false
   path: math/StirlingNumber.hpp
   requiredBy: []
-  timestamp: '2023-07-15 20:33:00+09:00'
+  timestamp: '2023-07-16 11:15:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
@@ -1200,9 +1197,8 @@ layout: document
 redirect_from:
 - /library/math/StirlingNumber.hpp
 - /library/math/StirlingNumber.hpp.html
-title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-  , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
-  ,"
+title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
+  , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
 ---
 ## 概要
 

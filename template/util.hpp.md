@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':heavy_check_mark:'
@@ -336,9 +336,8 @@ data:
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
-    title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-      , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
-      \u6570,"
+    title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
+      \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
@@ -391,6 +390,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
+    path: math/poly/BostanMori.hpp
+    title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -691,7 +693,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
   - icon: ':heavy_check_mark:'
@@ -878,6 +880,9 @@ data:
     path: test/yosupo/math/kth_root_integer.test.cpp
     title: test/yosupo/math/kth_root_integer.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/longest_increasing_subsequence.test.cpp
     title: test/yosupo/math/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -961,16 +966,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -1216,6 +1221,7 @@ data:
   - math/StirlingNumber.hpp
   - math/DiscreteLogarithm.hpp
   - math/poly/FormalPowerSeries.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/MultipointEvaluation.hpp
@@ -1437,6 +1443,7 @@ data:
   - test/yosupo/math/sum_of_floor_of_linear.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc070/tasks/arc070_e
@@ -498,7 +498,7 @@ data:
   path: test/atcoder/arc070_c-SlopeTrick.test.cpp
   requiredBy: []
   timestamp: '2023-07-15 20:33:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/arc070_c-SlopeTrick.test.cpp
 layout: document

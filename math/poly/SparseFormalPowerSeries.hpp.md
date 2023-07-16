@@ -73,7 +73,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'

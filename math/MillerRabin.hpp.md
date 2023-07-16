@@ -46,15 +46,17 @@ data:
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
   - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
-    title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-      , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
-      \u6570,"
+    title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
+      \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
+  - icon: ':heavy_check_mark:'
+    path: math/poly/BostanMori.hpp
+    title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -90,6 +92,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
@@ -138,16 +143,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -703,6 +708,7 @@ data:
   - math/SubsetSum.hpp
   - math/StirlingNumber.hpp
   - math/poly/FormalPowerSeries.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/MultipointEvaluation.hpp
@@ -719,6 +725,7 @@ data:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp

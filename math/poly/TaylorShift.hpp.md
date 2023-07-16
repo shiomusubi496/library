@@ -65,9 +65,8 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
-    title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-      , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
-      \u6570,"
+    title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
+      \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp

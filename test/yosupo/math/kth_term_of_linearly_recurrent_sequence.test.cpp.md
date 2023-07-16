@@ -26,6 +26,9 @@ data:
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
+  - icon: ':heavy_check_mark:'
+    path: math/poly/BostanMori.hpp
+    title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
@@ -69,11 +72,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
-    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/polynomial/pow_of_formal_power_series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
+    - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
+  bundledCode: "#line 1 \"test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -484,23 +487,24 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\
-    \n\n#line 2 \"math/convolution/Convolution.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\
-    \n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt\
-    \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
-    \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n    static_assert(mod\
-    \ > 0, \"mod must be positive\");\n    static_assert(mod <= std::numeric_limits<T>::max()\
-    \ / 2,\n                  \"mod * 2 must be less than or equal to T::max()\");\n\
-    \nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static constexpr\
-    \ unsigned int inv1000000007[] = {\n        0,         1,         500000004, 333333336,\
-    \ 250000002, 400000003,\n        166666668, 142857144, 125000001, 111111112, 700000005};\n\
-    \    static constexpr unsigned int inv998244353[] = {\n        0,         1, \
-    \        499122177, 332748118, 748683265, 598946612,\n        166374059, 855638017,\
-    \ 873463809, 443664157, 299473306};\n\npublic:\n    constexpr StaticModInt() :\
-    \ val(0) {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
-    \ &&\n                                     std::is_signed<U>::value>::type* =\
-    \ nullptr>\n    constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/poly/BostanMori.hpp\"\
+    \n\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
+    \n\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
     \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
     \    }\n    template<class U, typename std::enable_if<\n                     \
     \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
@@ -1080,15 +1084,32 @@ data:
     \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
-    \ 5 \"test/yosupo/polynomial/pow_of_formal_power_series.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int n; scan >> n;\n \
-    \   ll m; scan >> m;\n    FormalPowerSeries<mint> a(n); scan >> a;\n    prints(a.pow(m));\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/poly/FormalPowerSeries.hpp\"\
+    \ 5 \"math/poly/BostanMori.hpp\"\n\ntemplate<class T>\nT bostan_mori(FormalPowerSeries<T>\
+    \ P, FormalPowerSeries<T> Q, ll n) {\n    T res = 0;\n    if (P.size() >= Q.size())\
+    \ {\n        auto p = divmod(P, Q);\n        if (n < p.first.size()) res += p.first[n];\n\
+    \        P = p.second;\n    }\n    if (P.empty()) return res;\n    P.resize(Q.size()\
+    \ - 1);\n    while (n != 0) {\n        FormalPowerSeries<T> Q2(Q);\n        rep\
+    \ (i, Q.size()) {\n            if (i & 1) Q2[i] = -Q2[i];\n        }\n       \
+    \ auto A = P * Q2;\n        auto B = Q * Q2;\n        if (n & 1) {\n         \
+    \   rep (i, 1, A.size(), 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(),\
+    \ 2) Q[i >> 1] = B[i];\n        }\n        else {\n            rep (i, 0, A.size(),\
+    \ 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(), 2) Q[i >> 1] = B[i];\n\
+    \        }\n        n >>= 1;\n    }\n    return res + P[0] / Q[0];\n}\n\ntemplate<class\
+    \ T>\nT kth_term(FormalPowerSeries<T> C, FormalPowerSeries<T> A, ll n) {\n   \
+    \ assert(!C.empty() && C[0] != 0);\n    assert(A.size() == C.size() - 1);\n  \
+    \  if (n < (ll)A.size()) return A[n];\n    return bostan_mori((A * C).prefix(A.size()),\
+    \ C, n);\n}\n\n/**\n * @brief Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\
+    n\u9805\u76EE)\n * @docs docs/math/poly/BostanMori.md\n */\n#line 5 \"test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int d;\
+    \ scan >> d;\n    ll k; scan >> k;\n    FormalPowerSeries<mint> a(d), c(d); scan\
+    \ >> a >> c;\n    c <<= 1;\n    c = -c;\n    c[0] += 1;\n    prints(kth_term(c,\
+    \ a, k));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/poly/BostanMori.hpp\"\
     \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    int main() {\n    int n; scan >> n;\n    ll m; scan >> m;\n    FormalPowerSeries<mint>\
-    \ a(n); scan >> a;\n    prints(a.pow(m));\n}\n"
+    int main() {\n    int d; scan >> d;\n    ll k; scan >> k;\n    FormalPowerSeries<mint>\
+    \ a(d), c(d); scan >> a >> c;\n    c <<= 1;\n    c = -c;\n    c[0] += 1;\n   \
+    \ prints(kth_term(c, a, k));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1099,6 +1120,7 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/convolution/Convolution.hpp
   - math/ModInt.hpp
@@ -1111,15 +1133,15 @@ data:
   - math/Combinatorics.hpp
   - math/SqrtMod.hpp
   isVerificationFile: true
-  path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 20:33:00+09:00'
+  timestamp: '2023-07-16 11:15:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-- /verify/test/yosupo/polynomial/pow_of_formal_power_series.test.cpp.html
-title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+- /verify/test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+- /verify/test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp.html
+title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 ---

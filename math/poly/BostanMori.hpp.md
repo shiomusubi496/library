@@ -63,36 +63,37 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series
-    links:
-    - https://judge.yosupo.jp/problem/pow_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/polynomial/pow_of_formal_power_series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
-    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
-    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
-    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
-    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
-    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
-    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    _deprecated_at_docs: docs/math/poly/BostanMori.md
+    document_title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE\
+      )"
+    links: []
+  bundledCode: "#line 2 \"math/poly/BostanMori.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
+    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
+    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
+    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
+    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
+    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -1080,15 +1081,39 @@ data:
     \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
-    \ 5 \"test/yosupo/polynomial/pow_of_formal_power_series.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int n; scan >> n;\n \
-    \   ll m; scan >> m;\n    FormalPowerSeries<mint> a(n); scan >> a;\n    prints(a.pow(m));\n\
-    }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/pow_of_formal_power_series\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/poly/FormalPowerSeries.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    int main() {\n    int n; scan >> n;\n    ll m; scan >> m;\n    FormalPowerSeries<mint>\
-    \ a(n); scan >> a;\n    prints(a.pow(m));\n}\n"
+    \ 5 \"math/poly/BostanMori.hpp\"\n\ntemplate<class T>\nT bostan_mori(FormalPowerSeries<T>\
+    \ P, FormalPowerSeries<T> Q, ll n) {\n    T res = 0;\n    if (P.size() >= Q.size())\
+    \ {\n        auto p = divmod(P, Q);\n        if (n < p.first.size()) res += p.first[n];\n\
+    \        P = p.second;\n    }\n    if (P.empty()) return res;\n    P.resize(Q.size()\
+    \ - 1);\n    while (n != 0) {\n        FormalPowerSeries<T> Q2(Q);\n        rep\
+    \ (i, Q.size()) {\n            if (i & 1) Q2[i] = -Q2[i];\n        }\n       \
+    \ auto A = P * Q2;\n        auto B = Q * Q2;\n        if (n & 1) {\n         \
+    \   rep (i, 1, A.size(), 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(),\
+    \ 2) Q[i >> 1] = B[i];\n        }\n        else {\n            rep (i, 0, A.size(),\
+    \ 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(), 2) Q[i >> 1] = B[i];\n\
+    \        }\n        n >>= 1;\n    }\n    return res + P[0] / Q[0];\n}\n\ntemplate<class\
+    \ T>\nT kth_term(FormalPowerSeries<T> C, FormalPowerSeries<T> A, ll n) {\n   \
+    \ assert(!C.empty() && C[0] != 0);\n    assert(A.size() == C.size() - 1);\n  \
+    \  if (n < (ll)A.size()) return A[n];\n    return bostan_mori((A * C).prefix(A.size()),\
+    \ C, n);\n}\n\n/**\n * @brief Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\
+    n\u9805\u76EE)\n * @docs docs/math/poly/BostanMori.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
+    \n\ntemplate<class T>\nT bostan_mori(FormalPowerSeries<T> P, FormalPowerSeries<T>\
+    \ Q, ll n) {\n    T res = 0;\n    if (P.size() >= Q.size()) {\n        auto p\
+    \ = divmod(P, Q);\n        if (n < p.first.size()) res += p.first[n];\n      \
+    \  P = p.second;\n    }\n    if (P.empty()) return res;\n    P.resize(Q.size()\
+    \ - 1);\n    while (n != 0) {\n        FormalPowerSeries<T> Q2(Q);\n        rep\
+    \ (i, Q.size()) {\n            if (i & 1) Q2[i] = -Q2[i];\n        }\n       \
+    \ auto A = P * Q2;\n        auto B = Q * Q2;\n        if (n & 1) {\n         \
+    \   rep (i, 1, A.size(), 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(),\
+    \ 2) Q[i >> 1] = B[i];\n        }\n        else {\n            rep (i, 0, A.size(),\
+    \ 2) P[i >> 1] = A[i];\n            rep (i, 0, B.size(), 2) Q[i >> 1] = B[i];\n\
+    \        }\n        n >>= 1;\n    }\n    return res + P[0] / Q[0];\n}\n\ntemplate<class\
+    \ T>\nT kth_term(FormalPowerSeries<T> C, FormalPowerSeries<T> A, ll n) {\n   \
+    \ assert(!C.empty() && C[0] != 0);\n    assert(A.size() == C.size() - 1);\n  \
+    \  if (n < (ll)A.size()) return A[n];\n    return bostan_mori((A * C).prefix(A.size()),\
+    \ C, n);\n}\n\n/**\n * @brief Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\
+    n\u9805\u76EE)\n * @docs docs/math/poly/BostanMori.md\n */"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1110,16 +1135,21 @@ data:
   - string/RunLength.hpp
   - math/Combinatorics.hpp
   - math/SqrtMod.hpp
-  isVerificationFile: true
-  path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  isVerificationFile: false
+  path: math/poly/BostanMori.hpp
   requiredBy: []
-  timestamp: '2023-07-15 20:33:00+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  timestamp: '2023-07-16 11:15:08+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+documentation_of: math/poly/BostanMori.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-- /verify/test/yosupo/polynomial/pow_of_formal_power_series.test.cpp.html
-title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+- /library/math/poly/BostanMori.hpp
+- /library/math/poly/BostanMori.hpp.html
+title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
 ---
+## 概要
+
+- `T bostan_mori(FormalPowerSeries<T> P, FormalPowerSeries<T> Q, ll n)` : $[x^n] \frac{P(x)}{Q(x)}$ を求める。 $\Theta(d \log d \log n)$ 。
+- `T kth_term(FormalPowerSeries<T> C, FormalPowerSeries<T> A, ll n)` : $d = |A| = |Q| - 1$ として $a_i = A_i (0 \leq i < d), \sum_{k=0}^{d}C_{d-k}a_{i+k} = 0$ なる数列 $a$ について $a_n$ を返す。 $\Theta(d \log d \log n)$ 。

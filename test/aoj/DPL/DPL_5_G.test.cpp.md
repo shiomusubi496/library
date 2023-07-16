@@ -25,9 +25,8 @@ data:
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
   - icon: ':heavy_check_mark:'
     path: math/StirlingNumber.hpp
-    title: "StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
-      , \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
-      \u6570,"
+    title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
+      \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
@@ -1118,10 +1117,9 @@ data:
     \ = i * (3 * i - 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1\
     \ : 1;\n        if (i == 0) continue;\n        s = i * (3 * i + 1) / 2;\n    \
     \    if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n\
-    }\n\n/**\n * @brief StirlingNumber(\u7B2C\u4E00\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\
-    \u30B0\u6570, \u7B2C\u4E8C\u7A2E\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\
-    \u30EB\u6570,\n * \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n\
-    \ * @docs docs/math/StirlingNumber.md\n */\n#line 5 \"test/aoj/DPL/DPL_5_G.test.cpp\"\
+    }\n\n/**\n * @brief StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570\
+    , \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570\
+    )\n * @docs docs/math/StirlingNumber.md\n */\n#line 5 \"test/aoj/DPL/DPL_5_G.test.cpp\"\
     \nusing namespace std;\nusing mint = modint1000000007;\nint main() {\n    int\
     \ n, k; scan >> n >> k;\n    prints(bell_number_fixed_n<mint>(n)[min(n, k)]);\n\
     }\n"
@@ -1156,7 +1154,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_G.test.cpp
   requiredBy: []
-  timestamp: '2023-07-15 20:33:00+09:00'
+  timestamp: '2023-07-16 11:15:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_G.test.cpp
