@@ -132,6 +132,7 @@
 "test/yosupo/data_structure/vertex_set_path_composite.test.cpp": "2023-06-24 12:49:54 +0900",
 "test/yosupo/geometry/sort_points_by_argument.test.cpp": "2023-06-24 12:49:54 +0900",
 "test/yosupo/graph/bipartitematching.test.cpp": "2023-06-24 12:49:54 +0900",
+"test/yosupo/graph/chromatic_number.test.cpp": "2023-07-17 18:50:02 +0900",
 "test/yosupo/graph/cycle_detection.test.cpp": "2023-06-24 12:49:54 +0900",
 "test/yosupo/graph/enumerate_cliques.test.cpp": "2023-06-24 12:49:54 +0900",
 "test/yosupo/graph/enumerate_triangles.test.cpp": "2023-06-24 12:49:54 +0900",
