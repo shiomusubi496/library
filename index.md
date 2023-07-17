@@ -221,6 +221,9 @@ data:
       path: graph/other/BipartiteGraph.hpp
       title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
     - icon: ':heavy_check_mark:'
+      path: graph/other/ChromaticNumber.hpp
+      title: "ChromaticNumber(\u5F69\u8272\u6570)"
+    - icon: ':heavy_check_mark:'
       path: graph/other/EnumerateCliques.hpp
       title: EnumerateCliques
     - icon: ':heavy_check_mark:'
@@ -933,6 +936,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/bipartitematching.test.cpp
       title: test/yosupo/graph/bipartitematching.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/chromatic_number.test.cpp
+      title: test/yosupo/graph/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
