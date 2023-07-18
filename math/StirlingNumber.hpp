@@ -21,6 +21,18 @@ std::vector<T> stirling_number_1st(int n) {
 }
 
 template<class T, class Comb = Combinatorics<T>>
+std::vector<T> stirling_number_1st_fixed_k(int k, int n) {
+    Comb::init(n);
+    FormalPowerSeries<T> f{1, -1};
+    f = (f.log(n - k + 2) >> 1).pow(k) * Comb::finv(k);
+    rep (i, n - k + 1) {
+        f[i] *= Comb::fact(i + k);
+        if ((i + k) & 1) f[i] = -f[i];
+    }
+    return std::vector<T>(f);
+}
+
+template<class T, class Comb = Combinatorics<T>>
 std::vector<T> stirling_number_2nd(int n) {
     Comb::init(n);
     std::vector<T> a(n + 1), b(n + 1);
