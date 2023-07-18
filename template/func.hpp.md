@@ -949,6 +949,9 @@ data:
     path: test/yosupo/new/primality_test.test.cpp
     title: test/yosupo/new/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/tree_path_composite_sum.test.cpp
     title: test/yosupo/new/tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1431,6 +1434,7 @@ data:
   - test/yosupo/new/primality_test.test.cpp
   - test/yosupo/new/lyndon_factorization.test.cpp
   - test/yosupo/new/enumerate_quotients.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/new/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp

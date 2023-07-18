@@ -82,6 +82,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1110,27 +1113,32 @@ data:
     \ f{0, 1};\n    rrep (i, lg) {\n        int m = n >> i;\n        f *= taylor_shift<T,\
     \ Comb>(f, -(m >> 1));\n        if (m & 1) f = (f << 1) - f * (m - 1);\n    }\n\
     \    return std::vector<T>(f);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
-    std::vector<T> stirling_number_2nd(int n) {\n    Comb::init(n);\n    std::vector<T>\
-    \ a(n + 1), b(n + 1);\n    rep (i, n + 1) {\n        a[i] = i & 1 ? -Comb::finv(i)\
-    \ : Comb::finv(i);\n        b[i] = T{i}.pow(n) * Comb::finv(i);\n    }\n    auto\
-    \ c = convolution(a, b);\n    c.resize(n + 1);\n    return c;\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bell_number(int n) {\n   \
-    \ Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    reps (i, n) f[i] = Comb::finv(i);\n\
-    \    auto c = f.exp();\n    rep (i, n + 1) c[i] *= Comb::fact(i);\n    return\
-    \ std::vector<T>(c);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
-    std::vector<T> bell_number_fixed_n(int n) {\n    auto a = stirling_number_2nd<T,\
-    \ Comb>(n);\n    rep (i, n) a[i + 1] += a[i];\n    return a;\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bernoulli_number(int n) {\n\
-    \    Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n + 1) f[i]\
-    \ = Comb::finv(i + 1);\n    auto res = f.inv(n + 1);\n    rep (i, n + 1) res[i]\
-    \ *= Comb::fact(i);\n    return std::vector<T>(res);\n}\n\ntemplate<class T> std::vector<T>\
-    \ partition_number(int n) {\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n\
-    \ + 1) {\n        ll s = i * (3 * i - 1) / 2;\n        if (s > n) break;\n   \
-    \     f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n        s = i *\
-    \ (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n\
-    \    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief StirlingNumber(\u30B9\
-    \u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\
-    \u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n */\n"
+    std::vector<T> stirling_number_1st_fixed_k(int k, int n) {\n    Comb::init(n);\n\
+    \    FormalPowerSeries<T> f{1, -1};\n    f = (f.log(n - k + 2) >> 1).pow(k) *\
+    \ Comb::finv(k);\n    rep (i, n - k + 1) {\n        f[i] *= Comb::fact(i + k);\n\
+    \        if ((i + k) & 1) f[i] = -f[i];\n    }\n    return std::vector<T>(f);\n\
+    }\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> stirling_number_2nd(int\
+    \ n) {\n    Comb::init(n);\n    std::vector<T> a(n + 1), b(n + 1);\n    rep (i,\
+    \ n + 1) {\n        a[i] = i & 1 ? -Comb::finv(i) : Comb::finv(i);\n        b[i]\
+    \ = T{i}.pow(n) * Comb::finv(i);\n    }\n    auto c = convolution(a, b);\n   \
+    \ c.resize(n + 1);\n    return c;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> bell_number(int n) {\n    Comb::init(n);\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    reps (i, n) f[i] = Comb::finv(i);\n    auto c = f.exp();\n  \
+    \  rep (i, n + 1) c[i] *= Comb::fact(i);\n    return std::vector<T>(c);\n}\n\n\
+    template<class T, class Comb = Combinatorics<T>>\nstd::vector<T> bell_number_fixed_n(int\
+    \ n) {\n    auto a = stirling_number_2nd<T, Comb>(n);\n    rep (i, n) a[i + 1]\
+    \ += a[i];\n    return a;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> bernoulli_number(int n) {\n    Comb::init(n);\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    rep (i, n + 1) f[i] = Comb::finv(i + 1);\n    auto res = f.inv(n\
+    \ + 1);\n    rep (i, n + 1) res[i] *= Comb::fact(i);\n    return std::vector<T>(res);\n\
+    }\n\ntemplate<class T> std::vector<T> partition_number(int n) {\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    rep (i, n + 1) {\n        ll s = i * (3 * i - 1) / 2;\n     \
+    \   if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n\
+    \        s = i * (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] +=\
+    \ i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief\
+    \ StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
+    , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"Combinatorics.hpp\"\
     \n#include \"convolution/Convolution.hpp\"\n#include \"poly/FormalPowerSeries.hpp\"\
     \n#include \"poly/TaylorShift.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
@@ -1139,27 +1147,32 @@ data:
     \ f{0, 1};\n    rrep (i, lg) {\n        int m = n >> i;\n        f *= taylor_shift<T,\
     \ Comb>(f, -(m >> 1));\n        if (m & 1) f = (f << 1) - f * (m - 1);\n    }\n\
     \    return std::vector<T>(f);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
-    std::vector<T> stirling_number_2nd(int n) {\n    Comb::init(n);\n    std::vector<T>\
-    \ a(n + 1), b(n + 1);\n    rep (i, n + 1) {\n        a[i] = i & 1 ? -Comb::finv(i)\
-    \ : Comb::finv(i);\n        b[i] = T{i}.pow(n) * Comb::finv(i);\n    }\n    auto\
-    \ c = convolution(a, b);\n    c.resize(n + 1);\n    return c;\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bell_number(int n) {\n   \
-    \ Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    reps (i, n) f[i] = Comb::finv(i);\n\
-    \    auto c = f.exp();\n    rep (i, n + 1) c[i] *= Comb::fact(i);\n    return\
-    \ std::vector<T>(c);\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
-    std::vector<T> bell_number_fixed_n(int n) {\n    auto a = stirling_number_2nd<T,\
-    \ Comb>(n);\n    rep (i, n) a[i + 1] += a[i];\n    return a;\n}\n\ntemplate<class\
-    \ T, class Comb = Combinatorics<T>>\nstd::vector<T> bernoulli_number(int n) {\n\
-    \    Comb::init(n);\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n + 1) f[i]\
-    \ = Comb::finv(i + 1);\n    auto res = f.inv(n + 1);\n    rep (i, n + 1) res[i]\
-    \ *= Comb::fact(i);\n    return std::vector<T>(res);\n}\n\ntemplate<class T> std::vector<T>\
-    \ partition_number(int n) {\n    FormalPowerSeries<T> f(n + 1);\n    rep (i, n\
-    \ + 1) {\n        ll s = i * (3 * i - 1) / 2;\n        if (s > n) break;\n   \
-    \     f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n        s = i *\
-    \ (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n\
-    \    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief StirlingNumber(\u30B9\
-    \u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570, \u30D9\u30EB\u30CC\u30FC\
-    \u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n */\n"
+    std::vector<T> stirling_number_1st_fixed_k(int k, int n) {\n    Comb::init(n);\n\
+    \    FormalPowerSeries<T> f{1, -1};\n    f = (f.log(n - k + 2) >> 1).pow(k) *\
+    \ Comb::finv(k);\n    rep (i, n - k + 1) {\n        f[i] *= Comb::fact(i + k);\n\
+    \        if ((i + k) & 1) f[i] = -f[i];\n    }\n    return std::vector<T>(f);\n\
+    }\n\ntemplate<class T, class Comb = Combinatorics<T>>\nstd::vector<T> stirling_number_2nd(int\
+    \ n) {\n    Comb::init(n);\n    std::vector<T> a(n + 1), b(n + 1);\n    rep (i,\
+    \ n + 1) {\n        a[i] = i & 1 ? -Comb::finv(i) : Comb::finv(i);\n        b[i]\
+    \ = T{i}.pow(n) * Comb::finv(i);\n    }\n    auto c = convolution(a, b);\n   \
+    \ c.resize(n + 1);\n    return c;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> bell_number(int n) {\n    Comb::init(n);\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    reps (i, n) f[i] = Comb::finv(i);\n    auto c = f.exp();\n  \
+    \  rep (i, n + 1) c[i] *= Comb::fact(i);\n    return std::vector<T>(c);\n}\n\n\
+    template<class T, class Comb = Combinatorics<T>>\nstd::vector<T> bell_number_fixed_n(int\
+    \ n) {\n    auto a = stirling_number_2nd<T, Comb>(n);\n    rep (i, n) a[i + 1]\
+    \ += a[i];\n    return a;\n}\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
+    std::vector<T> bernoulli_number(int n) {\n    Comb::init(n);\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    rep (i, n + 1) f[i] = Comb::finv(i + 1);\n    auto res = f.inv(n\
+    \ + 1);\n    rep (i, n + 1) res[i] *= Comb::fact(i);\n    return std::vector<T>(res);\n\
+    }\n\ntemplate<class T> std::vector<T> partition_number(int n) {\n    FormalPowerSeries<T>\
+    \ f(n + 1);\n    rep (i, n + 1) {\n        ll s = i * (3 * i - 1) / 2;\n     \
+    \   if (s > n) break;\n        f[s] += i & 1 ? -1 : 1;\n        if (i == 0) continue;\n\
+    \        s = i * (3 * i + 1) / 2;\n        if (s > n) break;\n        f[s] +=\
+    \ i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief\
+    \ StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
+    , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1185,7 +1198,7 @@ data:
   isVerificationFile: false
   path: math/StirlingNumber.hpp
   requiredBy: []
-  timestamp: '2023-07-16 15:21:41+09:00'
+  timestamp: '2023-07-18 18:30:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL/DPL_5_G.test.cpp
@@ -1193,6 +1206,7 @@ data:
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
 documentation_of: math/StirlingNumber.hpp
 layout: document
 redirect_from:
@@ -1217,6 +1231,7 @@ title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
 ただし $S(n, k)$ は第二種スターリング数、 $B(n, k)$ はベル数、 $P(n, k)$ は分割数を表す。
 
 - `vector<T> stirling_number_1st(int n)` : 符号付き第一種スターリング数 $S(n, 0), S(n, 1), \ldots, S(n, n)$ を返す。符号なしの $S(n, k) \times (-1)^{n-k}$ は $n$ 次の置換のうち $k$ 個の巡回に分解されるものの個数と意味付けられる。 $\Theta(n \log n)$ 。
+- `vector<T> stirling_number_1st_fixed_k(int n)` : 符号付き第一種スターリング数 $S(k, k), S(k+1, k), \ldots, S(n, k)$ を返す。 $\Theta(n + (n-k) \log (n-k))$ 。
 - `vector<T> stirling_number_2nd(int n)` : 第二種スターリング数 $S(n, 0), S(n, 1), \ldots, S(n, n)$ を返す。 $\Theta(n \log n)$ 。
 - `vector<T> bell_number(int n)` : ベル数 $B(0, 0), B(1, 1), \ldots, B(n, n)$ を返す。つまり $n$ 個の区別できるボールをグループ分けする個数。 $\displaystyle e^{e^x-1} = \sum_{i=0}^{\infty} \frac{B(i, i)}{i!}x^i$ 。 $\Theta(n \log n)$ 。
 - `vector<T> bell_number_fixed_n(int n)` : ベル数 $B(0, n), B(1, n), \ldots, B(n, n)$ を返す。写像 12 相の一つ。 $\Theta(n \log n)$ 。

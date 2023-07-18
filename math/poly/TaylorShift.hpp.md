@@ -87,6 +87,9 @@ data:
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1156,6 +1159,7 @@ data:
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
 documentation_of: math/poly/TaylorShift.hpp

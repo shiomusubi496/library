@@ -76,29 +76,30 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bernoulli_number
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k
     links:
-    - https://judge.yosupo.jp/problem/bernoulli_number
-  bundledCode: "#line 1 \"test/yosupo/math/bernoulli_number.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/bernoulli_number\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k
+  bundledCode: "#line 1 \"test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define REP_SELECTER(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__, REP4, REP3, REP2,\
+    \ REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n\
+    #define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i,\
+    \ a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...)\
+    \ REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i,\
+    \ b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a) + 1;\
+    \ i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
     \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
     \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
@@ -1125,14 +1126,14 @@ data:
     \ i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief\
     \ StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
     , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
-    \ */\n#line 5 \"test/yosupo/math/bernoulli_number.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int N; scan >> N;\n \
-    \   prints(bernoulli_number<mint>(N));\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bernoulli_number\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/StirlingNumber.hpp\"\
+    \ */\n#line 5 \"test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ K; scan >> N >> K;\n    prints(stirling_number_1st_fixed_k<mint>(K, N));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_first_kind_fixed_k\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/StirlingNumber.hpp\"\
     \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    int main() {\n    int N; scan >> N;\n    prints(bernoulli_number<mint>(N));\n\
-    }\n"
+    int main() {\n    int N, K; scan >> N >> K;\n    prints(stirling_number_1st_fixed_k<mint>(K,\
+    \ N));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1157,15 +1158,15 @@ data:
   - math/SqrtMod.hpp
   - math/poly/TaylorShift.hpp
   isVerificationFile: true
-  path: test/yosupo/math/bernoulli_number.test.cpp
+  path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   requiredBy: []
   timestamp: '2023-07-18 18:30:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/math/bernoulli_number.test.cpp
+documentation_of: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/math/bernoulli_number.test.cpp
-- /verify/test/yosupo/math/bernoulli_number.test.cpp.html
-title: test/yosupo/math/bernoulli_number.test.cpp
+- /verify/test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+- /verify/test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp.html
+title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
 ---

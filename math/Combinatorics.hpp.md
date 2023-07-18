@@ -102,6 +102,9 @@ data:
     path: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
   - icon: ':heavy_check_mark:'
@@ -768,6 +771,7 @@ data:
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
