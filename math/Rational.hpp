@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class T> class Rational {
+template<class T, bool allow_div_zero = false> class Rational {
 private:
     using LargeT =
         typename std::conditional<std::is_integral<T>::value,
@@ -11,7 +11,9 @@ private:
 
 public:
     static void norm(T& a, T& b) {
-        assert(b != 0);
+        if IF_CONSTEXPR (!allow_div_zero) {
+            assert(b != 0);
+        }
         T g = gcd(abs(a), abs(b));
         a /= g;
         b /= g;
@@ -27,6 +29,7 @@ public:
     T get_num() const { return num; }
     T get_den() const { return den; }
     ld get_ld() const { return (ld)num / den; }
+    std::pair<T, T> get_pair() const { return {num, den}; }
     Rational& operator++() {
         num += den;
         return *this;
