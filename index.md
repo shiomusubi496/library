@@ -361,6 +361,9 @@ data:
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
     - icon: ':heavy_check_mark:'
+      path: math/SternBrocotTree.hpp
+      title: Stern-Brocot Tree
+    - icon: ':heavy_check_mark:'
       path: math/StirlingNumber.hpp
       title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
         \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -759,6 +762,9 @@ data:
   - name: test/aoj/other
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/aoj/other/1208-SternBrocotTree.test.cpp
+      title: test/aoj/other/1208-SternBrocotTree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2603-SMAWK.test.cpp
       title: test/aoj/other/2603-SMAWK.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1041,6 +1047,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/primality_test.test.cpp
       title: test/yosupo/new/primality_test.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/stern_brocot_tree.test.cpp
+      title: test/yosupo/new/stern_brocot_tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
       title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp

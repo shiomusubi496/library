@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: math/Rational.hpp
+    title: "Rational(\u6709\u7406\u6570\u578B)"
+  - icon: ':heavy_check_mark:'
+    path: math/SternBrocotTree.hpp
+    title: Stern-Brocot Tree
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -28,29 +34,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: math/SternBrocotTree.hpp
-    title: Stern-Brocot Tree
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-    title: test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/other/1208-SternBrocotTree.test.cpp
-    title: test/aoj/other/1208-SternBrocotTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/stern_brocot_tree.test.cpp
-    title: test/yosupo/new/stern_brocot_tree.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/Rational.md
-    document_title: "Rational(\u6709\u7406\u6570\u578B)"
-    links: []
-  bundledCode: "#line 2 \"math/Rational.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/1208
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/problems/1208
+  bundledCode: "#line 1 \"test/aoj/other/1208-SternBrocotTree.test.cpp\"\n#define\
+    \ PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/1208\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -459,11 +455,12 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"math/Rational.hpp\"\n\n\
-    template<class T, bool allow_div_zero = false> class Rational {\nprivate:\n  \
-    \  using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
-    \                                  typename double_size<T>::type, ld>::type;\n\
-    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/SternBrocotTree.hpp\"\
+    \n\n#line 2 \"math/Rational.hpp\"\n\n#line 4 \"math/Rational.hpp\"\n\ntemplate<class\
+    \ T, bool allow_div_zero = false> class Rational {\nprivate:\n    using LargeT\
+    \ =\n        typename std::conditional<std::is_integral<T>::value,\n         \
+    \                         typename double_size<T>::type, ld>::type;\n    T num,\
+    \ den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
     \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
     \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
     \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
@@ -510,59 +507,73 @@ data:
     \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
     \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
     }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T, bool\
-    \ allow_div_zero = false> class Rational {\nprivate:\n    using LargeT =\n   \
-    \     typename std::conditional<std::is_integral<T>::value,\n                \
-    \                  typename double_size<T>::type, ld>::type;\n    T num, den;\n\
-    \npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR (!allow_div_zero)\
-    \ {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a), abs(b));\n\
-    \        a /= g;\n        b /= g;\n        if (b < 0) {\n            a = -a;\n\
-    \            b = -b;\n        }\n    }\n    void normalize() { norm(num, den);\
-    \ }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1) {}\n\
-    \    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num() const\
-    \ { return num; }\n    T get_den() const { return den; }\n    ld get_ld() const\
-    \ { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return {num,\
-    \ den}; }\n    Rational& operator++() {\n        num += den;\n        return *this;\n\
-    \    }\n    Rational operator++(int) {\n        Rational res = *this;\n      \
-    \  ++*this;\n        return res;\n    }\n    Rational& operator--() {\n      \
-    \  num -= den;\n        return *this;\n    }\n    Rational operator--(int) {\n\
-    \        Rational res = *this;\n        --*this;\n        return res;\n    }\n\
-    \    Rational& operator+=(const Rational& other) {\n        T g = gcd(den, other.den);\n\
-    \        num = num * (other.den / g) + other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator-=(const Rational& other) {\n        T g = gcd(den, other.den);\n  \
-    \      num = num * (other.den / g) - other.num * (den / g);\n        den = den\
-    \ / g * other.den;\n        normalize();\n        return *this;\n    }\n    Rational&\
-    \ operator*=(const Rational& other) {\n        T g1 = gcd(num, other.den);\n \
-    \       T g2 = gcd(den, other.num);\n        num = (num / g1) * (other.num / g2);\n\
-    \        den = (den / g2) * (other.den / g1);\n        return *this;\n    }\n\
-    \    Rational& operator/=(const Rational& other) {\n        return (*this) *=\
-    \ Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
-    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
-    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
-    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
-    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
-    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
-    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
-    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n"
+    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 5 \"math/SternBrocotTree.hpp\"\
+    \n\ntemplate<class T>\nclass SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
+    \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
+    \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
+    \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
+    \                T tmp = (a - 1) / b;\n                res.emplace_back('R', tmp);\n\
+    \                a -= tmp * b;\n            }\n            else {\n          \
+    \      T tmp = (b - 1) / a;\n                res.emplace_back('L', tmp);\n   \
+    \             b -= tmp * a;\n            }\n        }\n        return res;\n \
+    \   }\n    static Rat decode_path(std::vector<std::pair<char, int>> path, Rat\
+    \ s = 1) {\n        std::reverse(all(path));\n        T a = s.get_num(), b = s.get_den();\n\
+    \        for (const auto& p : path) {\n            if (p.first == 'R') a += b\
+    \ * p.second;\n            else b += a * p.second;\n        }\n        return\
+    \ Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x),\
+    \ py = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n     \
+    \   rep (i, std::min(px.size(), py.size())) {\n            const auto& a = px[i],\
+    \ b = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
+    \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
+    \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
+    \ x, T k) {\n        if (k == 0) return 1;\n        auto px = encode_path(x);\n\
+    \        rep (i, px.size()) {\n            const auto& a = px[i];\n          \
+    \  if (a.second >= k) {\n                px[i].second = k;\n                px.erase(px.begin()\
+    \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
+    \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
+    \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
+    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    static\
+    \ Rat next(Rat x, T n) {\n    }\n    template<class Cond>\n    static std::pair<Rat,\
+    \ Rat> max_right(Cond cond, T n) {\n        assert(n >= 1);\n        auto f =\
+    \ [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num() + x * b.get_num(),\
+    \ a.get_den() + x * b.get_den()};\n        };\n        Rat l = {0, 1}, r = {1,\
+    \ 0}, m = {1, 1};\n        if (!cond(l)) return {-1, l};\n        bool flag =\
+    \ cond(m);\n        while (true) {\n            if (flag) {\n                T\
+    \ ok = 0, ng = 1;\n                while (true) {\n                    auto tmp\
+    \ = f(m, r, ng);\n                    if (std::max(tmp.get_num(), tmp.get_den())\
+    \ > n || !cond(tmp)) break;\n                    ok = ng; ng <<= 1;\n        \
+    \        }\n                while (ng - ok > 1) {\n                    T mid =\
+    \ (ok + ng) >> 1;\n                    auto tmp = f(m, r, mid);\n            \
+    \        if (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) ng = mid;\n\
+    \                    else ok = mid;\n                }\n                l = f(m,\
+    \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
+    \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
+    \          T ok = 0, ng = 1;\n                while (true) {\n               \
+    \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n || cond(tmp)) break;\n                    ok = ng; ng <<=\
+    \ 1;\n                }\n                while (ng - ok > 1) {\n             \
+    \       T mid = (ok + ng) >> 1;\n                    auto tmp = f(m, l, mid);\n\
+    \                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\
+    \ ng = mid;\n                    else ok = mid;\n                }\n         \
+    \       r = f(m, l, ok);\n                m = f(m, l, ng);\n                if\
+    \ (std::max(m.get_num(), m.get_den()) > n) return {l, r};\n            }\n   \
+    \         flag = !flag;\n        }\n        return {-1, -1};\n    }\n};\n\n/**\n\
+    \ * @brief Stern-Brocot Tree\n * @docs docs/math/SternBrocotTree.md\n */\n#line\
+    \ 4 \"test/aoj/other/1208-SternBrocotTree.test.cpp\"\nusing namespace std;\nusing\
+    \ sbt = SternBrocotTree<ll>;\nusing rat = typename sbt::Rat;\nint main() {\n \
+    \   ll p, n;\n    while (scan >> p >> n, p != 0) {\n        auto [l, r] = sbt::max_right([&](rat\
+    \ x) -> bool {\n            ll n = x.get_num(), d = x.get_den();\n           \
+    \ return n * n < p * d * d;\n        }, n);\n        print << r.get_num() << \"\
+    /\" << r.get_den() << \" \" << l.get_num() << \"/\" << l.get_den() << endl;\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/1208\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/SternBrocotTree.hpp\"\
+    \nusing namespace std;\nusing sbt = SternBrocotTree<ll>;\nusing rat = typename\
+    \ sbt::Rat;\nint main() {\n    ll p, n;\n    while (scan >> p >> n, p != 0) {\n\
+    \        auto [l, r] = sbt::max_right([&](rat x) -> bool {\n            ll n =\
+    \ x.get_num(), d = x.get_den();\n            return n * n < p * d * d;\n     \
+    \   }, n);\n        print << r.get_num() << \"/\" << r.get_den() << \" \" << l.get_num()\
+    \ << \"/\" << l.get_den() << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -573,63 +584,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: math/Rational.hpp
-  requiredBy:
   - math/SternBrocotTree.hpp
+  - math/Rational.hpp
+  isVerificationFile: true
+  path: test/aoj/other/1208-SternBrocotTree.test.cpp
+  requiredBy: []
   timestamp: '2023-07-18 21:41:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/aoj/other/1208-SternBrocotTree.test.cpp
-  - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - test/yosupo/new/stern_brocot_tree.test.cpp
-documentation_of: math/Rational.hpp
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/aoj/other/1208-SternBrocotTree.test.cpp
 layout: document
 redirect_from:
-- /library/math/Rational.hpp
-- /library/math/Rational.hpp.html
-title: "Rational(\u6709\u7406\u6570\u578B)"
+- /verify/test/aoj/other/1208-SternBrocotTree.test.cpp
+- /verify/test/aoj/other/1208-SternBrocotTree.test.cpp.html
+title: test/aoj/other/1208-SternBrocotTree.test.cpp
 ---
-## 概要
-
-有理数を持つ型。オーバーフローには十分注意する。
-
-以下のメンバを持つ。
-
-- `T get_num()` : 分子を返す。 $\Theta(1)$ 。
-- `T get_den()` : 分母を返す。 $\Theta(1)$ 。
-- `ld get_ld()` : 小数の値を返す。
-
-さらに、以下の演算が動く。
-
-```
-+Rational
--Rational
-
-++Rational
-Rational++
---Rational
-Rational--
-
-Rational += Rational
-Rational -= Rational
-Rational *= Rational
-Rational /= Rational
-
-Rational + Rational
-Rational - Rational
-Rational * Rational
-Rational / Rational
-
-Rational == Rational
-Rational != Rational
-Rational < Rational
-Rational <= Rational
-Rational > Rational
-Rational >= Rational
-
-cin >> Rational
-cout << Rational
-```
-
-すべて $\Theta(1)$ 。
