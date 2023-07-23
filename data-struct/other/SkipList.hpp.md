@@ -1,47 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/data-struct/other/SkipList.md
     document_title: SkipList
@@ -1147,9 +1144,8 @@ data:
   path: data-struct/other/SkipList.hpp
   requiredBy: []
   timestamp: '2023-06-24 12:49:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: data-struct/other/SkipList.hpp
 layout: document
 redirect_from:

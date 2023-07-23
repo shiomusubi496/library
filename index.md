@@ -35,6 +35,9 @@ data:
       path: data-struct/other/IntervalHeap.hpp
       title: IntervalHeap
     - icon: ':heavy_check_mark:'
+      path: data-struct/other/MaxRectangle.hpp
+      title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"
+    - icon: ':heavy_check_mark:'
       path: data-struct/other/Mo.hpp
       title: Mo's Algorithm
     - icon: ':heavy_check_mark:'
@@ -47,7 +50,7 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':x:'
+    - icon: ':warning:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
     - icon: ':heavy_check_mark:'
@@ -341,7 +344,7 @@ data:
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -454,18 +457,18 @@ data:
       title: TaylorShift
   - name: other
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -494,28 +497,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -624,6 +627,12 @@ data:
       title: test/aoj/CGL/CGL_7_G-common-tangent.test.cpp
   - name: test/aoj/DPL
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL/DPL_3_B.test.cpp
+      title: test/aoj/DPL/DPL_3_B.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/aoj/DPL/DPL_3_C.test.cpp
+      title: test/aoj/DPL/DPL_3_C.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/aoj/DPL/DPL_5_A.test.cpp
       title: test/aoj/DPL/DPL_5_A.test.cpp
@@ -832,9 +841,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
       title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
-    - icon: ':x:'
-      path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
-      title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
       title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
