@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/bst/SplayTree.hpp
+    title: data-struct/bst/SplayTree.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/cht/ConvexHullTrick.hpp
     title: ConvexHullTrick
@@ -45,7 +48,7 @@ data:
     path: data-struct/other/RangeSet.hpp
     title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
       \u306E\u3084\u3064)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/other/SkipList.hpp
     title: SkipList
   - icon: ':heavy_check_mark:'
@@ -313,7 +316,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -418,16 +421,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
   - icon: ':heavy_check_mark:'
@@ -744,9 +747,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
     title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
+    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
+    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/line_add_get_min.test.cpp
     title: test/yosupo/data_structure/line_add_get_min.test.cpp
@@ -955,6 +961,9 @@ data:
     path: test/yosupo/new/primality_test.test.cpp
     title: test/yosupo/new/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/range_reverse_range_sum.test.cpp
+    title: test/yosupo/new/range_reverse_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/stern_brocot_tree.test.cpp
     title: test/yosupo/new/stern_brocot_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1065,9 +1074,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/func.hpp\"\n\n#include <bits/stdc++.h>\n#line 2\
@@ -1262,6 +1271,7 @@ data:
   - data-struct/unionfind/PersistentUnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/unionfind/UnionFindUndo.hpp
+  - data-struct/bst/SplayTree.hpp
   - data-struct/cht/ConvexHullTrickAddMonotone.hpp
   - data-struct/cht/LiChaoTree.hpp
   - data-struct/cht/ConvexHullTrick.hpp
@@ -1318,7 +1328,7 @@ data:
   - graph/other/EnumerateCliques.hpp
   - graph/other/TopologicalSort.hpp
   timestamp: '2022-12-07 21:25:52+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/atcoder/arc070_c-SlopeTrick.test.cpp
   - test/atcoder/abc176_f-DefaultMap.test.cpp
@@ -1448,6 +1458,7 @@ data:
   - test/yosupo/new/enumerate_quotients.test.cpp
   - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/new/range_reverse_range_sum.test.cpp
   - test/yosupo/new/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
@@ -1499,7 +1510,7 @@ data:
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/set_xor_min.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
@@ -1508,6 +1519,7 @@ data:
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/unionfind-Dynamic.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/unionfind.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp

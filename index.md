@@ -1,6 +1,11 @@
 ---
 data:
   libraryCategories:
+  - name: data-struct/bst
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: data-struct/bst/SplayTree.hpp
+      title: data-struct/bst/SplayTree.hpp
   - name: data-struct/cht
     pages:
     - icon: ':heavy_check_mark:'
@@ -42,7 +47,7 @@ data:
       path: data-struct/other/RangeSet.hpp
       title: "RangeSet(\u533A\u9593\u3092std::set\u3067\u7BA1\u7406\u3059\u308B\u4F8B\
         \u306E\u3084\u3064)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: data-struct/other/SkipList.hpp
       title: SkipList
     - icon: ':heavy_check_mark:'
@@ -336,7 +341,7 @@ data:
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/ModInt.hpp
       title: ModInt
     - icon: ':heavy_check_mark:'
@@ -449,18 +454,18 @@ data:
       title: TaylorShift
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -489,28 +494,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -827,9 +832,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
       title: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
+      title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SkipList.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
-      title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum.test.cpp
+      path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
+      title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/line_add_get_min.test.cpp
       title: test/yosupo/data_structure/line_add_get_min.test.cpp
@@ -1047,6 +1055,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/primality_test.test.cpp
       title: test/yosupo/new/primality_test.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/range_reverse_range_sum.test.cpp
+      title: test/yosupo/new/range_reverse_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/stern_brocot_tree.test.cpp
       title: test/yosupo/new/stern_brocot_tree.test.cpp

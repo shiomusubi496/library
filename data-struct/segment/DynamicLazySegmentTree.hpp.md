@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -538,17 +538,17 @@ data:
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
     \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DynamicLazySegmentTree.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
-    \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
-    \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        bool lazyflag;\n        node_ptr\
-    \ l, r;\n        node(const T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr)\
-    \ {}\n        node(const T& v, const U& x)\n            : val(v), lazy(x), lazyflag(true),\
-    \ l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll\
-    \ l, ll r, int t) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd,\
-    \ ll l, ll r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
+    \n\ntemplate<class A>\nclass DynamicLazySegmentTree {\nprivate:\n    using M =\
+    \ typename A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    struct node;\n    using node_ptr =\
+    \ std::unique_ptr<node>;\n    struct node {\n        T val;\n        U lazy;\n\
+    \        bool lazyflag;\n        node_ptr l, r;\n        node(const T& v) : val(v),\
+    \ lazyflag(false), l(nullptr), r(nullptr) {}\n        node(const T& v, const U&\
+    \ x)\n            : val(v), lazy(x), lazyflag(true), l(nullptr), r(nullptr) {}\n\
+    \    };\n    node_ptr& get_l(const node_ptr& nd, ll l, ll r, int t) const {\n\
+    \        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l, r, t));\n\
+    \        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd, ll l, ll\
+    \ r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
     \ r, t));\n        return nd->r;\n    }\n\n    template<bool AlwaysTrue = true,\n\
     \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
     \                                AlwaysTrue>::type* = nullptr>\n    static inline\
@@ -660,17 +660,17 @@ data:
     \u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/DynamicLazySegmentTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A, bool = Monoid::has_mul_op<A>::value>\nclass DynamicLazySegmentTree\
-    \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
-    \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
-    \    struct node;\n    using node_ptr = std::unique_ptr<node>;\n    struct node\
-    \ {\n        T val;\n        U lazy;\n        bool lazyflag;\n        node_ptr\
-    \ l, r;\n        node(const T& v) : val(v), lazyflag(false), l(nullptr), r(nullptr)\
-    \ {}\n        node(const T& v, const U& x)\n            : val(v), lazy(x), lazyflag(true),\
-    \ l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const node_ptr& nd, ll\
-    \ l, ll r, int t) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l,\
-    \ r, t));\n        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd,\
-    \ ll l, ll r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
+    \n\ntemplate<class A>\nclass DynamicLazySegmentTree {\nprivate:\n    using M =\
+    \ typename A::M;\n    using E = typename A::E;\n    using T = typename M::value_type;\n\
+    \    using U = typename E::value_type;\n    struct node;\n    using node_ptr =\
+    \ std::unique_ptr<node>;\n    struct node {\n        T val;\n        U lazy;\n\
+    \        bool lazyflag;\n        node_ptr l, r;\n        node(const T& v) : val(v),\
+    \ lazyflag(false), l(nullptr), r(nullptr) {}\n        node(const T& v, const U&\
+    \ x)\n            : val(v), lazy(x), lazyflag(true), l(nullptr), r(nullptr) {}\n\
+    \    };\n    node_ptr& get_l(const node_ptr& nd, ll l, ll r, int t) const {\n\
+    \        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l, r, t));\n\
+    \        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd, ll l, ll\
+    \ r, int t) const {\n        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l,\
     \ r, t));\n        return nd->r;\n    }\n\n    template<bool AlwaysTrue = true,\n\
     \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
     \                                AlwaysTrue>::type* = nullptr>\n    static inline\
@@ -795,7 +795,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/DynamicLazySegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
+  timestamp: '2023-07-23 13:45:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
