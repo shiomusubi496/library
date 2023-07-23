@@ -3,7 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A, bool = Monoid::has_mul_op<A>::value>
+template<class A>
 class DynamicLazySegmentTree {
 private:
     using M = typename A::M;
