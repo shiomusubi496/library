@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -41,34 +41,34 @@ data:
   bundledCode: "#line 1 \"test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp\"\n#define PROBLEM\
     \ \"https://onlinejudge.u-aizu.ac.jp/problems/ALDS1_1_C\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define REP_SELECTER(a,\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
     \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
     \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
     \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) REP_SELECTER(__VA_ARGS__,\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
     \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
     \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
     #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) REP_SELECTER(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n\
-    #define REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b)\
-    \ for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) REP_SELECTER(__VA_ARGS__,\
-    \ REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a);\
-    \ i > 0; --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n\
-    #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
     \ rreps(...)                                                             \\\n\
-    \    REP_SELECTER(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
-    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
-    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
-    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
-    \n\nusing ll = long long;\nusing ull = unsigned long long;\nusing ld = long double;\n\
-    using PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...)\
+    \ for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto& __VA_ARGS__)\n\
+    \n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >= 201402L\n#define\
+    \ rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v) v.rbegin(), v.rend()\n\
+    #endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n#else\n\
+    #define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR\
+    \ constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n\
+    #line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll =\
+    \ long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
+    \ PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
     \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
     \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
     \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
@@ -326,16 +326,17 @@ data:
     \ { pr.set_decimal_precision(n); }\n    template<class Pr> void debug(Pr& pr)\
     \ const { pr.set_decimal_precision(n); }\n};\nSetPrec setprec(int n) { return\
     \ SetPrec{n}; };\n\nPrinter<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());\n\
-    \ntemplate<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {\n\
-    \    print << v;\n    print.print_char('\\n');\n}\n\ntemplate<class Head, class...\
-    \ Tail>\nauto prints(const Head& head, const Tail&... tail)\n    -> decltype(print\
-    \ << head, (void)0) {\n    print << head;\n    print.print_char(' ');\n    prints(tail...);\n\
-    }\n\n#ifdef SHIO_LOCAL\nPrinter<Writer<>::iterator, true> debug(writer.begin()),\n\
-    \    edebug(ewriter.begin());\n#else\nchar debug_iterator_character;\nclass DebugIterator\
-    \ {\npublic:\n    DebugIterator() noexcept = default;\n    DebugIterator& operator++()\
-    \ { return *this; }\n    DebugIterator& operator++(int) { return *this; }\n  \
-    \  char& operator*() const { return debug_iterator_character; }\n    void flush()\
-    \ const {}\n};\nPrinter<DebugIterator> debug, edebug;\n#endif\n\ntemplate<class\
+    \nvoid prints() { print.print_char('\\n'); }\n\ntemplate<class T> auto prints(const\
+    \ T& v) -> decltype(print << v, (void)0) {\n    print << v;\n    print.print_char('\\\
+    n');\n}\n\ntemplate<class Head, class... Tail>\nauto prints(const Head& head,\
+    \ const Tail&... tail)\n    -> decltype(print << head, (void)0) {\n    print <<\
+    \ head;\n    print.print_char(' ');\n    prints(tail...);\n}\n\n#ifdef SHIO_LOCAL\n\
+    Printer<Writer<>::iterator, true> debug(writer.begin()),\n    edebug(ewriter.begin());\n\
+    #else\nchar debug_iterator_character;\nclass DebugIterator {\npublic:\n    DebugIterator()\
+    \ noexcept = default;\n    DebugIterator& operator++() { return *this; }\n   \
+    \ DebugIterator& operator++(int) { return *this; }\n    char& operator*() const\
+    \ { return debug_iterator_character; }\n    void flush() const {}\n};\nPrinter<DebugIterator>\
+    \ debug, edebug;\n#endif\n\nvoid debugs() { debug.print_char('\\n'); }\n\ntemplate<class\
     \ T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {\n    debug <<\
     \ v;\n    debug.print_char('\\n');\n}\n\ntemplate<class Head, class... Tail>\n\
     auto debugs(const Head& head, const Tail&... tail)\n    -> decltype(debug << head,\
@@ -470,7 +471,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
   requiredBy: []
-  timestamp: '2023-06-24 12:49:54+09:00'
+  timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_1_C-PrimeSqrt.test.cpp
