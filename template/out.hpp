@@ -264,6 +264,8 @@ SetPrec setprec(int n) { return SetPrec{n}; };
 
 Printer<Writer<>::iterator> print(writer.begin()), eprint(ewriter.begin());
 
+void prints() { print.print_char('\n'); }
+
 template<class T> auto prints(const T& v) -> decltype(print << v, (void)0) {
     print << v;
     print.print_char('\n');
@@ -292,6 +294,8 @@ public:
 };
 Printer<DebugIterator> debug, edebug;
 #endif
+
+void debugs() { debug.print_char('\n'); }
 
 template<class T> auto debugs(const T& v) -> decltype(debug << v, (void)0) {
     debug << v;
