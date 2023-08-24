@@ -189,26 +189,23 @@ convolution_for_any_mod(const std::vector<static_modint<p>>& a,
     std::vector<ll> a2(n), b2(m);
     rep (i, n) a2[i] = a[i].get();
     rep (i, m) b2[i] = b[i].get();
-    static constexpr ull MOD1 = 469762049;
-    static constexpr ull MOD2 = 1811939329;
-    static constexpr ull MOD3 = 2013265921;
-    static constexpr ull INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);
-    static constexpr ull INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);
-    static constexpr ull INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);
+    static constexpr ll MOD1 = 469762049;
+    static constexpr ll MOD2 = 1811939329;
+    static constexpr ll MOD3 = 2013265921;
+    static constexpr ll INV1_2 = mod_pow(MOD1, MOD2 - 2, MOD2);
+    static constexpr ll INV1_3 = mod_pow(MOD1, MOD3 - 2, MOD3);
+    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);
     auto c1 = convolution<MOD1>(a2, b2);
     auto c2 = convolution<MOD2>(a2, b2);
     auto c3 = convolution<MOD3>(a2, b2);
     std::vector<static_modint<p>> res(n + m - 1);
     rep (i, n + m - 1) {
-        ull t1 = c1[i];
-        ull t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;
+        ll t1 = c1[i];
+        ll t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;
         if (t2 < 0) t2 += MOD2;
-        ull t3 =
+        ll t3 =
             ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3) * INV2_3 % MOD3;
         if (t3 < 0) t3 += MOD3;
-        assert(0 <= t1 && t1 < MOD1);
-        assert(0 <= t2 && t2 < MOD2);
-        assert(0 <= t3 && t3 < MOD3);
         res[i] = static_modint<p>(t1 + (t2 + t3 * MOD2) % p * MOD1);
     }
     return res;
