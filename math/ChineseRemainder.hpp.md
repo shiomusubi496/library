@@ -524,8 +524,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yuki/447-CRT.test.cpp
   - test/yuki/448-Garner.test.cpp
+  - test/yuki/447-CRT.test.cpp
 documentation_of: math/ChineseRemainder.hpp
 layout: document
 redirect_from:

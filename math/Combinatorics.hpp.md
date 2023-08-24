@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':question:'
@@ -32,7 +32,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
@@ -42,7 +42,7 @@ data:
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':x:'
@@ -58,26 +58,26 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_B.test.cpp
     title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
@@ -154,7 +154,7 @@ data:
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/Combinatorics.md
     document_title: Combinatorics
@@ -748,47 +748,47 @@ data:
   isVerificationFile: false
   path: math/Combinatorics.hpp
   requiredBy:
+  - math/StirlingNumber.hpp
+  - math/SubsetSum.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/BostanMori.hpp
   - math/poly/FormalPowerSeries.hpp
-  - math/StirlingNumber.hpp
-  - math/SubsetSum.hpp
+  - math/poly/SamplingPointsShift.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/math/partition_function.test.cpp
-  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/Combinatorics.hpp
 layout: document

@@ -502,8 +502,8 @@ data:
   timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DPL/DPL_3_C.test.cpp
   - test/aoj/DPL/DPL_3_B.test.cpp
+  - test/aoj/DPL/DPL_3_C.test.cpp
 documentation_of: data-struct/other/MaxRectangle.hpp
 layout: document
 redirect_from:

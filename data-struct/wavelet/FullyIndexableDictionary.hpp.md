@@ -504,8 +504,8 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/FullyIndexableDictionary.hpp
   requiredBy:
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
   - data-struct/wavelet/WaveletMatrix.hpp
+  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

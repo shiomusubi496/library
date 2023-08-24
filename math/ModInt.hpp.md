@@ -32,29 +32,33 @@ data:
   - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
   - icon: ':x:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   - icon: ':x:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
+  - icon: ':warning:'
+    path: math/convolution/RelaxedConvolution.hpp
+    title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
+      )"
   - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':x:'
@@ -70,29 +74,29 @@ data:
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_A.test.cpp
     title: test/aoj/DPL/DPL_5_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_B.test.cpp
     title: test/aoj/DPL/DPL_5_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_C.test.cpp
     title: test/aoj/DPL/DPL_5_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_D.test.cpp
     title: test/aoj/DPL/DPL_5_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_E.test.cpp
     title: test/aoj/DPL/DPL_5_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_F.test.cpp
     title: test/aoj/DPL/DPL_5_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
   - icon: ':x:'
@@ -247,7 +251,7 @@ data:
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/ModInt.md
     document_title: ModInt
@@ -910,79 +914,80 @@ data:
   isVerificationFile: false
   path: math/ModInt.hpp
   requiredBy:
+  - graph/tree/FrequencyTableofTreeDistance.hpp
+  - math/StirlingNumber.hpp
+  - math/SubsetSum.hpp
+  - math/MontmortNumber.hpp
+  - math/poly/MultipointEvaluation.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/TaylorShift.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/MultipointEvaluation.hpp
-  - math/poly/SamplingPointsShift.hpp
-  - math/poly/BostanMori.hpp
   - math/poly/FormalPowerSeries.hpp
-  - math/convolution/Convolution.hpp
-  - math/StirlingNumber.hpp
+  - math/poly/SamplingPointsShift.hpp
   - math/PrimitiveRoot.hpp
-  - math/MontmortNumber.hpp
-  - math/SubsetSum.hpp
+  - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/Convolution.hpp
   - math/Combinatorics.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
+  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/math/partition_function.test.cpp
-  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
-  - test/yosupo/math/montmort_number_mod.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
+  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/new/tree_path_composite_sum.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/aoj/DPL/DPL_5_E.test.cpp
-  - test/aoj/DPL/DPL_5_A.test.cpp
-  - test/aoj/DPL/DPL_5_F.test.cpp
-  - test/aoj/DPL/DPL_5_D.test.cpp
+  - test/yosupo/graph/enumerate_cliques.test.cpp
+  - test/yosupo/math/montmort_number_mod.test.cpp
+  - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
+  - test/yosupo/convolution/lcm_convolution.test.cpp
+  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
+  - test/yosupo/convolution/gcd_convolution.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
   - test/aoj/DPL/DPL_5_B.test.cpp
+  - test/aoj/DPL/DPL_5_F.test.cpp
+  - test/aoj/DPL/DPL_5_A.test.cpp
   - test/aoj/DPL/DPL_5_C.test.cpp
+  - test/aoj/DPL/DPL_5_E.test.cpp
+  - test/aoj/DPL/DPL_5_D.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document

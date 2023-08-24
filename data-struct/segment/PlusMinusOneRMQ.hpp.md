@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -654,8 +654,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
-  - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
