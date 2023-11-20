@@ -4,11 +4,15 @@
 #include "../random/Random.hpp"
 
 class RollingHash {
-private:
+public:
     static constexpr ull MOD = (1ull << 61) - 1;
+
+private:
     static constexpr ull MASK30 = (1ull << 30) - 1;
     static constexpr ull MASK31 = (1ull << 31) - 1;
     static constexpr ull MASK61 = MOD;
+
+public:
     static ull calc_mod(ull a) {
         ull res = (a & MASK61) + (a >> 61);
         if (res >= MOD) res -= MOD;
@@ -29,7 +33,6 @@ private:
     ull BASE;
     void init() { BASE = (1ull << 31) + (rand32() & MASK31); }
 
-public:
     class Hash {
     private:
         int n;

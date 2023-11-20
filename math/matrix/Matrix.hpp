@@ -63,7 +63,7 @@ public:
     friend Matrix operator*(int lhs, const Matrix& rhs) {
         return Matrix(rhs) *= lhs;
     }
-    Matrix pow(ll b) {
+    Matrix pow(ll b) const {
         Matrix a = *this, res = get_identity(height());
         while (b) {
             if (b & 1) res *= a;

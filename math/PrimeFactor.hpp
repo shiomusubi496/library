@@ -24,7 +24,6 @@ public:
     std::vector<ll> factorize(ll x) const {
         std::vector<ll> res;
         for (; x > 1; x /= era[x]) res.push_back(era[x]);
-        reverse(all(res));
         return res;
     }
     const std::vector<ll>& get_primes() const& { return primes; }

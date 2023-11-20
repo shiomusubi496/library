@@ -80,6 +80,25 @@ public:
         } while ((l & -l) != l);
         return ori;
     }
+    template<class M2, class F, class Cond> int max_right(int l, const F& f, const Cond& cond) const {
+        assert(0 <= l && l <= ori);
+        assert(cond(f(M::id())));
+        if (l == ori) return ori;
+        l += n;
+        typename M2::value_type sm = M2::id();
+        do {
+            while ((l & 1) == 0) l >>= 1;
+            if (!cond(M2::op(sm, f(data[l])))) {
+                while (l < n) {
+                    l <<= 1;
+                    if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));
+                }
+                return l - n;
+            }
+            sm = M2::op(sm, f(data[l++]));
+        } while ((l & -l) != l);
+        return ori;
+    }
     template<class Cond> int min_left(int r, const Cond& cond) const {
         assert(0 <= r && r <= ori);
         assert(cond(M::id()));
@@ -97,6 +116,26 @@ public:
                 return r + 1 - n;
             }
             sm = M::op(data[r], sm);
+        } while ((r & -r) != r);
+        return 0;
+    }
+    template<class M2, class F, class Cond> int min_left(int r, const F& f, const Cond& cond) const {
+        assert(0 <= r && r <= ori);
+        assert(cond(f(M::id())));
+        if (r == 0) return 0;
+        r += n;
+        typename M2::value_type sm = M2::id();
+        do {
+            --r;
+            while ((r & 1) && r > 1) r >>= 1;
+            if (!cond(M2::op(f(data[r]), sm))) {
+                while (r < n) {
+                    r = r << 1 ^ 1;
+                    if (cond(M2::op(f(data[r]), sm))) sm = M2::op(f(data[r--]), sm);
+                }
+                return r + 1 - n;
+            }
+            sm = M2::op(f(data[r]), sm);
         } while ((r & -r) != r);
         return 0;
     }
