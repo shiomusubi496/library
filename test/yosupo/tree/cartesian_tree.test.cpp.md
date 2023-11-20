@@ -509,9 +509,24 @@ data:
     \ std::vector<T>& v, const Comp& cmp) : v(v), cmp(cmp) {\n        init();\n  \
     \  }\n    const std::vector<int>& get_vec() const& { return par; }\n    std::vector<int>\
     \ get_vec() && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
-    \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
-    \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
-    \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
+    \ int> get_graph() const {\n        Graph<U> res(n);\n        int root = 0;\n\
+    \        rep (i, n) {\n            if (par[i] == -1) root = i;\n            else\
+    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n  \
+    \  template<class F>\n    ll count_range(F&& f) const {\n        auto [G, root]\
+    \ = get_graph();\n        ll ans = 0;\n        rec_lambda([&](auto&& self, int\
+    \ m, int l, int r) -> void {\n            if (m - l < r - m) {\n             \
+    \   rep (i, l, m + 1) {\n                    int ok = m, ng = r + 1;\n       \
+    \             while (ng - ok > 1) {\n                        int mid = (ok + ng)\
+    \ / 2;\n                        (f(m, i, mid) ? ok : ng) = mid;\n            \
+    \        }\n                    ans += ok - m;\n                }\n          \
+    \  }\n            else {\n                rep (i, m + 1, r + 1) {\n          \
+    \          int ok = m + 1, ng = l - 1;\n                    while (ok - ng > 1)\
+    \ {\n                        int mid = (ok + ng) / 2;\n                      \
+    \  (f(m, mid, i) ? ok : ng) = mid;\n                    }\n                  \
+    \  ans += m + 1 - ok;\n                }\n            }\n            for (auto\
+    \ e : G[m]) {\n                if (l <= e.to && e.to < m) self(e.to, l, m);\n\
+    \                else if (m < e.to && e.to < r) self(e.to, m + 1, r);\n      \
+    \      }\n        })(root, 0, n);\n        return ans;\n    }\n};\n\n/**\n * @brief\
     \ CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */\n#line 5 \"test/yosupo/tree/cartesian_tree.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<int> A(N);\
     \ scan >> A;\n    auto v = CartesianTree<int>(A).get_vec();\n    rep (i, N) {\n\
@@ -537,7 +552,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/tree/cartesian_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/tree/cartesian_tree.test.cpp

@@ -569,6 +569,15 @@ data:
     \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
     \                }\n                return l - n;\n            }\n           \
     \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
+    \ ori;\n    }\n    template<class M2, class F, class Cond> int max_right(int l,\
+    \ const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
+    \        assert(cond(f(M::id())));\n        if (l == ori) return ori;\n      \
+    \  l += n;\n        typename M2::value_type sm = M2::id();\n        do {\n   \
+    \         while ((l & 1) == 0) l >>= 1;\n            if (!cond(M2::op(sm, f(data[l]))))\
+    \ {\n                while (l < n) {\n                    l <<= 1;\n         \
+    \           if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));\n\
+    \                }\n                return l - n;\n            }\n           \
+    \ sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) != l);\n        return\
     \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
     \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
     \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
@@ -577,7 +586,16 @@ data:
     \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
     \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
     \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
+    \ ((r & -r) != r);\n        return 0;\n    }\n    template<class M2, class F,\
+    \ class Cond> int min_left(int r, const F& f, const Cond& cond) const {\n    \
+    \    assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n        if\
+    \ (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm = M2::id();\n\
+    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(M2::op(f(data[r]), sm))) {\n                while (r <\
+    \ n) {\n                    r = r << 1 ^ 1;\n                    if (cond(M2::op(f(data[r]),\
+    \ sm))) sm = M2::op(f(data[r--]), sm);\n                }\n                return\
+    \ r + 1 - n;\n            }\n            sm = M2::op(f(data[r]), sm);\n      \
+    \  } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
     \u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\u6B8A\u306A\u30BB\u30B0\
     \u6728)\n * @docs docs/data-struct/segment/SSegmentTree.md\n */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-seg.test.cpp\"\
     \nusing namespace std;\nstruct Merge {\n    using value_type = vector<int>;\n\
@@ -623,7 +641,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp

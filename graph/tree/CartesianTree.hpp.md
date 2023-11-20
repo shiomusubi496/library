@@ -512,11 +512,26 @@ data:
     \ { init(); }\n    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v),\
     \ cmp(cmp) {\n        init();\n    }\n    const std::vector<int>& get_vec() const&\
     \ { return par; }\n    std::vector<int> get_vec() && { return std::move(par);\
-    \ }\n    template<class U = int> std::pair<Graph<U>, int> get_graph() {\n    \
-    \    Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n         \
-    \   if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n \
-    \       }\n        return {res, root};\n    }\n};\n\n/**\n * @brief CartesianTree\n\
-    \ * @docs docs/graph/tree/CartesianTree.md\n */\n"
+    \ }\n    template<class U = int> std::pair<Graph<U>, int> get_graph() const {\n\
+    \        Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n     \
+    \       if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n\
+    \        }\n        return {res, root};\n    }\n    template<class F>\n    ll\
+    \ count_range(F&& f) const {\n        auto [G, root] = get_graph();\n        ll\
+    \ ans = 0;\n        rec_lambda([&](auto&& self, int m, int l, int r) -> void {\n\
+    \            if (m - l < r - m) {\n                rep (i, l, m + 1) {\n     \
+    \               int ok = m, ng = r + 1;\n                    while (ng - ok >\
+    \ 1) {\n                        int mid = (ok + ng) / 2;\n                   \
+    \     (f(m, i, mid) ? ok : ng) = mid;\n                    }\n               \
+    \     ans += ok - m;\n                }\n            }\n            else {\n \
+    \               rep (i, m + 1, r + 1) {\n                    int ok = m + 1, ng\
+    \ = l - 1;\n                    while (ok - ng > 1) {\n                      \
+    \  int mid = (ok + ng) / 2;\n                        (f(m, mid, i) ? ok : ng)\
+    \ = mid;\n                    }\n                    ans += m + 1 - ok;\n    \
+    \            }\n            }\n            for (auto e : G[m]) {\n           \
+    \     if (l <= e.to && e.to < m) self(e.to, l, m);\n                else if (m\
+    \ < e.to && e.to < r) self(e.to, m + 1, r);\n            }\n        })(root, 0,\
+    \ n);\n        return ans;\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs\
+    \ docs/graph/tree/CartesianTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>> class CartesianTree {\nprivate:\n\
     \    int n;\n    const std::vector<T>& v;\n    std::vector<int> par;\n    Comp\
@@ -529,9 +544,24 @@ data:
     \ std::vector<T>& v, const Comp& cmp) : v(v), cmp(cmp) {\n        init();\n  \
     \  }\n    const std::vector<int>& get_vec() const& { return par; }\n    std::vector<int>\
     \ get_vec() && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
-    \ int> get_graph() {\n        Graph<U> res(n);\n        int root = 0;\n      \
-    \  rep (i, n) {\n            if (par[i] == -1) root = i;\n            else res.add_edge(i,\
-    \ par[i]);\n        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief\
+    \ int> get_graph() const {\n        Graph<U> res(n);\n        int root = 0;\n\
+    \        rep (i, n) {\n            if (par[i] == -1) root = i;\n            else\
+    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n  \
+    \  template<class F>\n    ll count_range(F&& f) const {\n        auto [G, root]\
+    \ = get_graph();\n        ll ans = 0;\n        rec_lambda([&](auto&& self, int\
+    \ m, int l, int r) -> void {\n            if (m - l < r - m) {\n             \
+    \   rep (i, l, m + 1) {\n                    int ok = m, ng = r + 1;\n       \
+    \             while (ng - ok > 1) {\n                        int mid = (ok + ng)\
+    \ / 2;\n                        (f(m, i, mid) ? ok : ng) = mid;\n            \
+    \        }\n                    ans += ok - m;\n                }\n          \
+    \  }\n            else {\n                rep (i, m + 1, r + 1) {\n          \
+    \          int ok = m + 1, ng = l - 1;\n                    while (ok - ng > 1)\
+    \ {\n                        int mid = (ok + ng) / 2;\n                      \
+    \  (f(m, mid, i) ? ok : ng) = mid;\n                    }\n                  \
+    \  ans += m + 1 - ok;\n                }\n            }\n            for (auto\
+    \ e : G[m]) {\n                if (l <= e.to && e.to < m) self(e.to, l, m);\n\
+    \                else if (m < e.to && e.to < r) self(e.to, m + 1, r);\n      \
+    \      }\n        })(root, 0, n);\n        return ans;\n    }\n};\n\n/**\n * @brief\
     \ CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */"
   dependsOn:
   - other/template.hpp
@@ -548,11 +578,11 @@ data:
   path: graph/tree/CartesianTree.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: graph/tree/CartesianTree.hpp
 layout: document
 redirect_from:
@@ -564,7 +594,9 @@ title: CartesianTree
 
 与えられた数列 v に対しての Cartesian Tree (デカルト木) を求める。これは、頂点 $i$ の親が頂点 $p$ であるとき $v_i > v_p$ であり、かつ in-order 順に頂点を並べたものが $1, 2, \cdots, N$ となるような二分木である。
 
-利用法としては、数列 v における区間の最小値は、 Cartesian Tree における LCA となることなどがある。
+性質として、数列 v における区間の最小値は、 Cartesian Tree における LCA となることなどがある。
+
+また、マージテクと同様に考えると、各頂点について左右の部分木のうち小さい方のサイズの総和は $O(N \log N)$ に抑えられる。よって、数列の区間の最小値について扱う際、最小値を固定し、区間の左右どちらかを固定することができる場合、これを用いると $O(N \log N)$ で計算できる。
 
 - `CartesianTree(std::vector<T> v)` : Cartesian Tree を構築する。 $\Theta(N)$ 。
 - `vector<int> get_vec()` : $i$ 番目の要素が頂点 $i$ の親であるような数列を返す。ただし、根に対しては $-1$ となる。 $\Theta(N)$ 。

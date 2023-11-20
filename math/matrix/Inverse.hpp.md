@@ -482,7 +482,7 @@ data:
     \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
     \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
     \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
-    \ lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_identity(height());\n\
+    \ lhs;\n    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
     \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
     \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
@@ -549,7 +549,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp

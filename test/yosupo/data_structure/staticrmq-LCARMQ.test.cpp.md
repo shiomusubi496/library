@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':question:'
@@ -527,12 +527,27 @@ data:
     \ { init(); }\n    CartesianTree(const std::vector<T>& v, const Comp& cmp) : v(v),\
     \ cmp(cmp) {\n        init();\n    }\n    const std::vector<int>& get_vec() const&\
     \ { return par; }\n    std::vector<int> get_vec() && { return std::move(par);\
-    \ }\n    template<class U = int> std::pair<Graph<U>, int> get_graph() {\n    \
-    \    Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n         \
-    \   if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n \
-    \       }\n        return {res, root};\n    }\n};\n\n/**\n * @brief CartesianTree\n\
-    \ * @docs docs/graph/tree/CartesianTree.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\
-    \n\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
+    \ }\n    template<class U = int> std::pair<Graph<U>, int> get_graph() const {\n\
+    \        Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n     \
+    \       if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n\
+    \        }\n        return {res, root};\n    }\n    template<class F>\n    ll\
+    \ count_range(F&& f) const {\n        auto [G, root] = get_graph();\n        ll\
+    \ ans = 0;\n        rec_lambda([&](auto&& self, int m, int l, int r) -> void {\n\
+    \            if (m - l < r - m) {\n                rep (i, l, m + 1) {\n     \
+    \               int ok = m, ng = r + 1;\n                    while (ng - ok >\
+    \ 1) {\n                        int mid = (ok + ng) / 2;\n                   \
+    \     (f(m, i, mid) ? ok : ng) = mid;\n                    }\n               \
+    \     ans += ok - m;\n                }\n            }\n            else {\n \
+    \               rep (i, m + 1, r + 1) {\n                    int ok = m + 1, ng\
+    \ = l - 1;\n                    while (ok - ng > 1) {\n                      \
+    \  int mid = (ok + ng) / 2;\n                        (f(m, mid, i) ? ok : ng)\
+    \ = mid;\n                    }\n                    ans += m + 1 - ok;\n    \
+    \            }\n            }\n            for (auto e : G[m]) {\n           \
+    \     if (l <= e.to && e.to < m) self(e.to, l, m);\n                else if (m\
+    \ < e.to && e.to < r) self(e.to, m + 1, r);\n            }\n        })(root, 0,\
+    \ n);\n        return ans;\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs\
+    \ docs/graph/tree/CartesianTree.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\n\
+    \n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
     \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
     \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
     \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
@@ -751,7 +766,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

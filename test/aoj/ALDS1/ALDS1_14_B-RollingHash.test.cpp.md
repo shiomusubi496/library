@@ -489,19 +489,19 @@ data:
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
     \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
-    \n\nclass RollingHash {\nprivate:\n    static constexpr ull MOD = (1ull << 61)\
-    \ - 1;\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr\
-    \ ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n   \
-    \ static ull calc_mod(ull a) {\n        ull res = (a & MASK61) + (a >> 61);\n\
-    \        if (res >= MOD) res -= MOD;\n        return res;\n    }\n    static ull\
-    \ calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad = a & MASK31;\n   \
-    \     ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au * bd + ad * bu;\n\
-    \        return calc_mod(((au * bu) << 1) + ((mid & MASK30) << 31) +\n       \
-    \                 (mid >> 30) + ad * bd);\n    }\n    static ull calc_add(ull\
-    \ a, ull b) {\n        ull res = a + b;\n        if (res >= MOD) res -= MOD;\n\
-    \        return res;\n    }\n    ull BASE;\n    void init() { BASE = (1ull <<\
-    \ 31) + (rand32() & MASK31); }\n\npublic:\n    class Hash {\n    private:\n  \
-    \      int n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
+    \n\nclass RollingHash {\npublic:\n    static constexpr ull MOD = (1ull << 61)\
+    \ - 1;\n\nprivate:\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static\
+    \ constexpr ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 =\
+    \ MOD;\n\npublic:\n    static ull calc_mod(ull a) {\n        ull res = (a & MASK61)\
+    \ + (a >> 61);\n        if (res >= MOD) res -= MOD;\n        return res;\n   \
+    \ }\n    static ull calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad =\
+    \ a & MASK31;\n        ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au\
+    \ * bd + ad * bu;\n        return calc_mod(((au * bu) << 1) + ((mid & MASK30)\
+    \ << 31) +\n                        (mid >> 30) + ad * bd);\n    }\n    static\
+    \ ull calc_add(ull a, ull b) {\n        ull res = a + b;\n        if (res >= MOD)\
+    \ res -= MOD;\n        return res;\n    }\n    ull BASE;\n    void init() { BASE\
+    \ = (1ull << 31) + (rand32() & MASK31); }\n\n    class Hash {\n    private:\n\
+    \        int n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
     \ pows;\n\n    public:\n        Hash() = default;\n        template<class Cont>\
     \ Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n    \
     \        hash.resize(n + 1);\n            rep (i, n)\n                hash[i +\
@@ -539,7 +539,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

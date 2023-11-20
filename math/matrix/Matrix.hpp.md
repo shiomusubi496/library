@@ -500,7 +500,7 @@ data:
     \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
     \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
     \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
-    \ lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix a = *this, res = get_identity(height());\n\
+    \ lhs;\n    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
     \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
     \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
     \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
@@ -549,24 +549,24 @@ data:
     \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
     \    friend Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs)\
     \ *= rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n\
-    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) {\n        Matrix\
-    \ a = *this, res = get_identity(height());\n        while (b) {\n            if\
-    \ (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n        }\n  \
-    \      return res;\n    }\n    Matrix transpose() const {\n        Matrix res(width(),\
-    \ height());\n        rep (i, height()) {\n            rep (j, width()) res[j][i]\
-    \ = (*this)[i][j];\n        }\n        return res;\n    }\n    Matrix& gauss()\
-    \ {\n        int h = height(), w = width();\n        int r = 0;\n        rep (i,\
-    \ w) {\n            int pivot = -1;\n            rep (j, r, h) {\n           \
-    \     if ((*this)[j][i] != 0) {\n                    pivot = j;\n            \
-    \        break;\n                }\n            }\n            if (pivot == -1)\
-    \ continue;\n            swap((*this)[pivot], (*this)[r]);\n            const\
-    \ T s = (*this)[r][i];\n            rep (j, i, w) (*this)[r][j] /= s;\n      \
-    \      rep (j, h) {\n                if (j == r) continue;\n                const\
-    \ T s = (*this)[j][i];\n                if (s == 0) continue;\n              \
-    \  rep (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;\n            }\n        \
-    \    ++r;\n        }\n        return *this;\n    }\n    friend Matrix gauss(const\
-    \ Matrix& mat) { return Matrix(mat).gauss(); }\n    int rank(bool is_gaussed =\
-    \ false) const {\n        if (!is_gaussed) return Matrix(*this).gauss().rank(true);\n\
+    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) const {\n   \
+    \     Matrix a = *this, res = get_identity(height());\n        while (b) {\n \
+    \           if (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n\
+    \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
+    \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
+    \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
+    \  }\n    Matrix& gauss() {\n        int h = height(), w = width();\n        int\
+    \ r = 0;\n        rep (i, w) {\n            int pivot = -1;\n            rep (j,\
+    \ r, h) {\n                if ((*this)[j][i] != 0) {\n                    pivot\
+    \ = j;\n                    break;\n                }\n            }\n       \
+    \     if (pivot == -1) continue;\n            swap((*this)[pivot], (*this)[r]);\n\
+    \            const T s = (*this)[r][i];\n            rep (j, i, w) (*this)[r][j]\
+    \ /= s;\n            rep (j, h) {\n                if (j == r) continue;\n   \
+    \             const T s = (*this)[j][i];\n                if (s == 0) continue;\n\
+    \                rep (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;\n         \
+    \   }\n            ++r;\n        }\n        return *this;\n    }\n    friend Matrix\
+    \ gauss(const Matrix& mat) { return Matrix(mat).gauss(); }\n    int rank(bool\
+    \ is_gaussed = false) const {\n        if (!is_gaussed) return Matrix(*this).gauss().rank(true);\n\
     \        const int h = height(), w = width();\n        int r = 0;\n        rep\
     \ (i, h) {\n            while (r < w && (*this)[i][r] == 0) ++r;\n           \
     \ if (r == w) return i;\n            ++r;\n        }\n        return h;\n    }\n\
@@ -589,13 +589,13 @@ data:
   - math/matrix/Inverse.hpp
   - math/matrix/LinearEquations.hpp
   - math/matrix/Determinant.hpp
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
-  - test/yosupo/matrix/inverse_matrix.test.cpp
+  - test/yosupo/matrix/system_of_linear_equations.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

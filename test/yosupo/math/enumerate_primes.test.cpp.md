@@ -462,22 +462,22 @@ data:
     \ p > MAX) break;\n                era[i * p] = p;\n            }\n        }\n\
     \    }\n    bool is_prime(ll x) const { return era[x] == x; }\n    std::vector<ll>\
     \ factorize(ll x) const {\n        std::vector<ll> res;\n        for (; x > 1;\
-    \ x /= era[x]) res.push_back(era[x]);\n        reverse(all(res));\n        return\
-    \ res;\n    }\n    const std::vector<ll>& get_primes() const& { return primes;\
-    \ }\n    std::vector<ll> get_primes() && { return std::move(primes); }\n};\n\n\
-    class IsPrime {\nprivate:\n    ll MAX;\n    std::vector<bool> era;\n    std::vector<ll>\
-    \ primes;\n\npublic:\n    IsPrime(ll MAX) : MAX(MAX), era(MAX + 1, true), primes()\
-    \ {\n        era[0] = era[1] = false;\n        rep (i, 2, MAX + 1) {\n       \
-    \     if (era[i]) primes.push_back(i);\n            each_const (p : primes) {\n\
-    \                if (i * p > MAX) break;\n                era[i * p] = false;\n\
-    \            }\n        }\n    }\n    bool is_prime(ll x) { return era[x]; }\n\
-    \    const std::vector<ll>& get_primes() const& { return primes; }\n    std::vector<ll>\
-    \ get_primes() && { return std::move(primes); }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\
-    \u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n\
-    \ */\n#line 4 \"test/yosupo/math/enumerate_primes.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int N, A, B; scan >> N >> A >> B;\n    auto v = IsPrime(N).get_primes();\n\
-    \    vector<int> ans; ans.reserve(v.size());\n    rep (i, B, v.size(), A) ans.push_back(v[i]);\n\
-    \    print << v.size() << \" \" << ans.size() << endl;\n    prints(ans);\n}\n"
+    \ x /= era[x]) res.push_back(era[x]);\n        return res;\n    }\n    const std::vector<ll>&\
+    \ get_primes() const& { return primes; }\n    std::vector<ll> get_primes() &&\
+    \ { return std::move(primes); }\n};\n\nclass IsPrime {\nprivate:\n    ll MAX;\n\
+    \    std::vector<bool> era;\n    std::vector<ll> primes;\n\npublic:\n    IsPrime(ll\
+    \ MAX) : MAX(MAX), era(MAX + 1, true), primes() {\n        era[0] = era[1] = false;\n\
+    \        rep (i, 2, MAX + 1) {\n            if (era[i]) primes.push_back(i);\n\
+    \            each_const (p : primes) {\n                if (i * p > MAX) break;\n\
+    \                era[i * p] = false;\n            }\n        }\n    }\n    bool\
+    \ is_prime(ll x) { return era[x]; }\n    const std::vector<ll>& get_primes() const&\
+    \ { return primes; }\n    std::vector<ll> get_primes() && { return std::move(primes);\
+    \ }\n};\n\n/**\n * @brief PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
+    \u306E\u7BE9)\n * @docs docs/math/PrimeFactor.md\n */\n#line 4 \"test/yosupo/math/enumerate_primes.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, A, B; scan >> N >> A >> B;\n\
+    \    auto v = IsPrime(N).get_primes();\n    vector<int> ans; ans.reserve(v.size());\n\
+    \    rep (i, B, v.size(), A) ans.push_back(v[i]);\n    print << v.size() << \"\
+    \ \" << ans.size() << endl;\n    prints(ans);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_primes\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/PrimeFactor.hpp\"\n\
     using namespace std;\nint main() {\n    int N, A, B; scan >> N >> A >> B;\n  \
@@ -498,7 +498,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-20 10:49:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/math/enumerate_primes.test.cpp

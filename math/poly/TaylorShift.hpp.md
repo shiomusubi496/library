@@ -1148,18 +1148,18 @@ data:
   isVerificationFile: false
   path: math/poly/TaylorShift.hpp
   requiredBy:
-  - math/StirlingNumber.hpp
   - math/poly/SamplingPointsShift.hpp
+  - math/StirlingNumber.hpp
   timestamp: '2023-08-25 02:22:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document

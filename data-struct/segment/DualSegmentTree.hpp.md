@@ -665,8 +665,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
 documentation_of: data-struct/segment/DualSegmentTree.hpp
 layout: document
 redirect_from:

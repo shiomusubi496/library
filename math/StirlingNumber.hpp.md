@@ -1200,11 +1200,11 @@ data:
   timestamp: '2023-08-25 02:22:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/StirlingNumber.hpp
 layout: document
