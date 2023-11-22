@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/wavelet/FullyIndexableDictionary.hpp
     title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
     title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md
     document_title: WaveletMatrixPointAddRectangleSum.hpp
@@ -696,7 +696,7 @@ data:
   path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
   requiredBy: []
   timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
 documentation_of: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp

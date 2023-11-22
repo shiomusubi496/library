@@ -542,9 +542,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/shortest_path.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
 documentation_of: graph/shortest-path/Dijkstra.hpp
 layout: document
 redirect_from:

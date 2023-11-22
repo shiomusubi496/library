@@ -654,8 +654,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
-  - graph/tree/PMORMQLCA.hpp
   - data-struct/segment/LCARMQ.hpp
+  - graph/tree/PMORMQLCA.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

@@ -1310,11 +1310,11 @@ data:
   timestamp: '2023-08-25 02:22:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
 documentation_of: math/poly/SparseFormalPowerSeries.hpp
 layout: document
 redirect_from:

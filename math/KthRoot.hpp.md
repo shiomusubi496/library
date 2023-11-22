@@ -490,8 +490,8 @@ data:
   timestamp: '2023-08-10 00:52:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yosupo/math/kth_root_integer.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
+  - test/yosupo/math/kth_root_integer.test.cpp
 documentation_of: math/KthRoot.hpp
 layout: document
 redirect_from:
