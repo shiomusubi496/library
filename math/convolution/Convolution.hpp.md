@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
@@ -121,6 +121,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+    title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
@@ -1114,6 +1117,7 @@ data:
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
