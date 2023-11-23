@@ -32,11 +32,11 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yosupo/tree/cartesian_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/CartesianTree.md
     document_title: CartesianTree
@@ -515,23 +515,8 @@ data:
     \ }\n    template<class U = int> std::pair<Graph<U>, int> get_graph() const {\n\
     \        Graph<U> res(n);\n        int root = 0;\n        rep (i, n) {\n     \
     \       if (par[i] == -1) root = i;\n            else res.add_edge(i, par[i]);\n\
-    \        }\n        return {res, root};\n    }\n    template<class F>\n    ll\
-    \ count_range(F&& f) const {\n        auto [G, root] = get_graph();\n        ll\
-    \ ans = 0;\n        rec_lambda([&](auto&& self, int m, int l, int r) -> void {\n\
-    \            if (m - l < r - m) {\n                rep (i, l, m + 1) {\n     \
-    \               int ok = m, ng = r + 1;\n                    while (ng - ok >\
-    \ 1) {\n                        int mid = (ok + ng) / 2;\n                   \
-    \     (f(m, i, mid) ? ok : ng) = mid;\n                    }\n               \
-    \     ans += ok - m;\n                }\n            }\n            else {\n \
-    \               rep (i, m + 1, r + 1) {\n                    int ok = m + 1, ng\
-    \ = l - 1;\n                    while (ok - ng > 1) {\n                      \
-    \  int mid = (ok + ng) / 2;\n                        (f(m, mid, i) ? ok : ng)\
-    \ = mid;\n                    }\n                    ans += m + 1 - ok;\n    \
-    \            }\n            }\n            for (auto e : G[m]) {\n           \
-    \     if (l <= e.to && e.to < m) self(e.to, l, m);\n                else if (m\
-    \ < e.to && e.to < r) self(e.to, m + 1, r);\n            }\n        })(root, 0,\
-    \ n);\n        return ans;\n    }\n};\n\n/**\n * @brief CartesianTree\n * @docs\
-    \ docs/graph/tree/CartesianTree.md\n */\n"
+    \        }\n        return {res, root};\n    }\n};\n\n/**\n * @brief CartesianTree\n\
+    \ * @docs docs/graph/tree/CartesianTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>> class CartesianTree {\nprivate:\n\
     \    int n;\n    const std::vector<T>& v;\n    std::vector<int> par;\n    Comp\
@@ -546,23 +531,8 @@ data:
     \ get_vec() && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
     \ int> get_graph() const {\n        Graph<U> res(n);\n        int root = 0;\n\
     \        rep (i, n) {\n            if (par[i] == -1) root = i;\n            else\
-    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n  \
-    \  template<class F>\n    ll count_range(F&& f) const {\n        auto [G, root]\
-    \ = get_graph();\n        ll ans = 0;\n        rec_lambda([&](auto&& self, int\
-    \ m, int l, int r) -> void {\n            if (m - l < r - m) {\n             \
-    \   rep (i, l, m + 1) {\n                    int ok = m, ng = r + 1;\n       \
-    \             while (ng - ok > 1) {\n                        int mid = (ok + ng)\
-    \ / 2;\n                        (f(m, i, mid) ? ok : ng) = mid;\n            \
-    \        }\n                    ans += ok - m;\n                }\n          \
-    \  }\n            else {\n                rep (i, m + 1, r + 1) {\n          \
-    \          int ok = m + 1, ng = l - 1;\n                    while (ok - ng > 1)\
-    \ {\n                        int mid = (ok + ng) / 2;\n                      \
-    \  (f(m, mid, i) ? ok : ng) = mid;\n                    }\n                  \
-    \  ans += m + 1 - ok;\n                }\n            }\n            for (auto\
-    \ e : G[m]) {\n                if (l <= e.to && e.to < m) self(e.to, l, m);\n\
-    \                else if (m < e.to && e.to < r) self(e.to, m + 1, r);\n      \
-    \      }\n        })(root, 0, n);\n        return ans;\n    }\n};\n\n/**\n * @brief\
-    \ CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */"
+    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n};\n\
+    \n/**\n * @brief CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -578,8 +548,8 @@ data:
   path: graph/tree/CartesianTree.hpp
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
-  timestamp: '2023-11-20 10:49:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-23 23:53:24+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/cartesian_tree.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp

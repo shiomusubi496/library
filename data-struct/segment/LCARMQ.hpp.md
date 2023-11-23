@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':question:'
@@ -51,12 +51,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/LCARMQ.md
     document_title: LCARMQ
@@ -527,37 +527,23 @@ data:
     \ get_vec() && { return std::move(par); }\n    template<class U = int> std::pair<Graph<U>,\
     \ int> get_graph() const {\n        Graph<U> res(n);\n        int root = 0;\n\
     \        rep (i, n) {\n            if (par[i] == -1) root = i;\n            else\
-    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n  \
-    \  template<class F>\n    ll count_range(F&& f) const {\n        auto [G, root]\
-    \ = get_graph();\n        ll ans = 0;\n        rec_lambda([&](auto&& self, int\
-    \ m, int l, int r) -> void {\n            if (m - l < r - m) {\n             \
-    \   rep (i, l, m + 1) {\n                    int ok = m, ng = r + 1;\n       \
-    \             while (ng - ok > 1) {\n                        int mid = (ok + ng)\
-    \ / 2;\n                        (f(m, i, mid) ? ok : ng) = mid;\n            \
-    \        }\n                    ans += ok - m;\n                }\n          \
-    \  }\n            else {\n                rep (i, m + 1, r + 1) {\n          \
-    \          int ok = m + 1, ng = l - 1;\n                    while (ok - ng > 1)\
-    \ {\n                        int mid = (ok + ng) / 2;\n                      \
-    \  (f(m, mid, i) ? ok : ng) = mid;\n                    }\n                  \
-    \  ans += m + 1 - ok;\n                }\n            }\n            for (auto\
-    \ e : G[m]) {\n                if (l <= e.to && e.to < m) self(e.to, l, m);\n\
-    \                else if (m < e.to && e.to < r) self(e.to, m + 1, r);\n      \
-    \      }\n        })(root, 0, n);\n        return ans;\n    }\n};\n\n/**\n * @brief\
-    \ CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */\n#line 2 \"graph/tree/PMORMQLCA.hpp\"\
-    \n\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line 2 \"data-struct/segment/SparseTable.hpp\"\
-    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ res.add_edge(i, par[i]);\n        }\n        return {res, root};\n    }\n};\n\
+    \n/**\n * @brief CartesianTree\n * @docs docs/graph/tree/CartesianTree.md\n */\n\
+    #line 2 \"graph/tree/PMORMQLCA.hpp\"\n\n#line 2 \"graph/tree/EulerTour.hpp\"\n\
+    \n#line 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -761,8 +747,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/LCARMQ.hpp
   requiredBy: []
-  timestamp: '2023-11-20 10:49:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2023-11-23 23:53:24+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
 documentation_of: data-struct/segment/LCARMQ.hpp
