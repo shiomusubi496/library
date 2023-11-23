@@ -40,38 +40,6 @@ public:
         }
         return {res, root};
     }
-    template<class F>
-    ll count_range(F&& f) const {
-        auto [G, root] = get_graph();
-        ll ans = 0;
-        rec_lambda([&](auto&& self, int m, int l, int r) -> void {
-            if (m - l < r - m) {
-                rep (i, l, m + 1) {
-                    int ok = m, ng = r + 1;
-                    while (ng - ok > 1) {
-                        int mid = (ok + ng) / 2;
-                        (f(m, i, mid) ? ok : ng) = mid;
-                    }
-                    ans += ok - m;
-                }
-            }
-            else {
-                rep (i, m + 1, r + 1) {
-                    int ok = m + 1, ng = l - 1;
-                    while (ok - ng > 1) {
-                        int mid = (ok + ng) / 2;
-                        (f(m, mid, i) ? ok : ng) = mid;
-                    }
-                    ans += m + 1 - ok;
-                }
-            }
-            for (auto e : G[m]) {
-                if (l <= e.to && e.to < m) self(e.to, l, m);
-                else if (m < e.to && e.to < r) self(e.to, m + 1, r);
-            }
-        })(root, 0, n);
-        return ans;
-    }
 };
 
 /**
