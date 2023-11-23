@@ -173,6 +173,7 @@
 "test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp": "2023-08-25 02:22:32 +0900",
 "test/yosupo/new/tree_path_composite_sum.test.cpp": "2023-08-10 00:52:57 +0900",
 "test/yosupo/polynomial/division_of_polynomials.test.cpp": "2023-08-25 02:22:32 +0900",
+"test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp": "2023-11-24 00:53:46 +0900",
 "test/yosupo/polynomial/exp_of_formal_power_series.test.cpp": "2023-08-25 02:22:32 +0900",
 "test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp": "2023-08-25 02:22:32 +0900",
 "test/yosupo/polynomial/inv_of_formal_power_series.test.cpp": "2023-08-25 02:22:32 +0900",
