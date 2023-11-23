@@ -29,14 +29,14 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/ArbitraryModCombinatorics.hpp
     title: "ArbitraryModCombinatorics(\u4EFB\u610FmodCombination)"
   - icon: ':x:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/binomial_coefficient.test.cpp
     title: test/yosupo/math/binomial_coefficient.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"math/BarrettReduction.hpp\"\n\n#line 2 \"other/template.hpp\"\
@@ -593,7 +593,7 @@ data:
   - math/ArbitraryModCombinatorics.hpp
   - math/DiscreteLogarithm.hpp
   timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/new/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp

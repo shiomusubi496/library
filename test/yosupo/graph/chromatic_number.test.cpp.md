@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
@@ -537,7 +537,7 @@ data:
   path: test/yosupo/graph/chromatic_number.test.cpp
   requiredBy: []
   timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/graph/chromatic_number.test.cpp
 layout: document

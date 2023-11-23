@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
   - icon: ':x:'
