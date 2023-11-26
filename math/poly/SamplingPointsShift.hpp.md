@@ -1,78 +1,78 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/poly/SamplingPointsShift.md
     document_title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
@@ -882,34 +882,35 @@ data:
     \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
     \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
-    \ T finv(ll x) {\n        init(x);\n        return factinv[x];\n    }\n    static\
-    \ T inv(ll x) {\n        init(x);\n        return factorial[x - 1] * factinv[x];\n\
-    \    }\n    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        init(n);\n        return factorial[n] * factinv[n - r];\n    }\n    static\
-    \ T comb(ll n, ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r >\
-    \ n) return 0;\n        init(n);\n        return factorial[n] * factinv[n - r]\
-    \ * factinv[r];\n    }\n    static T homo(ll n, ll r) { return comb(n + r - 1,\
-    \ r); }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0 || r >\
-    \ n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n\
-    \        reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
-    \ T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 2 \"\
-    math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/SqrtMod.hpp\"\n\n#line 5 \"\
-    math/SqrtMod.hpp\"\n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const ll p =\
-    \ T::get_mod();\n    if (p == 2) return a;\n    if (a == 0) return 0;\n    if\
-    \ (T{a}.pow((p - 1) >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p\
-    \ - 1) >> 1) == 1) ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t\
-    \ >>= 1, ++s;\n    T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n   \
-    \ T v = T{b}.pow(t);\n    while (w != 1) {\n        ll k = 0;\n        T y = w;\n\
-    \        while (y != 1) {\n            y *= y;\n            ++k;\n        }\n\
-    \        T z = v;\n        rep (s - k - 1) z *= z;\n        x *= z;\n        w\
-    \ *= z * z;\n    }\n    return std::min<ll>(x.get(), p - x.get());\n}\n\nll sqrt_mod(ll\
-    \ a, ll p) {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned\
+    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
+    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
+    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
+    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
+    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
+    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
+    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
+    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
+    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
+    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
+    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
+    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/SqrtMod.hpp\"\
+    \n\n#line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class T> ll sqrt_mod(ll a) {\n  \
+    \  const ll p = T::get_mod();\n    if (p == 2) return a;\n    if (a == 0) return\
+    \ 0;\n    if (T{a}.pow((p - 1) >> 1) != 1) return -1;\n    T b = 2;\n    while\
+    \ (T{b}.pow((p - 1) >> 1) == 1) ++b;\n    ll s = 0, t = p - 1;\n    while ((t\
+    \ & 1) == 0) t >>= 1, ++s;\n    T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n\
+    \    T v = T{b}.pow(t);\n    while (w != 1) {\n        ll k = 0;\n        T y\
+    \ = w;\n        while (y != 1) {\n            y *= y;\n            ++k;\n    \
+    \    }\n        T z = v;\n        rep (s - k - 1) z *= z;\n        x *= z;\n \
+    \       w *= z * z;\n    }\n    return std::min<ll>(x.get(), p - x.get());\n}\n\
+    \nll sqrt_mod(ll a, ll p) {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned\
     \ int, 493174342>;\n    mint::set_mod(p);\n    return sqrt_mod<mint>(a);\n}\n\n\
     /**\n * @brief SqrtMod(\u5E73\u65B9\u5270\u4F59)\n * @docs docs/math/SqrtMod.md\n\
     \ * @see https://37zigen.com/tonelli-shanks-algorithm/\n */\n#line 7 \"math/poly/FormalPowerSeries.hpp\"\
@@ -1140,8 +1141,8 @@ data:
   isVerificationFile: false
   path: math/poly/SamplingPointsShift.hpp
   requiredBy: []
-  timestamp: '2023-08-25 02:22:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-26 13:22:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: math/poly/SamplingPointsShift.hpp

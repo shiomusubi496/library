@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -42,23 +42,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -131,33 +131,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/Combinatorics.md
     document_title: Combinatorics
@@ -696,23 +696,25 @@ data:
     \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
     \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
-    \ T finv(ll x) {\n        init(x);\n        return factinv[x];\n    }\n    static\
-    \ T inv(ll x) {\n        init(x);\n        return factorial[x - 1] * factinv[x];\n\
-    \    }\n    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        init(n);\n        return factorial[n] * factinv[n - r];\n    }\n    static\
-    \ T comb(ll n, ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r >\
-    \ n) return 0;\n        init(n);\n        return factorial[n] * factinv[n - r]\
-    \ * factinv[r];\n    }\n    static T homo(ll n, ll r) { return comb(n + r - 1,\
-    \ r); }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0 || r >\
-    \ n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n\
-    \        reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
-    \ T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n"
+    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
+    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
+    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
+    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
+    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
+    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
+    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
+    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
+    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
+    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
+    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
+    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"ModInt.hpp\"\
     \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
     \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
@@ -720,23 +722,25 @@ data:
     \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
     \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
     \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
-    \ fact(ll x) {\n        init(x);\n        return factorial[x];\n    }\n    static\
-    \ T finv(ll x) {\n        init(x);\n        return factinv[x];\n    }\n    static\
-    \ T inv(ll x) {\n        init(x);\n        return factorial[x - 1] * factinv[x];\n\
-    \    }\n    static T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
-    \        init(n);\n        return factorial[n] * factinv[n - r];\n    }\n    static\
-    \ T comb(ll n, ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r >\
-    \ n) return 0;\n        init(n);\n        return factorial[n] * factinv[n - r]\
-    \ * factinv[r];\n    }\n    static T homo(ll n, ll r) { return comb(n + r - 1,\
-    \ r); }\n    static T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return\
-    \ 0;\n        T res = 1;\n        reps (i, r) res *= n - r + i;\n        return\
-    \ res;\n    }\n    static T small_comb(ll n, ll r) {\n        if (r < 0 || r >\
-    \ n) return 0;\n        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n\
-    \        reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static\
-    \ T small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
-    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
-    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n"
+    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
+    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
+    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
+    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
+    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
+    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
+    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
+    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
+    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
+    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
+    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
+    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -760,8 +764,8 @@ data:
   - math/poly/MultipointEvaluation.hpp
   - math/SubsetSum.hpp
   - math/StirlingNumber.hpp
-  timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-11-26 13:22:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp

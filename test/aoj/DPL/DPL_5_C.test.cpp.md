@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -579,28 +579,29 @@ data:
     \        if (n < b) return;\n        factorial.resize(n + 1);\n        rep (i,\
     \ b, n + 1) factorial[i] = factorial[i - 1] * i;\n        factinv.resize(n + 1);\n\
     \        factinv[n] = T(1) / factorial[n];\n        rreps (i, n, b) factinv[i\
-    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        init(x);\n\
-    \        return factorial[x];\n    }\n    static T finv(ll x) {\n        init(x);\n\
-    \        return factinv[x];\n    }\n    static T inv(ll x) {\n        init(x);\n\
-    \        return factorial[x - 1] * factinv[x];\n    }\n    static T perm(ll n,\
-    \ ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n        return\
-    \ factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n, ll r) {\n   \
-    \     if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
-    \        return factorial[n] * factinv[n - r] * factinv[r];\n    }\n    static\
-    \ T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static T small_perm(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T res = 1;\n    \
-    \    reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T small_comb(ll\
-    \ n, ll r) {\n        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n\
-    \        init(r);\n        T res = factinv[r];\n        reps (i, r) res *= n -\
-    \ r + i;\n        return res;\n    }\n    static T small_homo(ll n, ll r) { return\
-    \ small_comb(n + r - 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
-    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
-    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
-    \ */\n#line 5 \"test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint\
-    \ = modint1000000007;\nusing comb = Combinatorics<mint>;\nint main() {\n    ll\
-    \ n, k; scan >> n >> k;\n    mint ans = 0;\n    rep (i, k + 1) {\n        ans\
-    \ += mint(-1).pow(k - i) * comb::comb(k, i) * mint(i).pow(n);\n    }\n    print\
-    \ << ans << endl;\n}\n"
+    \ - 1] = factinv[i] * i;\n    }\n    static T fact(ll x) {\n        if (x < 0)\
+    \ return 0;\n        init(x);\n        return factorial[x];\n    }\n    static\
+    \ T finv(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factinv[x];\n    }\n    static T inv(ll x) {\n        if (x <= 0) return 0;\n\
+    \        init(x);\n        return factorial[x - 1] * factinv[x];\n    }\n    static\
+    \ T perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        init(n);\n\
+    \        return factorial[n] * factinv[n - r];\n    }\n    static T comb(ll n,\
+    \ ll r) {\n        if (n < 0) return 0;\n        if (r < 0 || r > n) return 0;\n\
+    \        init(n);\n        return factorial[n] * factinv[n - r] * factinv[r];\n\
+    \    }\n    static T homo(ll n, ll r) { return comb(n + r - 1, r); }\n    static\
+    \ T small_perm(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n        T\
+    \ res = 1;\n        reps (i, r) res *= n - r + i;\n        return res;\n    }\n\
+    \    static T small_comb(ll n, ll r) {\n        if (r < 0 || r > n) return 0;\n\
+    \        chmin(r, n - r);\n        init(r);\n        T res = factinv[r];\n   \
+    \     reps (i, r) res *= n - r + i;\n        return res;\n    }\n    static T\
+    \ small_homo(ll n, ll r) { return small_comb(n + r - 1, r); }\n};\n\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factorial = std::vector<T>(1, 1);\ntemplate<class\
+    \ T>\nstd::vector<T> Combinatorics<T>::factinv = std::vector<T>(1, 1);\n\n/**\n\
+    \ * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n */\n#line 5 \"\
+    test/aoj/DPL/DPL_5_C.test.cpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
+    using comb = Combinatorics<mint>;\nint main() {\n    ll n, k; scan >> n >> k;\n\
+    \    mint ans = 0;\n    rep (i, k + 1) {\n        ans += mint(-1).pow(k - i) *\
+    \ comb::comb(k, i) * mint(i).pow(n);\n    }\n    print << ans << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_C\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/Combinatorics.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
@@ -622,7 +623,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_5_C.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
+  timestamp: '2023-11-26 13:22:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_5_C.test.cpp
