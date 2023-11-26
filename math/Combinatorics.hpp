@@ -19,14 +19,17 @@ public:
         rreps (i, n, b) factinv[i - 1] = factinv[i] * i;
     }
     static T fact(ll x) {
+        if (x < 0) return 0;
         init(x);
         return factorial[x];
     }
     static T finv(ll x) {
+        if (x < 0) return 0;
         init(x);
         return factinv[x];
     }
     static T inv(ll x) {
+        if (x <= 0) return 0;
         init(x);
         return factorial[x - 1] * factinv[x];
     }
