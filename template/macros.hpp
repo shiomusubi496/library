@@ -26,8 +26,7 @@
 #define RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)
 #define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)
 #define RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))
-#define rreps(...)                                                             \
-    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)
+#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)
 
 #define each_for(...) for (auto&& __VA_ARGS__)
 #define each_const(...) for (const auto& __VA_ARGS__)

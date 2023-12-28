@@ -51,28 +51,38 @@ struct function_traits_helper<Res (Tp::*)(Args...) const& noexcept> {
 #endif
 
 template<class F>
-using function_traits =
-    typename function_traits_helper<decltype(&F::operator())>::type;
+using function_traits = typename function_traits_helper<
+    decltype(&std::remove_reference<F>::type::operator())>::type;
 
+template<class F>
+using function_result_type = typename function_traits<F>::result_type;
+template<class F, std::size_t idx>
+using function_argument_type =
+    typename function_traits<F>::template argument_type<idx>;
+template<class F>
+using function_argument_tuple = typename function_traits<F>::argument_tuple;
 
 template<class T>
 using is_signed_int =
-    std::disjunction<std::conjunction<std::is_integral<T>, std::is_signed<T>>,
-                     std::is_same<T, __int128_t>>;
+    std::integral_constant<bool, (std::is_integral<T>::value &&
+                                  std::is_signed<T>::value) ||
+                                     std::is_same<T, i128>::value>;
 template<class T>
 using is_unsigned_int =
-    std::disjunction<std::conjunction<std::is_integral<T>, std::is_unsigned<T>>,
-                     std::is_same<T, __uint128_t>>;
+    std::integral_constant<bool, (std::is_integral<T>::value &&
+                                  std::is_unsigned<T>::value) ||
+                                     std::is_same<T, u128>::value>;
 template<class T>
-using is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;
+using is_int = std::integral_constant<bool, is_signed_int<T>::value ||
+                                                is_unsigned_int<T>::value>;
 template<class T>
 using make_signed_int = typename std::conditional<
-    std::is_same<T, __int128_t>::value || std::is_same<T, __uint128_t>::value,
-    std::common_type<__int128_t>, std::make_signed<T>>::type;
+    std::is_same<T, i128>::value || std::is_same<T, u128>::value,
+    std::common_type<i128>, std::make_signed<T>>::type;
 template<class T>
 using make_unsigned_int = typename std::conditional<
-    std::is_same<T, __int128_t>::value || std::is_same<T, __uint128_t>::value,
-    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;
+    std::is_same<T, i128>::value || std::is_same<T, u128>::value,
+    std::common_type<u128>, std::make_unsigned<T>>::type;
 
 
 template<class T, class = void> struct is_range : std::false_type {};
@@ -99,8 +109,7 @@ template<std::size_t size> struct int_least {
             typename std::conditional<
                 size <= 32, std::int_least32_t,
                 typename std::conditional<size <= 64, std::int_least64_t,
-                                          __int128_t>::type>::type>::type>::
-        type;
+                                          i128>::type>::type>::type>::type;
 };
 
 template<std::size_t size> using int_least_t = typename int_least<size>::type;
@@ -115,8 +124,7 @@ template<std::size_t size> struct uint_least {
             typename std::conditional<
                 size <= 32, std::uint_least32_t,
                 typename std::conditional<size <= 64, std::uint_least64_t,
-                                          __uint128_t>::type>::type>::type>::
-        type;
+                                          u128>::type>::type>::type>::type;
 };
 
 template<std::size_t size> using uint_least_t = typename uint_least<size>::type;
