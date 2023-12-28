@@ -42,36 +42,36 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/EulerPhi.hpp
     title: "Euler's-Phi(\u30AA\u30A4\u30E9\u30FC\u306E\u03C6\u95A2\u6570)"
   - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/RelaxedConvolution.hpp
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
   - icon: ':x:'
@@ -80,7 +80,7 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':question:'
+  - icon: ':x:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
@@ -91,67 +91,67 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL/DPL_5_G.test.cpp
     title: test/aoj/DPL/DPL_5_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/convolution_mod.test.cpp
     title: test/yosupo/convolution/convolution_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
     title: test/yosupo/convolution/convolution_mod_1000000007.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/primitive_root.test.cpp
     title: test/yosupo/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':x:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
-    title: test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - icon: ':x:'
@@ -178,7 +178,7 @@ data:
   - icon: ':x:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
     title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
@@ -207,21 +207,21 @@ data:
     \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
     \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
     \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...)                                                             \\\n\
-    \    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...)\
-    \ for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto& __VA_ARGS__)\n\
-    \n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >= 201402L\n#define\
-    \ rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v) v.rbegin(), v.rend()\n\
-    #endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n#else\n\
-    #define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR\
-    \ constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n\
-    #line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll =\
-    \ long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
-    \ PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
-    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
     };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
     template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
     \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
@@ -250,18 +250,24 @@ data:
     \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
     template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
-    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
-    \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
-    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
-    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
-    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
-    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
-    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
-    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits = typename\
+    \ function_traits_helper<\n    decltype(&std::remove_reference<F>::type::operator())>::type;\n\
+    \ntemplate<class F>\nusing function_result_type = typename function_traits<F>::result_type;\n\
+    template<class F, std::size_t idx>\nusing function_argument_type =\n    typename\
+    \ function_traits<F>::template argument_type<idx>;\ntemplate<class F>\nusing function_argument_tuple\
+    \ = typename function_traits<F>::argument_tuple;\n\ntemplate<class T>\nusing is_signed_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_signed<T>::value) ||\n                   \
+    \                  std::is_same<T, i128>::value>;\ntemplate<class T>\nusing is_unsigned_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_unsigned<T>::value) ||\n                 \
+    \                    std::is_same<T, u128>::value>;\ntemplate<class T>\nusing\
+    \ is_int = std::integral_constant<bool, is_signed_int<T>::value ||\n         \
+    \                                       is_unsigned_int<T>::value>;\ntemplate<class\
+    \ T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<i128>, std::make_signed<T>>::type;\n\
+    template<class T>\nusing make_unsigned_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<u128>, std::make_unsigned<T>>::type;\n\
     \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
     \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
@@ -273,17 +279,16 @@ data:
     \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
     \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
     \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::int_least64_t,\n                                          __int128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using int_least_t = typename\
-    \ int_least<size>::type;\n\ntemplate<std::size_t size> struct uint_least {\n \
-    \   static_assert(size <= 128, \"size must be less than or equal to 128\");\n\n\
-    \    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
-    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
-    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
-    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
-    \                                          __uint128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using uint_least_t = typename\
-    \ uint_least<size>::type;\n\ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
+    \ <= 64, std::int_least64_t,\n                                          i128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using int_least_t = typename int_least<size>::type;\n\
+    \ntemplate<std::size_t size> struct uint_least {\n    static_assert(size <= 128,\
+    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
+    \        size <= 8, std::uint_least8_t,\n        typename std::conditional<\n\
+    \            size <= 16, std::uint_least16_t,\n            typename std::conditional<\n\
+    \                size <= 32, std::uint_least32_t,\n                typename std::conditional<size\
+    \ <= 64, std::uint_least64_t,\n                                          u128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using uint_least_t = typename uint_least<size>::type;\n\
+    \ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
@@ -807,52 +812,52 @@ data:
   isVerificationFile: false
   path: math/PollardRho.hpp
   requiredBy:
-  - graph/tree/FrequencyTableofTreeDistance.hpp
+  - math/convolution/RelaxedConvolution.hpp
+  - math/convolution/Convolution.hpp
+  - math/SubsetSum.hpp
+  - math/StirlingNumber.hpp
+  - math/EulerPhi.hpp
+  - math/poly/SparseFormalPowerSeries.hpp
+  - math/poly/BostanMori.hpp
   - math/poly/PolynomialInterpolation.hpp
   - math/poly/SamplingPointsShift.hpp
-  - math/poly/BostanMori.hpp
-  - math/poly/FormalPowerSeries.hpp
-  - math/poly/SparseFormalPowerSeries.hpp
-  - math/poly/TaylorShift.hpp
   - math/poly/MultipointEvaluation.hpp
-  - math/EulerPhi.hpp
-  - math/SubsetSum.hpp
-  - math/convolution/Convolution.hpp
-  - math/convolution/RelaxedConvolution.hpp
-  - math/StirlingNumber.hpp
+  - math/poly/FormalPowerSeries.hpp
+  - math/poly/TaylorShift.hpp
   - math/PrimitiveRoot.hpp
-  timestamp: '2023-08-10 00:52:57+09:00'
+  - graph/tree/FrequencyTableofTreeDistance.hpp
+  timestamp: '2023-12-29 01:31:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/division_of_polynomials.test.cpp
-  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
-  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
-  - test/yosupo/new/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/convolution/convolution_mod.test.cpp
-  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/factorize.test.cpp
-  - test/yosupo/math/primitive_root.test.cpp
-  - test/yosupo/math/partition_function.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
-  - test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/convolution/convolution_mod.test.cpp
+  - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
+  - test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/division_of_polynomials.test.cpp
+  - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation.test.cpp
+  - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
+  - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/PollardRho.hpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':question:'
@@ -38,37 +38,37 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
     title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/EulerTour.md
     document_title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -92,21 +92,21 @@ data:
     \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
     \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
     \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...)                                                             \\\n\
-    \    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...)\
-    \ for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto& __VA_ARGS__)\n\
-    \n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >= 201402L\n#define\
-    \ rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v) v.rbegin(), v.rend()\n\
-    #endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n#else\n\
-    #define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR\
-    \ constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n\
-    #line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll =\
-    \ long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
-    \ PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
-    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
     };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
     template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
     \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
@@ -135,18 +135,24 @@ data:
     \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
     template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
-    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
-    \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
-    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
-    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
-    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
-    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
-    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
-    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits = typename\
+    \ function_traits_helper<\n    decltype(&std::remove_reference<F>::type::operator())>::type;\n\
+    \ntemplate<class F>\nusing function_result_type = typename function_traits<F>::result_type;\n\
+    template<class F, std::size_t idx>\nusing function_argument_type =\n    typename\
+    \ function_traits<F>::template argument_type<idx>;\ntemplate<class F>\nusing function_argument_tuple\
+    \ = typename function_traits<F>::argument_tuple;\n\ntemplate<class T>\nusing is_signed_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_signed<T>::value) ||\n                   \
+    \                  std::is_same<T, i128>::value>;\ntemplate<class T>\nusing is_unsigned_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_unsigned<T>::value) ||\n                 \
+    \                    std::is_same<T, u128>::value>;\ntemplate<class T>\nusing\
+    \ is_int = std::integral_constant<bool, is_signed_int<T>::value ||\n         \
+    \                                       is_unsigned_int<T>::value>;\ntemplate<class\
+    \ T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<i128>, std::make_signed<T>>::type;\n\
+    template<class T>\nusing make_unsigned_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<u128>, std::make_unsigned<T>>::type;\n\
     \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
     \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
@@ -158,17 +164,16 @@ data:
     \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
     \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
     \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::int_least64_t,\n                                          __int128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using int_least_t = typename\
-    \ int_least<size>::type;\n\ntemplate<std::size_t size> struct uint_least {\n \
-    \   static_assert(size <= 128, \"size must be less than or equal to 128\");\n\n\
-    \    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
-    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
-    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
-    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
-    \                                          __uint128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using uint_least_t = typename\
-    \ uint_least<size>::type;\n\ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
+    \ <= 64, std::int_least64_t,\n                                          i128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using int_least_t = typename int_least<size>::type;\n\
+    \ntemplate<std::size_t size> struct uint_least {\n    static_assert(size <= 128,\
+    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
+    \        size <= 8, std::uint_least8_t,\n        typename std::conditional<\n\
+    \            size <= 16, std::uint_least16_t,\n            typename std::conditional<\n\
+    \                size <= 32, std::uint_least32_t,\n                typename std::conditional<size\
+    \ <= 64, std::uint_least64_t,\n                                          u128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using uint_least_t = typename uint_least<size>::type;\n\
+    \ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
@@ -721,13 +726,13 @@ data:
   requiredBy:
   - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
-  timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2023-12-29 01:31:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
   - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp

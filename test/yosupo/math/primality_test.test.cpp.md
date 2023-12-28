@@ -1,12 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/bst/SplayTree.hpp
-    title: data-struct/bst/SplayTree.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+  - icon: ':question:'
+    path: math/MillerRabin.hpp
+    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
+      )"
+  - icon: ':question:'
+    path: math/MontgomeryModInt.hpp
+    title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -36,60 +37,59 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
+    PROBLEM: https://judge.yosupo.jp/problem/primality_test
     links:
-    - https://judge.yosupo.jp/problem/range_reverse_range_sum
-  bundledCode: "#line 1 \"test/yosupo/new/range_reverse_range_sum.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...)                             \
-    \                                \\\n    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3,\
-    \ RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n#define\
-    \ each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
-    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
-    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
-    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing ull = unsigned\
-    \ long long;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
-    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    \ntemplate<class T> class infinity {\npublic:\n    static constexpr T value =\
-    \ std::numeric_limits<T>::max() / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::min()\
-    \ / 2;\n    static constexpr T max = std::numeric_limits<T>::max();\n    static\
-    \ constexpr T min = std::numeric_limits<T>::min();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/primality_test
+  bundledCode: "#line 1 \"test/yosupo/math/primality_test.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/primality_test\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -108,18 +108,24 @@ data:
     \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
     template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
-    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
-    \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
-    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
-    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
-    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
-    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
-    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
-    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits = typename\
+    \ function_traits_helper<\n    decltype(&std::remove_reference<F>::type::operator())>::type;\n\
+    \ntemplate<class F>\nusing function_result_type = typename function_traits<F>::result_type;\n\
+    template<class F, std::size_t idx>\nusing function_argument_type =\n    typename\
+    \ function_traits<F>::template argument_type<idx>;\ntemplate<class F>\nusing function_argument_tuple\
+    \ = typename function_traits<F>::argument_tuple;\n\ntemplate<class T>\nusing is_signed_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_signed<T>::value) ||\n                   \
+    \                  std::is_same<T, i128>::value>;\ntemplate<class T>\nusing is_unsigned_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_unsigned<T>::value) ||\n                 \
+    \                    std::is_same<T, u128>::value>;\ntemplate<class T>\nusing\
+    \ is_int = std::integral_constant<bool, is_signed_int<T>::value ||\n         \
+    \                                       is_unsigned_int<T>::value>;\ntemplate<class\
+    \ T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<i128>, std::make_signed<T>>::type;\n\
+    template<class T>\nusing make_unsigned_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<u128>, std::make_unsigned<T>>::type;\n\
     \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
     \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
@@ -131,17 +137,16 @@ data:
     \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
     \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
     \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::int_least64_t,\n                                          __int128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using int_least_t = typename\
-    \ int_least<size>::type;\n\ntemplate<std::size_t size> struct uint_least {\n \
-    \   static_assert(size <= 128, \"size must be less than or equal to 128\");\n\n\
-    \    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
-    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
-    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
-    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
-    \                                          __uint128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using uint_least_t = typename\
-    \ uint_least<size>::type;\n\ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
+    \ <= 64, std::int_least64_t,\n                                          i128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using int_least_t = typename int_least<size>::type;\n\
+    \ntemplate<std::size_t size> struct uint_least {\n    static_assert(size <= 128,\
+    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
+    \        size <= 8, std::uint_least8_t,\n        typename std::conditional<\n\
+    \            size <= 16, std::uint_least16_t,\n            typename std::conditional<\n\
+    \                size <= 32, std::uint_least32_t,\n                typename std::conditional<size\
+    \ <= 64, std::uint_least64_t,\n                                          u128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using uint_least_t = typename uint_least<size>::type;\n\
+    \ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
@@ -457,204 +462,104 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/bst/SplayTree.hpp\"\
-    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/bst/SplayTree.hpp\"\
-    \n\ntemplate<class A>\nclass SplayTree {\nprivate:\n    using M = typename A::M;\n\
-    \    using E = typename A::E;\n    using T = typename M::value_type;\n    using\
-    \ U = typename E::value_type;\n    struct node;\n    using node_ptr = node*;\n\
-    \    struct node {\n        T v, val, rval;\n        U lazy;\n        int cnt\
-    \ = 1;\n        bool lazyflag = false, rev = false;\n        node_ptr l = nullptr,\
-    \ r = nullptr, p = nullptr;\n    };\n    node_ptr root;\n\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<!Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int) {\n        return A::op(a,\
-    \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n\n    void all_apply(node_ptr& ptr, U x) {\n        if (ptr\
-    \ == nullptr) return;\n        ptr->v = Aop(x, ptr->v, 1);\n        ptr->val =\
-    \ Aop(x, ptr->val, ptr->cnt);\n        ptr->rval = Aop(x, ptr->rval, ptr->cnt);\n\
-    \        if (ptr->l || ptr->r) {\n            if (ptr->lazyflag) {\n         \
-    \       ptr->lazy = E::op(ptr->lazy, x);\n            }\n            else {\n\
-    \                ptr->lazy = x;\n                ptr->lazyflag = true;\n     \
-    \       }\n        }\n    }\n    void all_reverse(node_ptr& ptr) {\n        if\
-    \ (ptr == nullptr) return;\n        std::swap(ptr->l, ptr->r);\n        std::swap(ptr->val,\
-    \ ptr->rval);\n        ptr->rev = !ptr->rev;\n    }\n    void eval(node_ptr& ptr)\
-    \ {\n        if (ptr->rev) {\n            all_reverse(ptr->l);\n            all_reverse(ptr->r);\n\
-    \            ptr->rev = false;\n        }\n        if (ptr->lazyflag) {\n    \
-    \        all_apply(ptr->l, ptr->lazy);\n            all_apply(ptr->r, ptr->lazy);\n\
-    \            ptr->lazyflag = false;\n        }\n    }\n    void calc(node_ptr&\
-    \ ptr) {\n        if (ptr->l) {\n            if (ptr->r) {\n                ptr->val\
-    \ = M::op(M::op(ptr->l->val, ptr->v), ptr->r->val);\n                ptr->rval\
-    \ = M::op(M::op(ptr->r->rval, ptr->v), ptr->l->rval);\n                ptr->cnt\
-    \ = ptr->l->cnt + ptr->r->cnt + 1;\n            }\n            else {\n      \
-    \          ptr->val = M::op(ptr->l->val, ptr->v);\n                ptr->rval =\
-    \ M::op(ptr->v, ptr->l->rval);\n                ptr->cnt = ptr->l->cnt + 1;\n\
-    \            }\n        }\n        else {\n            if (ptr->r) {\n       \
-    \         ptr->val = M::op(ptr->v, ptr->r->val);\n                ptr->rval =\
-    \ M::op(ptr->r->rval, ptr->v);\n                ptr->cnt = ptr->r->cnt + 1;\n\
-    \            }\n            else {\n                ptr->val = ptr->v;\n     \
-    \           ptr->rval = ptr->v;\n                ptr->cnt = 1;\n            }\n\
-    \        }\n    }\n    node_ptr& parentchild(node_ptr& ptr) {\n        if (ptr\
-    \ == root) return root;\n        return ptr->p->l == ptr ? ptr->p->l : ptr->p->r;\n\
-    \    }\n\n    void rotateL(node_ptr& p) {\n        node_ptr c = p->r;\n      \
-    \  assert(c != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n\
-    \        p->p = c;\n        p->r = c->l;\n        c->l = p;\n        if (p->r)\
-    \ p->r->p = p;\n    }\n    void rotateR(node_ptr& p) {\n        node_ptr c = p->l;\n\
-    \        assert(c != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n\
-    \        p->p = c;\n        p->l = c->r;\n        c->r = p;\n        if (p->l)\
-    \ p->l->p = p;\n    }\n    void splay(node_ptr& ptr) {\n        eval(ptr);\n \
-    \       while (ptr != root) {\n            node_ptr p = ptr->p;\n            if\
-    \ (p == root) {\n                if (p->l == ptr) rotateR(p);\n              \
-    \  else rotateL(p);\n                calc(p);\n                calc(ptr);\n  \
-    \          }\n            else {\n                node_ptr gp = p->p;\n      \
-    \          if (gp->l == p) {\n                    if (p->l == ptr) {\n       \
-    \                 rotateR(gp);\n                        rotateR(p);\n        \
-    \            }\n                    else {\n                        rotateL(p);\n\
-    \                        rotateR(gp);\n                    }\n               \
-    \ }\n                else {\n                    if (p->l == ptr) {\n        \
-    \                rotateR(p);\n                        rotateL(gp);\n         \
-    \           }\n                    else {\n                        rotateL(gp);\n\
-    \                        rotateL(p);\n                    }\n                }\n\
-    \                calc(gp);\n                calc(p);\n                calc(ptr);\n\
-    \            }\n        }\n        calc(ptr);\n    }\n\npublic:\n    SplayTree()\
-    \ : root(nullptr) {}\n    SplayTree(const std::vector<T>& v) : root(nullptr) {\n\
-    \        for (auto x : v) insert(size(), x);\n    }\n\n    int size() const {\
-    \ return root ? root->cnt : 0; }\n\n    node_ptr kth_element(int k) {\n      \
-    \  assert(0 <= k && k < size());\n        node_ptr ptr = root;\n        while\
-    \ (ptr) {\n            eval(ptr);\n            if (ptr->l) {\n               \
-    \ if (ptr->l->cnt > k) {\n                    ptr = ptr->l;\n                \
-    \    continue;\n                }\n                k -= ptr->l->cnt;\n       \
-    \     }\n            if (k == 0) break;\n            --k;\n            ptr = ptr->r;\n\
-    \        }\n        splay(ptr);\n        return ptr;\n    }\n    T operator[](int\
-    \ k) { return kth_element(k)->v; }\n    void insert(int k, T x) {\n        assert(0\
-    \ <= k && k <= size());\n        node_ptr nd = new node;\n        nd->v = nd->val\
-    \ = nd->rval = x;\n        if (root == nullptr) {\n            root = nd;\n  \
-    \          return;\n        }\n        if (k == size()) {\n            nd->l =\
-    \ root;\n            root->p = nd;\n            root = nd;\n            calc(root);\n\
-    \            return;\n        }\n        node_ptr ptr = kth_element(k);\n    \
-    \    nd->l = ptr->l;\n        if (ptr->l) ptr->l->p = nd;\n        nd->r = ptr;\n\
-    \        ptr->p = nd;\n        ptr->l = nullptr;\n        calc(ptr);\n       \
-    \ calc(nd);\n        root = nd;\n    }\n    void erase(int k) {\n        assert(0\
-    \ <= k && k < size());\n        node_ptr ptr = kth_element(k);\n        if (ptr->l\
-    \ == nullptr) {\n            root = ptr->r;\n            if (ptr->r) ptr->r->p\
-    \ = nullptr;\n            delete ptr;\n            return;\n        }\n      \
-    \  if (ptr->r == nullptr) {\n            root = ptr->l;\n            ptr->l->p\
-    \ = nullptr;\n            delete ptr;\n            return;\n        }\n      \
-    \  node_ptr l = ptr->l;\n        root = ptr->r;\n        node_ptr nd = kth_element(0);\n\
-    \        nd->l = l;\n        l->p = nd;\n        delete ptr;\n        nd->p =\
-    \ nullptr;\n        calc(nd);\n    }\n    node_ptr get_range(int l, int r) {\n\
-    \        assert(0 <= l && l < r && r <= size());\n        if (l == 0) {\n    \
-    \        if (r == size()) return root;\n            node_ptr ptr = kth_element(r);\n\
-    \            return ptr->l;\n        }\n        else if (r == size()) {\n    \
-    \        node_ptr ptr = kth_element(l - 1);\n            return ptr->r;\n    \
-    \    }\n        node_ptr pr = kth_element(r);\n        root = pr->l;\n       \
-    \ pr->l->p = nullptr;\n        node_ptr pl = kth_element(l - 1);\n        root\
-    \ = pr;\n        pr->l = pl;\n        pl->p = pr;\n        calc(pr);\n       \
-    \ return pl->r;\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l\
-    \ <= r && r <= size());\n        if (l == r) return M::id();\n        node_ptr\
-    \ ptr = get_range(l, r);\n        return ptr->val;\n    }\n    T get(int k) {\
-    \ return (*this)[k]; }\n    T all_prod() { return root ? root->val : M::id();\
-    \ }\n    void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r\
-    \ <= size());\n        if (l == r) return;\n        node_ptr ptr = get_range(l,\
-    \ r);\n        all_apply(ptr, x);\n        splay(ptr);\n    }\n    void apply(int\
-    \ k, U x) {\n        assert(0 <= k && k < size());\n        node_ptr ptr = kth_element(k);\n\
-    \        ptr->v = Aop(x, ptr->v, 1);\n        calc(ptr);\n    }\n    void set(int\
-    \ k, T x) {\n        assert(0 <= k && k < size());\n        node_ptr ptr = kth_element(k);\n\
-    \        ptr->v = x;\n        calc(ptr);\n    }\n    template<class Upd> void\
-    \ update(int k, const Upd& upd) {\n        assert(0 <= k && k < size());\n   \
-    \     node_ptr ptr = kth_element(k);\n        ptr->v = upd(ptr->v);\n        calc(ptr);\n\
-    \    }\n    void reverse(int l, int r) {\n        assert(0 <= l && l <= r && r\
-    \ <= size());\n        if (l + 1 >= r) return;\n        node_ptr ptr = get_range(l,\
-    \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n};\n#line 4 \"test/yosupo/new/range_reverse_range_sum.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
-    \ A(N); scan >> A;\n    SplayTree<Monoid::AddSum<ll>> st(A);\n    rep (Q) {\n\
-    \        int t, l, r; scan >> t >> l >> r;\n        if (t == 0) st.reverse(l,\
-    \ r);\n        else prints(st.prod(l, r));\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/bst/SplayTree.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
-    \ A(N); scan >> A;\n    SplayTree<Monoid::AddSum<ll>> st(A);\n    rep (Q) {\n\
-    \        int t, l, r; scan >> t >> l >> r;\n        if (t == 0) st.reverse(l,\
-    \ r);\n        else prints(st.prod(l, r));\n    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/MillerRabin.hpp\"\n\
+    \n#line 2 \"math/MontgomeryModInt.hpp\"\n\n#line 4 \"math/MontgomeryModInt.hpp\"\
+    \n\ntemplate<class T> class MontgomeryReduction {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n\
+    \    static constexpr int lg = std::numeric_limits<T>::digits;\n    T mod;\n \
+    \   T r;\n    T r2; // r^2 mod m\n    T calc_minv() {\n        T t = 0, res =\
+    \ 0;\n        rep (i, lg) {\n            if (~t & 1) {\n                t += mod;\n\
+    \                res += static_cast<T>(1) << i;\n            }\n            t\
+    \ >>= 1;\n        }\n        return res;\n    }\n    T minv;\n\npublic:\n    MontgomeryReduction(T\
+    \ v) { set_mod(v); }\n    static constexpr int get_lg() { return lg; }\n    void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v & 1);\n        assert(v\
+    \ <= std::numeric_limits<T>::max() / 2);\n        mod = v;\n        r = (-static_cast<T>(mod))\
+    \ % mod;\n        r2 = (-static_cast<large_t>(mod)) % mod;\n        minv = calc_minv();\n\
+    \    }\n    inline T get_mod() const { return mod; }\n    inline T get_r() const\
+    \ { return r; }\n    T reduce(large_t x) const {\n        large_t tmp =\n    \
+    \        (x + static_cast<large_t>(static_cast<T>(x) * minv) * mod) >> lg;\n \
+    \       return tmp >= mod ? tmp - mod : tmp;\n    }\n    T transform(large_t x)\
+    \ const { return reduce(x * r2); }\n};\n\ntemplate<class T, int id> class MontgomeryModInt\
+    \ {\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n\n    static MontgomeryReduction<T>\
+    \ mont;\n\npublic:\n    MontgomeryModInt() : val(0) {}\n    template<class U,\
+    \ typename std::enable_if<\n                          std::is_integral<U>::value\
+    \ &&\n                          std::is_unsigned<U>::value>::type* = nullptr>\n\
+    \    MontgomeryModInt(U x)\n        : val(mont.transform(\n              x < (static_cast<large_t>(mont.get_mod())\
+    \ << mont.get_lg())\n                  ? x\n                  : x % mont.get_mod()))\
+    \ {}\n    template<class U,\n             typename std::enable_if<std::is_integral<U>::value\
+    \ &&\n                                     std::is_signed<U>::value>::type* =\
+    \ nullptr>\n    MontgomeryModInt(U x)\n        : MontgomeryModInt(static_cast<typename\
+    \ std::make_unsigned<U>::type>(\n              x < 0 ? -x : x)) {\n        if\
+    \ (x < 0 && val) val = mont.get_mod() - val;\n    }\n\n    T get() const { return\
+    \ mont.reduce(val); }\n    static T get_mod() { return mont.get_mod(); }\n\n \
+    \   static void set_mod(T v) { mont.set_mod(v); }\n\n    MontgomeryModInt operator+()\
+    \ const { return *this; }\n    MontgomeryModInt operator-() const {\n        MontgomeryModInt\
+    \ res;\n        if (val) res.val = mont.get_mod() - val;\n        return res;\n\
+    \    }\n    MontgomeryModInt& operator++() {\n        val += mont.get_r();\n \
+    \       if (val >= mont.get_mod()) val -= mont.get_mod();\n        return *this;\n\
+    \    }\n    MontgomeryModInt& operator--() {\n        if (val < mont.get_r())\
+    \ val += mont.get_mod();\n        val -= mont.get_r();\n        return *this;\n\
+    \    }\n    MontgomeryModInt operator++(int) {\n        MontgomeryModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    MontgomeryModInt operator--(int)\
+    \ {\n        MontgomeryModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    MontgomeryModInt& operator+=(const MontgomeryModInt& rhs) {\n  \
+    \      val += rhs.val;\n        if (val >= mont.get_mod()) val -= mont.get_mod();\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator-=(const MontgomeryModInt&\
+    \ rhs) {\n        if (val < rhs.val) val += mont.get_mod();\n        val -= rhs.val;\n\
+    \        return *this;\n    }\n    MontgomeryModInt& operator*=(const MontgomeryModInt&\
+    \ rhs) {\n        val = mont.reduce(static_cast<large_t>(val) * rhs.val);\n  \
+    \      return *this;\n    }\n\n    MontgomeryModInt pow(ull n) const {\n     \
+    \   MontgomeryModInt res = 1, x = *this;\n        while (n) {\n            if\
+    \ (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n        }\n  \
+    \      return res;\n    }\n    MontgomeryModInt inv() const { return pow(mont.get_mod()\
+    \ - 2); }\n\n    MontgomeryModInt& operator/=(const MontgomeryModInt& rhs) {\n\
+    \        return *this *= rhs.inv();\n    }\n\n    friend MontgomeryModInt operator+(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) += rhs;\n    }\n    friend MontgomeryModInt\
+    \ operator-(const MontgomeryModInt& lhs,\n                                   \
+    \   const MontgomeryModInt& rhs) {\n        return MontgomeryModInt(lhs) -= rhs;\n\
+    \    }\n    friend MontgomeryModInt operator*(const MontgomeryModInt& lhs,\n \
+    \                                     const MontgomeryModInt& rhs) {\n       \
+    \ return MontgomeryModInt(lhs) *= rhs;\n    }\n    friend MontgomeryModInt operator/(const\
+    \ MontgomeryModInt& lhs,\n                                      const MontgomeryModInt&\
+    \ rhs) {\n        return MontgomeryModInt(lhs) /= rhs;\n    }\n\n    friend bool\
+    \ operator==(const MontgomeryModInt& lhs,\n                           const MontgomeryModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ MontgomeryModInt& lhs,\n                           const MontgomeryModInt& rhs)\
+    \ {\n        return lhs.val != rhs.val;\n    }\n\n    template<class Pr> void\
+    \ print(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Pr> void\
+    \ debug(Pr& a) const { a.print(mont.reduce(val)); }\n    template<class Sc> void\
+    \ scan(Sc& a) {\n        ll v;\n        a.scan(v);\n        *this = v;\n    }\n\
+    };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
+    \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
+    \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/MillerRabin.hpp\"\
+    \n\nconstexpr ull base_miller_rabin_int[3] = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7]\
+    \ = {2,      325,     9375,      28178,\n                                    \
+    \     450775, 9780504, 1795265022};\n\ntemplate<class T> CONSTEXPR bool miller_rabin(ull\
+    \ n, const ull base[], int s) {\n    if (T::get_mod() != n) T::set_mod(n);\n \
+    \   ull d = n - 1;\n    while (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep\
+    \ (i, s) {\n        ull a = base[i];\n        if (a >= n) return true;\n     \
+    \   ull t = d;\n        T y = T(a).pow(t);\n        while (t != n - 1 && y !=\
+    \ e && y != re) {\n            y *= y;\n            t <<= 1;\n        }\n    \
+    \    if (y != re && !(t & 1)) return false;\n    }\n    return true;\n}\n\nCONSTEXPR\
+    \ bool is_prime_mr(ll n) {\n    if (n == 2) return true;\n    if (n < 2 || n %\
+    \ 2 == 0) return false;\n    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
+    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
+    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
+    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
+    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
+    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 4 \"test/yosupo/math/primality_test.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
+    \       ll n; scan >> n;\n        prints(is_prime_mr(n) ? \"Yes\" : \"No\");\n\
+    \    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primality_test\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/MillerRabin.hpp\"\n\
+    using namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n   \
+    \     ll n; scan >> n;\n        prints(is_prime_mr(n) ? \"Yes\" : \"No\");\n \
+    \   }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -665,18 +570,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/bst/SplayTree.hpp
-  - other/monoid.hpp
+  - math/MillerRabin.hpp
+  - math/MontgomeryModInt.hpp
   isVerificationFile: true
-  path: test/yosupo/new/range_reverse_range_sum.test.cpp
+  path: test/yosupo/math/primality_test.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-29 01:31:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/new/range_reverse_range_sum.test.cpp
+documentation_of: test/yosupo/math/primality_test.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/range_reverse_range_sum.test.cpp
-- /verify/test/yosupo/new/range_reverse_range_sum.test.cpp.html
-title: test/yosupo/new/range_reverse_range_sum.test.cpp
+- /verify/test/yosupo/math/primality_test.test.cpp
+- /verify/test/yosupo/math/primality_test.test.cpp.html
+title: test/yosupo/math/primality_test.test.cpp
 ---

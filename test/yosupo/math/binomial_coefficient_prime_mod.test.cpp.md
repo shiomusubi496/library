@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: math/Rational.hpp
-    title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':heavy_check_mark:'
-    path: math/SternBrocotTree.hpp
-    title: Stern-Brocot Tree
+  - icon: ':x:'
+    path: math/BarrettReduction.hpp
+    title: math/BarrettReduction.hpp
+  - icon: ':question:'
+    path: math/Combinatorics.hpp
+    title: Combinatorics
+  - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -36,59 +39,60 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
+    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
     links:
-    - https://judge.yosupo.jp/problem/stern_brocot_tree
-  bundledCode: "#line 1 \"test/yosupo/new/stern_brocot_tree.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...)                                                             \\\n\
-    \    OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...)\
-    \ for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto& __VA_ARGS__)\n\
-    \n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >= 201402L\n#define\
-    \ rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v) v.rbegin(), v.rend()\n\
-    #endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR constexpr\n#else\n\
-    #define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR\
-    \ constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n\
-    #line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\n\nusing ll =\
-    \ long long;\nusing ull = unsigned long long;\nusing ld = long double;\nusing\
-    \ PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> class infinity {\npublic:\n\
-    \    static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::min() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::min();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    - https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod
+  bundledCode: "#line 1 \"test/yosupo/math/binomial_coefficient_prime_mod.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
+    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
+    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -107,18 +111,24 @@ data:
     \ const noexcept> {\n    using type = function_traits_impl<Res, Args...>;\n};\n\
     template<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...) const& noexcept> {\n    using type = function_traits_impl<Res,\
-    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits =\n    typename\
-    \ function_traits_helper<decltype(&F::operator())>::type;\n\n\ntemplate<class\
-    \ T>\nusing is_signed_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_signed<T>>,\n                     std::is_same<T, __int128_t>>;\ntemplate<class\
-    \ T>\nusing is_unsigned_int =\n    std::disjunction<std::conjunction<std::is_integral<T>,\
-    \ std::is_unsigned<T>>,\n                     std::is_same<T, __uint128_t>>;\n\
-    template<class T>\nusing is_int = std::disjunction<is_signed_int<T>, is_unsigned_int<T>>;\n\
-    template<class T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
-    \ __int128_t>::value || std::is_same<T, __uint128_t>::value,\n    std::common_type<__int128_t>,\
-    \ std::make_signed<T>>::type;\ntemplate<class T>\nusing make_unsigned_int = typename\
-    \ std::conditional<\n    std::is_same<T, __int128_t>::value || std::is_same<T,\
-    \ __uint128_t>::value,\n    std::common_type<__uint128_t>, std::make_unsigned<T>>::type;\n\
+    \ Args...>;\n};\n#endif\n\ntemplate<class F>\nusing function_traits = typename\
+    \ function_traits_helper<\n    decltype(&std::remove_reference<F>::type::operator())>::type;\n\
+    \ntemplate<class F>\nusing function_result_type = typename function_traits<F>::result_type;\n\
+    template<class F, std::size_t idx>\nusing function_argument_type =\n    typename\
+    \ function_traits<F>::template argument_type<idx>;\ntemplate<class F>\nusing function_argument_tuple\
+    \ = typename function_traits<F>::argument_tuple;\n\ntemplate<class T>\nusing is_signed_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_signed<T>::value) ||\n                   \
+    \                  std::is_same<T, i128>::value>;\ntemplate<class T>\nusing is_unsigned_int\
+    \ =\n    std::integral_constant<bool, (std::is_integral<T>::value &&\n       \
+    \                           std::is_unsigned<T>::value) ||\n                 \
+    \                    std::is_same<T, u128>::value>;\ntemplate<class T>\nusing\
+    \ is_int = std::integral_constant<bool, is_signed_int<T>::value ||\n         \
+    \                                       is_unsigned_int<T>::value>;\ntemplate<class\
+    \ T>\nusing make_signed_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<i128>, std::make_signed<T>>::type;\n\
+    template<class T>\nusing make_unsigned_int = typename std::conditional<\n    std::is_same<T,\
+    \ i128>::value || std::is_same<T, u128>::value,\n    std::common_type<u128>, std::make_unsigned<T>>::type;\n\
     \n\ntemplate<class T, class = void> struct is_range : std::false_type {};\ntemplate<class\
     \ T>\nstruct is_range<\n    T,\n    decltype(all(std::declval<typename std::add_lvalue_reference<T>::type>()),\n\
     \             (void)0)> : std::true_type {};\n\ntemplate<class T, bool = is_range<T>::value>\n\
@@ -130,17 +140,16 @@ data:
     \        size <= 8, std::int_least8_t,\n        typename std::conditional<\n \
     \           size <= 16, std::int_least16_t,\n            typename std::conditional<\n\
     \                size <= 32, std::int_least32_t,\n                typename std::conditional<size\
-    \ <= 64, std::int_least64_t,\n                                          __int128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using int_least_t = typename\
-    \ int_least<size>::type;\n\ntemplate<std::size_t size> struct uint_least {\n \
-    \   static_assert(size <= 128, \"size must be less than or equal to 128\");\n\n\
-    \    using type = typename std::conditional<\n        size <= 8, std::uint_least8_t,\n\
-    \        typename std::conditional<\n            size <= 16, std::uint_least16_t,\n\
-    \            typename std::conditional<\n                size <= 32, std::uint_least32_t,\n\
-    \                typename std::conditional<size <= 64, std::uint_least64_t,\n\
-    \                                          __uint128_t>::type>::type>::type>::\n\
-    \        type;\n};\n\ntemplate<std::size_t size> using uint_least_t = typename\
-    \ uint_least<size>::type;\n\ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
+    \ <= 64, std::int_least64_t,\n                                          i128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using int_least_t = typename int_least<size>::type;\n\
+    \ntemplate<std::size_t size> struct uint_least {\n    static_assert(size <= 128,\
+    \ \"size must be less than or equal to 128\");\n\n    using type = typename std::conditional<\n\
+    \        size <= 8, std::uint_least8_t,\n        typename std::conditional<\n\
+    \            size <= 16, std::uint_least16_t,\n            typename std::conditional<\n\
+    \                size <= 32, std::uint_least32_t,\n                typename std::conditional<size\
+    \ <= 64, std::uint_least64_t,\n                                          u128>::type>::type>::type>::type;\n\
+    };\n\ntemplate<std::size_t size> using uint_least_t = typename uint_least<size>::type;\n\
+    \ntemplate<class T>\nusing double_size_int = int_least<std::numeric_limits<T>::digits\
     \ * 2 + 1>;\ntemplate<class T> using double_size_int_t = typename double_size_int<T>::type;\n\
     template<class T>\nusing double_size_uint = uint_least<std::numeric_limits<T>::digits\
     \ * 2>;\ntemplate<class T> using double_size_uint_t = typename double_size_uint<T>::type;\n\
@@ -456,141 +465,216 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/Rational.hpp\"\n\n\
-    #line 4 \"math/Rational.hpp\"\n\ntemplate<class T, bool allow_div_zero = false>\
-    \ class Rational {\nprivate:\n    using LargeT =\n        typename std::conditional<std::is_integral<T>::value,\n\
-    \                                  typename double_size<T>::type, ld>::type;\n\
-    \    T num, den;\n\npublic:\n    static void norm(T& a, T& b) {\n        if IF_CONSTEXPR\
-    \ (!allow_div_zero) {\n            assert(b != 0);\n        }\n        T g = gcd(abs(a),\
-    \ abs(b));\n        a /= g;\n        b /= g;\n        if (b < 0) {\n         \
-    \   a = -a;\n            b = -b;\n        }\n    }\n    void normalize() { norm(num,\
-    \ den); }\n    Rational() : num(0), den(1) {}\n    Rational(T a) : num(a), den(1)\
-    \ {}\n    Rational(T a, T b) : num(a), den(b) { normalize(); }\n    T get_num()\
-    \ const { return num; }\n    T get_den() const { return den; }\n    ld get_ld()\
-    \ const { return (ld)num / den; }\n    std::pair<T, T> get_pair() const { return\
-    \ {num, den}; }\n    Rational& operator++() {\n        num += den;\n        return\
-    \ *this;\n    }\n    Rational operator++(int) {\n        Rational res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    Rational& operator--() {\n\
-    \        num -= den;\n        return *this;\n    }\n    Rational operator--(int)\
-    \ {\n        Rational res = *this;\n        --*this;\n        return res;\n  \
-    \  }\n    Rational& operator+=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) + other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator-=(const Rational& other) {\n        T g = gcd(den,\
-    \ other.den);\n        num = num * (other.den / g) - other.num * (den / g);\n\
-    \        den = den / g * other.den;\n        normalize();\n        return *this;\n\
-    \    }\n    Rational& operator*=(const Rational& other) {\n        T g1 = gcd(num,\
-    \ other.den);\n        T g2 = gcd(den, other.num);\n        num = (num / g1) *\
-    \ (other.num / g2);\n        den = (den / g2) * (other.den / g1);\n        return\
-    \ *this;\n    }\n    Rational& operator/=(const Rational& other) {\n        return\
-    \ (*this) *= Rational(other.den, other.num);\n    }\n    friend Rational operator+(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) += rhs;\n\
-    \    }\n    friend Rational operator-(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) -= rhs;\n    }\n    friend Rational operator*(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return Rational(lhs) *= rhs;\n\
-    \    }\n    friend Rational operator/(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return Rational(lhs) /= rhs;\n    }\n    Rational operator+() const\
-    \ { return Rational(*this); }\n    Rational operator-() const { return Rational(-num,\
-    \ den); }\n    friend bool operator==(const Rational& lhs, const Rational& rhs)\
-    \ {\n        return lhs.num == rhs.num && lhs.den == rhs.den;\n    }\n    friend\
-    \ bool operator!=(const Rational& lhs, const Rational& rhs) {\n        return\
-    \ lhs.num != rhs.num || lhs.den != rhs.den;\n    }\n    friend bool operator<(const\
-    \ Rational& lhs, const Rational& rhs) {\n        return (LargeT)lhs.num * rhs.den\
-    \ < (LargeT)rhs.num * lhs.den;\n    }\n    friend bool operator>(const Rational&\
-    \ lhs, const Rational& rhs) {\n        return rhs < lhs;\n    }\n    friend bool\
-    \ operator<=(const Rational& lhs, const Rational& rhs) {\n        return !(rhs\
-    \ < lhs);\n    }\n    friend bool operator>=(const Rational& lhs, const Rational&\
-    \ rhs) {\n        return !(lhs < rhs);\n    }\n    template<class Pr> void print(Pr&\
-    \ a) const { a.print(get_ld()); }\n    template<class Pr> void debug(Pr& a) const\
-    \ {\n        a.print(num);\n        a.print_char('/');\n        a.print(den);\n\
-    \    }\n    template<class Sc> void scan(Sc& a) {\n        a.scan(num);\n    \
-    \    a.scan(den);\n    }\n};\n\nnamespace std {\n\ntemplate<class T> Rational<T>\
-    \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
-    }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
-    \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 2 \"math/SternBrocotTree.hpp\"\
-    \n\n#line 5 \"math/SternBrocotTree.hpp\"\n\ntemplate<class T>\nclass SternBrocotTree\
-    \ {\npublic:\n    using Rat = Rational<T, true>;\n\n    static std::vector<std::pair<char,\
-    \ int>> encode_path(Rat x) {\n        std::vector<std::pair<char, int>> res;\n\
-    \        T a = x.get_num(), b = x.get_den();\n        while (a != 1 || b != 1)\
-    \ {\n            if (a > b) {\n                T tmp = (a - 1) / b;\n        \
-    \        res.emplace_back('R', tmp);\n                a -= tmp * b;\n        \
-    \    }\n            else {\n                T tmp = (b - 1) / a;\n           \
-    \     res.emplace_back('L', tmp);\n                b -= tmp * a;\n           \
-    \ }\n        }\n        return res;\n    }\n    static Rat decode_path(std::vector<std::pair<char,\
-    \ int>> path, Rat s = 1) {\n        std::reverse(all(path));\n        T a = s.get_num(),\
-    \ b = s.get_den();\n        for (const auto& p : path) {\n            if (p.first\
-    \ == 'R') a += b * p.second;\n            else b += a * p.second;\n        }\n\
-    \        return Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n      \
-    \  auto px = encode_path(x), py = encode_path(y);\n        std::vector<std::pair<char,\
-    \ int>> res;\n        rep (i, std::min(px.size(), py.size())) {\n            const\
-    \ auto& a = px[i], b = py[i];\n            if (a.first != b.first) break;\n  \
-    \          res.emplace_back(a.first, std::min(a.second, b.second));\n        \
-    \    if (a.second != b.second) break;\n        }\n        return decode_path(res);\n\
-    \    }\n    static Rat ancestor(Rat x, T k) {\n        if (k == 0) return 1;\n\
-    \        auto px = encode_path(x);\n        rep (i, px.size()) {\n           \
-    \ const auto& a = px[i];\n            if (a.second >= k) {\n                px[i].second\
-    \ = k;\n                px.erase(px.begin() + i + 1, px.end());\n            \
-    \    return decode_path(px);\n            }\n            k -= a.second;\n    \
-    \    }\n        return -1;\n    }\n    static std::pair<Rat, Rat> range(Rat x)\
-    \ {\n        auto px = encode_path(x);\n        return {decode_path(px, {0, 1}),\
-    \ decode_path(px, {1, 0})};\n    }\n    static Rat next(Rat x, T n) {\n    }\n\
-    \    template<class Cond>\n    static std::pair<Rat, Rat> max_right(Cond cond,\
-    \ T n) {\n        assert(n >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n\
-    \            return Rat{a.get_num() + x * b.get_num(), a.get_den() + x * b.get_den()};\n\
-    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
-    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
-    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
-    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
-    \ (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) break;\n        \
-    \            ok = ng; ng <<= 1;\n                }\n                while (ng\
-    \ - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n                 \
-    \   auto tmp = f(m, r, mid);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || !cond(tmp)) ng = mid;\n                    else ok = mid;\n\
-    \                }\n                l = f(m, r, ok);\n                m = f(m,\
-    \ r, ng);\n                if (std::max(m.get_num(), m.get_den()) > n) return\
-    \ {l, r};\n            }\n            else {\n                T ok = 0, ng = 1;\n\
-    \                while (true) {\n                    auto tmp = f(m, l, ng);\n\
-    \                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\
-    \ break;\n                    ok = ng; ng <<= 1;\n                }\n        \
-    \        while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
-    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp)) ng = mid;\n                    else ok = mid;\n\
-    \                }\n                r = f(m, l, ok);\n                m = f(m,\
-    \ l, ng);\n                if (std::max(m.get_num(), m.get_den()) > n) return\
-    \ {l, r};\n            }\n            flag = !flag;\n        }\n        return\
-    \ {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot Tree\n * @docs docs/math/SternBrocotTree.md\n\
-    \ */\n#line 5 \"test/yosupo/new/stern_brocot_tree.test.cpp\"\nusing namespace\
-    \ std;\nusing sbt = SternBrocotTree<ll>;\nusing rat = typename sbt::Rat;\nint\
-    \ main() {\n    int t; scan >> t;\n    rep (t) {\n        string q; scan >> q;\n\
-    \        if (q == \"ENCODE_PATH\") {\n            rat a; scan >> a;\n        \
-    \    auto res = sbt::encode_path(a);\n            prints(res.size(), res);\n \
-    \       }\n        else if (q == \"DECODE_PATH\") {\n            int n; scan >>\
-    \ n;\n            vector<pair<char, int>> path(n); scan >> path;\n           \
-    \ prints(sbt::decode_path(path).get_pair());\n        }\n        else if (q ==\
-    \ \"LCA\") {\n            rat a, b; scan >> a >> b;\n            prints(sbt::lca(a,\
-    \ b).get_pair());\n        }\n        else if (q == \"ANCESTOR\") {\n        \
-    \    ll k; scan >> k;\n            rat a; scan >> a;\n            auto res = sbt::ancestor(a,\
-    \ k);\n            if (res == -1) prints(-1);\n            else prints(res.get_pair());\n\
-    \        }\n        else if (q == \"RANGE\") {\n            rat a; scan >> a;\n\
-    \            auto [x, y] = sbt::range(a);\n            prints(x.get_pair(), y.get_pair());\n\
-    \        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/Rational.hpp\"\n#include\
-    \ \"../../../math/SternBrocotTree.hpp\"\nusing namespace std;\nusing sbt = SternBrocotTree<ll>;\n\
-    using rat = typename sbt::Rat;\nint main() {\n    int t; scan >> t;\n    rep (t)\
-    \ {\n        string q; scan >> q;\n        if (q == \"ENCODE_PATH\") {\n     \
-    \       rat a; scan >> a;\n            auto res = sbt::encode_path(a);\n     \
-    \       prints(res.size(), res);\n        }\n        else if (q == \"DECODE_PATH\"\
-    ) {\n            int n; scan >> n;\n            vector<pair<char, int>> path(n);\
-    \ scan >> path;\n            prints(sbt::decode_path(path).get_pair());\n    \
-    \    }\n        else if (q == \"LCA\") {\n            rat a, b; scan >> a >> b;\n\
-    \            prints(sbt::lca(a, b).get_pair());\n        }\n        else if (q\
-    \ == \"ANCESTOR\") {\n            ll k; scan >> k;\n            rat a; scan >>\
-    \ a;\n            auto res = sbt::ancestor(a, k);\n            if (res == -1)\
-    \ prints(-1);\n            else prints(res.get_pair());\n        }\n        else\
-    \ if (q == \"RANGE\") {\n            rat a; scan >> a;\n            auto [x, y]\
-    \ = sbt::range(a);\n            prints(x.get_pair(), y.get_pair());\n        }\n\
-    \    }\n}\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/Combinatorics.hpp\"\
+    \n\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/Combinatorics.hpp\"\
+    \n\ntemplate<class T> class Combinatorics {\nprivate:\n    static std::vector<T>\
+    \ factorial;\n    static std::vector<T> factinv;\n\npublic:\n    static void init(ll\
+    \ n) {\n        const int b = factorial.size();\n        if (n < b) return;\n\
+    \        factorial.resize(n + 1);\n        rep (i, b, n + 1) factorial[i] = factorial[i\
+    \ - 1] * i;\n        factinv.resize(n + 1);\n        factinv[n] = T(1) / factorial[n];\n\
+    \        rreps (i, n, b) factinv[i - 1] = factinv[i] * i;\n    }\n    static T\
+    \ fact(ll x) {\n        if (x < 0) return 0;\n        init(x);\n        return\
+    \ factorial[x];\n    }\n    static T finv(ll x) {\n        if (x < 0) return 0;\n\
+    \        init(x);\n        return factinv[x];\n    }\n    static T inv(ll x) {\n\
+    \        if (x <= 0) return 0;\n        init(x);\n        return factorial[x -\
+    \ 1] * factinv[x];\n    }\n    static T perm(ll n, ll r) {\n        if (r < 0\
+    \ || r > n) return 0;\n        init(n);\n        return factorial[n] * factinv[n\
+    \ - r];\n    }\n    static T comb(ll n, ll r) {\n        if (n < 0) return 0;\n\
+    \        if (r < 0 || r > n) return 0;\n        init(n);\n        return factorial[n]\
+    \ * factinv[n - r] * factinv[r];\n    }\n    static T homo(ll n, ll r) { return\
+    \ comb(n + r - 1, r); }\n    static T small_perm(ll n, ll r) {\n        if (r\
+    \ < 0 || r > n) return 0;\n        T res = 1;\n        reps (i, r) res *= n -\
+    \ r + i;\n        return res;\n    }\n    static T small_comb(ll n, ll r) {\n\
+    \        if (r < 0 || r > n) return 0;\n        chmin(r, n - r);\n        init(r);\n\
+    \        T res = factinv[r];\n        reps (i, r) res *= n - r + i;\n        return\
+    \ res;\n    }\n    static T small_homo(ll n, ll r) { return small_comb(n + r -\
+    \ 1, r); }\n};\n\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factorial\
+    \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
+    \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
+    \ */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\
+    \n\nclass BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long\
+    \ long im;\n\npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_),\
+    \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
+    \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
+    \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
+    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
+    \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
+    \    }\n};\n\n\ntemplate<int id> class BarrettModInt {\nprivate:\n    unsigned\
+    \ int val;\n\n    static BarrettReduction bar;\n\npublic:\n    BarrettModInt()\
+    \ : val(0) {}\n    template<class U, typename std::enable_if<\n              \
+    \            std::is_integral<U>::value>::type* = nullptr>\n    BarrettModInt(U\
+    \ x) {\n        long long v = (long long)(x % (long long)bar.get_mod());\n   \
+    \     if (v < 0) v += bar.get_mod();\n        val = (unsigned int)v;\n    }\n\n\
+    \    unsigned int get() const { return val; }\n    static unsigned int get_mod()\
+    \ { return bar.get_mod(); }\n\n    static void set_mod(unsigned int v) { bar.set_mod(v);\
+    \ }\n\n    BarrettModInt operator+() const { return *this; }\n    BarrettModInt\
+    \ operator-() const {\n        BarrettModInt res;\n        if (val) res.val =\
+    \ bar.get_mod() - val;\n        return res;\n    }\n    BarrettModInt& operator++()\
+    \ {\n        ++val;\n        if (val == bar.get_mod()) val = 0;\n        return\
+    \ *this;\n    }\n    BarrettModInt& operator--() {\n        if (val == 0) val\
+    \ = bar.get_mod();\n        --val;\n        return *this;\n    }\n    BarrettModInt\
+    \ operator++(int) {\n        BarrettModInt res = *this;\n        ++*this;\n  \
+    \      return res;\n    }\n    BarrettModInt operator--(int) {\n        BarrettModInt\
+    \ res = *this;\n        --*this;\n        return res;\n    }\n\n    BarrettModInt&\
+    \ operator+=(const BarrettModInt& rhs) {\n        val += rhs.val;\n        if\
+    \ (val >= bar.get_mod()) val -= bar.get_mod();\n        return *this;\n    }\n\
+    \    BarrettModInt& operator-=(const BarrettModInt& rhs) {\n        if (val <\
+    \ rhs.val) val += bar.get_mod();\n        val -= rhs.val;\n        return *this;\n\
+    \    }\n    BarrettModInt& operator*=(const BarrettModInt& rhs) {\n        val\
+    \ = bar.mul(val, rhs.val);\n        return *this;\n    }\n\n    BarrettModInt\
+    \ pow(ull n) const {\n        BarrettModInt res = 1, x = *this;\n        while\
+    \ (n) {\n            if (n & 1) res *= x;\n            x *= x;\n            n\
+    \ >>= 1;\n        }\n        return res;\n    }\n\n    BarrettModInt inv() const\
+    \ { return mod_inv(val, bar.get_mod()); }\n\n    BarrettModInt& operator/=(const\
+    \ BarrettModInt& rhs) {\n        return *this *= rhs.inv();\n    }\n\n    friend\
+    \ BarrettModInt operator+(const BarrettModInt& lhs,\n                        \
+    \           const BarrettModInt& rhs) {\n        return BarrettModInt(lhs) +=\
+    \ rhs;\n    }\n    friend BarrettModInt operator-(const BarrettModInt& lhs,\n\
+    \                                   const BarrettModInt& rhs) {\n        return\
+    \ BarrettModInt(lhs) -= rhs;\n    }\n    friend BarrettModInt operator*(const\
+    \ BarrettModInt& lhs,\n                                   const BarrettModInt&\
+    \ rhs) {\n        return BarrettModInt(lhs) *= rhs;\n    }\n    friend BarrettModInt\
+    \ operator/(const BarrettModInt& lhs,\n                                   const\
+    \ BarrettModInt& rhs) {\n        return BarrettModInt(lhs) /= rhs;\n    }\n\n\
+    \    friend bool operator==(const BarrettModInt& lhs, const BarrettModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ BarrettModInt& lhs, const BarrettModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n\n    template<class Pr> void print(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Pr> void debug(Pr& a) const { a.print(bar.reduce(val));\
+    \ }\n    template<class Sc> void scan(Sc& a) {\n        ll v;\n        a.scan(v);\n\
+    \        *this = v;\n    }\n};\n\ntemplate<int id>\nBarrettReduction BarrettModInt<id>::bar\
+    \ = BarrettReduction(998244353);\n\nusing bmodint = BarrettModInt<-1>;\n#line\
+    \ 5 \"test/yosupo/math/binomial_coefficient_prime_mod.test.cpp\"\nusing namespace\
+    \ std;\nusing mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n\
+    \    int T, P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n       \
+    \ int n, k; scan >> n >> k;\n        prints(comb::comb(n, k));\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient_prime_mod\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/Combinatorics.hpp\"\
+    \n#include \"../../../math/BarrettReduction.hpp\"\nusing namespace std;\nusing\
+    \ mint = bmodint;\nusing comb = Combinatorics<mint>;\nint main() {\n    int T,\
+    \ P; scan >> T >> P;\n    mint::set_mod(P);\n    rep (T) {\n        int n, k;\
+    \ scan >> n >> k;\n        prints(comb::comb(n, k));\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -601,18 +685,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/Rational.hpp
-  - math/SternBrocotTree.hpp
+  - math/Combinatorics.hpp
+  - math/ModInt.hpp
+  - math/BarrettReduction.hpp
   isVerificationFile: true
-  path: test/yosupo/new/stern_brocot_tree.test.cpp
+  path: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-08-10 00:52:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-29 01:31:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/new/stern_brocot_tree.test.cpp
+documentation_of: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/stern_brocot_tree.test.cpp
-- /verify/test/yosupo/new/stern_brocot_tree.test.cpp.html
-title: test/yosupo/new/stern_brocot_tree.test.cpp
+- /verify/test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
+- /verify/test/yosupo/math/binomial_coefficient_prime_mod.test.cpp.html
+title: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
 ---
