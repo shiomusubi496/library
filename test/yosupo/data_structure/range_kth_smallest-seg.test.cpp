@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_kth_smallest"
 #include "../../../other/template.hpp"
-#include "../../../data-struct/segment/SSegmentTree.hpp"
+#include "../../../data-struct/segment/NonMergeSegmentTree.hpp"
 using namespace std;
 struct Merge {
     using value_type = vector<int>;
@@ -14,7 +14,7 @@ struct Merge {
 int main() {
     int N, Q; scan >> N >> Q;
     vector<int> A(N); scan >> A;
-    SSegmentTree<Merge> seg([&] {
+    NonMergeSegmentTree<Merge> seg([&] {
         vector<vector<int>> B(N);
         rep (i, N) B[i] = {A[i]};
         return B;

@@ -3,17 +3,17 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class M> class SSegmentTree {
+template<class M> class NonMergeSegmentTree {
 private:
     using T = typename M::value_type;
     int n, ori;
     std::vector<T> data;
 
 public:
-    SSegmentTree() : SSegmentTree(0) {}
-    SSegmentTree(int n_) { init(n_); }
-    SSegmentTree(int n, const T& v) : SSegmentTree(std::vector<T>(n, v)) {}
-    SSegmentTree(const std::vector<T>& v) { init(v); }
+    NonMergeSegmentTree() : NonMergeSegmentTree(0) {}
+    NonMergeSegmentTree(int n_) { init(n_); }
+    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n, v)) {}
+    NonMergeSegmentTree(const std::vector<T>& v) { init(v); }
     void init(int n_) {
         ori = n_;
         n = 1 << bitop::ceil_log2(ori);
@@ -80,7 +80,8 @@ public:
         } while ((l & -l) != l);
         return ori;
     }
-    template<class M2, class F, class Cond> int max_right(int l, const F& f, const Cond& cond) const {
+    template<class M2, class F, class Cond>
+    int max_right(int l, const F& f, const Cond& cond) const {
         assert(0 <= l && l <= ori);
         assert(cond(f(M::id())));
         if (l == ori) return ori;
@@ -91,7 +92,8 @@ public:
             if (!cond(M2::op(sm, f(data[l])))) {
                 while (l < n) {
                     l <<= 1;
-                    if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));
+                    if (cond(M2::op(sm, f(data[l]))))
+                        sm = M2::op(sm, f(data[l++]));
                 }
                 return l - n;
             }
@@ -119,7 +121,8 @@ public:
         } while ((r & -r) != r);
         return 0;
     }
-    template<class M2, class F, class Cond> int min_left(int r, const F& f, const Cond& cond) const {
+    template<class M2, class F, class Cond>
+    int min_left(int r, const F& f, const Cond& cond) const {
         assert(0 <= r && r <= ori);
         assert(cond(f(M::id())));
         if (r == 0) return 0;
@@ -131,7 +134,8 @@ public:
             if (!cond(M2::op(f(data[r]), sm))) {
                 while (r < n) {
                     r = r << 1 ^ 1;
-                    if (cond(M2::op(f(data[r]), sm))) sm = M2::op(f(data[r--]), sm);
+                    if (cond(M2::op(f(data[r]), sm)))
+                        sm = M2::op(f(data[r--]), sm);
                 }
                 return r + 1 - n;
             }
@@ -142,6 +146,6 @@ public:
 };
 
 /**
- * @brief SSegmentTree(2Dセグ木とかに使える特殊なセグ木)
- * @docs docs/data-struct/segment/SSegmentTree.md
+ * @brief NonMergeSegmentTree
+ * @docs docs/data-struct/segment/NonMergeSegmentTree.md
  */
