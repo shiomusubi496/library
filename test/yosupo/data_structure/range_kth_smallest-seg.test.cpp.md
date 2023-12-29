@@ -2,9 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SSegmentTree.hpp
-    title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
-      \u6B8A\u306A\u30BB\u30B0\u6728)"
+    path: data-struct/segment/NonMergeSegmentTree.hpp
+    title: NonMergeSegmentTree
   - icon: ':question:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -463,7 +462,7 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/segment/SSegmentTree.hpp\"\
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/segment/NonMergeSegmentTree.hpp\"\
     \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
     \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
     \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
@@ -542,15 +541,16 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SSegmentTree.hpp\"\
-    \n\ntemplate<class M> class SSegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SSegmentTree() : SSegmentTree(0)\
-    \ {}\n    SSegmentTree(int n_) { init(n_); }\n    SSegmentTree(int n, const T&\
-    \ v) : SSegmentTree(std::vector<T>(n, v)) {}\n    SSegmentTree(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(int n_) {\n        ori = n_;\n        n = 1 <<\
-    \ bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n    }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/NonMergeSegmentTree.hpp\"\
+    \n\ntemplate<class M> class NonMergeSegmentTree {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n\npublic:\n    NonMergeSegmentTree()\
+    \ : NonMergeSegmentTree(0) {}\n    NonMergeSegmentTree(int n_) { init(n_); }\n\
+    \    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    NonMergeSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(int n_) {\n        ori = n_;\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n    }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        upd(data[k]);\n        while (k\
@@ -574,17 +574,17 @@ data:
     \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
     \                }\n                return l - n;\n            }\n           \
     \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class M2, class F, class Cond> int max_right(int l,\
-    \ const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
+    \ ori;\n    }\n    template<class M2, class F, class Cond>\n    int max_right(int\
+    \ l, const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
     \        assert(cond(f(M::id())));\n        if (l == ori) return ori;\n      \
     \  l += n;\n        typename M2::value_type sm = M2::id();\n        do {\n   \
     \         while ((l & 1) == 0) l >>= 1;\n            if (!cond(M2::op(sm, f(data[l]))))\
     \ {\n                while (l < n) {\n                    l <<= 1;\n         \
-    \           if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \           if (cond(M2::op(sm, f(data[l]))))\n                        sm = M2::op(sm,\
+    \ f(data[l++]));\n                }\n                return l - n;\n         \
+    \   }\n            sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) !=\
+    \ l);\n        return ori;\n    }\n    template<class Cond> int min_left(int r,\
+    \ const Cond& cond) const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
     \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
     \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
     \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
@@ -592,45 +592,45 @@ data:
     \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
     \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
     \ ((r & -r) != r);\n        return 0;\n    }\n    template<class M2, class F,\
-    \ class Cond> int min_left(int r, const F& f, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n        if\
-    \ (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm = M2::id();\n\
-    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M2::op(f(data[r]), sm))) {\n                while (r <\
-    \ n) {\n                    r = r << 1 ^ 1;\n                    if (cond(M2::op(f(data[r]),\
-    \ sm))) sm = M2::op(f(data[r--]), sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M2::op(f(data[r]), sm);\n      \
-    \  } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
-    \u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\u6B8A\u306A\u30BB\u30B0\
-    \u6728)\n * @docs docs/data-struct/segment/SSegmentTree.md\n */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-seg.test.cpp\"\
+    \ class Cond>\n    int min_left(int r, const F& f, const Cond& cond) const {\n\
+    \        assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n    \
+    \    if (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm\
+    \ = M2::id();\n        do {\n            --r;\n            while ((r & 1) && r\
+    \ > 1) r >>= 1;\n            if (!cond(M2::op(f(data[r]), sm))) {\n          \
+    \      while (r < n) {\n                    r = r << 1 ^ 1;\n                \
+    \    if (cond(M2::op(f(data[r]), sm)))\n                        sm = M2::op(f(data[r--]),\
+    \ sm);\n                }\n                return r + 1 - n;\n            }\n\
+    \            sm = M2::op(f(data[r]), sm);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n\n/**\n * @brief NonMergeSegmentTree\n * @docs\
+    \ docs/data-struct/segment/NonMergeSegmentTree.md\n */\n#line 4 \"test/yosupo/data_structure/range_kth_smallest-seg.test.cpp\"\
     \nusing namespace std;\nstruct Merge {\n    using value_type = vector<int>;\n\
     \    static value_type op(const value_type& a, const value_type& b) {\n      \
     \  value_type c; c.reserve(a.size() + b.size());\n        merge(all(a), all(b),\
     \ back_inserter(c));\n        return c;\n    }\n    static value_type id() { return\
     \ {}; }\n};\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int> A(N);\
-    \ scan >> A;\n    SSegmentTree<Merge> seg([&] {\n        vector<vector<int>> B(N);\n\
-    \        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n    rep (Q)\
-    \ {\n        int l, r, k; scan >> l >> r >> k;\n        int ok = 1e9, ng = -1;\n\
-    \        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n       \
-    \     int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>& v) ->\
-    \ int {\n                return upper_bound(all(v), mid) - v.begin();\n      \
-    \      });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n \
-    \       }\n        print << ok << endl;\n    }\n}\n"
+    \ scan >> A;\n    NonMergeSegmentTree<Merge> seg([&] {\n        vector<vector<int>>\
+    \ B(N);\n        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n   \
+    \ rep (Q) {\n        int l, r, k; scan >> l >> r >> k;\n        int ok = 1e9,\
+    \ ng = -1;\n        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n\
+    \            int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>&\
+    \ v) -> int {\n                return upper_bound(all(v), mid) - v.begin();\n\
+    \            });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n\
+    \        }\n        print << ok << endl;\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_kth_smallest\"\n\
-    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/SSegmentTree.hpp\"\
+    #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/NonMergeSegmentTree.hpp\"\
     \nusing namespace std;\nstruct Merge {\n    using value_type = vector<int>;\n\
     \    static value_type op(const value_type& a, const value_type& b) {\n      \
     \  value_type c; c.reserve(a.size() + b.size());\n        merge(all(a), all(b),\
     \ back_inserter(c));\n        return c;\n    }\n    static value_type id() { return\
     \ {}; }\n};\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int> A(N);\
-    \ scan >> A;\n    SSegmentTree<Merge> seg([&] {\n        vector<vector<int>> B(N);\n\
-    \        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n    rep (Q)\
-    \ {\n        int l, r, k; scan >> l >> r >> k;\n        int ok = 1e9, ng = -1;\n\
-    \        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n       \
-    \     int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>& v) ->\
-    \ int {\n                return upper_bound(all(v), mid) - v.begin();\n      \
-    \      });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n \
-    \       }\n        print << ok << endl;\n    }\n}\n"
+    \ scan >> A;\n    NonMergeSegmentTree<Merge> seg([&] {\n        vector<vector<int>>\
+    \ B(N);\n        rep (i, N) B[i] = {A[i]};\n        return B;\n    }());\n   \
+    \ rep (Q) {\n        int l, r, k; scan >> l >> r >> k;\n        int ok = 1e9,\
+    \ ng = -1;\n        while (ok - ng > 1) {\n            int mid = (ok + ng) / 2;\n\
+    \            int cnt = seg.prod<Monoid::Sum<int>>(l, r, [&](const vector<int>&\
+    \ v) -> int {\n                return upper_bound(all(v), mid) - v.begin();\n\
+    \            });\n            if (cnt > k) ok = mid;\n            else ng = mid;\n\
+    \        }\n        print << ok << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -641,12 +641,12 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/segment/SSegmentTree.hpp
+  - data-struct/segment/NonMergeSegmentTree.hpp
   - other/monoid.hpp
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-29 21:16:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp

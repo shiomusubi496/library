@@ -40,54 +40,54 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/SSegmentTree.md
-    document_title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\
-      \u308B\u7279\u6B8A\u306A\u30BB\u30B0\u6728)"
+    _deprecated_at_docs: docs/data-struct/segment/NonMergeSegmentTree.md
+    document_title: NonMergeSegmentTree
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/SSegmentTree.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
-    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
-    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
-    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
-    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
-    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+  bundledCode: "#line 2 \"data-struct/segment/NonMergeSegmentTree.hpp\"\n\n#line 2\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
+    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
+    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -539,15 +539,16 @@ data:
     \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
     \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
     \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/SSegmentTree.hpp\"\
-    \n\ntemplate<class M> class SSegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SSegmentTree() : SSegmentTree(0)\
-    \ {}\n    SSegmentTree(int n_) { init(n_); }\n    SSegmentTree(int n, const T&\
-    \ v) : SSegmentTree(std::vector<T>(n, v)) {}\n    SSegmentTree(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(int n_) {\n        ori = n_;\n        n = 1 <<\
-    \ bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n    }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/NonMergeSegmentTree.hpp\"\
+    \n\ntemplate<class M> class NonMergeSegmentTree {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n\npublic:\n    NonMergeSegmentTree()\
+    \ : NonMergeSegmentTree(0) {}\n    NonMergeSegmentTree(int n_) { init(n_); }\n\
+    \    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    NonMergeSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(int n_) {\n        ori = n_;\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n    }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        upd(data[k]);\n        while (k\
@@ -571,17 +572,17 @@ data:
     \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
     \                }\n                return l - n;\n            }\n           \
     \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class M2, class F, class Cond> int max_right(int l,\
-    \ const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
+    \ ori;\n    }\n    template<class M2, class F, class Cond>\n    int max_right(int\
+    \ l, const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
     \        assert(cond(f(M::id())));\n        if (l == ori) return ori;\n      \
     \  l += n;\n        typename M2::value_type sm = M2::id();\n        do {\n   \
     \         while ((l & 1) == 0) l >>= 1;\n            if (!cond(M2::op(sm, f(data[l]))))\
     \ {\n                while (l < n) {\n                    l <<= 1;\n         \
-    \           if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \           if (cond(M2::op(sm, f(data[l]))))\n                        sm = M2::op(sm,\
+    \ f(data[l++]));\n                }\n                return l - n;\n         \
+    \   }\n            sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) !=\
+    \ l);\n        return ori;\n    }\n    template<class Cond> int min_left(int r,\
+    \ const Cond& cond) const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
     \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
     \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
     \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
@@ -589,26 +590,27 @@ data:
     \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
     \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
     \ ((r & -r) != r);\n        return 0;\n    }\n    template<class M2, class F,\
-    \ class Cond> int min_left(int r, const F& f, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n        if\
-    \ (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm = M2::id();\n\
-    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M2::op(f(data[r]), sm))) {\n                while (r <\
-    \ n) {\n                    r = r << 1 ^ 1;\n                    if (cond(M2::op(f(data[r]),\
-    \ sm))) sm = M2::op(f(data[r--]), sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M2::op(f(data[r]), sm);\n      \
-    \  } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
-    \u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\u6B8A\u306A\u30BB\u30B0\
-    \u6728)\n * @docs docs/data-struct/segment/SSegmentTree.md\n */\n"
+    \ class Cond>\n    int min_left(int r, const F& f, const Cond& cond) const {\n\
+    \        assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n    \
+    \    if (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm\
+    \ = M2::id();\n        do {\n            --r;\n            while ((r & 1) && r\
+    \ > 1) r >>= 1;\n            if (!cond(M2::op(f(data[r]), sm))) {\n          \
+    \      while (r < n) {\n                    r = r << 1 ^ 1;\n                \
+    \    if (cond(M2::op(f(data[r]), sm)))\n                        sm = M2::op(f(data[r--]),\
+    \ sm);\n                }\n                return r + 1 - n;\n            }\n\
+    \            sm = M2::op(f(data[r]), sm);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n\n/**\n * @brief NonMergeSegmentTree\n * @docs\
+    \ docs/data-struct/segment/NonMergeSegmentTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M> class SSegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SSegmentTree() : SSegmentTree(0)\
-    \ {}\n    SSegmentTree(int n_) { init(n_); }\n    SSegmentTree(int n, const T&\
-    \ v) : SSegmentTree(std::vector<T>(n, v)) {}\n    SSegmentTree(const std::vector<T>&\
-    \ v) { init(v); }\n    void init(int n_) {\n        ori = n_;\n        n = 1 <<\
-    \ bitop::ceil_log2(ori);\n        data.assign(n << 1, M::id());\n    }\n    void\
-    \ init(const std::vector<T>& v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
-    \        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \n\ntemplate<class M> class NonMergeSegmentTree {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n\npublic:\n    NonMergeSegmentTree()\
+    \ : NonMergeSegmentTree(0) {}\n    NonMergeSegmentTree(int n_) { init(n_); }\n\
+    \    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n,\
+    \ v)) {}\n    NonMergeSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
+    \ init(int n_) {\n        ori = n_;\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        data.assign(n << 1, M::id());\n    }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
     \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
     \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
     \ <= k && k < ori);\n        k += n;\n        upd(data[k]);\n        while (k\
@@ -632,17 +634,17 @@ data:
     \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
     \                }\n                return l - n;\n            }\n           \
     \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class M2, class F, class Cond> int max_right(int l,\
-    \ const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
+    \ ori;\n    }\n    template<class M2, class F, class Cond>\n    int max_right(int\
+    \ l, const F& f, const Cond& cond) const {\n        assert(0 <= l && l <= ori);\n\
     \        assert(cond(f(M::id())));\n        if (l == ori) return ori;\n      \
     \  l += n;\n        typename M2::value_type sm = M2::id();\n        do {\n   \
     \         while ((l & 1) == 0) l >>= 1;\n            if (!cond(M2::op(sm, f(data[l]))))\
     \ {\n                while (l < n) {\n                    l <<= 1;\n         \
-    \           if (cond(M2::op(sm, f(data[l])))) sm = M2::op(sm, f(data[l++]));\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \           if (cond(M2::op(sm, f(data[l]))))\n                        sm = M2::op(sm,\
+    \ f(data[l++]));\n                }\n                return l - n;\n         \
+    \   }\n            sm = M2::op(sm, f(data[l++]));\n        } while ((l & -l) !=\
+    \ l);\n        return ori;\n    }\n    template<class Cond> int min_left(int r,\
+    \ const Cond& cond) const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
     \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
     \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
     \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
@@ -650,17 +652,17 @@ data:
     \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
     \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
     \ ((r & -r) != r);\n        return 0;\n    }\n    template<class M2, class F,\
-    \ class Cond> int min_left(int r, const F& f, const Cond& cond) const {\n    \
-    \    assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n        if\
-    \ (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm = M2::id();\n\
-    \        do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M2::op(f(data[r]), sm))) {\n                while (r <\
-    \ n) {\n                    r = r << 1 ^ 1;\n                    if (cond(M2::op(f(data[r]),\
-    \ sm))) sm = M2::op(f(data[r--]), sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M2::op(f(data[r]), sm);\n      \
-    \  } while ((r & -r) != r);\n        return 0;\n    }\n};\n\n/**\n * @brief SSegmentTree(2D\u30BB\
-    \u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\u6B8A\u306A\u30BB\u30B0\
-    \u6728)\n * @docs docs/data-struct/segment/SSegmentTree.md\n */\n"
+    \ class Cond>\n    int min_left(int r, const F& f, const Cond& cond) const {\n\
+    \        assert(0 <= r && r <= ori);\n        assert(cond(f(M::id())));\n    \
+    \    if (r == 0) return 0;\n        r += n;\n        typename M2::value_type sm\
+    \ = M2::id();\n        do {\n            --r;\n            while ((r & 1) && r\
+    \ > 1) r >>= 1;\n            if (!cond(M2::op(f(data[r]), sm))) {\n          \
+    \      while (r < n) {\n                    r = r << 1 ^ 1;\n                \
+    \    if (cond(M2::op(f(data[r]), sm)))\n                        sm = M2::op(f(data[r--]),\
+    \ sm);\n                }\n                return r + 1 - n;\n            }\n\
+    \            sm = M2::op(f(data[r]), sm);\n        } while ((r & -r) != r);\n\
+    \        return 0;\n    }\n};\n\n/**\n * @brief NonMergeSegmentTree\n * @docs\
+    \ docs/data-struct/segment/NonMergeSegmentTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -673,24 +675,22 @@ data:
   - template/util.hpp
   - other/monoid.hpp
   isVerificationFile: false
-  path: data-struct/segment/SSegmentTree.hpp
+  path: data-struct/segment/NonMergeSegmentTree.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-29 21:16:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-documentation_of: data-struct/segment/SSegmentTree.hpp
+documentation_of: data-struct/segment/NonMergeSegmentTree.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/SSegmentTree.hpp
-- /library/data-struct/segment/SSegmentTree.hpp.html
-title: "SSegmentTree(2D\u30BB\u30B0\u6728\u3068\u304B\u306B\u4F7F\u3048\u308B\u7279\
-  \u6B8A\u306A\u30BB\u30B0\u6728)"
+- /library/data-struct/segment/NonMergeSegmentTree.hpp
+- /library/data-struct/segment/NonMergeSegmentTree.hpp.html
+title: NonMergeSegmentTree
 ---
 ## 概要
 
-大体 SegmentTree と同じ。 2D セグ木を作る時などに使えるように計算量上の工夫がちょっとある。
+要素のマージに時間がかかる場合に使う。要素の更新や区間クエリにおいて `M::op` を呼び出さないようにできる。 Range Kth Smallest などが可能。
 
 - `void init(int n)` : 長さ `n` の列で初期化。 `M::op` を呼び出したくないときに使える。
 - `template<class M2, class F> M2::value_type prod(int l, int r, F f)` : `f` を使って `T` から `M2::value_type` に変換して計算する。
-- ``
