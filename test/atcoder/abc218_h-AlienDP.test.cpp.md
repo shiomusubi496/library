@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/AlienDP.hpp
     title: AlienDP
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   - icon: ':question:'
@@ -42,9 +42,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc218/tasks/abc218_h
@@ -540,21 +540,21 @@ data:
     \ alien_dp_convex(-3 * mx, 3 * mx, k, [&](ll p) {\n        return online_offline_dp(n,\
     \ [&](int i, int j) { return f(i, j) - p; });\n    });\n}\n\n/**\n * @brief AlienDP\n\
     \ * @docs docs/dp/AlienDP.md\n * @see\n * https://noshi91.github.io/algorithm-encyclopedia/d-edge-shortest-path-monge\n\
-    \ */\n#line 4 \"test/atcoder/abc218_h-AlienDP.test.cpp\"\n\nusing namespace std;\n\
+    \ */\n#line 4 \"test/atcoder/abc218_h-AlienDP.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int N, R; scan >> N >> R;\n    vector<ll> A(N - 1); scan >>\
     \ A;\n    chmin(R, N - R);\n    vector<ll> B(N);\n    rep (i, N - 1) {\n     \
     \   B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-2e9,\
-    \ 2e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
-    \        ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n       \
-    \     chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
+    \ 2e9, R, [&](ll p) -> ll {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n\
+    \            ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n   \
+    \         chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_h\"\n#include\
-    \ \"../../other/template.hpp\"\n#include \"../../dp/AlienDP.hpp\"\n\nusing namespace\
+    \ \"../../other/template.hpp\"\n#include \"../../dp/AlienDP.hpp\"\nusing namespace\
     \ std;\nint main() {\n    int N, R; scan >> N >> R;\n    vector<ll> A(N - 1);\
     \ scan >> A;\n    chmin(R, N - R);\n    vector<ll> B(N);\n    rep (i, N - 1) {\n\
     \        B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-2e9,\
-    \ 2e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
-    \        ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n       \
-    \     chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
+    \ 2e9, R, [&](ll p) -> ll {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n\
+    \            ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n   \
+    \         chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -572,8 +572,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc218_h-AlienDP.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 18:32:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2023-12-29 20:51:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc218_h-AlienDP.test.cpp
 layout: document

@@ -29,20 +29,20 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/AlienDP.hpp
     title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':x:'

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   - icon: ':question:'
