@@ -3,7 +3,7 @@
 #include "../other/template.hpp"
 
 template<class Cont, class Comp>
-std::vector<int> lyndon_factorization(const Cont &str, const Comp &cmp) {
+std::vector<int> lyndon_factorization(const Cont& str, const Comp& cmp) {
     const int n = str.size();
     std::vector<int> res{0};
     while (res.back() != n) {
@@ -19,8 +19,7 @@ std::vector<int> lyndon_factorization(const Cont &str, const Comp &cmp) {
     return res;
 }
 
-template<class Cont>
-std::vector<int> lyndon_factorization(const Cont &str) {
+template<class Cont> std::vector<int> lyndon_factorization(const Cont& str) {
     return lyndon_factorization(str, std::less<typename Cont::value_type>());
 }
 
