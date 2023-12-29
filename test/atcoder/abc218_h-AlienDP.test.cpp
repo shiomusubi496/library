@@ -12,7 +12,7 @@ int main() {
         B[i] += A[i];
         B[i + 1] += A[i];
     }
-    prints(alien_dp_concave(-1e9, 1e9, R, [&](ll p) {
+    prints(alien_dp_concave(-2e9, 2e9, R, [&](ll p) {
         ll v1 = 0, v2 = 0;
         rep (i, N) {
             ll n1 = v2 + B[i] - p, n2 = v1;
