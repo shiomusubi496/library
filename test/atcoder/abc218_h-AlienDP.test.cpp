@@ -1,7 +1,6 @@
 #define PROBLEM "https://atcoder.jp/contests/abc218/tasks/abc218_h"
 #include "../../other/template.hpp"
 #include "../../dp/AlienDP.hpp"
-
 using namespace std;
 int main() {
     int N, R; scan >> N >> R;
