@@ -461,14 +461,14 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"string/LyndonFactorization.hpp\"\
     \n\n#line 4 \"string/LyndonFactorization.hpp\"\n\ntemplate<class Cont, class Comp>\n\
-    std::vector<int> lyndon_factorization(const Cont &str, const Comp &cmp) {\n  \
+    std::vector<int> lyndon_factorization(const Cont& str, const Comp& cmp) {\n  \
     \  const int n = str.size();\n    std::vector<int> res{0};\n    while (res.back()\
     \ != n) {\n        int l = 1;\n        rep (i, res.back() + 1, n + 1) {\n    \
     \        if (i == n || cmp(str[i], str[i - l])) {\n                rep (j, res.back()\
     \ + l, i + 1, l) res.push_back(j);\n                break;\n            }\n  \
     \          else if (cmp(str[i - l], str[i])) l = i - res.back() + 1;\n       \
-    \ }\n    }\n    return res;\n}\n\ntemplate<class Cont>\nstd::vector<int> lyndon_factorization(const\
-    \ Cont &str) {\n    return lyndon_factorization(str, std::less<typename Cont::value_type>());\n\
+    \ }\n    }\n    return res;\n}\n\ntemplate<class Cont> std::vector<int> lyndon_factorization(const\
+    \ Cont& str) {\n    return lyndon_factorization(str, std::less<typename Cont::value_type>());\n\
     }\n\n/**\n * @brief Lyndon Factorization\n * @docs docs/string/LyndonFactorization.md\n\
     \ */\n#line 4 \"test/yosupo/string/lyndon_factorization.test.cpp\"\nusing namespace\
     \ std;\nint main() {\n    string s; scan >> s;\n    prints(lyndon_factorization(s));\n\
@@ -491,7 +491,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/string/lyndon_factorization.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 00:30:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/string/lyndon_factorization.test.cpp

@@ -5,9 +5,10 @@
 ローリングハッシュなので、略してロリハ。
 
 - `RollingHash()` : ローリングハッシュを作成する。 $\Theta(1)$ 。
-- `RollingHash::Hash get_hash(string str)` : ハッシュ値を計算するための型を返す。 $\Theta(N)$ 。
+- `RollingHash::Hash get_hash(string str)` : ハッシュ値を計算するための型 `Hash` を返す。 $\Theta(N)$ 。
+- `RollingHash::Hash get_range_hash(string str)` : 変更可能な `RangeHashQuery` を返す。要はセグ木。 $\Theta(N)$ 。
 
-`RollingHash::Hash` には次のメンバ関数がある。
+`Hash` には次のメンバ関数がある。
 
-- `ull get_hash(int l, int r)` : 文字列の `l` 文字目から `r-1` 文字目までの部分文字列のハッシュ値を返す。 $\Theta(1)$ 。
-- `ull get_all()` : 文字列全体のハッシュ値を返す。 $\Theta(1)$ 。
+- `ull prod(int l, int r)` : 文字列の `l` 文字目から `r-1` 文字目までの部分文字列のハッシュ値を返す。 $\Theta(1)$ 。
+- `ull prod_all()` : 文字列全体のハッシュ値を返す。 $\Theta(1)$ 。

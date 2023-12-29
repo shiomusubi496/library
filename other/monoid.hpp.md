@@ -88,7 +88,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
   - icon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
   - icon: ':heavy_check_mark:'
@@ -106,7 +106,7 @@ data:
   - icon: ':question:'
     path: graph/tree/ReRooting.hpp
     title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
   - icon: ':heavy_check_mark:'
@@ -118,10 +118,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseXorConvolution.hpp
     title: BitwiseXorConvolution
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/RollingHash.hpp
+    title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
@@ -269,10 +275,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/discrete_logarithm_mod.test.cpp
     title: test/yosupo/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
@@ -932,6 +938,7 @@ data:
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/ReRooting.hpp
+  - string/RollingHash.hpp
   timestamp: '2023-12-29 22:13:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -987,6 +994,7 @@ data:
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp

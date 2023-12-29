@@ -36,7 +36,7 @@ data:
     path: graph/connected/BiConnectedComponents.hpp
     title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
       \u5206\u89E3)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
@@ -50,12 +50,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/biconnected_components.test.cpp
     title: test/yosupo/graph/biconnected_components.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/graph/other/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -574,7 +574,7 @@ data:
   - graph/connected/BiConnectedComponents.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp

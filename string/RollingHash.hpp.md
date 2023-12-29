@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':question:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -489,58 +495,295 @@ data:
     \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
     \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
     \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 5 \"string/RollingHash.hpp\"\
-    \n\nclass RollingHash {\npublic:\n    static constexpr ull MOD = (1ull << 61)\
-    \ - 1;\n\nprivate:\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static\
-    \ constexpr ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 =\
-    \ MOD;\n\npublic:\n    static ull calc_mod(ull a) {\n        ull res = (a & MASK61)\
-    \ + (a >> 61);\n        if (res >= MOD) res -= MOD;\n        return res;\n   \
-    \ }\n    static ull calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad =\
-    \ a & MASK31;\n        ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au\
-    \ * bd + ad * bu;\n        return calc_mod(((au * bu) << 1) + ((mid & MASK30)\
-    \ << 31) +\n                        (mid >> 30) + ad * bd);\n    }\n    static\
-    \ ull calc_add(ull a, ull b) {\n        ull res = a + b;\n        if (res >= MOD)\
-    \ res -= MOD;\n        return res;\n    }\n    ull BASE;\n    void init() { BASE\
-    \ = (1ull << 31) + (rand32() & MASK31); }\n\n    class Hash {\n    private:\n\
-    \        int n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
-    \ pows;\n\n    public:\n        Hash() = default;\n        template<class Cont>\
-    \ Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n    \
-    \        hash.resize(n + 1);\n            rep (i, n)\n                hash[i +\
-    \ 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n            pows.resize(n\
-    \ + 1);\n            pows[0] = 1;\n            rep (i, n) pows[i + 1] = calc_multi(pows[i],\
-    \ BASE);\n        }\n        ull get_hash(int l, int r) const {\n            assert(0\
-    \ <= l && l <= r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
-    \ pows[r - l]));\n        }\n        ull get_all() const { return hash[n]; }\n\
-    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
-    \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
-    \ const { return BASE; }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
-    )\n * @docs docs/string/RollingHash.md\n */\n"
+    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
+    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
+    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
+    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
+    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
+    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
+    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
+    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
+    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
+    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
+    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
+    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
+    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
+    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
+    \ */\n#line 6 \"string/RollingHash.hpp\"\n\nclass modint61 {\nprivate:\n    ull\
+    \ val;\n    static constexpr ull MOD = (1ull << 61) - 1;\n    static constexpr\
+    \ ull MASK30 = (1ull << 30) - 1;\n    static constexpr ull MASK31 = (1ull << 31)\
+    \ - 1;\n    static constexpr ull MASK61 = MOD;\n\n    static ull calc_mod(ull\
+    \ a) {\n        ull res = (a & MASK61) + (a >> 61);\n        if (res >= MOD) res\
+    \ -= MOD;\n        return res;\n    }\n    static ull calc_multi(ull a, ull b)\
+    \ {\n        ull au = a >> 31, ad = a & MASK31;\n        ull bu = b >> 31, bd\
+    \ = b & MASK31;\n        ull mid = au * bd + ad * bu;\n        return calc_mod(((au\
+    \ * bu) << 1) + ((mid & MASK30) << 31) +\n                        (mid >> 30)\
+    \ + ad * bd);\n    }\n    static ull calc_add(ull a, ull b) {\n        ull res\
+    \ = a + b;\n        if (res >= MOD) res -= MOD;\n        return res;\n    }\n\n\
+    public:\n    constexpr modint61() : val(0) {}\n    template<class U, typename\
+    \ std::enable_if<is_signed_int<U>::value &&\n                                \
+    \              std::numeric_limits<U>::digits <=\n                           \
+    \                       64>::type* = nullptr>\n    constexpr modint61(U v) {\n\
+    \        if (v >= 0) val = calc_mod(v);\n        else {\n            v %= static_cast<ll>(MOD);\n\
+    \            if (v < 0) v += static_cast<ll>(MOD);\n            val = v;\n   \
+    \     }\n    }\n    template<class U, typename std::enable_if<is_signed_int<U>::value\
+    \ &&\n                                              64 < std::numeric_limits<U>::digits>::type*\
+    \ = nullptr>\n    constexpr modint61(U v) {\n        v %= static_cast<ll>(MOD);\n\
+    \        if (v < 0) v += static_cast<ll>(MOD);\n        val = v;\n    }\n    template<class\
+    \ U, typename std::enable_if<is_unsigned_int<U>::value &&\n                  \
+    \                            std::numeric_limits<U>::digits <=\n             \
+    \                                     64>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) : val(calc_mod(v)) {}\n    template<class U, typename std::enable_if<\n \
+    \                         is_unsigned_int<U>::value &&\n                     \
+    \     64 < std::numeric_limits<U>::digits>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) : val(v % MOD) {}\n    ull get() const { return val; }\n    static constexpr\
+    \ ull get_mod() { return MOD; }\n    static modint61 raw(ull x) {\n        modint61\
+    \ res;\n        res.val = x;\n        return res;\n    }\n    modint61& operator++()\
+    \ {\n        ++val;\n        if (val == MOD) val = 0;\n        return *this;\n\
+    \    }\n    modint61 operator++(int) {\n        modint61 res = *this;\n      \
+    \  ++*this;\n        return res;\n    }\n    modint61& operator--() {\n      \
+    \  if (val == 0) val = MOD;\n        --val;\n        return *this;\n    }\n  \
+    \  modint61 operator--(int) {\n        modint61 res = *this;\n        --*this;\n\
+    \        return res;\n    }\n    modint61& operator+=(const modint61& other) {\n\
+    \        val += other.val;\n        if (val >= MOD) val -= MOD;\n        return\
+    \ *this;\n    }\n    modint61& operator-=(const modint61& other) {\n        if\
+    \ (val < other.val) val += MOD;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    modint61& operator*=(const modint61& other) {\n        val = calc_multi(val,\
+    \ other.val);\n        return *this;\n    }\n    modint61 pow(ll n) const {\n\
+    \        modint61 res = raw(1), x = *this;\n        while (n > 0) {\n        \
+    \    if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n       \
+    \ }\n        return res;\n    }\n    modint61 inv() const { return pow(MOD - 2);\
+    \ }\n    modint61& operator/=(const modint61& other) {\n        *this *= other.inv();\n\
+    \        return *this;\n    }\n    modint61 operator+(const modint61& other) const\
+    \ {\n        return modint61(*this) += other;\n    }\n    modint61 operator-(const\
+    \ modint61& other) const {\n        return modint61(*this) -= other;\n    }\n\
+    \    modint61 operator*(const modint61& other) const {\n        return modint61(*this)\
+    \ *= other;\n    }\n    modint61 operator/(const modint61& other) const {\n  \
+    \      return modint61(*this) /= other;\n    }\n    modint61 operator+() const\
+    \ { return *this; }\n    modint61 operator-() const { return modint61() - *this;\
+    \ }\n    friend bool operator==(const modint61& lhs, const modint61& rhs) {\n\
+    \        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const modint61&\
+    \ lhs, const modint61& rhs) {\n        return lhs.val != rhs.val;\n    }\n   \
+    \ template<class Pr> void debug(Pr& a) const { a.print(val); }\n};\n\nclass RollingHash\
+    \ {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n    using\
+    \ mint = modint61;\n    std::vector<mint> pows, rpows;\n\npublic:\n    void init(int\
+    \ n) {\n        const int sz = pows.size();\n        if (sz <= n) {\n        \
+    \    pows.resize(n + 1); rpows.resize(n + 1);\n            rep (i, sz, n + 1)\
+    \ pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i] = rpows[i\
+    \ - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
+    \ {\n        BASE = mint::raw((1ull << 31) + (rand32() & MASK31));\n        RBASE\
+    \ = BASE.inv();\n    }\n\n    class Hash {\n    private:\n        int n;\n   \
+    \     mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n     \
+    \   Hash() = default;\n        template<class Cont> Hash(mint b, const std::vector<mint>&\
+    \ p, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n\
+    \ + 1) {\n            hash.assign(n + 1, mint{});\n            rep (i, n) hash[i\
+    \ + 1] = hash[i] * BASE + str[i];\n        }\n        mint prod(int l, int r)\
+    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
+    \ hash[r] - hash[l] * pows[r - l];\n        }\n        mint all_prod() const {\
+    \ return hash[n]; }\n    };\n    class RangeHashQuery {\n    private:\n      \
+    \  int n;\n        mint BASE;\n        std::vector<mint> pows, rpows;\n      \
+    \  BinaryIndexedTree<mint> bit;\n    \n    public:\n        RangeHashQuery() =\
+    \ default;\n        template<class Cont> RangeHashQuery(mint b, const std::vector<mint>&\
+    \ p, const std::vector<mint>& rp, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(),\
+    \ p.begin() + n + 1), rpows(rp.begin(), rp.begin() + n + 1), bit(n) {\n      \
+    \      rep (i, n) bit.add(i, str[i] * pows[i]);\n        }\n        mint prod(int\
+    \ l, int r) const {\n            return bit.sum(l, r) * rpows[l];\n        }\n\
+    \        mint all_prod() const { return bit.sum(0, n); }\n        template<class\
+    \ T> void set(int k, const T& x) {\n            bit.set(k, x * pows[k]);\n   \
+    \     }\n    };\n    RollingHash() {\n        set_base();\n        pows.assign(1,\
+    \ mint::raw(1));\n        rpows.assign(1, mint::raw(1));\n    }\n    template<class\
+    \ Cont> Hash get_hash(const Cont& str) {\n        init(str.size() + 1);\n    \
+    \    return Hash(BASE, pows, str);\n    }\n    template<class Cont> RangeHashQuery\
+    \ get_range_hash(const Cont& str) {\n        init(str.size() + 1);\n        return\
+    \ RangeHashQuery(BASE, pows, rpows, str);\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
+    \u30EA\u30CF)\n * @docs docs/string/RollingHash.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
-    \n\nclass RollingHash {\npublic:\n    static constexpr ull MOD = (1ull << 61)\
-    \ - 1;\n\nprivate:\n    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static\
-    \ constexpr ull MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 =\
-    \ MOD;\n\npublic:\n    static ull calc_mod(ull a) {\n        ull res = (a & MASK61)\
-    \ + (a >> 61);\n        if (res >= MOD) res -= MOD;\n        return res;\n   \
-    \ }\n    static ull calc_multi(ull a, ull b) {\n        ull au = a >> 31, ad =\
-    \ a & MASK31;\n        ull bu = b >> 31, bd = b & MASK31;\n        ull mid = au\
-    \ * bd + ad * bu;\n        return calc_mod(((au * bu) << 1) + ((mid & MASK30)\
-    \ << 31) +\n                        (mid >> 30) + ad * bd);\n    }\n    static\
-    \ ull calc_add(ull a, ull b) {\n        ull res = a + b;\n        if (res >= MOD)\
-    \ res -= MOD;\n        return res;\n    }\n    ull BASE;\n    void init() { BASE\
-    \ = (1ull << 31) + (rand32() & MASK31); }\n\n    class Hash {\n    private:\n\
-    \        int n;\n        ull BASE;\n        std::vector<ull> hash;\n        std::vector<ull>\
-    \ pows;\n\n    public:\n        Hash() = default;\n        template<class Cont>\
-    \ Hash(ull b, const Cont& str) : BASE(b) {\n            n = str.size();\n    \
-    \        hash.resize(n + 1);\n            rep (i, n)\n                hash[i +\
-    \ 1] = calc_add(calc_multi(hash[i], BASE), str[i]);\n            pows.resize(n\
-    \ + 1);\n            pows[0] = 1;\n            rep (i, n) pows[i + 1] = calc_multi(pows[i],\
-    \ BASE);\n        }\n        ull get_hash(int l, int r) const {\n            assert(0\
-    \ <= l && l <= r && r <= n);\n            return calc_add(hash[r], MOD - calc_multi(hash[l],\
-    \ pows[r - l]));\n        }\n        ull get_all() const { return hash[n]; }\n\
-    \    };\n    RollingHash() { init(); }\n    template<class Cont> Hash get_hash(const\
-    \ Cont& str) const {\n        return Hash(BASE, str);\n    }\n    ull get_base()\
-    \ const { return BASE; }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
-    )\n * @docs docs/string/RollingHash.md\n */\n"
+    \n#include \"../data-struct/segment/BinaryIndexedTree.hpp\"\n\nclass modint61\
+    \ {\nprivate:\n    ull val;\n    static constexpr ull MOD = (1ull << 61) - 1;\n\
+    \    static constexpr ull MASK30 = (1ull << 30) - 1;\n    static constexpr ull\
+    \ MASK31 = (1ull << 31) - 1;\n    static constexpr ull MASK61 = MOD;\n\n    static\
+    \ ull calc_mod(ull a) {\n        ull res = (a & MASK61) + (a >> 61);\n       \
+    \ if (res >= MOD) res -= MOD;\n        return res;\n    }\n    static ull calc_multi(ull\
+    \ a, ull b) {\n        ull au = a >> 31, ad = a & MASK31;\n        ull bu = b\
+    \ >> 31, bd = b & MASK31;\n        ull mid = au * bd + ad * bu;\n        return\
+    \ calc_mod(((au * bu) << 1) + ((mid & MASK30) << 31) +\n                     \
+    \   (mid >> 30) + ad * bd);\n    }\n    static ull calc_add(ull a, ull b) {\n\
+    \        ull res = a + b;\n        if (res >= MOD) res -= MOD;\n        return\
+    \ res;\n    }\n\npublic:\n    constexpr modint61() : val(0) {}\n    template<class\
+    \ U, typename std::enable_if<is_signed_int<U>::value &&\n                    \
+    \                          std::numeric_limits<U>::digits <=\n               \
+    \                                   64>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) {\n        if (v >= 0) val = calc_mod(v);\n        else {\n            v\
+    \ %= static_cast<ll>(MOD);\n            if (v < 0) v += static_cast<ll>(MOD);\n\
+    \            val = v;\n        }\n    }\n    template<class U, typename std::enable_if<is_signed_int<U>::value\
+    \ &&\n                                              64 < std::numeric_limits<U>::digits>::type*\
+    \ = nullptr>\n    constexpr modint61(U v) {\n        v %= static_cast<ll>(MOD);\n\
+    \        if (v < 0) v += static_cast<ll>(MOD);\n        val = v;\n    }\n    template<class\
+    \ U, typename std::enable_if<is_unsigned_int<U>::value &&\n                  \
+    \                            std::numeric_limits<U>::digits <=\n             \
+    \                                     64>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) : val(calc_mod(v)) {}\n    template<class U, typename std::enable_if<\n \
+    \                         is_unsigned_int<U>::value &&\n                     \
+    \     64 < std::numeric_limits<U>::digits>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) : val(v % MOD) {}\n    ull get() const { return val; }\n    static constexpr\
+    \ ull get_mod() { return MOD; }\n    static modint61 raw(ull x) {\n        modint61\
+    \ res;\n        res.val = x;\n        return res;\n    }\n    modint61& operator++()\
+    \ {\n        ++val;\n        if (val == MOD) val = 0;\n        return *this;\n\
+    \    }\n    modint61 operator++(int) {\n        modint61 res = *this;\n      \
+    \  ++*this;\n        return res;\n    }\n    modint61& operator--() {\n      \
+    \  if (val == 0) val = MOD;\n        --val;\n        return *this;\n    }\n  \
+    \  modint61 operator--(int) {\n        modint61 res = *this;\n        --*this;\n\
+    \        return res;\n    }\n    modint61& operator+=(const modint61& other) {\n\
+    \        val += other.val;\n        if (val >= MOD) val -= MOD;\n        return\
+    \ *this;\n    }\n    modint61& operator-=(const modint61& other) {\n        if\
+    \ (val < other.val) val += MOD;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    modint61& operator*=(const modint61& other) {\n        val = calc_multi(val,\
+    \ other.val);\n        return *this;\n    }\n    modint61 pow(ll n) const {\n\
+    \        modint61 res = raw(1), x = *this;\n        while (n > 0) {\n        \
+    \    if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n       \
+    \ }\n        return res;\n    }\n    modint61 inv() const { return pow(MOD - 2);\
+    \ }\n    modint61& operator/=(const modint61& other) {\n        *this *= other.inv();\n\
+    \        return *this;\n    }\n    modint61 operator+(const modint61& other) const\
+    \ {\n        return modint61(*this) += other;\n    }\n    modint61 operator-(const\
+    \ modint61& other) const {\n        return modint61(*this) -= other;\n    }\n\
+    \    modint61 operator*(const modint61& other) const {\n        return modint61(*this)\
+    \ *= other;\n    }\n    modint61 operator/(const modint61& other) const {\n  \
+    \      return modint61(*this) /= other;\n    }\n    modint61 operator+() const\
+    \ { return *this; }\n    modint61 operator-() const { return modint61() - *this;\
+    \ }\n    friend bool operator==(const modint61& lhs, const modint61& rhs) {\n\
+    \        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const modint61&\
+    \ lhs, const modint61& rhs) {\n        return lhs.val != rhs.val;\n    }\n   \
+    \ template<class Pr> void debug(Pr& a) const { a.print(val); }\n};\n\nclass RollingHash\
+    \ {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n    using\
+    \ mint = modint61;\n    std::vector<mint> pows, rpows;\n\npublic:\n    void init(int\
+    \ n) {\n        const int sz = pows.size();\n        if (sz <= n) {\n        \
+    \    pows.resize(n + 1); rpows.resize(n + 1);\n            rep (i, sz, n + 1)\
+    \ pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i] = rpows[i\
+    \ - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
+    \ {\n        BASE = mint::raw((1ull << 31) + (rand32() & MASK31));\n        RBASE\
+    \ = BASE.inv();\n    }\n\n    class Hash {\n    private:\n        int n;\n   \
+    \     mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n     \
+    \   Hash() = default;\n        template<class Cont> Hash(mint b, const std::vector<mint>&\
+    \ p, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n\
+    \ + 1) {\n            hash.assign(n + 1, mint{});\n            rep (i, n) hash[i\
+    \ + 1] = hash[i] * BASE + str[i];\n        }\n        mint prod(int l, int r)\
+    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
+    \ hash[r] - hash[l] * pows[r - l];\n        }\n        mint all_prod() const {\
+    \ return hash[n]; }\n    };\n    class RangeHashQuery {\n    private:\n      \
+    \  int n;\n        mint BASE;\n        std::vector<mint> pows, rpows;\n      \
+    \  BinaryIndexedTree<mint> bit;\n    \n    public:\n        RangeHashQuery() =\
+    \ default;\n        template<class Cont> RangeHashQuery(mint b, const std::vector<mint>&\
+    \ p, const std::vector<mint>& rp, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(),\
+    \ p.begin() + n + 1), rpows(rp.begin(), rp.begin() + n + 1), bit(n) {\n      \
+    \      rep (i, n) bit.add(i, str[i] * pows[i]);\n        }\n        mint prod(int\
+    \ l, int r) const {\n            return bit.sum(l, r) * rpows[l];\n        }\n\
+    \        mint all_prod() const { return bit.sum(0, n); }\n        template<class\
+    \ T> void set(int k, const T& x) {\n            bit.set(k, x * pows[k]);\n   \
+    \     }\n    };\n    RollingHash() {\n        set_base();\n        pows.assign(1,\
+    \ mint::raw(1));\n        rpows.assign(1, mint::raw(1));\n    }\n    template<class\
+    \ Cont> Hash get_hash(const Cont& str) {\n        init(str.size() + 1);\n    \
+    \    return Hash(BASE, pows, str);\n    }\n    template<class Cont> RangeHashQuery\
+    \ get_range_hash(const Cont& str) {\n        init(str.size() + 1);\n        return\
+    \ RangeHashQuery(BASE, pows, rpows, str);\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
+    \u30EA\u30CF)\n * @docs docs/string/RollingHash.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -552,10 +795,12 @@ data:
   - template/func.hpp
   - template/util.hpp
   - random/Random.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - other/monoid.hpp
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 00:30:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
@@ -573,9 +818,10 @@ title: "RollingHash(\u30ED\u30EA\u30CF)"
 ローリングハッシュなので、略してロリハ。
 
 - `RollingHash()` : ローリングハッシュを作成する。 $\Theta(1)$ 。
-- `RollingHash::Hash get_hash(string str)` : ハッシュ値を計算するための型を返す。 $\Theta(N)$ 。
+- `RollingHash::Hash get_hash(string str)` : ハッシュ値を計算するための型 `Hash` を返す。 $\Theta(N)$ 。
+- `RollingHash::Hash get_range_hash(string str)` : 変更可能な `RangeHashQuery` を返す。要はセグ木。 $\Theta(N)$ 。
 
-`RollingHash::Hash` には次のメンバ関数がある。
+`Hash` には次のメンバ関数がある。
 
-- `ull get_hash(int l, int r)` : 文字列の `l` 文字目から `r-1` 文字目までの部分文字列のハッシュ値を返す。 $\Theta(1)$ 。
-- `ull get_all()` : 文字列全体のハッシュ値を返す。 $\Theta(1)$ 。
+- `ull prod(int l, int r)` : 文字列の `l` 文字目から `r-1` 文字目までの部分文字列のハッシュ値を返す。 $\Theta(1)$ 。
+- `ull prod_all()` : 文字列全体のハッシュ値を返す。 $\Theta(1)$ 。

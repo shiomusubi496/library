@@ -31,8 +31,14 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: string/RollingHash.hpp
+    title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
     title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
@@ -628,7 +634,8 @@ data:
   - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/BinaryIndexedTree.hpp
-  requiredBy: []
+  requiredBy:
+  - string/RollingHash.hpp
   timestamp: '2023-12-29 22:13:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -640,6 +647,7 @@ data:
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
+  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
 documentation_of: data-struct/segment/BinaryIndexedTree.hpp
 layout: document
 redirect_from:
