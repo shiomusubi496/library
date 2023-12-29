@@ -80,5 +80,11 @@
 "test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp": "2023-12-29 01:31:31 +0900",
 "test/aoj/other/1208-SternBrocotTree.test.cpp": "2023-12-29 01:31:31 +0900",
 "test/aoj/other/2603-SMAWK.test.cpp": "2023-12-29 01:31:31 +0900",
-"test/aoj/other/2725-CHT.test.cpp": "2023-12-29 01:31:31 +0900"
+"test/aoj/other/2725-CHT.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/aoj/other/2945-01BFS.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/atcoder/abc176_f-DefaultMap.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/atcoder/abc265_c-Timer.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/atcoder/agc002_d-PartialPersistentArray.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/atcoder/agc002_d-PartialPersistentUF.test.cpp": "2023-12-29 01:31:31 +0900",
+"test/atcoder/arc070_c-SlopeTrick.test.cpp": "2023-12-29 01:31:31 +0900"
 }
