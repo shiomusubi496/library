@@ -70,14 +70,14 @@ data:
     - icon: ':x:'
       path: data-struct/segment/DisjointSparseTable.hpp
       title: DisjointSparseTable
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/segment/DualSegmentTree.hpp
       title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/DynamicLazySegmentTree.hpp
       title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
         \u30C8\u6728)"
-    - icon: ':x:'
+    - icon: ':question:'
       path: data-struct/segment/DynamicSegmentTree.hpp
       title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':x:'
@@ -108,7 +108,7 @@ data:
     - icon: ':question:'
       path: data-struct/segment/SparseTable.hpp
       title: SparseTable
-    - icon: ':question:'
+    - icon: ':x:'
       path: data-struct/segment/SqrtDecomposition.hpp
       title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
     - icon: ':heavy_check_mark:'
@@ -675,10 +675,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
       title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
       title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
       title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     - icon: ':heavy_check_mark:'
@@ -693,10 +693,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
       title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
       title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     - icon: ':heavy_check_mark:'
@@ -884,10 +884,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/range_affine_point_get.test.cpp
       title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
       title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     - icon: ':x:'

@@ -53,14 +53,14 @@ data:
   - icon: ':x:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DynamicLazySegmentTree.hpp
     title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
       \u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':x:'
@@ -91,7 +91,7 @@ data:
   - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':question:'
+  - icon: ':x:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
   - icon: ':heavy_check_mark:'
@@ -122,10 +122,10 @@ data:
     path: other/monoid2.hpp
     title: other/monoid2.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
     title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -140,10 +140,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
     title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
     title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - icon: ':heavy_check_mark:'
@@ -209,10 +209,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - icon: ':x:'
@@ -746,23 +746,23 @@ data:
     \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
     \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
     \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -2> struct Min {\n    using\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
     \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
     \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
     template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
     \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::max; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
     \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::value;\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
     \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -2> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
     \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
     \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
     \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::min;\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
     \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
     \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::mvalue; }\n};\n\ntemplate<class\
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
     \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
     \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
@@ -836,23 +836,23 @@ data:
     \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
     \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
     \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -2> struct Min {\n    using\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
     \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
     \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
     template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
     \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::max; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
     \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::value;\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
     \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -2> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
     \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
     \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
     \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::min;\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
     \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
     \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::mvalue; }\n};\n\ntemplate<class\
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
     \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
     \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
@@ -932,7 +932,7 @@ data:
   - graph/tree/EulerTour.hpp
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/ReRooting.hpp
-  timestamp: '2023-12-29 21:37:50+09:00'
+  timestamp: '2023-12-29 22:13:05+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/math/discrete_logarithm_mod.test.cpp

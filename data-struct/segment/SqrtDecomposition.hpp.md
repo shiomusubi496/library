@@ -33,7 +33,7 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/data-struct/segment/SqrtDecomposition.md
     document_title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
@@ -501,23 +501,23 @@ data:
     \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
     \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
     \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -2> struct Min {\n    using\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
     \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
     \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
     template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
     \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::max; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
     \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::value;\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
     \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -2> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
     \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
     \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
     \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::min;\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
     \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
     \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::mvalue; }\n};\n\ntemplate<class\
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
     \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
     \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
     \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
@@ -709,8 +709,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SqrtDecomposition.hpp
   requiredBy: []
-  timestamp: '2023-12-29 21:37:50+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-12-29 22:13:05+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
