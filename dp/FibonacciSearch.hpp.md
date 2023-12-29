@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: dp/SMAWK.hpp
-    title: SMAWK
-  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -39,17 +36,14 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
-  - icon: ':x:'
-    path: test/yuki/705-Monge.test.cpp
-    title: test/yuki/705-Monge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/dp/OnlineOfflineDP.md
-    document_title: Online Offline DP
+    _deprecated_at_docs: docs/FibonacciSearch.md
+    document_title: FibonacciSearch
     links: []
-  bundledCode: "#line 2 \"dp/OnlineOfflineDP.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"dp/FibonacciSearch.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -465,46 +459,58 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"dp/SMAWK.hpp\"\n\n#line\
-    \ 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row), 0);\n\
-    \    std::iota(all(col), 0);\n    return rec_lambda([&](auto&& self, const std::vector<int>&\
-    \ row,\n                          const std::vector<int>& col) -> std::vector<int>\
-    \ {\n        const int n = row.size();\n        if (n == 0) return {};\n     \
-    \   std::vector<int> ncol;\n        ncol.reserve(n);\n        for (int i : col)\
-    \ {\n            while (!ncol.empty() && f(row[ncol.size() - 1], ncol.back())\
-    \ >\n                                        f(row[ncol.size() - 1], i))\n   \
-    \             ncol.pop_back();\n            if ((int)ncol.size() < n) ncol.push_back(i);\n\
-    \        }\n        std::vector<int> row_odd;\n        row_odd.reserve(n / 2 +\
-    \ 1);\n        rep (i, 1, n, 2) row_odd.push_back(row[i]);\n        const std::vector<int>\
-    \ ans = self(row_odd, ncol);\n        std::vector<int> res(n);\n        rep (i,\
-    \ row_odd.size()) res[i * 2 + 1] = ans[i];\n        int j = 0;\n        rep (i,\
-    \ 0, n, 2) {\n            const int last = i == n - 1 ? ncol.back() : res[i +\
-    \ 1];\n            res[i] = ncol[j];\n            while (ncol[j] < last) {\n \
-    \               ++j;\n                if (f(row[i], res[i]) > f(row[i], ncol[j]))\
-    \ res[i] = ncol[j];\n            }\n        }\n        return res;\n    })(row,\
-    \ col);\n}\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n */\n#line 5 \"\
-    dp/OnlineOfflineDP.hpp\"\n\ntemplate<class F>\nstd::vector<typename function_traits<F>::result_type>\
-    \ online_offline_dp(int n,\n                                                 \
-    \                       F&& f) {\n    using T = typename function_traits<F>::result_type;\n\
-    \    std::vector<T> dp(n, INF<T>);\n    dp[0] = 0;\n    rec_lambda([&](auto& self,\
-    \ int l, int r) -> void {\n        if (l == r) return;\n        if (l + 1 == r)\
-    \ return;\n        int m = (l + r) / 2;\n        self(l, m);\n        auto g =\
-    \ [&](int i, int j) { return dp[j + l] + f(j + l, i + m); };\n        auto res\
-    \ = smawk(r - m, m - l, g);\n        rep (i, m, r) chmin(dp[i], g(i - m, res[i\
-    \ - m]));\n        self(m, r);\n    })(0, n);\n    return dp;\n}\n\n/**\n * @brief\
-    \ Online Offline DP\n * @docs docs/dp/OnlineOfflineDP.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"SMAWK.hpp\"\
-    \n\ntemplate<class F>\nstd::vector<typename function_traits<F>::result_type> online_offline_dp(int\
-    \ n,\n                                                                       \
-    \ F&& f) {\n    using T = typename function_traits<F>::result_type;\n    std::vector<T>\
-    \ dp(n, INF<T>);\n    dp[0] = 0;\n    rec_lambda([&](auto& self, int l, int r)\
-    \ -> void {\n        if (l == r) return;\n        if (l + 1 == r) return;\n  \
-    \      int m = (l + r) / 2;\n        self(l, m);\n        auto g = [&](int i,\
-    \ int j) { return dp[j + l] + f(j + l, i + m); };\n        auto res = smawk(r\
-    \ - m, m - l, g);\n        rep (i, m, r) chmin(dp[i], g(i - m, res[i - m]));\n\
-    \        self(m, r);\n    })(0, n);\n    return dp;\n}\n\n/**\n * @brief Online\
-    \ Offline DP\n * @docs docs/dp/OnlineOfflineDP.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 4 \"dp/FibonacciSearch.hpp\"\
+    \n\ntemplate<class T> class FibonacciSearch {\n    static std::vector<T> fib;\n\
+    \    static void extend(T n) {\n        while (fib.back() < n)\n            fib.push_back(fib[fib.size()\
+    \ - 1] + fib[fib.size() - 2]);\n    }\n\npublic:\n    template<class F, class\
+    \ Comp>\n    static std::pair<T, function_result_type<F>> minimize(T low, T high,\
+    \ F&& f,\n                                                          Comp cmp)\
+    \ {\n        extend(high - low + 2);\n        int k = 0;\n        while (fib[k]\
+    \ < high - low + 2) ++k;\n        T l = low - 1, r = low - 1 + fib[k];\n     \
+    \   auto res = f(r - fib[--k]);\n        bool flag = true;\n        for (; k >\
+    \ 2; --k) {\n            T m1 = r - fib[k], m2 = l + fib[k];\n            if (m2\
+    \ > high) {\n                r = m2;\n                res = flag ? res : f(m1);\n\
+    \                flag = false;\n                continue;\n            }\n   \
+    \         auto v1 = flag ? res : f(m1);\n            auto v2 = flag ? f(m2) :\
+    \ res;\n            if (cmp(v1, v2)) {\n                r = m2;\n            \
+    \    res = v1;\n                flag = false;\n            }\n            else\
+    \ {\n                l = m1;\n                res = v2;\n                flag\
+    \ = true;\n            }\n        }\n        return {l + 1, res};\n    }\n   \
+    \ template<class F>\n    static std::pair<T, function_result_type<F>> minimize(T\
+    \ low, T high,\n                                                          F&&\
+    \ f) {\n        return minimize(low, high, std::forward<F>(f),\n             \
+    \           std::less<function_result_type<F>>());\n    }\n    template<class\
+    \ F>\n    static std::pair<T, function_result_type<F>> maximize(T low, T high,\n\
+    \                                                          F&& f) {\n        return\
+    \ minimize(low, high, std::forward<F>(f),\n                        std::greater<function_result_type<F>>());\n\
+    \    }\n};\n\ntemplate<class T> std::vector<T> FibonacciSearch<T>::fib = {0, 1,\
+    \ 1};\n\n/**\n * @brief FibonacciSearch\n * @docs docs/FibonacciSearch.md\n */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T> class\
+    \ FibonacciSearch {\n    static std::vector<T> fib;\n    static void extend(T\
+    \ n) {\n        while (fib.back() < n)\n            fib.push_back(fib[fib.size()\
+    \ - 1] + fib[fib.size() - 2]);\n    }\n\npublic:\n    template<class F, class\
+    \ Comp>\n    static std::pair<T, function_result_type<F>> minimize(T low, T high,\
+    \ F&& f,\n                                                          Comp cmp)\
+    \ {\n        extend(high - low + 2);\n        int k = 0;\n        while (fib[k]\
+    \ < high - low + 2) ++k;\n        T l = low - 1, r = low - 1 + fib[k];\n     \
+    \   auto res = f(r - fib[--k]);\n        bool flag = true;\n        for (; k >\
+    \ 2; --k) {\n            T m1 = r - fib[k], m2 = l + fib[k];\n            if (m2\
+    \ > high) {\n                r = m2;\n                res = flag ? res : f(m1);\n\
+    \                flag = false;\n                continue;\n            }\n   \
+    \         auto v1 = flag ? res : f(m1);\n            auto v2 = flag ? f(m2) :\
+    \ res;\n            if (cmp(v1, v2)) {\n                r = m2;\n            \
+    \    res = v1;\n                flag = false;\n            }\n            else\
+    \ {\n                l = m1;\n                res = v2;\n                flag\
+    \ = true;\n            }\n        }\n        return {l + 1, res};\n    }\n   \
+    \ template<class F>\n    static std::pair<T, function_result_type<F>> minimize(T\
+    \ low, T high,\n                                                          F&&\
+    \ f) {\n        return minimize(low, high, std::forward<F>(f),\n             \
+    \           std::less<function_result_type<F>>());\n    }\n    template<class\
+    \ F>\n    static std::pair<T, function_result_type<F>> maximize(T low, T high,\n\
+    \                                                          F&& f) {\n        return\
+    \ minimize(low, high, std::forward<F>(f),\n                        std::greater<function_result_type<F>>());\n\
+    \    }\n};\n\ntemplate<class T> std::vector<T> FibonacciSearch<T>::fib = {0, 1,\
+    \ 1};\n\n/**\n * @brief FibonacciSearch\n * @docs docs/FibonacciSearch.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -515,27 +521,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - dp/SMAWK.hpp
   isVerificationFile: false
-  path: dp/OnlineOfflineDP.hpp
+  path: dp/FibonacciSearch.hpp
   requiredBy:
   - dp/AlienDP.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-29 17:51:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/abc218_h-AlienDP.test.cpp
-  - test/yuki/705-Monge.test.cpp
-documentation_of: dp/OnlineOfflineDP.hpp
+documentation_of: dp/FibonacciSearch.hpp
 layout: document
 redirect_from:
-- /library/dp/OnlineOfflineDP.hpp
-- /library/dp/OnlineOfflineDP.hpp.html
-title: Online Offline DP
+- /library/dp/FibonacciSearch.hpp
+- /library/dp/FibonacciSearch.hpp.html
+title: FibonacciSearch
 ---
-## 概要
-
-分割統治をしながら計算をすることで $\log$ がつく代わりにオンラインの問題をオフラインに変換できる(オンライン・オフライン変換)。
-
-$\displaystyle\mathrm{dp}[j] = \min_{0 \leq k \leq j} (\mathrm{dp}[k]+A_{k,j})$ の形の DP を行う。 $A$ が totally monotone なら SMAWK を、 monotone なら Monotone Minima を用いると良い。
-
-- `vector<int> online_offline_dp(int n, F A)` : 上記の DP を行う。 $\Theta(n \log n)$ 。

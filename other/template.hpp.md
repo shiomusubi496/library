@@ -44,7 +44,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/BinaryTrie.hpp
     title: BinaryTrie
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/DefaultMap.hpp
     title: DefaultMap
   - icon: ':x:'
@@ -59,7 +59,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/PartialPersistentArray.hpp
     title: "PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)"
   - icon: ':x:'
@@ -75,7 +75,7 @@ data:
   - icon: ':x:'
     path: data-struct/other/SlidingWindowAggregation.hpp
     title: SlidingWindowAggregation(SWAG)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
   - icon: ':question:'
@@ -135,7 +135,7 @@ data:
   - icon: ':x:'
     path: data-struct/unionfind/DynamicUnionFind.hpp
     title: "DynamicUnionFind(\u52D5\u7684UnionFind)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/PartialPersistentUnionFind.hpp
     title: "PartialPersistentUnionFind(\u90E8\u5206\u6C38\u7D9AUF)"
   - icon: ':x:'
@@ -159,9 +159,15 @@ data:
   - icon: ':x:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':x:'
+    path: dp/AlienDP.hpp
+    title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
+  - icon: ':x:'
+    path: dp/FibonacciSearch.hpp
+    title: FibonacciSearch
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
@@ -272,7 +278,7 @@ data:
     path: graph/shortest-path/WarshallFloyd.hpp
     title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
       )"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
   - icon: ':x:'
@@ -459,7 +465,7 @@ data:
   - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/Timer.hpp
     title: Timer
   - icon: ':x:'
@@ -728,22 +734,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2725-CHT.test.cpp
     title: test/aoj/other/2725-CHT.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
   - icon: ':x:'
+    path: test/atcoder/abc218_h-AlienDP.test.cpp
+    title: test/atcoder/abc218_h-AlienDP.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc265_c-Timer.test.cpp
     title: test/atcoder/abc265_c-Timer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
     title: test/atcoder/agc002_d-PartialPersistentUF.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/arc070_c-SlopeTrick.test.cpp
     title: test/atcoder/arc070_c-SlopeTrick.test.cpp
   - icon: ':x:'
@@ -1706,6 +1715,8 @@ data:
   - string/Manacher.hpp
   - string/LyndonFactorization.hpp
   - string/ZAlgorithm.hpp
+  - dp/FibonacciSearch.hpp
+  - dp/AlienDP.hpp
   - dp/MonotoneMinima.hpp
   - dp/DivideAndConquerOptimization.hpp
   - dp/OnlineOfflineDP.hpp
@@ -1908,6 +1919,7 @@ data:
   - test/aoj/DPL/DPL_5_C.test.cpp
   - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - test/atcoder/abc176_f-DefaultMap.test.cpp
+  - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/atcoder/arc099_c-Bipartite.test.cpp
   - test/atcoder/arc070_c-SlopeTrick.test.cpp
   - test/atcoder/abc265_c-Timer.test.cpp

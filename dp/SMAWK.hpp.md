@@ -29,6 +29,9 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: dp/AlienDP.hpp
+    title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
@@ -39,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
+  - icon: ':x:'
+    path: test/atcoder/abc218_h-AlienDP.test.cpp
+    title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':x:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
@@ -516,12 +522,14 @@ data:
   isVerificationFile: false
   path: dp/SMAWK.hpp
   requiredBy:
+  - dp/AlienDP.hpp
   - dp/DivideAndConquerOptimization.hpp
   - dp/OnlineOfflineDP.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
+  - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/yuki/705-Monge.test.cpp
 documentation_of: dp/SMAWK.hpp
 layout: document
