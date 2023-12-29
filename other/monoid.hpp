@@ -76,7 +76,7 @@ template<class T> struct Sum {
     static constexpr T get_inv(const T& a) { return -a; }
 };
 
-template<class T, int i = -2> struct Min {
+template<class T, int i = -1> struct Min {
     using value_type = T;
     static T max_value;
     static T op(const T& a, const T& b) { return a < b ? a : b; }
@@ -85,16 +85,16 @@ template<class T, int i = -2> struct Min {
 template<class T> struct Min<T, -1> {
     using value_type = T;
     static constexpr T op(const T& a, const T& b) { return a < b ? a : b; }
-    static constexpr T id() { return infinity<T>::max; }
+    static constexpr T id() { return infinity<T>::value; }
 };
 template<class T> struct Min<T, -2> {
     using value_type = T;
     static constexpr T op(const T& a, const T& b) { return a < b ? a : b; }
-    static constexpr T id() { return infinity<T>::value; }
+    static constexpr T id() { return infinity<T>::max; }
 };
 template<class T, int id> T Min<T, id>::max_value;
 
-template<class T, int i = -2> struct Max {
+template<class T, int i = -1> struct Max {
     using value_type = T;
     static T min_value;
     static T op(const T& a, const T& b) { return a > b ? a : b; }
@@ -103,12 +103,12 @@ template<class T, int i = -2> struct Max {
 template<class T> struct Max<T, -1> {
     using value_type = T;
     static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }
-    static constexpr T id() { return infinity<T>::min; }
+    static constexpr T id() { return infinity<T>::mvalue; }
 };
 template<class T> struct Max<T, -2> {
     using value_type = T;
     static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }
-    static constexpr T id() { return infinity<T>::mvalue; }
+    static constexpr T id() { return infinity<T>::min; }
 };
 
 template<class T> struct Assign {
