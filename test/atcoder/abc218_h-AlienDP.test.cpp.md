@@ -543,16 +543,16 @@ data:
     \ */\n#line 4 \"test/atcoder/abc218_h-AlienDP.test.cpp\"\n\nusing namespace std;\n\
     int main() {\n    int N, R; scan >> N >> R;\n    vector<ll> A(N - 1); scan >>\
     \ A;\n    chmin(R, N - R);\n    vector<ll> B(N);\n    rep (i, N - 1) {\n     \
-    \   B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-1e9,\
-    \ 1e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
+    \   B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-2e9,\
+    \ 2e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
     \        ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n       \
     \     chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_h\"\n#include\
     \ \"../../other/template.hpp\"\n#include \"../../dp/AlienDP.hpp\"\n\nusing namespace\
     \ std;\nint main() {\n    int N, R; scan >> N >> R;\n    vector<ll> A(N - 1);\
     \ scan >> A;\n    chmin(R, N - R);\n    vector<ll> B(N);\n    rep (i, N - 1) {\n\
-    \        B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-1e9,\
-    \ 1e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
+    \        B[i] += A[i];\n        B[i + 1] += A[i];\n    }\n    prints(alien_dp_concave(-2e9,\
+    \ 2e9, R, [&](ll p) {\n        ll v1 = 0, v2 = 0;\n        rep (i, N) {\n    \
     \        ll n1 = v2 + B[i] - p, n2 = v1;\n            chmax(v1, n1);\n       \
     \     chmax(v2, n2);\n        }\n        return max(v1, v2);\n    }));\n}\n"
   dependsOn:
@@ -572,7 +572,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc218_h-AlienDP.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 17:51:16+09:00'
+  timestamp: '2023-12-29 18:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc218_h-AlienDP.test.cpp
