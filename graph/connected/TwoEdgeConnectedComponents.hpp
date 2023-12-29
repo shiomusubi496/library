@@ -5,7 +5,7 @@
 #include "../other/LowLink.hpp"
 
 template<class T> class TwoEdgeConnectedComponents : public LowLink<T> {
-public:
+private:
     int sz;
     std::vector<int> cmp;
     void dcmp(int v) {
