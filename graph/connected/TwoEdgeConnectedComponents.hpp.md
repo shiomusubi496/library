@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/other/LowLink.hpp
     title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':question:'
@@ -526,8 +526,8 @@ data:
     \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
     \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/graph/other/LowLink.md\n */\n#line 6\
     \ \"graph/connected/TwoEdgeConnectedComponents.hpp\"\n\ntemplate<class T> class\
-    \ TwoEdgeConnectedComponents : public LowLink<T> {\npublic:\n    int sz;\n   \
-    \ std::vector<int> cmp;\n    void dcmp(int v) {\n        each_const (e : this->G[v])\
+    \ TwoEdgeConnectedComponents : public LowLink<T> {\nprivate:\n    int sz;\n  \
+    \  std::vector<int> cmp;\n    void dcmp(int v) {\n        each_const (e : this->G[v])\
     \ {\n            if (cmp[e.to] != -1) continue;\n            if (this->ord[v]\
     \ < this->low[e.to] ||\n                this->ord[e.to] < this->low[v])\n    \
     \            continue;\n            cmp[e.to] = cmp[v];\n            dcmp(e.to);\n\
@@ -545,8 +545,8 @@ data:
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"../other/LowLink.hpp\"\n\ntemplate<class T> class TwoEdgeConnectedComponents\
-    \ : public LowLink<T> {\npublic:\n    int sz;\n    std::vector<int> cmp;\n   \
-    \ void dcmp(int v) {\n        each_const (e : this->G[v]) {\n            if (cmp[e.to]\
+    \ : public LowLink<T> {\nprivate:\n    int sz;\n    std::vector<int> cmp;\n  \
+    \  void dcmp(int v) {\n        each_const (e : this->G[v]) {\n            if (cmp[e.to]\
     \ != -1) continue;\n            if (this->ord[v] < this->low[e.to] ||\n      \
     \          this->ord[e.to] < this->low[v])\n                continue;\n      \
     \      cmp[e.to] = cmp[v];\n            dcmp(e.to);\n        }\n    }\n    void\
@@ -577,7 +577,7 @@ data:
   isVerificationFile: false
   path: graph/connected/TwoEdgeConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-29 17:19:38+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/graph/two_edge_connected_components.test.cpp

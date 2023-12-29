@@ -33,22 +33,29 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: graph/connected/BiConnectedComponents.hpp
+    title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
+      \u5206\u89E3)"
+  - icon: ':x:'
     path: graph/connected/TwoEdgeConnectedComponents.hpp
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
     title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/graph/biconnected_components.test.cpp
+    title: test/yosupo/graph/biconnected_components.test.cpp
   - icon: ':x:'
     path: test/yosupo/graph/two_edge_connected_components.test.cpp
     title: test/yosupo/graph/two_edge_connected_components.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/other/LowLink.md
     document_title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
@@ -564,11 +571,13 @@ data:
   isVerificationFile: false
   path: graph/other/LowLink.hpp
   requiredBy:
+  - graph/connected/BiConnectedComponents.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/biconnected_components.test.cpp
   - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
 documentation_of: graph/other/LowLink.hpp

@@ -5,8 +5,8 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
-    path: graph/tree/HeavyLightDecomposition.hpp
-    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
+    path: graph/other/LowLink.hpp
+    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -35,60 +35,63 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/graph/biconnected_components.test.cpp
+    title: test/yosupo/graph/biconnected_components.test.cpp
   _isVerificationFailed: true
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/lca
-    links:
-    - https://judge.yosupo.jp/problem/lca
-  bundledCode: "#line 1 \"test/yosupo/tree/lca-HLD.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/lca\"\n#line 2 \"other/template.hpp\"\n\n#include\
-    \ <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
-    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
-    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
-    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
-    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
-    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    _deprecated_at_docs: docs/graph/connected/BiConnectedComponents.md
+    document_title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\
+      \u5206\u5206\u89E3)"
+    links: []
+  bundledCode: "#line 2 \"graph/connected/BiConnectedComponents.hpp\"\n\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
+    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
+    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -502,69 +505,87 @@ data:
     \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/tree/HeavyLightDecomposition.hpp\"\n\n#line 5 \"graph/tree/HeavyLightDecomposition.hpp\"\
-    \n\ntemplate<class T> class HeavyLightDecomposition {\nprivate:\n    int n, root,\
-    \ cnt;\n    std::vector<int> ssz, head, vin, vout, par;\n    const Graph<T>& G;\n\
-    \    int szdfs(int v, int p) {\n        ssz[v] = 1;\n        each_const (e : G[v])\
-    \ {\n            if (e.to == p) continue;\n            ssz[v] += szdfs(e.to, v);\n\
-    \        }\n        return ssz[v];\n    }\n    void bldfs(int v, int p) {\n  \
-    \      par[v] = p;\n        vin[v] = cnt++;\n        int idx = -1;\n        each_const\
-    \ (e : G[v]) {\n            if (e.to != p) {\n                if (idx == -1 ||\
-    \ ssz[idx] < ssz[e.to]) idx = e.to;\n            }\n        }\n        if (idx\
-    \ != -1) {\n            head[idx] = head[v];\n            bldfs(idx, v);\n   \
-    \     }\n        each_const (e : G[v]) {\n            if (e.to != p && e.to !=\
-    \ idx) {\n                head[e.to] = e.to;\n                bldfs(e.to, v);\n\
-    \            }\n        }\n        vout[v] = cnt;\n    }\n    void init() {\n\
-    \        n = G.size();\n        ssz.assign(n, -1);\n        szdfs(root, -1);\n\
-    \        rep (i, n) {\n            if (ssz[i] == -1) szdfs(i, -1);\n        }\n\
-    \        cnt = 0;\n        head.assign(n, -1);\n        head[root] = root;\n \
-    \       vin.resize(n);\n        vout.resize(n);\n        par.resize(n);\n    \
-    \    bldfs(root, -1);\n        rep (i, n) {\n            if (head[i] == -1) {\n\
-    \                head[i] = i;\n                bldfs(i, -1);\n            }\n\
-    \        }\n    }\n\npublic:\n    HeavyLightDecomposition(const Graph<T>& G, int\
-    \ root = 0)\n        : root(root), G(G) {\n        init();\n    }\n    int get_size(int\
-    \ k) const { return ssz[k]; }\n    std::pair<int, int> get_idx(int k) const {\
-    \ return {vin[k], vout[k]}; }\n    std::pair<int, int> get_pach(int a, int b)\
-    \ const {\n        if (vin[a] < vin[b]) return {a, b};\n        return {b, a};\n\
-    \    }\n    int lca(int u, int v) const {\n        while (head[u] != head[v])\
-    \ {\n            if (vin[u] > vin[v]) std::swap(u, v);\n            v = par[head[v]];\n\
-    \        }\n        return vin[u] < vin[v] ? u : v;\n    }\n    std::vector<std::pair<int,\
-    \ int>> up_path(int u, int v) const {\n        std::vector<std::pair<int, int>>\
-    \ res;\n        while (head[u] != head[v]) {\n            res.emplace_back(vin[u],\
-    \ vin[head[u]]);\n            u = par[head[u]];\n        }\n        if (u != v)\
-    \ res.emplace_back(vin[u], vin[v] + 1);\n        return res;\n    }\n    std::vector<std::pair<int,\
-    \ int>> down_path(int u, int v) const {\n        auto res = up_path(v, u);\n \
-    \       each_for (p : res) std::swap(p.first, p.second);\n        std::reverse(all(res));\n\
-    \        return res;\n    }\n    template<class F> void each_vertex(int u, int\
-    \ v, const F& f) const {\n        return each_vertex(u, v, f, f);\n    }\n   \
-    \ template<class F, class G>\n    void each_vertex(int u, int v, const F& f, const\
-    \ G& g) const {\n        int l = lca(u, v);\n        auto func = [&](int a, int\
-    \ b) {\n            if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n\
-    \        };\n        each_const (p : up_path(u, l)) func(p.first, p.second);\n\
-    \        func(vin[l], vin[l]);\n        each_const (p : down_path(l, v)) func(p.first,\
-    \ p.second);\n    }\n    template<class F> void each_edge(int u, int v, const\
-    \ F& f) const {\n        return each_edge(u, v, f, f);\n    }\n    template<class\
-    \ F, class G>\n    void each_edge(int u, int v, const F& f, const G& g) const\
-    \ {\n        int l = lca(u, v);\n        auto func = [&](int a, int b) {\n   \
-    \         if (a <= b) f(a, b + 1);\n            else g(b, a + 1);\n        };\n\
-    \        each_const (p : up_path(u, l)) func(p.first, p.second);\n        each_const\
-    \ (p : down_path(l, v)) func(p.first, p.second);\n    }\n    template<class F>\
-    \ void each_vertex_subtree(int u, const F& f) const {\n        f(vin[u], vout[u]);\n\
-    \    }\n    template<class F> void each_edge_subtree(int u, const F& f) const\
-    \ {\n        f(vin[u] + 1, vout[u]);\n    }\n};\n\n/**\n * @brief HeavyLightDecomposition(HL\u5206\
-    \u89E3)\n * @docs docs/graph/tree/HeavyLightDecomposition.md\n */\n#line 5 \"\
-    test/yosupo/tree/lca-HLD.test.cpp\"\nusing namespace std;\nint main() {\n    int\
-    \ N, Q; scan >> N >> Q;\n    UnweightedGraph G(N);\n    reps (i, N - 1) {\n  \
-    \      int p; scan >> p;\n        G.add_edge(i, p);\n    }\n    HeavyLightDecomposition<unweighted_edge>\
-    \ HLD(G);\n    rep (Q) {\n        int a, b; scan >> a >> b;\n        print <<\
-    \ HLD.lca(a, b) << endl;\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"../../../other/template.hpp\"\
-    \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/HeavyLightDecomposition.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    UnweightedGraph\
-    \ G(N);\n    reps (i, N - 1) {\n        int p; scan >> p;\n        G.add_edge(i,\
-    \ p);\n    }\n    HeavyLightDecomposition<unweighted_edge> HLD(G);\n    rep (Q)\
-    \ {\n        int a, b; scan >> a >> b;\n        print << HLD.lca(a, b) << endl;\n\
-    \    }\n}\n"
+    \ */\n#line 2 \"graph/other/LowLink.hpp\"\n\n#line 4 \"graph/other/LowLink.hpp\"\
+    \n\ntemplate<class T> class LowLink {\nprotected:\n    int n, cnt;\n    const\
+    \ Graph<T>& G;\n    std::vector<int> ord, low;\n    std::vector<int> aps;\n  \
+    \  Edges<T> brd;\n    void dfs(int v, int p) {\n        low[v] = ord[v] = cnt++;\n\
+    \        int deg = 0;\n        bool is_ap = false, mul = false;\n        each_const\
+    \ (e : G[v]) {\n            if (e.to == p && !mul) {\n                mul = true;\n\
+    \                continue;\n            }\n            if (ord[e.to] != -1) chmin(low[v],\
+    \ ord[e.to]);\n            else {\n                dfs(e.to, v);\n           \
+    \     chmin(low[v], low[e.to]);\n                if (p != -1 && ord[v] <= low[e.to])\
+    \ is_ap = true;\n                if (ord[v] < low[e.to]) brd.push_back(e);\n \
+    \               ++deg;\n            }\n        }\n        if (p == -1 && deg >\
+    \ 1) is_ap = true;\n        if (is_ap) aps.push_back(v);\n    }\n    void init()\
+    \ {\n        n = G.size();\n        ord.assign(n, -1);\n        low.assign(n,\
+    \ n + 1);\n        cnt = 0;\n        rep (i, n) {\n            if (ord[i] == -1)\
+    \ dfs(i, -1);\n        }\n    }\n\npublic:\n    LowLink(const Graph<T>& G) : G(G)\
+    \ { init(); }\n    const std::vector<int>& articulation_points() const& { return\
+    \ aps; }\n    std::vector<int> articulation_points() && { return std::move(aps);\
+    \ }\n    const Edges<T>& bridges() const& { return brd; }\n    Edges<T> bridges()\
+    \ && { return std::move(brd); }\n};\n\n/**\n * @brief Lowlink(\u95A2\u7BC0\u70B9\
+    \u30FB\u6A4B\u691C\u51FA)\n * @docs docs/graph/other/LowLink.md\n */\n#line 6\
+    \ \"graph/connected/BiConnectedComponents.hpp\"\n\ntemplate<class T> class BiConnectedComponents\
+    \ : public LowLink<T> {\nprivate:\n    int sz;\n    std::vector<int> cmp;\n  \
+    \  std::vector<std::vector<int>> grp;\n    std::vector<int> tmp, tmp2;\n    std::vector<bool>\
+    \ seen;\n    void dfs(int v, int id) {\n        seen[v] = true;\n        tmp2.push_back(v);\n\
+    \        for (const auto& e : this->G[v]) {\n            if (e.idx == id) continue;\n\
+    \            if (this->ord[e.to] < this->ord[v]) tmp.push_back(e.idx);\n     \
+    \       if (!seen[e.to]) {\n                tmp.push_back(e.idx);\n          \
+    \      dfs(e.to, e.idx);\n                if (this->low[e.to] >= this->ord[v])\
+    \ {\n                    while (true) {\n                        int i = tmp.back();\n\
+    \                        tmp.pop_back();\n                        cmp[i] = sz;\n\
+    \                        if (i == e.idx) break;\n                    }\n     \
+    \               grp.emplace_back(1, v);\n                    while (true) {\n\
+    \                        int i = tmp2.back();\n                        grp.back().push_back(i);\n\
+    \                        tmp2.pop_back();\n                        if (i == e.to)\
+    \ break;\n                    }\n                    ++sz;\n                }\n\
+    \            }\n        }\n    }\n\npublic:\n    BiConnectedComponents(const Graph<T>&\
+    \ G, bool allow_isolated = false)\n        : LowLink<T>(G) {\n        sz = 0;\n\
+    \        cmp.assign(this->G.edge_size(), -1);\n        seen.assign(this->n, false);\n\
+    \        tmp.reserve(this->G.edge_size());\n        tmp2.reserve(this->n);\n \
+    \       rep (i, this->n) {\n            if (!seen[i]) {\n                dfs(i,\
+    \ -1);\n                if (allow_isolated && G[i].empty()) {\n              \
+    \      grp.emplace_back(1, i);\n                    ++sz;\n                }\n\
+    \            }\n        }\n    }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const { return grp; }\n    UnweightedGraph bct() const {\n        UnweightedGraph\
+    \ res(this->n + sz);\n        rep (i, sz) {\n            for (auto v : grp[i])\
+    \ res.add_edge(this->n + i, v);\n        }\n        return res;\n    }\n};\n\n\
+    /**\n * @brief BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3)\n * @docs docs/graph/connected/BiConnectedComponents.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
+    \n#include \"../other/LowLink.hpp\"\n\ntemplate<class T> class BiConnectedComponents\
+    \ : public LowLink<T> {\nprivate:\n    int sz;\n    std::vector<int> cmp;\n  \
+    \  std::vector<std::vector<int>> grp;\n    std::vector<int> tmp, tmp2;\n    std::vector<bool>\
+    \ seen;\n    void dfs(int v, int id) {\n        seen[v] = true;\n        tmp2.push_back(v);\n\
+    \        for (const auto& e : this->G[v]) {\n            if (e.idx == id) continue;\n\
+    \            if (this->ord[e.to] < this->ord[v]) tmp.push_back(e.idx);\n     \
+    \       if (!seen[e.to]) {\n                tmp.push_back(e.idx);\n          \
+    \      dfs(e.to, e.idx);\n                if (this->low[e.to] >= this->ord[v])\
+    \ {\n                    while (true) {\n                        int i = tmp.back();\n\
+    \                        tmp.pop_back();\n                        cmp[i] = sz;\n\
+    \                        if (i == e.idx) break;\n                    }\n     \
+    \               grp.emplace_back(1, v);\n                    while (true) {\n\
+    \                        int i = tmp2.back();\n                        grp.back().push_back(i);\n\
+    \                        tmp2.pop_back();\n                        if (i == e.to)\
+    \ break;\n                    }\n                    ++sz;\n                }\n\
+    \            }\n        }\n    }\n\npublic:\n    BiConnectedComponents(const Graph<T>&\
+    \ G, bool allow_isolated = false)\n        : LowLink<T>(G) {\n        sz = 0;\n\
+    \        cmp.assign(this->G.edge_size(), -1);\n        seen.assign(this->n, false);\n\
+    \        tmp.reserve(this->G.edge_size());\n        tmp2.reserve(this->n);\n \
+    \       rep (i, this->n) {\n            if (!seen[i]) {\n                dfs(i,\
+    \ -1);\n                if (allow_isolated && G[i].empty()) {\n              \
+    \      grp.emplace_back(1, i);\n                    ++sz;\n                }\n\
+    \            }\n        }\n    }\n    int size() const { return sz; }\n    int\
+    \ operator[](int k) const { return cmp[k]; }\n    std::vector<std::vector<int>>\
+    \ groups() const { return grp; }\n    UnweightedGraph bct() const {\n        UnweightedGraph\
+    \ res(this->n + sz);\n        rep (i, sz) {\n            for (auto v : grp[i])\
+    \ res.add_edge(this->n + i, v);\n        }\n        return res;\n    }\n};\n\n\
+    /**\n * @brief BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\
+    \u5206\u5206\u89E3)\n * @docs docs/graph/connected/BiConnectedComponents.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -576,17 +597,30 @@ data:
   - template/func.hpp
   - template/util.hpp
   - graph/Graph.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
-  isVerificationFile: true
-  path: test/yosupo/tree/lca-HLD.test.cpp
+  - graph/other/LowLink.hpp
+  isVerificationFile: false
+  path: graph/connected/BiConnectedComponents.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
-  verifiedWith: []
-documentation_of: test/yosupo/tree/lca-HLD.test.cpp
+  timestamp: '2023-12-29 17:19:38+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo/graph/biconnected_components.test.cpp
+documentation_of: graph/connected/BiConnectedComponents.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/tree/lca-HLD.test.cpp
-- /verify/test/yosupo/tree/lca-HLD.test.cpp.html
-title: test/yosupo/tree/lca-HLD.test.cpp
+- /library/graph/connected/BiConnectedComponents.hpp
+- /library/graph/connected/BiConnectedComponents.hpp.html
+title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\u5206\
+  \u89E3)"
 ---
+## 概要
+
+グラフの二重連結成分分解をする。一つ頂点を消してもなお連結であるような極大な頂点集合を二重連結成分と呼ぶ。二重頂点連結成分などとも。
+
+孤立点を成分として認めるかは場合によって嬉しさが変わりそうなので bool 値で指定するようにしている。
+
+- `BiConnectedComponents(Graph G, bool allow_isolated = false)` : グラフを与える。孤立点を許すかを第二引数で与える。 $\Theta(n)$
+- `int size()` : 二重連結成分数。
+- `int operator[](int k)` : 辺 k が属する二重連結成分の番号を返す。
+- `vector<vector<int>> groups()` : 各二重連結成分の頂点集合を返す。
+- `UnweightedGraph bct()` : Block-Cut Tree を返す。 $[0, n)$ がもとの頂点に対応し、 $[n, n+size())$ が二重連結成分に対応する。
