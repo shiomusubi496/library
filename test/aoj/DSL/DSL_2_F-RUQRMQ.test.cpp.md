@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F
@@ -463,18 +463,21 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -497,50 +500,59 @@ data:
     \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
     \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
     \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -2> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::max; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::value;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -2> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
     \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::min;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::mvalue; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
     \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
     \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
     \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
     \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
@@ -615,38 +627,34 @@ data:
     \           if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);\n       \
     \         }\n                return r + 1 - n;\n            }\n            sm\
     \ = M::op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n\ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeUpdateQueryRangeMinimumQuery\
-    \ =\n    LazySegmentTree<Monoid::AssignMin<T, max_value>>;\n\ntemplate<class T,\
-    \ T min_value = infinity<T>::min>\nusing RangeUpdateQueryRangeMaximumQuery =\n\
-    \    LazySegmentTree<Monoid::AssignMax<T, min_value>>;\n\ntemplate<class T>\n\
-    using RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\
-    \ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeAddQueryRangeMinimumQuery\
-    \ =\n    LazySegmentTree<Monoid::AddMin<T, max_value>>;\n\ntemplate<class T, T\
-    \ min_value = infinity<T>::min>\nusing RangeAddQueryRangeMaximumQuery =\n    LazySegmentTree<Monoid::AddMax<T,\
-    \ min_value>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery = LazySegmentTree<Monoid::AddSum<T>>;\n\
-    \ntemplate<class T, T max_value = infinity<T>::max>\nusing RangeChminQueryRangeMinimumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChminMin<T, max_value>>;\n\ntemplate<class T,\
-    \ T min_value = infinity<T>::min>\nusing RangeChminQueryRangeMaximumQuery =\n\
-    \    LazySegmentTree<Monoid::ChminMax<T, min_value>>;\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
-    \ max_value>>;\n\ntemplate<class T, T min_value = infinity<T>::min>\nusing RangeChmaxQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
+    \    }\n};\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMinimumQuery\
+    \ =\n    LazySegmentTree<Monoid::AssignMin<T, id>>;\n\ntemplate<class T, int id\
+    \ = -1>\nusing RangeUpdateQueryRangeMaximumQuery =\n    LazySegmentTree<Monoid::AssignMax<T,\
+    \ id>>;\n\ntemplate<class T>\nusing RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\
+    \ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMaximumQuery\
+    \ = LazySegmentTree<Monoid::AddMax<T, id>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery\
+    \ = LazySegmentTree<Monoid::AddSum<T>>;\n\ntemplate<class T, int id = -1>\nusing\
+    \ RangeChminQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChminMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChminQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChminMax<T, id>>;\n\ntemplate<class T, int id\
+    \ = -1>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChmaxQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, id>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
     \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
     \ */\n#line 4 \"test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int n, q; scan >> n >> q;\n    RangeUpdateQueryRangeMinimumQuery<int,\
-    \ (1ull << 31) - 1> RUQRMQ(n);\n    rep (q) {\n        int t; scan >> t;\n   \
-    \     if (t == 0) {\n            int l, r, x; scan >> l >> r >> x;\n         \
-    \   RUQRMQ.apply(l, r + 1, x);\n        }\n        else {\n            int l,\
-    \ r; scan >> l >> r;\n            print << RUQRMQ.prod(l, r + 1) << endl;\n  \
-    \      }\n    }\n}\n"
+    \ -2> RUQRMQ(n);\n    rep (q) {\n        int t; scan >> t;\n        if (t == 0)\
+    \ {\n            int l, r, x; scan >> l >> r >> x;\n            RUQRMQ.apply(l,\
+    \ r + 1, x);\n        }\n        else {\n            int l, r; scan >> l >> r;\n\
+    \            print << RUQRMQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DSL_2_F\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/LazySegmentTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int n, q; scan >> n >> q;\n    RangeUpdateQueryRangeMinimumQuery<int,\
-    \ (1ull << 31) - 1> RUQRMQ(n);\n    rep (q) {\n        int t; scan >> t;\n   \
-    \     if (t == 0) {\n            int l, r, x; scan >> l >> r >> x;\n         \
-    \   RUQRMQ.apply(l, r + 1, x);\n        }\n        else {\n            int l,\
-    \ r; scan >> l >> r;\n            print << RUQRMQ.prod(l, r + 1) << endl;\n  \
-    \      }\n    }\n}\n"
+    \ -2> RUQRMQ(n);\n    rep (q) {\n        int t; scan >> t;\n        if (t == 0)\
+    \ {\n            int l, r, x; scan >> l >> r >> x;\n            RUQRMQ.apply(l,\
+    \ r + 1, x);\n        }\n        else {\n            int l, r; scan >> l >> r;\n\
+    \            print << RUQRMQ.prod(l, r + 1) << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -662,8 +670,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2023-12-29 21:37:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
 layout: document

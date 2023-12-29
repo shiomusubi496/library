@@ -508,18 +508,21 @@ data:
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
     \ * @docs docs/graph/Graph.md\n */\n#line 4 \"graph/tree/ReRooting.hpp\"\n\n#line\
     \ 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\
-    \ntemplate<class M, class = void> class has_op : public std::false_type {};\n\
-    template<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -542,71 +545,80 @@ data:
     \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
     \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
     \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static constexpr T id() { return max_value;\
-    \ }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct Max {\n  \
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -2> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::max; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::value;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -2> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
     \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a < b ? b : a; }\n    static constexpr T id() { return min_value; }\n\
-    };\n\ntemplate<class T> struct Assign {\n    using value_type = T;\n    static\
-    \ constexpr T op(const T&, const T& b) { return b; }\n};\n\n\ntemplate<class T,\
-    \ T max_value = infinity<T>::max> struct AssignMin {\n    using M = Min<T, max_value>;\n\
-    \    using E = Assign<T>;\n    static constexpr T op(const T& a, const T&) { return\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AssignMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Assign<T>;\n    static constexpr\
-    \ T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T> struct AssignSum\
-    \ {\n    using M = Sum<T>;\n    using E = Assign<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T&) { return a * b; }\n};\n\ntemplate<class T, T max_value\
-    \ = infinity<T>::max> struct AddMin {\n    using M = Min<T, max_value>;\n    using\
-    \ E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return b +\
-    \ a; }\n};\n\ntemplate<class T, T min_value = infinity<T>::min> struct AddMax\
-    \ {\n    using M = Max<T, min_value>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return b + a; }\n};\n\ntemplate<class T> struct\
-    \ AddSum {\n    using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr\
-    \ T mul_op(const T& a, int b, const T& c) {\n        return c + a * b;\n    }\n\
-    };\n\ntemplate<class T, T max_value = infinity<T>::max> struct ChminMin {\n  \
-    \  using M = Min<T, max_value>;\n    using E = Min<T>;\n    static constexpr T\
-    \ op(const T& a, const T& b) { return std::min(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChminMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Min<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::min(b, a); }\n};\n\ntemplate<class T, T max_value = infinity<T>::max> struct\
-    \ ChmaxMin {\n    using M = Min<T, max_value>;\n    using E = Max<T>;\n    static\
-    \ constexpr T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, T min_value = infinity<T>::min> struct ChmaxMax {\n    using M = Max<T, min_value>;\n\
-    \    using E = Max<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ std::max(b, a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using\
-    \ value_type = typename M::value_type;\n    static value_type op(const value_type&\
-    \ a, const value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::min;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::mvalue; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
     \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type get_inv(const value_type&\
-    \ a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is not defined\"\
-    );\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class M_> struct AttachEffector\
-    \ {\n    using M = M_;\n    using E = M_;\n    using T = typename M_::value_type;\n\
-    \    static T op(const T& a, const T& b) { return M_::op(b, a); }\n};\n\ntemplate<class\
-    \ E_> struct AttachMonoid {\n    using M = E_;\n    using E = E_;\n    using T\
-    \ = typename E_::value_type;\n    static T op(const T& a, const T& b) { return\
-    \ E_::op(b, a); }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\
-    \n\ntemplate<class M, class T, class F> class ReRooting {\nprivate:\n    using\
-    \ U = typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>&\
-    \ G;\n    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n   \
-    \ std::vector<U> res;\n    std::vector<int> par;\n    void dfs1(int v, int p)\
-    \ {\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n  \
-    \          if (e.to == p) par[v] = i;\n            else dfs1(e.to, v);\n     \
-    \   }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
-    \            if (e.to == p) continue;\n            dp[v][par[v]] =\n         \
-    \       M::op(dp[v][par[v]],\n                      f(dp[e.to][par[e.to]], edge<T>{e.to,\
-    \ v, e.cost, e.idx}));\n        }\n        if (p != -1 && G[v].size() == 1) {\n\
-    \            dp[v][par[v]] = init_data[v];\n        }\n    }\n    void dfs2(int\
-    \ v, int p, int v_id) {\n        std::vector<U> memo(G[v].size());\n        rep\
-    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            memo[i]\
-    \ = f(dp[e.to][e.to == p ? v_id : par[e.to]],\n                        edge<T>{e.to,\
-    \ v, e.cost, e.idx});\n        }\n        dp[v][G[v].size() - 1] = M::id();\n\
-    \        rrep (i, (int)G[v].size() - 1) {\n            dp[v][i] = M::op(memo[i\
-    \ + 1], dp[v][i + 1]);\n        }\n        U sml = M::id();\n        rep (i, G[v].size())\
-    \ {\n            dp[v][i] = M::op(sml, dp[v][i]);\n            sml = M::op(sml,\
-    \ std::move(memo[i]));\n        }\n        dp[v].back() = std::move(sml);\n  \
-    \      if (G[v].size() == 1) {\n            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);\n\
-    \        }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 6 \"graph/tree/ReRooting.hpp\"\n\n\
+    template<class M, class T, class F> class ReRooting {\nprivate:\n    using U =\
+    \ typename M::value_type;\n    const F& f;\n    int n;\n    const Graph<T>& G;\n\
+    \    std::vector<U> init_data;\n    std::vector<std::vector<U>> dp;\n    std::vector<U>\
+    \ res;\n    std::vector<int> par;\n    void dfs1(int v, int p) {\n        rep\
+    \ (i, G[v].size()) {\n            const auto& e = G[v][i];\n            if (e.to\
+    \ == p) par[v] = i;\n            else dfs1(e.to, v);\n        }\n        rep (i,\
+    \ G[v].size()) {\n            const auto& e = G[v][i];\n            if (e.to ==\
+    \ p) continue;\n            dp[v][par[v]] =\n                M::op(dp[v][par[v]],\n\
+    \                      f(dp[e.to][par[e.to]], edge<T>{e.to, v, e.cost, e.idx}));\n\
+    \        }\n        if (p != -1 && G[v].size() == 1) {\n            dp[v][par[v]]\
+    \ = init_data[v];\n        }\n    }\n    void dfs2(int v, int p, int v_id) {\n\
+    \        std::vector<U> memo(G[v].size());\n        rep (i, G[v].size()) {\n \
+    \           const auto& e = G[v][i];\n            memo[i] = f(dp[e.to][e.to ==\
+    \ p ? v_id : par[e.to]],\n                        edge<T>{e.to, v, e.cost, e.idx});\n\
+    \        }\n        dp[v][G[v].size() - 1] = M::id();\n        rrep (i, (int)G[v].size()\
+    \ - 1) {\n            dp[v][i] = M::op(memo[i + 1], dp[v][i + 1]);\n        }\n\
+    \        U sml = M::id();\n        rep (i, G[v].size()) {\n            dp[v][i]\
+    \ = M::op(sml, dp[v][i]);\n            sml = M::op(sml, std::move(memo[i]));\n\
+    \        }\n        dp[v].back() = std::move(sml);\n        if (G[v].size() ==\
+    \ 1) {\n            dp[v][p == -1 ? 0 : par[v]] = std::move(init_data[v]);\n \
+    \       }\n        rep (i, G[v].size()) {\n            const auto& e = G[v][i];\n\
     \            if (e.to != p) dfs2(e.to, v, i);\n        }\n    }\n    void init()\
     \ {\n        n = G.size();\n        if (n == 1) {\n            res = std::move(init_data);\n\
     \            dp.assign(1, std::vector<U>{});\n            return;\n        }\n\
@@ -684,7 +696,7 @@ data:
   isVerificationFile: false
   path: graph/tree/ReRooting.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-29 21:37:50+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
