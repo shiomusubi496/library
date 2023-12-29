@@ -4,6 +4,12 @@
 
 namespace Monoid {
 
+template<class M, class = void>
+class has_value_type : public std::false_type {};
+template<class M>
+class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>
+    : public std::true_type {};
+
 template<class M, class = void> class has_op : public std::false_type {};
 template<class M>
 class has_op<M, decltype((void)M::op)> : public std::true_type {};
@@ -70,16 +76,39 @@ template<class T> struct Sum {
     static constexpr T get_inv(const T& a) { return -a; }
 };
 
-template<class T, T max_value = infinity<T>::max> struct Min {
+template<class T, int i = -2> struct Min {
+    using value_type = T;
+    static T max_value;
+    static T op(const T& a, const T& b) { return a < b ? a : b; }
+    static T id() { return max_value; }
+};
+template<class T> struct Min<T, -1> {
     using value_type = T;
     static constexpr T op(const T& a, const T& b) { return a < b ? a : b; }
-    static constexpr T id() { return max_value; }
+    static constexpr T id() { return infinity<T>::max; }
 };
-
-template<class T, T min_value = infinity<T>::min> struct Max {
+template<class T> struct Min<T, -2> {
     using value_type = T;
-    static constexpr T op(const T& a, const T& b) { return a < b ? b : a; }
-    static constexpr T id() { return min_value; }
+    static constexpr T op(const T& a, const T& b) { return a < b ? a : b; }
+    static constexpr T id() { return infinity<T>::value; }
+};
+template<class T, int id> T Min<T, id>::max_value;
+
+template<class T, int i = -2> struct Max {
+    using value_type = T;
+    static T min_value;
+    static T op(const T& a, const T& b) { return a > b ? a : b; }
+    static T id() { return min_value; }
+};
+template<class T> struct Max<T, -1> {
+    using value_type = T;
+    static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }
+    static constexpr T id() { return infinity<T>::min; }
+};
+template<class T> struct Max<T, -2> {
+    using value_type = T;
+    static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }
+    static constexpr T id() { return infinity<T>::mvalue; }
 };
 
 template<class T> struct Assign {
@@ -88,14 +117,14 @@ template<class T> struct Assign {
 };
 
 
-template<class T, T max_value = infinity<T>::max> struct AssignMin {
-    using M = Min<T, max_value>;
+template<class T, int id = -1> struct AssignMin {
+    using M = Min<T, id>;
     using E = Assign<T>;
     static constexpr T op(const T& a, const T&) { return a; }
 };
 
-template<class T, T min_value = infinity<T>::min> struct AssignMax {
-    using M = Max<T, min_value>;
+template<class T, int id = -1> struct AssignMax {
+    using M = Max<T, id>;
     using E = Assign<T>;
     static constexpr T op(const T& a, const T&) { return a; }
 };
@@ -106,14 +135,14 @@ template<class T> struct AssignSum {
     static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }
 };
 
-template<class T, T max_value = infinity<T>::max> struct AddMin {
-    using M = Min<T, max_value>;
+template<class T, int id = -1> struct AddMin {
+    using M = Min<T, id>;
     using E = Sum<T>;
     static constexpr T op(const T& a, const T& b) { return b + a; }
 };
 
-template<class T, T min_value = infinity<T>::min> struct AddMax {
-    using M = Max<T, min_value>;
+template<class T, int id = -1> struct AddMax {
+    using M = Max<T, id>;
     using E = Sum<T>;
     static constexpr T op(const T& a, const T& b) { return b + a; }
 };
@@ -126,26 +155,26 @@ template<class T> struct AddSum {
     }
 };
 
-template<class T, T max_value = infinity<T>::max> struct ChminMin {
-    using M = Min<T, max_value>;
+template<class T, int id = -1> struct ChminMin {
+    using M = Min<T, id>;
     using E = Min<T>;
     static constexpr T op(const T& a, const T& b) { return std::min(b, a); }
 };
 
-template<class T, T min_value = infinity<T>::min> struct ChminMax {
-    using M = Max<T, min_value>;
+template<class T, int id = -1> struct ChminMax {
+    using M = Max<T, id>;
     using E = Min<T>;
     static constexpr T op(const T& a, const T& b) { return std::min(b, a); }
 };
 
-template<class T, T max_value = infinity<T>::max> struct ChmaxMin {
-    using M = Min<T, max_value>;
+template<class T, int id = -1> struct ChmaxMin {
+    using M = Min<T, id>;
     using E = Max<T>;
     static constexpr T op(const T& a, const T& b) { return std::max(b, a); }
 };
 
-template<class T, T min_value = infinity<T>::min> struct ChmaxMax {
-    using M = Max<T, min_value>;
+template<class T, int id = -1> struct ChmaxMax {
+    using M = Max<T, id>;
     using E = Max<T>;
     static constexpr T op(const T& a, const T& b) { return std::max(b, a); }
 };
@@ -160,20 +189,17 @@ template<class M> struct ReverseMonoid {
         static_assert(has_id<M>::value, "id is not defined");
         return M::id();
     }
+    static value_type inv(const value_type& a, const value_type& b) {
+        static_assert(has_inv<M>::value, "inv is not defined");
+        return M::inv(b, a);
+    }
     static value_type get_inv(const value_type& a) {
         static_assert(has_get_inv<M>::value, "get_inv is not defined");
         return M::get_inv(a);
     }
 };
 
-template<class M_> struct AttachEffector {
-    using M = M_;
-    using E = M_;
-    using T = typename M_::value_type;
-    static T op(const T& a, const T& b) { return M_::op(b, a); }
-};
-
-template<class E_> struct AttachMonoid {
+template<class E_> struct MakeAction {
     using M = E_;
     using E = E_;
     using T = typename E_::value_type;

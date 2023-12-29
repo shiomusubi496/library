@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "../../other/monoid.hpp"
 
-template<class A>
-class DynamicLazySegmentTree {
+template<class A> class DynamicLazySegmentTree {
 private:
     using M = typename A::M;
     using E = typename A::E;

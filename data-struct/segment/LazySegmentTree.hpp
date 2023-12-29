@@ -189,43 +189,41 @@ public:
     }
 };
 
-template<class T, T max_value = infinity<T>::max>
+template<class T, int id = -1>
 using RangeUpdateQueryRangeMinimumQuery =
-    LazySegmentTree<Monoid::AssignMin<T, max_value>>;
+    LazySegmentTree<Monoid::AssignMin<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
+template<class T, int id = -1>
 using RangeUpdateQueryRangeMaximumQuery =
-    LazySegmentTree<Monoid::AssignMax<T, min_value>>;
+    LazySegmentTree<Monoid::AssignMax<T, id>>;
 
 template<class T>
 using RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;
 
-template<class T, T max_value = infinity<T>::max>
-using RangeAddQueryRangeMinimumQuery =
-    LazySegmentTree<Monoid::AddMin<T, max_value>>;
+template<class T, int id = -1>
+using RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
-using RangeAddQueryRangeMaximumQuery =
-    LazySegmentTree<Monoid::AddMax<T, min_value>>;
+template<class T, int id = -1>
+using RangeAddQueryRangeMaximumQuery = LazySegmentTree<Monoid::AddMax<T, id>>;
 
 template<class T>
 using RangeAddQueryRangeSumQuery = LazySegmentTree<Monoid::AddSum<T>>;
 
-template<class T, T max_value = infinity<T>::max>
+template<class T, int id = -1>
 using RangeChminQueryRangeMinimumQuery =
-    LazySegmentTree<Monoid::ChminMin<T, max_value>>;
+    LazySegmentTree<Monoid::ChminMin<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
+template<class T, int id = -1>
 using RangeChminQueryRangeMaximumQuery =
-    LazySegmentTree<Monoid::ChminMax<T, min_value>>;
+    LazySegmentTree<Monoid::ChminMax<T, id>>;
 
-template<class T, T max_value = infinity<T>::max>
+template<class T, int id = -1>
 using RangeChmaxQueryRangeMinimumQuery =
-    LazySegmentTree<Monoid::ChmaxMin<T, max_value>>;
+    LazySegmentTree<Monoid::ChmaxMin<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
+template<class T, int id = -1>
 using RangeChmaxQueryRangeMaximumQuery =
-    LazySegmentTree<Monoid::ChmaxMax<T, min_value>>;
+    LazySegmentTree<Monoid::ChmaxMax<T, id>>;
 
 /**
  * @brief LazySegmentTree(遅延セグメント木)

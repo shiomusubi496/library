@@ -90,11 +90,11 @@ public:
 };
 
 // verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-template<class T, T max_value = infinity<T>::max>
-using RangeMinimumQuery = SegmentTree<Monoid::Min<T, max_value>>;
+template<class T, int id = -1>
+using RangeMinimumQuery = SegmentTree<Monoid::Min<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
-using RangeMaximumQuery = SegmentTree<Monoid::Max<T, min_value>>;
+template<class T, int id = -1>
+using RangeMaximumQuery = SegmentTree<Monoid::Max<T, id>>;
 
 // verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp
 template<class T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;

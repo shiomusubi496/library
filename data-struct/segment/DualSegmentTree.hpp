@@ -4,11 +4,12 @@
 #include "../../other/monoid.hpp"
 
 template<class A, bool = Monoid::is_semigroup<A>::value> class DualSegmentTree {
-    static_assert(Monoid::is_semigroup<typename A::M>::value,
-                  "M must be semigroup");
+    static_assert(Monoid::has_value_type<typename A::M>::value,
+                  "M must have value_type");
     static_assert(Monoid::is_semigroup<typename A::E>::value,
                   "E must be semigroup");
-    static_assert(Monoid::has_op<A>::value, "A must have op");
+    static_assert(Monoid::has_op<A>::value || Monoid::has_mul_op<A>::value,
+                  "A must have op");
 
 private:
     using M = typename A::M;
@@ -112,10 +113,9 @@ public:
 };
 
 template<class E>
-class DualSegmentTree<E, true>
-    : public DualSegmentTree<Monoid::AttachMonoid<E>> {
+class DualSegmentTree<E, true> : public DualSegmentTree<Monoid::MakeAction<E>> {
 private:
-    using Base = DualSegmentTree<Monoid::AttachMonoid<E>>;
+    using Base = DualSegmentTree<Monoid::MakeAction<E>>;
 
 public:
     using Base::Base;
@@ -127,11 +127,11 @@ template<class T> using RangeUpdateQuery = DualSegmentTree<Monoid::Assign<T>>;
 // verified with test/aoj/DSL/DSL_2_E-RAQ.test.cpp
 template<class T> using RangeAddQuery = DualSegmentTree<Monoid::Sum<T>>;
 
-template<class T, T max_value = infinity<T>::max>
-using RangeChminQuery = DualSegmentTree<Monoid::Min<T, max_value>>;
+template<class T, int id = -1>
+using RangeChminQuery = DualSegmentTree<Monoid::Min<T, id>>;
 
-template<class T, T min_value = infinity<T>::min>
-using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, min_value>>;
+template<class T, int id = -1>
+using RangeChmaxQuery = DualSegmentTree<Monoid::Max<T, id>>;
 
 /**
  * @brief DualSegmentTree(双対セグメント木)

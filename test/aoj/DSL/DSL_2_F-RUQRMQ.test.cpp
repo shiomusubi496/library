@@ -4,7 +4,7 @@
 using namespace std;
 int main() {
     int n, q; scan >> n >> q;
-    RangeUpdateQueryRangeMinimumQuery<int, (1ull << 31) - 1> RUQRMQ(n);
+    RangeUpdateQueryRangeMinimumQuery<int, -2> RUQRMQ(n);
     rep (q) {
         int t; scan >> t;
         if (t == 0) {
