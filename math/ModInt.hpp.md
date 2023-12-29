@@ -132,16 +132,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - icon: ':x:'
@@ -195,6 +195,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/matrix_rank.test.cpp
+    title: test/yosupo/new/matrix_rank.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/pow_of_matrix.test.cpp
+    title: test/yosupo/new/pow_of_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -989,6 +995,8 @@ data:
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/new/pow_of_matrix.test.cpp
+  - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/aoj/DPL/DPL_5_E.test.cpp

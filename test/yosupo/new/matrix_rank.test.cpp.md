@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
+  - icon: ':x:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':question:'
@@ -28,279 +34,19 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LCARMQ.hpp
-    title: LCARMQ
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/BiConnectedComponents.hpp
-    title: "BiConnectedComponents(\u4E8C\u91CD\u9802\u70B9\u9023\u7D50\u6210\u5206\
-      \u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/connected/ConnectedComponents.hpp
-    title: "ConnectedComponents(\u9023\u7D50\u6210\u5206\u5206\u89E3)"
-  - icon: ':question:'
-    path: graph/connected/StronglyConnectedComponents.hpp
-    title: "StronglyConnectedComponents(\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':x:'
-    path: graph/connected/TwoEdgeConnectedComponents.hpp
-    title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
-      )"
-  - icon: ':warning:'
-    path: graph/mst/CountSpanningTree.hpp
-    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':question:'
-    path: graph/mst/Kruskal.hpp
-    title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':x:'
-    path: graph/mst/ManhattanMST.hpp
-    title: Manhattan Minimum Spanning Tree
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/Prim.hpp
-    title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/BipartiteGraph.hpp
-    title: "BipartiteGraph(\u4E8C\u90E8\u30B0\u30E9\u30D5\u5224\u5B9A)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/ChromaticNumber.hpp
-    title: "ChromaticNumber(\u5F69\u8272\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/EnumerateCliques.hpp
-    title: EnumerateCliques
-  - icon: ':heavy_check_mark:'
-    path: graph/other/EnumerateTriangles.hpp
-    title: EnumerateTriangles
-  - icon: ':heavy_check_mark:'
-    path: graph/other/GraphCycle.hpp
-    title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
-  - icon: ':question:'
-    path: graph/other/LowLink.hpp
-    title: "Lowlink(\u95A2\u7BC0\u70B9\u30FB\u6A4B\u691C\u51FA)"
-  - icon: ':x:'
-    path: graph/other/MaximumIndependentSet.hpp
-    title: "MaximumIndependentSet(\u6700\u5927\u72EC\u7ACB\u96C6\u5408)"
-  - icon: ':heavy_check_mark:'
-    path: graph/other/TopologicalSort.hpp
-    title: "TopologicalSort(\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\u30BD\u30FC\u30C8\
-      )"
-  - icon: ':x:'
-    path: graph/other/TwoSatisfiability.hpp
-    title: TwoSatisfiability(2-SAT)
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BellmanFord.hpp
-    title: "Bellman-Ford(\u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/BreadthFirstSearch.hpp
-    title: "BFS(\u5E45\u512A\u5148\u63A2\u7D22)"
-  - icon: ':question:'
-    path: graph/shortest-path/Dijkstra.hpp
-    title: "Dijkstra(\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9\u6CD5)"
-  - icon: ':question:'
-    path: graph/shortest-path/Restore.hpp
-    title: "Restore(\u7D4C\u8DEF\u5FA9\u5143)"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/WarshallFloyd.hpp
-    title: "Warshall-Floyd(\u30EF\u30FC\u30B7\u30E3\u30EB\u30D5\u30ED\u30A4\u30C9\u6CD5\
-      )"
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest-path/ZeroOneBFS.hpp
-    title: ZeroOneBFS(01-BFS)
-  - icon: ':question:'
-    path: graph/tree/CartesianTree.hpp
-    title: CartesianTree
-  - icon: ':question:'
-    path: graph/tree/DoublingLowestCommonAncestor.hpp
-    title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
-      \u308BLCA)"
-  - icon: ':question:'
-    path: graph/tree/EulerTour.hpp
-    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTourSubtree.hpp
-    title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
-      \u6728\u30AF\u30A8\u30EA)"
-  - icon: ':x:'
-    path: graph/tree/FrequencyTableofTreeDistance.hpp
-    title: Frequency Table of Tree Distance
-  - icon: ':question:'
-    path: graph/tree/HeavyLightDecomposition.hpp
-    title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/PMORMQLCA.hpp
-    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':question:'
-    path: graph/tree/ReRooting.hpp
-    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':x:'
-    path: graph/tree/TreeCentroid.hpp
-    title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
-  - icon: ':question:'
-    path: graph/tree/TreeDiameter.hpp
-    title: "TreeDiameter(\u6728\u306E\u76F4\u5F84)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-    title: test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-    title: test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-    title: test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-    title: test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-    title: test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-    title: test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-    title: test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-    title: test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-    title: test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-    title: test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-    title: test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/other/2945-01BFS.test.cpp
-    title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/atcoder/arc099_c-Bipartite.test.cpp
-    title: test/atcoder/arc099_c-Bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-    title: test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-    title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/biconnected_components.test.cpp
-    title: test/yosupo/graph/biconnected_components.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/bipartitematching.test.cpp
-    title: test/yosupo/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/chromatic_number.test.cpp
-    title: test/yosupo/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/cycle_detection.test.cpp
-    title: test/yosupo/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_cliques.test.cpp
-    title: test/yosupo/graph/enumerate_cliques.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/enumerate_triangles.test.cpp
-    title: test/yosupo/graph/enumerate_triangles.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/graph/manhattanmst.test.cpp
-    title: test/yosupo/graph/manhattanmst.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/graph/maximum_independent_set.test.cpp
-    title: test/yosupo/graph/maximum_independent_set.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/graph/shortest_path.test.cpp
-    title: test/yosupo/graph/shortest_path.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/graph/two_edge_connected_components.test.cpp
-    title: test/yosupo/graph/two_edge_connected_components.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/math/two_sat.test.cpp
-    title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/cartesian_tree.test.cpp
-    title: test/yosupo/tree/cartesian_tree.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/jump_on_tree.test.cpp
-    title: test/yosupo/tree/jump_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/lca-HLD.test.cpp
-    title: test/yosupo/tree/lca-HLD.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/tree_diameter.test.cpp
-    title: test/yosupo/tree/tree_diameter.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/tree/tree_path_composite_sum.test.cpp
-    title: test/yosupo/tree/tree_path_composite_sum.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/graph/Graph.md
-    document_title: Graph-template
-    links: []
-  bundledCode: "#line 2 \"graph/Graph.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_rank
+    links:
+    - https://judge.yosupo.jp/problem/matrix_rank
+  bundledCode: "#line 1 \"test/yosupo/new/matrix_rank.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/matrix_rank\"\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -715,88 +461,180 @@ data:
     \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
     \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class T =\
-    \ int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n"
+    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 4 \"math/matrix/Matrix.hpp\"\n\ntemplate<class T> class Matrix : public\
+    \ std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
+    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
+    \  return *this = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n    \
+    \    rep (i, height()) {\n            rep (j, width()) (*this)[i][j] *= s;\n \
+    \       }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
+    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
+    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
+    \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
+    \ lhs;\n    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
+    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
+    \           pivot = j;\n                    break;\n                }\n      \
+    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
+    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
+    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
+    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
+    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
+    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
+    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
+    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
+    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Matrix.md\n */\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
+    \n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"test/yosupo/new/matrix_rank.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nusing matx = Matrix<mint>;\n\
+    int main() {\n    int n, m; scan >> n >> m;\n    matx a(n, m); scan >> a;\n  \
+    \  prints(a.rank());\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_rank\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/matrix/Matrix.hpp\"\
+    \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
+    using matx = Matrix<mint>;\nint main() {\n    int n, m; scan >> n >> m;\n    matx\
+    \ a(n, m); scan >> a;\n    prints(a.rank());\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -807,108 +645,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: graph/Graph.hpp
-  requiredBy:
-  - data-struct/segment/LCARMQ.hpp
-  - graph/other/GraphCycle.hpp
-  - graph/other/TopologicalSort.hpp
-  - graph/other/ChromaticNumber.hpp
-  - graph/other/BipartiteGraph.hpp
-  - graph/other/TwoSatisfiability.hpp
-  - graph/other/EnumerateCliques.hpp
-  - graph/other/MaximumIndependentSet.hpp
-  - graph/other/LowLink.hpp
-  - graph/other/EnumerateTriangles.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/connected/BiConnectedComponents.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/Restore.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/shortest-path/ZeroOneBFS.hpp
-  - graph/shortest-path/BellmanFord.hpp
-  - graph/tree/CartesianTree.hpp
-  - graph/tree/DoublingLowestCommonAncestor.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
-  - graph/tree/EulerTour.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  - graph/tree/ReRooting.hpp
-  - graph/tree/TreeDiameter.hpp
-  - graph/tree/EulerTourSubtree.hpp
-  - graph/tree/TreeCentroid.hpp
-  - graph/mst/Prim.hpp
-  - graph/mst/ManhattanMST.hpp
-  - graph/mst/CountSpanningTree.hpp
-  - graph/mst/Kruskal.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo/math/two_sat.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/tree/jump_on_tree.test.cpp
-  - test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - test/yosupo/tree/cartesian_tree.test.cpp
-  - test/yosupo/tree/lca-HLD.test.cpp
-  - test/yosupo/tree/tree_diameter.test.cpp
-  - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/graph/maximum_independent_set.test.cpp
-  - test/yosupo/graph/enumerate_triangles.test.cpp
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
-  - test/yosupo/graph/shortest_path.test.cpp
-  - test/yosupo/graph/bipartitematching.test.cpp
-  - test/yosupo/graph/chromatic_number.test.cpp
-  - test/yosupo/graph/biconnected_components.test.cpp
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
-  - test/yosupo/graph/cycle_detection.test.cpp
-  - test/aoj/other/2945-01BFS.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
-  - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
-  - test/atcoder/arc099_c-Bipartite.test.cpp
-documentation_of: graph/Graph.hpp
+  - math/matrix/Matrix.hpp
+  - math/ModInt.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/matrix_rank.test.cpp
+  requiredBy: []
+  timestamp: '2023-12-29 22:35:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/new/matrix_rank.test.cpp
 layout: document
 redirect_from:
-- /library/graph/Graph.hpp
-- /library/graph/Graph.hpp.html
-title: Graph-template
+- /verify/test/yosupo/new/matrix_rank.test.cpp
+- /verify/test/yosupo/new/matrix_rank.test.cpp.html
+title: test/yosupo/new/matrix_rank.test.cpp
 ---
-## 概要
-
-グラフの構造体。 `vector<vector<edge<T>>>` を継承している。
-
-- `Graph(int N)` : 頂点数 `N` のグラフを作成する。
-- `int add_edge(int a, int b, bool d = false)` : 頂点 `a` と頂点 `b` の間に辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。
-- `int add_edge(int a, int b, T c, bool d = false)` : 頂点 `a` と頂点 `b` の間にコスト `c` の辺をはる。 `d` が `true` ならば有向辺、 `d` が `false` なら無向辺。何本目の辺かを返す。

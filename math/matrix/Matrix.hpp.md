@@ -54,6 +54,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/matrix_rank.test.cpp
+    title: test/yosupo/new/matrix_rank.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/pow_of_matrix.test.cpp
+    title: test/yosupo/new/pow_of_matrix.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -601,6 +607,8 @@ data:
   - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
+  - test/yosupo/new/pow_of_matrix.test.cpp
+  - test/yosupo/new/matrix_rank.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

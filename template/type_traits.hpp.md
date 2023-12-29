@@ -5,7 +5,7 @@ data:
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/bst/SplayTree.hpp
     title: data-struct/bst/SplayTree.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/MaxRectangle.hpp
     title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/other/Mo.hpp
     title: Mo's Algorithm
   - icon: ':heavy_check_mark:'
@@ -57,16 +57,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/SlopeTrick.hpp
     title: SlopeTrick
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/BinaryIndexedTree.hpp
     title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/CumulativeSum.hpp
     title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DisjointSparseTable.hpp
     title: DisjointSparseTable
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/DualSegmentTree.hpp
     title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -76,35 +76,35 @@ data:
   - icon: ':question:'
     path: data-struct/segment/DynamicSegmentTree.hpp
     title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LazySegmentTree.hpp
     title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LinearRMQ.hpp
     title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
       RMQ)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/NonMergeSegmentTree.hpp
     title: NonMergeSegmentTree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':question:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree2D.hpp
     title: SegmentTree2D
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
   - icon: ':question:'
     path: data-struct/segment/SparseTable.hpp
     title: SparseTable
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
   - icon: ':heavy_check_mark:'
@@ -259,7 +259,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest-path/ZeroOneBFS.hpp
     title: ZeroOneBFS(01-BFS)
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree/CartesianTree.hpp
     title: CartesianTree
   - icon: ':question:'
@@ -269,7 +269,7 @@ data:
   - icon: ':question:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTourSubtree.hpp
     title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
       \u6728\u30AF\u30A8\u30EA)"
@@ -279,7 +279,7 @@ data:
   - icon: ':question:'
     path: graph/tree/HeavyLightDecomposition.hpp
     title: "HeavyLightDecomposition(HL\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree/PMORMQLCA.hpp
     title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
   - icon: ':question:'
@@ -802,31 +802,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
     title: test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
     title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -838,25 +838,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_frequency.test.cpp
     title: test/yosupo/data_structure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - icon: ':heavy_check_mark:'
@@ -865,19 +865,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/unionfind.test.cpp
     title: test/yosupo/data_structure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - icon: ':x:'
@@ -994,6 +994,12 @@ data:
   - icon: ':x:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/matrix_rank.test.cpp
+    title: test/yosupo/new/matrix_rank.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/pow_of_matrix.test.cpp
+    title: test/yosupo/new/pow_of_matrix.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1523,6 +1529,8 @@ data:
   - test/yosupo/tree/lca-HLD.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/new/pow_of_matrix.test.cpp
+  - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
