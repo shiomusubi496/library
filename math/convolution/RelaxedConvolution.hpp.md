@@ -55,12 +55,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/RelaxedConvolution.md
     document_title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\
@@ -961,7 +961,7 @@ data:
   path: math/convolution/RelaxedConvolution.hpp
   requiredBy: []
   timestamp: '2023-12-30 11:30:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
 documentation_of: math/convolution/RelaxedConvolution.hpp
