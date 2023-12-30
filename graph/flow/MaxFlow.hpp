@@ -74,7 +74,7 @@ public:
                 for (int& i = idx[v]; i < (int)(g[v].size()); i++) {
                     auto& e = g[v][i];
                     if (e.cap > T{0} && dist[v] + 1 == dist[e.to]) {
-                        T d = self(e.to, std::min(f, e.cap));
+                        T d = self(e.to, std::min(f - res, e.cap));
                         if (d == T{0}) continue;
                         e.cap -= d;
                         g[e.to][e.rev].cap += d;
