@@ -61,7 +61,8 @@ public:
     T operator[](int k) const { return access(k); }
     int rank(int k, const T& x) const {
         assert(0 <= k && k <= n);
-        int v = ps.get(x);
+        int v = ps.lower_bound(x);
+        if (v == ps.size() || ps[v] != x) return 0;
         rrep (i, h) {
             if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];
             else k = dat[i].rank(false, k);
@@ -71,7 +72,8 @@ public:
     int rank(const T& x) const { return rank(n, x); }
     int rank(int l, int r, const T& x) const {
         assert(0 <= l && l <= r && r <= n);
-        int v = ps.get(x);
+        int v = ps.lower_bound(x);
+        if (v == ps.size() || ps[v] != x) return 0;
         rrep (i, h) {
             if ((v >> i) & 1) {
                 l = dat[i].rank(true, l) + mid[i];

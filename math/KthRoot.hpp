@@ -6,7 +6,7 @@ ull kth_root(ull n, ull k) {
     if (n <= 1 || k == 1) return n;
     if (k >= 65) return 1;
     auto is_over = [&](ull x) -> bool {
-        __uint128_t res = 1, a = x;
+        u128 res = 1, a = x;
         for (int b = k; b; b >>= 1, a *= a) {
             if (b & 1) res *= a;
         }

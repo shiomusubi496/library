@@ -92,8 +92,8 @@ public:
             }
             if (pivot == -1) continue;
             swap((*this)[pivot], (*this)[r]);
-            const T s = (*this)[r][i];
-            rep (j, i, w) (*this)[r][j] /= s;
+            const T s = (*this)[r][i], iv = T{1} / s;
+            rep (j, i, w) (*this)[r][j] *= iv;
             rep (j, h) {
                 if (j == r) continue;
                 const T s = (*this)[j][i];
@@ -106,8 +106,9 @@ public:
     }
     friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss(); }
     int rank(bool is_gaussed = false) const {
-        if (!is_gaussed) return Matrix(*this).gauss().rank(true);
         const int h = height(), w = width();
+        if (!is_gaussed)
+            return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);
         int r = 0;
         rep (i, h) {
             while (r < w && (*this)[i][r] == 0) ++r;

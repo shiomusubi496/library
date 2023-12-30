@@ -12,7 +12,8 @@ private:
 public:
     NonMergeSegmentTree() : NonMergeSegmentTree(0) {}
     NonMergeSegmentTree(int n_) { init(n_); }
-    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n, v)) {}
+    NonMergeSegmentTree(int n, const T& v)
+        : NonMergeSegmentTree(std::vector<T>(n, v)) {}
     NonMergeSegmentTree(const std::vector<T>& v) { init(v); }
     void init(int n_) {
         ori = n_;

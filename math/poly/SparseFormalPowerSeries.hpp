@@ -176,7 +176,7 @@ public:
         if (this->empty()) return FPS(deg);
         int d = (*this)[0].first;
         T a = (*this)[0].second;
-        if ((__int128_t)(d)*k >= deg) return FPS(deg);
+        if ((i128)(d)*k >= deg) return FPS(deg);
         if (k == 1) return fps(deg);
         if (k == 2) return prod_sparse(fps(deg), *this, deg);
         deg -= d * k;

@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "Convolution.hpp"
 
-template<class T>
-class RelaxedConvolution {
+template<class T> class RelaxedConvolution {
 private:
     std::vector<T> a, b;
     std::vector<std::vector<T>> a2, b2;

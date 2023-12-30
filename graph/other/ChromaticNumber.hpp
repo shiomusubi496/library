@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "../Graph.hpp"
 
-template<class T>
-int chromatic_number(const Graph<T>& G) {
+template<class T> int chromatic_number(const Graph<T>& G) {
     const int n = G.size();
     if (n == 0) return 0;
     if (n == 1) return 1;

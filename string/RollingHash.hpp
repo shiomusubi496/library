@@ -43,8 +43,9 @@ public:
             val = v;
         }
     }
-    template<class U, typename std::enable_if<is_signed_int<U>::value &&
-                                              64 < std::numeric_limits<U>::digits>::type* = nullptr>
+    template<class U, typename std::enable_if<
+                          is_signed_int<U>::value &&
+                          64 < std::numeric_limits<U>::digits>::type* = nullptr>
     constexpr modint61(U v) {
         v %= static_cast<ll>(MOD);
         if (v < 0) v += static_cast<ll>(MOD);
@@ -146,7 +147,8 @@ public:
     void init(int n) {
         const int sz = pows.size();
         if (sz <= n) {
-            pows.resize(n + 1); rpows.resize(n + 1);
+            pows.resize(n + 1);
+            rpows.resize(n + 1);
             rep (i, sz, n + 1) pows[i] = pows[i - 1] * BASE;
             rep (i, sz, n + 1) rpows[i] = rpows[i - 1] * RBASE;
         }
@@ -165,7 +167,9 @@ public:
 
     public:
         Hash() = default;
-        template<class Cont> Hash(mint b, const std::vector<mint>& p, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n + 1) {
+        template<class Cont>
+        Hash(mint b, const std::vector<mint>& p, const Cont& str)
+            : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n + 1) {
             hash.assign(n + 1, mint{});
             rep (i, n) hash[i + 1] = hash[i] * BASE + str[i];
         }
@@ -181,15 +185,17 @@ public:
         mint BASE;
         std::vector<mint> pows, rpows;
         BinaryIndexedTree<mint> bit;
-    
+
     public:
         RangeHashQuery() = default;
-        template<class Cont> RangeHashQuery(mint b, const std::vector<mint>& p, const std::vector<mint>& rp, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n + 1), rpows(rp.begin(), rp.begin() + n + 1), bit(n) {
+        template<class Cont>
+        RangeHashQuery(mint b, const std::vector<mint>& p,
+                       const std::vector<mint>& rp, const Cont& str)
+            : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n + 1),
+              rpows(rp.begin(), rp.begin() + n + 1), bit(n) {
             rep (i, n) bit.add(i, str[i] * pows[i]);
         }
-        mint prod(int l, int r) const {
-            return bit.sum(l, r) * rpows[l];
-        }
+        mint prod(int l, int r) const { return bit.sum(l, r) * rpows[l]; }
         mint all_prod() const { return bit.sum(0, n); }
         template<class T> void set(int k, const T& x) {
             bit.set(k, x * pows[k]);

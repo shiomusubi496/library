@@ -324,7 +324,7 @@ public:
             FormalPowerSeries res(deg);
             return res;
         }
-        if ((__int128_t)(d)*k >= deg) {
+        if ((i128)(d)*k >= deg) {
             FormalPowerSeries res(deg);
             return res;
         }

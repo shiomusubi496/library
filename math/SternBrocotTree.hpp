@@ -3,8 +3,7 @@
 #include "../other/template.hpp"
 #include "Rational.hpp"
 
-template<class T>
-class SternBrocotTree {
+template<class T> class SternBrocotTree {
 public:
     using Rat = Rational<T, true>;
 
@@ -38,7 +37,7 @@ public:
         auto px = encode_path(x), py = encode_path(y);
         std::vector<std::pair<char, int>> res;
         rep (i, std::min(px.size(), py.size())) {
-            const auto& a = px[i], b = py[i];
+            const auto &a = px[i], b = py[i];
             if (a.first != b.first) break;
             res.emplace_back(a.first, std::min(a.second, b.second));
             if (a.second != b.second) break;
@@ -63,13 +62,11 @@ public:
         auto px = encode_path(x);
         return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};
     }
-    static Rat next(Rat x, T n) {
-    }
-    template<class Cond>
-    static std::pair<Rat, Rat> max_right(Cond cond, T n) {
+    template<class Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {
         assert(n >= 1);
         auto f = [&](Rat a, Rat b, T x) {
-            return Rat{a.get_num() + x * b.get_num(), a.get_den() + x * b.get_den()};
+            return Rat{a.get_num() + x * b.get_num(),
+                       a.get_den() + x * b.get_den()};
         };
         Rat l = {0, 1}, r = {1, 0}, m = {1, 1};
         if (!cond(l)) return {-1, l};
@@ -79,13 +76,18 @@ public:
                 T ok = 0, ng = 1;
                 while (true) {
                     auto tmp = f(m, r, ng);
-                    if (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) break;
-                    ok = ng; ng <<= 1;
+                    if (std::max(tmp.get_num(), tmp.get_den()) > n ||
+                        !cond(tmp))
+                        break;
+                    ok = ng;
+                    ng <<= 1;
                 }
                 while (ng - ok > 1) {
                     T mid = (ok + ng) >> 1;
                     auto tmp = f(m, r, mid);
-                    if (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) ng = mid;
+                    if (std::max(tmp.get_num(), tmp.get_den()) > n ||
+                        !cond(tmp))
+                        ng = mid;
                     else ok = mid;
                 }
                 l = f(m, r, ok);
@@ -96,13 +98,16 @@ public:
                 T ok = 0, ng = 1;
                 while (true) {
                     auto tmp = f(m, l, ng);
-                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp)) break;
-                    ok = ng; ng <<= 1;
+                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))
+                        break;
+                    ok = ng;
+                    ng <<= 1;
                 }
                 while (ng - ok > 1) {
                     T mid = (ok + ng) >> 1;
                     auto tmp = f(m, l, mid);
-                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp)) ng = mid;
+                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))
+                        ng = mid;
                     else ok = mid;
                 }
                 r = f(m, l, ok);
