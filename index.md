@@ -288,10 +288,10 @@ data:
       title: ZeroOneBFS(01-BFS)
   - name: graph/tree
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/CartesianTree.hpp
       title: CartesianTree
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/DoublingLowestCommonAncestor.hpp
       title: "DoublingLowestCommonAncestor(\u30C0\u30D6\u30EA\u30F3\u30B0\u306B\u3088\
         \u308BLCA)"
@@ -302,7 +302,7 @@ data:
       path: graph/tree/EulerTourSubtree.hpp
       title: "EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\
         \u6728\u30AF\u30A8\u30EA)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/FrequencyTableofTreeDistance.hpp
       title: Frequency Table of Tree Distance
     - icon: ':question:'
@@ -314,7 +314,7 @@ data:
     - icon: ':question:'
       path: graph/tree/ReRooting.hpp
       title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree/TreeCentroid.hpp
       title: "TreeCentroid(\u6728\u306E\u91CD\u5FC3)"
     - icon: ':question:'
@@ -328,10 +328,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/BarrettReduction.hpp
       title: math/BarrettReduction.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: math/ChineseRemainder.hpp
       title: "Chinese Remainder(\u4E2D\u56FD\u5270\u4F59\u5B9A\u7406)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/Combinatorics.hpp
       title: Combinatorics
     - icon: ':heavy_check_mark:'
@@ -365,19 +365,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/MontmortNumber.hpp
       title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/PollardRho.hpp
       title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
     - icon: ':heavy_check_mark:'
       path: math/PrimeFactor.hpp
       title: "PrimeFactor(\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/PrimitiveRoot.hpp
       title: "PrimitiveRoot(\u539F\u59CB\u6839)"
     - icon: ':heavy_check_mark:'
       path: math/Rational.hpp
       title: "Rational(\u6709\u7406\u6570\u578B)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/SqrtMod.hpp
       title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
     - icon: ':heavy_check_mark:'
@@ -401,7 +401,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/convolution/BitwiseXorConvolution.hpp
       title: BitwiseXorConvolution
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/convolution/Convolution.hpp
       title: "Convolution(\u7573\u307F\u8FBC\u307F)"
     - icon: ':heavy_check_mark:'
@@ -452,7 +452,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/BostanMori.hpp
       title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/FormalPowerSeries.hpp
       title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
     - icon: ':heavy_check_mark:'
@@ -461,14 +461,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/poly/PolynomialInterpolation.hpp
       title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/SamplingPointsShift.hpp
       title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/SparseFormalPowerSeries.hpp
       title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
         )"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/poly/TaylorShift.hpp
       title: TaylorShift
   - name: other
@@ -484,7 +484,7 @@ data:
       title: other/template.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/Random.hpp
       title: Random
     - icon: ':heavy_check_mark:'
@@ -496,10 +496,10 @@ data:
       path: string/LongestIncreasingSubsequence.hpp
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/LyndonFactorization.hpp
       title: Lyndon Factorization
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/Manacher.hpp
       title: "Manacher's Algortihm(\u6700\u9577\u56DE\u6587\u9577\u691C\u51FA)"
     - icon: ':heavy_check_mark:'
@@ -508,7 +508,7 @@ data:
     - icon: ':question:'
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/ZAlgorithm.hpp
       title: Z-Algorithm
   - name: template
@@ -1127,55 +1127,55 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
       title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
       title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
       title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
       title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
       title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   - name: test/yosupo/sample
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/aplusb.test.cpp
       title: test/yosupo/sample/aplusb.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/sample/many_aplusb.test.cpp
       title: test/yosupo/sample/many_aplusb.test.cpp
   - name: test/yosupo/string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/enumerate_palindromes.test.cpp
       title: test/yosupo/string/enumerate_palindromes.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/lyndon_factorization.test.cpp
       title: test/yosupo/string/lyndon_factorization.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp
   - name: test/yosupo/tree
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/cartesian_tree.test.cpp
       title: test/yosupo/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
       title: test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/tree/jump_on_tree.test.cpp
       title: test/yosupo/tree/jump_on_tree.test.cpp
     - icon: ':x:'

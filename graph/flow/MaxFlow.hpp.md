@@ -487,14 +487,14 @@ data:
     \                if (v == t) return f;\n                T res = 0;\n         \
     \       for (int& i = idx[v]; i < (int)(g[v].size()); i++) {\n               \
     \     auto& e = g[v][i];\n                    if (e.cap > T{0} && dist[v] + 1\
-    \ == dist[e.to]) {\n                        T d = self(e.to, std::min(f, e.cap));\n\
-    \                        if (d == T{0}) continue;\n                        e.cap\
-    \ -= d;\n                        g[e.to][e.rev].cap += d;\n                  \
-    \      res += d;\n                        if (res == f) return res;\n        \
-    \            }\n                }\n                return res;\n            })(s,\
-    \ flow_limit - res);\n            if (f == T{0}) break;\n            res += f;\n\
-    \        }\n        return res;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\
-    \u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
+    \ == dist[e.to]) {\n                        T d = self(e.to, std::min(f - res,\
+    \ e.cap));\n                        if (d == T{0}) continue;\n               \
+    \         e.cap -= d;\n                        g[e.to][e.rev].cap += d;\n    \
+    \                    res += d;\n                        if (res == f) return res;\n\
+    \                    }\n                }\n                return res;\n     \
+    \       })(s, flow_limit - res);\n            if (f == T{0}) break;\n        \
+    \    res += f;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\
+    \u5927\u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
     \ class MaxFlow {\nprivate:\n    struct edge_ {\n        int to, rev;\n      \
     \  T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>> g;\n    std::vector<std::pair<int,\
@@ -526,8 +526,8 @@ data:
     \      T res = 0;\n                for (int& i = idx[v]; i < (int)(g[v].size());\
     \ i++) {\n                    auto& e = g[v][i];\n                    if (e.cap\
     \ > T{0} && dist[v] + 1 == dist[e.to]) {\n                        T d = self(e.to,\
-    \ std::min(f, e.cap));\n                        if (d == T{0}) continue;\n   \
-    \                     e.cap -= d;\n                        g[e.to][e.rev].cap\
+    \ std::min(f - res, e.cap));\n                        if (d == T{0}) continue;\n\
+    \                        e.cap -= d;\n                        g[e.to][e.rev].cap\
     \ += d;\n                        res += d;\n                        if (res ==\
     \ f) return res;\n                    }\n                }\n                return\
     \ res;\n            })(s, flow_limit - res);\n            if (f == T{0}) break;\n\
@@ -546,7 +546,7 @@ data:
   isVerificationFile: false
   path: graph/flow/MaxFlow.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 22:53:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/bipartitematching.test.cpp

@@ -30,12 +30,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/lyndon_factorization.test.cpp
     title: test/yosupo/string/lyndon_factorization.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/string/LyndonFactorization.md
     document_title: Lyndon Factorization
@@ -492,7 +492,7 @@ data:
   path: string/LyndonFactorization.hpp
   requiredBy: []
   timestamp: '2023-12-30 00:30:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/string/lyndon_factorization.test.cpp
 documentation_of: string/LyndonFactorization.hpp
