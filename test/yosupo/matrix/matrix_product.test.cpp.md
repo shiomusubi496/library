@@ -615,22 +615,22 @@ data:
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
     \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
-    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
-    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
-    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
-    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
-    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
-    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Matrix.md\n */\n#line 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nusing Mat = Matrix<mint>;\n\
-    int main() {\n    int N, M, K; scan >> N >> M >> K;\n    Mat A(N, M); scan >>\
-    \ A;\n    Mat B(M, K); scan >> B;\n    Mat C = A * B;\n    each_const (v : C)\
-    \ print << v << endl;\n}\n"
+    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
+    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
+    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
+    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
+    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ 5 \"test/yosupo/matrix/matrix_product.test.cpp\"\nusing namespace std;\nusing\
+    \ mint = modint998244353;\nusing Mat = Matrix<mint>;\nint main() {\n    int N,\
+    \ M, K; scan >> N >> M >> K;\n    Mat A(N, M); scan >> A;\n    Mat B(M, K); scan\
+    \ >> B;\n    Mat C = A * B;\n    each_const (v : C) print << v << endl;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
     \ \"../../../math/matrix/Matrix.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
@@ -652,7 +652,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/matrix/matrix_product.test.cpp

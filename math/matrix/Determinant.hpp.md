@@ -500,30 +500,31 @@ data:
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
     \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
-    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
-    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
-    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
-    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
-    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
-    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Determinant.hpp\"\n\n\
-    template<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
-    \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
-    \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
-    \ {\n                if (mat[j][i] != 0) {\n                    swap(mat[i], mat[j]);\n\
-    \                    res = -res;\n                    break;\n               \
-    \ }\n            }\n        }\n        if (mat[i][i] == 0) {\n            return\
-    \ T{0};\n        }\n        {\n            const T s = mat[i][i];\n          \
-    \  res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n        rep (j,\
-    \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
-    \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rep\
-    \ (i, n) res *= mat[i][i];\n    return res;\n}\n\n/**\n * @brief Determinant(\u884C\
-    \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n"
+    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
+    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
+    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
+    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
+    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
+    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    if\
+    \ (n == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i]\
+    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
+    \ {\n                    swap(mat[i], mat[j]);\n                    res = -res;\n\
+    \                    break;\n                }\n            }\n        }\n   \
+    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        {\n\
+    \            const T s = mat[i][i];\n            res *= s;\n            rep (j,\
+    \ n) mat[i][j] /= s;\n        }\n        rep (j, n) {\n            if (j == i)\
+    \ continue;\n            const T s = mat[j][i];\n            rep (k, n) mat[j][k]\
+    \ -= mat[i][k] * s;\n        }\n    }\n    rep (i, n) res *= mat[i][i];\n    return\
+    \ res;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
@@ -552,7 +553,7 @@ data:
   path: math/matrix/Determinant.hpp
   requiredBy:
   - graph/mst/CountSpanningTree.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/matrix_det.test.cpp

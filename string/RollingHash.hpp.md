@@ -624,8 +624,8 @@ data:
     \                       64>::type* = nullptr>\n    constexpr modint61(U v) {\n\
     \        if (v >= 0) val = calc_mod(v);\n        else {\n            v %= static_cast<ll>(MOD);\n\
     \            if (v < 0) v += static_cast<ll>(MOD);\n            val = v;\n   \
-    \     }\n    }\n    template<class U, typename std::enable_if<is_signed_int<U>::value\
-    \ &&\n                                              64 < std::numeric_limits<U>::digits>::type*\
+    \     }\n    }\n    template<class U, typename std::enable_if<\n             \
+    \             is_signed_int<U>::value &&\n                          64 < std::numeric_limits<U>::digits>::type*\
     \ = nullptr>\n    constexpr modint61(U v) {\n        v %= static_cast<ll>(MOD);\n\
     \        if (v < 0) v += static_cast<ll>(MOD);\n        val = v;\n    }\n    template<class\
     \ U, typename std::enable_if<is_unsigned_int<U>::value &&\n                  \
@@ -666,35 +666,36 @@ data:
     \ {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n    using\
     \ mint = modint61;\n    std::vector<mint> pows, rpows;\n\npublic:\n    void init(int\
     \ n) {\n        const int sz = pows.size();\n        if (sz <= n) {\n        \
-    \    pows.resize(n + 1); rpows.resize(n + 1);\n            rep (i, sz, n + 1)\
-    \ pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i] = rpows[i\
-    \ - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
+    \    pows.resize(n + 1);\n            rpows.resize(n + 1);\n            rep (i,\
+    \ sz, n + 1) pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i]\
+    \ = rpows[i - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
     \ {\n        BASE = mint::raw((1ull << 31) + (rand32() & MASK31));\n        RBASE\
     \ = BASE.inv();\n    }\n\n    class Hash {\n    private:\n        int n;\n   \
     \     mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n     \
-    \   Hash() = default;\n        template<class Cont> Hash(mint b, const std::vector<mint>&\
-    \ p, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n\
-    \ + 1) {\n            hash.assign(n + 1, mint{});\n            rep (i, n) hash[i\
-    \ + 1] = hash[i] * BASE + str[i];\n        }\n        mint prod(int l, int r)\
-    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
-    \ hash[r] - hash[l] * pows[r - l];\n        }\n        mint all_prod() const {\
-    \ return hash[n]; }\n    };\n    class RangeHashQuery {\n    private:\n      \
-    \  int n;\n        mint BASE;\n        std::vector<mint> pows, rpows;\n      \
-    \  BinaryIndexedTree<mint> bit;\n    \n    public:\n        RangeHashQuery() =\
-    \ default;\n        template<class Cont> RangeHashQuery(mint b, const std::vector<mint>&\
-    \ p, const std::vector<mint>& rp, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(),\
-    \ p.begin() + n + 1), rpows(rp.begin(), rp.begin() + n + 1), bit(n) {\n      \
-    \      rep (i, n) bit.add(i, str[i] * pows[i]);\n        }\n        mint prod(int\
-    \ l, int r) const {\n            return bit.sum(l, r) * rpows[l];\n        }\n\
-    \        mint all_prod() const { return bit.sum(0, n); }\n        template<class\
-    \ T> void set(int k, const T& x) {\n            bit.set(k, x * pows[k]);\n   \
-    \     }\n    };\n    RollingHash() {\n        set_base();\n        pows.assign(1,\
-    \ mint::raw(1));\n        rpows.assign(1, mint::raw(1));\n    }\n    template<class\
-    \ Cont> Hash get_hash(const Cont& str) {\n        init(str.size() + 1);\n    \
-    \    return Hash(BASE, pows, str);\n    }\n    template<class Cont> RangeHashQuery\
-    \ get_range_hash(const Cont& str) {\n        init(str.size() + 1);\n        return\
-    \ RangeHashQuery(BASE, pows, rpows, str);\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\
-    \u30EA\u30CF)\n * @docs docs/string/RollingHash.md\n */\n"
+    \   Hash() = default;\n        template<class Cont>\n        Hash(mint b, const\
+    \ std::vector<mint>& p, const Cont& str)\n            : n(str.size()), BASE(b),\
+    \ pows(p.begin(), p.begin() + n + 1) {\n            hash.assign(n + 1, mint{});\n\
+    \            rep (i, n) hash[i + 1] = hash[i] * BASE + str[i];\n        }\n  \
+    \      mint prod(int l, int r) const {\n            assert(0 <= l && l <= r &&\
+    \ r <= n);\n            return hash[r] - hash[l] * pows[r - l];\n        }\n \
+    \       mint all_prod() const { return hash[n]; }\n    };\n    class RangeHashQuery\
+    \ {\n    private:\n        int n;\n        mint BASE;\n        std::vector<mint>\
+    \ pows, rpows;\n        BinaryIndexedTree<mint> bit;\n\n    public:\n        RangeHashQuery()\
+    \ = default;\n        template<class Cont>\n        RangeHashQuery(mint b, const\
+    \ std::vector<mint>& p,\n                       const std::vector<mint>& rp, const\
+    \ Cont& str)\n            : n(str.size()), BASE(b), pows(p.begin(), p.begin()\
+    \ + n + 1),\n              rpows(rp.begin(), rp.begin() + n + 1), bit(n) {\n \
+    \           rep (i, n) bit.add(i, str[i] * pows[i]);\n        }\n        mint\
+    \ prod(int l, int r) const { return bit.sum(l, r) * rpows[l]; }\n        mint\
+    \ all_prod() const { return bit.sum(0, n); }\n        template<class T> void set(int\
+    \ k, const T& x) {\n            bit.set(k, x * pows[k]);\n        }\n    };\n\
+    \    RollingHash() {\n        set_base();\n        pows.assign(1, mint::raw(1));\n\
+    \        rpows.assign(1, mint::raw(1));\n    }\n    template<class Cont> Hash\
+    \ get_hash(const Cont& str) {\n        init(str.size() + 1);\n        return Hash(BASE,\
+    \ pows, str);\n    }\n    template<class Cont> RangeHashQuery get_range_hash(const\
+    \ Cont& str) {\n        init(str.size() + 1);\n        return RangeHashQuery(BASE,\
+    \ pows, rpows, str);\n    }\n};\n\n/**\n * @brief RollingHash(\u30ED\u30EA\u30CF\
+    )\n * @docs docs/string/RollingHash.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"../random/Random.hpp\"\
     \n#include \"../data-struct/segment/BinaryIndexedTree.hpp\"\n\nclass modint61\
     \ {\nprivate:\n    ull val;\n    static constexpr ull MOD = (1ull << 61) - 1;\n\
@@ -713,69 +714,70 @@ data:
     \                                   64>::type* = nullptr>\n    constexpr modint61(U\
     \ v) {\n        if (v >= 0) val = calc_mod(v);\n        else {\n            v\
     \ %= static_cast<ll>(MOD);\n            if (v < 0) v += static_cast<ll>(MOD);\n\
-    \            val = v;\n        }\n    }\n    template<class U, typename std::enable_if<is_signed_int<U>::value\
-    \ &&\n                                              64 < std::numeric_limits<U>::digits>::type*\
-    \ = nullptr>\n    constexpr modint61(U v) {\n        v %= static_cast<ll>(MOD);\n\
-    \        if (v < 0) v += static_cast<ll>(MOD);\n        val = v;\n    }\n    template<class\
-    \ U, typename std::enable_if<is_unsigned_int<U>::value &&\n                  \
-    \                            std::numeric_limits<U>::digits <=\n             \
-    \                                     64>::type* = nullptr>\n    constexpr modint61(U\
-    \ v) : val(calc_mod(v)) {}\n    template<class U, typename std::enable_if<\n \
-    \                         is_unsigned_int<U>::value &&\n                     \
-    \     64 < std::numeric_limits<U>::digits>::type* = nullptr>\n    constexpr modint61(U\
-    \ v) : val(v % MOD) {}\n    ull get() const { return val; }\n    static constexpr\
-    \ ull get_mod() { return MOD; }\n    static modint61 raw(ull x) {\n        modint61\
-    \ res;\n        res.val = x;\n        return res;\n    }\n    modint61& operator++()\
-    \ {\n        ++val;\n        if (val == MOD) val = 0;\n        return *this;\n\
-    \    }\n    modint61 operator++(int) {\n        modint61 res = *this;\n      \
-    \  ++*this;\n        return res;\n    }\n    modint61& operator--() {\n      \
-    \  if (val == 0) val = MOD;\n        --val;\n        return *this;\n    }\n  \
-    \  modint61 operator--(int) {\n        modint61 res = *this;\n        --*this;\n\
-    \        return res;\n    }\n    modint61& operator+=(const modint61& other) {\n\
-    \        val += other.val;\n        if (val >= MOD) val -= MOD;\n        return\
-    \ *this;\n    }\n    modint61& operator-=(const modint61& other) {\n        if\
-    \ (val < other.val) val += MOD;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    modint61& operator*=(const modint61& other) {\n        val = calc_multi(val,\
-    \ other.val);\n        return *this;\n    }\n    modint61 pow(ll n) const {\n\
-    \        modint61 res = raw(1), x = *this;\n        while (n > 0) {\n        \
-    \    if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n       \
-    \ }\n        return res;\n    }\n    modint61 inv() const { return pow(MOD - 2);\
-    \ }\n    modint61& operator/=(const modint61& other) {\n        *this *= other.inv();\n\
-    \        return *this;\n    }\n    modint61 operator+(const modint61& other) const\
-    \ {\n        return modint61(*this) += other;\n    }\n    modint61 operator-(const\
-    \ modint61& other) const {\n        return modint61(*this) -= other;\n    }\n\
-    \    modint61 operator*(const modint61& other) const {\n        return modint61(*this)\
-    \ *= other;\n    }\n    modint61 operator/(const modint61& other) const {\n  \
-    \      return modint61(*this) /= other;\n    }\n    modint61 operator+() const\
-    \ { return *this; }\n    modint61 operator-() const { return modint61() - *this;\
-    \ }\n    friend bool operator==(const modint61& lhs, const modint61& rhs) {\n\
-    \        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const modint61&\
-    \ lhs, const modint61& rhs) {\n        return lhs.val != rhs.val;\n    }\n   \
-    \ template<class Pr> void debug(Pr& a) const { a.print(val); }\n};\n\nclass RollingHash\
-    \ {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n    using\
-    \ mint = modint61;\n    std::vector<mint> pows, rpows;\n\npublic:\n    void init(int\
-    \ n) {\n        const int sz = pows.size();\n        if (sz <= n) {\n        \
-    \    pows.resize(n + 1); rpows.resize(n + 1);\n            rep (i, sz, n + 1)\
-    \ pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i] = rpows[i\
-    \ - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
-    \ {\n        BASE = mint::raw((1ull << 31) + (rand32() & MASK31));\n        RBASE\
-    \ = BASE.inv();\n    }\n\n    class Hash {\n    private:\n        int n;\n   \
-    \     mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n     \
-    \   Hash() = default;\n        template<class Cont> Hash(mint b, const std::vector<mint>&\
-    \ p, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n\
-    \ + 1) {\n            hash.assign(n + 1, mint{});\n            rep (i, n) hash[i\
-    \ + 1] = hash[i] * BASE + str[i];\n        }\n        mint prod(int l, int r)\
-    \ const {\n            assert(0 <= l && l <= r && r <= n);\n            return\
-    \ hash[r] - hash[l] * pows[r - l];\n        }\n        mint all_prod() const {\
-    \ return hash[n]; }\n    };\n    class RangeHashQuery {\n    private:\n      \
-    \  int n;\n        mint BASE;\n        std::vector<mint> pows, rpows;\n      \
-    \  BinaryIndexedTree<mint> bit;\n    \n    public:\n        RangeHashQuery() =\
-    \ default;\n        template<class Cont> RangeHashQuery(mint b, const std::vector<mint>&\
-    \ p, const std::vector<mint>& rp, const Cont& str) : n(str.size()), BASE(b), pows(p.begin(),\
-    \ p.begin() + n + 1), rpows(rp.begin(), rp.begin() + n + 1), bit(n) {\n      \
-    \      rep (i, n) bit.add(i, str[i] * pows[i]);\n        }\n        mint prod(int\
-    \ l, int r) const {\n            return bit.sum(l, r) * rpows[l];\n        }\n\
-    \        mint all_prod() const { return bit.sum(0, n); }\n        template<class\
+    \            val = v;\n        }\n    }\n    template<class U, typename std::enable_if<\n\
+    \                          is_signed_int<U>::value &&\n                      \
+    \    64 < std::numeric_limits<U>::digits>::type* = nullptr>\n    constexpr modint61(U\
+    \ v) {\n        v %= static_cast<ll>(MOD);\n        if (v < 0) v += static_cast<ll>(MOD);\n\
+    \        val = v;\n    }\n    template<class U, typename std::enable_if<is_unsigned_int<U>::value\
+    \ &&\n                                              std::numeric_limits<U>::digits\
+    \ <=\n                                                  64>::type* = nullptr>\n\
+    \    constexpr modint61(U v) : val(calc_mod(v)) {}\n    template<class U, typename\
+    \ std::enable_if<\n                          is_unsigned_int<U>::value &&\n  \
+    \                        64 < std::numeric_limits<U>::digits>::type* = nullptr>\n\
+    \    constexpr modint61(U v) : val(v % MOD) {}\n    ull get() const { return val;\
+    \ }\n    static constexpr ull get_mod() { return MOD; }\n    static modint61 raw(ull\
+    \ x) {\n        modint61 res;\n        res.val = x;\n        return res;\n   \
+    \ }\n    modint61& operator++() {\n        ++val;\n        if (val == MOD) val\
+    \ = 0;\n        return *this;\n    }\n    modint61 operator++(int) {\n       \
+    \ modint61 res = *this;\n        ++*this;\n        return res;\n    }\n    modint61&\
+    \ operator--() {\n        if (val == 0) val = MOD;\n        --val;\n        return\
+    \ *this;\n    }\n    modint61 operator--(int) {\n        modint61 res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    modint61& operator+=(const\
+    \ modint61& other) {\n        val += other.val;\n        if (val >= MOD) val -=\
+    \ MOD;\n        return *this;\n    }\n    modint61& operator-=(const modint61&\
+    \ other) {\n        if (val < other.val) val += MOD;\n        val -= other.val;\n\
+    \        return *this;\n    }\n    modint61& operator*=(const modint61& other)\
+    \ {\n        val = calc_multi(val, other.val);\n        return *this;\n    }\n\
+    \    modint61 pow(ll n) const {\n        modint61 res = raw(1), x = *this;\n \
+    \       while (n > 0) {\n            if (n & 1) res *= x;\n            x *= x;\n\
+    \            n >>= 1;\n        }\n        return res;\n    }\n    modint61 inv()\
+    \ const { return pow(MOD - 2); }\n    modint61& operator/=(const modint61& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    modint61\
+    \ operator+(const modint61& other) const {\n        return modint61(*this) +=\
+    \ other;\n    }\n    modint61 operator-(const modint61& other) const {\n     \
+    \   return modint61(*this) -= other;\n    }\n    modint61 operator*(const modint61&\
+    \ other) const {\n        return modint61(*this) *= other;\n    }\n    modint61\
+    \ operator/(const modint61& other) const {\n        return modint61(*this) /=\
+    \ other;\n    }\n    modint61 operator+() const { return *this; }\n    modint61\
+    \ operator-() const { return modint61() - *this; }\n    friend bool operator==(const\
+    \ modint61& lhs, const modint61& rhs) {\n        return lhs.val == rhs.val;\n\
+    \    }\n    friend bool operator!=(const modint61& lhs, const modint61& rhs) {\n\
+    \        return lhs.val != rhs.val;\n    }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n};\n\nclass RollingHash {\nprivate:\n    static\
+    \ constexpr ull MASK31 = (1ull << 31) - 1;\n    using mint = modint61;\n    std::vector<mint>\
+    \ pows, rpows;\n\npublic:\n    void init(int n) {\n        const int sz = pows.size();\n\
+    \        if (sz <= n) {\n            pows.resize(n + 1);\n            rpows.resize(n\
+    \ + 1);\n            rep (i, sz, n + 1) pows[i] = pows[i - 1] * BASE;\n      \
+    \      rep (i, sz, n + 1) rpows[i] = rpows[i - 1] * RBASE;\n        }\n    }\n\
+    \    mint BASE, RBASE;\n    void set_base() {\n        BASE = mint::raw((1ull\
+    \ << 31) + (rand32() & MASK31));\n        RBASE = BASE.inv();\n    }\n\n    class\
+    \ Hash {\n    private:\n        int n;\n        mint BASE;\n        std::vector<mint>\
+    \ hash, pows;\n\n    public:\n        Hash() = default;\n        template<class\
+    \ Cont>\n        Hash(mint b, const std::vector<mint>& p, const Cont& str)\n \
+    \           : n(str.size()), BASE(b), pows(p.begin(), p.begin() + n + 1) {\n \
+    \           hash.assign(n + 1, mint{});\n            rep (i, n) hash[i + 1] =\
+    \ hash[i] * BASE + str[i];\n        }\n        mint prod(int l, int r) const {\n\
+    \            assert(0 <= l && l <= r && r <= n);\n            return hash[r] -\
+    \ hash[l] * pows[r - l];\n        }\n        mint all_prod() const { return hash[n];\
+    \ }\n    };\n    class RangeHashQuery {\n    private:\n        int n;\n      \
+    \  mint BASE;\n        std::vector<mint> pows, rpows;\n        BinaryIndexedTree<mint>\
+    \ bit;\n\n    public:\n        RangeHashQuery() = default;\n        template<class\
+    \ Cont>\n        RangeHashQuery(mint b, const std::vector<mint>& p,\n        \
+    \               const std::vector<mint>& rp, const Cont& str)\n            : n(str.size()),\
+    \ BASE(b), pows(p.begin(), p.begin() + n + 1),\n              rpows(rp.begin(),\
+    \ rp.begin() + n + 1), bit(n) {\n            rep (i, n) bit.add(i, str[i] * pows[i]);\n\
+    \        }\n        mint prod(int l, int r) const { return bit.sum(l, r) * rpows[l];\
+    \ }\n        mint all_prod() const { return bit.sum(0, n); }\n        template<class\
     \ T> void set(int k, const T& x) {\n            bit.set(k, x * pows[k]);\n   \
     \     }\n    };\n    RollingHash() {\n        set_base();\n        pows.assign(1,\
     \ mint::raw(1));\n        rpows.assign(1, mint::raw(1));\n    }\n    template<class\
@@ -800,7 +802,7 @@ data:
   isVerificationFile: false
   path: string/RollingHash.hpp
   requiredBy: []
-  timestamp: '2023-12-30 00:30:26+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

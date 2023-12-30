@@ -871,8 +871,8 @@ data:
     }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
     template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
     \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
-    \ */\n#line 5 \"math/convolution/RelaxedConvolution.hpp\"\n\ntemplate<class T>\n\
-    class RelaxedConvolution {\nprivate:\n    std::vector<T> a, b;\n    std::vector<std::vector<T>>\
+    \ */\n#line 5 \"math/convolution/RelaxedConvolution.hpp\"\n\ntemplate<class T>\
+    \ class RelaxedConvolution {\nprivate:\n    std::vector<T> a, b;\n    std::vector<std::vector<T>>\
     \ a2, b2;\n    std::vector<T> c;\n\npublic:\n    RelaxedConvolution() = default;\n\
     \    RelaxedConvolution(int n) {\n        a.reserve(n);\n        b.reserve(n);\n\
     \        c.reserve(2 * n);\n    }\n\n    T next(T x, T y) {\n        const int\
@@ -906,7 +906,7 @@ data:
     )\n * @docs docs/math/convolution/RelaxedConvolution.md\n * @see https://qiita.com/Kiri8128/items/1738d5403764a0e26b4c\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Convolution.hpp\"\
-    \n\ntemplate<class T>\nclass RelaxedConvolution {\nprivate:\n    std::vector<T>\
+    \n\ntemplate<class T> class RelaxedConvolution {\nprivate:\n    std::vector<T>\
     \ a, b;\n    std::vector<std::vector<T>> a2, b2;\n    std::vector<T> c;\n\npublic:\n\
     \    RelaxedConvolution() = default;\n    RelaxedConvolution(int n) {\n      \
     \  a.reserve(n);\n        b.reserve(n);\n        c.reserve(2 * n);\n    }\n\n\
@@ -960,7 +960,7 @@ data:
   isVerificationFile: false
   path: math/convolution/RelaxedConvolution.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp

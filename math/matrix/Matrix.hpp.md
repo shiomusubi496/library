@@ -521,18 +521,18 @@ data:
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
     \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
-    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
-    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
-    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
-    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
-    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
-    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Matrix.md\n */\n"
+    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
+    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
+    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
+    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
+    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
     \ class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using Base\
     \ = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n    Matrix(int\
@@ -571,18 +571,18 @@ data:
     \ r, h) {\n                if ((*this)[j][i] != 0) {\n                    pivot\
     \ = j;\n                    break;\n                }\n            }\n       \
     \     if (pivot == -1) continue;\n            swap((*this)[pivot], (*this)[r]);\n\
-    \            const T s = (*this)[r][i];\n            rep (j, i, w) (*this)[r][j]\
-    \ /= s;\n            rep (j, h) {\n                if (j == r) continue;\n   \
-    \             const T s = (*this)[j][i];\n                if (s == 0) continue;\n\
-    \                rep (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;\n         \
-    \   }\n            ++r;\n        }\n        return *this;\n    }\n    friend Matrix\
-    \ gauss(const Matrix& mat) { return Matrix(mat).gauss(); }\n    int rank(bool\
-    \ is_gaussed = false) const {\n        if (!is_gaussed) return Matrix(*this).gauss().rank(true);\n\
-    \        const int h = height(), w = width();\n        int r = 0;\n        rep\
-    \ (i, h) {\n            while (r < w && (*this)[i][r] == 0) ++r;\n           \
-    \ if (r == w) return i;\n            ++r;\n        }\n        return h;\n    }\n\
-    };\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n\
-    \ */\n"
+    \            const T s = (*this)[r][i], iv = T{1} / s;\n            rep (j, i,\
+    \ w) (*this)[r][j] *= iv;\n            rep (j, h) {\n                if (j ==\
+    \ r) continue;\n                const T s = (*this)[j][i];\n                if\
+    \ (s == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
+    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
+    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -600,7 +600,7 @@ data:
   - math/matrix/Inverse.hpp
   - math/matrix/Determinant.hpp
   - graph/mst/CountSpanningTree.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/matrix_product.test.cpp
@@ -624,7 +624,12 @@ title: "Matrix(\u884C\u5217)"
 - `Matrix(int h, int w, T v)` : 初期値 `v` で行列を作成する。 $\Theta(hw)$ 。
 - `int height()` : 行数を返す。 $\Theta(1)$ 。
 - `int width()` : 列数を返す。 $\Theta(1)$ 。
-- `Matrix get_id(int n)` : `n` 行 `n` 列の単位行列を返す。 $\Theta(n^2)$ 。
+- `bool is_square()` : 正方行列かを返す。 $hw=0$ の場合に注意。 $\Theta(1)$ 。
+- `Matrix pow(int b)` : べき乗を返す。行列積を $\Theta(\log b)$ 回行う。
+- `Matrix transpose()` : 転置を返す。 $\Theta(hw)$ 。
+- `Matrix& gauss()` : ガウスの消去法を行う。 $\Theta(hw^2)$ 。
+- `int rank()` : 階数を返す。 $\Theta(hw\min(h,w))$ 。
+- `Matrix get_identity(int n)` : `n` 行 `n` 列の単位行列を返す。 $\Theta(n^2)$ 。
 
 さらに以下の演算が動く。
 

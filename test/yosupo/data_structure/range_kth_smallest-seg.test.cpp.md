@@ -557,7 +557,7 @@ data:
     \n\ntemplate<class M> class NonMergeSegmentTree {\nprivate:\n    using T = typename\
     \ M::value_type;\n    int n, ori;\n    std::vector<T> data;\n\npublic:\n    NonMergeSegmentTree()\
     \ : NonMergeSegmentTree(0) {}\n    NonMergeSegmentTree(int n_) { init(n_); }\n\
-    \    NonMergeSegmentTree(int n, const T& v) : NonMergeSegmentTree(std::vector<T>(n,\
+    \    NonMergeSegmentTree(int n, const T& v)\n        : NonMergeSegmentTree(std::vector<T>(n,\
     \ v)) {}\n    NonMergeSegmentTree(const std::vector<T>& v) { init(v); }\n    void\
     \ init(int n_) {\n        ori = n_;\n        n = 1 << bitop::ceil_log2(ori);\n\
     \        data.assign(n << 1, M::id());\n    }\n    void init(const std::vector<T>&\
@@ -658,7 +658,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 22:13:05+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp

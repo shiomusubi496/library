@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
@@ -1160,15 +1160,15 @@ data:
     \ int d = -1;\n        rep (i, this->size()) {\n            if ((*this)[i] !=\
     \ 0) {\n                a = (*this)[i];\n                d = i;\n            \
     \    break;\n            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        if ((__int128_t)(d)*k\
-    \ >= deg) {\n            FormalPowerSeries res(deg);\n            return res;\n\
-    \        }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >>\
-    \ d) / a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d\
-    \ * k;\n        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const\
-    \ {\n        if (deg == -1) deg = this->size();\n        T a;\n        int d =\
-    \ -1;\n        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n \
-    \               a = (*this)[i];\n                d = i;\n                break;\n\
-    \            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
+    \ res(deg);\n            return res;\n        }\n        if ((i128)(d)*k >= deg)\
+    \ {\n            FormalPowerSeries res(deg);\n            return res;\n      \
+    \  }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >> d) /\
+    \ a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d * k;\n\
+    \        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const {\n\
+    \        if (deg == -1) deg = this->size();\n        T a;\n        int d = -1;\n\
+    \        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n       \
+    \         a = (*this)[i];\n                d = i;\n                break;\n  \
+    \          }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        if (d & 1) return {};\n\
     \        deg -= (d >> 1);\n        if (deg <= 0) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        FormalPowerSeries f =\
@@ -1332,15 +1332,15 @@ data:
     \ int d = -1;\n        rep (i, this->size()) {\n            if ((*this)[i] !=\
     \ 0) {\n                a = (*this)[i];\n                d = i;\n            \
     \    break;\n            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        if ((__int128_t)(d)*k\
-    \ >= deg) {\n            FormalPowerSeries res(deg);\n            return res;\n\
-    \        }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >>\
-    \ d) / a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d\
-    \ * k;\n        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const\
-    \ {\n        if (deg == -1) deg = this->size();\n        T a;\n        int d =\
-    \ -1;\n        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n \
-    \               a = (*this)[i];\n                d = i;\n                break;\n\
-    \            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
+    \ res(deg);\n            return res;\n        }\n        if ((i128)(d)*k >= deg)\
+    \ {\n            FormalPowerSeries res(deg);\n            return res;\n      \
+    \  }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >> d) /\
+    \ a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d * k;\n\
+    \        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const {\n\
+    \        if (deg == -1) deg = this->size();\n        T a;\n        int d = -1;\n\
+    \        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n       \
+    \         a = (*this)[i];\n                d = i;\n                break;\n  \
+    \          }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        if (d & 1) return {};\n\
     \        deg -= (d >> 1);\n        if (deg <= 0) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        FormalPowerSeries f =\
@@ -1385,7 +1385,7 @@ data:
   - math/poly/SamplingPointsShift.hpp
   - math/poly/MultipointEvaluation.hpp
   - math/poly/TaylorShift.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/math/bernoulli_number.test.cpp

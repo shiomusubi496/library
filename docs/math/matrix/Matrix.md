@@ -6,7 +6,12 @@
 - `Matrix(int h, int w, T v)` : 初期値 `v` で行列を作成する。 $\Theta(hw)$ 。
 - `int height()` : 行数を返す。 $\Theta(1)$ 。
 - `int width()` : 列数を返す。 $\Theta(1)$ 。
-- `Matrix get_id(int n)` : `n` 行 `n` 列の単位行列を返す。 $\Theta(n^2)$ 。
+- `bool is_square()` : 正方行列かを返す。 $hw=0$ の場合に注意。 $\Theta(1)$ 。
+- `Matrix pow(int b)` : べき乗を返す。行列積を $\Theta(\log b)$ 回行う。
+- `Matrix transpose()` : 転置を返す。 $\Theta(hw)$ 。
+- `Matrix& gauss()` : ガウスの消去法を行う。 $\Theta(hw^2)$ 。
+- `int rank()` : 階数を返す。 $\Theta(hw\min(h,w))$ 。
+- `Matrix get_identity(int n)` : `n` 行 `n` 列の単位行列を返す。 $\Theta(n^2)$ 。
 
 さらに以下の演算が動く。
 

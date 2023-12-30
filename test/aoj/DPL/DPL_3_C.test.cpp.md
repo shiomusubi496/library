@@ -462,18 +462,18 @@ data:
     \n\n#line 4 \"data-struct/other/MaxRectangle.hpp\"\n\ntemplate<class F>\nvoid\
     \ max_rectangle_of_histogram(const std::vector<int>& A, const F& f) {\n    const\
     \ int N = A.size();\n    std::stack<int> st;\n    rep (i, N) {\n        while\
-    \ (!st.empty() && A[st.top()] >= A[i]) {\n            int j = st.top(); st.pop();\n\
-    \            int k = st.empty() ? 0 : st.top() + 1;\n            f(k, i, A[j]);\n\
-    \        }\n        st.push(i);\n    }\n    while (!st.empty()) {\n        int\
-    \ j = st.top(); st.pop();\n        int k = st.empty() ? 0 : st.top() + 1;\n  \
-    \      f(k, N, A[j]);\n    }\n}\n\ntemplate<class F>\nvoid max_rectangle(const\
-    \ std::vector<std::vector<bool>>& A, const F& f) {\n    if (A.empty() || A[0].empty())\
-    \ return;\n    int H = A.size(), W = A[0].size();\n    std::vector<std::vector<int>>\
-    \ B(H, std::vector<int>(W));\n    rrep (i, H) rep (j, W) {\n        B[i][j] =\
-    \ i == H - 1 ? 1 : B[i + 1][j] + 1;\n        if (A[i][j]) B[i][j] = 0;\n    }\n\
-    \    rep (i, H) {\n        max_rectangle_of_histogram(B[i], [&](int l, int r,\
-    \ int h) {\n            f(i, l, i + h, r);\n        });\n    }\n}\n\n/**\n * @brief\
-    \ MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)\n * @docs docs/data-struct/other/MaxRectangle.md\n\
+    \ (!st.empty() && A[st.top()] >= A[i]) {\n            int j = st.top();\n    \
+    \        st.pop();\n            int k = st.empty() ? 0 : st.top() + 1;\n     \
+    \       f(k, i, A[j]);\n        }\n        st.push(i);\n    }\n    while (!st.empty())\
+    \ {\n        int j = st.top();\n        st.pop();\n        int k = st.empty()\
+    \ ? 0 : st.top() + 1;\n        f(k, N, A[j]);\n    }\n}\n\ntemplate<class F>\n\
+    void max_rectangle(const std::vector<std::vector<bool>>& A, const F& f) {\n  \
+    \  if (A.empty() || A[0].empty()) return;\n    int H = A.size(), W = A[0].size();\n\
+    \    std::vector<std::vector<int>> B(H, std::vector<int>(W));\n    rrep (i, H)\n\
+    \        rep (j, W) {\n            B[i][j] = i == H - 1 ? 1 : B[i + 1][j] + 1;\n\
+    \            if (A[i][j]) B[i][j] = 0;\n        }\n    rep (i, H) {\n        max_rectangle_of_histogram(\n\
+    \            B[i], [&](int l, int r, int h) { f(i, l, i + h, r); });\n    }\n\
+    }\n\n/**\n * @brief MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)\n * @docs docs/data-struct/other/MaxRectangle.md\n\
     \ */\n#line 4 \"test/aoj/DPL/DPL_3_C.test.cpp\"\nusing namespace std;\nint main()\
     \ {\n    int N; scan >> N;\n    vector<int> A(N); scan >> A;\n    ll ans = 0;\n\
     \    max_rectangle_of_histogram(A, [&](int l, int r, int h) {\n        ans = max(ans,\
@@ -498,7 +498,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_3_C.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_3_C.test.cpp

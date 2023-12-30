@@ -709,7 +709,7 @@ data:
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/bst/SplayTree.hpp\"\
-    \n\n#line 5 \"data-struct/bst/SplayTree.hpp\"\n\ntemplate<class A>\nclass SplayTree\
+    \n\n#line 5 \"data-struct/bst/SplayTree.hpp\"\n\ntemplate<class A> class SplayTree\
     \ {\nprivate:\n    using M = typename A::M;\n    using E = typename A::E;\n  \
     \  using T = typename M::value_type;\n    using U = typename E::value_type;\n\
     \    struct node;\n    using node_ptr = node*;\n    struct node {\n        T v,\
@@ -860,7 +860,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 22:13:05+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp

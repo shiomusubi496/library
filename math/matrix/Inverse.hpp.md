@@ -497,33 +497,33 @@ data:
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
     \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
-    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
-    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
-    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
-    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
-    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
-    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Matrix.md\n */\n#line 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class\
-    \ T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n    const\
-    \ int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n * 2, T{0});\n\
-    \        mat[i][n + i] = T{1};\n    }\n    rep (i, n) {\n        if (mat[i][i]\
-    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
-    \ {\n                    swap(mat[i], mat[j]);\n                    break;\n \
-    \               }\n            }\n        }\n        if (mat[i][i] == 0) {\n \
-    \           return Matrix<T>{};\n        }\n        {\n            const T s =\
-    \ mat[i][i];\n            rep (j, n * 2) mat[i][j] /= s;\n        }\n        rep\
-    \ (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep (k, n *\
-    \ 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rrep (i, n) {\n      \
-    \  rep (j, i) {\n            const T s = mat[j][i];\n            rep (k, n, n\
-    \ * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    Matrix<T> res(n, n);\n\
-    \    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return\
-    \ res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n\
-    \ */\n"
+    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
+    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
+    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
+    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
+    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class T> Matrix<T> inverse(Matrix<T>\
+    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    rep\
+    \ (i, n) {\n        mat[i].resize(n * 2, T{0});\n        mat[i][n + i] = T{1};\n\
+    \    }\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i\
+    \ + 1, n) {\n                if (mat[j][i] != 0) {\n                    swap(mat[i],\
+    \ mat[j]);\n                    break;\n                }\n            }\n   \
+    \     }\n        if (mat[i][i] == 0) {\n            return Matrix<T>{};\n    \
+    \    }\n        {\n            const T s = mat[i][i];\n            rep (j, n *\
+    \ 2) mat[i][j] /= s;\n        }\n        rep (j, i + 1, n) {\n            const\
+    \ T s = mat[j][i];\n            rep (k, n * 2) mat[j][k] -= mat[i][k] * s;\n \
+    \       }\n    }\n    rrep (i, n) {\n        rep (j, i) {\n            const T\
+    \ s = mat[j][i];\n            rep (k, n, n * 2) mat[j][k] -= mat[i][k] * s;\n\
+    \        }\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n        rep (j,\
+    \ n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\
+    \u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
@@ -554,7 +554,7 @@ data:
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp

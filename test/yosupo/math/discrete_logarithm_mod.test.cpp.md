@@ -597,21 +597,21 @@ data:
     \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
     };\n\n} // namespace Monoid\n#line 2 \"math/KthRoot.hpp\"\n\n#line 4 \"math/KthRoot.hpp\"\
     \n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1) return n;\n    if\
-    \ (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        __uint128_t\
-    \ res = 1, a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n           \
-    \ if (b & 1) res *= a;\n        }\n        return res > n;\n    };\n    ll res\
-    \ = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res))\
-    \ --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs\
-    \ docs/math/KthRoot.md\n */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4\
-    \ \"math/BarrettReduction.hpp\"\n\nclass BarrettReduction {\nprivate:\n    unsigned\
-    \ int m;\n    unsigned long long im;\n\npublic:\n    BarrettReduction(unsigned\
-    \ int m_)\n        : m(m_), im((unsigned long long)(-1) / m + 1) {}\n\n    inline\
-    \ void set_mod(unsigned int m_) {\n        m = m_;\n        im = (unsigned long\
-    \ long)(-1) / m + 1;\n    }\n\n    inline unsigned int get_mod() const { return\
-    \ m; }\n\n    unsigned int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ (k >= 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        u128 res\
+    \ = 1, a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n            if (b\
+    \ & 1) res *= a;\n        }\n        return res > n;\n    };\n    ll res = pow(n,\
+    \ 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n\
+    \    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n\
+    \ */\n#line 2 \"math/BarrettReduction.hpp\"\n\n#line 4 \"math/BarrettReduction.hpp\"\
+    \n\nclass BarrettReduction {\nprivate:\n    unsigned int m;\n    unsigned long\
+    \ long im;\n\npublic:\n    BarrettReduction(unsigned int m_)\n        : m(m_),\
+    \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
+    \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
+    \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
+    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
-    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
@@ -717,7 +717,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/discrete_logarithm_mod.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 22:13:05+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/discrete_logarithm_mod.test.cpp

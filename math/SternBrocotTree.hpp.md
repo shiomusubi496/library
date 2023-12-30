@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':question:'
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/SternBrocotTree.md
     document_title: Stern-Brocot Tree
@@ -514,7 +514,7 @@ data:
     \ abs(const Rational<T>& x) {\n    return Rational<T>(abs(x.get_num()), x.get_den());\n\
     }\n\n} // namespace std\n\nusing Fraction = Rational<ll>;\n\n/**\n * @brief Rational(\u6709\
     \u7406\u6570\u578B)\n * @docs docs/math/Rational.md\n */\n#line 5 \"math/SternBrocotTree.hpp\"\
-    \n\ntemplate<class T>\nclass SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
+    \n\ntemplate<class T> class SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
     \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
     \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
     \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
@@ -528,7 +528,7 @@ data:
     \ * p.second;\n            else b += a * p.second;\n        }\n        return\
     \ Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x),\
     \ py = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n     \
-    \   rep (i, std::min(px.size(), py.size())) {\n            const auto& a = px[i],\
+    \   rep (i, std::min(px.size(), py.size())) {\n            const auto &a = px[i],\
     \ b = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
     \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
     \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
@@ -538,35 +538,37 @@ data:
     \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
     \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
     \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
-    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    static\
-    \ Rat next(Rat x, T n) {\n    }\n    template<class Cond>\n    static std::pair<Rat,\
-    \ Rat> max_right(Cond cond, T n) {\n        assert(n >= 1);\n        auto f =\
-    \ [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num() + x * b.get_num(),\
-    \ a.get_den() + x * b.get_den()};\n        };\n        Rat l = {0, 1}, r = {1,\
-    \ 0}, m = {1, 1};\n        if (!cond(l)) return {-1, l};\n        bool flag =\
-    \ cond(m);\n        while (true) {\n            if (flag) {\n                T\
-    \ ok = 0, ng = 1;\n                while (true) {\n                    auto tmp\
-    \ = f(m, r, ng);\n                    if (std::max(tmp.get_num(), tmp.get_den())\
-    \ > n || !cond(tmp)) break;\n                    ok = ng; ng <<= 1;\n        \
-    \        }\n                while (ng - ok > 1) {\n                    T mid =\
-    \ (ok + ng) >> 1;\n                    auto tmp = f(m, r, mid);\n            \
-    \        if (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) ng = mid;\n\
+    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    template<class\
+    \ Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {\n        assert(n\
+    \ >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num()\
+    \ + x * b.get_num(),\n                       a.get_den() + x * b.get_den()};\n\
+    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
+    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
+    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
+    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
+    \ (std::max(tmp.get_num(), tmp.get_den()) > n ||\n                        !cond(tmp))\n\
+    \                        break;\n                    ok = ng;\n              \
+    \      ng <<= 1;\n                }\n                while (ng - ok > 1) {\n \
+    \                   T mid = (ok + ng) >> 1;\n                    auto tmp = f(m,\
+    \ r, mid);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n\
+    \ ||\n                        !cond(tmp))\n                        ng = mid;\n\
     \                    else ok = mid;\n                }\n                l = f(m,\
     \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
     \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
     \          T ok = 0, ng = 1;\n                while (true) {\n               \
     \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp)) break;\n                    ok = ng; ng <<=\
-    \ 1;\n                }\n                while (ng - ok > 1) {\n             \
-    \       T mid = (ok + ng) >> 1;\n                    auto tmp = f(m, l, mid);\n\
-    \                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\
-    \ ng = mid;\n                    else ok = mid;\n                }\n         \
-    \       r = f(m, l, ok);\n                m = f(m, l, ng);\n                if\
-    \ (std::max(m.get_num(), m.get_den()) > n) return {l, r};\n            }\n   \
-    \         flag = !flag;\n        }\n        return {-1, -1};\n    }\n};\n\n/**\n\
-    \ * @brief Stern-Brocot Tree\n * @docs docs/math/SternBrocotTree.md\n */\n"
+    \ tmp.get_den()) > n || cond(tmp))\n                        break;\n         \
+    \           ok = ng;\n                    ng <<= 1;\n                }\n     \
+    \           while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
+    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n || cond(tmp))\n                        ng = mid;\n      \
+    \              else ok = mid;\n                }\n                r = f(m, l,\
+    \ ok);\n                m = f(m, l, ng);\n                if (std::max(m.get_num(),\
+    \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
+    \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
+    \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"Rational.hpp\"\
-    \n\ntemplate<class T>\nclass SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
+    \n\ntemplate<class T> class SternBrocotTree {\npublic:\n    using Rat = Rational<T,\
     \ true>;\n\n    static std::vector<std::pair<char, int>> encode_path(Rat x) {\n\
     \        std::vector<std::pair<char, int>> res;\n        T a = x.get_num(), b\
     \ = x.get_den();\n        while (a != 1 || b != 1) {\n            if (a > b) {\n\
@@ -580,7 +582,7 @@ data:
     \ * p.second;\n            else b += a * p.second;\n        }\n        return\
     \ Rat(a, b);\n    }\n    static Rat lca(Rat x, Rat y) {\n        auto px = encode_path(x),\
     \ py = encode_path(y);\n        std::vector<std::pair<char, int>> res;\n     \
-    \   rep (i, std::min(px.size(), py.size())) {\n            const auto& a = px[i],\
+    \   rep (i, std::min(px.size(), py.size())) {\n            const auto &a = px[i],\
     \ b = py[i];\n            if (a.first != b.first) break;\n            res.emplace_back(a.first,\
     \ std::min(a.second, b.second));\n            if (a.second != b.second) break;\n\
     \        }\n        return decode_path(res);\n    }\n    static Rat ancestor(Rat\
@@ -590,33 +592,35 @@ data:
     \ + i + 1, px.end());\n                return decode_path(px);\n            }\n\
     \            k -= a.second;\n        }\n        return -1;\n    }\n    static\
     \ std::pair<Rat, Rat> range(Rat x) {\n        auto px = encode_path(x);\n    \
-    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    static\
-    \ Rat next(Rat x, T n) {\n    }\n    template<class Cond>\n    static std::pair<Rat,\
-    \ Rat> max_right(Cond cond, T n) {\n        assert(n >= 1);\n        auto f =\
-    \ [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num() + x * b.get_num(),\
-    \ a.get_den() + x * b.get_den()};\n        };\n        Rat l = {0, 1}, r = {1,\
-    \ 0}, m = {1, 1};\n        if (!cond(l)) return {-1, l};\n        bool flag =\
-    \ cond(m);\n        while (true) {\n            if (flag) {\n                T\
-    \ ok = 0, ng = 1;\n                while (true) {\n                    auto tmp\
-    \ = f(m, r, ng);\n                    if (std::max(tmp.get_num(), tmp.get_den())\
-    \ > n || !cond(tmp)) break;\n                    ok = ng; ng <<= 1;\n        \
-    \        }\n                while (ng - ok > 1) {\n                    T mid =\
-    \ (ok + ng) >> 1;\n                    auto tmp = f(m, r, mid);\n            \
-    \        if (std::max(tmp.get_num(), tmp.get_den()) > n || !cond(tmp)) ng = mid;\n\
+    \    return {decode_path(px, {0, 1}), decode_path(px, {1, 0})};\n    }\n    template<class\
+    \ Cond> static std::pair<Rat, Rat> max_right(Cond cond, T n) {\n        assert(n\
+    \ >= 1);\n        auto f = [&](Rat a, Rat b, T x) {\n            return Rat{a.get_num()\
+    \ + x * b.get_num(),\n                       a.get_den() + x * b.get_den()};\n\
+    \        };\n        Rat l = {0, 1}, r = {1, 0}, m = {1, 1};\n        if (!cond(l))\
+    \ return {-1, l};\n        bool flag = cond(m);\n        while (true) {\n    \
+    \        if (flag) {\n                T ok = 0, ng = 1;\n                while\
+    \ (true) {\n                    auto tmp = f(m, r, ng);\n                    if\
+    \ (std::max(tmp.get_num(), tmp.get_den()) > n ||\n                        !cond(tmp))\n\
+    \                        break;\n                    ok = ng;\n              \
+    \      ng <<= 1;\n                }\n                while (ng - ok > 1) {\n \
+    \                   T mid = (ok + ng) >> 1;\n                    auto tmp = f(m,\
+    \ r, mid);\n                    if (std::max(tmp.get_num(), tmp.get_den()) > n\
+    \ ||\n                        !cond(tmp))\n                        ng = mid;\n\
     \                    else ok = mid;\n                }\n                l = f(m,\
     \ r, ok);\n                m = f(m, r, ng);\n                if (std::max(m.get_num(),\
     \ m.get_den()) > n) return {l, r};\n            }\n            else {\n      \
     \          T ok = 0, ng = 1;\n                while (true) {\n               \
     \     auto tmp = f(m, l, ng);\n                    if (std::max(tmp.get_num(),\
-    \ tmp.get_den()) > n || cond(tmp)) break;\n                    ok = ng; ng <<=\
-    \ 1;\n                }\n                while (ng - ok > 1) {\n             \
-    \       T mid = (ok + ng) >> 1;\n                    auto tmp = f(m, l, mid);\n\
-    \                    if (std::max(tmp.get_num(), tmp.get_den()) > n || cond(tmp))\
-    \ ng = mid;\n                    else ok = mid;\n                }\n         \
-    \       r = f(m, l, ok);\n                m = f(m, l, ng);\n                if\
-    \ (std::max(m.get_num(), m.get_den()) > n) return {l, r};\n            }\n   \
-    \         flag = !flag;\n        }\n        return {-1, -1};\n    }\n};\n\n/**\n\
-    \ * @brief Stern-Brocot Tree\n * @docs docs/math/SternBrocotTree.md\n */\n"
+    \ tmp.get_den()) > n || cond(tmp))\n                        break;\n         \
+    \           ok = ng;\n                    ng <<= 1;\n                }\n     \
+    \           while (ng - ok > 1) {\n                    T mid = (ok + ng) >> 1;\n\
+    \                    auto tmp = f(m, l, mid);\n                    if (std::max(tmp.get_num(),\
+    \ tmp.get_den()) > n || cond(tmp))\n                        ng = mid;\n      \
+    \              else ok = mid;\n                }\n                r = f(m, l,\
+    \ ok);\n                m = f(m, l, ng);\n                if (std::max(m.get_num(),\
+    \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
+    \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
+    \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -631,8 +635,8 @@ data:
   isVerificationFile: false
   path: math/SternBrocotTree.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2023-12-30 11:30:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp

@@ -472,10 +472,10 @@ data:
     \ im((unsigned long long)(-1) / m + 1) {}\n\n    inline void set_mod(unsigned\
     \ int m_) {\n        m = m_;\n        im = (unsigned long long)(-1) / m + 1;\n\
     \    }\n\n    inline unsigned int get_mod() const { return m; }\n\n    unsigned\
-    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ int reduce(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
-    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
@@ -530,10 +530,10 @@ data:
     \ / m + 1) {}\n\n    inline void set_mod(unsigned int m_) {\n        m = m_;\n\
     \        im = (unsigned long long)(-1) / m + 1;\n    }\n\n    inline unsigned\
     \ int get_mod() const { return m; }\n\n    unsigned int reduce(ull a) const {\n\
-    \        ull x = static_cast<ull>((static_cast<__uint128_t>(a) * im) >> 64);\n\
-    \        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
+    \        ull x = static_cast<ull>((static_cast<u128>(a) * im) >> 64);\n      \
+    \  unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? v + m : v;\n    }\n\n    unsigned int rem(ull a) const\
-    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<__uint128_t>(a)\
+    \ { return reduce(a); }\n\n    ull quo(ull a) const {\n        ull x = static_cast<ull>((static_cast<u128>(a)\
     \ * im) >> 64);\n        unsigned int v = static_cast<unsigned int>(a - x * static_cast<ull>(m));\n\
     \        return v >= m ? x - 1 : x;\n    }\n\n    unsigned int mul(unsigned int\
     \ a, unsigned int b) const {\n        return reduce(static_cast<ull>(a) * b);\n\
@@ -597,7 +597,7 @@ data:
   requiredBy:
   - math/ArbitraryModCombinatorics.hpp
   - math/DiscreteLogarithm.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/binomial_coefficient.test.cpp

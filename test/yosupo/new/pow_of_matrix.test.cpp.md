@@ -499,28 +499,29 @@ data:
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
     \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i];\n            rep (j, i,\
-    \ w) (*this)[r][j] /= s;\n            rep (j, h) {\n                if (j == r)\
-    \ continue;\n                const T s = (*this)[j][i];\n                if (s\
-    \ == 0) continue;\n                rep (k, i, w) (*this)[j][k] -= (*this)[r][k]\
-    \ * s;\n            }\n            ++r;\n        }\n        return *this;\n  \
-    \  }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        if (!is_gaussed) return\
-    \ Matrix(*this).gauss().rank(true);\n        const int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\n/**\n * @brief Matrix(\u884C\u5217)\n * @docs\
-    \ docs/math/matrix/Matrix.md\n */\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
-    \n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
+    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
+    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
+    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
+    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
+    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T\
+    \ mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value, \"\
+    T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must\
+    \ be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n   \
+    \ static_assert(mod <= std::numeric_limits<T>::max() / 2,\n                  \"\
+    mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using large_t\
+    \ = typename double_size_uint<T>::type;\n    using signed_t = typename std::make_signed<T>::type;\n\
+    \    T val;\n    static constexpr unsigned int inv1000000007[] = {\n        0,\
+    \         1,         500000004, 333333336, 250000002, 400000003,\n        166666668,\
+    \ 142857144, 125000001, 111111112, 700000005};\n    static constexpr unsigned\
+    \ int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
     \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
     \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
     \            typename std::enable_if<std::is_integral<U>::value &&\n         \
@@ -650,7 +651,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/pow_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 22:35:48+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/new/pow_of_matrix.test.cpp

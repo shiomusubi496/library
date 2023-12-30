@@ -461,9 +461,9 @@ data:
     \ data() && { return std::move(dat); }\n};\n#line 2 \"math/KthRoot.hpp\"\n\n#line\
     \ 4 \"math/KthRoot.hpp\"\n\null kth_root(ull n, ull k) {\n    if (n <= 1 || k\
     \ == 1) return n;\n    if (k >= 65) return 1;\n    auto is_over = [&](ull x) ->\
-    \ bool {\n        __uint128_t res = 1, a = x;\n        for (int b = k; b; b >>=\
-    \ 1, a *= a) {\n            if (b & 1) res *= a;\n        }\n        return res\
-    \ > n;\n    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n\
+    \ bool {\n        u128 res = 1, a = x;\n        for (int b = k; b; b >>= 1, a\
+    \ *= a) {\n            if (b & 1) res *= a;\n        }\n        return res > n;\n\
+    \    };\n    ll res = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n\
     \    while (is_over(res)) --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\
     \u6839)\n * @docs docs/math/KthRoot.md\n */\n#line 4 \"test/yosupo/math/kth_root_integer.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
@@ -488,7 +488,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/kth_root_integer.test.cpp

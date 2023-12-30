@@ -464,18 +464,18 @@ data:
     \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
     \ data() && { return std::move(dat); }\n};\n#line 4 \"math/KthRoot.hpp\"\n\null\
     \ kth_root(ull n, ull k) {\n    if (n <= 1 || k == 1) return n;\n    if (k >=\
-    \ 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        __uint128_t\
-    \ res = 1, a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n           \
-    \ if (b & 1) res *= a;\n        }\n        return res > n;\n    };\n    ll res\
-    \ = pow(n, 1.0 / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res))\
-    \ --res;\n    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs\
-    \ docs/math/KthRoot.md\n */\n"
+    \ 65) return 1;\n    auto is_over = [&](ull x) -> bool {\n        u128 res = 1,\
+    \ a = x;\n        for (int b = k; b; b >>= 1, a *= a) {\n            if (b & 1)\
+    \ res *= a;\n        }\n        return res > n;\n    };\n    ll res = pow(n, 1.0\
+    \ / k);\n    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n\
+    \    return res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n\
+    \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\null kth_root(ull n,\
     \ ull k) {\n    if (n <= 1 || k == 1) return n;\n    if (k >= 65) return 1;\n\
-    \    auto is_over = [&](ull x) -> bool {\n        __uint128_t res = 1, a = x;\n\
-    \        for (int b = k; b; b >>= 1, a *= a) {\n            if (b & 1) res *=\
-    \ a;\n        }\n        return res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n\
-    \    while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n    return\
+    \    auto is_over = [&](ull x) -> bool {\n        u128 res = 1, a = x;\n     \
+    \   for (int b = k; b; b >>= 1, a *= a) {\n            if (b & 1) res *= a;\n\
+    \        }\n        return res > n;\n    };\n    ll res = pow(n, 1.0 / k);\n \
+    \   while (!is_over(res + 1)) ++res;\n    while (is_over(res)) --res;\n    return\
     \ res;\n}\n\n/**\n * @brief KthRoot(k\u4E57\u6839)\n * @docs docs/math/KthRoot.md\n\
     \ */\n"
   dependsOn:
@@ -492,7 +492,7 @@ data:
   path: math/KthRoot.hpp
   requiredBy:
   - math/DiscreteLogarithm.hpp
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/kth_root_integer.test.cpp

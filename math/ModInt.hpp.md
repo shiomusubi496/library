@@ -174,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'

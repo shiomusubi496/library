@@ -1068,15 +1068,15 @@ data:
     \ int d = -1;\n        rep (i, this->size()) {\n            if ((*this)[i] !=\
     \ 0) {\n                a = (*this)[i];\n                d = i;\n            \
     \    break;\n            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
-    \ res(deg);\n            return res;\n        }\n        if ((__int128_t)(d)*k\
-    \ >= deg) {\n            FormalPowerSeries res(deg);\n            return res;\n\
-    \        }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >>\
-    \ d) / a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d\
-    \ * k;\n        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const\
-    \ {\n        if (deg == -1) deg = this->size();\n        T a;\n        int d =\
-    \ -1;\n        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n \
-    \               a = (*this)[i];\n                d = i;\n                break;\n\
-    \            }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
+    \ res(deg);\n            return res;\n        }\n        if ((i128)(d)*k >= deg)\
+    \ {\n            FormalPowerSeries res(deg);\n            return res;\n      \
+    \  }\n        deg -= d * k;\n        FormalPowerSeries res = (((*this >> d) /\
+    \ a).log(deg) * k).exp(deg);\n        res *= a.pow(k);\n        res <<= d * k;\n\
+    \        return res;\n    }\n    FormalPowerSeries sqrt(int deg = -1) const {\n\
+    \        if (deg == -1) deg = this->size();\n        T a;\n        int d = -1;\n\
+    \        rep (i, this->size()) {\n            if ((*this)[i] != 0) {\n       \
+    \         a = (*this)[i];\n                d = i;\n                break;\n  \
+    \          }\n        }\n        if (d == -1) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        if (d & 1) return {};\n\
     \        deg -= (d >> 1);\n        if (deg <= 0) {\n            FormalPowerSeries\
     \ res(deg);\n            return res;\n        }\n        FormalPowerSeries f =\
@@ -1091,7 +1091,7 @@ data:
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 2 \"math/convolution/RelaxedConvolution.hpp\"\n\n#line 5 \"math/convolution/RelaxedConvolution.hpp\"\
-    \n\ntemplate<class T>\nclass RelaxedConvolution {\nprivate:\n    std::vector<T>\
+    \n\ntemplate<class T> class RelaxedConvolution {\nprivate:\n    std::vector<T>\
     \ a, b;\n    std::vector<std::vector<T>> a2, b2;\n    std::vector<T> c;\n\npublic:\n\
     \    RelaxedConvolution() = default;\n    RelaxedConvolution(int n) {\n      \
     \  a.reserve(n);\n        b.reserve(n);\n        c.reserve(2 * n);\n    }\n\n\
@@ -1164,7 +1164,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp

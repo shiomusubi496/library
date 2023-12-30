@@ -495,29 +495,31 @@ data:
     \ k) + mid[i];\n            }\n            else {\n                k = dat[i].rank(false,\
     \ k);\n            }\n        }\n        return ps[res];\n    }\n    T operator[](int\
     \ k) const { return access(k); }\n    int rank(int k, const T& x) const {\n  \
-    \      assert(0 <= k && k <= n);\n        int v = ps.get(x);\n        rrep (i,\
-    \ h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n   \
-    \         else k = dat[i].rank(false, k);\n        }\n        return k - start[v];\n\
-    \    }\n    int rank(const T& x) const { return rank(n, x); }\n    int rank(int\
-    \ l, int r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
-    \ 1) {\n                l = dat[i].rank(true, l) + mid[i];\n                r\
-    \ = dat[i].rank(true, r) + mid[i];\n            }\n            else {\n      \
-    \          l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
-    \ r);\n            }\n        }\n        return r - l;\n    }\n    int select(const\
-    \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
-    \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
-    \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
-    \ k);\n        }\n        return k;\n    }\n    T kth_smallest(int l, int r, int\
-    \ k) const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <=\
-    \ k && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
-    \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
-    \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
-    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
-    \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
+    \      assert(0 <= k && k <= n);\n        int v = ps.lower_bound(x);\n       \
+    \ if (v == ps.size() || ps[v] != x) return 0;\n        rrep (i, h) {\n       \
+    \     if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n            else k\
+    \ = dat[i].rank(false, k);\n        }\n        return k - start[v];\n    }\n \
+    \   int rank(const T& x) const { return rank(n, x); }\n    int rank(int l, int\
+    \ r, const T& x) const {\n        assert(0 <= l && l <= r && r <= n);\n      \
+    \  int v = ps.lower_bound(x);\n        if (v == ps.size() || ps[v] != x) return\
+    \ 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) {\n               \
+    \ l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true, r)\
+    \ + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
     \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
-    \        return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const\
-    \ {\n        return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
+    \        return r - l;\n    }\n    int select(const T& x, int k) const {\n   \
+    \     assert(0 <= k && k < rank(x));\n        int v = ps.get(x);\n        k +=\
+    \ start[v];\n        rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true,\
+    \ k - mid[i]);\n            else k = dat[i].select(false, k);\n        }\n   \
+    \     return k;\n    }\n    T kth_smallest(int l, int r, int k) const {\n    \
+    \    assert(0 <= l && l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n\
+    \        int res = 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false,\
+    \ r) - dat[i].rank(false, l);\n            if (cnt <= k) {\n                res\
+    \ |= (1ull << i);\n                l = dat[i].rank(true, l) + mid[i];\n      \
+    \          r = dat[i].rank(true, r) + mid[i];\n                k -= cnt;\n   \
+    \         }\n            else {\n                l = dat[i].rank(false, l);\n\
+    \                r = dat[i].rank(false, r);\n            }\n        }\n      \
+    \  return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const {\n  \
+    \      return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
     \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
     \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
     \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
@@ -557,45 +559,46 @@ data:
     \ else {\n                k = dat[i].rank(false, k);\n            }\n        }\n\
     \        return ps[res];\n    }\n    T operator[](int k) const { return access(k);\
     \ }\n    int rank(int k, const T& x) const {\n        assert(0 <= k && k <= n);\n\
-    \        int v = ps.get(x);\n        rrep (i, h) {\n            if ((v >> i) &\
-    \ 1) k = dat[i].rank(true, k) + mid[i];\n            else k = dat[i].rank(false,\
-    \ k);\n        }\n        return k - start[v];\n    }\n    int rank(const T& x)\
-    \ const { return rank(n, x); }\n    int rank(int l, int r, const T& x) const {\n\
-    \        assert(0 <= l && l <= r && r <= n);\n        int v = ps.get(x);\n   \
-    \     rrep (i, h) {\n            if ((v >> i) & 1) {\n                l = dat[i].rank(true,\
-    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
-    \   }\n            else {\n                l = dat[i].rank(false, l);\n      \
-    \          r = dat[i].rank(false, r);\n            }\n        }\n        return\
-    \ r - l;\n    }\n    int select(const T& x, int k) const {\n        assert(0 <=\
-    \ k && k < rank(x));\n        int v = ps.get(x);\n        k += start[v];\n   \
-    \     rep (i, h) {\n            if (mid[i] <= k) k = dat[i].select(true, k - mid[i]);\n\
-    \            else k = dat[i].select(false, k);\n        }\n        return k;\n\
-    \    }\n    T kth_smallest(int l, int r, int k) const {\n        assert(0 <= l\
-    \ && l <= r && r <= n);\n        assert(0 <= k && k < r - l);\n        int res\
-    \ = 0;\n        rrep (i, h) {\n            int cnt = dat[i].rank(false, r) - dat[i].rank(false,\
-    \ l);\n            if (cnt <= k) {\n                res |= (1ull << i);\n    \
-    \            l = dat[i].rank(true, l) + mid[i];\n                r = dat[i].rank(true,\
-    \ r) + mid[i];\n                k -= cnt;\n            }\n            else {\n\
+    \        int v = ps.lower_bound(x);\n        if (v == ps.size() || ps[v] != x)\
+    \ return 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true,\
+    \ k) + mid[i];\n            else k = dat[i].rank(false, k);\n        }\n     \
+    \   return k - start[v];\n    }\n    int rank(const T& x) const { return rank(n,\
+    \ x); }\n    int rank(int l, int r, const T& x) const {\n        assert(0 <= l\
+    \ && l <= r && r <= n);\n        int v = ps.lower_bound(x);\n        if (v ==\
+    \ ps.size() || ps[v] != x) return 0;\n        rrep (i, h) {\n            if ((v\
+    \ >> i) & 1) {\n                l = dat[i].rank(true, l) + mid[i];\n         \
+    \       r = dat[i].rank(true, r) + mid[i];\n            }\n            else {\n\
     \                l = dat[i].rank(false, l);\n                r = dat[i].rank(false,\
-    \ r);\n            }\n        }\n        return ps[res];\n    }\n    T kth_largest(int\
-    \ l, int r, int k) const {\n        return kth_smallest(l, r, r - l - 1 - k);\n\
-    \    }\n    int range_freq(int l, int r, const T& upper) const {\n        assert(0\
-    \ <= l && l <= r && r <= n);\n        int v = ps.lower_bound(upper);\n       \
-    \ int res = 0;\n        rrep (i, h) {\n            if ((v >> i) & 1) {\n     \
-    \           const int a = dat[i].rank(true, l);\n                const int b =\
-    \ dat[i].rank(true, r);\n                res += (r - l) - (b - a);\n         \
-    \       l = a + mid[i];\n                r = b + mid[i];\n            }\n    \
-    \        else {\n                l = dat[i].rank(false, l);\n                r\
-    \ = dat[i].rank(false, r);\n            }\n        }\n        return res;\n  \
-    \  }\n    int range_freq(int l, int r, const T& lower, const T& upper) const {\n\
-    \        return range_freq(l, r, upper) - range_freq(l, r, lower);\n    }\n  \
-    \  // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n    T prev_value(int l, int\
-    \ r, const T& upper) const {\n        int cnt = range_freq(l, r, upper);\n   \
-    \     if (cnt == 0) return T{-1};\n        return kth_smallest(l, r, cnt - 1);\n\
-    \    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n    T next_value(int\
-    \ l, int r, const T& lower) const {\n        int cnt = range_freq(l, r, lower);\n\
-    \        if (cnt == r - l) return T{-1};\n        return kth_smallest(l, r, cnt);\n\
-    \    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
+    \ r);\n            }\n        }\n        return r - l;\n    }\n    int select(const\
+    \ T& x, int k) const {\n        assert(0 <= k && k < rank(x));\n        int v\
+    \ = ps.get(x);\n        k += start[v];\n        rep (i, h) {\n            if (mid[i]\
+    \ <= k) k = dat[i].select(true, k - mid[i]);\n            else k = dat[i].select(false,\
+    \ k);\n        }\n        return k;\n    }\n    T kth_smallest(int l, int r, int\
+    \ k) const {\n        assert(0 <= l && l <= r && r <= n);\n        assert(0 <=\
+    \ k && k < r - l);\n        int res = 0;\n        rrep (i, h) {\n            int\
+    \ cnt = dat[i].rank(false, r) - dat[i].rank(false, l);\n            if (cnt <=\
+    \ k) {\n                res |= (1ull << i);\n                l = dat[i].rank(true,\
+    \ l) + mid[i];\n                r = dat[i].rank(true, r) + mid[i];\n         \
+    \       k -= cnt;\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return ps[res];\n    }\n    T kth_largest(int l, int r, int k) const\
+    \ {\n        return kth_smallest(l, r, r - l - 1 - k);\n    }\n    int range_freq(int\
+    \ l, int r, const T& upper) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        int v = ps.lower_bound(upper);\n        int res = 0;\n        rrep (i,\
+    \ h) {\n            if ((v >> i) & 1) {\n                const int a = dat[i].rank(true,\
+    \ l);\n                const int b = dat[i].rank(true, r);\n                res\
+    \ += (r - l) - (b - a);\n                l = a + mid[i];\n                r =\
+    \ b + mid[i];\n            }\n            else {\n                l = dat[i].rank(false,\
+    \ l);\n                r = dat[i].rank(false, r);\n            }\n        }\n\
+    \        return res;\n    }\n    int range_freq(int l, int r, const T& lower,\
+    \ const T& upper) const {\n        return range_freq(l, r, upper) - range_freq(l,\
+    \ r, lower);\n    }\n    // max v[i] s.t. (l <= i < r) && (v[i] < upper)\n   \
+    \ T prev_value(int l, int r, const T& upper) const {\n        int cnt = range_freq(l,\
+    \ r, upper);\n        if (cnt == 0) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt - 1);\n    }\n    // min v[i] s.t. (l <= i < r) && (lower <= v[i])\n\
+    \    T next_value(int l, int r, const T& lower) const {\n        int cnt = range_freq(l,\
+    \ r, lower);\n        if (cnt == r - l) return T{-1};\n        return kth_smallest(l,\
+    \ r, cnt);\n    }\n};\n\n/**\n * @brief WaveletMatrix\n * @docs docs/data-struct/wavelet/WaveletMatrix.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -611,7 +614,7 @@ data:
   isVerificationFile: false
   path: data-struct/wavelet/WaveletMatrix.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp

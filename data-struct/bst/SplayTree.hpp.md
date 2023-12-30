@@ -551,7 +551,7 @@ data:
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/bst/SplayTree.hpp\"\
-    \n\ntemplate<class A>\nclass SplayTree {\nprivate:\n    using M = typename A::M;\n\
+    \n\ntemplate<class A> class SplayTree {\nprivate:\n    using M = typename A::M;\n\
     \    using E = typename A::E;\n    using T = typename M::value_type;\n    using\
     \ U = typename E::value_type;\n    struct node;\n    using node_ptr = node*;\n\
     \    struct node {\n        T v, val, rval;\n        U lazy;\n        int cnt\
@@ -660,7 +660,7 @@ data:
     \ <= size());\n        if (l + 1 >= r) return;\n        node_ptr ptr = get_range(l,\
     \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n};\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A>\nclass SplayTree {\nprivate:\n    using M = typename A::M;\n\
+    \n\ntemplate<class A> class SplayTree {\nprivate:\n    using M = typename A::M;\n\
     \    using E = typename A::E;\n    using T = typename M::value_type;\n    using\
     \ U = typename E::value_type;\n    struct node;\n    using node_ptr = node*;\n\
     \    struct node {\n        T v, val, rval;\n        U lazy;\n        int cnt\
@@ -782,7 +782,7 @@ data:
   isVerificationFile: false
   path: data-struct/bst/SplayTree.hpp
   requiredBy: []
-  timestamp: '2023-12-29 22:13:05+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_reverse_range_sum.test.cpp

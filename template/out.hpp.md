@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
+  - icon: ':warning:'
+    path: data-struct/other/ErasableHeap.hpp
+    title: data-struct/other/ErasableHeap.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/other/IntervalHeap.hpp
     title: IntervalHeap
@@ -349,13 +352,13 @@ data:
   - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   - icon: ':question:'
@@ -961,13 +964,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sqrt_mod.test.cpp
     title: test/yosupo/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
@@ -1524,6 +1527,7 @@ data:
   - data-struct/other/PersistentArray.hpp
   - data-struct/other/MaxRectangle.hpp
   - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/other/ErasableHeap.hpp
   - data-struct/other/BinaryTrie.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/PartialPersistentArray.hpp

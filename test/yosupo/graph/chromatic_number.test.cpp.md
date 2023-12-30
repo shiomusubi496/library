@@ -503,7 +503,7 @@ data:
     \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
     \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
     \ */\n#line 2 \"graph/other/ChromaticNumber.hpp\"\n\n#line 5 \"graph/other/ChromaticNumber.hpp\"\
-    \n\ntemplate<class T>\nint chromatic_number(const Graph<T>& G) {\n    const int\
+    \n\ntemplate<class T> int chromatic_number(const Graph<T>& G) {\n    const int\
     \ n = G.size();\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    std::vector<int>\
     \ adj(n, 0);\n    rep (i, n) {\n        for (const auto& e : G[i]) adj[i] |= 1\
     \ << e.to;\n    }\n    std::vector<ll> I(1 << n, 0);\n    I[0] = 1;\n    rep (i,\
@@ -541,7 +541,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
+  timestamp: '2023-12-30 11:30:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/graph/chromatic_number.test.cpp
