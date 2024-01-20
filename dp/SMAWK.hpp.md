@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   _extendedVerifiedWith:
@@ -45,12 +45,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/dp/SMAWK.md
     document_title: SMAWK
@@ -524,7 +524,7 @@ data:
   - dp/DivideAndConquerOptimization.hpp
   - dp/OnlineOfflineDP.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp

@@ -518,10 +518,10 @@ data:
     \ = A_.width();\n        A = Matrix<T>(n, m + 1);\n        rep (i, n) {\n    \
     \        rep (j, m) A[i][j] = A_[i][j];\n            A[i][m] = b[i];\n       \
     \ }\n        if (sol) solve();\n    }\n    void add_equation(const std::vector<T>&\
-    \ a, T b) {\n        assert(!is_solved);\n        assert(a.size() == m);\n   \
-    \     A.push_back(a);\n        A.back().push_back(b);\n    }\n    void add_equation(const\
-    \ std::vector<T>& a) {\n        assert(!is_solved);\n        assert(a.size() ==\
-    \ m + 1);\n        A.push_back(a);\n    }\n    bool solve() {\n        assert(!is_solved);\n\
+    \ a, T b) {\n        assert(!is_solved);\n        assert((int)a.size() == m);\n\
+    \        A.push_back(a);\n        A.back().push_back(b);\n    }\n    void add_equation(const\
+    \ std::vector<T>& a) {\n        assert(!is_solved);\n        assert((int)a.size()\
+    \ == m + 1);\n        A.push_back(a);\n    }\n    bool solve() {\n        assert(!is_solved);\n\
     \        is_solved = true;\n        A.gauss();\n        int r = A.rank(true);\n\
     \        if (r != 0 && std::count(all(A[r - 1]), T{0}) == m &&\n            A[r\
     \ - 1][m] != 0) {\n            return false;\n        }\n        solution = std::vector<T>(m,\
@@ -554,12 +554,12 @@ data:
     \ + 1);\n        rep (i, n) {\n            rep (j, m) A[i][j] = A_[i][j];\n  \
     \          A[i][m] = b[i];\n        }\n        if (sol) solve();\n    }\n    void\
     \ add_equation(const std::vector<T>& a, T b) {\n        assert(!is_solved);\n\
-    \        assert(a.size() == m);\n        A.push_back(a);\n        A.back().push_back(b);\n\
+    \        assert((int)a.size() == m);\n        A.push_back(a);\n        A.back().push_back(b);\n\
     \    }\n    void add_equation(const std::vector<T>& a) {\n        assert(!is_solved);\n\
-    \        assert(a.size() == m + 1);\n        A.push_back(a);\n    }\n    bool\
-    \ solve() {\n        assert(!is_solved);\n        is_solved = true;\n        A.gauss();\n\
-    \        int r = A.rank(true);\n        if (r != 0 && std::count(all(A[r - 1]),\
-    \ T{0}) == m &&\n            A[r - 1][m] != 0) {\n            return false;\n\
+    \        assert((int)a.size() == m + 1);\n        A.push_back(a);\n    }\n   \
+    \ bool solve() {\n        assert(!is_solved);\n        is_solved = true;\n   \
+    \     A.gauss();\n        int r = A.rank(true);\n        if (r != 0 && std::count(all(A[r\
+    \ - 1]), T{0}) == m &&\n            A[r - 1][m] != 0) {\n            return false;\n\
     \        }\n        solution = std::vector<T>(m, T{0});\n        solution_space\
     \ = Matrix<T>(0, m);\n        std::vector<int> p(m, -1);\n        rep (i, r) {\n\
     \            int j = 0;\n            while (A[i][j] == 0) ++j;\n            p[j]\
@@ -592,7 +592,7 @@ data:
   isVerificationFile: false
   path: math/matrix/LinearEquations.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 20:46:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/system_of_linear_equations.test.cpp

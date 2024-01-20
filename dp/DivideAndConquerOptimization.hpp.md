@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':question:'
