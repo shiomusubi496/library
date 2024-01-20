@@ -57,12 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_rank.test.cpp
     title: test/yosupo/new/matrix_rank.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/pow_of_matrix.test.cpp
     title: test/yosupo/new/pow_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -598,7 +598,7 @@ data:
   - math/matrix/Determinant.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
