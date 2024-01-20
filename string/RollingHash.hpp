@@ -114,17 +114,17 @@ public:
         *this *= other.inv();
         return *this;
     }
-    modint61 operator+(const modint61& other) const {
-        return modint61(*this) += other;
+    friend modint61 operator+(const modint61& lhs, const modint61& rhs) {
+        return modint61(lhs) += rhs;
     }
-    modint61 operator-(const modint61& other) const {
-        return modint61(*this) -= other;
+    friend modint61 operator-(const modint61& lhs, const modint61& rhs) {
+        return modint61(lhs) -= rhs;
     }
-    modint61 operator*(const modint61& other) const {
-        return modint61(*this) *= other;
+    friend modint61 operator*(const modint61& lhs, const modint61& rhs) {
+        return modint61(lhs) *= rhs;
     }
-    modint61 operator/(const modint61& other) const {
-        return modint61(*this) /= other;
+    friend modint61 operator/(const modint61& lhs, const modint61& rhs) {
+        return modint61(lhs) /= rhs;
     }
     modint61 operator+() const { return *this; }
     modint61 operator-() const { return modint61() - *this; }
