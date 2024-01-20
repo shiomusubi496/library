@@ -470,13 +470,13 @@ data:
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
     \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n#line 4 \"test/atcoder/agc002_d-PartialPersistentArray.test.cpp\"\nusing\
-    \ namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n  \
-    \  PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n   \
-    \ PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
+    \ * @brief PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PartialPersistentArray.md\n */\n#line 4 \"test/atcoder/agc002_d-PartialPersistentArray.test.cpp\"\
+    \nusing namespace std;\nclass PartialPersistentUnionFind {\npublic:\n    int n;\n\
+    \    PartialPersistentArray<int> par;\n    std::vector<int> tm;\n\npublic:\n \
+    \   PartialPersistentUnionFind(int n) : n(n), par(std::vector<int>(n, -1)), tm{-1}\
     \ {}\n    int find(int x, int t) {\n        assert(0 <= x && x < n);\n       \
     \ assert(-1 <= t && t <= par.now());\n        return par.get(x, t) < 0 ? x : find(par.get(x,\
     \ t), t);\n    }\n    std::pair<int, int> merge(int x, int y) {\n        int t\
@@ -532,7 +532,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/agc002_d-PartialPersistentArray.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 18:04:20+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/agc002_d-PartialPersistentArray.test.cpp

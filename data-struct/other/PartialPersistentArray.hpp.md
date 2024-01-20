@@ -468,10 +468,10 @@ data:
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
     \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
+    \ * @brief PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PartialPersistentArray.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
     \ class PartialPersistentArray {\nprivate:\n    int n;\n    std::vector<std::vector<int>>\
     \ tim;\n    std::vector<std::vector<T>> val;\n    int last_time;\n\npublic:\n\
@@ -485,10 +485,10 @@ data:
     \        val[k].push_back(x);\n        return last_time++;\n    }\n    T get(int\
     \ k, int t) const {\n        assert(0 <= k && k < n);\n        assert(-1 <= t\
     \ && t < last_time);\n        int id = std::upper_bound(all(tim[k]), t) - tim[k].begin()\
-    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const { return\
-    \ get(k, last_time - 1); }\n};\n\n/**\n * @brief PartialPersistentArray(\u90E8\
-    \u5206\u6C38\u7D9A\u914D\u5217)\n * @docs docs/data-struct/other/PartialPersistentArray.md\n\
-    \ */\n"
+    \ - 1;\n        return val[k][id];\n    }\n    T get_last(int k) const {\n   \
+    \     assert(0 <= k && k < n);\n        return val[k].back();\n    }\n};\n\n/**\n\
+    \ * @brief PartialPersistentArray(\u90E8\u5206\u6C38\u7D9A\u914D\u5217)\n * @docs\
+    \ docs/data-struct/other/PartialPersistentArray.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -502,7 +502,7 @@ data:
   isVerificationFile: false
   path: data-struct/other/PartialPersistentArray.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 18:04:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/atcoder/agc002_d-PartialPersistentArray.test.cpp
