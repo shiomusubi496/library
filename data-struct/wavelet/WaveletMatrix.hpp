@@ -6,7 +6,7 @@
 template<class T> class WaveletMatrix {
 private:
     int n, m, h;
-    presser<T> ps;
+    compressor<T> ps;
     std::vector<FullyIndexableDictionary> dat;
     std::vector<int> mid, start;
 

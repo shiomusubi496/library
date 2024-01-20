@@ -6,7 +6,7 @@
 
 ll area_of_union_of_rectangles(const std::vector<std::array<ll, 4>>& A) {
     const int N = A.size();
-    presser<ll> ps;
+    compressor<ll> ps;
     rep (i, N) {
         ps.push_back(A[i][0]);
         ps.push_back(A[i][2]);

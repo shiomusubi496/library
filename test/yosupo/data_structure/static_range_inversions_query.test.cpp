@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int N, Q; scan >> N >> Q;
     vector<int> A(N); scan >> A;
-    presser<int> ps(A); ps.build();
+    compressor<int> ps(A); ps.build();
     ps.press(A);
     int M = ps.size();
     vector<pair<int, int>> B(Q); scan >> B;

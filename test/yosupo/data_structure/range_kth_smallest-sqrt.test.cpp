@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int N, Q; scan >> N >> Q;
     vector<int> A(N); scan >> A;
-    presser<int> ps(A); ps.build();
+    compressor<int> ps(A, true);
     ps.press(A);
     auto f = [&](vector<int>&& v) -> vector<int> {
         vector<int> A(ps.size());

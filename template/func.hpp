@@ -15,7 +15,7 @@ inline constexpr bool chmax(T& a, const U& b,
     return cmp(a, b) ? a = b, true : false;
 }
 
-inline CONSTEXPR ll gcd(ll a, ll b) noexcept {
+inline CONSTEXPR ll gcd(ll a, ll b) {
     if (a < 0) a = -a;
     if (b < 0) b = -b;
     while (b) {
@@ -25,9 +25,9 @@ inline CONSTEXPR ll gcd(ll a, ll b) noexcept {
     }
     return a;
 }
-inline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a, b) * b; }
+inline CONSTEXPR ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }
 
-inline CONSTEXPR bool is_prime(ll N) noexcept {
+inline CONSTEXPR bool is_prime(ll N) {
     if (N <= 1) return false;
     for (ll i = 2; i * i <= N; ++i) {
         if (N % i == 0) return false;
@@ -46,7 +46,7 @@ inline std::vector<ll> prime_factor(ll N) {
     return res;
 }
 
-inline CONSTEXPR ll my_pow(ll a, ll b) noexcept {
+inline CONSTEXPR ll my_pow(ll a, ll b) {
     ll res = 1;
     while (b) {
         if (b & 1) res *= a;

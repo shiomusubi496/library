@@ -21,6 +21,7 @@ template<class F> inline constexpr RecLambda<F> rec_lambda(F&& f) {
     return RecLambda<F>(std::forward<F>(f));
 }
 
+
 template<class Head, class... Tail> struct multi_dim_vector {
     using type = std::vector<typename multi_dim_vector<Tail...>::type>;
 };
@@ -37,21 +38,30 @@ constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,
         n, make_vec<T>(std::forward<Args>(args)...));
 }
 
-template<class T, class Comp = std::less<T>> class presser {
+
+template<class T, class Comp = std::less<T>> class compressor {
 private:
     std::vector<T> dat;
     Comp cmp;
     bool sorted = false;
 
 public:
-    presser() : presser(Comp()) {}
-    presser(const Comp& cmp) : cmp(cmp) {}
-    presser(const std::vector<T>& vec, const Comp& cmp = Comp())
-        : dat(vec), cmp(cmp) {}
-    presser(std::vector<T>&& vec, const Comp& cmp = Comp())
-        : dat(std::move(vec)), cmp(cmp) {}
-    presser(std::initializer_list<T> il, const Comp& cmp = Comp())
-        : dat(all(il)), cmp(cmp) {}
+    compressor() : compressor(Comp()) {}
+    compressor(const Comp& cmp) : cmp(cmp) {}
+    compressor(const std::vector<T>& vec, bool f = false,
+               const Comp& cmp = Comp())
+        : dat(vec), cmp(cmp) {
+        if (f) build();
+    }
+    compressor(std::vector<T>&& vec, bool f = false, const Comp& cmp = Comp())
+        : dat(std::move(vec)), cmp(cmp) {
+        if (f) build();
+    }
+    compressor(std::initializer_list<T> il, bool f = false,
+               const Comp& cmp = Comp())
+        : dat(all(il)), cmp(cmp) {
+        if (f) build();
+    }
     void reserve(int n) {
         assert(!sorted);
         dat.reserve(n);
@@ -90,11 +100,6 @@ public:
         assert(0 <= k && k < (int)dat.size());
         return dat[k];
     }
-    T operator[](int k) && {
-        assert(sorted);
-        assert(0 <= k && k < (int)dat.size());
-        return std::move(dat[k]);
-    }
     int get(const T& val) const {
         assert(sorted);
         auto itr = std::lower_bound(all(dat), val, cmp);
@@ -122,8 +127,6 @@ public:
         return res;
     }
     void press(std::vector<T>& vec) const {
-        static_assert(std::is_convertible<T, int>::value,
-                      "template argument must be convertible from int type");
         assert(sorted);
         each_for (i : vec) i = get(i);
     }
@@ -131,6 +134,4 @@ public:
         assert(sorted);
         return dat.size();
     }
-    const std::vector<T>& data() const& { return dat; }
-    std::vector<T> data() && { return std::move(dat); }
 };

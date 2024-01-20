@@ -10,7 +10,7 @@ private:
     int ori, n, h;
     bool built;
     std::vector<ll> xs, ys;
-    presser<ll> psx;
+    compressor<ll> psx;
     std::vector<std::vector<ll>> idx;
     std::vector<SegmentTree<M>> seg;
 

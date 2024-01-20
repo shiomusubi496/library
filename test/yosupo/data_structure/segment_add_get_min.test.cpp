@@ -11,13 +11,17 @@ int main() {
         if (a == 0) scan >> b >> c >> d >> e;
         else scan >> b;
     }
-    presser<ll> ps;
+    compressor<ll> ps;
     each_const ([a, b, c, d, e] : B) {
         if (a == 1) ps.push_back(b);
     }
     ps.build();
     if (ps.size() == 0) return 0;
-    LiChaoTree lct(ps.data());
+    LiChaoTree lct([&] {
+        vector<ll> v;
+        rep (i, ps.size()) v.push_back(ps[i]);
+        return v;
+    }());
     each_const ([a, b, c, d] : A) {
         lct.add_segment(ps.lower_bound(a), ps.lower_bound(b), c, d);
     }

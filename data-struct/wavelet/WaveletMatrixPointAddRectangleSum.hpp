@@ -10,8 +10,8 @@ class WaveletMatrixPointAddRectangleSum {
 private:
     using U = typename M::value_type;
     int n, m, h;
-    presser<std::pair<T, T>> points;
-    presser<T> ps;
+    compressor<std::pair<T, T>> points;
+    compressor<T> ps;
     std::vector<FullyIndexableDictionary> dat;
     std::vector<BIT> bit;
     std::vector<int> mid;
