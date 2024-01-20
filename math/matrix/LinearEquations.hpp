@@ -32,13 +32,13 @@ public:
     }
     void add_equation(const std::vector<T>& a, T b) {
         assert(!is_solved);
-        assert(a.size() == m);
+        assert((int)a.size() == m);
         A.push_back(a);
         A.back().push_back(b);
     }
     void add_equation(const std::vector<T>& a) {
         assert(!is_solved);
-        assert(a.size() == m + 1);
+        assert((int)a.size() == m + 1);
         A.push_back(a);
     }
     bool solve() {
