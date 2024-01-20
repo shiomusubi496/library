@@ -4,6 +4,7 @@
 #include "Combinatorics.hpp"
 #include "convolution/Convolution.hpp"
 #include "poly/FormalPowerSeries.hpp"
+#include "poly/SparseFormalPowerSeries.hpp"
 #include "poly/TaylorShift.hpp"
 
 template<class T, class Comb = Combinatorics<T>>
@@ -23,13 +24,13 @@ std::vector<T> stirling_number_1st(int n) {
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> stirling_number_1st_fixed_k(int k, int n) {
     Comb::init(n);
-    FormalPowerSeries<T> f{1, -1};
-    f = (f.log(n - k + 2) >> 1).pow(k) * Comb::finv(k);
+    SparseFPS<T> f{1, -1};
+    FormalPowerSeries<T> g = (f.log(n - k + 2) >> 1).pow(k) * Comb::finv(k);
     rep (i, n - k + 1) {
-        f[i] *= Comb::fact(i + k);
-        if ((i + k) & 1) f[i] = -f[i];
+        g[i] *= Comb::fact(i + k);
+        if ((i + k) & 1) g[i] = -g[i];
     }
-    return std::vector<T>(f);
+    return std::vector<T>(g);
 }
 
 template<class T, class Comb = Combinatorics<T>>
@@ -43,6 +44,15 @@ std::vector<T> stirling_number_2nd(int n) {
     auto c = convolution(a, b);
     c.resize(n + 1);
     return c;
+}
+
+template<class T, class Comb = Combinatorics<T>>
+std::vector<T> stirling_number_2nd_fixed_k(int k, int n) {
+    Comb::init(n);
+    SparseFPS<T> f{{1, 1}};
+    FormalPowerSeries<T> g = (f.exp(n - k + 2) >> 1).pow(k) * Comb::finv(k);
+    rep (i, n - k + 1) g[i] *= Comb::fact(i + k);
+    return std::vector<T>(g);
 }
 
 template<class T, class Comb = Combinatorics<T>>

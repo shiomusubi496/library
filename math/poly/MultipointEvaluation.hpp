@@ -17,7 +17,8 @@ public:
         rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i], 1};
         rrep (i, n, 1) dat[i] = dat[i << 1] * dat[i << 1 | 1];
     }
-    const FormalPowerSeries<T>& operator[](int k) const { return dat[k]; }
+    const FormalPowerSeries<T>& operator[](int k) const& { return dat[k]; }
+    FormalPowerSeries<T> operator[](int k) && { return std::move(dat[k]); }
 };
 
 template<class T>
