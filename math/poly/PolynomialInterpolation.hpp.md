@@ -1093,7 +1093,8 @@ data:
     \ std::vector<T>& xs) {\n        n = xs.size();\n        dat.resize(n << 1);\n\
     \        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i], 1};\n        rrep\
     \ (i, n, 1) dat[i] = dat[i << 1] * dat[i << 1 | 1];\n    }\n    const FormalPowerSeries<T>&\
-    \ operator[](int k) const { return dat[k]; }\n};\n\ntemplate<class T>\nstd::vector<T>\
+    \ operator[](int k) const& { return dat[k]; }\n    FormalPowerSeries<T> operator[](int\
+    \ k) && { return std::move(dat[k]); }\n};\n\ntemplate<class T>\nstd::vector<T>\
     \ multipoint_evaluation(const FormalPowerSeries<T>& a,\n                     \
     \                const std::vector<T>& b,\n                                  \
     \   const ProductTree<T>& c) {\n    int m = b.size();\n    std::vector<FormalPowerSeries<T>>\
@@ -1159,7 +1160,7 @@ data:
   isVerificationFile: false
   path: math/poly/PolynomialInterpolation.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 18:35:26+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp

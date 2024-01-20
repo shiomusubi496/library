@@ -75,15 +75,16 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_G
+    PROBLEM: https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k
     links:
-    - https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_G
-  bundledCode: "#line 1 \"test/aoj/DPL/DPL_5_G.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_G\"\
+    - https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k
+  bundledCode: "#line 1 \"test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -1230,14 +1231,14 @@ data:
     \ i & 1 ? -1 : 1;\n    }\n    return std::vector<T>(f.inv());\n}\n\n/**\n * @brief\
     \ StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\u6570\
     , \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)\n * @docs docs/math/StirlingNumber.md\n\
-    \ */\n#line 5 \"test/aoj/DPL/DPL_5_G.test.cpp\"\nusing namespace std;\nusing mint\
-    \ = modint1000000007;\nint main() {\n    int n, k; scan >> n >> k;\n    prints(bell_number_fixed_n<mint>(n)[min(n,\
-    \ k)]);\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/DPL_5_G\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
-    \ \"../../../math/StirlingNumber.hpp\"\nusing namespace std;\nusing mint = modint1000000007;\n\
-    int main() {\n    int n, k; scan >> n >> k;\n    prints(bell_number_fixed_n<mint>(n)[min(n,\
-    \ k)]);\n}\n"
+    \ */\n#line 5 \"test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
+    \ k; scan >> n >> k;\n    prints(stirling_number_2nd_fixed_k<mint>(k, n));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stirling_number_of_the_second_kind_fixed_k\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/StirlingNumber.hpp\"\nusing namespace std;\nusing mint\
+    \ = modint998244353;\nint main() {\n    int n, k; scan >> n >> k;\n    prints(stirling_number_2nd_fixed_k<mint>(k,\
+    \ n));\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1263,15 +1264,15 @@ data:
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/TaylorShift.hpp
   isVerificationFile: true
-  path: test/aoj/DPL/DPL_5_G.test.cpp
+  path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   requiredBy: []
   timestamp: '2024-01-20 18:35:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/aoj/DPL/DPL_5_G.test.cpp
+documentation_of: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DPL/DPL_5_G.test.cpp
-- /verify/test/aoj/DPL/DPL_5_G.test.cpp.html
-title: test/aoj/DPL/DPL_5_G.test.cpp
+- /verify/test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+- /verify/test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp.html
+title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
 ---

@@ -73,7 +73,7 @@ data:
   - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
@@ -207,6 +207,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/new/pow_of_matrix.test.cpp
     title: test/yosupo/new/pow_of_matrix.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -999,6 +1002,7 @@ data:
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
+  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/new/pow_of_matrix.test.cpp
   - test/yosupo/new/factorial.test.cpp
   - test/yosupo/new/matrix_rank.test.cpp

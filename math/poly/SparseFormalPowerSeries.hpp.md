@@ -62,8 +62,33 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: math/StirlingNumber.hpp
+    title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
+      \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DPL/DPL_5_G.test.cpp
+    title: test/aoj/DPL/DPL_5_G.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/bernoulli_number.test.cpp
+    title: test/yosupo/math/bernoulli_number.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/partition_function.test.cpp
+    title: test/yosupo/math/partition_function.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
@@ -81,7 +106,7 @@ data:
     title: test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/poly/SparseFormalPowerSeries.md
     document_title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\
@@ -1309,15 +1334,23 @@ data:
   - math/poly/FormalPowerSeries.hpp
   isVerificationFile: false
   path: math/poly/SparseFormalPowerSeries.hpp
-  requiredBy: []
+  requiredBy:
+  - math/StirlingNumber.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp
+  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/SparseFormalPowerSeries.hpp
 layout: document
 redirect_from:

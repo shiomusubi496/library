@@ -90,6 +90,9 @@ data:
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':x:'
+    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':x:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -1163,6 +1166,7 @@ data:
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document
