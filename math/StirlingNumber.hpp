@@ -24,7 +24,7 @@ std::vector<T> stirling_number_1st(int n) {
 template<class T, class Comb = Combinatorics<T>>
 std::vector<T> stirling_number_1st_fixed_k(int k, int n) {
     Comb::init(n);
-    SparseFPS<T> f{1, -1};
+    SparseFPS<T> f{{0, 1}, {1, -1}};
     FormalPowerSeries<T> g = (f.log(n - k + 2) >> 1).pow(k) * Comb::finv(k);
     rep (i, n - k + 1) {
         g[i] *= Comb::fact(i + k);
