@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/MaxRectangle.hpp
     title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -383,54 +383,56 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
-    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
-    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
-    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
-    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
-    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
-    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
-    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
-    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
-    \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
-    \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
-    \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
-    \ 0);\n    if (mod == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while\
-    \ (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *=\
-    \ a) %= mod;\n    }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n \
-    \   const ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n  \
-    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
-    \  std::swap(x -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if\
-    \ (x < 0) {\n        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\n\
-    inline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n    ll x = 1, u = 0;\n   \
-    \ ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n\
-    \        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a\
-    \ == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\
-    \n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
+    \ a, ll b) {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while (b) {\n\
+    \        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
+    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }\n\n\
+    inline CONSTEXPR bool is_prime(ll N) {\n    if (N <= 1) return false;\n    for\
+    \ (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n\
+    \    return true;\n}\ninline std::vector<ll> prime_factor(ll N) {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline CONSTEXPR ll my_pow(ll\
+    \ a, ll b) {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n\
+    \        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR\
+    \ ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return\
+    \ 0;\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
+    \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n   \
+    \ ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a /\
+    \ b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n \
+    \       std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n\
+    \        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod)\
+    \ {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n     \
+    \   t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t *\
+    \ u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n\
+    }\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\n\ntemplate<class\
+    \ F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit constexpr\
+    \ RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\n\
+    \    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\n\ntemplate<class T, class Comp = std::less<T>> class compressor {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
-    \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
-    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
-    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
-    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
-    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
+    \    compressor() : compressor(Comp()) {}\n    compressor(const Comp& cmp) : cmp(cmp)\
+    \ {}\n    compressor(const std::vector<T>& vec, bool f = false,\n            \
+    \   const Comp& cmp = Comp())\n        : dat(vec), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::vector<T>&& vec, bool f = false, const\
+    \ Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::initializer_list<T> il, bool f = false,\n\
+    \               const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {\n\
+    \        if (f) build();\n    }\n    void reserve(int n) {\n        assert(!sorted);\n\
+    \        dat.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(std::move(v));\n    }\n    template<class... Args> void\
+    \ emplace_back(Args&&... args) {\n        assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -440,42 +442,38 @@ data:
     \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
-    \    }\n    int get(const T& val) const {\n        assert(sorted);\n        auto\
-    \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
-    \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
-    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
-    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
-    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
-    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
-    \ int>::value,\n                      \"template argument must be convertible\
-    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/other/MaxRectangle.hpp\"\
-    \n\n#line 4 \"data-struct/other/MaxRectangle.hpp\"\n\ntemplate<class F>\nvoid\
-    \ max_rectangle_of_histogram(const std::vector<int>& A, const F& f) {\n    const\
-    \ int N = A.size();\n    std::stack<int> st;\n    rep (i, N) {\n        while\
-    \ (!st.empty() && A[st.top()] >= A[i]) {\n            int j = st.top();\n    \
-    \        st.pop();\n            int k = st.empty() ? 0 : st.top() + 1;\n     \
-    \       f(k, i, A[j]);\n        }\n        st.push(i);\n    }\n    while (!st.empty())\
-    \ {\n        int j = st.top();\n        st.pop();\n        int k = st.empty()\
-    \ ? 0 : st.top() + 1;\n        f(k, N, A[j]);\n    }\n}\n\ntemplate<class F>\n\
-    void max_rectangle(const std::vector<std::vector<bool>>& A, const F& f) {\n  \
-    \  if (A.empty() || A[0].empty()) return;\n    int H = A.size(), W = A[0].size();\n\
-    \    std::vector<std::vector<int>> B(H, std::vector<int>(W));\n    rrep (i, H)\n\
-    \        rep (j, W) {\n            B[i][j] = i == H - 1 ? 1 : B[i + 1][j] + 1;\n\
-    \            if (A[i][j]) B[i][j] = 0;\n        }\n    rep (i, H) {\n        max_rectangle_of_histogram(\n\
-    \            B[i], [&](int l, int r, int h) { f(i, l, i + h, r); });\n    }\n\
-    }\n\n/**\n * @brief MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)\n * @docs docs/data-struct/other/MaxRectangle.md\n\
-    \ */\n#line 4 \"test/aoj/DPL/DPL_3_B.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int H, W; scan >> H >> W;\n    vector<vector<bool>> A(H, vector<bool>(W));\n\
+    \     return dat[k];\n    }\n    int get(const T& val) const {\n        assert(sorted);\n\
+    \        auto itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr\
+    \ != dat.end() && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n\
+    \    int lower_bound(const T& val) const {\n        assert(sorted);\n        auto\
+    \ itr = std::lower_bound(all(dat), val, cmp);\n        return itr - dat.begin();\n\
+    \    }\n    int upper_bound(const T& val) const {\n        assert(sorted);\n \
+    \       auto itr = std::upper_bound(all(dat), val, cmp);\n        return itr -\
+    \ dat.begin();\n    }\n    bool contains(const T& val) const {\n        assert(sorted);\n\
+    \        return std::binary_search(all(dat), val, cmp);\n    }\n    std::vector<int>\
+    \ pressed(const std::vector<T>& vec) const {\n        assert(sorted);\n      \
+    \  std::vector<int> res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n\
+    \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
+    \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
+    \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
+    };\n#line 2 \"data-struct/other/MaxRectangle.hpp\"\n\n#line 4 \"data-struct/other/MaxRectangle.hpp\"\
+    \n\ntemplate<class F>\nvoid max_rectangle_of_histogram(const std::vector<int>&\
+    \ A, const F& f) {\n    const int N = A.size();\n    std::stack<int> st;\n   \
+    \ rep (i, N) {\n        while (!st.empty() && A[st.top()] >= A[i]) {\n       \
+    \     int j = st.top();\n            st.pop();\n            int k = st.empty()\
+    \ ? 0 : st.top() + 1;\n            f(k, i, A[j]);\n        }\n        st.push(i);\n\
+    \    }\n    while (!st.empty()) {\n        int j = st.top();\n        st.pop();\n\
+    \        int k = st.empty() ? 0 : st.top() + 1;\n        f(k, N, A[j]);\n    }\n\
+    }\n\ntemplate<class F>\nvoid max_rectangle(const std::vector<std::vector<bool>>&\
+    \ A, const F& f) {\n    if (A.empty() || A[0].empty()) return;\n    int H = A.size(),\
+    \ W = A[0].size();\n    std::vector<std::vector<int>> B(H, std::vector<int>(W));\n\
+    \    rrep (i, H)\n        rep (j, W) {\n            B[i][j] = i == H - 1 ? 1 :\
+    \ B[i + 1][j] + 1;\n            if (A[i][j]) B[i][j] = 0;\n        }\n    rep\
+    \ (i, H) {\n        max_rectangle_of_histogram(\n            B[i], [&](int l,\
+    \ int r, int h) { f(i, l, i + h, r); });\n    }\n}\n\n/**\n * @brief MaxRectangle(\u6700\
+    \u5927\u9577\u65B9\u5F62)\n * @docs docs/data-struct/other/MaxRectangle.md\n */\n\
+    #line 4 \"test/aoj/DPL/DPL_3_B.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int H, W; scan >> H >> W;\n    vector<vector<bool>> A(H, vector<bool>(W));\n\
     \    rep (i, H) rep (j, W) {\n        int a; scan >> a;\n        A[i][j] = a;\n\
     \    }\n    int ans = 0;\n    max_rectangle(A, [&](int u, int l, int d, int r)\
     \ {\n        ans = max(ans, (d - u) * (r - l));\n    });\n    prints(ans);\n}\n"
@@ -500,7 +498,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL/DPL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2023-12-30 11:30:23+09:00'
+  timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL/DPL_3_B.test.cpp

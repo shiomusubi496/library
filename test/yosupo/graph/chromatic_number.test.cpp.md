@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/other/ChromaticNumber.hpp
     title: "ChromaticNumber(\u5F69\u8272\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_number
@@ -386,54 +386,56 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
-    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
-    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
-    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
-    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
-    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
-    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
-    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
-    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
-    \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
-    \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
-    \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
-    \ 0);\n    if (mod == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while\
-    \ (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *=\
-    \ a) %= mod;\n    }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n \
-    \   const ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n  \
-    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
-    \  std::swap(x -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if\
-    \ (x < 0) {\n        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\n\
-    inline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n    ll x = 1, u = 0;\n   \
-    \ ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n\
-    \        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a\
-    \ == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\
-    \n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
+    \ a, ll b) {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while (b) {\n\
+    \        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
+    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }\n\n\
+    inline CONSTEXPR bool is_prime(ll N) {\n    if (N <= 1) return false;\n    for\
+    \ (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n\
+    \    return true;\n}\ninline std::vector<ll> prime_factor(ll N) {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline CONSTEXPR ll my_pow(ll\
+    \ a, ll b) {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n\
+    \        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR\
+    \ ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return\
+    \ 0;\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
+    \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n   \
+    \ ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a /\
+    \ b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n \
+    \       std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n\
+    \        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod)\
+    \ {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n     \
+    \   t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t *\
+    \ u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n\
+    }\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\n\ntemplate<class\
+    \ F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit constexpr\
+    \ RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\n\
+    \    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\n\ntemplate<class T, class Comp = std::less<T>> class compressor {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
-    \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
-    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
-    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
-    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
-    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
+    \    compressor() : compressor(Comp()) {}\n    compressor(const Comp& cmp) : cmp(cmp)\
+    \ {}\n    compressor(const std::vector<T>& vec, bool f = false,\n            \
+    \   const Comp& cmp = Comp())\n        : dat(vec), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::vector<T>&& vec, bool f = false, const\
+    \ Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::initializer_list<T> il, bool f = false,\n\
+    \               const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {\n\
+    \        if (f) build();\n    }\n    void reserve(int n) {\n        assert(!sorted);\n\
+    \        dat.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(std::move(v));\n    }\n    template<class... Args> void\
+    \ emplace_back(Args&&... args) {\n        assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -443,83 +445,79 @@ data:
     \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
-    \    }\n    int get(const T& val) const {\n        assert(sorted);\n        auto\
-    \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
-    \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
-    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
-    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
-    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
-    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
-    \ int>::value,\n                      \"template argument must be convertible\
-    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"graph/Graph.hpp\"\n\n#line\
-    \ 4 \"graph/Graph.hpp\"\n\ntemplate<class T = int> struct edge {\n    int from,\
-    \ to;\n    T cost;\n    int idx;\n    edge() : from(-1), to(-1) {}\n    edge(int\
-    \ f, int t, const T& c = 1, int i = -1)\n        : from(f), to(t), cost(c), idx(i)\
-    \ {}\n    edge(int f, int t, T&& c, int i = -1)\n        : from(f), to(t), cost(std::move(c)),\
-    \ idx(i) {}\n    operator int() const { return to; }\n    friend bool operator<(const\
-    \ edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n \
-    \   }\n    friend bool operator>(const edge<T>& lhs, const edge<T>& rhs) {\n \
-    \       return lhs.cost > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using\
-    \ Edges = std::vector<edge<T>>;\ntemplate<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\
-    \ntemplate<class T = int> class Graph : public std::vector<std::vector<edge<T>>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n\
-    \    int edge_id = 0;\n    using Base::Base;\n    int edge_size() const { return\
-    \ edge_id; }\n    int add_edge(int a, int b, const T& c, bool is_directed = false)\
-    \ {\n        assert(0 <= a && a < (int)this->size());\n        assert(0 <= b &&\
-    \ b < (int)this->size());\n        (*this)[a].emplace_back(a, b, c, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, c, edge_id);\n      \
-    \  return edge_id++;\n    }\n    int add_edge(int a, int b, bool is_directed =\
-    \ false) {\n        assert(0 <= a && a < (int)this->size());\n        assert(0\
-    \ <= b && b < (int)this->size());\n        (*this)[a].emplace_back(a, b, 1, edge_id);\n\
-    \        if (!is_directed) (*this)[b].emplace_back(b, a, 1, edge_id);\n      \
-    \  return edge_id++;\n    }\n};\n\ntemplate<class T> GMatrix<T> ListToMatrix(const\
-    \ Graph<T>& G) {\n    const int N = G.size();\n    auto res = make_vec<T>(N, N,\
-    \ infinity<T>::value);\n    rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n    \
-    \    each_const (e : G[i]) res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\
-    \ntemplate<class T> Edges<T> UndirectedListToEdges(const Graph<T>& G) {\n    const\
-    \ int V = G.size();\n    const int E = G.edge_size();\n    Edges<T> Ed(E);\n \
-    \   rep (i, V) {\n        each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return\
-    \ Ed;\n}\n\ntemplate<class T> Edges<T> DirectedListToEdges(const Graph<T>& G)\
-    \ {\n    const int V = G.size();\n    const int E = std::accumulate(\n       \
-    \ all(G), 0, [](int a, const std::vector<edge<T>>& v) -> int {\n            return\
-    \ a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n    Ed.reserve(E);\n\
-    \    rep (i, V) {\n        each_const (e : G[i]) {\n            if (Ed[e.idx]\
-    \ == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n        }\n    }\n\
-    \    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const Graph<T>&\
-    \ G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i, V) {\n\
-    \        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to, e.from,\
-    \ e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n    return\
-    \ res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args> unweighted_edge(const\
-    \ Args&...) {}\n    operator int() { return 1; }\n};\n\nusing UnweightedGraph\
-    \ = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n * @docs docs/graph/Graph.md\n\
-    \ */\n#line 2 \"graph/other/ChromaticNumber.hpp\"\n\n#line 5 \"graph/other/ChromaticNumber.hpp\"\
-    \n\ntemplate<class T> int chromatic_number(const Graph<T>& G) {\n    const int\
-    \ n = G.size();\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    std::vector<int>\
-    \ adj(n, 0);\n    rep (i, n) {\n        for (const auto& e : G[i]) adj[i] |= 1\
-    \ << e.to;\n    }\n    std::vector<ll> I(1 << n, 0);\n    I[0] = 1;\n    rep (i,\
-    \ 1, 1 << n) {\n        int k = 0;\n        rep (j, n) {\n            if ((i >>\
-    \ j) & 1) k = j;\n        }\n        I[i] = I[i ^ (1 << k)] + I[(i ^ (1 << k))\
-    \ & ~adj[k]];\n    }\n    static constexpr ll MOD = 998244353;\n    std::vector<ll>\
-    \ p(1 << n, 1);\n    rep (i, n - 1) {\n        ll sm = 0;\n        rep (j, 1 <<\
-    \ n) {\n            (p[j] *= I[j]) %= MOD;\n            if (popcnt(j) & 1) {\n\
-    \                sm += p[j];\n                if (sm >= MOD) sm -= MOD;\n    \
-    \        }\n            else {\n                sm -= p[j];\n                if\
-    \ (sm < 0) sm += MOD;\n            }\n        }\n        if (sm != 0) return i\
-    \ + 1;\n    }\n    return n;\n}\n\n/**\n * @brief ChromaticNumber(\u5F69\u8272\
-    \u6570)\n * @docs docs/graph/other/ChromaticNumber.md\n */\n#line 5 \"test/yosupo/graph/chromatic_number.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int>\
-    \ G(n);\n    rep (m) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a,\
-    \ b);\n    }\n    prints(chromatic_number(G));\n}\n"
+    \     return dat[k];\n    }\n    int get(const T& val) const {\n        assert(sorted);\n\
+    \        auto itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr\
+    \ != dat.end() && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n\
+    \    int lower_bound(const T& val) const {\n        assert(sorted);\n        auto\
+    \ itr = std::lower_bound(all(dat), val, cmp);\n        return itr - dat.begin();\n\
+    \    }\n    int upper_bound(const T& val) const {\n        assert(sorted);\n \
+    \       auto itr = std::upper_bound(all(dat), val, cmp);\n        return itr -\
+    \ dat.begin();\n    }\n    bool contains(const T& val) const {\n        assert(sorted);\n\
+    \        return std::binary_search(all(dat), val, cmp);\n    }\n    std::vector<int>\
+    \ pressed(const std::vector<T>& vec) const {\n        assert(sorted);\n      \
+    \  std::vector<int> res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n\
+    \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
+    \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
+    \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
+    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
+    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
+    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
+    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
+    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
+    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
+    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
+    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
+    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
+    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
+    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
+    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
+    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
+    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
+    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
+    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
+    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
+    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
+    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
+    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
+    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
+    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
+    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
+    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
+    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
+    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
+    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
+    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
+    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
+    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
+    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
+    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
+    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
+    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
+    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
+    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
+    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
+    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/ChromaticNumber.hpp\"\
+    \n\n#line 5 \"graph/other/ChromaticNumber.hpp\"\n\ntemplate<class T> int chromatic_number(const\
+    \ Graph<T>& G) {\n    const int n = G.size();\n    if (n == 0) return 0;\n   \
+    \ if (n == 1) return 1;\n    std::vector<int> adj(n, 0);\n    rep (i, n) {\n \
+    \       for (const auto& e : G[i]) adj[i] |= 1 << e.to;\n    }\n    std::vector<ll>\
+    \ I(1 << n, 0);\n    I[0] = 1;\n    rep (i, 1, 1 << n) {\n        int k = 0;\n\
+    \        rep (j, n) {\n            if ((i >> j) & 1) k = j;\n        }\n     \
+    \   I[i] = I[i ^ (1 << k)] + I[(i ^ (1 << k)) & ~adj[k]];\n    }\n    static constexpr\
+    \ ll MOD = 998244353;\n    std::vector<ll> p(1 << n, 1);\n    rep (i, n - 1) {\n\
+    \        ll sm = 0;\n        rep (j, 1 << n) {\n            (p[j] *= I[j]) %=\
+    \ MOD;\n            if (popcnt(j) & 1) {\n                sm += p[j];\n      \
+    \          if (sm >= MOD) sm -= MOD;\n            }\n            else {\n    \
+    \            sm -= p[j];\n                if (sm < 0) sm += MOD;\n           \
+    \ }\n        }\n        if (sm != 0) return i + 1;\n    }\n    return n;\n}\n\n\
+    /**\n * @brief ChromaticNumber(\u5F69\u8272\u6570)\n * @docs docs/graph/other/ChromaticNumber.md\n\
+    \ */\n#line 5 \"test/yosupo/graph/chromatic_number.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int n, m; scan >> n >> m;\n    Graph<int> G(n);\n  \
+    \  rep (m) {\n        int a, b; scan >> a >> b;\n        G.add_edge(a, b);\n \
+    \   }\n    prints(chromatic_number(G));\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_number\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/other/ChromaticNumber.hpp\"\nusing namespace std;\nint main()\
@@ -541,8 +539,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2023-12-30 11:30:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-20 14:55:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/graph/chromatic_number.test.cpp
 layout: document

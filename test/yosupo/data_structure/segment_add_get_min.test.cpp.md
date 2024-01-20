@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: data-struct/cht/LiChaoTree.hpp
     title: LiChaoTree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -384,54 +384,56 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
-    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
-    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
-    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
-    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
-    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
-    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
-    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
-    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
-    \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
-    \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
-    \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
-    \ 0);\n    if (mod == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while\
-    \ (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *=\
-    \ a) %= mod;\n    }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n \
-    \   const ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n  \
-    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
-    \  std::swap(x -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if\
-    \ (x < 0) {\n        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\n\
-    inline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n    ll x = 1, u = 0;\n   \
-    \ ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n\
-    \        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a\
-    \ == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\
-    \n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
+    \ a, ll b) {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while (b) {\n\
+    \        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
+    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }\n\n\
+    inline CONSTEXPR bool is_prime(ll N) {\n    if (N <= 1) return false;\n    for\
+    \ (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n\
+    \    return true;\n}\ninline std::vector<ll> prime_factor(ll N) {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline CONSTEXPR ll my_pow(ll\
+    \ a, ll b) {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n\
+    \        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR\
+    \ ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return\
+    \ 0;\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
+    \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n   \
+    \ ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a /\
+    \ b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n \
+    \       std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n\
+    \        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod)\
+    \ {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n     \
+    \   t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t *\
+    \ u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n\
+    }\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\n\ntemplate<class\
+    \ F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit constexpr\
+    \ RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\n\
+    \    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\n\ntemplate<class T, class Comp = std::less<T>> class compressor {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
-    \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
-    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
-    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
-    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
-    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
+    \    compressor() : compressor(Comp()) {}\n    compressor(const Comp& cmp) : cmp(cmp)\
+    \ {}\n    compressor(const std::vector<T>& vec, bool f = false,\n            \
+    \   const Comp& cmp = Comp())\n        : dat(vec), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::vector<T>&& vec, bool f = false, const\
+    \ Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::initializer_list<T> il, bool f = false,\n\
+    \               const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {\n\
+    \        if (f) build();\n    }\n    void reserve(int n) {\n        assert(!sorted);\n\
+    \        dat.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(std::move(v));\n    }\n    template<class... Args> void\
+    \ emplace_back(Args&&... args) {\n        assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -441,56 +443,51 @@ data:
     \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
-    \    }\n    int get(const T& val) const {\n        assert(sorted);\n        auto\
-    \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
-    \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
-    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
-    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
-    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
-    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
-    \ int>::value,\n                      \"template argument must be convertible\
-    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"data-struct/cht/LiChaoTree.hpp\"\
-    \n\n#line 4 \"data-struct/cht/LiChaoTree.hpp\"\n\ntemplate<class T = ll, bool\
-    \ is_max = false> class LiChaoTree {\nprivate:\n    struct Line {\n        T a,\
-    \ b;\n        int idx;\n        T get(T x) const { return a * x + b; }\n     \
-    \   Line() = default;\n        Line(T a, T b, int id) : a(a), b(b), idx(id) {}\n\
-    \    };\n    int line_count = 0;\n    int ori, n;\n    std::vector<T> xs;\n  \
-    \  std::vector<Line> lns;\n    void add_line(int k, int a, int b, const Line&\
-    \ line) {\n        if (a + 1 == b) {\n            if (line.get(xs[a]) < lns[k].get(xs[a]))\
-    \ lns[k] = line;\n            return;\n        }\n        int m = (a + b) >> 1;\n\
-    \        T x1 = lns[k].get(xs[a]), x2 = line.get(xs[a]);\n        T y1 = lns[k].get(xs[b\
-    \ - 1]), y2 = line.get(xs[b - 1]);\n        if (x1 <= x2 && y1 <= y2) return;\n\
-    \        if (x2 <= x1 && y2 <= y1) {\n            lns[k] = line;\n           \
-    \ return;\n        }\n        if (lns[k].get(xs[m]) <= line.get(xs[m])) {\n  \
-    \          if (y1 < y2) add_line(k << 1, a, m, line);\n            else add_line(k\
-    \ << 1 | 1, m, b, line);\n        }\n        else {\n            if (y1 < y2)\
-    \ add_line(k << 1 | 1, m, b, lns[k]);\n            else add_line(k << 1, a, m,\
-    \ lns[k]);\n            lns[k] = line;\n        }\n    }\n    void add_segment(int\
-    \ k, int a, int b, int l, int r, const Line& line) {\n        if (l <= a && b\
-    \ <= r) {\n            add_line(k, a, b, line);\n            return;\n       \
-    \ }\n        if (r <= a || b <= l) return;\n        int m = (a + b) >> 1;\n  \
-    \      add_segment(k << 1, a, m, l, r, line);\n        add_segment(k << 1 | 1,\
-    \ m, b, l, r, line);\n    }\n\npublic:\n    LiChaoTree() : LiChaoTree({0}) {}\n\
-    \    LiChaoTree(const std::vector<T>& xs_) { init(xs_); }\n    void init(const\
-    \ std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0} : xs_;\n\
-    \        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n        xs.reserve(n);\n\
-    \        rep (i, xs_.size(), n) xs.push_back(xs_[i] + 1);\n        lns.assign(n\
-    \ << 1,\n                   Line{0, is_max ? infinity<T>::min : infinity<T>::max,\
-    \ -1});\n    }\n    int add_segment(int l, int r, T x, T y) {\n        assert(0\
-    \ <= l && l <= r && r <= ori);\n        add_segment(1, 0, n, l, r,\n         \
-    \           Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return\
-    \ line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1, 0, n,\
-    \ Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
+    \     return dat[k];\n    }\n    int get(const T& val) const {\n        assert(sorted);\n\
+    \        auto itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr\
+    \ != dat.end() && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n\
+    \    int lower_bound(const T& val) const {\n        assert(sorted);\n        auto\
+    \ itr = std::lower_bound(all(dat), val, cmp);\n        return itr - dat.begin();\n\
+    \    }\n    int upper_bound(const T& val) const {\n        assert(sorted);\n \
+    \       auto itr = std::upper_bound(all(dat), val, cmp);\n        return itr -\
+    \ dat.begin();\n    }\n    bool contains(const T& val) const {\n        assert(sorted);\n\
+    \        return std::binary_search(all(dat), val, cmp);\n    }\n    std::vector<int>\
+    \ pressed(const std::vector<T>& vec) const {\n        assert(sorted);\n      \
+    \  std::vector<int> res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n\
+    \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
+    \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
+    \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
+    };\n#line 2 \"data-struct/cht/LiChaoTree.hpp\"\n\n#line 4 \"data-struct/cht/LiChaoTree.hpp\"\
+    \n\ntemplate<class T = ll, bool is_max = false> class LiChaoTree {\nprivate:\n\
+    \    struct Line {\n        T a, b;\n        int idx;\n        T get(T x) const\
+    \ { return a * x + b; }\n        Line() = default;\n        Line(T a, T b, int\
+    \ id) : a(a), b(b), idx(id) {}\n    };\n    int line_count = 0;\n    int ori,\
+    \ n;\n    std::vector<T> xs;\n    std::vector<Line> lns;\n    void add_line(int\
+    \ k, int a, int b, const Line& line) {\n        if (a + 1 == b) {\n          \
+    \  if (line.get(xs[a]) < lns[k].get(xs[a])) lns[k] = line;\n            return;\n\
+    \        }\n        int m = (a + b) >> 1;\n        T x1 = lns[k].get(xs[a]), x2\
+    \ = line.get(xs[a]);\n        T y1 = lns[k].get(xs[b - 1]), y2 = line.get(xs[b\
+    \ - 1]);\n        if (x1 <= x2 && y1 <= y2) return;\n        if (x2 <= x1 && y2\
+    \ <= y1) {\n            lns[k] = line;\n            return;\n        }\n     \
+    \   if (lns[k].get(xs[m]) <= line.get(xs[m])) {\n            if (y1 < y2) add_line(k\
+    \ << 1, a, m, line);\n            else add_line(k << 1 | 1, m, b, line);\n   \
+    \     }\n        else {\n            if (y1 < y2) add_line(k << 1 | 1, m, b, lns[k]);\n\
+    \            else add_line(k << 1, a, m, lns[k]);\n            lns[k] = line;\n\
+    \        }\n    }\n    void add_segment(int k, int a, int b, int l, int r, const\
+    \ Line& line) {\n        if (l <= a && b <= r) {\n            add_line(k, a, b,\
+    \ line);\n            return;\n        }\n        if (r <= a || b <= l) return;\n\
+    \        int m = (a + b) >> 1;\n        add_segment(k << 1, a, m, l, r, line);\n\
+    \        add_segment(k << 1 | 1, m, b, l, r, line);\n    }\n\npublic:\n    LiChaoTree()\
+    \ : LiChaoTree({0}) {}\n    LiChaoTree(const std::vector<T>& xs_) { init(xs_);\
+    \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
+    \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
+    \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
+    \ 1);\n        lns.assign(n << 1,\n                   Line{0, is_max ? infinity<T>::min\
+    \ : infinity<T>::max, -1});\n    }\n    int add_segment(int l, int r, T x, T y)\
+    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1, 0,\
+    \ n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
+    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
+    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
     \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
     \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
     \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
@@ -504,27 +501,31 @@ data:
     \ namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
     \ 4>> A(N); scan >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
     \ d, e] : B) {\n        scan >> a;\n        if (a == 0) scan >> b >> c >> d >>\
-    \ e;\n        else scan >> b;\n    }\n    presser<ll> ps;\n    each_const ([a,\
+    \ e;\n        else scan >> b;\n    }\n    compressor<ll> ps;\n    each_const ([a,\
     \ b, c, d, e] : B) {\n        if (a == 1) ps.push_back(b);\n    }\n    ps.build();\n\
-    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct(ps.data());\n    each_const\
-    \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
-    \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
-    \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
-    \            if (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n  \
-    \          else print << res << endl;\n        }\n    }\n}\n"
+    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct([&] {\n        vector<ll>\
+    \ v;\n        rep (i, ps.size()) v.push_back(ps[i]);\n        return v;\n    }());\n\
+    \    each_const ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a),\
+    \ ps.lower_bound(b), c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n \
+    \       if (a == 0) lct.add_segment(ps.lower_bound(b), ps.lower_bound(c), d, e);\n\
+    \        else {\n            ll res = lct.get_min(ps.get(b));\n            if\
+    \ (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n            else\
+    \ print << res << endl;\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"../../../other/template.hpp\"\n#include \"../../../data-struct/cht/LiChaoTree.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
     \ 4>> A(N); scan >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
     \ d, e] : B) {\n        scan >> a;\n        if (a == 0) scan >> b >> c >> d >>\
-    \ e;\n        else scan >> b;\n    }\n    presser<ll> ps;\n    each_const ([a,\
+    \ e;\n        else scan >> b;\n    }\n    compressor<ll> ps;\n    each_const ([a,\
     \ b, c, d, e] : B) {\n        if (a == 1) ps.push_back(b);\n    }\n    ps.build();\n\
-    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct(ps.data());\n    each_const\
-    \ ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a), ps.lower_bound(b),\
-    \ c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n        if (a == 0) lct.add_segment(ps.lower_bound(b),\
-    \ ps.lower_bound(c), d, e);\n        else {\n            ll res = lct.get_min(ps.get(b));\n\
-    \            if (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n  \
-    \          else print << res << endl;\n        }\n    }\n}\n"
+    \    if (ps.size() == 0) return 0;\n    LiChaoTree lct([&] {\n        vector<ll>\
+    \ v;\n        rep (i, ps.size()) v.push_back(ps[i]);\n        return v;\n    }());\n\
+    \    each_const ([a, b, c, d] : A) {\n        lct.add_segment(ps.lower_bound(a),\
+    \ ps.lower_bound(b), c, d);\n    }\n    each_const ([a, b, c, d, e] : B) {\n \
+    \       if (a == 0) lct.add_segment(ps.lower_bound(b), ps.lower_bound(c), d, e);\n\
+    \        else {\n            ll res = lct.get_min(ps.get(b));\n            if\
+    \ (res == infinity<ll>::max) print << \"INFINITY\" << endl;\n            else\
+    \ print << res << endl;\n        }\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -539,8 +540,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-20 14:55:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/segment_add_get_min.test.cpp
 layout: document

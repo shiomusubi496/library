@@ -1,45 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/convolution/DivisorZetaMoebiusTransform.hpp
     title: "DivisorZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/convolution/LcmConvolution.md
     document_title: LCMConvolution
@@ -385,54 +385,56 @@ data:
     \ U, class Comp = std::less<>>\ninline constexpr bool chmax(T& a, const U& b,\n\
     \                            Comp cmp = Comp()) noexcept(noexcept(cmp(a, b)))\
     \ {\n    return cmp(a, b) ? a = b, true : false;\n}\n\ninline CONSTEXPR ll gcd(ll\
-    \ a, ll b) noexcept {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while\
-    \ (b) {\n        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n\
-    \    return a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) noexcept { return a / gcd(a,\
-    \ b) * b; }\n\ninline CONSTEXPR bool is_prime(ll N) noexcept {\n    if (N <= 1)\
-    \ return false;\n    for (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0)\
-    \ return false;\n    }\n    return true;\n}\ninline std::vector<ll> prime_factor(ll\
-    \ N) {\n    std::vector<ll> res;\n    for (ll i = 2; i * i <= N; ++i) {\n    \
-    \    while (N % i == 0) {\n            res.push_back(i);\n            N /= i;\n\
-    \        }\n    }\n    if (N != 1) res.push_back(N);\n    return res;\n}\n\ninline\
-    \ CONSTEXPR ll my_pow(ll a, ll b) noexcept {\n    ll res = 1;\n    while (b) {\n\
-    \        if (b & 1) res *= a;\n        b >>= 1;\n        a *= a;\n    }\n    return\
-    \ res;\n}\ninline CONSTEXPR ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod >\
-    \ 0);\n    if (mod == 1) return 0;\n    a %= mod;\n    ll res = 1;\n    while\
-    \ (b) {\n        if (b & 1) (res *= a) %= mod;\n        b >>= 1;\n        (a *=\
-    \ a) %= mod;\n    }\n    return res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n \
-    \   const ll n = a, m = b;\n    ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n  \
-    \  while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n      \
-    \  std::swap(x -= t * u, u);\n        std::swap(y -= t * v, v);\n    }\n    if\
-    \ (x < 0) {\n        x += m;\n        y -= n;\n    }\n    return {x, y};\n}\n\
-    inline ll mod_inv(ll a, ll mod) {\n    ll b = mod;\n    ll x = 1, u = 0;\n   \
-    \ ll t;\n    while (b) {\n        t = a / b;\n        std::swap(a -= t * b, b);\n\
-    \        std::swap(x -= t * u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a\
-    \ == 1);\n    return x;\n}\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\
-    \n\ntemplate<class F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit\
-    \ constexpr RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class...\
-    \ Args>\n    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this,\
-    \ std::forward<Args>(args)...)) {\n        return f(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\n\ntemplate<class F> inline constexpr RecLambda<F> rec_lambda(F&& f)\
-    \ {\n    return RecLambda<F>(std::forward<F>(f));\n}\n\ntemplate<class Head, class...\
-    \ Tail> struct multi_dim_vector {\n    using type = std::vector<typename multi_dim_vector<Tail...>::type>;\n\
-    };\ntemplate<class T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class\
-    \ T, class Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return\
-    \ std::vector<T>(n, std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\n\
-    constexpr typename multi_dim_vector<Args..., T>::type make_vec(int n,\n      \
-    \                                                         Args&&... args) {\n\
-    \    return typename multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
-    }\n\ntemplate<class T, class Comp = std::less<T>> class presser {\nprivate:\n\
+    \ a, ll b) {\n    if (a < 0) a = -a;\n    if (b < 0) b = -b;\n    while (b) {\n\
+    \        const ll c = a;\n        a = b;\n        b = c % b;\n    }\n    return\
+    \ a;\n}\ninline CONSTEXPR ll lcm(ll a, ll b) { return a / gcd(a, b) * b; }\n\n\
+    inline CONSTEXPR bool is_prime(ll N) {\n    if (N <= 1) return false;\n    for\
+    \ (ll i = 2; i * i <= N; ++i) {\n        if (N % i == 0) return false;\n    }\n\
+    \    return true;\n}\ninline std::vector<ll> prime_factor(ll N) {\n    std::vector<ll>\
+    \ res;\n    for (ll i = 2; i * i <= N; ++i) {\n        while (N % i == 0) {\n\
+    \            res.push_back(i);\n            N /= i;\n        }\n    }\n    if\
+    \ (N != 1) res.push_back(N);\n    return res;\n}\n\ninline CONSTEXPR ll my_pow(ll\
+    \ a, ll b) {\n    ll res = 1;\n    while (b) {\n        if (b & 1) res *= a;\n\
+    \        b >>= 1;\n        a *= a;\n    }\n    return res;\n}\ninline CONSTEXPR\
+    \ ll mod_pow(ll a, ll b, ll mod) {\n    assert(mod > 0);\n    if (mod == 1) return\
+    \ 0;\n    a %= mod;\n    ll res = 1;\n    while (b) {\n        if (b & 1) (res\
+    \ *= a) %= mod;\n        b >>= 1;\n        (a *= a) %= mod;\n    }\n    return\
+    \ res;\n}\n\ninline PLL extGCD(ll a, ll b) {\n    const ll n = a, m = b;\n   \
+    \ ll x = 1, y = 0, u = 0, v = 1;\n    ll t;\n    while (b) {\n        t = a /\
+    \ b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t * u, u);\n \
+    \       std::swap(y -= t * v, v);\n    }\n    if (x < 0) {\n        x += m;\n\
+    \        y -= n;\n    }\n    return {x, y};\n}\ninline ll mod_inv(ll a, ll mod)\
+    \ {\n    ll b = mod;\n    ll x = 1, u = 0;\n    ll t;\n    while (b) {\n     \
+    \   t = a / b;\n        std::swap(a -= t * b, b);\n        std::swap(x -= t *\
+    \ u, u);\n    }\n    if (x < 0) x += mod;\n    assert(a == 1);\n    return x;\n\
+    }\n#line 2 \"template/util.hpp\"\n\n#line 6 \"template/util.hpp\"\n\ntemplate<class\
+    \ F> class RecLambda {\nprivate:\n    F f;\n\npublic:\n    explicit constexpr\
+    \ RecLambda(F&& f_) : f(std::forward<F>(f_)) {}\n    template<class... Args>\n\
+    \    constexpr auto operator()(Args&&... args)\n        -> decltype(f(*this, std::forward<Args>(args)...))\
+    \ {\n        return f(*this, std::forward<Args>(args)...);\n    }\n};\n\ntemplate<class\
+    \ F> inline constexpr RecLambda<F> rec_lambda(F&& f) {\n    return RecLambda<F>(std::forward<F>(f));\n\
+    }\n\n\ntemplate<class Head, class... Tail> struct multi_dim_vector {\n    using\
+    \ type = std::vector<typename multi_dim_vector<Tail...>::type>;\n};\ntemplate<class\
+    \ T> struct multi_dim_vector<T> { using type = T; };\n\ntemplate<class T, class\
+    \ Arg>\nconstexpr std::vector<T> make_vec(int n, Arg&& arg) {\n    return std::vector<T>(n,\
+    \ std::forward<Arg>(arg));\n}\ntemplate<class T, class... Args>\nconstexpr typename\
+    \ multi_dim_vector<Args..., T>::type make_vec(int n,\n                       \
+    \                                        Args&&... args) {\n    return typename\
+    \ multi_dim_vector<Args..., T>::type(\n        n, make_vec<T>(std::forward<Args>(args)...));\n\
+    }\n\n\ntemplate<class T, class Comp = std::less<T>> class compressor {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n    bool sorted = false;\n\npublic:\n\
-    \    presser() : presser(Comp()) {}\n    presser(const Comp& cmp) : cmp(cmp) {}\n\
-    \    presser(const std::vector<T>& vec, const Comp& cmp = Comp())\n        : dat(vec),\
-    \ cmp(cmp) {}\n    presser(std::vector<T>&& vec, const Comp& cmp = Comp())\n \
-    \       : dat(std::move(vec)), cmp(cmp) {}\n    presser(std::initializer_list<T>\
-    \ il, const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {}\n    void\
-    \ reserve(int n) {\n        assert(!sorted);\n        dat.reserve(n);\n    }\n\
-    \    void push_back(const T& v) {\n        assert(!sorted);\n        dat.push_back(v);\n\
-    \    }\n    void push_back(T&& v) {\n        assert(!sorted);\n        dat.push_back(std::move(v));\n\
-    \    }\n    template<class... Args> void emplace_back(Args&&... args) {\n    \
-    \    assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
+    \    compressor() : compressor(Comp()) {}\n    compressor(const Comp& cmp) : cmp(cmp)\
+    \ {}\n    compressor(const std::vector<T>& vec, bool f = false,\n            \
+    \   const Comp& cmp = Comp())\n        : dat(vec), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::vector<T>&& vec, bool f = false, const\
+    \ Comp& cmp = Comp())\n        : dat(std::move(vec)), cmp(cmp) {\n        if (f)\
+    \ build();\n    }\n    compressor(std::initializer_list<T> il, bool f = false,\n\
+    \               const Comp& cmp = Comp())\n        : dat(all(il)), cmp(cmp) {\n\
+    \        if (f) build();\n    }\n    void reserve(int n) {\n        assert(!sorted);\n\
+    \        dat.reserve(n);\n    }\n    void push_back(const T& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(v);\n    }\n    void push_back(T&& v) {\n        assert(!sorted);\n\
+    \        dat.push_back(std::move(v));\n    }\n    template<class... Args> void\
+    \ emplace_back(Args&&... args) {\n        assert(!sorted);\n        dat.emplace_back(std::forward<Args>(args)...);\n\
     \    }\n    void push(const std::vector<T>& vec) {\n        assert(!sorted);\n\
     \        const int n = dat.size();\n        dat.resize(n + vec.size());\n    \
     \    rep (i, vec.size()) dat[n + i] = vec[i];\n    }\n    int build() {\n    \
@@ -442,36 +444,31 @@ data:
     \ b) && !cmp(b, a);\n                              }),\n                  dat.end());\n\
     \        return dat.size();\n    }\n    const T& operator[](int k) const& {\n\
     \        assert(sorted);\n        assert(0 <= k && k < (int)dat.size());\n   \
-    \     return dat[k];\n    }\n    T operator[](int k) && {\n        assert(sorted);\n\
-    \        assert(0 <= k && k < (int)dat.size());\n        return std::move(dat[k]);\n\
-    \    }\n    int get(const T& val) const {\n        assert(sorted);\n        auto\
-    \ itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr != dat.end()\
-    \ && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n    int lower_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::lower_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    int upper_bound(const\
-    \ T& val) const {\n        assert(sorted);\n        auto itr = std::upper_bound(all(dat),\
-    \ val, cmp);\n        return itr - dat.begin();\n    }\n    bool contains(const\
-    \ T& val) const {\n        assert(sorted);\n        return std::binary_search(all(dat),\
-    \ val, cmp);\n    }\n    std::vector<int> pressed(const std::vector<T>& vec) const\
-    \ {\n        assert(sorted);\n        std::vector<int> res(vec.size());\n    \
-    \    rep (i, vec.size()) res[i] = get(vec[i]);\n        return res;\n    }\n \
-    \   void press(std::vector<T>& vec) const {\n        static_assert(std::is_convertible<T,\
-    \ int>::value,\n                      \"template argument must be convertible\
-    \ from int type\");\n        assert(sorted);\n        each_for (i : vec) i = get(i);\n\
-    \    }\n    int size() const {\n        assert(sorted);\n        return dat.size();\n\
-    \    }\n    const std::vector<T>& data() const& { return dat; }\n    std::vector<T>\
-    \ data() && { return std::move(dat); }\n};\n#line 2 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\
-    \n\n#line 4 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\ntemplate<class\
-    \ Sum>\nvoid divisor_zeta_transform(std::vector<typename Sum::value_type>& v)\
-    \ {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n\
-    \    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n    \
-    \    reps (j, n / i) {\n            v[j * i] = Sum::op(v[j * i], v[j]);\n    \
-    \        is_prime[j * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\n\
-    void divisor_moebius_transform(std::vector<typename Sum::value_type>& v) {\n \
-    \   int n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for\
-    \ (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        rreps\
-    \ (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n           \
-    \ is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
+    \     return dat[k];\n    }\n    int get(const T& val) const {\n        assert(sorted);\n\
+    \        auto itr = std::lower_bound(all(dat), val, cmp);\n        assert(itr\
+    \ != dat.end() && !cmp(val, *itr));\n        return itr - dat.begin();\n    }\n\
+    \    int lower_bound(const T& val) const {\n        assert(sorted);\n        auto\
+    \ itr = std::lower_bound(all(dat), val, cmp);\n        return itr - dat.begin();\n\
+    \    }\n    int upper_bound(const T& val) const {\n        assert(sorted);\n \
+    \       auto itr = std::upper_bound(all(dat), val, cmp);\n        return itr -\
+    \ dat.begin();\n    }\n    bool contains(const T& val) const {\n        assert(sorted);\n\
+    \        return std::binary_search(all(dat), val, cmp);\n    }\n    std::vector<int>\
+    \ pressed(const std::vector<T>& vec) const {\n        assert(sorted);\n      \
+    \  std::vector<int> res(vec.size());\n        rep (i, vec.size()) res[i] = get(vec[i]);\n\
+    \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
+    \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
+    \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
+    };\n#line 2 \"math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\n#line 4 \"\
+    math/convolution/DivisorZetaMoebiusTransform.hpp\"\n\ntemplate<class Sum>\nvoid\
+    \ divisor_zeta_transform(std::vector<typename Sum::value_type>& v) {\n    int\
+    \ n = v.size() - 1;\n    std::vector<bool> is_prime(n + 1, true);\n    for (ll\
+    \ i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n        reps (j,\
+    \ n / i) {\n            v[j * i] = Sum::op(v[j * i], v[j]);\n            is_prime[j\
+    \ * i] = false;\n        }\n    }\n}\n\ntemplate<class Sum>\nvoid divisor_moebius_transform(std::vector<typename\
+    \ Sum::value_type>& v) {\n    int n = v.size() - 1;\n    std::vector<bool> is_prime(n\
+    \ + 1, true);\n    for (ll i = 2; i <= n; ++i) {\n        if (!is_prime[i]) continue;\n\
+    \        rreps (j, n / i) {\n            v[j * i] = Sum::inv(v[j * i], v[j]);\n\
+    \            is_prime[j * i] = false;\n        }\n    }\n}\n\n/**\n * @brief DivisorZeta/MoebiusTransform(\u30BC\
     \u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\u30A6\u30B9\u5909\u63DB)\n * @docs docs/math/convolution/DivisorZetaMoebiusTransform.md\n\
     \ */\n#line 5 \"math/convolution/LcmConvolution.hpp\"\n\ntemplate<class Sum, class\
     \ Prod>\nstd::vector<typename Sum::value_type>\nlcm_convolution(std::vector<typename\
@@ -501,8 +498,8 @@ data:
   isVerificationFile: false
   path: math/convolution/LcmConvolution.hpp
   requiredBy: []
-  timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-20 14:55:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/convolution/lcm_convolution.test.cpp
 documentation_of: math/convolution/LcmConvolution.hpp
