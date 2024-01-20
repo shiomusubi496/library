@@ -36,7 +36,7 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
     title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/tree/ReRooting.md
     document_title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
@@ -695,7 +695,7 @@ data:
   path: graph/tree/ReRooting.hpp
   requiredBy: []
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp

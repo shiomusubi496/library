@@ -1,9 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: other/monoid.hpp
-    title: other/monoid.hpp
+  - icon: ':x:'
+    path: data-struct/segment/StaticRangeMode.hpp
+    title: "StaticRangeMode(\u533A\u9593\u6700\u983B\u5024)"
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -31,47 +31,19 @@ data:
   - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: string/RollingHash.hpp
-    title: "RollingHash(\u30ED\u30EA\u30CF)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-    title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':x:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
-  _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
-    document_title: BinaryIndexedTree(FenwickTree, BIT)
-    links: []
-  bundledCode: "#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_mode_query
+    links:
+    - https://judge.yosupo.jp/problem/static_range_mode_query
+  bundledCode: "#line 1 \"test/yosupo/new/static_range_mode_query.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\n#line 2\
+    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -485,140 +457,49 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
-    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
-    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
-    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
-    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
-    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
-    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
-    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
-    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
-    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
-    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
-    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
-    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
-    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
-    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
-    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
-    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
-    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
-    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
-    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
-    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
-    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
-    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
-    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
-    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
-    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
-    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
-    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
-    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
-    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
-    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
-    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
-    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
-    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
-    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
-    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
-    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
-    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
-    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
-    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
-    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
-    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
-    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
-    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
-    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
-    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
-    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
-    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
-    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
-    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
-    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
-    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
-    \ */\n"
+    };\n#line 2 \"data-struct/segment/StaticRangeMode.hpp\"\n\n#line 4 \"data-struct/segment/StaticRangeMode.hpp\"\
+    \n\ntemplate<class T> class StaticRangeMode {\nprivate:\n    int n, bs, bn;\n\
+    \    compressor<T> ps;\n    std::vector<int> v;\n    std::vector<std::vector<std::pair<int,\
+    \ int>>> mds;\n    std::vector<std::vector<int>> idx;\n    std::vector<int> ridx;\n\
+    \npublic:\n    StaticRangeMode() = default;\n    StaticRangeMode(const std::vector<T>&\
+    \ v_) { init(v_); }\n\n    void init(const std::vector<T>& v_) {\n        if (v_.empty())\
+    \ return;\n        ps.push(v_);\n        ps.build();\n        v = ps.pressed(v_);\n\
+    \        n = v.size();\n        bs = sqrt(n);\n        bn = (n + bs - 1) / bs;\n\
+    \        mds.assign(bn, std::vector<std::pair<int, int>>(bn + 1));\n        std::vector<int>\
+    \ cnt(ps.size());\n        int md = 0;\n        rep (i, bn) {\n            rep\
+    \ (j, i, bn) {\n                rep (k, j * bs, std::min<int>(n, (j + 1) * bs))\
+    \ {\n                    ++cnt[v[k]];\n                    if (cnt[v[k]] > cnt[md])\
+    \ md = v[k];\n                }\n                mds[i][j + 1] = {md, cnt[md]};\n\
+    \            }\n            rep (j, i * bs, n) cnt[v[j]] = 0;\n        }\n   \
+    \     idx.assign(ps.size(), std::vector<int>());\n        ridx.resize(n);\n  \
+    \      rep (i, n) {\n            ridx[i] = idx[v[i]].size();\n            idx[v[i]].push_back(i);\n\
+    \        }\n    }\n\n    std::pair<T, int> prod(int l, int r) const {\n      \
+    \  assert(0 <= l && l <= r && r <= n);\n        assert(l < r);\n        int lb\
+    \ = l / bs, rb = r / bs;\n        int md = -1, cnt = -1;\n        if (lb == rb)\
+    \ {\n            rep (i, l, r) {\n                int x = v[i];\n            \
+    \    const int k = ridx[i];\n                while (k + cnt < (int)idx[x].size()\
+    \ && idx[x][k + cnt] < r) {\n                    ++cnt;\n                    md\
+    \ = x;\n                }\n            }\n        }\n        else {\n        \
+    \    if (lb + 1 < rb) std::tie(md, cnt) = mds[lb + 1][rb];\n            rep (i,\
+    \ l, (lb + 1) * bs) {\n                int x = v[i];\n                const int\
+    \ k = ridx[i];\n                while (k + cnt < (int)idx[x].size() && idx[x][k\
+    \ + cnt] < r) {\n                    ++cnt;\n                    md = x;\n   \
+    \             }\n            }\n            rep (i, rb * bs, r) {\n          \
+    \      int x = v[i];\n                const int k = ridx[i];\n               \
+    \ while (k - cnt >= 0 && idx[x][k - cnt] >= l) {\n                    ++cnt;\n\
+    \                    md = x;\n                }\n            }\n        }\n  \
+    \      return {ps[md], cnt};\n    }\n};\n\n/**\n * @brief StaticRangeMode(\u533A\
+    \u9593\u6700\u983B\u5024)\n * @docs docs/data-struct/segment/StaticRangeMode.md\n\
+    \ * @see https://noshi91.hatenablog.com/entry/2020/10/26/140105\n */\n#line 4\
+    \ \"test/yosupo/new/static_range_mode_query.test.cpp\"\nusing namespace std;\n\
+    int main() {\n    int N, Q; scan >> N >> Q;\n    vector<int> A(N); scan >> A;\n\
+    \    StaticRangeMode srm(A);\n    rep (Q) {\n        int l, r; scan >> l >> r;\n\
+    \        prints(srm.prod(l, r));\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/StaticRangeMode.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
+    \ A(N); scan >> A;\n    StaticRangeMode srm(A);\n    rep (Q) {\n        int l,\
+    \ r; scan >> l >> r;\n        prints(srm.prod(l, r));\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -629,41 +510,17 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid.hpp
-  isVerificationFile: false
-  path: data-struct/segment/BinaryIndexedTree.hpp
-  requiredBy:
-  - string/RollingHash.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
-  verifiedWith:
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-documentation_of: data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/StaticRangeMode.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/static_range_mode_query.test.cpp
+  requiredBy: []
+  timestamp: '2024-01-20 16:53:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/yosupo/new/static_range_mode_query.test.cpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/BinaryIndexedTree.hpp
-- /library/data-struct/segment/BinaryIndexedTree.hpp.html
-title: BinaryIndexedTree(FenwickTree, BIT)
+- /verify/test/yosupo/new/static_range_mode_query.test.cpp
+- /verify/test/yosupo/new/static_range_mode_query.test.cpp.html
+title: test/yosupo/new/static_range_mode_query.test.cpp
 ---
-## 概要
-
-可換モノイドを扱う。 min/max などが扱える。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log n)$ 。
-- `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $\Theta(\log n)$ 。
-
-また、逆演算が存在する場合、以下も使える。足し算や bitwise xor などはこれを満たす。
-
-- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
-- `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
-- `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
-- `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。
