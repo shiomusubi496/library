@@ -60,5 +60,5 @@ template<class T> std::vector<T> FibonacciSearch<T>::fib = {0, 1, 1};
 
 /**
  * @brief FibonacciSearch
- * @docs docs/FibonacciSearch.md
+ * @docs docs/dp/FibonacciSearch.md
  */
