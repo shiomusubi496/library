@@ -23,7 +23,7 @@ data:
   - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':question:'
@@ -67,9 +67,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sharp_p_subset_sum
@@ -1130,7 +1130,7 @@ data:
   path: test/yosupo/math/sharp_p_subset_sum.test.cpp
   requiredBy: []
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/sharp_p_subset_sum.test.cpp
 layout: document

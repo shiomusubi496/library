@@ -64,12 +64,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/poly/BostanMori.md
     document_title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE\
@@ -1143,7 +1143,7 @@ data:
   path: math/poly/BostanMori.hpp
   requiredBy: []
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: math/poly/BostanMori.hpp

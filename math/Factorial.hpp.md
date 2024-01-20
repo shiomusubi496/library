@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
   - icon: ':question:'
@@ -67,12 +67,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/factorial.test.cpp
     title: test/yosupo/new/factorial.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/Factorial.md
     document_title: "Factorial(\u968E\u4E57)"
@@ -1157,7 +1157,7 @@ data:
   path: math/Factorial.hpp
   requiredBy: []
   timestamp: '2024-01-20 18:35:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/factorial.test.cpp
 documentation_of: math/Factorial.hpp

@@ -29,7 +29,7 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SternBrocotTree.hpp
     title: Stern-Brocot Tree
   _extendedVerifiedWith:
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/Rational.md
     document_title: "Rational(\u6709\u7406\u6570\u578B)"
@@ -581,7 +581,7 @@ data:
   requiredBy:
   - math/SternBrocotTree.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp

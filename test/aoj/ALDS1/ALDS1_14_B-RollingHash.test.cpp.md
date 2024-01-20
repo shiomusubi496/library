@@ -653,15 +653,16 @@ data:
     \    if (n & 1) res *= x;\n            x *= x;\n            n >>= 1;\n       \
     \ }\n        return res;\n    }\n    modint61 inv() const { return pow(MOD - 2);\
     \ }\n    modint61& operator/=(const modint61& other) {\n        *this *= other.inv();\n\
-    \        return *this;\n    }\n    modint61 operator+(const modint61& other) const\
-    \ {\n        return modint61(*this) += other;\n    }\n    modint61 operator-(const\
-    \ modint61& other) const {\n        return modint61(*this) -= other;\n    }\n\
-    \    modint61 operator*(const modint61& other) const {\n        return modint61(*this)\
-    \ *= other;\n    }\n    modint61 operator/(const modint61& other) const {\n  \
-    \      return modint61(*this) /= other;\n    }\n    modint61 operator+() const\
-    \ { return *this; }\n    modint61 operator-() const { return modint61() - *this;\
-    \ }\n    friend bool operator==(const modint61& lhs, const modint61& rhs) {\n\
-    \        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const modint61&\
+    \        return *this;\n    }\n    friend modint61 operator+(const modint61& lhs,\
+    \ const modint61& rhs) {\n        return modint61(lhs) += rhs;\n    }\n    friend\
+    \ modint61 operator-(const modint61& lhs, const modint61& rhs) {\n        return\
+    \ modint61(lhs) -= rhs;\n    }\n    friend modint61 operator*(const modint61&\
+    \ lhs, const modint61& rhs) {\n        return modint61(lhs) *= rhs;\n    }\n \
+    \   friend modint61 operator/(const modint61& lhs, const modint61& rhs) {\n  \
+    \      return modint61(lhs) /= rhs;\n    }\n    modint61 operator+() const { return\
+    \ *this; }\n    modint61 operator-() const { return modint61() - *this; }\n  \
+    \  friend bool operator==(const modint61& lhs, const modint61& rhs) {\n      \
+    \  return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const modint61&\
     \ lhs, const modint61& rhs) {\n        return lhs.val != rhs.val;\n    }\n   \
     \ template<class Pr> void debug(Pr& a) const { a.print(val); }\n};\n\nclass RollingHash\
     \ {\nprivate:\n    static constexpr ull MASK31 = (1ull << 31) - 1;\n    using\
@@ -724,7 +725,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 19:15:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

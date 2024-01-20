@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/MontmortNumber.hpp
     title: "MontmortNumber(\u652A\u4E71\u9806\u5217)"
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/montmort_number_mod
@@ -606,7 +606,7 @@ data:
   path: test/yosupo/math/montmort_number_mod.test.cpp
   requiredBy: []
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/montmort_number_mod.test.cpp
 layout: document

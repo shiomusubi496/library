@@ -32,23 +32,23 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
   - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/SubsetSum.hpp
     title: SubsetSum
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
   - icon: ':x:'
@@ -89,25 +89,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/partition_function.test.cpp
     title: test/yosupo/math/partition_function.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sharp_p_subset_sum.test.cpp
     title: test/yosupo/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
     path: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/factorial.test.cpp
     title: test/yosupo/new/factorial.test.cpp
   - icon: ':x:'
