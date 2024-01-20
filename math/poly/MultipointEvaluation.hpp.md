@@ -64,9 +64,15 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':x:'
+    path: math/Factorial.hpp
+    title: "Factorial(\u968E\u4E57)"
+  - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo/new/factorial.test.cpp
+    title: test/yosupo/new/factorial.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
@@ -1154,12 +1160,14 @@ data:
   isVerificationFile: false
   path: math/poly/MultipointEvaluation.hpp
   requiredBy:
+  - math/Factorial.hpp
   - math/poly/PolynomialInterpolation.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/new/factorial.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
 layout: document
 redirect_from:

@@ -60,6 +60,9 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: math/Factorial.hpp
+    title: "Factorial(\u968E\u4E57)"
   - icon: ':question:'
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
@@ -111,6 +114,9 @@ data:
   - icon: ':x:'
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/new/factorial.test.cpp
+    title: test/yosupo/new/factorial.test.cpp
   - icon: ':x:'
     path: test/yosupo/polynomial/division_of_polynomials.test.cpp
     title: test/yosupo/polynomial/division_of_polynomials.test.cpp
@@ -1376,6 +1382,7 @@ data:
   requiredBy:
   - math/SubsetSum.hpp
   - math/StirlingNumber.hpp
+  - math/Factorial.hpp
   - math/poly/SparseFormalPowerSeries.hpp
   - math/poly/BostanMori.hpp
   - math/poly/PolynomialInterpolation.hpp
@@ -1409,6 +1416,7 @@ data:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/inv_of_formal_power_series.test.cpp
   - test/yosupo/polynomial/exp_of_formal_power_series-RelaxedConvolution.test.cpp
+  - test/yosupo/new/factorial.test.cpp
   - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/FormalPowerSeries.hpp
 layout: document
