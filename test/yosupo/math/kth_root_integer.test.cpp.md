@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: math/KthRoot.hpp
     title: "KthRoot(k\u4E57\u6839)"
   - icon: ':question:'

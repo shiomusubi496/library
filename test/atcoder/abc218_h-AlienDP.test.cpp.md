@@ -520,9 +520,9 @@ data:
     \        F&& f) {\n        return minimize(low, high, std::forward<F>(f),\n  \
     \                      std::greater<function_result_type<F>>());\n    }\n};\n\n\
     template<class T> std::vector<T> FibonacciSearch<T>::fib = {0, 1, 1};\n\n/**\n\
-    \ * @brief FibonacciSearch\n * @docs docs/FibonacciSearch.md\n */\n#line 6 \"\
-    dp/AlienDP.hpp\"\n\n// \u4E0B\u306B\u51F8\u306A\u95A2\u6570 f \u306B\u5BFE\u3057\
-    \u3001 g(p)=min_x(f(x)-px)\ntemplate<class F, class T>\nfunction_result_type<F>\
+    \ * @brief FibonacciSearch\n * @docs docs/dp/FibonacciSearch.md\n */\n#line 6\
+    \ \"dp/AlienDP.hpp\"\n\n// \u4E0B\u306B\u51F8\u306A\u95A2\u6570 f \u306B\u5BFE\
+    \u3057\u3001 g(p)=min_x(f(x)-px)\ntemplate<class F, class T>\nfunction_result_type<F>\
     \ alien_dp_convex(function_result_type<F> low,\n                             \
     \           function_result_type<F> high, T x,\n                             \
     \           F&& g) {\n    using U = function_result_type<F>;\n    return FibonacciSearch<U>::maximize(low,\
@@ -570,7 +570,7 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc218_h-AlienDP.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-20 18:54:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/atcoder/abc218_h-AlienDP.test.cpp
