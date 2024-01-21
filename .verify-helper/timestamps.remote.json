@@ -116,7 +116,7 @@
 "test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/data_structure/range_reverse_range_sum.test.cpp": "2024-01-20 14:55:31 +0900",
-"test/yosupo/data_structure/rectangle_sum.test.cpp": "2024-01-20 14:55:31 +0900",
+"test/yosupo/data_structure/rectangle_sum.test.cpp": "2024-01-21 20:55:42 +0900",
 "test/yosupo/data_structure/segment_add_get_min.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/data_structure/set_xor_min.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/data_structure/static_range_frequency.test.cpp": "2024-01-20 14:55:31 +0900",
@@ -212,5 +212,6 @@
 "test/yuki/3030-MRPrime.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yuki/447-CRT.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yuki/448-Garner.test.cpp": "2024-01-20 14:55:31 +0900",
-"test/yuki/705-Monge.test.cpp": "2024-01-20 14:55:31 +0900"
+"test/yuki/705-Monge.test.cpp": "2024-01-20 14:55:31 +0900",
+"test/yuki/855_DynamicSegTree.test.cpp": "2024-01-20 14:55:31 +0900"
 }
