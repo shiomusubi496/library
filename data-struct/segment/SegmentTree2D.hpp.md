@@ -4,34 +4,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -611,12 +611,18 @@ data:
     \  template<class Upd> void update(ll x, ll y, const Upd& upd) {\n        assert(built);\n\
     \        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
     \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        seg[k].update(itr\
-    \ - idx[k].begin(), upd);\n        while (k >>= 1) {\n            seg[k].update(std::lower_bound(all(idx[k]),\
-    \ y) - idx[k].begin(),\n                          upd);\n        }\n    }\n  \
-    \  void set(ll x, ll y, const T& v) {\n        update(x, y, [&](const T&) { return\
-    \ v; });\n    }\n    void apply(ll x, ll y, const T& a) {\n        update(x, y,\
-    \ [&](const T& y) { return M::op(y, a); });\n    }\n    T prod(ll l, ll r, ll\
-    \ u, ll d) const {\n        assert(built);\n        l = psx.lower_bound(l);\n\
+    \ - idx[k].begin(), upd);\n        T cur = seg[k].get(itr - idx[k].begin());\n\
+    \        while (k > 1) {\n            int l = k ^ 1;\n            auto itr2 =\
+    \ std::lower_bound(all(idx[l]), y);\n            int t = std::lower_bound(all(idx[k\
+    \ >> 1]), y) - idx[k >> 1].begin();\n            if (itr2 == idx[l].end() || *itr2\
+    \ != y) seg[k >> 1].set(t, cur);\n            else {\n                if (k <\
+    \ l) cur = M::op(cur, seg[l].get(itr2 - idx[l].begin()));\n                else\
+    \ cur = M::op(seg[l].get(itr2 - idx[l].begin()), cur);\n                seg[k\
+    \ >> 1].set(t, cur);\n            }\n            k >>= 1;\n        }\n    }\n\
+    \    void set(ll x, ll y, const T& v) {\n        update(x, y, [&](const T&) {\
+    \ return v; });\n    }\n    void apply(ll x, ll y, const T& a) {\n        update(x,\
+    \ y, [&](const T& y) { return M::op(y, a); });\n    }\n    T prod(ll l, ll r,\
+    \ ll u, ll d) const {\n        assert(built);\n        l = psx.lower_bound(l);\n\
     \        r = psx.lower_bound(r);\n        l += n;\n        r += n;\n        T\
     \ lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if (l &\
     \ 1) {\n                int a = std::lower_bound(all(idx[l]), u) - idx[l].begin();\n\
@@ -652,23 +658,28 @@ data:
     \ x, ll y, const Upd& upd) {\n        assert(built);\n        int k = psx.get(x)\
     \ + n;\n        auto itr = std::lower_bound(all(idx[k]), y);\n        assert(itr\
     \ != idx[k].end() && *itr == y);\n        seg[k].update(itr - idx[k].begin(),\
-    \ upd);\n        while (k >>= 1) {\n            seg[k].update(std::lower_bound(all(idx[k]),\
-    \ y) - idx[k].begin(),\n                          upd);\n        }\n    }\n  \
-    \  void set(ll x, ll y, const T& v) {\n        update(x, y, [&](const T&) { return\
-    \ v; });\n    }\n    void apply(ll x, ll y, const T& a) {\n        update(x, y,\
-    \ [&](const T& y) { return M::op(y, a); });\n    }\n    T prod(ll l, ll r, ll\
-    \ u, ll d) const {\n        assert(built);\n        l = psx.lower_bound(l);\n\
-    \        r = psx.lower_bound(r);\n        l += n;\n        r += n;\n        T\
-    \ lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if (l &\
-    \ 1) {\n                int a = std::lower_bound(all(idx[l]), u) - idx[l].begin();\n\
-    \                int b = std::lower_bound(all(idx[l]), d) - idx[l].begin();\n\
-    \                lsm = M::op(lsm, seg[l].prod(a, b));\n                ++l;\n\
-    \            }\n            if (r & 1) {\n                --r;\n             \
-    \   int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n             \
-    \   int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n             \
-    \   rsm = M::op(seg[r].prod(a, b), rsm);\n            }\n            l >>= 1;\n\
-    \            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n    }\n   \
-    \ T all_prod() const {\n        assert(built);\n        return seg[1].all_prod();\n\
+    \ upd);\n        T cur = seg[k].get(itr - idx[k].begin());\n        while (k >\
+    \ 1) {\n            int l = k ^ 1;\n            auto itr2 = std::lower_bound(all(idx[l]),\
+    \ y);\n            int t = std::lower_bound(all(idx[k >> 1]), y) - idx[k >> 1].begin();\n\
+    \            if (itr2 == idx[l].end() || *itr2 != y) seg[k >> 1].set(t, cur);\n\
+    \            else {\n                if (k < l) cur = M::op(cur, seg[l].get(itr2\
+    \ - idx[l].begin()));\n                else cur = M::op(seg[l].get(itr2 - idx[l].begin()),\
+    \ cur);\n                seg[k >> 1].set(t, cur);\n            }\n           \
+    \ k >>= 1;\n        }\n    }\n    void set(ll x, ll y, const T& v) {\n       \
+    \ update(x, y, [&](const T&) { return v; });\n    }\n    void apply(ll x, ll y,\
+    \ const T& a) {\n        update(x, y, [&](const T& y) { return M::op(y, a); });\n\
+    \    }\n    T prod(ll l, ll r, ll u, ll d) const {\n        assert(built);\n \
+    \       l = psx.lower_bound(l);\n        r = psx.lower_bound(r);\n        l +=\
+    \ n;\n        r += n;\n        T lsm = M::id(), rsm = M::id();\n        while\
+    \ (l != r) {\n            if (l & 1) {\n                int a = std::lower_bound(all(idx[l]),\
+    \ u) - idx[l].begin();\n                int b = std::lower_bound(all(idx[l]),\
+    \ d) - idx[l].begin();\n                lsm = M::op(lsm, seg[l].prod(a, b));\n\
+    \                ++l;\n            }\n            if (r & 1) {\n             \
+    \   --r;\n                int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n\
+    \                int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n\
+    \                rsm = M::op(seg[r].prod(a, b), rsm);\n            }\n       \
+    \     l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T all_prod() const {\n        assert(built);\n        return seg[1].all_prod();\n\
     \    }\n    T get(ll x, ll y) const {\n        assert(built);\n        x = psx.get(x);\n\
     \        auto itr = std::lower_bound(all(idx[x + n]), y);\n        assert(itr\
     \ != idx[x + n].end() && *itr == y);\n        return seg[x + n].get(itr - idx[x\
@@ -689,7 +700,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/SegmentTree2D.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-21 20:55:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/rectangle_sum.test.cpp
