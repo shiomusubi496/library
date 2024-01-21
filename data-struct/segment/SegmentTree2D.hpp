@@ -48,9 +48,18 @@ public:
         auto itr = std::lower_bound(all(idx[k]), y);
         assert(itr != idx[k].end() && *itr == y);
         seg[k].update(itr - idx[k].begin(), upd);
-        while (k >>= 1) {
-            seg[k].update(std::lower_bound(all(idx[k]), y) - idx[k].begin(),
-                          upd);
+        T cur = seg[k].get(itr - idx[k].begin());
+        while (k > 1) {
+            int l = k ^ 1;
+            auto itr2 = std::lower_bound(all(idx[l]), y);
+            int t = std::lower_bound(all(idx[k >> 1]), y) - idx[k >> 1].begin();
+            if (itr2 == idx[l].end() || *itr2 != y) seg[k >> 1].set(t, cur);
+            else {
+                if (k < l) cur = M::op(cur, seg[l].get(itr2 - idx[l].begin()));
+                else cur = M::op(seg[l].get(itr2 - idx[l].begin()), cur);
+                seg[k >> 1].set(t, cur);
+            }
+            k >>= 1;
         }
     }
     void set(ll x, ll y, const T& v) {
