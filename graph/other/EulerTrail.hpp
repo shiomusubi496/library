@@ -13,6 +13,32 @@ private:
     std::vector<int> idx;
     std::vector<bool> used;
 
+    void build_undirected() {
+        std::vector<int> odds;
+        rep (i, G.size()) {
+            if (G[i].size() & 1) odds.push_back(i);
+        }
+        if (odds.size() > 2) return;
+        build(odds.empty() ? -1 : odds[0]);
+    }
+    void build_directed() {
+        std::vector<int> deg(n);
+        std::vector<int> s, g;
+        rep (i, n) {
+            for (auto e : G[i]) {
+                ++deg[e.from];
+                --deg[e.to];
+            }
+        }
+        rep (i, n) {
+            if (deg[i] == 1) s.push_back(i);
+            else if (deg[i] == -1) g.push_back(i);
+            else if (deg[i] != 0) return;
+        }
+        if (s.size() != g.size() || s.size() > 1) return;
+        build(s.empty() ? -1 : s[0]);
+    }
+
     void build(int s) {
         if (s == -1) {
             s = 0;
@@ -57,33 +83,12 @@ public:
         else build_undirected();
     }
 
-    void build_undirected() {
-        std::vector<int> odds;
-        rep (i, G.size()) {
-            if (G[i].size() & 1) odds.push_back(i);
-        }
-        if (odds.size() > 2) return;
-        build(odds.empty() ? -1 : odds[0]);
-    }
-    void build_directed() {
-        std::vector<int> deg(n);
-        std::vector<int> s, g;
-        rep (i, n) {
-            for (auto e : G[i]) {
-                ++deg[e.from];
-                --deg[e.to];
-            }
-        }
-        rep (i, n) {
-            if (deg[i] == 1) s.push_back(i);
-            else if (deg[i] == -1) g.push_back(i);
-            else if (deg[i] != 0) return;
-        }
-        if (s.size() != g.size() || s.size() > 1) return;
-        build(s.empty() ? -1 : s[0]);
-    }
-
     bool has_trail() const { return flag; }
     const Edges<T>& get_trail() const& { return trail; }
     Edges<T> get_trail() && { return std::move(trail); }
 };
+
+/**
+ * @brief EulerTrail
+ * @docs docs/graph/other/EulerTrail.md
+ */
