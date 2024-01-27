@@ -756,9 +756,9 @@ data:
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/855_DynamicSegTree.test.cpp
+  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
 documentation_of: data-struct/segment/DynamicSegmentTree.hpp
 layout: document
 redirect_from:

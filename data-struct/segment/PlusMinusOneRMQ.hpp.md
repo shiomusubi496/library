@@ -668,8 +668,8 @@ data:
   isVerificationFile: false
   path: data-struct/segment/PlusMinusOneRMQ.hpp
   requiredBy:
-  - data-struct/segment/LCARMQ.hpp
   - graph/tree/PMORMQLCA.hpp
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

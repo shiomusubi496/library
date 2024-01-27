@@ -569,15 +569,15 @@ data:
   isVerificationFile: false
   path: graph/other/LowLink.hpp
   requiredBy:
-  - graph/connected/BiConnectedComponents.hpp
   - graph/connected/TwoEdgeConnectedComponents.hpp
+  - graph/connected/BiConnectedComponents.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
 documentation_of: graph/other/LowLink.hpp
 layout: document
 redirect_from:

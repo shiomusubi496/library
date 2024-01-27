@@ -521,8 +521,8 @@ data:
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/yuki/705-Monge.test.cpp
+  - test/atcoder/abc218_h-AlienDP.test.cpp
 documentation_of: dp/OnlineOfflineDP.hpp
 layout: document
 redirect_from:

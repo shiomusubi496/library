@@ -527,8 +527,8 @@ data:
   path: data-struct/unionfind/UnionFind.hpp
   requiredBy:
   - graph/mst/Prim.hpp
-  - graph/mst/ManhattanMST.hpp
   - graph/mst/Kruskal.hpp
+  - graph/mst/ManhattanMST.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -536,9 +536,9 @@ data:
   - test/yosupo/graph/manhattanmst.test.cpp
   - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/DSL/DSL_1_A-UF.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
+  - test/aoj/DSL/DSL_1_A-UF.test.cpp
 documentation_of: data-struct/unionfind/UnionFind.hpp
 layout: document
 redirect_from:
