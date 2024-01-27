@@ -254,7 +254,7 @@ data:
       title: EnumerateTriangles
     - icon: ':heavy_check_mark:'
       path: graph/other/EulerTrail.hpp
-      title: graph/other/EulerTrail.hpp
+      title: EulerTrail
     - icon: ':heavy_check_mark:'
       path: graph/other/GraphCycle.hpp
       title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
@@ -358,6 +358,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/FloorSum.hpp
       title: FloorSum
+    - icon: ':heavy_check_mark:'
+      path: math/GaussianInteger.hpp
+      title: GaussianInteger
     - icon: ':heavy_check_mark:'
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
@@ -1107,6 +1110,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/factorial.test.cpp
       title: test/yosupo/new/factorial.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
+      title: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/matrix_rank.test.cpp
       title: test/yosupo/new/matrix_rank.test.cpp

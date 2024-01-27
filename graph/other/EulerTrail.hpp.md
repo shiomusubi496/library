@@ -43,6 +43,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: docs/graph/other/EulerTrail.md
+    document_title: EulerTrail
     links: []
   bundledCode: "#line 2 \"graph/other/EulerTrail.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
@@ -501,11 +503,21 @@ data:
     \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/EulerTrail.hpp\"\n\n\
     template<class T>\nclass EulerTrail {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    bool flag = false;\n    Edges<T> trail;\n    std::vector<int> idx;\n\
-    \    std::vector<bool> used;\n\n    void build(int s) {\n        if (s == -1)\
-    \ {\n            s = 0;\n            rep (i, n) {\n                if (!G[i].empty())\
-    \ {\n                    s = i;\n                    break;\n                }\n\
-    \            }\n        }\n        idx.assign(n, 0);\n        used.assign(G.edge_size(),\
-    \ false);\n        trail.resize(G.edge_size());\n        int l = 0, r = G.edge_size();\n\
+    \    std::vector<bool> used;\n\n    void build_undirected() {\n        std::vector<int>\
+    \ odds;\n        rep (i, G.size()) {\n            if (G[i].size() & 1) odds.push_back(i);\n\
+    \        }\n        if (odds.size() > 2) return;\n        build(odds.empty() ?\
+    \ -1 : odds[0]);\n    }\n    void build_directed() {\n        std::vector<int>\
+    \ deg(n);\n        std::vector<int> s, g;\n        rep (i, n) {\n            for\
+    \ (auto e : G[i]) {\n                ++deg[e.from];\n                --deg[e.to];\n\
+    \            }\n        }\n        rep (i, n) {\n            if (deg[i] == 1)\
+    \ s.push_back(i);\n            else if (deg[i] == -1) g.push_back(i);\n      \
+    \      else if (deg[i] != 0) return;\n        }\n        if (s.size() != g.size()\
+    \ || s.size() > 1) return;\n        build(s.empty() ? -1 : s[0]);\n    }\n\n \
+    \   void build(int s) {\n        if (s == -1) {\n            s = 0;\n        \
+    \    rep (i, n) {\n                if (!G[i].empty()) {\n                    s\
+    \ = i;\n                    break;\n                }\n            }\n       \
+    \ }\n        idx.assign(n, 0);\n        used.assign(G.edge_size(), false);\n \
+    \       trail.resize(G.edge_size());\n        int l = 0, r = G.edge_size();\n\
     \        while (l < r) {\n            if (idx[s] < (int)G[s].size()) {\n     \
     \           const auto& e = G[s][idx[s]++];\n                if (used[e.idx])\
     \ continue;\n                used[e.idx] = true;\n                trail[l++] =\
@@ -516,27 +528,28 @@ data:
     \ && used[G[i][idx[i]].idx]) ++idx[i];\n            if (idx[i] != S) return;\n\
     \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerTrail(const\
     \ Graph<T>& G, bool directed) : G(G) {\n        n = G.size();\n        if (directed)\
-    \ build_directed();\n        else build_undirected();\n    }\n\n    void build_undirected()\
-    \ {\n        std::vector<int> odds;\n        rep (i, G.size()) {\n           \
-    \ if (G[i].size() & 1) odds.push_back(i);\n        }\n        if (odds.size()\
-    \ > 2) return;\n        build(odds.empty() ? -1 : odds[0]);\n    }\n    void build_directed()\
-    \ {\n        std::vector<int> deg(n);\n        std::vector<int> s, g;\n      \
-    \  rep (i, n) {\n            for (auto e : G[i]) {\n                ++deg[e.from];\n\
-    \                --deg[e.to];\n            }\n        }\n        rep (i, n) {\n\
-    \            if (deg[i] == 1) s.push_back(i);\n            else if (deg[i] ==\
-    \ -1) g.push_back(i);\n            else if (deg[i] != 0) return;\n        }\n\
-    \        if (s.size() != g.size() || s.size() > 1) return;\n        build(s.empty()\
-    \ ? -1 : s[0]);\n    }\n\n    bool has_trail() const { return flag; }\n    const\
-    \ Edges<T>& get_trail() const& { return trail; }\n    Edges<T> get_trail() &&\
-    \ { return std::move(trail); }\n};\n"
+    \ build_directed();\n        else build_undirected();\n    }\n\n    bool has_trail()\
+    \ const { return flag; }\n    const Edges<T>& get_trail() const& { return trail;\
+    \ }\n    Edges<T> get_trail() && { return std::move(trail); }\n};\n\n/**\n * @brief\
+    \ EulerTrail\n * @docs docs/graph/other/EulerTrail.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T>\nclass EulerTrail {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    bool flag = false;\n    Edges<T> trail;\n    std::vector<int> idx;\n\
-    \    std::vector<bool> used;\n\n    void build(int s) {\n        if (s == -1)\
-    \ {\n            s = 0;\n            rep (i, n) {\n                if (!G[i].empty())\
-    \ {\n                    s = i;\n                    break;\n                }\n\
-    \            }\n        }\n        idx.assign(n, 0);\n        used.assign(G.edge_size(),\
-    \ false);\n        trail.resize(G.edge_size());\n        int l = 0, r = G.edge_size();\n\
+    \    std::vector<bool> used;\n\n    void build_undirected() {\n        std::vector<int>\
+    \ odds;\n        rep (i, G.size()) {\n            if (G[i].size() & 1) odds.push_back(i);\n\
+    \        }\n        if (odds.size() > 2) return;\n        build(odds.empty() ?\
+    \ -1 : odds[0]);\n    }\n    void build_directed() {\n        std::vector<int>\
+    \ deg(n);\n        std::vector<int> s, g;\n        rep (i, n) {\n            for\
+    \ (auto e : G[i]) {\n                ++deg[e.from];\n                --deg[e.to];\n\
+    \            }\n        }\n        rep (i, n) {\n            if (deg[i] == 1)\
+    \ s.push_back(i);\n            else if (deg[i] == -1) g.push_back(i);\n      \
+    \      else if (deg[i] != 0) return;\n        }\n        if (s.size() != g.size()\
+    \ || s.size() > 1) return;\n        build(s.empty() ? -1 : s[0]);\n    }\n\n \
+    \   void build(int s) {\n        if (s == -1) {\n            s = 0;\n        \
+    \    rep (i, n) {\n                if (!G[i].empty()) {\n                    s\
+    \ = i;\n                    break;\n                }\n            }\n       \
+    \ }\n        idx.assign(n, 0);\n        used.assign(G.edge_size(), false);\n \
+    \       trail.resize(G.edge_size());\n        int l = 0, r = G.edge_size();\n\
     \        while (l < r) {\n            if (idx[s] < (int)G[s].size()) {\n     \
     \           const auto& e = G[s][idx[s]++];\n                if (used[e.idx])\
     \ continue;\n                used[e.idx] = true;\n                trail[l++] =\
@@ -547,19 +560,10 @@ data:
     \ && used[G[i][idx[i]].idx]) ++idx[i];\n            if (idx[i] != S) return;\n\
     \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerTrail(const\
     \ Graph<T>& G, bool directed) : G(G) {\n        n = G.size();\n        if (directed)\
-    \ build_directed();\n        else build_undirected();\n    }\n\n    void build_undirected()\
-    \ {\n        std::vector<int> odds;\n        rep (i, G.size()) {\n           \
-    \ if (G[i].size() & 1) odds.push_back(i);\n        }\n        if (odds.size()\
-    \ > 2) return;\n        build(odds.empty() ? -1 : odds[0]);\n    }\n    void build_directed()\
-    \ {\n        std::vector<int> deg(n);\n        std::vector<int> s, g;\n      \
-    \  rep (i, n) {\n            for (auto e : G[i]) {\n                ++deg[e.from];\n\
-    \                --deg[e.to];\n            }\n        }\n        rep (i, n) {\n\
-    \            if (deg[i] == 1) s.push_back(i);\n            else if (deg[i] ==\
-    \ -1) g.push_back(i);\n            else if (deg[i] != 0) return;\n        }\n\
-    \        if (s.size() != g.size() || s.size() > 1) return;\n        build(s.empty()\
-    \ ? -1 : s[0]);\n    }\n\n    bool has_trail() const { return flag; }\n    const\
-    \ Edges<T>& get_trail() const& { return trail; }\n    Edges<T> get_trail() &&\
-    \ { return std::move(trail); }\n};\n"
+    \ build_directed();\n        else build_undirected();\n    }\n\n    bool has_trail()\
+    \ const { return flag; }\n    const Edges<T>& get_trail() const& { return trail;\
+    \ }\n    Edges<T> get_trail() && { return std::move(trail); }\n};\n\n/**\n * @brief\
+    \ EulerTrail\n * @docs docs/graph/other/EulerTrail.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -574,7 +578,7 @@ data:
   isVerificationFile: false
   path: graph/other/EulerTrail.hpp
   requiredBy: []
-  timestamp: '2024-01-27 15:59:01+09:00'
+  timestamp: '2024-01-27 19:26:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/eulerian_trail_directed.test.cpp
@@ -584,5 +588,12 @@ layout: document
 redirect_from:
 - /library/graph/other/EulerTrail.hpp
 - /library/graph/other/EulerTrail.hpp.html
-title: graph/other/EulerTrail.hpp
+title: EulerTrail
 ---
+## 概要
+
+オイラー路、つまり全ての辺をちょうど一度用いる路を求める。有向/無向で若干条件が変わる。
+
+- `EulerTrail(Graph<T> G, bool directed)` : $\Theta(\lvert V \rvert + \lvert E \rvert)$ 。
+- `bool has_trail()` : 存在するかを返す。
+- `Edges<T> get_trail()` : オイラー路を返す。

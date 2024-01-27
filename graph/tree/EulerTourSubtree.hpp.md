@@ -514,10 +514,16 @@ data:
     \ }\n    int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
     \ ? a : b;\n    }\n    template<class F> void each_vertex_subtree(int v, const\
     \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
-    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
-    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
-    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/graph/tree/EulerTourSubtree.md\n */\n"
+    \ F> void each_vertex_subtree(int v, int p, const F& f) const {\n        if (p\
+    \ < 0 || get_par(v, p) == p) each_vertex_subtree(v, f);\n        else {\n    \
+    \        f(0, idx[p].first);\n            f(idx[p].second, n);\n        }\n  \
+    \  }\n    template<class F> void each_edge_subtree(int v, const F& f) const {\n\
+    \        f(idx[v].first + 1, idx[v].second);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int v, int p, const F& f) const {\n        if (p < 0 || get_par(v,\
+    \ p) == p) each_edge_subtree(v, f);\n        else {\n            f(0, idx[p].first\
+    \ + 1);\n            f(idx[p].second, n);\n        }\n    }\n};\n\n/**\n * @brief\
+    \ EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\
+    \u30AF\u30A8\u30EA)\n * @docs docs/graph/tree/EulerTourSubtree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n\ntemplate<class T> class EulerTourSubtree {\nprivate:\n    int n, cnt;\n  \
     \  std::vector<int> root;\n    const Graph<T>& G;\n    std::vector<std::pair<int,\
@@ -534,10 +540,16 @@ data:
     \ }\n    int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
     \ ? a : b;\n    }\n    template<class F> void each_vertex_subtree(int v, const\
     \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
-    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
-    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
-    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/graph/tree/EulerTourSubtree.md\n */\n"
+    \ F> void each_vertex_subtree(int v, int p, const F& f) const {\n        if (p\
+    \ < 0 || get_par(v, p) == p) each_vertex_subtree(v, f);\n        else {\n    \
+    \        f(0, idx[p].first);\n            f(idx[p].second, n);\n        }\n  \
+    \  }\n    template<class F> void each_edge_subtree(int v, const F& f) const {\n\
+    \        f(idx[v].first + 1, idx[v].second);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int v, int p, const F& f) const {\n        if (p < 0 || get_par(v,\
+    \ p) == p) each_edge_subtree(v, f);\n        else {\n            f(0, idx[p].first\
+    \ + 1);\n            f(idx[p].second, n);\n        }\n    }\n};\n\n/**\n * @brief\
+    \ EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\
+    \u30AF\u30A8\u30EA)\n * @docs docs/graph/tree/EulerTourSubtree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -552,7 +564,7 @@ data:
   isVerificationFile: false
   path: graph/tree/EulerTourSubtree.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-27 19:26:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp

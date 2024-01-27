@@ -635,20 +635,27 @@ data:
     \ int get_par(int a, int b) const {\n        return idx[a].first < idx[b].first\
     \ ? a : b;\n    }\n    template<class F> void each_vertex_subtree(int v, const\
     \ F& f) const {\n        f(idx[v].first, idx[v].second);\n    }\n    template<class\
-    \ F> void each_edge_subtree(int v, const F& f) const {\n        f(idx[v].first\
-    \ + 1, idx[v].second);\n    }\n};\n\n/**\n * @brief EulerTourSubtree(\u30AA\u30A4\
-    \u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\u30AF\u30A8\u30EA)\n * @docs\
-    \ docs/graph/tree/EulerTourSubtree.md\n */\n#line 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\
-    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
-    \ A(N); scan >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p;\
-    \ scan >> p;\n        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n\
-    \    BinaryIndexedTree<ll> BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n\
-    \        BIT.add(p.first, A[i]);\n    }\n    rep (i, Q) {\n        int t; scan\
-    \ >> t;\n        if (t == 0) {\n            int p; ll x; scan >> p >> x;\n   \
-    \         auto idx = ET.get_idx(p);\n            BIT.add(idx.first, x);\n    \
-    \    }\n        else {\n            int u; scan >> u;\n            ll ans = 0;\n\
-    \            ET.each_vertex_subtree(u, [&](int l, int r) { ans += BIT.sum(l, r);\
-    \ });\n            print << ans << endl;\n        }\n    }\n}\n"
+    \ F> void each_vertex_subtree(int v, int p, const F& f) const {\n        if (p\
+    \ < 0 || get_par(v, p) == p) each_vertex_subtree(v, f);\n        else {\n    \
+    \        f(0, idx[p].first);\n            f(idx[p].second, n);\n        }\n  \
+    \  }\n    template<class F> void each_edge_subtree(int v, const F& f) const {\n\
+    \        f(idx[v].first + 1, idx[v].second);\n    }\n    template<class F> void\
+    \ each_edge_subtree(int v, int p, const F& f) const {\n        if (p < 0 || get_par(v,\
+    \ p) == p) each_edge_subtree(v, f);\n        else {\n            f(0, idx[p].first\
+    \ + 1);\n            f(idx[p].second, n);\n        }\n    }\n};\n\n/**\n * @brief\
+    \ EulerTourSubtree(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC\u90E8\u5206\u6728\
+    \u30AF\u30A8\u30EA)\n * @docs docs/graph/tree/EulerTourSubtree.md\n */\n#line\
+    \ 6 \"test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp\"\nusing namespace\
+    \ std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll> A(N); scan\
+    \ >> A;\n    Graph<int> G(N);\n    rep (i, 1, N) {\n        int p; scan >> p;\n\
+    \        G.add_edge(i, p);\n    }\n    EulerTourSubtree<int> ET(G);\n    BinaryIndexedTree<ll>\
+    \ BIT(N);\n    rep (i, N) {\n        auto p = ET.get_idx(i);\n        BIT.add(p.first,\
+    \ A[i]);\n    }\n    rep (i, Q) {\n        int t; scan >> t;\n        if (t ==\
+    \ 0) {\n            int p; ll x; scan >> p >> x;\n            auto idx = ET.get_idx(p);\n\
+    \            BIT.add(idx.first, x);\n        }\n        else {\n            int\
+    \ u; scan >> u;\n            ll ans = 0;\n            ET.each_vertex_subtree(u,\
+    \ [&](int l, int r) { ans += BIT.sum(l, r); });\n            print << ans << endl;\n\
+    \        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/segment/BinaryIndexedTree.hpp\"\
     \n#include \"../../../graph/Graph.hpp\"\n#include \"../../../graph/tree/EulerTourSubtree.hpp\"\
@@ -679,7 +686,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-01-27 19:26:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
