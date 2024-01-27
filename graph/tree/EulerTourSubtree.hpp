@@ -42,8 +42,22 @@ public:
     template<class F> void each_vertex_subtree(int v, const F& f) const {
         f(idx[v].first, idx[v].second);
     }
+    template<class F> void each_vertex_subtree(int v, int p, const F& f) const {
+        if (p < 0 || get_par(v, p) == p) each_vertex_subtree(v, f);
+        else {
+            f(0, idx[p].first);
+            f(idx[p].second, n);
+        }
+    }
     template<class F> void each_edge_subtree(int v, const F& f) const {
         f(idx[v].first + 1, idx[v].second);
+    }
+    template<class F> void each_edge_subtree(int v, int p, const F& f) const {
+        if (p < 0 || get_par(v, p) == p) each_edge_subtree(v, f);
+        else {
+            f(0, idx[p].first + 1);
+            f(idx[p].second, n);
+        }
     }
 };
 
