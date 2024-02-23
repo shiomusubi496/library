@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../../other/template.hpp"
-#include "../../data-struct/segment/SparseTable.hpp"
+#include "../../data-struct/segment/SegmentTree.hpp"
 #include "../Graph.hpp"
 
 namespace Monoid {
@@ -14,7 +14,7 @@ struct PairMinForEulerTour {
 };
 } // namespace Monoid
 
-template<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>
+template<class T, class StaticRMQ = SegmentTree<Monoid::PairMinForEulerTour>>
 class EulerTour {
 private:
     int n, cnt;
