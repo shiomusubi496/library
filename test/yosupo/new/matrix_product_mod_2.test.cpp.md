@@ -34,68 +34,62 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/mst/CountSpanningTree.hpp
-    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/matrix_det.test.cpp
-    title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_det_mod_2.test.cpp
-    title: test/yosupo/new/matrix_det_mod_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/matrix/Determinant.md
-    document_title: "Determinant(\u884C\u5217\u5F0F)"
-    links: []
-  bundledCode: "#line 2 \"math/matrix/Determinant.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
-    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
-    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
-    \                                                           \\\n    for (ll REP_COUNTER_##c\
-    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
-    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
-    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
-    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
-    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
-    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
-    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
-    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
-    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
-    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
-    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
-    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
-    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
-    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
-    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
-    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
-    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
-    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
-    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
-    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
-    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
-    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
-    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
-    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
-    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
-    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
-    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
-    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
-    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
-    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
-    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
-    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
-    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
-    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
-    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
-    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
-    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
-    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
-    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
+    links:
+    - https://judge.yosupo.jp/problem/matrix_product_mod_2
+  bundledCode: "#line 1 \"test/yosupo/new/matrix_product_mod_2.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
+    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
+    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
+    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
+    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
+    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
+    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
+    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
+    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
+    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
+    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
+    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
+    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
+    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
+    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
+    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
+    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
+    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
+    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
+    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
+    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
+    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
+    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
+    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
+    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
+    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
+    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
+    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
+    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
+    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
+    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
+    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
+    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
+    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
+    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
+    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
+    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
+    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
+    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
+    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
+    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
+    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
+    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -466,12 +460,12 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
     \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
     \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
     \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
@@ -582,14 +576,15 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/matrix/Matrix.hpp\"\
-    \n\ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
-    \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
-    \ gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
-    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
-    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
-    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 5 \"math/matrix/Matrix.hpp\"\n\ntemplate<class> class Matrix;\n\nnamespace\
+    \ internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\ntemplate<int> Mat2 prod_mod2_sub(const\
+    \ Mat2&, const Mat2&);\ntemplate<int> void gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class\
+    \ T> class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using\
+    \ Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n  \
+    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
+    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base& v)\
+    \ : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
     \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
     \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
     \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
@@ -667,36 +662,22 @@ data:
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
     \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
     \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
-    \ 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
-    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    if\
-    \ (n == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i]\
-    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
-    \ {\n                    swap(mat[i], mat[j]);\n                    res = -res;\n\
-    \                    break;\n                }\n            }\n        }\n   \
-    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        {\n\
-    \            const T s = mat[i][i];\n            res *= s;\n            rep (j,\
-    \ n) mat[i][j] /= s;\n        }\n        rep (j, n) {\n            if (j == i)\
-    \ continue;\n            const T s = mat[j][i];\n            rep (k, n) mat[j][k]\
-    \ -= mat[i][k] * s;\n        }\n    }\n    rep (i, n) res *= mat[i][i];\n    return\
-    \ res;\n}\n\ntemplate<> static_modint<2> determinant(Matrix<static_modint<2>>\
-    \ mat) {\n    assert(mat.is_square());\n    return mat.rank() == mat.height()\
-    \ ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
-    \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
-    \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
-    \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
-    \ {\n                if (mat[j][i] != 0) {\n                    swap(mat[i], mat[j]);\n\
-    \                    res = -res;\n                    break;\n               \
-    \ }\n            }\n        }\n        if (mat[i][i] == 0) {\n            return\
-    \ T{0};\n        }\n        {\n            const T s = mat[i][i];\n          \
-    \  res *= s;\n            rep (j, n) mat[i][j] /= s;\n        }\n        rep (j,\
-    \ n) {\n            if (j == i) continue;\n            const T s = mat[j][i];\n\
-    \            rep (k, n) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rep\
-    \ (i, n) res *= mat[i][i];\n    return res;\n}\n\ntemplate<> static_modint<2>\
-    \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
-    \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
-    \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n"
+    \ 5 \"test/yosupo/new/matrix_product_mod_2.test.cpp\"\nusing namespace std;\n\
+    using mint = static_modint<2>;\nusing matx = Matrix<mint>;\nint main() {\n   \
+    \ int N, M, K; scan >> N >> M >> K;\n    matx A(N, M), B(M, K);\n    rep (i, N)\
+    \ rep (j, M) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n\
+    \    rep (i, M) rep (j, K) {\n        char c; scan >> c;\n        B[i][j] = c\
+    \ - '0';\n    }\n    matx C = A * B;\n    rep (i, N) rep (j, K) {\n        print\
+    \ << C[i][j];\n        if (j == K - 1) print << '\\n';\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
+    #include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../math/matrix/Matrix.hpp\"\nusing namespace std;\nusing mint\
+    \ = static_modint<2>;\nusing matx = Matrix<mint>;\nint main() {\n    int N, M,\
+    \ K; scan >> N >> M >> K;\n    matx A(N, M), B(M, K);\n    rep (i, N) rep (j,\
+    \ M) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    rep\
+    \ (i, M) rep (j, K) {\n        char c; scan >> c;\n        B[i][j] = c - '0';\n\
+    \    }\n    matx C = A * B;\n    rep (i, N) rep (j, K) {\n        print << C[i][j];\n\
+    \        if (j == K - 1) print << '\\n';\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -707,26 +688,18 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/matrix/Matrix.hpp
   - math/ModInt.hpp
-  isVerificationFile: false
-  path: math/matrix/Determinant.hpp
-  requiredBy:
-  - graph/mst/CountSpanningTree.hpp
-  timestamp: '2024-02-23 20:32:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
-documentation_of: math/matrix/Determinant.hpp
+  - math/matrix/Matrix.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/matrix_product_mod_2.test.cpp
+  requiredBy: []
+  timestamp: '2024-02-23 23:27:46+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/new/matrix_product_mod_2.test.cpp
 layout: document
 redirect_from:
-- /library/math/matrix/Determinant.hpp
-- /library/math/matrix/Determinant.hpp.html
-title: "Determinant(\u884C\u5217\u5F0F)"
+- /verify/test/yosupo/new/matrix_product_mod_2.test.cpp
+- /verify/test/yosupo/new/matrix_product_mod_2.test.cpp.html
+title: test/yosupo/new/matrix_product_mod_2.test.cpp
 ---
-## 概要
-
-与えられた行列の行列式を求める。
-
-- `T determinant(Matrix<T> mat)` : $n$ 次正方行列 `mat` の行列式を返す。 `T` が整数型だとバグる。 $\Theta(n^3)$ 。

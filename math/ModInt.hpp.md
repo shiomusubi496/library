@@ -217,6 +217,12 @@ data:
     path: test/yosupo/new/factorial.test.cpp
     title: test/yosupo/new/factorial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/matrix_det_mod_2.test.cpp
+    title: test/yosupo/new/matrix_det_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/matrix_product_mod_2.test.cpp
+    title: test/yosupo/new/matrix_product_mod_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_rank.test.cpp
     title: test/yosupo/new/matrix_rank.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1037,6 +1043,8 @@ data:
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/new/pow_of_matrix.test.cpp
+  - test/yosupo/new/matrix_product_mod_2.test.cpp
+  - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/new/factorial.test.cpp

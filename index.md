@@ -1120,6 +1120,12 @@ data:
       path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
       title: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/matrix_det_mod_2.test.cpp
+      title: test/yosupo/new/matrix_det_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/new/matrix_product_mod_2.test.cpp
+      title: test/yosupo/new/matrix_product_mod_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/new/matrix_rank.test.cpp
       title: test/yosupo/new/matrix_rank.test.cpp
     - icon: ':heavy_check_mark:'

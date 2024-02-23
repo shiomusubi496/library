@@ -5,6 +5,9 @@ data:
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
+    path: math/matrix/Determinant.hpp
+    title: "Determinant(\u884C\u5217\u5F0F)"
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -34,25 +37,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: graph/mst/CountSpanningTree.hpp
-    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/matrix/matrix_det.test.cpp
-    title: test/yosupo/matrix/matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_det_mod_2.test.cpp
-    title: test/yosupo/new/matrix_det_mod_2.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/math/matrix/Determinant.md
-    document_title: "Determinant(\u884C\u5217\u5F0F)"
-    links: []
-  bundledCode: "#line 2 \"math/matrix/Determinant.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_det_mod_2
+    links:
+    - https://judge.yosupo.jp/problem/matrix_det_mod_2
+  bundledCode: "#line 1 \"test/yosupo/new/matrix_det_mod_2.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/matrix_det_mod_2\"\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -466,12 +462,12 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\n\n#line\
-    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
-    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
-    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
-    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
-    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
     \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
     \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
     \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
@@ -582,14 +578,15 @@ data:
     \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
     \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
     \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/matrix/Matrix.hpp\"\
-    \n\ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
-    \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
-    \ gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
-    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
-    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
-    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
+    \n\n#line 5 \"math/matrix/Matrix.hpp\"\n\ntemplate<class> class Matrix;\n\nnamespace\
+    \ internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\ntemplate<int> Mat2 prod_mod2_sub(const\
+    \ Mat2&, const Mat2&);\ntemplate<int> void gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class\
+    \ T> class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using\
+    \ Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n  \
+    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
+    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base& v)\
+    \ : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
     \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
     \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
     \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
@@ -667,22 +664,7 @@ data:
     \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
     \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
     \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
-    \ 5 \"math/matrix/Determinant.hpp\"\n\ntemplate<class T> T determinant(Matrix<T>\
-    \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    if\
-    \ (n == 0) return 1;\n    T res = 1;\n    rep (i, n) {\n        if (mat[i][i]\
-    \ == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i] != 0)\
-    \ {\n                    swap(mat[i], mat[j]);\n                    res = -res;\n\
-    \                    break;\n                }\n            }\n        }\n   \
-    \     if (mat[i][i] == 0) {\n            return T{0};\n        }\n        {\n\
-    \            const T s = mat[i][i];\n            res *= s;\n            rep (j,\
-    \ n) mat[i][j] /= s;\n        }\n        rep (j, n) {\n            if (j == i)\
-    \ continue;\n            const T s = mat[j][i];\n            rep (k, n) mat[j][k]\
-    \ -= mat[i][k] * s;\n        }\n    }\n    rep (i, n) res *= mat[i][i];\n    return\
-    \ res;\n}\n\ntemplate<> static_modint<2> determinant(Matrix<static_modint<2>>\
-    \ mat) {\n    assert(mat.is_square());\n    return mat.rank() == mat.height()\
-    \ ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n\
-    \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
+    \ 2 \"math/matrix/Determinant.hpp\"\n\n#line 5 \"math/matrix/Determinant.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
     \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
@@ -696,7 +678,18 @@ data:
     \ (i, n) res *= mat[i][i];\n    return res;\n}\n\ntemplate<> static_modint<2>\
     \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
     \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
-    \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n"
+    \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"test/yosupo/new/matrix_det_mod_2.test.cpp\"\
+    \nusing namespace std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\n\
+    int main() {\n    int N; scan >> N;\n    matx A(N, N);\n    rep (i, N) rep (j,\
+    \ N) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    prints(determinant(A));\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_det_mod_2\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\n#include\
+    \ \"../../../math/matrix/Matrix.hpp\"\n#include \"../../../math/matrix/Determinant.hpp\"\
+    \nusing namespace std;\nusing mint = static_modint<2>;\nusing matx = Matrix<mint>;\n\
+    int main() {\n    int N; scan >> N;\n    matx A(N, N);\n    rep (i, N) rep (j,\
+    \ N) {\n        char c; scan >> c;\n        A[i][j] = c - '0';\n    }\n    prints(determinant(A));\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -707,26 +700,19 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - math/matrix/Matrix.hpp
   - math/ModInt.hpp
-  isVerificationFile: false
-  path: math/matrix/Determinant.hpp
-  requiredBy:
-  - graph/mst/CountSpanningTree.hpp
-  timestamp: '2024-02-23 20:32:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yosupo/matrix/matrix_det.test.cpp
-  - test/yosupo/new/matrix_det_mod_2.test.cpp
-documentation_of: math/matrix/Determinant.hpp
+  - math/matrix/Matrix.hpp
+  - math/matrix/Determinant.hpp
+  isVerificationFile: true
+  path: test/yosupo/new/matrix_det_mod_2.test.cpp
+  requiredBy: []
+  timestamp: '2024-02-23 23:27:46+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/yosupo/new/matrix_det_mod_2.test.cpp
 layout: document
 redirect_from:
-- /library/math/matrix/Determinant.hpp
-- /library/math/matrix/Determinant.hpp.html
-title: "Determinant(\u884C\u5217\u5F0F)"
+- /verify/test/yosupo/new/matrix_det_mod_2.test.cpp
+- /verify/test/yosupo/new/matrix_det_mod_2.test.cpp.html
+title: test/yosupo/new/matrix_det_mod_2.test.cpp
 ---
-## 概要
-
-与えられた行列の行列式を求める。
-
-- `T determinant(Matrix<T> mat)` : $n$ 次正方行列 `mat` の行列式を返す。 `T` が整数型だとバグる。 $\Theta(n^3)$ 。
