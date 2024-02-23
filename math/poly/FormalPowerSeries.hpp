@@ -175,6 +175,7 @@ public:
     }
 
     FormalPowerSeries diff() const {
+        if (this->empty()) return {};
         FormalPowerSeries res(this->size() - 1);
         rep (i, res.size()) res[i] = (*this)[i + 1] * (i + 1);
         return res;
@@ -364,6 +365,107 @@ public:
         }
         g.resize(deg);
         return g << (d >> 1);
+    }
+    FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {
+        if (this->empty()) return {};
+        if (g.empty()) return {(*this)[0]};
+        assert(g[0] == 0);
+        int n = deg == -1 ? this->size() : deg;
+        int m = 1 << (bitop::ceil_log2(std::max<int>(1, std::sqrt(n / std::log2(n)))) + 1);
+        FormalPowerSeries p = g.prefix(m), q = g >> m;
+        p.shrink();
+        q.shrink();
+        int l = (n + m - 1) / m;
+        std::vector<FormalPowerSeries> fs(this->size());
+        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};
+        FormalPowerSeries pd = p.diff();
+        int z = 0;
+        while (z < (int)pd.size() && pd[z] == T{0}) z++;
+        if (z == (int)pd.size()) {
+            FormalPowerSeries ans;
+            rrep (i, l) {
+                ans = ((ans * q) << m).prefix(n - i * m) + FormalPowerSeries{(*this)[i]};
+            }
+            return ans;
+        }
+        pd = (pd >> z).inv(n);
+        FormalPowerSeries t = p;
+        for (int k = 1; fs.size() > 1; k <<= 1) {
+            std::vector<FormalPowerSeries> nfs((fs.size() + 1) / 2);
+            t.resize(1 << (bitop::ceil_log2(t.size()) + 1));
+            number_theoretic_transform(t);
+            rep (i, fs.size() / 2) {
+                nfs[i] = std::move(fs[2 * i]);
+                fs[2 * i + 1].resize(t.size());
+                number_theoretic_transform(fs[2 * i + 1]);
+                rep (j, t.size()) fs[2 * i + 1][j] *= t[j];
+                inverse_number_theoretic_transform(fs[2 * i + 1]);
+                if ((int)fs[2 * i + 1].size() > n) fs[2 * i + 1].resize(n);
+                nfs[i] += fs[2 * i + 1];
+            }
+            if (fs.size() & 1) nfs.back() = std::move(fs.back());
+            fs = std::move(nfs);
+            if (fs.size() > 1) {
+                rep (i, t.size()) t[i] *= t[i];
+                inverse_number_theoretic_transform(t);
+                if ((int)t.size() > n) t.resize(n);
+            }
+        }
+        FormalPowerSeries fp = fs[0].prefix(n);
+        FormalPowerSeries res = fp;
+        int n2 = 1 << (bitop::ceil_log2(n) + 1);
+        FormalPowerSeries qpow(n2);
+        qpow[0] = 1;
+        q.resize(n2);
+        number_theoretic_transform(q);
+        pd.resize(n2);
+        number_theoretic_transform(pd);
+        rep (i, 1, l) {
+            if ((n - i * m) * 4 <= n2) {
+                while ((n - i * m) * 4 <= n2) {
+                    n2 /= 2;
+                }
+                inverse_number_theoretic_transform(q);
+                q.resize(n - i * m);
+                q.resize(n2);
+                number_theoretic_transform(q);
+                inverse_number_theoretic_transform(pd);
+                pd.resize(n - i * m);
+                pd.resize(n2);
+                number_theoretic_transform(pd);
+            }
+            qpow.resize(n - i * m);
+            qpow.resize(n2);
+            number_theoretic_transform(qpow);
+            rep (j, n2) qpow[j] *= q[j];
+            inverse_number_theoretic_transform(qpow);
+            qpow.resize(n - i * m);
+
+            fp = fp.diff() >> z;
+            fp.resize(n - i * m);
+            fp.resize(n2);
+            number_theoretic_transform(fp);
+            rep (j, n2) fp[j] *= pd[j];
+            inverse_number_theoretic_transform(fp);
+            fp.resize(n - i * m);
+
+            res += ((qpow * fp).prefix(n - i * m) * Comb::finv(i)) << (i * m);
+        }
+        return res;
+    }
+    FormalPowerSeries compinv(int deg = -1) const {
+        assert(this->size() >= 2 && (*this)[0] == 0 && (*this)[1] != 0);
+        if (deg == -1) deg = this->size();
+        FormalPowerSeries fd = diff();
+        FormalPowerSeries x{0, 1};
+        FormalPowerSeries res{0, (*this)[1].inv()};
+        for (int m = 2; m < deg; m <<= 1) {
+            auto tmp = prefix(2 * m).compose(res);
+            auto d = tmp.diff();
+            auto gd = res.diff();
+            res -= ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);
+        }
+        return res.prefix(deg);
     }
     template<bool AlwaysTrue = true,
              typename std::enable_if<

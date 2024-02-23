@@ -46,3 +46,5 @@ FPS % FPS
 - `FPS exp(int deg)` : $\exp(f) \bmod x^{deg}$ を返す。 $\Theta(n \log n)$ 。
 - `FPS pow(ll k, int deg)` : $f^k \bmod x^{deg}$ を返す。 $\Theta(n \log n)$ 。
 - `FPS sqrt(int deg)` : $g^2 \equiv f \pmod {x^{deg}}$ なる $g$ を返す。 $\Theta(n \log n)$ 。
+- `FPS compse(int g, int deg)` : $f(g) \bmod x^{deg}$ を返す。 $\Theta((n \log n)^{1.5})$ 。 `deg != -1` に対しては未 verify 。
+- `FPS compinv(int deg)` : $f(g) \equiv g(f) \equiv x \pmod x^{deg}$ なる $g$ を返す。 $\Theta((n \log n)^{1.5})$ 。 `deg != -1` に対しては未 verify 。
