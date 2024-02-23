@@ -365,6 +365,9 @@ data:
       path: math/KthRoot.hpp
       title: "KthRoot(k\u4E57\u6839)"
     - icon: ':heavy_check_mark:'
+      path: math/LinearModMin.hpp
+      title: LinearModMin
+    - icon: ':heavy_check_mark:'
       path: math/MillerRabin.hpp
       title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
         )"
@@ -1049,6 +1052,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/longest_increasing_subsequence.test.cpp
       title: test/yosupo/math/longest_increasing_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/min_of_mod_of_linear.test.cpp
+      title: test/yosupo/math/min_of_mod_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/montmort_number_mod.test.cpp
       title: test/yosupo/math/montmort_number_mod.test.cpp

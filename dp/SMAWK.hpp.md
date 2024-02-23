@@ -520,15 +520,15 @@ data:
   isVerificationFile: false
   path: dp/SMAWK.hpp
   requiredBy:
-  - dp/AlienDP.hpp
-  - dp/OnlineOfflineDP.hpp
   - dp/DivideAndConquerOptimization.hpp
+  - dp/OnlineOfflineDP.hpp
+  - dp/AlienDP.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yuki/705-Monge.test.cpp
-  - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/aoj/other/2603-SMAWK.test.cpp
+  - test/atcoder/abc218_h-AlienDP.test.cpp
 documentation_of: dp/SMAWK.hpp
 layout: document
 redirect_from:

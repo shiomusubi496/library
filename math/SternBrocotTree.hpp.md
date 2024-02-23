@@ -31,11 +31,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/LinearModMin.hpp
+    title: LinearModMin
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/1208-SternBrocotTree.test.cpp
     title: test/aoj/other/1208-SternBrocotTree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/min_of_mod_of_linear.test.cpp
+    title: test/yosupo/math/min_of_mod_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
@@ -632,11 +638,13 @@ data:
   - math/Rational.hpp
   isVerificationFile: false
   path: math/SternBrocotTree.hpp
-  requiredBy: []
+  requiredBy:
+  - math/LinearModMin.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/stern_brocot_tree.test.cpp
+  - test/yosupo/math/min_of_mod_of_linear.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp
 documentation_of: math/SternBrocotTree.hpp
 layout: document
