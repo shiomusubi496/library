@@ -121,7 +121,7 @@ template<class T> std::vector<T> convolution_pow2(std::vector<T> a) {
 template<class T>
 std::vector<T> convolution(std::vector<T> a, std::vector<T> b) {
     int n = a.size() + b.size() - 1;
-    int lg = bitop::msb(n - 1) + 1;
+    int lg = bitop::ceil_log2(n);
     int m = 1 << lg;
     if (n - (1 << (lg - 1)) <= 5) {
         --lg;
