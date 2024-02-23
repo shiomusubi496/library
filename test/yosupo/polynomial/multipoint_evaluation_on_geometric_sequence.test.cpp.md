@@ -30,6 +30,9 @@ data:
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
   - icon: ':heavy_check_mark:'
+    path: math/poly/MultipointEvaluation.hpp
+    title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -69,11 +72,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
     links:
-    - https://judge.yosupo.jp/problem/sqrt_of_formal_power_series
-  bundledCode: "#line 1 \"test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
+    - https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
+  bundledCode: "#line 1 \"test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -1135,17 +1138,54 @@ data:
     \    return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
-    \ 5 \"test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp\"\nusing namespace\
-    \ std;\nusing mint = modint998244353;\nint main() {\n    int n; scan >> n;\n \
-    \   FormalPowerSeries<mint> a(n); scan >> a;\n    auto sq = a.sqrt();\n    if\
-    \ (sq.empty()) {\n        prints(-1);\n    } else {\n        prints(sq);\n   \
-    \ }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sqrt_of_formal_power_series\"\
+    \ 2 \"math/poly/MultipointEvaluation.hpp\"\n\n#line 5 \"math/poly/MultipointEvaluation.hpp\"\
+    \n\nnamespace internal {\n\ntemplate<class T> class ProductTree {\nprivate:\n\
+    \    int n;\n    std::vector<FormalPowerSeries<T>> dat;\n\npublic:\n    ProductTree(const\
+    \ std::vector<T>& xs) {\n        n = xs.size();\n        dat.resize(n << 1);\n\
+    \        rep (i, n) dat[i + n] = FormalPowerSeries<T>{-xs[i], 1};\n        rrep\
+    \ (i, n, 1) dat[i] = dat[i << 1] * dat[i << 1 | 1];\n    }\n    const FormalPowerSeries<T>&\
+    \ operator[](int k) const& { return dat[k]; }\n    FormalPowerSeries<T> operator[](int\
+    \ k) && { return std::move(dat[k]); }\n};\n\ntemplate<class T>\nstd::vector<T>\
+    \ multipoint_evaluation(const FormalPowerSeries<T>& a,\n                     \
+    \                const std::vector<T>& b,\n                                  \
+    \   const ProductTree<T>& c) {\n    int m = b.size();\n    std::vector<FormalPowerSeries<T>>\
+    \ d(m << 1);\n    d[1] = a % c[1];\n    rep (i, 2, m << 1) d[i] = d[i >> 1] %\
+    \ c[i];\n    std::vector<T> e(m);\n    rep (i, m) e[i] = d[m + i].empty() ? T{0}\
+    \ : d[m + i][0];\n    return e;\n}\n\n} // namespace internal\n\ntemplate<class\
+    \ T>\nstd::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,\n  \
+    \                                   const std::vector<T>& b) {\n    if (a.empty()\
+    \ || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size() <= 32\
+    \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
+    \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
+    \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
+    \ FormalPowerSeries<T>& f, T a, T r, int m) {\n    if (f.empty() || m == 0) return\
+    \ std::vector<T>(m, T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m,\
+    \ f.eval(a));\n    if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n\
+    \        rep (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n\
+    \        }\n        return res;\n    }\n    if (r == 0) {\n        std::vector<T>\
+    \ res(m, f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n\
+    \    int n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
+    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
+    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
+    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
+    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
+    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
+    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n#line\
+    \ 6 \"test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
+    \ m; scan >> n >> m;\n    mint a, r; scan >> a >> r;\n    FormalPowerSeries<mint>\
+    \ f(n); scan >> f;\n    prints(multipoint_evaluation_geometric(f, a, r, m));\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../math/poly/FormalPowerSeries.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\nusing namespace std;\nusing mint = modint998244353;\n\
-    int main() {\n    int n; scan >> n;\n    FormalPowerSeries<mint> a(n); scan >>\
-    \ a;\n    auto sq = a.sqrt();\n    if (sq.empty()) {\n        prints(-1);\n  \
-    \  } else {\n        prints(sq);\n    }\n}\n"
+    \n#include \"../../../math/poly/MultipointEvaluation.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
+    \ m; scan >> n >> m;\n    mint a, r; scan >> a >> r;\n    FormalPowerSeries<mint>\
+    \ f(n); scan >> f;\n    prints(multipoint_evaluation_geometric(f, a, r, m));\n\
+    }\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -1167,16 +1207,17 @@ data:
   - string/RunLength.hpp
   - math/Combinatorics.hpp
   - math/SqrtMod.hpp
+  - math/poly/MultipointEvaluation.hpp
   isVerificationFile: true
-  path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+  path: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-02-23 20:57:59+09:00'
+  timestamp: '2024-02-23 22:31:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+documentation_of: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
-- /verify/test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp.html
-title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
+- /verify/test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+- /verify/test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp.html
+title: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
 ---

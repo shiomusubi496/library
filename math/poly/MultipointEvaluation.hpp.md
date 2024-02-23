@@ -1,87 +1,90 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/factorial.test.cpp
     title: test/yosupo/new/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+    title: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/poly/MultipointEvaluation.md
     document_title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
@@ -1165,9 +1168,24 @@ data:
     \ (a.empty() || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size()\
     \ <= 32 || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep\
     \ (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return\
-    \ internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));\n}\n\n/**\n\
-    \ * @brief MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n\
-    \ */\n"
+    \ internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));\n}\n\ntemplate<class\
+    \ T>\nstd::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>&\
+    \ f, T a, T r, int m) {\n    if (f.empty() || m == 0) return std::vector<T>(m,\
+    \ T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));\n   \
+    \ if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n        rep\
+    \ (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n        }\n\
+    \        return res;\n    }\n    if (r == 0) {\n        std::vector<T> res(m,\
+    \ f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n    int\
+    \ n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
+    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
+    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
+    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
+    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
+    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
+    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n\nnamespace internal {\n\ntemplate<class T> class ProductTree {\nprivate:\n\
     \    int n;\n    std::vector<FormalPowerSeries<T>> dat;\n\npublic:\n    ProductTree(const\
@@ -1187,7 +1205,22 @@ data:
     \ || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size() <= 32\
     \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
     \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
-    \ b, internal::ProductTree<T>(b));\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
+    \ FormalPowerSeries<T>& f, T a, T r, int m) {\n    if (f.empty() || m == 0) return\
+    \ std::vector<T>(m, T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m,\
+    \ f.eval(a));\n    if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n\
+    \        rep (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n\
+    \        }\n        return res;\n    }\n    if (r == 0) {\n        std::vector<T>\
+    \ res(m, f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n\
+    \    int n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
+    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
+    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
+    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
+    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
+    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
+    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
     \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
   dependsOn:
   - other/template.hpp
@@ -1215,10 +1248,11 @@ data:
   requiredBy:
   - math/poly/PolynomialInterpolation.hpp
   - math/Factorial.hpp
-  timestamp: '2024-02-23 20:57:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-02-23 22:31:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
+  - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
   - test/yosupo/new/factorial.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
@@ -1232,4 +1266,12 @@ title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
 
 多点評価をする。
 
-- `vector<T> multipoint_evaluation(FormalPowerSeries<T> f, vector<T> p)` : 各 $n = deg(f), m = \lvert p \rvert$ として、 $1 \leq i \leq m$ について $f(p_i)$ を計算する。 $\Theta(n \log n + m \log^2 m)$ 。
+- `vector<T> multipoint_evaluation(FormalPowerSeries<T> f, vector<T> p)` : 各 $n = \deg(f), m = \lvert p \rvert$ として、 $0 \leq i < m$ について $f(p_i)$ を計算する。 $\Theta(n \log n + m \log^2 m)$ 。
+
+特に評価する点が等比数列 $p_i = ar^i$ になっているときに Chirp-Z Transform を用いるとより高速に計算できる。 $t_i = \frac{i(i-1)}{2}$ とおくと $ki = t_{k+i}-t_{k}-t_{i}$ であることより、 $b_i = [x^i] f$ とすると、
+
+$f(ar^i) = \sum_{k=0}^{n-1} b_k(ar^i)^k = \sum_{k=0}^{n-1} b_ka^kr^{ki} = r^{-t_i} \sum_{k=0}^{n-1} b_ka^kr^{-t_k}r^{t_{k+i}}$
+
+より畳み込める。長さ $n, n+m-1$ の列を畳み込んだ $2n+m-2$ 個の値のうち、 $[n-1, n+m-1)$ のみ用いるので $n+m-1$ の巡回畳み込みで良い。
+
+- `vector<T> multipoint_evaluation(FormalPowerSeries<T> f, T a, T r, ll m)` : 各 $n = \deg(f)$ として、 $0 \leq i < m$ について $f(ar^i)$ を計算する。 $\Theta((n+m)\log(n+m))$ 。

@@ -1,78 +1,78 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/Random.hpp
     title: Random
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/poly/PolynomialInterpolation.md
     document_title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
@@ -1157,7 +1157,22 @@ data:
     \ || b.empty()) return std::vector<T>(b.size(), T{0});\n    if (a.size() <= 32\
     \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
     \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
-    \ b, internal::ProductTree<T>(b));\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
+    \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
+    \ FormalPowerSeries<T>& f, T a, T r, int m) {\n    if (f.empty() || m == 0) return\
+    \ std::vector<T>(m, T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m,\
+    \ f.eval(a));\n    if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n\
+    \        rep (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n\
+    \        }\n        return res;\n    }\n    if (r == 0) {\n        std::vector<T>\
+    \ res(m, f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n\
+    \    int n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
+    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
+    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
+    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
+    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
+    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
+    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
+    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
     \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n#line\
     \ 6 \"math/poly/PolynomialInterpolation.hpp\"\n\ntemplate<class T>\nFormalPowerSeries<T>\
     \ polynomial_interpolation(const std::vector<T>& xs,\n                       \
@@ -1211,8 +1226,8 @@ data:
   isVerificationFile: false
   path: math/poly/PolynomialInterpolation.hpp
   requiredBy: []
-  timestamp: '2024-02-23 20:57:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-02-23 22:31:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
 documentation_of: math/poly/PolynomialInterpolation.hpp
