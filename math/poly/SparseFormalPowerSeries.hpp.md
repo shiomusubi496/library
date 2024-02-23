@@ -89,16 +89,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/exp_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
   - icon: ':x:'
@@ -865,11 +865,11 @@ data:
     \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
     \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
     \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n     \
-    \   --lg;\n        if (a.size() < b.size()) std::swap(a, b);\n        int m =\
-    \ n - (1 << lg);\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
-    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::ceil_log2(n);\n\
+    \    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n  \
+    \      if (a.size() < b.size()) std::swap(a, b);\n        int m = n - (1 << lg);\n\
+    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
+    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
     \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
     \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
     \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
@@ -1387,7 +1387,7 @@ data:
   path: math/poly/SparseFormalPowerSeries.hpp
   requiredBy:
   - math/StirlingNumber.hpp
-  timestamp: '2024-02-23 19:57:04+09:00'
+  timestamp: '2024-02-23 20:57:59+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial/sqrt_of_formal_power_series_sparse.test.cpp

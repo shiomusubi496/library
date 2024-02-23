@@ -29,7 +29,7 @@ data:
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   - icon: ':question:'
@@ -67,12 +67,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/math/poly/SamplingPointsShift.md
     document_title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
@@ -830,11 +830,11 @@ data:
     \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
     \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
     \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::msb(n\
-    \ - 1) + 1;\n    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n     \
-    \   --lg;\n        if (a.size() < b.size()) std::swap(a, b);\n        int m =\
-    \ n - (1 << lg);\n        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin()\
-    \ + m, a.end());\n        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::ceil_log2(n);\n\
+    \    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n  \
+    \      if (a.size() < b.size()) std::swap(a, b);\n        int m = n - (1 << lg);\n\
+    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
+    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
     \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
     \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
     \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
@@ -1194,8 +1194,8 @@ data:
   isVerificationFile: false
   path: math/poly/SamplingPointsShift.hpp
   requiredBy: []
-  timestamp: '2024-02-23 19:57:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-23 20:57:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 documentation_of: math/poly/SamplingPointsShift.hpp
