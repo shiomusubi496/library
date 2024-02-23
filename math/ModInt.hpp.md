@@ -29,6 +29,9 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/mst/CountSpanningTree.hpp
+    title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
     path: graph/tree/FrequencyTableofTreeDistance.hpp
     title: Frequency Table of Tree Distance
@@ -59,25 +62,37 @@ data:
     title: "Relaxed Convolution(\u30AA\u30F3\u30E9\u30A4\u30F3\u7573\u307F\u8FBC\u307F\
       )"
   - icon: ':heavy_check_mark:'
+    path: math/matrix/Determinant.hpp
+    title: "Determinant(\u884C\u5217\u5F0F)"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Inverse.hpp
+    title: "Inverse(\u9006\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/LinearEquations.hpp
+    title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
+  - icon: ':heavy_check_mark:'
+    path: math/matrix/Matrix.hpp
+    title: "Matrix(\u884C\u5217)"
+  - icon: ':heavy_check_mark:'
     path: math/poly/BostanMori.hpp
     title: "Bostan-Mori(\u7DDA\u5F62\u6F38\u5316\u5F0F\u306En\u9805\u76EE)"
   - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   - icon: ':question:'
     path: math/poly/SparseFormalPowerSeries.hpp
     title: "SparseFormalPowerSeries(\u758E\u306A\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/poly/TaylorShift.hpp
     title: TaylorShift
   _extendedVerifiedWith:
@@ -234,34 +249,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/inv_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/log_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
     title: test/yosupo/polynomial/pow_of_formal_power_series_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/yosupo/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/sqrt_of_formal_power_series.test.cpp
   - icon: ':x:'
@@ -940,6 +955,7 @@ data:
   isVerificationFile: false
   path: math/ModInt.hpp
   requiredBy:
+  - graph/mst/CountSpanningTree.hpp
   - graph/tree/FrequencyTableofTreeDistance.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/PolynomialInterpolation.hpp
@@ -955,6 +971,10 @@ data:
   - math/StirlingNumber.hpp
   - math/SubsetSum.hpp
   - math/Combinatorics.hpp
+  - math/matrix/Determinant.hpp
+  - math/matrix/Matrix.hpp
+  - math/matrix/LinearEquations.hpp
+  - math/matrix/Inverse.hpp
   - math/PrimitiveRoot.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_SOME_WA

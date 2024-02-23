@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: math/ModInt.hpp
+    title: ModInt
   - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
@@ -457,40 +460,169 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 4 \"math/matrix/Matrix.hpp\"\n\
-    \ntemplate<class T> class Matrix : public std::vector<std::vector<T>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n\
-    \    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
-    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base& v)\
-    \ : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    };\n#line 2 \"math/matrix/Matrix.hpp\"\n\n#line 2 \"math/ModInt.hpp\"\n\n#line\
+    \ 4 \"math/ModInt.hpp\"\n\ntemplate<class T, T mod> class StaticModInt {\n   \
+    \ static_assert(std::is_integral<T>::value, \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value,\
+    \ \"T must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\"\
+    );\n    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n            \
+    \      \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/matrix/Matrix.hpp\"\
+    \n\ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
+    \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
+    \ gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
+    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
+    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
+    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
     \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
     \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
     \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
     \ : 0; }\n    bool is_square() const { return height() == width(); }\n    Matrix&\
-    \ operator+=(const Matrix& other) {\n        rep (i, this->height()) {\n     \
-    \       rep (j, this->width()) (*this)[i][j] += other[i][j];\n        }\n    \
-    \    return *this;\n    }\n    Matrix& operator-=(const Matrix& other) {\n   \
-    \     rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator*=(const\
-    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
-    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ operator+=(const Matrix& other) {\n        assert(this->height() == other.height()\
+    \ && this->width() == other.width());\n        rep (i, this->height()) {\n   \
+    \         rep (j, this->width()) (*this)[i][j] += other[i][j];\n        }\n  \
+    \      return *this;\n    }\n    Matrix& operator-=(const Matrix& other) {\n \
+    \       assert(this->height() == other.height() && this->width() == other.width());\n\
+    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ -= other[i][j];\n        }\n        return *this;\n    }\n    template<bool\
+    \ AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T, static_modint<2>>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
+    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
     \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  return *this = std::move(res);\n    }\n    Matrix& operator*=(T s) {\n    \
-    \    rep (i, height()) {\n            rep (j, width()) (*this)[i][j] *= s;\n \
-    \       }\n        return *this;\n    }\n    friend Matrix operator+(const Matrix&\
-    \ lhs, const Matrix& rhs) {\n        return Matrix(lhs) += rhs;\n    }\n    friend\
-    \ Matrix operator-(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ -= rhs;\n    }\n    friend Matrix operator*(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend\
-    \ Matrix operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *=\
-    \ lhs;\n    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
-    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
-    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
-    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
-    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
-    \ res;\n    }\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
+    \  return *this = std::move(res);\n    }\n    template<bool AlwaysTrue = true,\n\
+    \             typename std::enable_if<std::is_same<T, static_modint<2>>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
+    \        return *this = internal::prod_mod2_sub<1>(*this, other);\n    }\n   \
+    \ Matrix& operator*=(T s) {\n        rep (i, height()) {\n            rep (j,\
+    \ width()) (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend\
+    \ Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
+    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
+    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs)\
+    \ *= rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n\
+    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) const {\n   \
+    \     Matrix a = *this, res = get_identity(height());\n        while (b) {\n \
+    \           if (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n\
+    \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
+    \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
+    \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
+    \  }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
     \           pivot = j;\n                    break;\n                }\n      \
@@ -500,44 +632,50 @@ data:
     \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
     \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
     \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
-    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
-    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
-    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
-    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
-    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
-    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\n/**\n\
-    \ * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
+    \ *this;\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n\
+    \        return *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return\
+    \ Matrix(mat).gauss(); }\n    int rank(bool is_gaussed = false) const {\n    \
+    \    const int h = height(), w = width();\n        if (!is_gaussed)\n        \
+    \    return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);\n     \
+    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
+    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
+    \        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len> Mat2\
+    \ prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
+    \ w = rhs.width(), m = lhs.width();\n    if (len < m) return prod_mod2_sub<len\
+    \ << 1>(lhs, rhs);\n    std::vector<std::bitset<len>> a(h), b(w);\n    Mat2 res(h,\
+    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs[i][j] != 0;\n    }\n\
+    \    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j] != 0;\n    }\n    rep\
+    \ (i, h) {\n        rep (j, w) {\n            res[i][j] = (a[i] & b[j]).count()\
+    \ & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2 prod_mod2_sub<1\
+    \ << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int len> void gauss_mod2_sub(Mat2&\
+    \ a) {\n    const int h = a.height(), w = a.width();\n    if (len < w) return\
+    \ gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>> b(h);\n    rep\
+    \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
+    \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
+    \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
+    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
+    \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
+    \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
+    \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
+    \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
+    \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
     \ 5 \"math/matrix/Inverse.hpp\"\n\ntemplate<class T> Matrix<T> inverse(Matrix<T>\
     \ mat) {\n    assert(mat.is_square());\n    const int n = mat.height();\n    rep\
     \ (i, n) {\n        mat[i].resize(n * 2, T{0});\n        mat[i][n + i] = T{1};\n\
-    \    }\n    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i\
-    \ + 1, n) {\n                if (mat[j][i] != 0) {\n                    swap(mat[i],\
-    \ mat[j]);\n                    break;\n                }\n            }\n   \
-    \     }\n        if (mat[i][i] == 0) {\n            return Matrix<T>{};\n    \
-    \    }\n        {\n            const T s = mat[i][i];\n            rep (j, n *\
-    \ 2) mat[i][j] /= s;\n        }\n        rep (j, i + 1, n) {\n            const\
-    \ T s = mat[j][i];\n            rep (k, n * 2) mat[j][k] -= mat[i][k] * s;\n \
-    \       }\n    }\n    rrep (i, n) {\n        rep (j, i) {\n            const T\
-    \ s = mat[j][i];\n            rep (k, n, n * 2) mat[j][k] -= mat[i][k] * s;\n\
-    \        }\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n        rep (j,\
-    \ n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\
-    \u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
+    \    }\n    mat.gauss();\n    rep (i, n) {\n        if (mat[i][i] == T{0}) return\
+    \ Matrix<T>(0, 0);\n    }\n    Matrix<T> res(n, n);\n    rep (i, n) {\n      \
+    \  rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return res;\n}\n\n/**\n *\
+    \ @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"Matrix.hpp\"\
     \n\ntemplate<class T> Matrix<T> inverse(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    rep (i, n) {\n        mat[i].resize(n *\
-    \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    rep (i, n) {\n        if\
-    \ (mat[i][i] == 0) {\n            rep (j, i + 1, n) {\n                if (mat[j][i]\
-    \ != 0) {\n                    swap(mat[i], mat[j]);\n                    break;\n\
-    \                }\n            }\n        }\n        if (mat[i][i] == 0) {\n\
-    \            return Matrix<T>{};\n        }\n        {\n            const T s\
-    \ = mat[i][i];\n            rep (j, n * 2) mat[i][j] /= s;\n        }\n      \
-    \  rep (j, i + 1, n) {\n            const T s = mat[j][i];\n            rep (k,\
-    \ n * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    rrep (i, n) {\n  \
-    \      rep (j, i) {\n            const T s = mat[j][i];\n            rep (k, n,\
-    \ n * 2) mat[j][k] -= mat[i][k] * s;\n        }\n    }\n    Matrix<T> res(n, n);\n\
-    \    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n    }\n    return\
-    \ res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs docs/math/matrix/Inverse.md\n\
-    \ */\n"
+    \ 2, T{0});\n        mat[i][n + i] = T{1};\n    }\n    mat.gauss();\n    rep (i,\
+    \ n) {\n        if (mat[i][i] == T{0}) return Matrix<T>(0, 0);\n    }\n    Matrix<T>\
+    \ res(n, n);\n    rep (i, n) {\n        rep (j, n) res[i][j] = mat[i][n + j];\n\
+    \    }\n    return res;\n}\n\n/**\n * @brief Inverse(\u9006\u884C\u5217)\n * @docs\
+    \ docs/math/matrix/Inverse.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -549,10 +687,11 @@ data:
   - template/func.hpp
   - template/util.hpp
   - math/matrix/Matrix.hpp
+  - math/ModInt.hpp
   isVerificationFile: false
   path: math/matrix/Inverse.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-02-23 20:32:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/inverse_matrix.test.cpp
