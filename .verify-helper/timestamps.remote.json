@@ -156,6 +156,7 @@
 "test/yosupo/math/kth_root_integer.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/math/longest_increasing_subsequence.test.cpp": "2024-01-20 14:55:31 +0900",
+"test/yosupo/math/min_of_mod_of_linear.test.cpp": "2024-02-23 19:44:55 +0900",
 "test/yosupo/math/montmort_number_mod.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/math/partition_function.test.cpp": "2024-01-20 20:17:33 +0900",
 "test/yosupo/math/primality_test.test.cpp": "2024-01-20 14:55:31 +0900",
