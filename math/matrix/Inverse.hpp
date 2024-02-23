@@ -10,32 +10,9 @@ template<class T> Matrix<T> inverse(Matrix<T> mat) {
         mat[i].resize(n * 2, T{0});
         mat[i][n + i] = T{1};
     }
+    mat.gauss();
     rep (i, n) {
-        if (mat[i][i] == 0) {
-            rep (j, i + 1, n) {
-                if (mat[j][i] != 0) {
-                    swap(mat[i], mat[j]);
-                    break;
-                }
-            }
-        }
-        if (mat[i][i] == 0) {
-            return Matrix<T>{};
-        }
-        {
-            const T s = mat[i][i];
-            rep (j, n * 2) mat[i][j] /= s;
-        }
-        rep (j, i + 1, n) {
-            const T s = mat[j][i];
-            rep (k, n * 2) mat[j][k] -= mat[i][k] * s;
-        }
-    }
-    rrep (i, n) {
-        rep (j, i) {
-            const T s = mat[j][i];
-            rep (k, n, n * 2) mat[j][k] -= mat[i][k] * s;
-        }
+        if (mat[i][i] == T{0}) return Matrix<T>(0, 0);
     }
     Matrix<T> res(n, n);
     rep (i, n) {

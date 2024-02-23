@@ -36,6 +36,11 @@ template<class T> T determinant(Matrix<T> mat) {
     return res;
 }
 
+template<> static_modint<2> determinant(Matrix<static_modint<2>> mat) {
+    assert(mat.is_square());
+    return mat.rank() == mat.height() ? 1 : 0;
+}
+
 /**
  * @brief Determinant(行列式)
  * @docs docs/math/matrix/Determinant.md

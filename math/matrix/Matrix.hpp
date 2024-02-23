@@ -1,6 +1,18 @@
 #pragma once
 
 #include "../../other/template.hpp"
+#include "../ModInt.hpp"
+
+template<class> class Matrix;
+
+namespace internal {
+
+using Mat2 = Matrix<static_modint<2>>;
+
+template<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);
+template<int> void gauss_mod2_sub(Mat2&);
+
+}
 
 template<class T> class Matrix : public std::vector<std::vector<T>> {
 private:
@@ -21,17 +33,22 @@ public:
     int width() const { return this->size() ? (*this)[0].size() : 0; }
     bool is_square() const { return height() == width(); }
     Matrix& operator+=(const Matrix& other) {
+        assert(this->height() == other.height() && this->width() == other.width());
         rep (i, this->height()) {
             rep (j, this->width()) (*this)[i][j] += other[i][j];
         }
         return *this;
     }
     Matrix& operator-=(const Matrix& other) {
+        assert(this->height() == other.height() && this->width() == other.width());
         rep (i, this->height()) {
             rep (j, this->width()) (*this)[i][j] -= other[i][j];
         }
         return *this;
     }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     Matrix& operator*=(const Matrix& other) {
         assert(this->width() == other.height());
         Matrix res(this->height(), other.width());
@@ -41,6 +58,13 @@ public:
             }
         }
         return *this = std::move(res);
+    }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<std::is_same<T, static_modint<2>>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    Matrix& operator*=(const Matrix& other) {
+        assert(this->width() == other.height());
+        return *this = internal::prod_mod2_sub<1>(*this, other);
     }
     Matrix& operator*=(T s) {
         rep (i, height()) {
@@ -79,6 +103,9 @@ public:
         }
         return res;
     }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
+                                     AlwaysTrue>::type* = nullptr>
     Matrix& gauss() {
         int h = height(), w = width();
         int r = 0;
@@ -104,6 +131,13 @@ public:
         }
         return *this;
     }
+    template<bool AlwaysTrue = true,
+             typename std::enable_if<std::is_same<T, static_modint<2>>::value &&
+                                     AlwaysTrue>::type* = nullptr>
+    Matrix& gauss() {
+        internal::gauss_mod2_sub<1>(*this);
+        return *this;
+    }
     friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss(); }
     int rank(bool is_gaussed = false) const {
         const int h = height(), w = width();
@@ -118,6 +152,60 @@ public:
         return h;
     }
 };
+
+namespace internal {
+
+template<int len> Mat2 prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {
+    const int h = lhs.height(), w = rhs.width(), m = lhs.width();
+    if (len < m) return prod_mod2_sub<len << 1>(lhs, rhs);
+    std::vector<std::bitset<len>> a(h), b(w);
+    Mat2 res(h, w);
+    rep (i, h) {
+        rep (j, m) a[i][j] = lhs[i][j] != 0;
+    }
+    rep (i, m) {
+        rep (j, w) b[j][i] = rhs[i][j] != 0;
+    }
+    rep (i, h) {
+        rep (j, w) {
+            res[i][j] = (a[i] & b[j]).count() & 1;
+        }
+    }
+    return res;
+}
+template<> Mat2 prod_mod2_sub<1 << 30>(const Mat2&, const Mat2&) { return {}; }
+
+template<int len> void gauss_mod2_sub(Mat2& a) {
+    const int h = a.height(), w = a.width();
+    if (len < w) return gauss_mod2_sub<len << 1>(a);
+    std::vector<std::bitset<len>> b(h);
+    rep (i, h) {
+        rep (j, w) b[i][j] = a[i][j] != 0;
+    }
+    int r = 0;
+    rep (i, w) {
+        int pivot = -1;
+        rep (j, r, h) {
+            if (b[j][i] != 0) {
+                pivot = j;
+                break;
+            }
+        }
+        if (pivot == -1) continue;
+        swap(b[pivot], b[r]);
+        rep (j, h) {
+            if (j == r) continue;
+            if (b[j][i] != 0) b[j] ^= b[r];
+        }
+        ++r;
+    }
+    rep (i, h) {
+        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);
+    }
+}
+template<> void gauss_mod2_sub<1 << 30>(Mat2&) {}
+
+} // namespace internal
 
 /**
  * @brief Matrix(行列)
