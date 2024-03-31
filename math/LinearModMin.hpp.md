@@ -566,7 +566,7 @@ data:
     \ m.get_den()) > n) return {l, r};\n            }\n            flag = !flag;\n\
     \        }\n        return {-1, -1};\n    }\n};\n\n/**\n * @brief Stern-Brocot\
     \ Tree\n * @docs docs/math/SternBrocotTree.md\n */\n#line 5 \"math/LinearModMin.hpp\"\
-    \n\nstd::vector<std::tuple<ll, ll, ll>> linear_mod_min_arithmetic_progressions(ll\
+    \n\nstd::vector<std::tuple<ll, ll, ll>>\nlinear_mod_min_arithmetic_progressions(ll\
     \ a, ll b, ll m) {\n    using SBT = SternBrocotTree<ll>;\n    std::vector<std::tuple<ll,\
     \ ll, ll>> res;\n    a = -a % m;\n    if (a < 0) a += m;\n    b = b % m;\n   \
     \ if (b < 0) b += m;\n    if (a == 0 || b == 0) return res;\n    auto path = SBT::encode_path({a,\
@@ -590,7 +590,7 @@ data:
     \ LinearModMin\n * @docs docs/math/LinearModMin.md\n * @see https://maspypy.com/library-checker-min-of-mod-of-linear\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"SternBrocotTree.hpp\"\
-    \n\nstd::vector<std::tuple<ll, ll, ll>> linear_mod_min_arithmetic_progressions(ll\
+    \n\nstd::vector<std::tuple<ll, ll, ll>>\nlinear_mod_min_arithmetic_progressions(ll\
     \ a, ll b, ll m) {\n    using SBT = SternBrocotTree<ll>;\n    std::vector<std::tuple<ll,\
     \ ll, ll>> res;\n    a = -a % m;\n    if (a < 0) a += m;\n    b = b % m;\n   \
     \ if (b < 0) b += m;\n    if (a == 0 || b == 0) return res;\n    auto path = SBT::encode_path({a,\
@@ -628,7 +628,7 @@ data:
   isVerificationFile: false
   path: math/LinearModMin.hpp
   requiredBy: []
-  timestamp: '2024-02-23 19:44:55+09:00'
+  timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/min_of_mod_of_linear.test.cpp

@@ -732,75 +732,68 @@ data:
     \            ptr->rev = false;\n        }\n        if (ptr->lazyflag) {\n    \
     \        all_apply(ptr->l, ptr->lazy);\n            all_apply(ptr->r, ptr->lazy);\n\
     \            ptr->lazyflag = false;\n        }\n    }\n    void calc(node_ptr&\
-    \ ptr) {\n        if (ptr->l) {\n            if (ptr->r) {\n                ptr->val\
-    \ = M::op(M::op(ptr->l->val, ptr->v), ptr->r->val);\n                ptr->rval\
-    \ = M::op(M::op(ptr->r->rval, ptr->v), ptr->l->rval);\n                ptr->cnt\
-    \ = ptr->l->cnt + ptr->r->cnt + 1;\n            }\n            else {\n      \
-    \          ptr->val = M::op(ptr->l->val, ptr->v);\n                ptr->rval =\
-    \ M::op(ptr->v, ptr->l->rval);\n                ptr->cnt = ptr->l->cnt + 1;\n\
-    \            }\n        }\n        else {\n            if (ptr->r) {\n       \
-    \         ptr->val = M::op(ptr->v, ptr->r->val);\n                ptr->rval =\
-    \ M::op(ptr->r->rval, ptr->v);\n                ptr->cnt = ptr->r->cnt + 1;\n\
-    \            }\n            else {\n                ptr->val = ptr->v;\n     \
-    \           ptr->rval = ptr->v;\n                ptr->cnt = 1;\n            }\n\
-    \        }\n    }\n    node_ptr& parentchild(node_ptr& ptr) {\n        if (ptr\
-    \ == root) return root;\n        return ptr->p->l == ptr ? ptr->p->l : ptr->p->r;\n\
-    \    }\n\n    void rotateL(node_ptr& p) {\n        node_ptr c = p->r;\n      \
-    \  assert(c != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n\
-    \        p->p = c;\n        p->r = c->l;\n        c->l = p;\n        if (p->r)\
-    \ p->r->p = p;\n    }\n    void rotateR(node_ptr& p) {\n        node_ptr c = p->l;\n\
-    \        assert(c != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n\
-    \        p->p = c;\n        p->l = c->r;\n        c->r = p;\n        if (p->l)\
-    \ p->l->p = p;\n    }\n    void splay(node_ptr& ptr) {\n        eval(ptr);\n \
-    \       while (ptr != root) {\n            node_ptr p = ptr->p;\n            if\
-    \ (p == root) {\n                if (p->l == ptr) rotateR(p);\n              \
-    \  else rotateL(p);\n                calc(p);\n                calc(ptr);\n  \
-    \          }\n            else {\n                node_ptr gp = p->p;\n      \
-    \          if (gp->l == p) {\n                    if (p->l == ptr) {\n       \
-    \                 rotateR(gp);\n                        rotateR(p);\n        \
-    \            }\n                    else {\n                        rotateL(p);\n\
-    \                        rotateR(gp);\n                    }\n               \
-    \ }\n                else {\n                    if (p->l == ptr) {\n        \
-    \                rotateR(p);\n                        rotateL(gp);\n         \
-    \           }\n                    else {\n                        rotateL(gp);\n\
-    \                        rotateL(p);\n                    }\n                }\n\
-    \                calc(gp);\n                calc(p);\n                calc(ptr);\n\
-    \            }\n        }\n        calc(ptr);\n    }\n\npublic:\n    SplayTree()\
-    \ : root(nullptr) {}\n    SplayTree(const std::vector<T>& v) : root(nullptr) {\n\
-    \        for (auto x : v) insert(size(), x);\n    }\n\n    int size() const {\
-    \ return root ? root->cnt : 0; }\n\n    node_ptr kth_element(int k) {\n      \
-    \  assert(0 <= k && k < size());\n        node_ptr ptr = root;\n        while\
-    \ (ptr) {\n            eval(ptr);\n            if (ptr->l) {\n               \
-    \ if (ptr->l->cnt > k) {\n                    ptr = ptr->l;\n                \
-    \    continue;\n                }\n                k -= ptr->l->cnt;\n       \
-    \     }\n            if (k == 0) break;\n            --k;\n            ptr = ptr->r;\n\
-    \        }\n        splay(ptr);\n        return ptr;\n    }\n    T operator[](int\
-    \ k) { return kth_element(k)->v; }\n    void insert(int k, T x) {\n        assert(0\
-    \ <= k && k <= size());\n        node_ptr nd = new node;\n        nd->v = nd->val\
-    \ = nd->rval = x;\n        if (root == nullptr) {\n            root = nd;\n  \
-    \          return;\n        }\n        if (k == size()) {\n            nd->l =\
-    \ root;\n            root->p = nd;\n            root = nd;\n            calc(root);\n\
-    \            return;\n        }\n        node_ptr ptr = kth_element(k);\n    \
-    \    nd->l = ptr->l;\n        if (ptr->l) ptr->l->p = nd;\n        nd->r = ptr;\n\
-    \        ptr->p = nd;\n        ptr->l = nullptr;\n        calc(ptr);\n       \
-    \ calc(nd);\n        root = nd;\n    }\n    void erase(int k) {\n        assert(0\
-    \ <= k && k < size());\n        node_ptr ptr = kth_element(k);\n        if (ptr->l\
-    \ == nullptr) {\n            root = ptr->r;\n            if (ptr->r) ptr->r->p\
-    \ = nullptr;\n            delete ptr;\n            return;\n        }\n      \
-    \  if (ptr->r == nullptr) {\n            root = ptr->l;\n            ptr->l->p\
-    \ = nullptr;\n            delete ptr;\n            return;\n        }\n      \
-    \  node_ptr l = ptr->l;\n        root = ptr->r;\n        node_ptr nd = kth_element(0);\n\
-    \        nd->l = l;\n        l->p = nd;\n        delete ptr;\n        nd->p =\
-    \ nullptr;\n        calc(nd);\n    }\n    node_ptr get_range(int l, int r) {\n\
-    \        assert(0 <= l && l < r && r <= size());\n        if (l == 0) {\n    \
-    \        if (r == size()) return root;\n            node_ptr ptr = kth_element(r);\n\
-    \            return ptr->l;\n        }\n        else if (r == size()) {\n    \
-    \        node_ptr ptr = kth_element(l - 1);\n            return ptr->r;\n    \
-    \    }\n        node_ptr pr = kth_element(r);\n        root = pr->l;\n       \
-    \ pr->l->p = nullptr;\n        node_ptr pl = kth_element(l - 1);\n        root\
-    \ = pr;\n        pr->l = pl;\n        pl->p = pr;\n        calc(pr);\n       \
-    \ return pl->r;\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l\
-    \ <= r && r <= size());\n        if (l == r) return M::id();\n        node_ptr\
+    \ ptr) {\n        ptr->val = M::op(ptr->l ? ptr->l->val : M::id(),\n         \
+    \                M::op(ptr->v, ptr->r ? ptr->r->val : M::id()));\n        ptr->rval\
+    \ = M::op(ptr->r ? ptr->r->rval : M::id(),\n                          M::op(ptr->v,\
+    \ ptr->l ? ptr->l->rval : M::id()));\n        ptr->cnt = (ptr->l ? ptr->l->cnt\
+    \ : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;\n    }\n    node_ptr& parentchild(node_ptr&\
+    \ ptr) {\n        if (ptr == root) return root;\n        return ptr->p->l == ptr\
+    \ ? ptr->p->l : ptr->p->r;\n    }\n\n    void rotateL(node_ptr& p) {\n       \
+    \ node_ptr c = p->r;\n        assert(c != nullptr);\n        parentchild(p) =\
+    \ c;\n        c->p = p->p;\n        p->p = c;\n        p->r = c->l;\n        c->l\
+    \ = p;\n        if (p->r) p->r->p = p;\n    }\n    void rotateR(node_ptr& p) {\n\
+    \        node_ptr c = p->l;\n        assert(c != nullptr);\n        parentchild(p)\
+    \ = c;\n        c->p = p->p;\n        p->p = c;\n        p->l = c->r;\n      \
+    \  c->r = p;\n        if (p->l) p->l->p = p;\n    }\n    void splay(node_ptr&\
+    \ ptr) {\n        eval(ptr);\n        while (ptr != root) {\n            node_ptr\
+    \ p = ptr->p;\n            if (p == root) {\n                if (p->l == ptr)\
+    \ rotateR(p);\n                else rotateL(p);\n                calc(p);\n  \
+    \              calc(ptr);\n            }\n            else {\n               \
+    \ node_ptr gp = p->p;\n                if (gp->l == p) {\n                   \
+    \ if (p->l == ptr) {\n                        rotateR(gp);\n                 \
+    \       rotateR(p);\n                    }\n                    else {\n     \
+    \                   rotateL(p);\n                        rotateR(gp);\n      \
+    \              }\n                }\n                else {\n                \
+    \    if (p->l == ptr) {\n                        rotateR(p);\n               \
+    \         rotateL(gp);\n                    }\n                    else {\n  \
+    \                      rotateL(gp);\n                        rotateL(p);\n   \
+    \                 }\n                }\n                calc(gp);\n          \
+    \      calc(p);\n                calc(ptr);\n            }\n        }\n      \
+    \  calc(ptr);\n    }\n\npublic:\n    SplayTree() : root(nullptr) {}\n    SplayTree(const\
+    \ std::vector<T>& v) : root(nullptr) {\n        for (auto x : v) insert(size(),\
+    \ x);\n    }\n\n    int size() const { return root ? root->cnt : 0; }\n\n    node_ptr\
+    \ kth_element(int k) {\n        assert(0 <= k && k < size());\n        node_ptr\
+    \ ptr = root;\n        while (ptr) {\n            eval(ptr);\n            if (ptr->l)\
+    \ {\n                if (ptr->l->cnt > k) {\n                    ptr = ptr->l;\n\
+    \                    continue;\n                }\n                k -= ptr->l->cnt;\n\
+    \            }\n            if (k == 0) break;\n            --k;\n           \
+    \ ptr = ptr->r;\n        }\n        splay(ptr);\n        return ptr;\n    }\n\
+    \    T operator[](int k) { return kth_element(k)->v; }\n    void insert(int k,\
+    \ T x) {\n        assert(0 <= k && k <= size());\n        node_ptr nd = new node;\n\
+    \        nd->v = nd->val = nd->rval = x;\n        if (root == nullptr) {\n   \
+    \         root = nd;\n            return;\n        }\n        if (k == size())\
+    \ {\n            nd->l = root;\n            root->p = nd;\n            root =\
+    \ nd;\n            calc(root);\n            return;\n        }\n        node_ptr\
+    \ ptr = kth_element(k);\n        nd->l = ptr->l;\n        if (ptr->l) ptr->l->p\
+    \ = nd;\n        nd->r = ptr;\n        ptr->p = nd;\n        ptr->l = nullptr;\n\
+    \        calc(ptr);\n        calc(nd);\n        root = nd;\n    }\n    void erase(int\
+    \ k) {\n        assert(0 <= k && k < size());\n        node_ptr ptr = kth_element(k);\n\
+    \        if (ptr->l == nullptr) {\n            root = ptr->r;\n            if\
+    \ (ptr->r) ptr->r->p = nullptr;\n            delete ptr;\n            return;\n\
+    \        }\n        if (ptr->r == nullptr) {\n            root = ptr->l;\n   \
+    \         ptr->l->p = nullptr;\n            delete ptr;\n            return;\n\
+    \        }\n        node_ptr l = ptr->l;\n        root = ptr->r;\n        node_ptr\
+    \ nd = kth_element(0);\n        nd->l = l;\n        l->p = nd;\n        delete\
+    \ ptr;\n        nd->p = nullptr;\n        calc(nd);\n    }\n    node_ptr get_range(int\
+    \ l, int r) {\n        assert(0 <= l && l < r && r <= size());\n        if (l\
+    \ == 0) {\n            if (r == size()) return root;\n            node_ptr ptr\
+    \ = kth_element(r);\n            return ptr->l;\n        }\n        else if (r\
+    \ == size()) {\n            node_ptr ptr = kth_element(l - 1);\n            return\
+    \ ptr->r;\n        }\n        node_ptr pr = kth_element(r);\n        root = pr->l;\n\
+    \        pr->l->p = nullptr;\n        node_ptr pl = kth_element(l - 1);\n    \
+    \    root = pr;\n        pr->l = pl;\n        pl->p = pr;\n        calc(pr);\n\
+    \        return pl->r;\n    }\n    T prod(int l, int r) {\n        assert(0 <=\
+    \ l && l <= r && r <= size());\n        if (l == r) return M::id();\n        node_ptr\
     \ ptr = get_range(l, r);\n        return ptr->val;\n    }\n    T get(int k) {\
     \ return (*this)[k]; }\n    T all_prod() { return root ? root->val : M::id();\
     \ }\n    void apply(int l, int r, U x) {\n        assert(0 <= l && l <= r && r\
@@ -857,7 +850,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp

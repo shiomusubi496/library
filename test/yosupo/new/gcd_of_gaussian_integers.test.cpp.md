@@ -458,7 +458,7 @@ data:
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"math/GaussianInteger.hpp\"\n\n#line 4 \"math/GaussianInteger.hpp\"\
-    \n\ntemplate<class T>\nclass GaussianInteger {\npublic:\n    T real, imag;\n\n\
+    \n\ntemplate<class T> class GaussianInteger {\npublic:\n    T real, imag;\n\n\
     \    GaussianInteger() : real(0), imag(0) {}\n    GaussianInteger(T real) : real(real),\
     \ imag(0) {}\n    GaussianInteger(T real, T imag) : real(real), imag(imag) {}\n\
     \n    GaussianInteger conj() const { return GaussianInteger(real, -imag); }\n\
@@ -471,29 +471,32 @@ data:
     \    }\n    GaussianInteger operator*=(const GaussianInteger& rhs) {\n       \
     \ T tmp = real * rhs.real - imag * rhs.imag;\n        imag = real * rhs.imag +\
     \ imag * rhs.real;\n        real = tmp;\n        return *this;\n    }\n    friend\
-    \ GaussianInteger operator+(const GaussianInteger& lhs, const GaussianInteger&\
-    \ rhs) {\n        return GaussianInteger(lhs) += rhs;\n    }\n    friend GaussianInteger\
-    \ operator-(const GaussianInteger& lhs, const GaussianInteger& rhs) {\n      \
-    \  return GaussianInteger(lhs) -= rhs;\n    }\n    friend GaussianInteger operator*(const\
-    \ GaussianInteger& lhs, const GaussianInteger& rhs) {\n        return GaussianInteger(lhs)\
-    \ *= rhs;\n    }\n    friend bool operator==(const GaussianInteger& lhs, const\
-    \ GaussianInteger& rhs) {\n        return lhs.real == rhs.real && lhs.imag ==\
-    \ rhs.imag;\n    }\n    friend bool operator!=(const GaussianInteger& lhs, const\
-    \ GaussianInteger& rhs) {\n        return !(lhs == rhs);\n    }\n    template<class\
-    \ Pr> void print(Pr& pr) const {\n        pr.print(real);\n        pr.print('\
-    \ ');\n        pr.print(imag);\n    }\n    template<class Pr> void debug(Pr& pr)\
-    \ const {\n        pr.print(real);\n        pr.print_char('+');\n        pr.print(imag);\n\
-    \        pr.print_char('i');\n    }\n    template<class Sc> void scan(Sc& sc)\
-    \ {\n        sc.scan(real);\n        sc.scan(imag);\n    }\n};\n\ntemplate<class\
-    \ T>\nGaussianInteger<T> gcd(GaussianInteger<T> a, GaussianInteger<T> b) {\n \
-    \   while (b != GaussianInteger<T>()) {\n        GaussianInteger<T> q = a * b.conj();\n\
-    \        T n = b.norm();\n        {\n            T tmp = q.real;\n           \
-    \ q.real /= n;\n            tmp = tmp - q.real * n;\n            if (tmp * 2 >\
-    \ n) ++q.real;\n            if (tmp * 2 < -n) --q.real;\n        }\n        {\n\
-    \            T tmp = q.imag;\n            q.imag /= n;\n            tmp = tmp\
-    \ - q.imag * n;\n            if (tmp * 2 > n) ++q.imag;\n            if (tmp *\
-    \ 2 < -n) --q.imag;\n        }\n        a -= b * q;\n        std::swap(a, b);\n\
-    \    }\n    return a;\n}\n\n/**\n * @brief GaussianInteger\n * @see https://maspypy.com/library-checker-gcd-of-gaussian-integers\n\
+    \ GaussianInteger operator+(const GaussianInteger& lhs,\n                    \
+    \                 const GaussianInteger& rhs) {\n        return GaussianInteger(lhs)\
+    \ += rhs;\n    }\n    friend GaussianInteger operator-(const GaussianInteger&\
+    \ lhs,\n                                     const GaussianInteger& rhs) {\n \
+    \       return GaussianInteger(lhs) -= rhs;\n    }\n    friend GaussianInteger\
+    \ operator*(const GaussianInteger& lhs,\n                                    \
+    \ const GaussianInteger& rhs) {\n        return GaussianInteger(lhs) *= rhs;\n\
+    \    }\n    friend bool operator==(const GaussianInteger& lhs,\n             \
+    \              const GaussianInteger& rhs) {\n        return lhs.real == rhs.real\
+    \ && lhs.imag == rhs.imag;\n    }\n    friend bool operator!=(const GaussianInteger&\
+    \ lhs,\n                           const GaussianInteger& rhs) {\n        return\
+    \ !(lhs == rhs);\n    }\n    template<class Pr> void print(Pr& pr) const {\n \
+    \       pr.print(real);\n        pr.print(' ');\n        pr.print(imag);\n   \
+    \ }\n    template<class Pr> void debug(Pr& pr) const {\n        pr.print(real);\n\
+    \        pr.print_char('+');\n        pr.print(imag);\n        pr.print_char('i');\n\
+    \    }\n    template<class Sc> void scan(Sc& sc) {\n        sc.scan(real);\n \
+    \       sc.scan(imag);\n    }\n};\n\ntemplate<class T>\nGaussianInteger<T> gcd(GaussianInteger<T>\
+    \ a, GaussianInteger<T> b) {\n    while (b != GaussianInteger<T>()) {\n      \
+    \  GaussianInteger<T> q = a * b.conj();\n        T n = b.norm();\n        {\n\
+    \            T tmp = q.real;\n            q.real /= n;\n            tmp = tmp\
+    \ - q.real * n;\n            if (tmp * 2 > n) ++q.real;\n            if (tmp *\
+    \ 2 < -n) --q.real;\n        }\n        {\n            T tmp = q.imag;\n     \
+    \       q.imag /= n;\n            tmp = tmp - q.imag * n;\n            if (tmp\
+    \ * 2 > n) ++q.imag;\n            if (tmp * 2 < -n) --q.imag;\n        }\n   \
+    \     a -= b * q;\n        std::swap(a, b);\n    }\n    return a;\n}\n\n/**\n\
+    \ * @brief GaussianInteger\n * @see https://maspypy.com/library-checker-gcd-of-gaussian-integers\n\
     \ */\n#line 4 \"test/yosupo/new/gcd_of_gaussian_integers.test.cpp\"\nusing namespace\
     \ std;\nusing gint = GaussianInteger<ll>;\nint main() {\n    int T; scan >> T;\n\
     \    rep (T) {\n        gint a, b; scan >> a >> b;\n        prints(gcd(a, b));\n\
@@ -517,7 +520,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 19:27:03+09:00'
+  timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/gcd_of_gaussian_integers.test.cpp

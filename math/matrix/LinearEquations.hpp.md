@@ -579,26 +579,27 @@ data:
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 5 \"math/matrix/Matrix.hpp\"\
     \n\ntemplate<class> class Matrix;\n\nnamespace internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\
     \ntemplate<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);\ntemplate<int> void\
-    \ gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
-    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
-    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
-    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
-    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
-    \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
-    \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
-    \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
-    \ : 0; }\n    bool is_square() const { return height() == width(); }\n    Matrix&\
-    \ operator+=(const Matrix& other) {\n        assert(this->height() == other.height()\
-    \ && this->width() == other.width());\n        rep (i, this->height()) {\n   \
-    \         rep (j, this->width()) (*this)[i][j] += other[i][j];\n        }\n  \
-    \      return *this;\n    }\n    Matrix& operator-=(const Matrix& other) {\n \
-    \       assert(this->height() == other.height() && this->width() == other.width());\n\
-    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T, static_modint<2>>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
+    \ gauss_mod2_sub(Mat2&);\n\n} // namespace internal\n\ntemplate<class T> class\
+    \ Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\
+    \npublic:\n    Matrix() = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w))\
+    \ {}\n    Matrix(int h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n\
+    \    Matrix(const Base& v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v))\
+    \ {}\n    static Matrix get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n\
+    \        rep (i, sz) res[i][i] = T{1};\n        return res;\n    }\n    int height()\
+    \ const { return this->size(); }\n    int width() const { return this->size()\
+    \ ? (*this)[0].size() : 0; }\n    bool is_square() const { return height() ==\
+    \ width(); }\n    Matrix& operator+=(const Matrix& other) {\n        assert(this->height()\
+    \ == other.height() &&\n               this->width() == other.width());\n    \
+    \    rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
+    \ += other[i][j];\n        }\n        return *this;\n    }\n    Matrix& operator-=(const\
+    \ Matrix& other) {\n        assert(this->height() == other.height() &&\n     \
+    \          this->width() == other.width());\n        rep (i, this->height()) {\n\
+    \            rep (j, this->width()) (*this)[i][j] -= other[i][j];\n        }\n\
+    \        return *this;\n    }\n    template<\n        bool AlwaysTrue = true,\n\
+    \        typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&\n\
+    \                                AlwaysTrue>::type* = nullptr>\n    Matrix& operator*=(const\
+    \ Matrix& other) {\n        assert(this->width() == other.height());\n       \
+    \ Matrix res(this->height(), other.width());\n        rep (i, this->height())\
     \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
     \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
     \  return *this = std::move(res);\n    }\n    template<bool AlwaysTrue = true,\n\
@@ -620,8 +621,8 @@ data:
     \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
     \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
     \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
-    \  }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
+    \  }\n    template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                AlwaysTrue>::type*\
     \ = nullptr>\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
     \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
     \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
@@ -747,7 +748,7 @@ data:
   isVerificationFile: false
   path: math/matrix/LinearEquations.hpp
   requiredBy: []
-  timestamp: '2024-02-23 20:32:08+09:00'
+  timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/matrix/system_of_linear_equations.test.cpp

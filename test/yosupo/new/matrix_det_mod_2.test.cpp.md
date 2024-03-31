@@ -581,90 +581,90 @@ data:
     \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"math/matrix/Matrix.hpp\"\
     \n\n#line 5 \"math/matrix/Matrix.hpp\"\n\ntemplate<class> class Matrix;\n\nnamespace\
     \ internal {\n\nusing Mat2 = Matrix<static_modint<2>>;\n\ntemplate<int> Mat2 prod_mod2_sub(const\
-    \ Mat2&, const Mat2&);\ntemplate<int> void gauss_mod2_sub(Mat2&);\n\n}\n\ntemplate<class\
-    \ T> class Matrix : public std::vector<std::vector<T>> {\nprivate:\n    using\
-    \ Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix() = default;\n  \
-    \  Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int h, int\
-    \ w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base& v)\
-    \ : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
+    \ Mat2&, const Mat2&);\ntemplate<int> void gauss_mod2_sub(Mat2&);\n\n} // namespace\
+    \ internal\n\ntemplate<class T> class Matrix : public std::vector<std::vector<T>>\
+    \ {\nprivate:\n    using Base = std::vector<std::vector<T>>;\n\npublic:\n    Matrix()\
+    \ = default;\n    Matrix(int h, int w) : Base(h, std::vector<T>(w)) {}\n    Matrix(int\
+    \ h, int w, const T& v) : Base(h, std::vector<T>(w, v)) {}\n    Matrix(const Base&\
+    \ v) : Base(v) {}\n    Matrix(Base&& v) : Base(std::move(v)) {}\n    static Matrix\
     \ get_identity(int sz) {\n        Matrix res(sz, sz, T{0});\n        rep (i, sz)\
     \ res[i][i] = T{1};\n        return res;\n    }\n    int height() const { return\
     \ this->size(); }\n    int width() const { return this->size() ? (*this)[0].size()\
     \ : 0; }\n    bool is_square() const { return height() == width(); }\n    Matrix&\
     \ operator+=(const Matrix& other) {\n        assert(this->height() == other.height()\
-    \ && this->width() == other.width());\n        rep (i, this->height()) {\n   \
-    \         rep (j, this->width()) (*this)[i][j] += other[i][j];\n        }\n  \
-    \      return *this;\n    }\n    Matrix& operator-=(const Matrix& other) {\n \
-    \       assert(this->height() == other.height() && this->width() == other.width());\n\
-    \        rep (i, this->height()) {\n            rep (j, this->width()) (*this)[i][j]\
-    \ -= other[i][j];\n        }\n        return *this;\n    }\n    template<bool\
-    \ AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T, static_modint<2>>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        Matrix res(this->height(), other.width());\n        rep (i, this->height())\
-    \ {\n            rep (k, other.height()) {\n                rep (j, other.width())\
-    \ res[i][j] += (*this)[i][k] * other[k][j];\n            }\n        }\n      \
-    \  return *this = std::move(res);\n    }\n    template<bool AlwaysTrue = true,\n\
+    \ &&\n               this->width() == other.width());\n        rep (i, this->height())\
+    \ {\n            rep (j, this->width()) (*this)[i][j] += other[i][j];\n      \
+    \  }\n        return *this;\n    }\n    Matrix& operator-=(const Matrix& other)\
+    \ {\n        assert(this->height() == other.height() &&\n               this->width()\
+    \ == other.width());\n        rep (i, this->height()) {\n            rep (j, this->width())\
+    \ (*this)[i][j] -= other[i][j];\n        }\n        return *this;\n    }\n   \
+    \ template<\n        bool AlwaysTrue = true,\n        typename std::enable_if<!std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& operator*=(const Matrix& other) {\n        assert(this->width()\
+    \ == other.height());\n        Matrix res(this->height(), other.width());\n  \
+    \      rep (i, this->height()) {\n            rep (k, other.height()) {\n    \
+    \            rep (j, other.width()) res[i][j] += (*this)[i][k] * other[k][j];\n\
+    \            }\n        }\n        return *this = std::move(res);\n    }\n   \
+    \ template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
+    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
+    \ = nullptr>\n    Matrix& operator*=(const Matrix& other) {\n        assert(this->width()\
+    \ == other.height());\n        return *this = internal::prod_mod2_sub<1>(*this,\
+    \ other);\n    }\n    Matrix& operator*=(T s) {\n        rep (i, height()) {\n\
+    \            rep (j, width()) (*this)[i][j] *= s;\n        }\n        return *this;\n\
+    \    }\n    friend Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n\
+    \        return Matrix(lhs) += rhs;\n    }\n    friend Matrix operator-(const\
+    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n\
+    \    friend Matrix operator*(const Matrix& lhs, const Matrix& rhs) {\n       \
+    \ return Matrix(lhs) *= rhs;\n    }\n    friend Matrix operator*(const Matrix&\
+    \ lhs, T rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n    friend Matrix\
+    \ operator*(int lhs, const Matrix& rhs) {\n        return Matrix(rhs) *= lhs;\n\
+    \    }\n    Matrix pow(ll b) const {\n        Matrix a = *this, res = get_identity(height());\n\
+    \        while (b) {\n            if (b & 1) res *= a;\n            a *= a;\n\
+    \            b >>= 1;\n        }\n        return res;\n    }\n    Matrix transpose()\
+    \ const {\n        Matrix res(width(), height());\n        rep (i, height()) {\n\
+    \            rep (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return\
+    \ res;\n    }\n    template<\n        bool AlwaysTrue = true,\n        typename\
+    \ std::enable_if<!std::is_same<T, static_modint<2>>::value &&\n              \
+    \                  AlwaysTrue>::type* = nullptr>\n    Matrix& gauss() {\n    \
+    \    int h = height(), w = width();\n        int r = 0;\n        rep (i, w) {\n\
+    \            int pivot = -1;\n            rep (j, r, h) {\n                if\
+    \ ((*this)[j][i] != 0) {\n                    pivot = j;\n                   \
+    \ break;\n                }\n            }\n            if (pivot == -1) continue;\n\
+    \            swap((*this)[pivot], (*this)[r]);\n            const T s = (*this)[r][i],\
+    \ iv = T{1} / s;\n            rep (j, i, w) (*this)[r][j] *= iv;\n           \
+    \ rep (j, h) {\n                if (j == r) continue;\n                const T\
+    \ s = (*this)[j][i];\n                if (s == 0) continue;\n                rep\
+    \ (k, i, w) (*this)[j][k] -= (*this)[r][k] * s;\n            }\n            ++r;\n\
+    \        }\n        return *this;\n    }\n    template<bool AlwaysTrue = true,\n\
     \             typename std::enable_if<std::is_same<T, static_modint<2>>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ Matrix& operator*=(const Matrix& other) {\n        assert(this->width() == other.height());\n\
-    \        return *this = internal::prod_mod2_sub<1>(*this, other);\n    }\n   \
-    \ Matrix& operator*=(T s) {\n        rep (i, height()) {\n            rep (j,\
-    \ width()) (*this)[i][j] *= s;\n        }\n        return *this;\n    }\n    friend\
-    \ Matrix operator+(const Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs)\
-    \ += rhs;\n    }\n    friend Matrix operator-(const Matrix& lhs, const Matrix&\
-    \ rhs) {\n        return Matrix(lhs) -= rhs;\n    }\n    friend Matrix operator*(const\
-    \ Matrix& lhs, const Matrix& rhs) {\n        return Matrix(lhs) *= rhs;\n    }\n\
-    \    friend Matrix operator*(const Matrix& lhs, T rhs) {\n        return Matrix(lhs)\
-    \ *= rhs;\n    }\n    friend Matrix operator*(int lhs, const Matrix& rhs) {\n\
-    \        return Matrix(rhs) *= lhs;\n    }\n    Matrix pow(ll b) const {\n   \
-    \     Matrix a = *this, res = get_identity(height());\n        while (b) {\n \
-    \           if (b & 1) res *= a;\n            a *= a;\n            b >>= 1;\n\
-    \        }\n        return res;\n    }\n    Matrix transpose() const {\n     \
-    \   Matrix res(width(), height());\n        rep (i, height()) {\n            rep\
-    \ (j, width()) res[j][i] = (*this)[i][j];\n        }\n        return res;\n  \
-    \  }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        int h = height(), w = width();\n\
-    \        int r = 0;\n        rep (i, w) {\n            int pivot = -1;\n     \
-    \       rep (j, r, h) {\n                if ((*this)[j][i] != 0) {\n         \
-    \           pivot = j;\n                    break;\n                }\n      \
-    \      }\n            if (pivot == -1) continue;\n            swap((*this)[pivot],\
-    \ (*this)[r]);\n            const T s = (*this)[r][i], iv = T{1} / s;\n      \
-    \      rep (j, i, w) (*this)[r][j] *= iv;\n            rep (j, h) {\n        \
-    \        if (j == r) continue;\n                const T s = (*this)[j][i];\n \
-    \               if (s == 0) continue;\n                rep (k, i, w) (*this)[j][k]\
-    \ -= (*this)[r][k] * s;\n            }\n            ++r;\n        }\n        return\
-    \ *this;\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<std::is_same<T,\
-    \ static_modint<2>>::value &&\n                                     AlwaysTrue>::type*\
-    \ = nullptr>\n    Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n\
-    \        return *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return\
-    \ Matrix(mat).gauss(); }\n    int rank(bool is_gaussed = false) const {\n    \
-    \    const int h = height(), w = width();\n        if (!is_gaussed)\n        \
-    \    return (h >= w ? Matrix(*this) : transpose()).gauss().rank(true);\n     \
-    \   int r = 0;\n        rep (i, h) {\n            while (r < w && (*this)[i][r]\
-    \ == 0) ++r;\n            if (r == w) return i;\n            ++r;\n        }\n\
-    \        return h;\n    }\n};\n\nnamespace internal {\n\ntemplate<int len> Mat2\
-    \ prod_mod2_sub(const Mat2& lhs, const Mat2& rhs) {\n    const int h = lhs.height(),\
-    \ w = rhs.width(), m = lhs.width();\n    if (len < m) return prod_mod2_sub<len\
-    \ << 1>(lhs, rhs);\n    std::vector<std::bitset<len>> a(h), b(w);\n    Mat2 res(h,\
-    \ w);\n    rep (i, h) {\n        rep (j, m) a[i][j] = lhs[i][j] != 0;\n    }\n\
-    \    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j] != 0;\n    }\n    rep\
-    \ (i, h) {\n        rep (j, w) {\n            res[i][j] = (a[i] & b[j]).count()\
-    \ & 1;\n        }\n    }\n    return res;\n}\ntemplate<> Mat2 prod_mod2_sub<1\
-    \ << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int len> void gauss_mod2_sub(Mat2&\
-    \ a) {\n    const int h = a.height(), w = a.width();\n    if (len < w) return\
-    \ gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>> b(h);\n    rep\
-    \ (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n    int r = 0;\n\
-    \    rep (i, w) {\n        int pivot = -1;\n        rep (j, r, h) {\n        \
-    \    if (b[j][i] != 0) {\n                pivot = j;\n                break;\n\
-    \            }\n        }\n        if (pivot == -1) continue;\n        swap(b[pivot],\
-    \ b[r]);\n        rep (j, h) {\n            if (j == r) continue;\n          \
-    \  if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n    }\n    rep (i,\
-    \ h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n    }\n}\ntemplate<>\
-    \ void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\n/**\n *\
-    \ @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n#line\
-    \ 2 \"math/matrix/Determinant.hpp\"\n\n#line 5 \"math/matrix/Determinant.hpp\"\
+    \ Matrix& gauss() {\n        internal::gauss_mod2_sub<1>(*this);\n        return\
+    \ *this;\n    }\n    friend Matrix gauss(const Matrix& mat) { return Matrix(mat).gauss();\
+    \ }\n    int rank(bool is_gaussed = false) const {\n        const int h = height(),\
+    \ w = width();\n        if (!is_gaussed)\n            return (h >= w ? Matrix(*this)\
+    \ : transpose()).gauss().rank(true);\n        int r = 0;\n        rep (i, h) {\n\
+    \            while (r < w && (*this)[i][r] == 0) ++r;\n            if (r == w)\
+    \ return i;\n            ++r;\n        }\n        return h;\n    }\n};\n\nnamespace\
+    \ internal {\n\ntemplate<int len> Mat2 prod_mod2_sub(const Mat2& lhs, const Mat2&\
+    \ rhs) {\n    const int h = lhs.height(), w = rhs.width(), m = lhs.width();\n\
+    \    if (len < m) return prod_mod2_sub<len << 1>(lhs, rhs);\n    std::vector<std::bitset<len>>\
+    \ a(h), b(w);\n    Mat2 res(h, w);\n    rep (i, h) {\n        rep (j, m) a[i][j]\
+    \ = lhs[i][j] != 0;\n    }\n    rep (i, m) {\n        rep (j, w) b[j][i] = rhs[i][j]\
+    \ != 0;\n    }\n    rep (i, h) {\n        rep (j, w) {\n            res[i][j]\
+    \ = (a[i] & b[j]).count() & 1;\n        }\n    }\n    return res;\n}\ntemplate<>\
+    \ Mat2 prod_mod2_sub<1 << 30>(const Mat2&, const Mat2&) { return {}; }\n\ntemplate<int\
+    \ len> void gauss_mod2_sub(Mat2& a) {\n    const int h = a.height(), w = a.width();\n\
+    \    if (len < w) return gauss_mod2_sub<len << 1>(a);\n    std::vector<std::bitset<len>>\
+    \ b(h);\n    rep (i, h) {\n        rep (j, w) b[i][j] = a[i][j] != 0;\n    }\n\
+    \    int r = 0;\n    rep (i, w) {\n        int pivot = -1;\n        rep (j, r,\
+    \ h) {\n            if (b[j][i] != 0) {\n                pivot = j;\n        \
+    \        break;\n            }\n        }\n        if (pivot == -1) continue;\n\
+    \        swap(b[pivot], b[r]);\n        rep (j, h) {\n            if (j == r)\
+    \ continue;\n            if (b[j][i] != 0) b[j] ^= b[r];\n        }\n        ++r;\n\
+    \    }\n    rep (i, h) {\n        rep (j, w) a[i][j] = (b[i][j] ? 1 : 0);\n  \
+    \  }\n}\ntemplate<> void gauss_mod2_sub<1 << 30>(Mat2&) {}\n\n} // namespace internal\n\
+    \n/**\n * @brief Matrix(\u884C\u5217)\n * @docs docs/math/matrix/Matrix.md\n */\n\
+    #line 2 \"math/matrix/Determinant.hpp\"\n\n#line 5 \"math/matrix/Determinant.hpp\"\
     \n\ntemplate<class T> T determinant(Matrix<T> mat) {\n    assert(mat.is_square());\n\
     \    const int n = mat.height();\n    if (n == 0) return 1;\n    T res = 1;\n\
     \    rep (i, n) {\n        if (mat[i][i] == 0) {\n            rep (j, i + 1, n)\
@@ -706,7 +706,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/new/matrix_det_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-23 23:27:46+09:00'
+  timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/matrix_det_mod_2.test.cpp
