@@ -4,8 +4,7 @@
 #include "poly/FormalPowerSeries.hpp"
 #include "poly/MultipointEvaluation.hpp"
 
-template<class T>
-T factorial(ll n) {
+template<class T> T factorial(ll n) {
     assert(n >= 0);
     if (n >= T::get_mod()) return 0;
     if (n * 2 > T::get_mod()) {

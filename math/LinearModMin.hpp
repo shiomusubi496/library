@@ -3,7 +3,8 @@
 #include "../other/template.hpp"
 #include "SternBrocotTree.hpp"
 
-std::vector<std::tuple<ll, ll, ll>> linear_mod_min_arithmetic_progressions(ll a, ll b, ll m) {
+std::vector<std::tuple<ll, ll, ll>>
+linear_mod_min_arithmetic_progressions(ll a, ll b, ll m) {
     using SBT = SternBrocotTree<ll>;
     std::vector<std::tuple<ll, ll, ll>> res;
     a = -a % m;

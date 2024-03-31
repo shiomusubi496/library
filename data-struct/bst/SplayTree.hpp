@@ -68,30 +68,11 @@ private:
         }
     }
     void calc(node_ptr& ptr) {
-        if (ptr->l) {
-            if (ptr->r) {
-                ptr->val = M::op(M::op(ptr->l->val, ptr->v), ptr->r->val);
-                ptr->rval = M::op(M::op(ptr->r->rval, ptr->v), ptr->l->rval);
-                ptr->cnt = ptr->l->cnt + ptr->r->cnt + 1;
-            }
-            else {
-                ptr->val = M::op(ptr->l->val, ptr->v);
-                ptr->rval = M::op(ptr->v, ptr->l->rval);
-                ptr->cnt = ptr->l->cnt + 1;
-            }
-        }
-        else {
-            if (ptr->r) {
-                ptr->val = M::op(ptr->v, ptr->r->val);
-                ptr->rval = M::op(ptr->r->rval, ptr->v);
-                ptr->cnt = ptr->r->cnt + 1;
-            }
-            else {
-                ptr->val = ptr->v;
-                ptr->rval = ptr->v;
-                ptr->cnt = 1;
-            }
-        }
+        ptr->val = M::op(ptr->l ? ptr->l->val : M::id(),
+                         M::op(ptr->v, ptr->r ? ptr->r->val : M::id()));
+        ptr->rval = M::op(ptr->r ? ptr->r->rval : M::id(),
+                          M::op(ptr->v, ptr->l ? ptr->l->rval : M::id()));
+        ptr->cnt = (ptr->l ? ptr->l->cnt : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;
     }
     node_ptr& parentchild(node_ptr& ptr) {
         if (ptr == root) return root;

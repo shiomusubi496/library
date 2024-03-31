@@ -12,7 +12,7 @@ using Mat2 = Matrix<static_modint<2>>;
 template<int> Mat2 prod_mod2_sub(const Mat2&, const Mat2&);
 template<int> void gauss_mod2_sub(Mat2&);
 
-}
+} // namespace internal
 
 template<class T> class Matrix : public std::vector<std::vector<T>> {
 private:
@@ -33,22 +33,25 @@ public:
     int width() const { return this->size() ? (*this)[0].size() : 0; }
     bool is_square() const { return height() == width(); }
     Matrix& operator+=(const Matrix& other) {
-        assert(this->height() == other.height() && this->width() == other.width());
+        assert(this->height() == other.height() &&
+               this->width() == other.width());
         rep (i, this->height()) {
             rep (j, this->width()) (*this)[i][j] += other[i][j];
         }
         return *this;
     }
     Matrix& operator-=(const Matrix& other) {
-        assert(this->height() == other.height() && this->width() == other.width());
+        assert(this->height() == other.height() &&
+               this->width() == other.width());
         rep (i, this->height()) {
             rep (j, this->width()) (*this)[i][j] -= other[i][j];
         }
         return *this;
     }
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
-                                     AlwaysTrue>::type* = nullptr>
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
+                                AlwaysTrue>::type* = nullptr>
     Matrix& operator*=(const Matrix& other) {
         assert(this->width() == other.height());
         Matrix res(this->height(), other.width());
@@ -103,9 +106,10 @@ public:
         }
         return res;
     }
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
-                                     AlwaysTrue>::type* = nullptr>
+    template<
+        bool AlwaysTrue = true,
+        typename std::enable_if<!std::is_same<T, static_modint<2>>::value &&
+                                AlwaysTrue>::type* = nullptr>
     Matrix& gauss() {
         int h = height(), w = width();
         int r = 0;

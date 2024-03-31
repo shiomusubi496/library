@@ -2,8 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class T>
-class GaussianInteger {
+template<class T> class GaussianInteger {
 public:
     T real, imag;
 
@@ -31,19 +30,24 @@ public:
         real = tmp;
         return *this;
     }
-    friend GaussianInteger operator+(const GaussianInteger& lhs, const GaussianInteger& rhs) {
+    friend GaussianInteger operator+(const GaussianInteger& lhs,
+                                     const GaussianInteger& rhs) {
         return GaussianInteger(lhs) += rhs;
     }
-    friend GaussianInteger operator-(const GaussianInteger& lhs, const GaussianInteger& rhs) {
+    friend GaussianInteger operator-(const GaussianInteger& lhs,
+                                     const GaussianInteger& rhs) {
         return GaussianInteger(lhs) -= rhs;
     }
-    friend GaussianInteger operator*(const GaussianInteger& lhs, const GaussianInteger& rhs) {
+    friend GaussianInteger operator*(const GaussianInteger& lhs,
+                                     const GaussianInteger& rhs) {
         return GaussianInteger(lhs) *= rhs;
     }
-    friend bool operator==(const GaussianInteger& lhs, const GaussianInteger& rhs) {
+    friend bool operator==(const GaussianInteger& lhs,
+                           const GaussianInteger& rhs) {
         return lhs.real == rhs.real && lhs.imag == rhs.imag;
     }
-    friend bool operator!=(const GaussianInteger& lhs, const GaussianInteger& rhs) {
+    friend bool operator!=(const GaussianInteger& lhs,
+                           const GaussianInteger& rhs) {
         return !(lhs == rhs);
     }
     template<class Pr> void print(Pr& pr) const {
