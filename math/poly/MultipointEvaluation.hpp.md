@@ -71,8 +71,8 @@ data:
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/factorial.test.cpp
-    title: test/yosupo/new/factorial.test.cpp
+    path: test/yosupo/math/factorial.test.cpp
+    title: test/yosupo/math/factorial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
@@ -1257,7 +1257,7 @@ data:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - test/yosupo/new/factorial.test.cpp
+  - test/yosupo/math/factorial.test.cpp
 documentation_of: math/poly/MultipointEvaluation.hpp
 layout: document
 redirect_from:

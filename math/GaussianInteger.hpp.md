@@ -31,8 +31,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
-    title: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
+    path: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
+    title: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -550,7 +550,7 @@ data:
   timestamp: '2024-03-31 18:06:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/gcd_of_gaussian_integers.test.cpp
+  - test/yosupo/math/gcd_of_gaussian_integers.test.cpp
 documentation_of: math/GaussianInteger.hpp
 layout: document
 redirect_from:

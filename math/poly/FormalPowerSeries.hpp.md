@@ -97,6 +97,9 @@ data:
     path: test/yosupo/math/bernoulli_number.test.cpp
     title: test/yosupo/math/bernoulli_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/factorial.test.cpp
+    title: test/yosupo/math/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,11 +118,8 @@ data:
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/factorial.test.cpp
-    title: test/yosupo/new/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -1530,14 +1530,14 @@ data:
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/yosupo/math/factorial.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yosupo/new/factorial.test.cpp
-  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
 documentation_of: math/poly/FormalPowerSeries.hpp
 layout: document
 redirect_from:

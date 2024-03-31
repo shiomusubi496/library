@@ -31,8 +31,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/static_range_mode_query.test.cpp
-    title: test/yosupo/new/static_range_mode_query.test.cpp
+    path: test/yosupo/data_structure/static_range_mode_query.test.cpp
+    title: test/yosupo/data_structure/static_range_mode_query.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
   timestamp: '2024-01-20 16:53:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/static_range_mode_query.test.cpp
+  - test/yosupo/data_structure/static_range_mode_query.test.cpp
 documentation_of: data-struct/segment/StaticRangeMode.hpp
 layout: document
 redirect_from:

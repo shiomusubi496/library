@@ -41,12 +41,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
+    PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_undirected
     links:
-    - https://judge.yosupo.jp/problem/eulerian_trail_directed
-  bundledCode: "#line 1 \"test/yosupo/new/eulerian_trail_directed.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\n#line 2\
-    \ \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/eulerian_trail_undirected
+  bundledCode: "#line 1 \"test/yosupo/graph/eulerian_trail_undirected.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_undirected\"\n\
+    #line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -532,25 +532,25 @@ data:
     \ build_undirected();\n    }\n\n    bool has_trail() const { return flag; }\n\
     \    const Edges<T>& get_trail() const& { return trail; }\n    Edges<T> get_trail()\
     \ && { return std::move(trail); }\n};\n\n/**\n * @brief EulerianTrail\n * @docs\
-    \ docs/graph/other/EulerianTrail.md\n */\n#line 5 \"test/yosupo/new/eulerian_trail_directed.test.cpp\"\
+    \ docs/graph/other/EulerianTrail.md\n */\n#line 5 \"test/yosupo/graph/eulerian_trail_undirected.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
     \       int N, M; scan >> N >> M;\n        Graph<int> G(N);\n        rep (M) {\n\
-    \            int a, b; scan >> a >> b;\n            G.add_edge(a, b, true);\n\
-    \        }\n        EulerianTrail<int> et(G, true);\n        if (et.has_trail())\
-    \ {\n            const auto& trail = et.get_trail();\n            prints(\"Yes\"\
-    );\n            print << (trail.empty() ? 0 : trail[0].from);\n            rep\
-    \ (i, M) print << \" \" << trail[i].to;\n            print << endl;\n        \
-    \    rep (i, M) {\n                print << trail[i].idx;\n                if\
-    \ (i != M - 1) print << \" \";\n            }\n            print << endl;\n  \
-    \      }\n        else {\n            prints(\"No\");\n        }\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
+    \            int a, b; scan >> a >> b;\n            G.add_edge(a, b);\n      \
+    \  }\n        EulerianTrail<int> et(G, false);\n        if (et.has_trail()) {\n\
+    \            const auto& trail = et.get_trail();\n            prints(\"Yes\");\n\
+    \            print << (trail.empty() ? 0 : trail[0].from);\n            rep (i,\
+    \ M) print << \" \" << trail[i].to;\n            print << endl;\n            rep\
+    \ (i, M) {\n                print << trail[i].idx;\n                if (i != M\
+    \ - 1) print << \" \";\n            }\n            print << endl;\n        }\n\
+    \        else {\n            prints(\"No\");\n        }\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_undirected\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
     \n#include \"../../../graph/other/EulerianTrail.hpp\"\nusing namespace std;\n\
     int main() {\n    int T; scan >> T;\n    rep (T) {\n        int N, M; scan >>\
     \ N >> M;\n        Graph<int> G(N);\n        rep (M) {\n            int a, b;\
-    \ scan >> a >> b;\n            G.add_edge(a, b, true);\n        }\n        EulerianTrail<int>\
-    \ et(G, true);\n        if (et.has_trail()) {\n            const auto& trail =\
-    \ et.get_trail();\n            prints(\"Yes\");\n            print << (trail.empty()\
+    \ scan >> a >> b;\n            G.add_edge(a, b);\n        }\n        EulerianTrail<int>\
+    \ et(G, false);\n        if (et.has_trail()) {\n            const auto& trail\
+    \ = et.get_trail();\n            prints(\"Yes\");\n            print << (trail.empty()\
     \ ? 0 : trail[0].from);\n            rep (i, M) print << \" \" << trail[i].to;\n\
     \            print << endl;\n            rep (i, M) {\n                print <<\
     \ trail[i].idx;\n                if (i != M - 1) print << \" \";\n           \
@@ -569,15 +569,15 @@ data:
   - graph/Graph.hpp
   - graph/other/EulerianTrail.hpp
   isVerificationFile: true
-  path: test/yosupo/new/eulerian_trail_directed.test.cpp
+  path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-03-31 20:07:46+09:00'
+  timestamp: '2024-03-31 20:15:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/new/eulerian_trail_directed.test.cpp
+documentation_of: test/yosupo/graph/eulerian_trail_undirected.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/new/eulerian_trail_directed.test.cpp
-- /verify/test/yosupo/new/eulerian_trail_directed.test.cpp.html
-title: test/yosupo/new/eulerian_trail_directed.test.cpp
+- /verify/test/yosupo/graph/eulerian_trail_undirected.test.cpp
+- /verify/test/yosupo/graph/eulerian_trail_undirected.test.cpp.html
+title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
 ---

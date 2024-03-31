@@ -945,6 +945,9 @@ data:
       path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
       title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/static_range_mode_query.test.cpp
+      title: test/yosupo/data_structure/static_range_mode_query.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
       title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1012,6 +1015,12 @@ data:
       path: test/yosupo/graph/enumerate_triangles.test.cpp
       title: test/yosupo/graph/enumerate_triangles.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/eulerian_trail_directed.test.cpp
+      title: test/yosupo/graph/eulerian_trail_directed.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+      title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/manhattanmst.test.cpp
       title: test/yosupo/graph/manhattanmst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1044,8 +1053,14 @@ data:
       path: test/yosupo/math/enumerate_quotients.test.cpp
       title: test/yosupo/math/enumerate_quotients.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/factorial.test.cpp
+      title: test/yosupo/math/factorial.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/factorize.test.cpp
       title: test/yosupo/math/factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
+      title: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/kth_root_integer.test.cpp
       title: test/yosupo/math/kth_root_integer.test.cpp
@@ -1089,6 +1104,9 @@ data:
       path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
       title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+      title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1106,40 +1124,22 @@ data:
       path: test/yosupo/matrix/matrix_product.test.cpp
       title: test/yosupo/matrix/matrix_product.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix/matrix_rank.test.cpp
+      title: test/yosupo/matrix/matrix_rank.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/matrix/pow_of_matrix.test.cpp
+      title: test/yosupo/matrix/pow_of_matrix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yosupo/matrix/system_of_linear_equations.test.cpp
       title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - name: test/yosupo/new
     pages:
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/eulerian_trail_directed.test.cpp
-      title: test/yosupo/new/eulerian_trail_directed.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/eulerian_trail_undirected.test.cpp
-      title: test/yosupo/new/eulerian_trail_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/factorial.test.cpp
-      title: test/yosupo/new/factorial.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
-      title: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/matrix_det_mod_2.test.cpp
       title: test/yosupo/new/matrix_det_mod_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/new/matrix_product_mod_2.test.cpp
       title: test/yosupo/new/matrix_product_mod_2.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/matrix_rank.test.cpp
-      title: test/yosupo/new/matrix_rank.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/pow_of_matrix.test.cpp
-      title: test/yosupo/new/pow_of_matrix.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/static_range_mode_query.test.cpp
-      title: test/yosupo/new/static_range_mode_query.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-      title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - name: test/yosupo/polynomial
     pages:
     - icon: ':heavy_check_mark:'

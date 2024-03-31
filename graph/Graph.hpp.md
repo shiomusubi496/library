@@ -266,6 +266,12 @@ data:
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/eulerian_trail_directed.test.cpp
+    title: test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+    title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -280,12 +286,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_directed.test.cpp
-    title: test/yosupo/new/eulerian_trail_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_undirected.test.cpp
-    title: test/yosupo/new/eulerian_trail_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/cartesian_tree.test.cpp
     title: test/yosupo/tree/cartesian_tree.test.cpp
@@ -893,8 +893,6 @@ data:
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
-  - test/yosupo/new/eulerian_trail_undirected.test.cpp
-  - test/yosupo/new/eulerian_trail_directed.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
   - test/yosupo/tree/cartesian_tree.test.cpp
@@ -907,6 +905,8 @@ data:
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
+  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp

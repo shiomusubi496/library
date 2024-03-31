@@ -860,6 +860,9 @@ data:
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_range_mode_query.test.cpp
+    title: test/yosupo/data_structure/static_range_mode_query.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -923,6 +926,12 @@ data:
     path: test/yosupo/graph/enumerate_triangles.test.cpp
     title: test/yosupo/graph/enumerate_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/eulerian_trail_directed.test.cpp
+    title: test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+    title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/manhattanmst.test.cpp
     title: test/yosupo/graph/manhattanmst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -953,8 +962,14 @@ data:
     path: test/yosupo/math/enumerate_quotients.test.cpp
     title: test/yosupo/math/enumerate_quotients.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/factorial.test.cpp
+    title: test/yosupo/math/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/factorize.test.cpp
     title: test/yosupo/math/factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
+    title: test/yosupo/math/gcd_of_gaussian_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_root_integer.test.cpp
     title: test/yosupo/math/kth_root_integer.test.cpp
@@ -998,6 +1013,9 @@ data:
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1013,38 +1031,20 @@ data:
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_rank.test.cpp
+    title: test/yosupo/matrix/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/pow_of_matrix.test.cpp
+    title: test/yosupo/matrix/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_directed.test.cpp
-    title: test/yosupo/new/eulerian_trail_directed.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_undirected.test.cpp
-    title: test/yosupo/new/eulerian_trail_undirected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/factorial.test.cpp
-    title: test/yosupo/new/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
-    title: test/yosupo/new/gcd_of_gaussian_integers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_det_mod_2.test.cpp
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_rank.test.cpp
-    title: test/yosupo/new/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/pow_of_matrix.test.cpp
-    title: test/yosupo/new/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/static_range_mode_query.test.cpp
-    title: test/yosupo/new/static_range_mode_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -1591,12 +1591,14 @@ data:
   - test/yosupo/math/factorize.test.cpp
   - test/yosupo/math/primality_test.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/factorial.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
   - test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
   - test/yosupo/math/binomial_coefficient.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/enumerate_quotients.test.cpp
   - test/yosupo/math/sum_of_floor_of_linear.test.cpp
@@ -1604,6 +1606,7 @@ data:
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
   - test/yosupo/math/enumerate_primes.test.cpp
   - test/yosupo/math/kth_root_integer.test.cpp
+  - test/yosupo/math/gcd_of_gaussian_integers.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -1613,6 +1616,7 @@ data:
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - test/yosupo/data_structure/static_range_mode_query.test.cpp
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/segment_add_get_min.test.cpp
@@ -1649,15 +1653,7 @@ data:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - test/yosupo/new/pow_of_matrix.test.cpp
-  - test/yosupo/new/static_range_mode_query.test.cpp
-  - test/yosupo/new/factorial.test.cpp
-  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/new/eulerian_trail_undirected.test.cpp
-  - test/yosupo/new/eulerian_trail_directed.test.cpp
-  - test/yosupo/new/gcd_of_gaussian_integers.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
-  - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
@@ -1679,14 +1675,18 @@ data:
   - test/yosupo/graph/bipartitematching.test.cpp
   - test/yosupo/graph/two_edge_connected_components.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
+  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
   - test/yosupo/graph/chromatic_number.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
+  - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/matrix_rank.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp
   - test/atcoder/agc002_d-PartialPersistentUF.test.cpp
   - test/atcoder/agc002_d-PartialPersistentArray.test.cpp

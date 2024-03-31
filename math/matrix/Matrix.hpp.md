@@ -58,6 +58,12 @@ data:
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_rank.test.cpp
+    title: test/yosupo/matrix/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/pow_of_matrix.test.cpp
+    title: test/yosupo/matrix/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,12 +72,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_rank.test.cpp
-    title: test/yosupo/new/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/pow_of_matrix.test.cpp
-    title: test/yosupo/new/pow_of_matrix.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -803,14 +803,14 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/other/3369-CountSpanningTree.test.cpp
-  - test/yosupo/new/pow_of_matrix.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
-  - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
+  - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/matrix_rank.test.cpp
 documentation_of: math/matrix/Matrix.hpp
 layout: document
 redirect_from:

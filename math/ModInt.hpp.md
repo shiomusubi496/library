@@ -181,6 +181,9 @@ data:
     path: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
     title: test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/factorial.test.cpp
+    title: test/yosupo/math/factorial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/yosupo/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -205,6 +208,9 @@ data:
     path: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+    title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/inverse_matrix.test.cpp
     title: test/yosupo/matrix/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -214,26 +220,20 @@ data:
     path: test/yosupo/matrix/matrix_product.test.cpp
     title: test/yosupo/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/matrix_rank.test.cpp
+    title: test/yosupo/matrix/matrix_rank.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/matrix/pow_of_matrix.test.cpp
+    title: test/yosupo/matrix/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/system_of_linear_equations.test.cpp
     title: test/yosupo/matrix/system_of_linear_equations.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/factorial.test.cpp
-    title: test/yosupo/new/factorial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_det_mod_2.test.cpp
     title: test/yosupo/new/matrix_det_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/matrix_rank.test.cpp
-    title: test/yosupo/new/matrix_rank.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/pow_of_matrix.test.cpp
-    title: test/yosupo/new/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-    title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -1021,9 +1021,11 @@ data:
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/yosupo/math/primitive_root.test.cpp
+  - test/yosupo/math/factorial.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/binomial_coefficient_prime_mod.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/montmort_number_mod.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
@@ -1038,11 +1040,7 @@ data:
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
-  - test/yosupo/new/pow_of_matrix.test.cpp
-  - test/yosupo/new/factorial.test.cpp
-  - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
-  - test/yosupo/new/matrix_rank.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
   - test/yosupo/convolution/gcd_convolution.test.cpp
@@ -1055,10 +1053,12 @@ data:
   - test/yosupo/tree/tree_path_composite_sum.test.cpp
   - test/yosupo/graph/enumerate_cliques.test.cpp
   - test/yosupo/graph/enumerate_triangles.test.cpp
+  - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/matrix/matrix_product.test.cpp
   - test/yosupo/matrix/inverse_matrix.test.cpp
   - test/yosupo/matrix/matrix_det.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
+  - test/yosupo/matrix/matrix_rank.test.cpp
 documentation_of: math/ModInt.hpp
 layout: document
 redirect_from:

@@ -34,11 +34,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_directed.test.cpp
-    title: test/yosupo/new/eulerian_trail_directed.test.cpp
+    path: test/yosupo/graph/eulerian_trail_directed.test.cpp
+    title: test/yosupo/graph/eulerian_trail_directed.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/new/eulerian_trail_undirected.test.cpp
-    title: test/yosupo/new/eulerian_trail_undirected.test.cpp
+    path: test/yosupo/graph/eulerian_trail_undirected.test.cpp
+    title: test/yosupo/graph/eulerian_trail_undirected.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -581,8 +581,8 @@ data:
   timestamp: '2024-03-31 20:07:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/new/eulerian_trail_undirected.test.cpp
-  - test/yosupo/new/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/eulerian_trail_undirected.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
 documentation_of: graph/other/EulerianTrail.hpp
 layout: document
 redirect_from:
