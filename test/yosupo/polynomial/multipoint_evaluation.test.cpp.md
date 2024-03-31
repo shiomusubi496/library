@@ -1,75 +1,75 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/MultipointEvaluation.hpp
     title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation
@@ -1084,16 +1084,17 @@ data:
     \ }\n    FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {\n\
     \        if (this->empty()) return {};\n        if (g.empty()) return {(*this)[0]};\n\
     \        assert(g[0] == 0);\n        int n = deg == -1 ? this->size() : deg;\n\
-    \        int m = 1 << (bitop::ceil_log2(std::max<int>(1, std::sqrt(n / std::log2(n))))\
-    \ + 1);\n        FormalPowerSeries p = g.prefix(m), q = g >> m;\n        p.shrink();\n\
-    \        q.shrink();\n        int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries>\
-    \ fs(this->size());\n        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n\
-    \        FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z\
-    \ < (int)pd.size() && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n\
-    \            FormalPowerSeries ans;\n            rrep (i, l) {\n             \
-    \   ans = ((ans * q) << m).prefix(n - i * m) + FormalPowerSeries{(*this)[i]};\n\
-    \            }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n\
-    \        FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
+    \        int m = 1 << (bitop::ceil_log2(\n                          std::max<int>(1,\
+    \ std::sqrt(n / std::log2(n)))) +\n                      1);\n        FormalPowerSeries\
+    \ p = g.prefix(m), q = g >> m;\n        p.shrink();\n        q.shrink();\n   \
+    \     int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries> fs(this->size());\n\
+    \        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n      \
+    \  FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z < (int)pd.size()\
+    \ && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n            FormalPowerSeries\
+    \ ans;\n            rrep (i, l) {\n                ans = ((ans * q) << m).prefix(n\
+    \ - i * m) +\n                      FormalPowerSeries{(*this)[i]};\n         \
+    \   }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n  \
+    \      FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
     \ 1) {\n            std::vector<FormalPowerSeries> nfs((fs.size() + 1) / 2);\n\
     \            t.resize(1 << (bitop::ceil_log2(t.size()) + 1));\n            number_theoretic_transform(t);\n\
     \            rep (i, fs.size() / 2) {\n                nfs[i] = std::move(fs[2\
@@ -1130,12 +1131,12 @@ data:
     \        FormalPowerSeries res{0, (*this)[1].inv()};\n        for (int m = 2;\
     \ m < deg; m <<= 1) {\n            auto tmp = prefix(2 * m).compose(res);\n  \
     \          auto d = tmp.diff();\n            auto gd = res.diff();\n         \
-    \   res -= ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);\n  \
-    \      }\n        return res.prefix(deg);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<\n                 AlwaysTrue\
-    \ && is_ntt_friendly<T::get_mod()>::value>::type* =\n                 nullptr>\n\
-    \    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n    \
-    \    return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
+    \   res -=\n                ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2\
+    \ * m);\n        }\n        return res.prefix(deg);\n    }\n    template<bool\
+    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
+    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
+    \    nullptr>\n    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n\
+    \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 2 \"math/poly/MultipointEvaluation.hpp\"\n\n#line 5 \"math/poly/MultipointEvaluation.hpp\"\
@@ -1158,17 +1159,18 @@ data:
     \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
     \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
     \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
-    \ FormalPowerSeries<T>& f, T a, T r, int m) {\n    if (f.empty() || m == 0) return\
-    \ std::vector<T>(m, T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m,\
-    \ f.eval(a));\n    if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n\
-    \        rep (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n\
-    \        }\n        return res;\n    }\n    if (r == 0) {\n        std::vector<T>\
-    \ res(m, f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n\
-    \    int n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
-    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
-    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
-    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
-    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \ FormalPowerSeries<T>& f,\n                                               T a,\
+    \ T r, int m) {\n    if (f.empty() || m == 0) return std::vector<T>(m, T{0});\n\
+    \    if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));\n    if (f.size()\
+    \ <= 32 || m <= 32) {\n        std::vector<T> res(m);\n        rep (i, m) {\n\
+    \            res[i] = f.eval(a);\n            a *= r;\n        }\n        return\
+    \ res;\n    }\n    if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n\
+    \        res[0] = f.eval(a);\n        return res;\n    }\n    int n = f.size();\n\
+    \    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n\
+    \    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] =\
+    \ f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n\
+    \    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *=\
+    \ r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
     \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
     \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
     \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
@@ -1209,8 +1211,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
   requiredBy: []
-  timestamp: '2024-02-23 22:31:50+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-03-31 16:12:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yosupo/polynomial/multipoint_evaluation.test.cpp
 layout: document

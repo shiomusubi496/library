@@ -5,15 +5,12 @@ data:
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SparseTable.hpp
-    title: SparseTable
-  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -22,31 +19,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -799,31 +796,11 @@ data:
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
     \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/tree/EulerTour.hpp\"\n\n#line\
-    \ 2 \"data-struct/segment/SparseTable.hpp\"\n\n#line 5 \"data-struct/segment/SparseTable.hpp\"\
-    \n\ntemplate<class M> class SparseTable {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int h, ori;\n    std::vector<int> logtable;\n    std::vector<std::vector<T>>\
-    \ data;\n    T internal_prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ < r && r <= ori);\n        int d = logtable[r - l];\n        return M::op(data[d][l],\
-    \ data[d][r - (1 << d)]);\n    }\n\npublic:\n    SparseTable() = default;\n  \
-    \  SparseTable(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        logtable.assign((1\
-    \ << h) + 1, 0);\n        reps (i, 1, 1 << h) logtable[i] = logtable[i >> 1] +\
-    \ 1;\n        data.assign(h + 1, std::vector<T>(1 << h));\n        rep (i, ori)\
-    \ data[0][i] = v[i];\n        rep (i, h) {\n            rep (j, (1 << h) - (1\
-    \ << i)) {\n                data[i + 1][j] = M::op(data[i][j], data[i][j + (1\
-    \ << i)]);\n            }\n        }\n    }\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<Monoid::has_id<M>::value &&\n          \
-    \                           AlwaysTrue>::type* = nullptr>\n    T prod(int l, int\
-    \ r) const {\n        if (l == r) return M::id();\n        return internal_prod(l,\
-    \ r);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<!Monoid::has_id<M>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ T prod(int l, int r) const {\n        return internal_prod(l, r);\n    }\n};\n\
-    \n/**\n * @brief SparseTable\n * @docs docs/data-struct/segment/SparseTable.md\n\
-    \ */\n#line 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\nstruct PairMinForEulerTour\
+    \ 6 \"graph/tree/EulerTour.hpp\"\n\nnamespace Monoid {\nstruct PairMinForEulerTour\
     \ {\n    using value_type = std::pair<int, int>;\n    static value_type op(const\
     \ value_type& a, const value_type& b) {\n        return a.first < b.first ? a\
     \ : b;\n    }\n    static value_type id() { return {infinity<int>::value, -1};\
-    \ }\n};\n} // namespace Monoid\n\ntemplate<class T, class StaticRMQ = SparseTable<Monoid::PairMinForEulerTour>>\n\
+    \ }\n};\n} // namespace Monoid\n\ntemplate<class T, class StaticRMQ = SegmentTree<Monoid::PairMinForEulerTour>>\n\
     class EulerTour {\nprivate:\n    int n, cnt;\n    std::vector<int> root;\n   \
     \ const Graph<T>& G;\n    std::vector<int> dep;\n    std::vector<std::pair<int,\
     \ int>> idx;\n    std::vector<std::pair<int, int>> rmqvec;\n    StaticRMQ RMQ;\n\
@@ -916,11 +893,10 @@ data:
   - math/ModInt.hpp
   - graph/Graph.hpp
   - graph/tree/EulerTour.hpp
-  - data-struct/segment/SparseTable.hpp
   isVerificationFile: true
   path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-02-23 23:35:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/vertex_set_path_composite.test.cpp

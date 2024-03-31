@@ -1,6 +1,6 @@
 ## 概要
 
-木を dfs 順に並べて列にする。 SegmentTree など列に対するデータ構造を使うことで様々なクエリを扱える。テンプレートに Static Range Minimum Query を扱える構造 StaticRMQ(デフォルトは SparseTable)をとる。
+木を dfs 順に並べて列にする。 SegmentTree など列に対するデータ構造を使うことで様々なクエリを扱える。テンプレートに Static Range Minimum Query を扱える構造 StaticRMQ(デフォルトは SegmentTree)をとる。
 
 森にも対応している。
 

@@ -1,90 +1,90 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: math/Factorial.hpp
     title: "Factorial(\u968E\u4E57)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/poly/PolynomialInterpolation.hpp
     title: "PolynomialInterpolation(\u591A\u9805\u5F0F\u88DC\u9593)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/factorial.test.cpp
     title: test/yosupo/new/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/multipoint_evaluation.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
     title: test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/polynomial_interpolation.test.cpp
     title: test/yosupo/polynomial/polynomial_interpolation.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/poly/MultipointEvaluation.md
     document_title: "MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1)"
@@ -1096,16 +1096,17 @@ data:
     \ }\n    FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {\n\
     \        if (this->empty()) return {};\n        if (g.empty()) return {(*this)[0]};\n\
     \        assert(g[0] == 0);\n        int n = deg == -1 ? this->size() : deg;\n\
-    \        int m = 1 << (bitop::ceil_log2(std::max<int>(1, std::sqrt(n / std::log2(n))))\
-    \ + 1);\n        FormalPowerSeries p = g.prefix(m), q = g >> m;\n        p.shrink();\n\
-    \        q.shrink();\n        int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries>\
-    \ fs(this->size());\n        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n\
-    \        FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z\
-    \ < (int)pd.size() && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n\
-    \            FormalPowerSeries ans;\n            rrep (i, l) {\n             \
-    \   ans = ((ans * q) << m).prefix(n - i * m) + FormalPowerSeries{(*this)[i]};\n\
-    \            }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n\
-    \        FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
+    \        int m = 1 << (bitop::ceil_log2(\n                          std::max<int>(1,\
+    \ std::sqrt(n / std::log2(n)))) +\n                      1);\n        FormalPowerSeries\
+    \ p = g.prefix(m), q = g >> m;\n        p.shrink();\n        q.shrink();\n   \
+    \     int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries> fs(this->size());\n\
+    \        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n      \
+    \  FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z < (int)pd.size()\
+    \ && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n            FormalPowerSeries\
+    \ ans;\n            rrep (i, l) {\n                ans = ((ans * q) << m).prefix(n\
+    \ - i * m) +\n                      FormalPowerSeries{(*this)[i]};\n         \
+    \   }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n  \
+    \      FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
     \ 1) {\n            std::vector<FormalPowerSeries> nfs((fs.size() + 1) / 2);\n\
     \            t.resize(1 << (bitop::ceil_log2(t.size()) + 1));\n            number_theoretic_transform(t);\n\
     \            rep (i, fs.size() / 2) {\n                nfs[i] = std::move(fs[2\
@@ -1142,12 +1143,12 @@ data:
     \        FormalPowerSeries res{0, (*this)[1].inv()};\n        for (int m = 2;\
     \ m < deg; m <<= 1) {\n            auto tmp = prefix(2 * m).compose(res);\n  \
     \          auto d = tmp.diff();\n            auto gd = res.diff();\n         \
-    \   res -= ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);\n  \
-    \      }\n        return res.prefix(deg);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<\n                 AlwaysTrue\
-    \ && is_ntt_friendly<T::get_mod()>::value>::type* =\n                 nullptr>\n\
-    \    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n    \
-    \    return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
+    \   res -=\n                ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2\
+    \ * m);\n        }\n        return res.prefix(deg);\n    }\n    template<bool\
+    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
+    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
+    \    nullptr>\n    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n\
+    \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 5 \"math/poly/MultipointEvaluation.hpp\"\n\nnamespace internal {\n\ntemplate<class\
@@ -1170,22 +1171,23 @@ data:
     \ (i, b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return\
     \ internal::multipoint_evaluation(a, b, internal::ProductTree<T>(b));\n}\n\ntemplate<class\
     \ T>\nstd::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>&\
-    \ f, T a, T r, int m) {\n    if (f.empty() || m == 0) return std::vector<T>(m,\
-    \ T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));\n   \
-    \ if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n        rep\
-    \ (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n        }\n\
-    \        return res;\n    }\n    if (r == 0) {\n        std::vector<T> res(m,\
-    \ f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n    int\
-    \ n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
-    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
-    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
-    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
-    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
-    \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
-    \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
-    \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
-    \ *= ir;\n    }\n    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\
-    \u70B9\u8A55\u4FA1)\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
+    \ f,\n                                               T a, T r, int m) {\n    if\
+    \ (f.empty() || m == 0) return std::vector<T>(m, T{0});\n    if (a == 0 || r ==\
+    \ 1) return std::vector<T>(m, f.eval(a));\n    if (f.size() <= 32 || m <= 32)\
+    \ {\n        std::vector<T> res(m);\n        rep (i, m) {\n            res[i]\
+    \ = f.eval(a);\n            a *= r;\n        }\n        return res;\n    }\n \
+    \   if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n        res[0] =\
+    \ f.eval(a);\n        return res;\n    }\n    int n = f.size();\n    int l = 1\
+    \ << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n    T ir =\
+    \ T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] = f[i] * t;\n\
+    \        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n    rep (i,\
+    \ n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *= r;\n    }\n\
+    \    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n    rep\
+    \ (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n    std::vector<T>\
+    \ ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t = t2 = 1;\n    rep\
+    \ (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2 *= ir;\n    }\n\
+    \    return ans;\n}\n\n/**\n * @brief MultipointEvaluation(\u591A\u70B9\u8A55\u4FA1\
+    )\n * @docs docs/math/poly/MultipointEvaluation.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"FormalPowerSeries.hpp\"\
     \n\nnamespace internal {\n\ntemplate<class T> class ProductTree {\nprivate:\n\
     \    int n;\n    std::vector<FormalPowerSeries<T>> dat;\n\npublic:\n    ProductTree(const\
@@ -1206,17 +1208,18 @@ data:
     \ || b.size() <= 32) {\n        std::vector<T> res(b.size());\n        rep (i,\
     \ b.size()) res[i] = a.eval(b[i]);\n        return res;\n    }\n    return internal::multipoint_evaluation(a,\
     \ b, internal::ProductTree<T>(b));\n}\n\ntemplate<class T>\nstd::vector<T> multipoint_evaluation_geometric(const\
-    \ FormalPowerSeries<T>& f, T a, T r, int m) {\n    if (f.empty() || m == 0) return\
-    \ std::vector<T>(m, T{0});\n    if (a == 0 || r == 1) return std::vector<T>(m,\
-    \ f.eval(a));\n    if (f.size() <= 32 || m <= 32) {\n        std::vector<T> res(m);\n\
-    \        rep (i, m) {\n            res[i] = f.eval(a);\n            a *= r;\n\
-    \        }\n        return res;\n    }\n    if (r == 0) {\n        std::vector<T>\
-    \ res(m, f.eval(0));\n        res[0] = f.eval(a);\n        return res;\n    }\n\
-    \    int n = f.size();\n    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T>\
-    \ p(l), q(l);\n    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n       \
-    \ p[n - i - 1] = f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n \
-    \   t = t2 = 1;\n    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n\
-    \        t2 *= r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
+    \ FormalPowerSeries<T>& f,\n                                               T a,\
+    \ T r, int m) {\n    if (f.empty() || m == 0) return std::vector<T>(m, T{0});\n\
+    \    if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));\n    if (f.size()\
+    \ <= 32 || m <= 32) {\n        std::vector<T> res(m);\n        rep (i, m) {\n\
+    \            res[i] = f.eval(a);\n            a *= r;\n        }\n        return\
+    \ res;\n    }\n    if (r == 0) {\n        std::vector<T> res(m, f.eval(0));\n\
+    \        res[0] = f.eval(a);\n        return res;\n    }\n    int n = f.size();\n\
+    \    int l = 1 << bitop::ceil_log2(n + m - 1);\n    std::vector<T> p(l), q(l);\n\
+    \    T ir = T{1} / r, t = 1, t2 = 1;\n    rep (i, n) {\n        p[n - i - 1] =\
+    \ f[i] * t;\n        t *= a * t2;\n        t2 *= ir;\n    }\n    t = t2 = 1;\n\
+    \    rep (i, n + m - 1) {\n        q[i] = t;\n        t *= t2;\n        t2 *=\
+    \ r;\n    }\n    number_theoretic_transform(p);\n    number_theoretic_transform(q);\n\
     \    rep (i, l) p[i] *= q[i];\n    inverse_number_theoretic_transform(p);\n  \
     \  std::vector<T> ans(p.begin() + (n - 1), p.begin() + (n + m - 1));\n    t =\
     \ t2 = 1;\n    rep (i, m) {\n        ans[i] *= t;\n        t *= t2;\n        t2\
@@ -1248,8 +1251,8 @@ data:
   requiredBy:
   - math/poly/PolynomialInterpolation.hpp
   - math/Factorial.hpp
-  timestamp: '2024-02-23 22:31:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-31 16:12:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/polynomial/polynomial_interpolation.test.cpp
   - test/yosupo/polynomial/multipoint_evaluation_on_geometric_sequence.test.cpp
@@ -1274,4 +1277,4 @@ $f(ar^i) = \sum_{k=0}^{n-1} b_k(ar^i)^k = \sum_{k=0}^{n-1} b_ka^kr^{ki} = r^{-t_
 
 より畳み込める。長さ $n, n+m-1$ の列を畳み込んだ $2n+m-2$ 個の値のうち、 $[n-1, n+m-1)$ のみ用いるので $n+m-1$ の巡回畳み込みで良い。
 
-- `vector<T> multipoint_evaluation(FormalPowerSeries<T> f, T a, T r, ll m)` : 各 $n = \deg(f)$ として、 $0 \leq i < m$ について $f(ar^i)$ を計算する。 $\Theta((n+m)\log(n+m))$ 。
+- `vector<T> multipoint_evaluation_geometric(FormalPowerSeries<T> f, T a, T r, ll m)` : 各 $n = \deg(f)$ として、 $0 \leq i < m$ について $f(ar^i)$ を計算する。 $\Theta((n+m)\log(n+m))$ 。

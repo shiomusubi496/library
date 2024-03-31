@@ -1,65 +1,65 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PollardRho.hpp
     title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/Random.hpp
     title: Random
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -67,7 +67,7 @@ data:
     path: math/StirlingNumber.hpp
     title: "StirlingNumber(\u30B9\u30BF\u30FC\u30EA\u30F3\u30B0\u6570, \u30D9\u30EB\
       \u6570, \u30D9\u30EB\u30CC\u30FC\u30A4\u6570, \u5206\u5272\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/poly/SamplingPointsShift.hpp
     title: "SamplingPointsShift(\u6A19\u672C\u70B9\u30B7\u30D5\u30C8)"
   _extendedVerifiedWith:
@@ -92,15 +92,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
     title: test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/math/poly/TaylorShift.md
     document_title: TaylorShift
@@ -1111,16 +1111,17 @@ data:
     \ }\n    FormalPowerSeries compose(FormalPowerSeries g, int deg = -1) const {\n\
     \        if (this->empty()) return {};\n        if (g.empty()) return {(*this)[0]};\n\
     \        assert(g[0] == 0);\n        int n = deg == -1 ? this->size() : deg;\n\
-    \        int m = 1 << (bitop::ceil_log2(std::max<int>(1, std::sqrt(n / std::log2(n))))\
-    \ + 1);\n        FormalPowerSeries p = g.prefix(m), q = g >> m;\n        p.shrink();\n\
-    \        q.shrink();\n        int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries>\
-    \ fs(this->size());\n        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n\
-    \        FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z\
-    \ < (int)pd.size() && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n\
-    \            FormalPowerSeries ans;\n            rrep (i, l) {\n             \
-    \   ans = ((ans * q) << m).prefix(n - i * m) + FormalPowerSeries{(*this)[i]};\n\
-    \            }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n\
-    \        FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
+    \        int m = 1 << (bitop::ceil_log2(\n                          std::max<int>(1,\
+    \ std::sqrt(n / std::log2(n)))) +\n                      1);\n        FormalPowerSeries\
+    \ p = g.prefix(m), q = g >> m;\n        p.shrink();\n        q.shrink();\n   \
+    \     int l = (n + m - 1) / m;\n        std::vector<FormalPowerSeries> fs(this->size());\n\
+    \        rep (i, this->size()) fs[i] = FormalPowerSeries{(*this)[i]};\n      \
+    \  FormalPowerSeries pd = p.diff();\n        int z = 0;\n        while (z < (int)pd.size()\
+    \ && pd[z] == T{0}) z++;\n        if (z == (int)pd.size()) {\n            FormalPowerSeries\
+    \ ans;\n            rrep (i, l) {\n                ans = ((ans * q) << m).prefix(n\
+    \ - i * m) +\n                      FormalPowerSeries{(*this)[i]};\n         \
+    \   }\n            return ans;\n        }\n        pd = (pd >> z).inv(n);\n  \
+    \      FormalPowerSeries t = p;\n        for (int k = 1; fs.size() > 1; k <<=\
     \ 1) {\n            std::vector<FormalPowerSeries> nfs((fs.size() + 1) / 2);\n\
     \            t.resize(1 << (bitop::ceil_log2(t.size()) + 1));\n            number_theoretic_transform(t);\n\
     \            rep (i, fs.size() / 2) {\n                nfs[i] = std::move(fs[2\
@@ -1157,12 +1158,12 @@ data:
     \        FormalPowerSeries res{0, (*this)[1].inv()};\n        for (int m = 2;\
     \ m < deg; m <<= 1) {\n            auto tmp = prefix(2 * m).compose(res);\n  \
     \          auto d = tmp.diff();\n            auto gd = res.diff();\n         \
-    \   res -= ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);\n  \
-    \      }\n        return res.prefix(deg);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<\n                 AlwaysTrue\
-    \ && is_ntt_friendly<T::get_mod()>::value>::type* =\n                 nullptr>\n\
-    \    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n    \
-    \    return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
+    \   res -=\n                ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2\
+    \ * m);\n        }\n        return res.prefix(deg);\n    }\n    template<bool\
+    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
+    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
+    \    nullptr>\n    FormalPowerSeries& ntt_doubling() {\n        ntt_doubling_(*this);\n\
+    \        return *this;\n    }\n};\n\n/**\n * @brief FormalPowerSeries(\u5F62\u5F0F\
     \u7684\u51AA\u7D1A\u6570)\n * @docs docs/math/poly/FormalPowerSeries.md\n * @see\
     \ https://nyaannyaan.github.io/library/fps/formal-power-series.hpp\n */\n#line\
     \ 7 \"math/poly/TaylorShift.hpp\"\n\ntemplate<class T, class Comb = Combinatorics<T>>\n\
@@ -1207,18 +1208,18 @@ data:
   requiredBy:
   - math/poly/SamplingPointsShift.hpp
   - math/StirlingNumber.hpp
-  timestamp: '2024-02-23 20:57:59+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-31 16:12:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
-  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/new/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/aoj/DPL/DPL_5_G.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document
 redirect_from:
