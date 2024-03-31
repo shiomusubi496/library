@@ -4,7 +4,7 @@
 #include "../../math/matrix/Matrix.hpp"
 #include "../../math/matrix/Determinant.hpp"
 
-template<class T, class U> T CountSpanningTree(const Graph<U>& G) {
+template<class T, class U> T count_spanning_tree(const Graph<U>& G) {
     const int N = G.size();
     Matrix<T> A(N - 1, N - 1);
     rep (i, N - 1) A[i][i] += G[i + 1].size();
