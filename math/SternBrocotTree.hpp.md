@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/Rational.hpp
     title: "Rational(\u6709\u7406\u6570\u578B)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stern_brocot_tree.test.cpp
     title: test/yosupo/math/stern_brocot_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/rational_approximation.test.cpp
+    title: test/yosupo/new/rational_approximation.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -646,6 +649,7 @@ data:
   - test/aoj/other/1208-SternBrocotTree.test.cpp
   - test/yosupo/math/min_of_mod_of_linear.test.cpp
   - test/yosupo/math/stern_brocot_tree.test.cpp
+  - test/yosupo/new/rational_approximation.test.cpp
 documentation_of: math/SternBrocotTree.hpp
 layout: document
 redirect_from:

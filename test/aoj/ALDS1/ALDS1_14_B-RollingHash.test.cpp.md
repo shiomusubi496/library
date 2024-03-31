@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -16,28 +16,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -672,9 +672,10 @@ data:
     \ sz, n + 1) pows[i] = pows[i - 1] * BASE;\n            rep (i, sz, n + 1) rpows[i]\
     \ = rpows[i - 1] * RBASE;\n        }\n    }\n    mint BASE, RBASE;\n    void set_base()\
     \ {\n        BASE = mint::raw((1ull << 31) + (rand32() & MASK31));\n        RBASE\
-    \ = BASE.inv();\n    }\n\n    class Hash {\n    private:\n        int n;\n   \
-    \     mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n     \
-    \   Hash() = default;\n        template<class Cont>\n        Hash(mint b, const\
+    \ = BASE.inv();\n    }\n\n    mint join(mint a, mint b, ll blen) const { return\
+    \ a * pows[blen] + b; }\n\n    class Hash {\n    private:\n        int n;\n  \
+    \      mint BASE;\n        std::vector<mint> hash, pows;\n\n    public:\n    \
+    \    Hash() = default;\n        template<class Cont>\n        Hash(mint b, const\
     \ std::vector<mint>& p, const Cont& str)\n            : n(str.size()), BASE(b),\
     \ pows(p.begin(), p.begin() + n + 1) {\n            hash.assign(n + 1, mint{});\n\
     \            rep (i, n) hash[i + 1] = hash[i] * BASE + str[i];\n        }\n  \
@@ -725,7 +726,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 19:15:54+09:00'
+  timestamp: '2024-03-31 20:53:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp

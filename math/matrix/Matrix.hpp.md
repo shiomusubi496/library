@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,6 @@ data:
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/aoj/other/3369-CountSpanningTree.test.cpp
-    title: test/aoj/other/3369-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/matrix/inverse_matrix.test.cpp
     title: test/yosupo/matrix/inverse_matrix.test.cpp
@@ -72,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/math/matrix/Matrix.md
     document_title: "Matrix(\u884C\u5217)"
@@ -800,9 +797,8 @@ data:
   - math/matrix/Inverse.hpp
   - graph/mst/CountSpanningTree.hpp
   timestamp: '2024-03-31 18:06:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/other/3369-CountSpanningTree.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/matrix/pow_of_matrix.test.cpp

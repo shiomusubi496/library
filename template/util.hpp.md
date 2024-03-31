@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
@@ -188,7 +188,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geometry/template.hpp
     title: geometry/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
@@ -209,7 +209,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
   - icon: ':heavy_check_mark:'
@@ -346,7 +346,7 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
   - icon: ':heavy_check_mark:'
@@ -421,7 +421,7 @@ data:
     path: math/convolution/SupersetZetaMoebiusTransform.hpp
     title: "SupersetZeta/MoebiusTransform(\u30BC\u30FC\u30BF\u5909\u63DB/\u30E1\u30D3\
       \u30A6\u30B9\u5909\u63DB)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
   - icon: ':heavy_check_mark:'
@@ -430,7 +430,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/matrix/LinearEquations.hpp
     title: "LinearEquations(\u7DDA\u5F62\u65B9\u7A0B\u5F0F)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':heavy_check_mark:'
@@ -461,7 +461,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -739,9 +739,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/other/2945-01BFS.test.cpp
     title: test/aoj/other/2945-01BFS.test.cpp
-  - icon: ':x:'
-    path: test/aoj/other/3369-CountSpanningTree.test.cpp
-    title: test/aoj/other/3369-CountSpanningTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
@@ -1046,6 +1043,9 @@ data:
     path: test/yosupo/new/matrix_product_mod_2.test.cpp
     title: test/yosupo/new/matrix_product_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/new/rational_approximation.test.cpp
+    title: test/yosupo/new/rational_approximation.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1165,9 +1165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/util.hpp\"\n\n#include <bits/stdc++.h>\n#line 2\
@@ -1476,7 +1476,7 @@ data:
   - random/Timer.hpp
   - random/Random.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1/ITP1_3_D-Divisors.test.cpp
   - test/aoj/NTL/NTL_1_E-ExtGCD.test.cpp
@@ -1531,7 +1531,6 @@ data:
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
   - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
   - test/aoj/ALDS1/ALDS1_15_B.test.cpp
-  - test/aoj/other/3369-CountSpanningTree.test.cpp
   - test/aoj/other/2725-CHT.test.cpp
   - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/other/1208-SternBrocotTree.test.cpp
@@ -1653,6 +1652,7 @@ data:
   - test/yosupo/data_structure/range_kth_smallest-wavelet.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+  - test/yosupo/new/rational_approximation.test.cpp
   - test/yosupo/new/matrix_product_mod_2.test.cpp
   - test/yosupo/new/matrix_det_mod_2.test.cpp
   - test/yosupo/convolution/convolution_mod_1000000007.test.cpp
