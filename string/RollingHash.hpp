@@ -159,6 +159,8 @@ public:
         RBASE = BASE.inv();
     }
 
+    mint join(mint a, mint b, ll blen) const { return a * pows[blen] + b; }
+
     class Hash {
     private:
         int n;
