@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/eulerian_trail_undirected"
 #include "../../../other/template.hpp"
 #include "../../../graph/Graph.hpp"
-#include "../../../graph/other/EulerTrail.hpp"
+#include "../../../graph/other/EulerianTrail.hpp"
 using namespace std;
 int main() {
     int T; scan >> T;
@@ -12,7 +12,7 @@ int main() {
             int a, b; scan >> a >> b;
             G.add_edge(a, b);
         }
-        EulerTrail<int> et(G, false);
+        EulerianTrail<int> et(G, false);
         if (et.has_trail()) {
             const auto& trail = et.get_trail();
             prints("Yes");

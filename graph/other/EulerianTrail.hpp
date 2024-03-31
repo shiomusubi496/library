@@ -3,8 +3,7 @@
 #include "../../other/template.hpp"
 #include "../Graph.hpp"
 
-template<class T>
-class EulerTrail {
+template<class T> class EulerianTrail {
 private:
     int n;
     const Graph<T>& G;
@@ -77,7 +76,7 @@ private:
     }
 
 public:
-    EulerTrail(const Graph<T>& G, bool directed) : G(G) {
+    EulerianTrail(const Graph<T>& G, bool directed) : G(G) {
         n = G.size();
         if (directed) build_directed();
         else build_undirected();
@@ -89,6 +88,6 @@ public:
 };
 
 /**
- * @brief EulerTrail
- * @docs docs/graph/other/EulerTrail.md
+ * @brief EulerianTrail
+ * @docs docs/graph/other/EulerianTrail.md
  */
