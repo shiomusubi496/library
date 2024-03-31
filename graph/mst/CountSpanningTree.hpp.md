@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Determinant.hpp
     title: "Determinant(\u884C\u5217\u5F0F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/matrix/Matrix.hpp
     title: "Matrix(\u884C\u5217)"
   - icon: ':question:'
@@ -41,10 +41,13 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/aoj/other/3369-CountSpanningTree.test.cpp
+    title: test/aoj/other/3369-CountSpanningTree.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/graph/mst/CountSpanningTree.md
     document_title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -721,20 +724,20 @@ data:
     \ determinant(Matrix<static_modint<2>> mat) {\n    assert(mat.is_square());\n\
     \    return mat.rank() == mat.height() ? 1 : 0;\n}\n\n/**\n * @brief Determinant(\u884C\
     \u5217\u5F0F)\n * @docs docs/math/matrix/Determinant.md\n */\n#line 6 \"graph/mst/CountSpanningTree.hpp\"\
-    \n\ntemplate<class T, class U> T CountSpanningTree(const Graph<U>& G) {\n    const\
-    \ int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i]\
-    \ += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i]) {\n\
-    \            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n   \
-    \     }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
+    \n\ntemplate<class T, class U> T count_spanning_tree(const Graph<U>& G) {\n  \
+    \  const int N = G.size();\n    Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1)\
+    \ A[i][i] += G[i + 1].size();\n    rep (i, 1, N) {\n        each_const (e : G[i])\
+    \ {\n            if (e.to == 0) continue;\n            --A[i - 1][e.to - 1];\n\
+    \        }\n    }\n    return determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\
     \u5217\u6728\u5B9A\u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
   code: "#pragma once\n\n#include \"../Graph.hpp\"\n#include \"../../math/matrix/Matrix.hpp\"\
     \n#include \"../../math/matrix/Determinant.hpp\"\n\ntemplate<class T, class U>\
-    \ T CountSpanningTree(const Graph<U>& G) {\n    const int N = G.size();\n    Matrix<T>\
-    \ A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i] += G[i + 1].size();\n    rep (i,\
-    \ 1, N) {\n        each_const (e : G[i]) {\n            if (e.to == 0) continue;\n\
-    \            --A[i - 1][e.to - 1];\n        }\n    }\n    return determinant(A);\n\
-    }\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)\n * @docs\
-    \ docs/graph/mst/CountSpanningTree.md\n */\n"
+    \ T count_spanning_tree(const Graph<U>& G) {\n    const int N = G.size();\n  \
+    \  Matrix<T> A(N - 1, N - 1);\n    rep (i, N - 1) A[i][i] += G[i + 1].size();\n\
+    \    rep (i, 1, N) {\n        each_const (e : G[i]) {\n            if (e.to ==\
+    \ 0) continue;\n            --A[i - 1][e.to - 1];\n        }\n    }\n    return\
+    \ determinant(A);\n}\n\n/**\n * @brief CountSpanningTree(\u884C\u5217\u6728\u5B9A\
+    \u7406)\n * @docs docs/graph/mst/CountSpanningTree.md\n */\n"
   dependsOn:
   - graph/Graph.hpp
   - other/template.hpp
@@ -752,9 +755,10 @@ data:
   isVerificationFile: false
   path: graph/mst/CountSpanningTree.hpp
   requiredBy: []
-  timestamp: '2024-02-23 20:32:08+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-03-31 16:40:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/aoj/other/3369-CountSpanningTree.test.cpp
 documentation_of: graph/mst/CountSpanningTree.hpp
 layout: document
 redirect_from:
@@ -766,7 +770,7 @@ title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
 
 全域木の個数を求める。行列木定理を用いている。
 
-- `T CountSpanningTree(Graph<U> G)` : グラフ `G` の全域木の個数を返す。 $\Theta(N^3)$ 。
+- `T count_spanning_tree(Graph<U> G)` : グラフ `G` の全域木の個数を返す。 $\Theta(N^3)$ 。
 
 ## Verifiwd with
 
