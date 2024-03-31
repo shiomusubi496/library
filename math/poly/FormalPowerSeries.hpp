@@ -371,7 +371,9 @@ public:
         if (g.empty()) return {(*this)[0]};
         assert(g[0] == 0);
         int n = deg == -1 ? this->size() : deg;
-        int m = 1 << (bitop::ceil_log2(std::max<int>(1, std::sqrt(n / std::log2(n)))) + 1);
+        int m = 1 << (bitop::ceil_log2(
+                          std::max<int>(1, std::sqrt(n / std::log2(n)))) +
+                      1);
         FormalPowerSeries p = g.prefix(m), q = g >> m;
         p.shrink();
         q.shrink();
@@ -384,7 +386,8 @@ public:
         if (z == (int)pd.size()) {
             FormalPowerSeries ans;
             rrep (i, l) {
-                ans = ((ans * q) << m).prefix(n - i * m) + FormalPowerSeries{(*this)[i]};
+                ans = ((ans * q) << m).prefix(n - i * m) +
+                      FormalPowerSeries{(*this)[i]};
             }
             return ans;
         }
@@ -463,7 +466,8 @@ public:
             auto tmp = prefix(2 * m).compose(res);
             auto d = tmp.diff();
             auto gd = res.diff();
-            res -= ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);
+            res -=
+                ((tmp - x) * (d.inv(2 * m) * gd).prefix(2 * m)).prefix(2 * m);
         }
         return res.prefix(deg);
     }

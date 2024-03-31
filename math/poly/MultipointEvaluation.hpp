@@ -49,7 +49,8 @@ std::vector<T> multipoint_evaluation(const FormalPowerSeries<T>& a,
 }
 
 template<class T>
-std::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>& f, T a, T r, int m) {
+std::vector<T> multipoint_evaluation_geometric(const FormalPowerSeries<T>& f,
+                                               T a, T r, int m) {
     if (f.empty() || m == 0) return std::vector<T>(m, T{0});
     if (a == 0 || r == 1) return std::vector<T>(m, f.eval(a));
     if (f.size() <= 32 || m <= 32) {
