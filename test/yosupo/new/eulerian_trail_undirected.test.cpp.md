@@ -5,8 +5,8 @@ data:
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
-    path: graph/other/EulerTrail.hpp
-    title: EulerTrail
+    path: graph/other/EulerianTrail.hpp
+    title: EulerianTrail
   - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
@@ -500,8 +500,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/EulerTrail.hpp\"\n\n\
-    #line 5 \"graph/other/EulerTrail.hpp\"\n\ntemplate<class T>\nclass EulerTrail\
+    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/other/EulerianTrail.hpp\"\n\
+    \n#line 5 \"graph/other/EulerianTrail.hpp\"\n\ntemplate<class T> class EulerianTrail\
     \ {\nprivate:\n    int n;\n    const Graph<T>& G;\n    bool flag = false;\n  \
     \  Edges<T> trail;\n    std::vector<int> idx;\n    std::vector<bool> used;\n\n\
     \    void build_undirected() {\n        std::vector<int> odds;\n        rep (i,\
@@ -527,28 +527,28 @@ data:
     \        }\n        rep (i, n) {\n            const int S = G[i].size();\n   \
     \         while (idx[i] < S && used[G[i][idx[i]].idx]) ++idx[i];\n           \
     \ if (idx[i] != S) return;\n        }\n        flag = true;\n        return;\n\
-    \    }\n\npublic:\n    EulerTrail(const Graph<T>& G, bool directed) : G(G) {\n\
-    \        n = G.size();\n        if (directed) build_directed();\n        else\
+    \    }\n\npublic:\n    EulerianTrail(const Graph<T>& G, bool directed) : G(G)\
+    \ {\n        n = G.size();\n        if (directed) build_directed();\n        else\
     \ build_undirected();\n    }\n\n    bool has_trail() const { return flag; }\n\
     \    const Edges<T>& get_trail() const& { return trail; }\n    Edges<T> get_trail()\
-    \ && { return std::move(trail); }\n};\n\n/**\n * @brief EulerTrail\n * @docs docs/graph/other/EulerTrail.md\n\
-    \ */\n#line 5 \"test/yosupo/new/eulerian_trail_undirected.test.cpp\"\nusing namespace\
-    \ std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n        int N, M;\
-    \ scan >> N >> M;\n        Graph<int> G(N);\n        rep (M) {\n            int\
-    \ a, b; scan >> a >> b;\n            G.add_edge(a, b);\n        }\n        EulerTrail<int>\
-    \ et(G, false);\n        if (et.has_trail()) {\n            const auto& trail\
-    \ = et.get_trail();\n            prints(\"Yes\");\n            print << (trail.empty()\
-    \ ? 0 : trail[0].from);\n            rep (i, M) print << \" \" << trail[i].to;\n\
-    \            print << endl;\n            rep (i, M) {\n                print <<\
-    \ trail[i].idx;\n                if (i != M - 1) print << \" \";\n           \
-    \ }\n            print << endl;\n        }\n        else {\n            prints(\"\
-    No\");\n        }\n    }\n}\n"
+    \ && { return std::move(trail); }\n};\n\n/**\n * @brief EulerianTrail\n * @docs\
+    \ docs/graph/other/EulerianTrail.md\n */\n#line 5 \"test/yosupo/new/eulerian_trail_undirected.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int T; scan >> T;\n    rep (T) {\n \
+    \       int N, M; scan >> N >> M;\n        Graph<int> G(N);\n        rep (M) {\n\
+    \            int a, b; scan >> a >> b;\n            G.add_edge(a, b);\n      \
+    \  }\n        EulerianTrail<int> et(G, false);\n        if (et.has_trail()) {\n\
+    \            const auto& trail = et.get_trail();\n            prints(\"Yes\");\n\
+    \            print << (trail.empty() ? 0 : trail[0].from);\n            rep (i,\
+    \ M) print << \" \" << trail[i].to;\n            print << endl;\n            rep\
+    \ (i, M) {\n                print << trail[i].idx;\n                if (i != M\
+    \ - 1) print << \" \";\n            }\n            print << endl;\n        }\n\
+    \        else {\n            prints(\"No\");\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_undirected\"\
     \n#include \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\
-    \n#include \"../../../graph/other/EulerTrail.hpp\"\nusing namespace std;\nint\
-    \ main() {\n    int T; scan >> T;\n    rep (T) {\n        int N, M; scan >> N\
-    \ >> M;\n        Graph<int> G(N);\n        rep (M) {\n            int a, b; scan\
-    \ >> a >> b;\n            G.add_edge(a, b);\n        }\n        EulerTrail<int>\
+    \n#include \"../../../graph/other/EulerianTrail.hpp\"\nusing namespace std;\n\
+    int main() {\n    int T; scan >> T;\n    rep (T) {\n        int N, M; scan >>\
+    \ N >> M;\n        Graph<int> G(N);\n        rep (M) {\n            int a, b;\
+    \ scan >> a >> b;\n            G.add_edge(a, b);\n        }\n        EulerianTrail<int>\
     \ et(G, false);\n        if (et.has_trail()) {\n            const auto& trail\
     \ = et.get_trail();\n            prints(\"Yes\");\n            print << (trail.empty()\
     \ ? 0 : trail[0].from);\n            rep (i, M) print << \" \" << trail[i].to;\n\
@@ -567,11 +567,11 @@ data:
   - template/func.hpp
   - template/util.hpp
   - graph/Graph.hpp
-  - graph/other/EulerTrail.hpp
+  - graph/other/EulerianTrail.hpp
   isVerificationFile: true
   path: test/yosupo/new/eulerian_trail_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 19:26:01+09:00'
+  timestamp: '2024-03-31 20:07:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/new/eulerian_trail_undirected.test.cpp

@@ -72,8 +72,8 @@ data:
     path: graph/other/EnumerateTriangles.hpp
     title: EnumerateTriangles
   - icon: ':heavy_check_mark:'
-    path: graph/other/EulerTrail.hpp
-    title: EulerTrail
+    path: graph/other/EulerianTrail.hpp
+    title: EulerianTrail
   - icon: ':heavy_check_mark:'
     path: graph/other/GraphCycle.hpp
     title: "GraphCycle(\u9589\u8DEF\u691C\u51FA)"
@@ -828,8 +828,8 @@ data:
   - graph/other/GraphCycle.hpp
   - graph/other/ChromaticNumber.hpp
   - graph/other/MaximumIndependentSet.hpp
+  - graph/other/EulerianTrail.hpp
   - graph/other/TopologicalSort.hpp
-  - graph/other/EulerTrail.hpp
   - graph/other/EnumerateTriangles.hpp
   - graph/other/BipartiteGraph.hpp
   - graph/other/EnumerateCliques.hpp

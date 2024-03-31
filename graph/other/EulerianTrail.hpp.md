@@ -43,10 +43,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/graph/other/EulerTrail.md
-    document_title: EulerTrail
+    _deprecated_at_docs: docs/graph/other/EulerianTrail.md
+    document_title: EulerianTrail
     links: []
-  bundledCode: "#line 2 \"graph/other/EulerTrail.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"graph/other/EulerianTrail.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -500,8 +500,8 @@ data:
     \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
     \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
     using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/EulerTrail.hpp\"\n\n\
-    template<class T>\nclass EulerTrail {\nprivate:\n    int n;\n    const Graph<T>&\
+    \ * @docs docs/graph/Graph.md\n */\n#line 5 \"graph/other/EulerianTrail.hpp\"\n\
+    \ntemplate<class T> class EulerianTrail {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    bool flag = false;\n    Edges<T> trail;\n    std::vector<int> idx;\n\
     \    std::vector<bool> used;\n\n    void build_undirected() {\n        std::vector<int>\
     \ odds;\n        rep (i, G.size()) {\n            if (G[i].size() & 1) odds.push_back(i);\n\
@@ -526,14 +526,14 @@ data:
     \                s = trail[r].from;\n            }\n        }\n        rep (i,\
     \ n) {\n            const int S = G[i].size();\n            while (idx[i] < S\
     \ && used[G[i][idx[i]].idx]) ++idx[i];\n            if (idx[i] != S) return;\n\
-    \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerTrail(const\
+    \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerianTrail(const\
     \ Graph<T>& G, bool directed) : G(G) {\n        n = G.size();\n        if (directed)\
     \ build_directed();\n        else build_undirected();\n    }\n\n    bool has_trail()\
     \ const { return flag; }\n    const Edges<T>& get_trail() const& { return trail;\
     \ }\n    Edges<T> get_trail() && { return std::move(trail); }\n};\n\n/**\n * @brief\
-    \ EulerTrail\n * @docs docs/graph/other/EulerTrail.md\n */\n"
+    \ EulerianTrail\n * @docs docs/graph/other/EulerianTrail.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
-    \n\ntemplate<class T>\nclass EulerTrail {\nprivate:\n    int n;\n    const Graph<T>&\
+    \n\ntemplate<class T> class EulerianTrail {\nprivate:\n    int n;\n    const Graph<T>&\
     \ G;\n    bool flag = false;\n    Edges<T> trail;\n    std::vector<int> idx;\n\
     \    std::vector<bool> used;\n\n    void build_undirected() {\n        std::vector<int>\
     \ odds;\n        rep (i, G.size()) {\n            if (G[i].size() & 1) odds.push_back(i);\n\
@@ -558,12 +558,12 @@ data:
     \                s = trail[r].from;\n            }\n        }\n        rep (i,\
     \ n) {\n            const int S = G[i].size();\n            while (idx[i] < S\
     \ && used[G[i][idx[i]].idx]) ++idx[i];\n            if (idx[i] != S) return;\n\
-    \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerTrail(const\
+    \        }\n        flag = true;\n        return;\n    }\n\npublic:\n    EulerianTrail(const\
     \ Graph<T>& G, bool directed) : G(G) {\n        n = G.size();\n        if (directed)\
     \ build_directed();\n        else build_undirected();\n    }\n\n    bool has_trail()\
     \ const { return flag; }\n    const Edges<T>& get_trail() const& { return trail;\
     \ }\n    Edges<T> get_trail() && { return std::move(trail); }\n};\n\n/**\n * @brief\
-    \ EulerTrail\n * @docs docs/graph/other/EulerTrail.md\n */\n"
+    \ EulerianTrail\n * @docs docs/graph/other/EulerianTrail.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -576,24 +576,24 @@ data:
   - template/util.hpp
   - graph/Graph.hpp
   isVerificationFile: false
-  path: graph/other/EulerTrail.hpp
+  path: graph/other/EulerianTrail.hpp
   requiredBy: []
-  timestamp: '2024-01-27 19:26:01+09:00'
+  timestamp: '2024-03-31 20:07:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/new/eulerian_trail_undirected.test.cpp
   - test/yosupo/new/eulerian_trail_directed.test.cpp
-documentation_of: graph/other/EulerTrail.hpp
+documentation_of: graph/other/EulerianTrail.hpp
 layout: document
 redirect_from:
-- /library/graph/other/EulerTrail.hpp
-- /library/graph/other/EulerTrail.hpp.html
-title: EulerTrail
+- /library/graph/other/EulerianTrail.hpp
+- /library/graph/other/EulerianTrail.hpp.html
+title: EulerianTrail
 ---
 ## 概要
 
 オイラー路、つまり全ての辺をちょうど一度用いる路を求める。有向/無向で若干条件が変わる。
 
-- `EulerTrail(Graph<T> G, bool directed)` : $\Theta(\lvert V \rvert + \lvert E \rvert)$ 。
+- `EulerianTrail(Graph<T> G, bool directed)` : $\Theta(\lvert V \rvert + \lvert E \rvert)$ 。
 - `bool has_trail()` : 存在するかを返す。
 - `Edges<T> get_trail()` : オイラー路を返す。
