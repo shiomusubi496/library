@@ -10,5 +10,5 @@ int main() {
         int a, b, c; scan >> a >> b >> c;
         G.add_edge(a, b, c);
     }
-    print << Prim(G) << endl;
+    print << Prim(G).first << endl;
 }

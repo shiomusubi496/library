@@ -14,5 +14,5 @@ int main() {
             }
         }
     }
-    print << Kruskal(n, Ed) << endl;
+    print << Kruskal(n, Ed).first << endl;
 }

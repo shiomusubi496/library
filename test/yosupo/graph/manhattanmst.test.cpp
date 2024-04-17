@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     int N; scan >> N;
     vector<PLL> A(N); scan >> A;
-    auto mst = ManhattanMST(A);
-    prints(mst.get());
-    for (auto e : mst.get_edges()) prints(e.from, e.to);
+    ManhattanMST mst(A);
+    prints(mst.cost());
+    for (auto e : mst.edges()) prints(e.from, e.to);
 }
