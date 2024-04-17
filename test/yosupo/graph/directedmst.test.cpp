@@ -8,7 +8,7 @@ int main() {
     Edges<ll> E(M);
     rep (i, M) {
         int a, b, c; scan >> a >> b >> c;
-        E[i] = {a, b, c, i};
+        E[i] = {a, b, c, (int)i};
     }
     DirectedMST mst(N, E, S);
     assert(mst.has_mst());
