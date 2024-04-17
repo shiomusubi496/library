@@ -37,10 +37,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/other/IntervalHeap.md
+    _deprecated_at_docs: docs/data-struct/heap/IntervalHeap.md
     document_title: IntervalHeap
     links: []
-  bundledCode: "#line 2 \"data-struct/other/IntervalHeap.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/heap/IntervalHeap.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -454,9 +454,9 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"data-struct/other/IntervalHeap.hpp\"\n\ntemplate<class T, class\
-    \ Comp = std::less<T>> class IntervalHeap {\nprivate:\n    std::vector<T> dat;\n\
-    \    Comp cmp;\n\n    int par(int k) const { return (k - 2) / 4 * 2; }\n    int\
+    };\n#line 4 \"data-struct/heap/IntervalHeap.hpp\"\n\ntemplate<class T, class Comp\
+    \ = std::less<T>> class IntervalHeap {\nprivate:\n    std::vector<T> dat;\n  \
+    \  Comp cmp;\n\n    int par(int k) const { return (k - 2) / 4 * 2; }\n    int\
     \ up(int k, int root = 1) {\n        int n = dat.size();\n        if ((k | 1)\
     \ < n && cmp(dat[k & ~1], dat[k | 1])) {\n            std::swap(dat[k & ~1], dat[k\
     \ | 1]);\n            k ^= 1;\n        }\n        int p;\n        while (root\
@@ -489,7 +489,7 @@ data:
     \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
     \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
     \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
-    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n"
+    \ * @docs docs/data-struct/heap/IntervalHeap.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T,\
     \ class Comp = std::less<T>> class IntervalHeap {\nprivate:\n    std::vector<T>\
     \ dat;\n    Comp cmp;\n\n    int par(int k) const { return (k - 2) / 4 * 2; }\n\
@@ -525,7 +525,7 @@ data:
     \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
     \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
     \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
-    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n"
+    \ * @docs docs/data-struct/heap/IntervalHeap.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -537,17 +537,17 @@ data:
   - template/func.hpp
   - template/util.hpp
   isVerificationFile: false
-  path: data-struct/other/IntervalHeap.hpp
+  path: data-struct/heap/IntervalHeap.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:56:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/double_ended_priority_queue.test.cpp
-documentation_of: data-struct/other/IntervalHeap.hpp
+documentation_of: data-struct/heap/IntervalHeap.hpp
 layout: document
 redirect_from:
-- /library/data-struct/other/IntervalHeap.hpp
-- /library/data-struct/other/IntervalHeap.hpp.html
+- /library/data-struct/heap/IntervalHeap.hpp
+- /library/data-struct/heap/IntervalHeap.hpp.html
 title: IntervalHeap
 ---
 ## 概要

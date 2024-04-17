@@ -35,7 +35,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"data-struct/other/ErasableHeap.hpp\"\n\n#line 2 \"other/template.hpp\"\
+  bundledCode: "#line 2 \"data-struct/heap/ErasableHeap.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -449,8 +449,8 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"data-struct/other/ErasableHeap.hpp\"\n\ntemplate<class T, class\
-    \ Comp = std::less<T>> class ErasableHeap {\n    std::priority_queue<T, std::vector<T>,\
+    };\n#line 4 \"data-struct/heap/ErasableHeap.hpp\"\n\ntemplate<class T, class Comp\
+    \ = std::less<T>> class ErasableHeap {\n    std::priority_queue<T, std::vector<T>,\
     \ Comp> pq, er;\n\npublic:\n    void push(T x) { pq.push(x); }\n    void erase(T\
     \ x) { er.push(x); }\n    T top() {\n        while (!er.empty() && pq.top() ==\
     \ er.top()) {\n            pq.pop();\n            er.pop();\n        }\n     \
@@ -496,15 +496,15 @@ data:
   - template/func.hpp
   - template/util.hpp
   isVerificationFile: false
-  path: data-struct/other/ErasableHeap.hpp
+  path: data-struct/heap/ErasableHeap.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:56:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: data-struct/other/ErasableHeap.hpp
+documentation_of: data-struct/heap/ErasableHeap.hpp
 layout: document
 redirect_from:
-- /library/data-struct/other/ErasableHeap.hpp
-- /library/data-struct/other/ErasableHeap.hpp.html
-title: data-struct/other/ErasableHeap.hpp
+- /library/data-struct/heap/ErasableHeap.hpp
+- /library/data-struct/heap/ErasableHeap.hpp.html
+title: data-struct/heap/ErasableHeap.hpp
 ---

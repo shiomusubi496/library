@@ -20,6 +20,12 @@ data:
   - name: data-struct/heap
     pages:
     - icon: ':warning:'
+      path: data-struct/heap/ErasableHeap.hpp
+      title: data-struct/heap/ErasableHeap.hpp
+    - icon: ':heavy_check_mark:'
+      path: data-struct/heap/IntervalHeap.hpp
+      title: IntervalHeap
+    - icon: ':warning:'
       path: data-struct/heap/LeftistHeap.hpp
       title: LeftistHeap
     - icon: ':heavy_check_mark:'
@@ -39,12 +45,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/other/DequeOperateAggregation.hpp
       title: DequeOperateAggregation
-    - icon: ':warning:'
-      path: data-struct/other/ErasableHeap.hpp
-      title: data-struct/other/ErasableHeap.hpp
-    - icon: ':heavy_check_mark:'
-      path: data-struct/other/IntervalHeap.hpp
-      title: IntervalHeap
     - icon: ':heavy_check_mark:'
       path: data-struct/other/MaxRectangle.hpp
       title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"

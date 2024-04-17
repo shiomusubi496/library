@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/other/IntervalHeap.hpp
+    path: data-struct/heap/IntervalHeap.hpp
     title: IntervalHeap
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
@@ -457,7 +457,7 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"data-struct/other/IntervalHeap.hpp\"\n\n#line 4 \"data-struct/other/IntervalHeap.hpp\"\
+    };\n#line 2 \"data-struct/heap/IntervalHeap.hpp\"\n\n#line 4 \"data-struct/heap/IntervalHeap.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>> class IntervalHeap {\nprivate:\n\
     \    std::vector<T> dat;\n    Comp cmp;\n\n    int par(int k) const { return (k\
     \ - 2) / 4 * 2; }\n    int up(int k, int root = 1) {\n        int n = dat.size();\n\
@@ -492,7 +492,7 @@ data:
     \        down(1);\n    }\n    const T& max() const {\n        assert(!dat.empty());\n\
     \        return dat[0];\n    }\n    const T& min() const {\n        assert(!dat.empty());\n\
     \        return size() == 1 ? dat[0] : dat[1];\n    }\n};\n\n/**\n * @brief IntervalHeap\n\
-    \ * @docs docs/data-struct/other/IntervalHeap.md\n */\n#line 4 \"test/yosupo/data_structure/double_ended_priority_queue.test.cpp\"\
+    \ * @docs docs/data-struct/heap/IntervalHeap.md\n */\n#line 4 \"test/yosupo/data_structure/double_ended_priority_queue.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
     \ S(N); scan >> S;\n    IntervalHeap<int> que(S);\n    rep (Q) {\n        int\
     \ t; scan >> t;\n        if (t == 0) {\n            int x; scan >> x;\n      \
@@ -500,7 +500,7 @@ data:
     \            que.pop_min();\n        }\n        else {\n            prints(que.max());\n\
     \            que.pop_max();\n        }\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/IntervalHeap.hpp\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/heap/IntervalHeap.hpp\"\
     \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<int>\
     \ S(N); scan >> S;\n    IntervalHeap<int> que(S);\n    rep (Q) {\n        int\
     \ t; scan >> t;\n        if (t == 0) {\n            int x; scan >> x;\n      \
@@ -517,11 +517,11 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - data-struct/other/IntervalHeap.hpp
+  - data-struct/heap/IntervalHeap.hpp
   isVerificationFile: true
   path: test/yosupo/data_structure/double_ended_priority_queue.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:56:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/double_ended_priority_queue.test.cpp

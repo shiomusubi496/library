@@ -18,6 +18,12 @@ data:
     path: data-struct/cht/LiChaoTree.hpp
     title: LiChaoTree
   - icon: ':warning:'
+    path: data-struct/heap/ErasableHeap.hpp
+    title: data-struct/heap/ErasableHeap.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/heap/IntervalHeap.hpp
+    title: IntervalHeap
+  - icon: ':warning:'
     path: data-struct/heap/LeftistHeap.hpp
     title: LeftistHeap
   - icon: ':heavy_check_mark:'
@@ -35,12 +41,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
-  - icon: ':warning:'
-    path: data-struct/other/ErasableHeap.hpp
-    title: data-struct/other/ErasableHeap.hpp
-  - icon: ':heavy_check_mark:'
-    path: data-struct/other/IntervalHeap.hpp
-    title: IntervalHeap
   - icon: ':heavy_check_mark:'
     path: data-struct/other/MaxRectangle.hpp
     title: "MaxRectangle(\u6700\u5927\u9577\u65B9\u5F62)"
@@ -1462,9 +1462,7 @@ data:
   - graph/flow/MaxFlow.hpp
   - data-struct/other/DequeOperateAggregation.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
-  - data-struct/other/ErasableHeap.hpp
   - data-struct/other/DefaultMap.hpp
-  - data-struct/other/IntervalHeap.hpp
   - data-struct/other/MaxRectangle.hpp
   - data-struct/other/RangeSet.hpp
   - data-struct/other/SkipList.hpp
@@ -1480,6 +1478,8 @@ data:
   - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
   - data-struct/heap/LeftistHeap.hpp
   - data-struct/heap/SkewHeap.hpp
+  - data-struct/heap/ErasableHeap.hpp
+  - data-struct/heap/IntervalHeap.hpp
   - data-struct/unionfind/UnionFind.hpp
   - data-struct/unionfind/DynamicUnionFind.hpp
   - data-struct/unionfind/PersistentUnionFind.hpp
