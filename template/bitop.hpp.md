@@ -213,8 +213,14 @@ data:
     title: "TwoEdgeConnectedComponents(\u4E8C\u8FBA\u9023\u7D50\u6210\u5206\u5206\u89E3\
       )"
   - icon: ':heavy_check_mark:'
+    path: graph/flow/KProjectSelectionProblem.hpp
+    title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
+  - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
+  - icon: ':heavy_check_mark:'
+    path: graph/flow/ProjectSelectionProblem.hpp
+    title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
@@ -1151,6 +1157,9 @@ data:
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yuki/119-KPSP.test.cpp
+    title: test/yuki/119-KPSP.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1162,6 +1171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/1601-RangeSet.test.cpp
     title: test/yuki/1601-RangeSet.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/2713-PSP.test.cpp
+    title: test/yuki/2713-PSP.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yuki/3030-MRPrime.test.cpp
     title: test/yuki/3030-MRPrime.test.cpp
@@ -1391,6 +1403,8 @@ data:
   - graph/connected/BiConnectedComponents.hpp
   - graph/connected/StronglyConnectedComponents.hpp
   - graph/flow/MaxFlow.hpp
+  - graph/flow/KProjectSelectionProblem.hpp
+  - graph/flow/ProjectSelectionProblem.hpp
   - data-struct/other/DequeOperateAggregation.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
   - data-struct/other/DefaultMap.hpp
@@ -1664,6 +1678,8 @@ data:
   - test/yuki/1435_SegTree-BinarySearch.test.cpp
   - test/yuki/1601-RangeSet.test.cpp
   - test/yuki/448-Garner.test.cpp
+  - test/yuki/119-KPSP.test.cpp
+  - test/yuki/2713-PSP.test.cpp
   - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
   - test/yuki/1469-RunLength.test.cpp
   - test/yuki/3030-MRPrime.test.cpp

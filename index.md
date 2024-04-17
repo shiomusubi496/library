@@ -230,8 +230,15 @@ data:
   - name: graph/flow
     pages:
     - icon: ':heavy_check_mark:'
+      path: graph/flow/KProjectSelectionProblem.hpp
+      title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B\
+        )"
+    - icon: ':heavy_check_mark:'
       path: graph/flow/MaxFlow.hpp
       title: "MaxFlow(\u6700\u5927\u6D41)"
+    - icon: ':heavy_check_mark:'
+      path: graph/flow/ProjectSelectionProblem.hpp
+      title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   - name: graph/mst
     pages:
     - icon: ':warning:'
@@ -1258,6 +1265,9 @@ data:
   - name: test/yuki
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/yuki/119-KPSP.test.cpp
+      title: test/yuki/119-KPSP.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
       title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1269,6 +1279,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/1601-RangeSet.test.cpp
       title: test/yuki/1601-RangeSet.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yuki/2713-PSP.test.cpp
+      title: test/yuki/2713-PSP.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yuki/3030-MRPrime.test.cpp
       title: test/yuki/3030-MRPrime.test.cpp

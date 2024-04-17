@@ -28,11 +28,23 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/flow/KProjectSelectionProblem.hpp
+    title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
+  - icon: ':heavy_check_mark:'
+    path: graph/flow/ProjectSelectionProblem.hpp
+    title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/bipartitematching.test.cpp
     title: test/yosupo/graph/bipartitematching.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/119-KPSP.test.cpp
+    title: test/yuki/119-KPSP.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/2713-PSP.test.cpp
+    title: test/yuki/2713-PSP.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -490,8 +502,15 @@ data:
     \ += d;\n                        res += d;\n                        if (res ==\
     \ f) return res;\n                    }\n                }\n                return\
     \ res;\n            })(s, flow_limit - res);\n            if (f == T{0}) break;\n\
-    \            res += f;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ MaxFlow(\u6700\u5927\u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
+    \            res += f;\n        }\n        return res;\n    }\n    std::vector<bool>\
+    \ min_cut(int s) const {\n        assert(0 <= s && s < n);\n        std::vector<bool>\
+    \ visited(n);\n        std::queue<int> que;\n        que.push(s);\n        visited[s]\
+    \ = true;\n        while (!que.empty()) {\n            int v = que.front();\n\
+    \            que.pop();\n            each_const (e : g[v]) {\n               \
+    \ if (e.cap > T{0} && !visited[e.to]) {\n                    visited[e.to] = true;\n\
+    \                    que.push(e.to);\n                }\n            }\n     \
+    \   }\n        return visited;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\
+    \u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T>\
     \ class MaxFlow {\nprivate:\n    struct edge_ {\n        int to, rev;\n      \
     \  T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>> g;\n    std::vector<std::pair<int,\
@@ -528,8 +547,15 @@ data:
     \ += d;\n                        res += d;\n                        if (res ==\
     \ f) return res;\n                    }\n                }\n                return\
     \ res;\n            })(s, flow_limit - res);\n            if (f == T{0}) break;\n\
-    \            res += f;\n        }\n        return res;\n    }\n};\n\n/**\n * @brief\
-    \ MaxFlow(\u6700\u5927\u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
+    \            res += f;\n        }\n        return res;\n    }\n    std::vector<bool>\
+    \ min_cut(int s) const {\n        assert(0 <= s && s < n);\n        std::vector<bool>\
+    \ visited(n);\n        std::queue<int> que;\n        que.push(s);\n        visited[s]\
+    \ = true;\n        while (!que.empty()) {\n            int v = que.front();\n\
+    \            que.pop();\n            each_const (e : g[v]) {\n               \
+    \ if (e.cap > T{0} && !visited[e.to]) {\n                    visited[e.to] = true;\n\
+    \                    que.push(e.to);\n                }\n            }\n     \
+    \   }\n        return visited;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\
+    \u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -542,11 +568,15 @@ data:
   - template/util.hpp
   isVerificationFile: false
   path: graph/flow/MaxFlow.hpp
-  requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  requiredBy:
+  - graph/flow/KProjectSelectionProblem.hpp
+  - graph/flow/ProjectSelectionProblem.hpp
+  timestamp: '2024-04-17 14:01:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/bipartitematching.test.cpp
+  - test/yuki/119-KPSP.test.cpp
+  - test/yuki/2713-PSP.test.cpp
 documentation_of: graph/flow/MaxFlow.hpp
 layout: document
 redirect_from:
@@ -573,3 +603,4 @@ struct edge {
 - `vector<edge> edges()` : 辺を全て返す。順番は追加された順と同じ。 $O(m)$ 。
 - `T flow(int s, int t)` : 頂点 `s` から頂点 `t` へフローを流す。 $O(n^2m)$ だが、実用上かなり速く動く。特に容量が全て $1$ の場合、 $O(\min(n^\frac{2}{3}, m^\frac{1}{2}) m)$ となることが知られている。
 - `T flow(int s, int t, T flow_limit)` : 流量制限付きでフローを流す。計算量は同様。
+- `vector<bool> min_cut(int s)` : 頂点 `s` から残余グラフ上で到達可能かを返す。フローを流した後だと min cut に対応する。 $O(n+m)$ 。

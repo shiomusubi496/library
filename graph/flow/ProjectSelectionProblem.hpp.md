@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/Graph.hpp
-    title: Graph-template
-  - icon: ':heavy_check_mark:'
     path: graph/flow/MaxFlow.hpp
     title: "MaxFlow(\u6700\u5927\u6D41)"
   - icon: ':heavy_check_mark:'
@@ -34,18 +31,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/flow/KProjectSelectionProblem.hpp
+    title: "KProjectSelectionProblem(K\u5024\u71C3\u3084\u3059\u57CB\u3081\u308B)"
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/119-KPSP.test.cpp
+    title: test/yuki/119-KPSP.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yuki/2713-PSP.test.cpp
+    title: test/yuki/2713-PSP.test.cpp
   _isVerificationFailed: false
-  _pathExtension: cpp
+  _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bipartitematching
-    links:
-    - https://judge.yosupo.jp/problem/bipartitematching
-  bundledCode: "#line 1 \"test/yosupo/graph/bipartitematching.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n#line 2 \"other/template.hpp\"\
+    _deprecated_at_docs: docs/graph/flow/ProjectSelectionProblem.md
+    document_title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
+    links: []
+  bundledCode: "#line 2 \"graph/flow/ProjectSelectionProblem.hpp\"\n\n#line 2 \"other/template.hpp\"\
     \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
@@ -459,107 +463,213 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"graph/Graph.hpp\"\n\n#line 4 \"graph/Graph.hpp\"\n\ntemplate<class\
-    \ T = int> struct edge {\n    int from, to;\n    T cost;\n    int idx;\n    edge()\
-    \ : from(-1), to(-1) {}\n    edge(int f, int t, const T& c = 1, int i = -1)\n\
-    \        : from(f), to(t), cost(c), idx(i) {}\n    edge(int f, int t, T&& c, int\
-    \ i = -1)\n        : from(f), to(t), cost(std::move(c)), idx(i) {}\n    operator\
-    \ int() const { return to; }\n    friend bool operator<(const edge<T>& lhs, const\
-    \ edge<T>& rhs) {\n        return lhs.cost < rhs.cost;\n    }\n    friend bool\
-    \ operator>(const edge<T>& lhs, const edge<T>& rhs) {\n        return lhs.cost\
-    \ > rhs.cost;\n    }\n};\n\ntemplate<class T = int> using Edges = std::vector<edge<T>>;\n\
-    template<class T = int> using GMatrix = std::vector<std::vector<T>>;\n\ntemplate<class\
-    \ T = int> class Graph : public std::vector<std::vector<edge<T>>> {\nprivate:\n\
-    \    using Base = std::vector<std::vector<edge<T>>>;\n\npublic:\n    int edge_id\
-    \ = 0;\n    using Base::Base;\n    int edge_size() const { return edge_id; }\n\
-    \    int add_edge(int a, int b, const T& c, bool is_directed = false) {\n    \
-    \    assert(0 <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, c, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, c, edge_id);\n        return edge_id++;\n    }\n\
-    \    int add_edge(int a, int b, bool is_directed = false) {\n        assert(0\
-    \ <= a && a < (int)this->size());\n        assert(0 <= b && b < (int)this->size());\n\
-    \        (*this)[a].emplace_back(a, b, 1, edge_id);\n        if (!is_directed)\
-    \ (*this)[b].emplace_back(b, a, 1, edge_id);\n        return edge_id++;\n    }\n\
-    };\n\ntemplate<class T> GMatrix<T> ListToMatrix(const Graph<T>& G) {\n    const\
-    \ int N = G.size();\n    auto res = make_vec<T>(N, N, infinity<T>::value);\n \
-    \   rep (i, N) res[i][i] = 0;\n    rep (i, N) {\n        each_const (e : G[i])\
-    \ res[i][e.to] = e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T>\
-    \ UndirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n  \
-    \  const int E = G.edge_size();\n    Edges<T> Ed(E);\n    rep (i, V) {\n     \
-    \   each_const (e : G[i]) Ed[e.idx] = e;\n    }\n    return Ed;\n}\n\ntemplate<class\
-    \ T> Edges<T> DirectedListToEdges(const Graph<T>& G) {\n    const int V = G.size();\n\
-    \    const int E = std::accumulate(\n        all(G), 0, [](int a, const std::vector<edge<T>>&\
-    \ v) -> int {\n            return a + v.size();\n        });\n    Edges<T> Ed(G.edge_size());\n\
-    \    Ed.reserve(E);\n    rep (i, V) {\n        each_const (e : G[i]) {\n     \
-    \       if (Ed[e.idx] == -1) Ed[e.idx] = e;\n            else Ed.push_back(e);\n\
-    \        }\n    }\n    return Ed;\n}\n\ntemplate<class T> Graph<T> ReverseGraph(const\
-    \ Graph<T>& G) {\n    const int V = G.size();\n    Graph<T> res(V);\n    rep (i,\
-    \ V) {\n        each_const (e : G[i]) {\n            res[e.to].emplace_back(e.to,\
-    \ e.from, e.cost, e.idx);\n        }\n    }\n    res.edge_id = G.edge_size();\n\
-    \    return res;\n}\n\n\nstruct unweighted_edge {\n    template<class... Args>\
-    \ unweighted_edge(const Args&...) {}\n    operator int() { return 1; }\n};\n\n\
-    using UnweightedGraph = Graph<unweighted_edge>;\n\n/**\n * @brief Graph-template\n\
-    \ * @docs docs/graph/Graph.md\n */\n#line 2 \"graph/flow/MaxFlow.hpp\"\n\n#line\
-    \ 4 \"graph/flow/MaxFlow.hpp\"\n\ntemplate<class T> class MaxFlow {\nprivate:\n\
-    \    struct edge_ {\n        int to, rev;\n        T cap;\n    };\n\n    int n;\n\
-    \    std::vector<std::vector<edge_>> g;\n    std::vector<std::pair<int, int>>\
-    \ pos;\n\npublic:\n    struct edge {\n        int from, to;\n        T cap, flow;\n\
-    \    };\n\n    MaxFlow() : n(0) {}\n    explicit MaxFlow(int n) : n(n), g(n) {}\n\
-    \n    int add_edge(int from, int to, T cap) {\n        assert(0 <= from && from\
-    \ < n);\n        assert(0 <= to && to < n);\n        assert(0 <= cap);\n     \
-    \   pos.emplace_back(from, (int)(g[from].size()));\n        g[from].push_back({to,\
-    \ (int)(g[to].size()), cap});\n        g[to].push_back({from, (int)(g[from].size())\
-    \ - 1, T{0}});\n        return (int)(pos.size()) - 1;\n    }\n    edge get_edge(int\
-    \ i) {\n        int m = (int)(pos.size());\n        assert(0 <= i && i < m);\n\
-    \        const auto& e = g[pos[i].first][pos[i].second];\n        const auto&\
-    \ re = g[e.to][e.rev];\n        return edge{pos[i].first, e.to, e.cap + re.cap,\
-    \ re.cap};\n    }\n    std::vector<edge> edges() {\n        int m = (int)(pos.size());\n\
-    \        std::vector<edge> res(m);\n        for (int i = 0; i < m; i++) res[i]\
-    \ = get_edge(i);\n        return res;\n    }\n    T flow(int s, int t) { return\
-    \ flow(s, t, infinity<T>::max); }\n    T flow(int s, int t, T flow_limit) {\n\
-    \        assert(0 <= s && s < n);\n        assert(0 <= t && t < n);\n        assert(s\
-    \ != t);\n        T res = T{0};\n        while (res < flow_limit) {\n        \
-    \    std::vector<int> dist(n, -1);\n            {\n                std::queue<int>\
-    \ que;\n                que.push(s);\n                dist[s] = 0;\n         \
-    \       while (!que.empty()) {\n                    int v = que.front();\n   \
-    \                 que.pop();\n                    each_const (e : g[v]) {\n  \
-    \                      if (e.cap > T{0} && dist[e.to] == -1) {\n             \
-    \               dist[e.to] = dist[v] + 1;\n                            que.push(e.to);\n\
-    \                        }\n                    }\n                }\n       \
-    \     }\n            std::vector<int> idx(n, 0);\n            T f = rec_lambda([&](auto&&\
-    \ self, int v, T f) -> T {\n                if (v == t) return f;\n          \
-    \      T res = 0;\n                for (int& i = idx[v]; i < (int)(g[v].size());\
-    \ i++) {\n                    auto& e = g[v][i];\n                    if (e.cap\
-    \ > T{0} && dist[v] + 1 == dist[e.to]) {\n                        T d = self(e.to,\
-    \ std::min(f - res, e.cap));\n                        if (d == T{0}) continue;\n\
-    \                        e.cap -= d;\n                        g[e.to][e.rev].cap\
-    \ += d;\n                        res += d;\n                        if (res ==\
-    \ f) return res;\n                    }\n                }\n                return\
-    \ res;\n            })(s, flow_limit - res);\n            if (f == T{0}) break;\n\
-    \            res += f;\n        }\n        return res;\n    }\n    std::vector<bool>\
-    \ min_cut(int s) const {\n        assert(0 <= s && s < n);\n        std::vector<bool>\
-    \ visited(n);\n        std::queue<int> que;\n        que.push(s);\n        visited[s]\
-    \ = true;\n        while (!que.empty()) {\n            int v = que.front();\n\
-    \            que.pop();\n            each_const (e : g[v]) {\n               \
-    \ if (e.cap > T{0} && !visited[e.to]) {\n                    visited[e.to] = true;\n\
-    \                    que.push(e.to);\n                }\n            }\n     \
-    \   }\n        return visited;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\
-    \u6D41)\n * @docs docs/graph/flow/MaxFlow.md\n */\n#line 5 \"test/yosupo/graph/bipartitematching.test.cpp\"\
-    \nint main() {\n    int L, R, M; scan >> L >> R >> M;\n    MaxFlow<int> mf(L +\
-    \ R + 2);\n    int s = L + R, t = L + R + 1;\n    rep (i, L) mf.add_edge(s, i,\
-    \ 1);\n    rep (i, R) mf.add_edge(L + i, t, 1);\n    rep (M) {\n        int a,\
-    \ b; scan >> a >> b;\n        mf.add_edge(a, L + b, 1);\n    }\n    prints(mf.flow(s,\
-    \ t));\n    for (auto e : mf.edges()) {\n        if (e.from == s || e.to == t\
-    \ || e.flow == 0) continue;\n        prints(e.from, e.to - L);\n    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartitematching\"\n#include\
-    \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
-    \ \"../../../graph/flow/MaxFlow.hpp\"\nint main() {\n    int L, R, M; scan >>\
-    \ L >> R >> M;\n    MaxFlow<int> mf(L + R + 2);\n    int s = L + R, t = L + R\
-    \ + 1;\n    rep (i, L) mf.add_edge(s, i, 1);\n    rep (i, R) mf.add_edge(L + i,\
-    \ t, 1);\n    rep (M) {\n        int a, b; scan >> a >> b;\n        mf.add_edge(a,\
-    \ L + b, 1);\n    }\n    prints(mf.flow(s, t));\n    for (auto e : mf.edges())\
-    \ {\n        if (e.from == s || e.to == t || e.flow == 0) continue;\n        prints(e.from,\
-    \ e.to - L);\n    }\n}\n"
+    };\n#line 2 \"graph/flow/MaxFlow.hpp\"\n\n#line 4 \"graph/flow/MaxFlow.hpp\"\n\
+    \ntemplate<class T> class MaxFlow {\nprivate:\n    struct edge_ {\n        int\
+    \ to, rev;\n        T cap;\n    };\n\n    int n;\n    std::vector<std::vector<edge_>>\
+    \ g;\n    std::vector<std::pair<int, int>> pos;\n\npublic:\n    struct edge {\n\
+    \        int from, to;\n        T cap, flow;\n    };\n\n    MaxFlow() : n(0) {}\n\
+    \    explicit MaxFlow(int n) : n(n), g(n) {}\n\n    int add_edge(int from, int\
+    \ to, T cap) {\n        assert(0 <= from && from < n);\n        assert(0 <= to\
+    \ && to < n);\n        assert(0 <= cap);\n        pos.emplace_back(from, (int)(g[from].size()));\n\
+    \        g[from].push_back({to, (int)(g[to].size()), cap});\n        g[to].push_back({from,\
+    \ (int)(g[from].size()) - 1, T{0}});\n        return (int)(pos.size()) - 1;\n\
+    \    }\n    edge get_edge(int i) {\n        int m = (int)(pos.size());\n     \
+    \   assert(0 <= i && i < m);\n        const auto& e = g[pos[i].first][pos[i].second];\n\
+    \        const auto& re = g[e.to][e.rev];\n        return edge{pos[i].first, e.to,\
+    \ e.cap + re.cap, re.cap};\n    }\n    std::vector<edge> edges() {\n        int\
+    \ m = (int)(pos.size());\n        std::vector<edge> res(m);\n        for (int\
+    \ i = 0; i < m; i++) res[i] = get_edge(i);\n        return res;\n    }\n    T\
+    \ flow(int s, int t) { return flow(s, t, infinity<T>::max); }\n    T flow(int\
+    \ s, int t, T flow_limit) {\n        assert(0 <= s && s < n);\n        assert(0\
+    \ <= t && t < n);\n        assert(s != t);\n        T res = T{0};\n        while\
+    \ (res < flow_limit) {\n            std::vector<int> dist(n, -1);\n          \
+    \  {\n                std::queue<int> que;\n                que.push(s);\n   \
+    \             dist[s] = 0;\n                while (!que.empty()) {\n         \
+    \           int v = que.front();\n                    que.pop();\n           \
+    \         each_const (e : g[v]) {\n                        if (e.cap > T{0} &&\
+    \ dist[e.to] == -1) {\n                            dist[e.to] = dist[v] + 1;\n\
+    \                            que.push(e.to);\n                        }\n    \
+    \                }\n                }\n            }\n            std::vector<int>\
+    \ idx(n, 0);\n            T f = rec_lambda([&](auto&& self, int v, T f) -> T {\n\
+    \                if (v == t) return f;\n                T res = 0;\n         \
+    \       for (int& i = idx[v]; i < (int)(g[v].size()); i++) {\n               \
+    \     auto& e = g[v][i];\n                    if (e.cap > T{0} && dist[v] + 1\
+    \ == dist[e.to]) {\n                        T d = self(e.to, std::min(f - res,\
+    \ e.cap));\n                        if (d == T{0}) continue;\n               \
+    \         e.cap -= d;\n                        g[e.to][e.rev].cap += d;\n    \
+    \                    res += d;\n                        if (res == f) return res;\n\
+    \                    }\n                }\n                return res;\n     \
+    \       })(s, flow_limit - res);\n            if (f == T{0}) break;\n        \
+    \    res += f;\n        }\n        return res;\n    }\n    std::vector<bool> min_cut(int\
+    \ s) const {\n        assert(0 <= s && s < n);\n        std::vector<bool> visited(n);\n\
+    \        std::queue<int> que;\n        que.push(s);\n        visited[s] = true;\n\
+    \        while (!que.empty()) {\n            int v = que.front();\n          \
+    \  que.pop();\n            each_const (e : g[v]) {\n                if (e.cap\
+    \ > T{0} && !visited[e.to]) {\n                    visited[e.to] = true;\n   \
+    \                 que.push(e.to);\n                }\n            }\n        }\n\
+    \        return visited;\n    }\n};\n\n/**\n * @brief MaxFlow(\u6700\u5927\u6D41\
+    )\n * @docs docs/graph/flow/MaxFlow.md\n */\n#line 5 \"graph/flow/ProjectSelectionProblem.hpp\"\
+    \n\ntemplate<class T> class ProjectSelectionProblem {\nprivate:\n    int n, naux;\n\
+    \    int source, sink;\n\npublic:\n    using Cost0 = T;\n    using Cost1 = std::array<Cost0,\
+    \ 2>;\n    using Cost2 = std::array<Cost1, 2>;\n    using Cost3 = std::array<Cost2,\
+    \ 2>;\n\nprivate:\n    Cost0 c0;\n    std::vector<Cost1> c1;\n    std::vector<std::tuple<int,\
+    \ int, Cost0>> edges;\n\n    static constexpr Cost0 neg(Cost0 c) { return -c;\
+    \ }\n    template<class U>\n    static constexpr std::array<U, 2> neg(const std::array<U,\
+    \ 2>& c) {\n        return {{neg(c[0]), neg(c[1])}};\n    }\n\npublic:\n    ProjectSelectionProblem()\
+    \ : ProjectSelectionProblem(0) {}\n    ProjectSelectionProblem(int n)\n      \
+    \  : n(n), naux(0), source(-1), sink(-2), c0(0), c1(n, {0, 0}) {}\n\n    void\
+    \ add_cost(Cost0 c) { c0 += c; }\n    void add_profit(Cost0 c) { c0 -= c; }\n\
+    \    void add_cost_0(int i, Cost0 c) { add_cost(i, Cost1{{c, 0}}); }\n    void\
+    \ add_cost_1(int i, Cost0 c) { add_cost(i, Cost1{{0, c}}); }\n    void add_profit_0(int\
+    \ i, Cost0 c) { add_cost(i, Cost1{{-c, 0}}); }\n    void add_profit_1(int i, Cost0\
+    \ c) { add_cost(i, Cost1{{0, -c}}); }\n    void add_cost(int i, Cost1 c) {\n \
+    \       assert(0 <= i && i < n);\n        c1[i][0] += c[0];\n        c1[i][1]\
+    \ += c[1];\n    }\n    void add_profit(int i, Cost1 c) { add_cost(i, neg(c));\
+    \ }\n\n    void add_cost_01(int i, int j, Cost0 c) {\n        assert(0 <= i &&\
+    \ i < n);\n        assert(0 <= j && j < n);\n        assert(i != j);\n       \
+    \ assert(c >= 0);\n        edges.emplace_back(i, j, c);\n    }\n    // c must\
+    \ be submodular (c[0][0] + c[1][1] <= c[0][1] + c[1][0])\n    void add_cost(int\
+    \ i, int j, Cost2 c) {\n        assert(0 <= i && i < n);\n        assert(0 <=\
+    \ j && j < n);\n        assert(i != j);\n        assert(c[0][0] + c[1][1] <= c[0][1]\
+    \ + c[1][0]);\n        add_cost(c[0][0]);\n        add_cost_1(i, c[1][0] - c[0][0]);\n\
+    \        add_cost_1(j, c[1][1] - c[1][0]);\n        add_cost_01(i, j, c[0][1]\
+    \ + c[1][0] - c[0][0] - c[1][1]);\n    }\n    void add_profit(int i, int j, Cost2\
+    \ c) { add_cost(i, j, neg(c)); }\n\n    void add_cost_10(int i, int j, Cost0 c)\
+    \ { add_cost_01(j, i, c); }\n    void add_cost_neq(int i, int j, Cost0 c) {\n\
+    \        add_cost(i, j, Cost2{{{0, c}, {c, 0}}});\n    }\n    void add_profit_00(int\
+    \ i, int j, Cost0 c) {\n        add_cost(i, j, Cost2{{{-c, 0}, {0, 0}}});\n  \
+    \  }\n    void add_profit_11(int i, int j, Cost0 c) {\n        add_cost(i, j,\
+    \ Cost2{{{0, 0}, {0, -c}}});\n    }\n    void add_profit_eq(int i, int j, Cost0\
+    \ c) {\n        add_cost(i, j, Cost2{{{-c, 0}, {0, -c}}});\n    }\n\n    template<class\
+    \ Cont> void add_profit_all_1(const Cont& cont, Cost0 c) {\n        assert(c >=\
+    \ 0);\n        if (cont.empty()) return add_profit(c);\n        if (cont.size()\
+    \ == 1) return add_profit_1(cont[0], c);\n        if (cont.size() == 2) return\
+    \ add_profit_11(cont[0], cont[1], c);\n        int aux = n + naux++;\n       \
+    \ add_profit(c);\n        edges.emplace_back(aux, sink, c);\n        for (int\
+    \ i : cont) edges.emplace_back(i, aux, c + 1);\n    }\n    template<class Cont>\
+    \ void add_profit_all_0(const Cont& cont, Cost0 c) {\n        assert(c >= 0);\n\
+    \        if (cont.empty()) return add_profit(c);\n        if (cont.size() == 1)\
+    \ return add_profit_0(cont[0], c);\n        if (cont.size() == 2) return add_profit_00(cont[0],\
+    \ cont[1], c);\n        int aux = n + naux++;\n        add_profit(c);\n      \
+    \  edges.emplace_back(source, aux, c);\n        for (int i : cont) edges.emplace_back(aux,\
+    \ i, c + 1);\n    }\n\n    // c must be submodular (c[S&T] + c[S|T] <= c[S] +\
+    \ c[T])\n    void add_cost(int i, int j, int k, Cost3 c) {\n        assert(0 <=\
+    \ i && i < n);\n        assert(0 <= j && j < n);\n        assert(0 <= k && k <\
+    \ n);\n        assert(i != j && j != k && k != i);\n        const Cost0 A = c[0][0][0],\
+    \ B = c[0][0][1], C = c[0][1][0],\n                    D = c[0][1][1], E = c[1][0][0],\
+    \ F = c[1][0][1],\n                    G = c[1][1][0], H = c[1][1][1];\n     \
+    \   const Cost0 P = (A + D + F + G) - (B + C + E + H);\n        if (P >= 0) {\n\
+    \            const Cost0 P1 = F - B, P2 = G - E, P3 = D - C,\n               \
+    \         P12 = (C + E) - (A + G), P23 = (B + C) - (A + D),\n                \
+    \        P31 = (B + E) - (A + F);\n            add_cost(A);\n            add_cost_1(i,\
+    \ P1);\n            add_cost_1(j, P2);\n            add_cost_1(k, P3);\n     \
+    \       add_cost_01(i, j, P12);\n            add_cost_01(j, k, P23);\n       \
+    \     add_cost_01(k, i, P31);\n            add_profit_all_1(std::array<int, 3>{i,\
+    \ j, k}, P);\n        }\n        else {\n            const Cost0 P1 = C - G, P2\
+    \ = B - D, P3 = E - F,\n                        P21 = (D + F) - (B + H), P32 =\
+    \ (F + G) - (E + H),\n                        P13 = (D + G) - (C + H);\n     \
+    \       add_cost(H);\n            add_cost_0(i, P1);\n            add_cost_0(j,\
+    \ P2);\n            add_cost_0(k, P3);\n            add_cost_01(j, i, P21);\n\
+    \            add_cost_01(k, j, P32);\n            add_cost_01(i, k, P13);\n  \
+    \          add_profit_all_0(std::array<int, 3>{i, j, k}, -P);\n        }\n   \
+    \ }\n\n    std::pair<Cost0, std::vector<bool>> min_cost() {\n        MaxFlow<Cost0>\
+    \ g(n + naux + 2);\n        int s = n + naux, t = n + naux + 1;\n        for (int\
+    \ i = 0; i < n; i++) {\n            if (c1[i][0] == c1[i][1]) {\n            \
+    \    add_cost(c1[i][0]);\n            }\n            else if (c1[i][0] < c1[i][1])\
+    \ {\n                add_cost(c1[i][0]);\n                edges.emplace_back(s,\
+    \ i, c1[i][1] - c1[i][0]);\n            }\n            else {\n              \
+    \  add_cost(c1[i][1]);\n                edges.emplace_back(i, t, c1[i][0] - c1[i][1]);\n\
+    \            }\n            c1[i][0] = c1[i][1] = 0;\n        }\n        for (const\
+    \ auto& [i, j, c] : edges) {\n            int u = i == source ? s : i == sink\
+    \ ? t : i;\n            int v = j == source ? s : j == sink ? t : j;\n       \
+    \     g.add_edge(u, v, c);\n        }\n        auto f = g.flow(s, t) + c0;\n \
+    \       auto x = g.min_cut(s);\n        x.resize(n);\n        for (int i = 0;\
+    \ i < n; ++i) x[i] = !x[i];\n        return {f, x};\n    }\n    std::pair<Cost0,\
+    \ std::vector<bool>> max_profit() {\n        auto res = min_cost();\n        res.first\
+    \ = -res.first;\n        return res;\n    }\n};\n\n/**\n * @brief ProjectSelectionProblem(\u71C3\
+    \u3084\u3059\u57CB\u3081\u308B)\n * @docs docs/graph/flow/ProjectSelectionProblem.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"MaxFlow.hpp\"\
+    \n\ntemplate<class T> class ProjectSelectionProblem {\nprivate:\n    int n, naux;\n\
+    \    int source, sink;\n\npublic:\n    using Cost0 = T;\n    using Cost1 = std::array<Cost0,\
+    \ 2>;\n    using Cost2 = std::array<Cost1, 2>;\n    using Cost3 = std::array<Cost2,\
+    \ 2>;\n\nprivate:\n    Cost0 c0;\n    std::vector<Cost1> c1;\n    std::vector<std::tuple<int,\
+    \ int, Cost0>> edges;\n\n    static constexpr Cost0 neg(Cost0 c) { return -c;\
+    \ }\n    template<class U>\n    static constexpr std::array<U, 2> neg(const std::array<U,\
+    \ 2>& c) {\n        return {{neg(c[0]), neg(c[1])}};\n    }\n\npublic:\n    ProjectSelectionProblem()\
+    \ : ProjectSelectionProblem(0) {}\n    ProjectSelectionProblem(int n)\n      \
+    \  : n(n), naux(0), source(-1), sink(-2), c0(0), c1(n, {0, 0}) {}\n\n    void\
+    \ add_cost(Cost0 c) { c0 += c; }\n    void add_profit(Cost0 c) { c0 -= c; }\n\
+    \    void add_cost_0(int i, Cost0 c) { add_cost(i, Cost1{{c, 0}}); }\n    void\
+    \ add_cost_1(int i, Cost0 c) { add_cost(i, Cost1{{0, c}}); }\n    void add_profit_0(int\
+    \ i, Cost0 c) { add_cost(i, Cost1{{-c, 0}}); }\n    void add_profit_1(int i, Cost0\
+    \ c) { add_cost(i, Cost1{{0, -c}}); }\n    void add_cost(int i, Cost1 c) {\n \
+    \       assert(0 <= i && i < n);\n        c1[i][0] += c[0];\n        c1[i][1]\
+    \ += c[1];\n    }\n    void add_profit(int i, Cost1 c) { add_cost(i, neg(c));\
+    \ }\n\n    void add_cost_01(int i, int j, Cost0 c) {\n        assert(0 <= i &&\
+    \ i < n);\n        assert(0 <= j && j < n);\n        assert(i != j);\n       \
+    \ assert(c >= 0);\n        edges.emplace_back(i, j, c);\n    }\n    // c must\
+    \ be submodular (c[0][0] + c[1][1] <= c[0][1] + c[1][0])\n    void add_cost(int\
+    \ i, int j, Cost2 c) {\n        assert(0 <= i && i < n);\n        assert(0 <=\
+    \ j && j < n);\n        assert(i != j);\n        assert(c[0][0] + c[1][1] <= c[0][1]\
+    \ + c[1][0]);\n        add_cost(c[0][0]);\n        add_cost_1(i, c[1][0] - c[0][0]);\n\
+    \        add_cost_1(j, c[1][1] - c[1][0]);\n        add_cost_01(i, j, c[0][1]\
+    \ + c[1][0] - c[0][0] - c[1][1]);\n    }\n    void add_profit(int i, int j, Cost2\
+    \ c) { add_cost(i, j, neg(c)); }\n\n    void add_cost_10(int i, int j, Cost0 c)\
+    \ { add_cost_01(j, i, c); }\n    void add_cost_neq(int i, int j, Cost0 c) {\n\
+    \        add_cost(i, j, Cost2{{{0, c}, {c, 0}}});\n    }\n    void add_profit_00(int\
+    \ i, int j, Cost0 c) {\n        add_cost(i, j, Cost2{{{-c, 0}, {0, 0}}});\n  \
+    \  }\n    void add_profit_11(int i, int j, Cost0 c) {\n        add_cost(i, j,\
+    \ Cost2{{{0, 0}, {0, -c}}});\n    }\n    void add_profit_eq(int i, int j, Cost0\
+    \ c) {\n        add_cost(i, j, Cost2{{{-c, 0}, {0, -c}}});\n    }\n\n    template<class\
+    \ Cont> void add_profit_all_1(const Cont& cont, Cost0 c) {\n        assert(c >=\
+    \ 0);\n        if (cont.empty()) return add_profit(c);\n        if (cont.size()\
+    \ == 1) return add_profit_1(cont[0], c);\n        if (cont.size() == 2) return\
+    \ add_profit_11(cont[0], cont[1], c);\n        int aux = n + naux++;\n       \
+    \ add_profit(c);\n        edges.emplace_back(aux, sink, c);\n        for (int\
+    \ i : cont) edges.emplace_back(i, aux, c + 1);\n    }\n    template<class Cont>\
+    \ void add_profit_all_0(const Cont& cont, Cost0 c) {\n        assert(c >= 0);\n\
+    \        if (cont.empty()) return add_profit(c);\n        if (cont.size() == 1)\
+    \ return add_profit_0(cont[0], c);\n        if (cont.size() == 2) return add_profit_00(cont[0],\
+    \ cont[1], c);\n        int aux = n + naux++;\n        add_profit(c);\n      \
+    \  edges.emplace_back(source, aux, c);\n        for (int i : cont) edges.emplace_back(aux,\
+    \ i, c + 1);\n    }\n\n    // c must be submodular (c[S&T] + c[S|T] <= c[S] +\
+    \ c[T])\n    void add_cost(int i, int j, int k, Cost3 c) {\n        assert(0 <=\
+    \ i && i < n);\n        assert(0 <= j && j < n);\n        assert(0 <= k && k <\
+    \ n);\n        assert(i != j && j != k && k != i);\n        const Cost0 A = c[0][0][0],\
+    \ B = c[0][0][1], C = c[0][1][0],\n                    D = c[0][1][1], E = c[1][0][0],\
+    \ F = c[1][0][1],\n                    G = c[1][1][0], H = c[1][1][1];\n     \
+    \   const Cost0 P = (A + D + F + G) - (B + C + E + H);\n        if (P >= 0) {\n\
+    \            const Cost0 P1 = F - B, P2 = G - E, P3 = D - C,\n               \
+    \         P12 = (C + E) - (A + G), P23 = (B + C) - (A + D),\n                \
+    \        P31 = (B + E) - (A + F);\n            add_cost(A);\n            add_cost_1(i,\
+    \ P1);\n            add_cost_1(j, P2);\n            add_cost_1(k, P3);\n     \
+    \       add_cost_01(i, j, P12);\n            add_cost_01(j, k, P23);\n       \
+    \     add_cost_01(k, i, P31);\n            add_profit_all_1(std::array<int, 3>{i,\
+    \ j, k}, P);\n        }\n        else {\n            const Cost0 P1 = C - G, P2\
+    \ = B - D, P3 = E - F,\n                        P21 = (D + F) - (B + H), P32 =\
+    \ (F + G) - (E + H),\n                        P13 = (D + G) - (C + H);\n     \
+    \       add_cost(H);\n            add_cost_0(i, P1);\n            add_cost_0(j,\
+    \ P2);\n            add_cost_0(k, P3);\n            add_cost_01(j, i, P21);\n\
+    \            add_cost_01(k, j, P32);\n            add_cost_01(i, k, P13);\n  \
+    \          add_profit_all_0(std::array<int, 3>{i, j, k}, -P);\n        }\n   \
+    \ }\n\n    std::pair<Cost0, std::vector<bool>> min_cost() {\n        MaxFlow<Cost0>\
+    \ g(n + naux + 2);\n        int s = n + naux, t = n + naux + 1;\n        for (int\
+    \ i = 0; i < n; i++) {\n            if (c1[i][0] == c1[i][1]) {\n            \
+    \    add_cost(c1[i][0]);\n            }\n            else if (c1[i][0] < c1[i][1])\
+    \ {\n                add_cost(c1[i][0]);\n                edges.emplace_back(s,\
+    \ i, c1[i][1] - c1[i][0]);\n            }\n            else {\n              \
+    \  add_cost(c1[i][1]);\n                edges.emplace_back(i, t, c1[i][0] - c1[i][1]);\n\
+    \            }\n            c1[i][0] = c1[i][1] = 0;\n        }\n        for (const\
+    \ auto& [i, j, c] : edges) {\n            int u = i == source ? s : i == sink\
+    \ ? t : i;\n            int v = j == source ? s : j == sink ? t : j;\n       \
+    \     g.add_edge(u, v, c);\n        }\n        auto f = g.flow(s, t) + c0;\n \
+    \       auto x = g.min_cut(s);\n        x.resize(n);\n        for (int i = 0;\
+    \ i < n; ++i) x[i] = !x[i];\n        return {f, x};\n    }\n    std::pair<Cost0,\
+    \ std::vector<bool>> max_profit() {\n        auto res = min_cost();\n        res.first\
+    \ = -res.first;\n        return res;\n    }\n};\n\n/**\n * @brief ProjectSelectionProblem(\u71C3\
+    \u3084\u3059\u57CB\u3081\u308B)\n * @docs docs/graph/flow/ProjectSelectionProblem.md\n\
+    \ */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -570,18 +680,27 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - graph/Graph.hpp
   - graph/flow/MaxFlow.hpp
-  isVerificationFile: true
-  path: test/yosupo/graph/bipartitematching.test.cpp
-  requiredBy: []
+  isVerificationFile: false
+  path: graph/flow/ProjectSelectionProblem.hpp
+  requiredBy:
+  - graph/flow/KProjectSelectionProblem.hpp
   timestamp: '2024-04-17 14:01:42+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/yosupo/graph/bipartitematching.test.cpp
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yuki/119-KPSP.test.cpp
+  - test/yuki/2713-PSP.test.cpp
+documentation_of: graph/flow/ProjectSelectionProblem.hpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/graph/bipartitematching.test.cpp
-- /verify/test/yosupo/graph/bipartitematching.test.cpp.html
-title: test/yosupo/graph/bipartitematching.test.cpp
+- /library/graph/flow/ProjectSelectionProblem.hpp
+- /library/graph/flow/ProjectSelectionProblem.hpp.html
+title: "ProjectSelectionProblem(\u71C3\u3084\u3059\u57CB\u3081\u308B)"
 ---
+## 概要
+
+燃やす埋める。 $n$ 個の $01$ 変数 $x_0, x_1, \ldots, x_{n-1}$ に対し、 $x_i$ が $0$ かつ $x_j$ が $1$ のときコスト $k$ 、のような条件を最小カットに落とす。
+
+- `ProjectSelectionProblem(int n)` : $n$ 変数で初期化する。
+
+色々な条件を扱えるので下のコードを参照。
