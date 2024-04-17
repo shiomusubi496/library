@@ -89,6 +89,24 @@ public:
         }
         return res;
     }
+    std::vector<bool> min_cut(int s) const {
+        assert(0 <= s && s < n);
+        std::vector<bool> visited(n);
+        std::queue<int> que;
+        que.push(s);
+        visited[s] = true;
+        while (!que.empty()) {
+            int v = que.front();
+            que.pop();
+            each_const (e : g[v]) {
+                if (e.cap > T{0} && !visited[e.to]) {
+                    visited[e.to] = true;
+                    que.push(e.to);
+                }
+            }
+        }
+        return visited;
+    }
 };
 
 /**

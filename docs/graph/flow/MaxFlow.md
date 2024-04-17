@@ -17,3 +17,4 @@ struct edge {
 - `vector<edge> edges()` : 辺を全て返す。順番は追加された順と同じ。 $O(m)$ 。
 - `T flow(int s, int t)` : 頂点 `s` から頂点 `t` へフローを流す。 $O(n^2m)$ だが、実用上かなり速く動く。特に容量が全て $1$ の場合、 $O(\min(n^\frac{2}{3}, m^\frac{1}{2}) m)$ となることが知られている。
 - `T flow(int s, int t, T flow_limit)` : 流量制限付きでフローを流す。計算量は同様。
+- `vector<bool> min_cut(int s)` : 頂点 `s` から残余グラフ上で到達可能かを返す。フローを流した後だと min cut に対応する。 $O(n+m)$ 。
