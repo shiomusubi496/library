@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -519,16 +519,14 @@ data:
     \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
     \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
     \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> T Kruskal(int N,\
-    \ Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    T res = 0;\n\
-    \    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res\
-    \ += e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int\
-    \ N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T>\
-    \ res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >=\
-    \ 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\
-    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n#line\
-    \ 6 \"graph/mst/ManhattanMST.hpp\"\n\ntemplate<class T> class ManhattanMST {\n\
-    private:\n    std::vector<std::pair<T, T>> ps;\n    Edges<T> edges;\n\npublic:\n\
+    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> std::pair<T, Edges<T>>\
+    \ Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
+    \    T res = 0;\n    Edges<T> es;\n    each_const (e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).second >= 0) {\n            res += e.cost;\n            es.push_back(e);\n\
+    \        }\n    }\n    return {res, es};\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\
+    \u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n#line 6 \"\
+    graph/mst/ManhattanMST.hpp\"\n\ntemplate<class T> class ManhattanMST {\nprivate:\n\
+    \    std::vector<std::pair<T, T>> ps;\n    T res;\n    Edges<T> es;\n\npublic:\n\
     \    ManhattanMST(const std::vector<std::pair<T, T>>& ps_) : ps(ps_) {\n     \
     \   int n = ps.size();\n        std::vector<T> xs(n), ys(n);\n        rep (i,\
     \ n) {\n            xs[i] = ps[i].first;\n            ys[i] = ps[i].second;\n\
@@ -539,38 +537,36 @@ data:
     \ (int i : ord) {\n                    for (auto it = mp.lower_bound(-ys[i]);\
     \ it != mp.end();\n                         it = mp.erase(it)) {\n           \
     \             int j = it->second;\n                        if (xs[i] - ys[i] <\
-    \ xs[j] - ys[j]) break;\n                        edges.emplace_back(i, j,\n  \
-    \                                         std::abs(xs[i] - xs[j]) +\n        \
-    \                                       std::abs(ys[i] - ys[j]));\n          \
-    \          }\n                    mp[-ys[i]] = i;\n                }\n       \
-    \         swap(xs, ys);\n            }\n            rep (i, n) xs[i] = -xs[i];\n\
-    \        }\n        edges = Kruskal_vec(n, edges);\n    }\n    T get() const {\n\
-    \        T res = 0;\n        each_const (e : edges) res += e.cost;\n        return\
-    \ res;\n    }\n    const Edges<T>& get_edges() const& { return edges; }\n    Edges<T>\
-    \ get_edges() && { return std::move(edges); }\n};\n\n/**\n * @brief Manhattan\
-    \ Minimum Spanning Tree\n * @docs docs/graph/mst/ManhattanMST.md\n */\n"
+    \ xs[j] - ys[j]) break;\n                        es.emplace_back(i, j,\n     \
+    \                                   std::abs(xs[i] - xs[j]) +\n              \
+    \                              std::abs(ys[i] - ys[j]));\n                   \
+    \ }\n                    mp[-ys[i]] = i;\n                }\n                swap(xs,\
+    \ ys);\n            }\n            rep (i, n) xs[i] = -xs[i];\n        }\n   \
+    \     std::tie(res, es) = Kruskal(n, es);\n    }\n    T cost() const { return\
+    \ res; }\n    const Edges<T>& edges() const& { return es; }\n    Edges<T> edges()\
+    \ && { return std::move(es); }\n};\n\n/**\n * @brief Manhattan Minimum Spanning\
+    \ Tree\n * @docs docs/graph/mst/ManhattanMST.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../Graph.hpp\"\
     \n#include \"Kruskal.hpp\"\n\ntemplate<class T> class ManhattanMST {\nprivate:\n\
-    \    std::vector<std::pair<T, T>> ps;\n    Edges<T> edges;\n\npublic:\n    ManhattanMST(const\
-    \ std::vector<std::pair<T, T>>& ps_) : ps(ps_) {\n        int n = ps.size();\n\
-    \        std::vector<T> xs(n), ys(n);\n        rep (i, n) {\n            xs[i]\
-    \ = ps[i].first;\n            ys[i] = ps[i].second;\n        }\n        std::vector<int>\
-    \ ord(n);\n        std::iota(all(ord), 0);\n        rep (s, 2) {\n           \
-    \ rep (t, 2) {\n                std::sort(all(ord), [&](int i, int j) {\n    \
-    \                return xs[i] + ys[i] < xs[j] + ys[j];\n                });\n\
-    \                std::map<T, int> mp;\n                for (int i : ord) {\n \
-    \                   for (auto it = mp.lower_bound(-ys[i]); it != mp.end();\n \
-    \                        it = mp.erase(it)) {\n                        int j =\
-    \ it->second;\n                        if (xs[i] - ys[i] < xs[j] - ys[j]) break;\n\
-    \                        edges.emplace_back(i, j,\n                          \
-    \                 std::abs(xs[i] - xs[j]) +\n                                \
-    \               std::abs(ys[i] - ys[j]));\n                    }\n           \
-    \         mp[-ys[i]] = i;\n                }\n                swap(xs, ys);\n\
-    \            }\n            rep (i, n) xs[i] = -xs[i];\n        }\n        edges\
-    \ = Kruskal_vec(n, edges);\n    }\n    T get() const {\n        T res = 0;\n \
-    \       each_const (e : edges) res += e.cost;\n        return res;\n    }\n  \
-    \  const Edges<T>& get_edges() const& { return edges; }\n    Edges<T> get_edges()\
-    \ && { return std::move(edges); }\n};\n\n/**\n * @brief Manhattan Minimum Spanning\
+    \    std::vector<std::pair<T, T>> ps;\n    T res;\n    Edges<T> es;\n\npublic:\n\
+    \    ManhattanMST(const std::vector<std::pair<T, T>>& ps_) : ps(ps_) {\n     \
+    \   int n = ps.size();\n        std::vector<T> xs(n), ys(n);\n        rep (i,\
+    \ n) {\n            xs[i] = ps[i].first;\n            ys[i] = ps[i].second;\n\
+    \        }\n        std::vector<int> ord(n);\n        std::iota(all(ord), 0);\n\
+    \        rep (s, 2) {\n            rep (t, 2) {\n                std::sort(all(ord),\
+    \ [&](int i, int j) {\n                    return xs[i] + ys[i] < xs[j] + ys[j];\n\
+    \                });\n                std::map<T, int> mp;\n                for\
+    \ (int i : ord) {\n                    for (auto it = mp.lower_bound(-ys[i]);\
+    \ it != mp.end();\n                         it = mp.erase(it)) {\n           \
+    \             int j = it->second;\n                        if (xs[i] - ys[i] <\
+    \ xs[j] - ys[j]) break;\n                        es.emplace_back(i, j,\n     \
+    \                                   std::abs(xs[i] - xs[j]) +\n              \
+    \                              std::abs(ys[i] - ys[j]));\n                   \
+    \ }\n                    mp[-ys[i]] = i;\n                }\n                swap(xs,\
+    \ ys);\n            }\n            rep (i, n) xs[i] = -xs[i];\n        }\n   \
+    \     std::tie(res, es) = Kruskal(n, es);\n    }\n    T cost() const { return\
+    \ res; }\n    const Edges<T>& edges() const& { return es; }\n    Edges<T> edges()\
+    \ && { return std::move(es); }\n};\n\n/**\n * @brief Manhattan Minimum Spanning\
     \ Tree\n * @docs docs/graph/mst/ManhattanMST.md\n */\n"
   dependsOn:
   - other/template.hpp
@@ -588,7 +584,7 @@ data:
   isVerificationFile: false
   path: graph/mst/ManhattanMST.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:36:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/manhattanmst.test.cpp
@@ -603,6 +599,6 @@ title: Manhattan Minimum Spanning Tree
 
 二次元平面上の $N$ 点 $(x_1, y_1), \ldots, (x_N, y_N)$ について、頂点 $i$ と頂点 $j$ の距離がマンハッタン距離 ($|x_i - x_j| + |y_i - y_j|$) で与えられるときの最小全域木を求める。
 
-- `ManhattanMST(vector<pair<T, T>> ps)` : 計算する。 $O(N \log N)$ 。
-- `T get()` : 全域木の辺のコストの合計を返す。 $O(N)$ 。
-- `Edges<T> get_edges()` : 全域木の辺を返す。 $O(N)$ 。
+- `ManhattanMST(vector<pair<T, T>> ps)` : 計算する。 $\Theta(N \log N)$ 。
+- `T cost()` : 全域木の辺のコストの合計を返す。 $\Theta(1)$ 。
+- `Edges<T> edges()` : 全域木の辺を返す。 $\Theta(N)$ 。

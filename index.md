@@ -17,6 +17,14 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/cht/LiChaoTree.hpp
       title: LiChaoTree
+  - name: data-struct/heap
+    pages:
+    - icon: ':warning:'
+      path: data-struct/heap/LeftistHeap.hpp
+      title: LeftistHeap
+    - icon: ':x:'
+      path: data-struct/heap/SkewHeap.hpp
+      title: SkewHeap
   - name: data-struct/other
     pages:
     - icon: ':heavy_check_mark:'
@@ -131,7 +139,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/unionfind/PersistentUnionFind.hpp
       title: "PersistentUnionFind(\u5B8C\u5168\u6C38\u7D9AUF)"
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data-struct/unionfind/UnionFind.hpp
       title: UnionFind
     - icon: ':heavy_check_mark:'
@@ -199,7 +207,7 @@ data:
       title: geometry/template.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/Graph.hpp
       title: Graph-template
   - name: graph/connected
@@ -229,6 +237,9 @@ data:
     - icon: ':warning:'
       path: graph/mst/CountSpanningTree.hpp
       title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
+    - icon: ':x:'
+      path: graph/mst/DirectedMST.hpp
+      title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
     - icon: ':heavy_check_mark:'
       path: graph/mst/Kruskal.hpp
       title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -488,13 +499,13 @@ data:
       title: TaylorShift
   - name: other
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/monoid.hpp
       title: other/monoid.hpp
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -528,28 +539,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -1005,6 +1016,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/cycle_detection.test.cpp
       title: test/yosupo/graph/cycle_detection.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/graph/directedmst.test.cpp
+      title: test/yosupo/graph/directedmst.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/graph/enumerate_cliques.test.cpp
       title: test/yosupo/graph/enumerate_cliques.test.cpp

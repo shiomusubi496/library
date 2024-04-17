@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/mst/Prim.hpp
     title: "Prim(\u30D7\u30EA\u30E0\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -518,30 +518,24 @@ data:
     \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
     \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
     \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 6 \"graph/mst/Prim.hpp\"\n\ntemplate<class T> T Prim(const Graph<T>&\
-    \ G) {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n \
-    \   seen[0] = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
-    \    T res = 0;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
-    \        que.pop();\n        if (seen[cre.to]) continue;\n        res += cre.cost;\n\
-    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
-    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
-    \    return res;\n}\n\ntemplate<class T> Edges<T> Prim_vec(const Graph<T>& G)\
-    \ {\n    const int N = G.size();\n    std::vector<bool> seen(N, false);\n    seen[0]\
-    \ = true;\n    prique<edge<T>> que;\n    each_const (e : G[0]) que.emplace(e);\n\
-    \    Edges<T> res;\n    while (!que.empty()) {\n        const edge<T> cre = que.top();\n\
-    \        que.pop();\n        if (seen[cre.to]) continue;\n        res.emplace(cre);\n\
-    \        seen[cre.to] = true;\n        each_const (e : G[cre.to]) {\n        \
-    \    if (seen[e.to]) continue;\n            que.emplace(e);\n        }\n    }\n\
-    \    return res;\n}\n\n/**\n * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs\
-    \ docs/graph/mst/Prim.md\n */\n#line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\n\
-    using namespace std;\nint main() {\n    int V, E; scan >> V >> E;\n    Graph<int>\
-    \ G(V);\n    rep (E) {\n        int a, b, c; scan >> a >> b >> c;\n        G.add_edge(a,\
-    \ b, c);\n    }\n    print << Prim(G) << endl;\n}\n"
+    \ */\n#line 6 \"graph/mst/Prim.hpp\"\n\ntemplate<class T> std::pair<T, Edges<T>>\
+    \ Prim(const Graph<T>& G) {\n    const int N = G.size();\n    std::vector<bool>\
+    \ seen(N, false);\n    seen[0] = true;\n    prique<edge<T>> que;\n    each_const\
+    \ (e : G[0]) que.emplace(e);\n    T res = 0;\n    Edges<T> es;\n    while (!que.empty())\
+    \ {\n        const edge<T> cre = que.top();\n        que.pop();\n        if (seen[cre.to])\
+    \ continue;\n        res += cre.cost;\n        es.push_back(cre);\n        seen[cre.to]\
+    \ = true;\n        each_const (e : G[cre.to]) {\n            if (seen[e.to]) continue;\n\
+    \            que.emplace(e);\n        }\n    }\n    return {res, es};\n}\n\n/**\n\
+    \ * @brief Prim(\u30D7\u30EA\u30E0\u6CD5)\n * @docs docs/graph/mst/Prim.md\n */\n\
+    #line 5 \"test/aoj/GRL/GRL_2_A-Prim.test.cpp\"\nusing namespace std;\nint main()\
+    \ {\n    int V, E; scan >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n    \
+    \    int a, b, c; scan >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n\
+    \    print << Prim(G).first << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/mst/Prim.hpp\"\nusing namespace std;\nint main() {\n    int\
     \ V, E; scan >> V >> E;\n    Graph<int> G(V);\n    rep (E) {\n        int a, b,\
-    \ c; scan >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n    print << Prim(G)\
+    \ c; scan >> a >> b >> c;\n        G.add_edge(a, b, c);\n    }\n    print << Prim(G).first\
     \ << endl;\n}\n"
   dependsOn:
   - other/template.hpp
@@ -559,7 +553,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Prim.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:36:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Prim.test.cpp

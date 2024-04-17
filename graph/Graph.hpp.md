@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -50,6 +50,9 @@ data:
   - icon: ':warning:'
     path: graph/mst/CountSpanningTree.hpp
     title: "CountSpanningTree(\u884C\u5217\u6728\u5B9A\u7406)"
+  - icon: ':x:'
+    path: graph/mst/DirectedMST.hpp
+    title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
@@ -256,6 +259,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/cycle_detection.test.cpp
     title: test/yosupo/graph/cycle_detection.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/graph/directedmst.test.cpp
+    title: test/yosupo/graph/directedmst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/graph/enumerate_cliques.test.cpp
     title: test/yosupo/graph/enumerate_cliques.test.cpp
@@ -301,9 +307,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/tree/tree_path_composite_sum.test.cpp
     title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/graph/Graph.md
     document_title: Graph-template
@@ -817,97 +823,99 @@ data:
   isVerificationFile: false
   path: graph/Graph.hpp
   requiredBy:
-  - data-struct/segment/LCARMQ.hpp
-  - graph/connected/BiConnectedComponents.hpp
-  - graph/connected/ConnectedComponents.hpp
-  - graph/connected/TwoEdgeConnectedComponents.hpp
-  - graph/connected/StronglyConnectedComponents.hpp
-  - graph/other/GraphCycle.hpp
-  - graph/other/ChromaticNumber.hpp
-  - graph/other/MaximumIndependentSet.hpp
   - graph/other/EulerianTrail.hpp
-  - graph/other/TopologicalSort.hpp
   - graph/other/EnumerateTriangles.hpp
-  - graph/other/BipartiteGraph.hpp
-  - graph/other/EnumerateCliques.hpp
   - graph/other/TwoSatisfiability.hpp
+  - graph/other/MaximumIndependentSet.hpp
+  - graph/other/GraphCycle.hpp
   - graph/other/LowLink.hpp
-  - graph/mst/Kruskal.hpp
-  - graph/mst/ManhattanMST.hpp
+  - graph/other/EnumerateCliques.hpp
+  - graph/other/ChromaticNumber.hpp
+  - graph/other/TopologicalSort.hpp
+  - graph/other/BipartiteGraph.hpp
   - graph/mst/CountSpanningTree.hpp
+  - graph/mst/Kruskal.hpp
   - graph/mst/Prim.hpp
-  - graph/tree/EulerTourSubtree.hpp
-  - graph/tree/DoublingLowestCommonAncestor.hpp
-  - graph/tree/EulerTour.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/FrequencyTableofTreeDistance.hpp
-  - graph/tree/TreeCentroid.hpp
-  - graph/tree/CartesianTree.hpp
-  - graph/tree/TreeDiameter.hpp
-  - graph/tree/ReRooting.hpp
-  - graph/tree/HeavyLightDecomposition.hpp
-  - graph/shortest-path/BreadthFirstSearch.hpp
-  - graph/shortest-path/WarshallFloyd.hpp
-  - graph/shortest-path/Dijkstra.hpp
-  - graph/shortest-path/BellmanFord.hpp
+  - graph/mst/ManhattanMST.hpp
+  - graph/mst/DirectedMST.hpp
   - graph/shortest-path/Restore.hpp
   - graph/shortest-path/ZeroOneBFS.hpp
+  - graph/shortest-path/BreadthFirstSearch.hpp
+  - graph/shortest-path/Dijkstra.hpp
+  - graph/shortest-path/BellmanFord.hpp
+  - graph/shortest-path/WarshallFloyd.hpp
+  - graph/tree/TreeCentroid.hpp
+  - graph/tree/HeavyLightDecomposition.hpp
+  - graph/tree/FrequencyTableofTreeDistance.hpp
+  - graph/tree/PMORMQLCA.hpp
+  - graph/tree/TreeDiameter.hpp
+  - graph/tree/CartesianTree.hpp
+  - graph/tree/ReRooting.hpp
+  - graph/tree/EulerTour.hpp
+  - graph/tree/EulerTourSubtree.hpp
+  - graph/tree/DoublingLowestCommonAncestor.hpp
+  - graph/connected/TwoEdgeConnectedComponents.hpp
+  - graph/connected/ConnectedComponents.hpp
+  - graph/connected/BiConnectedComponents.hpp
+  - graph/connected/StronglyConnectedComponents.hpp
+  - data-struct/segment/LCARMQ.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/other/2945-01BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_12_A-Kruskal.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_11_C-BFS.test.cpp
   - test/aoj/ALDS1/ALDS1_11_D-Connected.test.cpp
   - test/aoj/ALDS1/ALDS1_11_A-Graph.test.cpp
-  - test/aoj/ALDS1/ALDS1_12_A-Prim.test.cpp
   - test/aoj/ALDS1/ALDS1_12_C-Dijkstra.test.cpp
-  - test/aoj/other/2945-01BFS.test.cpp
-  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
-  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
-  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
-  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/aoj/ALDS1/ALDS1_12_B-Dijkstra.test.cpp
   - test/aoj/GRL/GRL_2_A-Prim.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
-  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
-  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
-  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
-  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_4_A-Cycle.test.cpp
   - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/yosupo/math/two_sat.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
+  - test/aoj/GRL/GRL_3_A-LowLink.test.cpp
+  - test/aoj/GRL/GRL_5_C-LCA.test.cpp
+  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
+  - test/aoj/GRL/GRL_3_B-LowLink.test.cpp
+  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
+  - test/aoj/GRL/GRL_5_A-Diameter.test.cpp
+  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
+  - test/aoj/GRL/GRL_1_A-Dijkstra.test.cpp
+  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
+  - test/aoj/GRL/GRL_1_C-WarshallFloyd.test.cpp
+  - test/aoj/GRL/GRL_4_B-Toposo.test.cpp
+  - test/aoj/GRL/GRL_1_B-BellmanFord.test.cpp
+  - test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
+  - test/aoj/GRL/GRL_3_C-SCC.test.cpp
+  - test/atcoder/arc099_c-Bipartite.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
   - test/yosupo/data_structure/persistent_unionfind-Undo.test.cpp
+  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
+  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
+  - test/yosupo/tree/tree_path_composite_sum.test.cpp
+  - test/yosupo/tree/cartesian_tree.test.cpp
+  - test/yosupo/tree/jump_on_tree.test.cpp
   - test/yosupo/tree/tree_diameter.test.cpp
   - test/yosupo/tree/frequency_table_of_tree_distance.test.cpp
-  - test/yosupo/tree/cartesian_tree.test.cpp
-  - test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - test/yosupo/tree/jump_on_tree.test.cpp
   - test/yosupo/tree/lca-HLD.test.cpp
-  - test/yosupo/graph/enumerate_cliques.test.cpp
-  - test/yosupo/graph/manhattanmst.test.cpp
-  - test/yosupo/graph/shortest_path.test.cpp
+  - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/graph/bipartitematching.test.cpp
-  - test/yosupo/graph/two_edge_connected_components.test.cpp
-  - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/eulerian_trail_undirected.test.cpp
-  - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/shortest_path.test.cpp
+  - test/yosupo/graph/chromatic_number.test.cpp
+  - test/yosupo/graph/enumerate_cliques.test.cpp
+  - test/yosupo/graph/two_edge_connected_components.test.cpp
+  - test/yosupo/graph/manhattanmst.test.cpp
+  - test/yosupo/graph/directedmst.test.cpp
   - test/yosupo/graph/maximum_independent_set.test.cpp
   - test/yosupo/graph/cycle_detection.test.cpp
-  - test/yosupo/graph/chromatic_number.test.cpp
+  - test/yosupo/graph/eulerian_trail_directed.test.cpp
+  - test/yosupo/graph/enumerate_triangles.test.cpp
   - test/yosupo/graph/biconnected_components.test.cpp
-  - test/atcoder/arc099_c-Bipartite.test.cpp
 documentation_of: graph/Graph.hpp
 layout: document
 redirect_from:

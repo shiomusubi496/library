@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -518,22 +518,20 @@ data:
     \ v) { return v.empty(); }),\n            res.end());\n        return res;\n \
     \   }\n    bool is_root(int x) const {\n        assert(0 <= x && x < n);\n   \
     \     return par[x] < 0;\n    }\n};\n\n/**\n * @brief UnionFind\n * @docs docs/data-struct/unionfind/UnionFind.md\n\
-    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> T Kruskal(int N,\
-    \ Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    T res = 0;\n\
-    \    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >= 0) res\
-    \ += e.cost;\n    }\n    return res;\n}\n\ntemplate<class T> Edges<T> Kruskal_vec(int\
-    \ N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n    Edges<T>\
-    \ res;\n    each_const (e : Ed) {\n        if (UF.merge(e.from, e.to).second >=\
-    \ 0) res.push_back(e);\n    }\n    return res;\n}\n\n/**\n * @brief Kruskal(\u30AF\
-    \u30E9\u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n#line\
-    \ 5 \"test/aoj/GRL/GRL_2_A-Kruskal.test.cpp\"\nusing namespace std;\nint main()\
-    \ {\n    int V, E; scan >> V >> E;\n    Edges<int> Ed(E);\n    each_for (e : Ed)\
-    \ scan >> e.from >> e.to >> e.cost;\n    print << Kruskal(V, Ed) << endl;\n}\n"
+    \ */\n#line 6 \"graph/mst/Kruskal.hpp\"\n\ntemplate<class T> std::pair<T, Edges<T>>\
+    \ Kruskal(int N, Edges<T> Ed) {\n    std::sort(all(Ed));\n    UnionFind UF(N);\n\
+    \    T res = 0;\n    Edges<T> es;\n    each_const (e : Ed) {\n        if (UF.merge(e.from,\
+    \ e.to).second >= 0) {\n            res += e.cost;\n            es.push_back(e);\n\
+    \        }\n    }\n    return {res, es};\n}\n\n/**\n * @brief Kruskal(\u30AF\u30E9\
+    \u30B9\u30AB\u30EB\u6CD5)\n * @docs docs/graph/mst/Kruskal.md\n */\n#line 5 \"\
+    test/aoj/GRL/GRL_2_A-Kruskal.test.cpp\"\nusing namespace std;\nint main() {\n\
+    \    int V, E; scan >> V >> E;\n    Edges<int> Ed(E);\n    each_for (e : Ed) scan\
+    \ >> e.from >> e.to >> e.cost;\n    print << Kruskal(V, Ed).first << endl;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/problems/GRL_2_A\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/mst/Kruskal.hpp\"\nusing namespace std;\nint main() {\n   \
     \ int V, E; scan >> V >> E;\n    Edges<int> Ed(E);\n    each_for (e : Ed) scan\
-    \ >> e.from >> e.to >> e.cost;\n    print << Kruskal(V, Ed) << endl;\n}\n"
+    \ >> e.from >> e.to >> e.cost;\n    print << Kruskal(V, Ed).first << endl;\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -550,7 +548,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-17 13:36:50+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_2_A-Kruskal.test.cpp

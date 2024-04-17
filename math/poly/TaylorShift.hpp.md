@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -38,28 +38,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -1214,12 +1214,12 @@ data:
   - test/aoj/DPL/DPL_5_G.test.cpp
   - test/yosupo/polynomial/polynomial_taylor_shift.test.cpp
   - test/yosupo/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
-  - test/yosupo/math/bernoulli_number.test.cpp
-  - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
-  - test/yosupo/math/partition_function.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
+  - test/yosupo/math/bernoulli_number.test.cpp
+  - test/yosupo/math/partition_function.test.cpp
+  - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp
+  - test/yosupo/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
 documentation_of: math/poly/TaylorShift.hpp
 layout: document
 redirect_from:
