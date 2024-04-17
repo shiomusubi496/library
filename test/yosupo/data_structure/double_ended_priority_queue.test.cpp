@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/double_ended_priority_queue"
 #include "../../../other/template.hpp"
-#include "../../../data-struct/other/IntervalHeap.hpp"
+#include "../../../data-struct/heap/IntervalHeap.hpp"
 using namespace std;
 int main() {
     int N, Q; scan >> N >> Q;

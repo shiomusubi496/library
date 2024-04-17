@@ -102,5 +102,5 @@ public:
 
 /**
  * @brief IntervalHeap
- * @docs docs/data-struct/other/IntervalHeap.md
+ * @docs docs/data-struct/heap/IntervalHeap.md
  */
