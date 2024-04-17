@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/directedmst
@@ -704,15 +704,15 @@ data:
     \ */\n#line 5 \"test/yosupo/graph/directedmst.test.cpp\"\nusing namespace std;\n\
     int main() {\n    int N, M, S; scan >> N >> M >> S;\n    Edges<ll> E(M);\n   \
     \ rep (i, M) {\n        int a, b, c; scan >> a >> b >> c;\n        E[i] = {a,\
-    \ b, c, i};\n    }\n    DirectedMST mst(N, E, S);\n    assert(mst.has_mst());\n\
+    \ b, c, (int)i};\n    }\n    DirectedMST mst(N, E, S);\n    assert(mst.has_mst());\n\
     \    vector<int> par(N, S);\n    for (auto e : mst.edges()) par[e.to] = e.from;\n\
     \    prints(mst.cost());\n    prints(par);\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/directedmst\"\n#include\
     \ \"../../../other/template.hpp\"\n#include \"../../../graph/Graph.hpp\"\n#include\
     \ \"../../../graph/mst/DirectedMST.hpp\"\nusing namespace std;\nint main() {\n\
     \    int N, M, S; scan >> N >> M >> S;\n    Edges<ll> E(M);\n    rep (i, M) {\n\
-    \        int a, b, c; scan >> a >> b >> c;\n        E[i] = {a, b, c, i};\n   \
-    \ }\n    DirectedMST mst(N, E, S);\n    assert(mst.has_mst());\n    vector<int>\
+    \        int a, b, c; scan >> a >> b >> c;\n        E[i] = {a, b, c, (int)i};\n\
+    \    }\n    DirectedMST mst(N, E, S);\n    assert(mst.has_mst());\n    vector<int>\
     \ par(N, S);\n    for (auto e : mst.edges()) par[e.to] = e.from;\n    prints(mst.cost());\n\
     \    prints(par);\n}\n"
   dependsOn:
@@ -733,8 +733,8 @@ data:
   isVerificationFile: true
   path: test/yosupo/graph/directedmst.test.cpp
   requiredBy: []
-  timestamp: '2024-04-17 13:36:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-17 13:46:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/graph/directedmst.test.cpp
 layout: document
