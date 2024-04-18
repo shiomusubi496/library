@@ -1,56 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/AlienDP.hpp
     title: AlienDP
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: math/convolution/MinPlusConvolution.hpp
+    title: Min Plus Convolution
+  _extendedVerifiedWith:
+  - icon: ':x:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+    title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
+  - icon: ':x:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/dp/SMAWK.md
     document_title: SMAWK
@@ -469,44 +475,46 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int> smawk(int H,\
-    \ int W, F&& f) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row),\
+    };\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int> smawk_comp(int\
+    \ H, int W, F&& cmp) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row),\
     \ 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&& self, const\
     \ std::vector<int>& row,\n                          const std::vector<int>& col)\
     \ -> std::vector<int> {\n        const int n = row.size();\n        if (n == 0)\
     \ return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n     \
-    \   for (int i : col) {\n            while (!ncol.empty() && f(row[ncol.size()\
-    \ - 1], ncol.back()) >\n                                        f(row[ncol.size()\
-    \ - 1], i))\n                ncol.pop_back();\n            if ((int)ncol.size()\
+    \   for (int i : col) {\n            while (!ncol.empty() && cmp(row[ncol.size()\
+    \ - 1], i, ncol.back()))\n                ncol.pop_back();\n            if ((int)ncol.size()\
     \ < n) ncol.push_back(i);\n        }\n        std::vector<int> row_odd;\n    \
     \    row_odd.reserve(n / 2 + 1);\n        rep (i, 1, n, 2) row_odd.push_back(row[i]);\n\
     \        const std::vector<int> ans = self(row_odd, ncol);\n        std::vector<int>\
     \ res(n);\n        rep (i, row_odd.size()) res[i * 2 + 1] = ans[i];\n        int\
     \ j = 0;\n        rep (i, 0, n, 2) {\n            const int last = i == n - 1\
     \ ? ncol.back() : res[i + 1];\n            res[i] = ncol[j];\n            while\
-    \ (ncol[j] < last) {\n                ++j;\n                if (f(row[i], res[i])\
-    \ > f(row[i], ncol[j])) res[i] = ncol[j];\n            }\n        }\n        return\
-    \ res;\n    })(row, col);\n}\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n\
-    \ */\n"
+    \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
+    \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
+    \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
+    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ docs/dp/SMAWK.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class F> std::vector<int>\
-    \ smawk(int H, int W, F&& f) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row),\
-    \ 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&& self, const\
-    \ std::vector<int>& row,\n                          const std::vector<int>& col)\
-    \ -> std::vector<int> {\n        const int n = row.size();\n        if (n == 0)\
-    \ return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n     \
-    \   for (int i : col) {\n            while (!ncol.empty() && f(row[ncol.size()\
-    \ - 1], ncol.back()) >\n                                        f(row[ncol.size()\
-    \ - 1], i))\n                ncol.pop_back();\n            if ((int)ncol.size()\
+    \ smawk_comp(int H, int W, F&& cmp) {\n    std::vector<int> row(H), col(W);\n\
+    \    std::iota(all(row), 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&&\
+    \ self, const std::vector<int>& row,\n                          const std::vector<int>&\
+    \ col) -> std::vector<int> {\n        const int n = row.size();\n        if (n\
+    \ == 0) return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n\
+    \        for (int i : col) {\n            while (!ncol.empty() && cmp(row[ncol.size()\
+    \ - 1], i, ncol.back()))\n                ncol.pop_back();\n            if ((int)ncol.size()\
     \ < n) ncol.push_back(i);\n        }\n        std::vector<int> row_odd;\n    \
     \    row_odd.reserve(n / 2 + 1);\n        rep (i, 1, n, 2) row_odd.push_back(row[i]);\n\
     \        const std::vector<int> ans = self(row_odd, ncol);\n        std::vector<int>\
     \ res(n);\n        rep (i, row_odd.size()) res[i * 2 + 1] = ans[i];\n        int\
     \ j = 0;\n        rep (i, 0, n, 2) {\n            const int last = i == n - 1\
     \ ? ncol.back() : res[i + 1];\n            res[i] = ncol[j];\n            while\
-    \ (ncol[j] < last) {\n                ++j;\n                if (f(row[i], res[i])\
-    \ > f(row[i], ncol[j])) res[i] = ncol[j];\n            }\n        }\n        return\
-    \ res;\n    })(row, col);\n}\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n\
-    \ */\n"
+    \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
+    \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
+    \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
+    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ docs/dp/SMAWK.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -521,14 +529,16 @@ data:
   path: dp/SMAWK.hpp
   requiredBy:
   - dp/OnlineOfflineDP.hpp
-  - dp/DivideAndConquerOptimization.hpp
   - dp/AlienDP.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - dp/DivideAndConquerOptimization.hpp
+  - math/convolution/MinPlusConvolution.hpp
+  timestamp: '2024-04-18 10:49:50+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/other/2603-SMAWK.test.cpp
-  - test/atcoder/abc218_h-AlienDP.test.cpp
+  - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - test/yuki/705-Monge.test.cpp
+  - test/atcoder/abc218_h-AlienDP.test.cpp
+  - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/SMAWK.hpp
 layout: document
 redirect_from:

@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/dp/MonotoneMinima.md
     document_title: MonotoneMinima
@@ -457,22 +457,26 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"dp/MonotoneMinima.hpp\"\n\ntemplate<class F> std::vector<int> monotone_minima(int\
-    \ H, int W, F&& f) {\n    std::vector<int> res(H);\n    int x = 1;\n    while\
+    };\n#line 4 \"dp/MonotoneMinima.hpp\"\n\ntemplate<class F> std::vector<int> monotone_minima_cmp(int\
+    \ H, int W, F&& cmp) {\n    std::vector<int> res(H);\n    int x = 1;\n    while\
     \ (x <= H) x <<= 1;\n    while (x >>= 1) {\n        rep (i, x - 1, H, x << 1)\
     \ {\n            const int l = i - x < 0 ? 0 : res[i - x];\n            const\
     \ int r = i + x >= H ? W : res[i + x] + 1;\n            res[i] = l;\n        \
-    \    for (int j = l + 1; j < r; ++j) {\n                if (f(i, res[i]) > f(i,\
-    \ j)) res[i] = j;\n            }\n        }\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n"
+    \    for (int j = l + 1; j < r; ++j) {\n                if (cmp(i, j, res[i]))\
+    \ res[i] = j;\n            }\n        }\n    }\n    return res;\n}\n\ntemplate<class\
+    \ F> std::vector<int> monotone_minima(int H, int W, F&& f) {\n    return monotone_minima_cmp(\n\
+    \        H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n}\n\n\
+    /**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n\ntemplate<class F> std::vector<int>\
-    \ monotone_minima(int H, int W, F&& f) {\n    std::vector<int> res(H);\n    int\
-    \ x = 1;\n    while (x <= H) x <<= 1;\n    while (x >>= 1) {\n        rep (i,\
-    \ x - 1, H, x << 1) {\n            const int l = i - x < 0 ? 0 : res[i - x];\n\
+    \ monotone_minima_cmp(int H, int W, F&& cmp) {\n    std::vector<int> res(H);\n\
+    \    int x = 1;\n    while (x <= H) x <<= 1;\n    while (x >>= 1) {\n        rep\
+    \ (i, x - 1, H, x << 1) {\n            const int l = i - x < 0 ? 0 : res[i - x];\n\
     \            const int r = i + x >= H ? W : res[i + x] + 1;\n            res[i]\
-    \ = l;\n            for (int j = l + 1; j < r; ++j) {\n                if (f(i,\
-    \ res[i]) > f(i, j)) res[i] = j;\n            }\n        }\n    }\n    return\
-    \ res;\n}\n\n/**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n\
+    \ = l;\n            for (int j = l + 1; j < r; ++j) {\n                if (cmp(i,\
+    \ j, res[i])) res[i] = j;\n            }\n        }\n    }\n    return res;\n\
+    }\n\ntemplate<class F> std::vector<int> monotone_minima(int H, int W, F&& f) {\n\
+    \    return monotone_minima_cmp(\n        H, W, [&](int i, int j, int k) { return\
+    \ f(i, j) < f(i, k); });\n}\n\n/**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -488,8 +492,8 @@ data:
   path: dp/MonotoneMinima.hpp
   requiredBy:
   - dp/DivideAndConquerOptimization.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-18 10:49:50+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/MonotoneMinima.hpp

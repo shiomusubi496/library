@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -573,11 +573,11 @@ data:
     \        node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
     \ = copy(x->r);\n        return y;\n    }\n\n    node_ptr root;\n    int sz;\n\
     \npublic:\n    LeftistHeap() : root(nullptr), sz(0) {}\n    LeftistHeap(const\
-    \ LeftistHeap& other) : root(copy(other.root)), sz(other.sz) {}\n    LeftistHeap&\
-    \ operator=(const LeftistHeap& other) {\n        if (this != &other) {\n     \
-    \       clear();\n            root = copy(other.root);\n            sz = other.sz;\n\
-    \        }\n        return *this;\n    }\n    LeftistHeap(LeftistHeap&& other)\
-    \ noexcept : root(other.root), sz(other.sz) {\n        other.root = nullptr;\n\
+    \ LeftistHeap& other)\n        : root(copy(other.root)), sz(other.sz) {}\n   \
+    \ LeftistHeap& operator=(const LeftistHeap& other) {\n        if (this != &other)\
+    \ {\n            clear();\n            root = copy(other.root);\n            sz\
+    \ = other.sz;\n        }\n        return *this;\n    }\n    LeftistHeap(LeftistHeap&&\
+    \ other) noexcept : root(other.root), sz(other.sz) {\n        other.root = nullptr;\n\
     \        other.sz = 0;\n    }\n    LeftistHeap& operator=(LeftistHeap&& other)\
     \ noexcept {\n        if (this != &other) {\n            root = other.root;\n\
     \            sz = other.sz;\n            other.root = nullptr;\n            other.sz\
@@ -623,11 +623,11 @@ data:
     \        node_ptr y = new node{x->val};\n        y->l = copy(x->l);\n        y->r\
     \ = copy(x->r);\n        return y;\n    }\n\n    node_ptr root;\n    int sz;\n\
     \npublic:\n    LeftistHeap() : root(nullptr), sz(0) {}\n    LeftistHeap(const\
-    \ LeftistHeap& other) : root(copy(other.root)), sz(other.sz) {}\n    LeftistHeap&\
-    \ operator=(const LeftistHeap& other) {\n        if (this != &other) {\n     \
-    \       clear();\n            root = copy(other.root);\n            sz = other.sz;\n\
-    \        }\n        return *this;\n    }\n    LeftistHeap(LeftistHeap&& other)\
-    \ noexcept : root(other.root), sz(other.sz) {\n        other.root = nullptr;\n\
+    \ LeftistHeap& other)\n        : root(copy(other.root)), sz(other.sz) {}\n   \
+    \ LeftistHeap& operator=(const LeftistHeap& other) {\n        if (this != &other)\
+    \ {\n            clear();\n            root = copy(other.root);\n            sz\
+    \ = other.sz;\n        }\n        return *this;\n    }\n    LeftistHeap(LeftistHeap&&\
+    \ other) noexcept : root(other.root), sz(other.sz) {\n        other.root = nullptr;\n\
     \        other.sz = 0;\n    }\n    LeftistHeap& operator=(LeftistHeap&& other)\
     \ noexcept {\n        if (this != &other) {\n            root = other.root;\n\
     \            sz = other.sz;\n            other.root = nullptr;\n            other.sz\
@@ -658,7 +658,7 @@ data:
   isVerificationFile: false
   path: data-struct/heap/LeftistHeap.hpp
   requiredBy: []
-  timestamp: '2024-04-17 13:36:50+09:00'
+  timestamp: '2024-04-18 10:49:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/heap/LeftistHeap.hpp

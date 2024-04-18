@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/AlienDP.hpp
     title: AlienDP
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc218/tasks/abc218_h
@@ -467,36 +467,37 @@ data:
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"dp/AlienDP.hpp\"\n\n#line 2 \"dp/OnlineOfflineDP.hpp\"\n\n#line\
     \ 2 \"dp/SMAWK.hpp\"\n\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int>\
-    \ smawk(int H, int W, F&& f) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row),\
-    \ 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&& self, const\
-    \ std::vector<int>& row,\n                          const std::vector<int>& col)\
-    \ -> std::vector<int> {\n        const int n = row.size();\n        if (n == 0)\
-    \ return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n     \
-    \   for (int i : col) {\n            while (!ncol.empty() && f(row[ncol.size()\
-    \ - 1], ncol.back()) >\n                                        f(row[ncol.size()\
-    \ - 1], i))\n                ncol.pop_back();\n            if ((int)ncol.size()\
+    \ smawk_comp(int H, int W, F&& cmp) {\n    std::vector<int> row(H), col(W);\n\
+    \    std::iota(all(row), 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&&\
+    \ self, const std::vector<int>& row,\n                          const std::vector<int>&\
+    \ col) -> std::vector<int> {\n        const int n = row.size();\n        if (n\
+    \ == 0) return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n\
+    \        for (int i : col) {\n            while (!ncol.empty() && cmp(row[ncol.size()\
+    \ - 1], i, ncol.back()))\n                ncol.pop_back();\n            if ((int)ncol.size()\
     \ < n) ncol.push_back(i);\n        }\n        std::vector<int> row_odd;\n    \
     \    row_odd.reserve(n / 2 + 1);\n        rep (i, 1, n, 2) row_odd.push_back(row[i]);\n\
     \        const std::vector<int> ans = self(row_odd, ncol);\n        std::vector<int>\
     \ res(n);\n        rep (i, row_odd.size()) res[i * 2 + 1] = ans[i];\n        int\
     \ j = 0;\n        rep (i, 0, n, 2) {\n            const int last = i == n - 1\
     \ ? ncol.back() : res[i + 1];\n            res[i] = ncol[j];\n            while\
-    \ (ncol[j] < last) {\n                ++j;\n                if (f(row[i], res[i])\
-    \ > f(row[i], ncol[j])) res[i] = ncol[j];\n            }\n        }\n        return\
-    \ res;\n    })(row, col);\n}\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n\
-    \ */\n#line 5 \"dp/OnlineOfflineDP.hpp\"\n\ntemplate<class F>\nstd::vector<typename\
-    \ function_traits<F>::result_type> online_offline_dp(int n,\n                \
-    \                                                        F&& f) {\n    using T\
-    \ = typename function_traits<F>::result_type;\n    std::vector<T> dp(n, INF<T>);\n\
-    \    dp[0] = 0;\n    rec_lambda([&](auto& self, int l, int r) -> void {\n    \
-    \    if (l == r) return;\n        if (l + 1 == r) return;\n        int m = (l\
-    \ + r) / 2;\n        self(l, m);\n        auto g = [&](int i, int j) { return\
-    \ dp[j + l] + f(j + l, i + m); };\n        auto res = smawk(r - m, m - l, g);\n\
-    \        rep (i, m, r) chmin(dp[i], g(i - m, res[i - m]));\n        self(m, r);\n\
-    \    })(0, n);\n    return dp;\n}\n\n/**\n * @brief Online Offline DP\n * @docs\
-    \ docs/dp/OnlineOfflineDP.md\n */\n#line 2 \"dp/FibonacciSearch.hpp\"\n\n#line\
-    \ 4 \"dp/FibonacciSearch.hpp\"\n\ntemplate<class T> class FibonacciSearch {\n\
-    \    static std::vector<T> fib;\n    static void extend(T n) {\n        while\
+    \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
+    \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
+    \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
+    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ docs/dp/SMAWK.md\n */\n#line 5 \"dp/OnlineOfflineDP.hpp\"\n\ntemplate<class\
+    \ F>\nstd::vector<typename function_traits<F>::result_type> online_offline_dp(int\
+    \ n,\n                                                                       \
+    \ F&& f) {\n    using T = typename function_traits<F>::result_type;\n    std::vector<T>\
+    \ dp(n, INF<T>);\n    dp[0] = 0;\n    rec_lambda([&](auto& self, int l, int r)\
+    \ -> void {\n        if (l == r) return;\n        if (l + 1 == r) return;\n  \
+    \      int m = (l + r) / 2;\n        self(l, m);\n        auto g = [&](int i,\
+    \ int j) { return dp[j + l] + f(j + l, i + m); };\n        auto res = smawk(r\
+    \ - m, m - l, g);\n        rep (i, m, r) chmin(dp[i], g(i - m, res[i - m]));\n\
+    \        self(m, r);\n    })(0, n);\n    return dp;\n}\n\n/**\n * @brief Online\
+    \ Offline DP\n * @docs docs/dp/OnlineOfflineDP.md\n */\n#line 2 \"dp/FibonacciSearch.hpp\"\
+    \n\n#line 4 \"dp/FibonacciSearch.hpp\"\n\ntemplate<class T> class FibonacciSearch\
+    \ {\n    static std::vector<T> fib;\n    static void extend(T n) {\n        while\
     \ (fib.back() < n)\n            fib.push_back(fib[fib.size() - 1] + fib[fib.size()\
     \ - 2]);\n    }\n\npublic:\n    template<class F, class Comp>\n    static std::pair<T,\
     \ function_result_type<F>> minimize(T low, T high, F&& f,\n                  \
@@ -570,8 +571,8 @@ data:
   isVerificationFile: true
   path: test/atcoder/abc218_h-AlienDP.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 18:54:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-18 10:49:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/atcoder/abc218_h-AlienDP.test.cpp
 layout: document

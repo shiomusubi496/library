@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/problems/2603
@@ -463,40 +463,43 @@ data:
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"dp/DivideAndConquerOptimization.hpp\"\n\n#line 2 \"dp/MonotoneMinima.hpp\"\
-    \n\n#line 4 \"dp/MonotoneMinima.hpp\"\n\ntemplate<class F> std::vector<int> monotone_minima(int\
-    \ H, int W, F&& f) {\n    std::vector<int> res(H);\n    int x = 1;\n    while\
+    \n\n#line 4 \"dp/MonotoneMinima.hpp\"\n\ntemplate<class F> std::vector<int> monotone_minima_cmp(int\
+    \ H, int W, F&& cmp) {\n    std::vector<int> res(H);\n    int x = 1;\n    while\
     \ (x <= H) x <<= 1;\n    while (x >>= 1) {\n        rep (i, x - 1, H, x << 1)\
     \ {\n            const int l = i - x < 0 ? 0 : res[i - x];\n            const\
     \ int r = i + x >= H ? W : res[i + x] + 1;\n            res[i] = l;\n        \
-    \    for (int j = l + 1; j < r; ++j) {\n                if (f(i, res[i]) > f(i,\
-    \ j)) res[i] = j;\n            }\n        }\n    }\n    return res;\n}\n\n/**\n\
-    \ * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n#line 2 \"\
-    dp/SMAWK.hpp\"\n\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int>\
-    \ smawk(int H, int W, F&& f) {\n    std::vector<int> row(H), col(W);\n    std::iota(all(row),\
-    \ 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&& self, const\
-    \ std::vector<int>& row,\n                          const std::vector<int>& col)\
-    \ -> std::vector<int> {\n        const int n = row.size();\n        if (n == 0)\
-    \ return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n     \
-    \   for (int i : col) {\n            while (!ncol.empty() && f(row[ncol.size()\
-    \ - 1], ncol.back()) >\n                                        f(row[ncol.size()\
-    \ - 1], i))\n                ncol.pop_back();\n            if ((int)ncol.size()\
+    \    for (int j = l + 1; j < r; ++j) {\n                if (cmp(i, j, res[i]))\
+    \ res[i] = j;\n            }\n        }\n    }\n    return res;\n}\n\ntemplate<class\
+    \ F> std::vector<int> monotone_minima(int H, int W, F&& f) {\n    return monotone_minima_cmp(\n\
+    \        H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n}\n\n\
+    /**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n#line\
+    \ 2 \"dp/SMAWK.hpp\"\n\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int>\
+    \ smawk_comp(int H, int W, F&& cmp) {\n    std::vector<int> row(H), col(W);\n\
+    \    std::iota(all(row), 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&&\
+    \ self, const std::vector<int>& row,\n                          const std::vector<int>&\
+    \ col) -> std::vector<int> {\n        const int n = row.size();\n        if (n\
+    \ == 0) return {};\n        std::vector<int> ncol;\n        ncol.reserve(n);\n\
+    \        for (int i : col) {\n            while (!ncol.empty() && cmp(row[ncol.size()\
+    \ - 1], i, ncol.back()))\n                ncol.pop_back();\n            if ((int)ncol.size()\
     \ < n) ncol.push_back(i);\n        }\n        std::vector<int> row_odd;\n    \
     \    row_odd.reserve(n / 2 + 1);\n        rep (i, 1, n, 2) row_odd.push_back(row[i]);\n\
     \        const std::vector<int> ans = self(row_odd, ncol);\n        std::vector<int>\
     \ res(n);\n        rep (i, row_odd.size()) res[i * 2 + 1] = ans[i];\n        int\
     \ j = 0;\n        rep (i, 0, n, 2) {\n            const int last = i == n - 1\
     \ ? ncol.back() : res[i + 1];\n            res[i] = ncol[j];\n            while\
-    \ (ncol[j] < last) {\n                ++j;\n                if (f(row[i], res[i])\
-    \ > f(row[i], ncol[j])) res[i] = ncol[j];\n            }\n        }\n        return\
-    \ res;\n    })(row, col);\n}\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n\
-    \ */\n#line 6 \"dp/DivideAndConquerOptimization.hpp\"\n\ntemplate<class F>\nstd::vector<std::vector<typename\
-    \ function_traits<F>::result_type>>\ndivide_and_conquer_optimization(int m, int\
-    \ n, F&& f) {\n    using T = typename function_traits<F>::result_type;\n    std::vector<std::vector<T>>\
-    \ dp(m + 1, std::vector<T>(n, INF<T>));\n    dp[0][0] = 0;\n    rep (i, m) {\n\
-    \        auto g = [&](int x, int y) {\n            if (x < y) return INF<T>;\n\
-    \            return dp[i][y] + f(y, x);\n        };\n        std::vector<int>\
-    \ res = smawk(n, n, g);\n        rep (j, n) dp[i + 1][j] = g(j, res[j]);\n   \
-    \ }\n    return dp;\n}\n\ntemplate<class F>\nstd::vector<std::vector<typename\
+    \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
+    \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
+    \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
+    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ docs/dp/SMAWK.md\n */\n#line 6 \"dp/DivideAndConquerOptimization.hpp\"\n\ntemplate<class\
+    \ F>\nstd::vector<std::vector<typename function_traits<F>::result_type>>\ndivide_and_conquer_optimization(int\
+    \ m, int n, F&& f) {\n    using T = typename function_traits<F>::result_type;\n\
+    \    std::vector<std::vector<T>> dp(m + 1, std::vector<T>(n, INF<T>));\n    dp[0][0]\
+    \ = 0;\n    rep (i, m) {\n        auto g = [&](int x, int y) {\n            if\
+    \ (x < y) return INF<T>;\n            return dp[i][y] + f(y, x);\n        };\n\
+    \        std::vector<int> res = smawk(n, n, g);\n        rep (j, n) dp[i + 1][j]\
+    \ = g(j, res[j]);\n    }\n    return dp;\n}\n\ntemplate<class F>\nstd::vector<std::vector<typename\
     \ function_traits<F>::result_type>>\ndivide_and_conquer_optimization_monotone(int\
     \ m, int n, F&& f) {\n    using T = typename function_traits<F>::result_type;\n\
     \    std::vector<std::vector<T>> dp(m + 1, std::vector<T>(n, INF<T>));\n    dp[0][0]\
@@ -540,8 +543,8 @@ data:
   isVerificationFile: true
   path: test/aoj/other/2603-SMAWK.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-18 10:49:50+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/other/2603-SMAWK.test.cpp
 layout: document
