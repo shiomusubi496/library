@@ -66,6 +66,11 @@ public:
         lazy.resize(n);
         lazyflag.assign(n, false);
     }
+    void eval_all() {
+        rep (i, h) {
+            rep (j, 1 << i) eval((1 << i) + j, 1 << (h - i));
+        }
+    }
     T prod(int l, int r) {
         assert(0 <= l && l <= r && r <= ori);
         if (l == r) return M::id();
