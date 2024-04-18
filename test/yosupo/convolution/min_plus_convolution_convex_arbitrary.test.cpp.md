@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':heavy_check_mark:'
     path: math/convolution/MinPlusConvolution.hpp
     title: Min Plus Convolution
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -478,18 +478,19 @@ data:
     \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
     \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
     \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    return smawk_comp(H, W,\n                     [&](int i, int j,\
-    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ F&& f) {\n    return smawk_comp(H, W,\n                      [&](int i, int\
+    \ j, int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
     \ docs/dp/SMAWK.md\n */\n#line 5 \"math/convolution/MinPlusConvolution.hpp\"\n\
-    \ntemplate<class T>\nstd::vector<T> min_plus_convolution(const std::vector<T>\
-    \ &a, const std::vector<T> &b) {\n    int n = a.size(), m = b.size();\n    //\
-    \ b must be convex\n    rep (i, m - 2) assert(b[i + 1] - b[i] <= b[i + 2] - b[i\
-    \ + 1]);\n    auto idx = smawk_comp(n + m - 1, n, [&](int i, int j, int k) {\n\
-    \        if (i - j < 0 || i - j >= m || i - k < 0 || i - k >= m) {\n         \
-    \   return std::max(j - i - 1, i - j - m) < std::max(k - i - 1, i - k - m);\n\
-    \        }\n        return a[j] + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T>\
-    \ res(n + m - 1);\n    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n\
-    \    return res;\n}\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/convolution/MinPlusConvolution.md\n\
+    \ntemplate<class T>\nstd::vector<T> min_plus_convolution(const std::vector<T>&\
+    \ a,\n                                    const std::vector<T>& b) {\n    int\
+    \ n = a.size(), m = b.size();\n    // b must be convex\n    rep (i, m - 2) assert(b[i\
+    \ + 1] - b[i] <= b[i + 2] - b[i + 1]);\n    auto idx = smawk_comp(n + m - 1, n,\
+    \ [&](int i, int j, int k) {\n        if (i - j < 0 || i - j >= m || i - k < 0\
+    \ || i - k >= m) {\n            return std::max(j - i - 1, i - j - m) <\n    \
+    \               std::max(k - i - 1, i - k - m);\n        }\n        return a[j]\
+    \ + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T> res(n + m - 1);\n\
+    \    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n    return res;\n\
+    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/convolution/MinPlusConvolution.md\n\
     \ */\n#line 4 \"test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, m; scan >> n >> m;\n    vector<int>\
     \ a(n), b(m); scan >> a >> b;\n    prints(min_plus_convolution(b, a));\n}\n"
@@ -512,7 +513,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 11:00:10+09:00'
+  timestamp: '2024-04-18 14:58:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp

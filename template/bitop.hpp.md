@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
   _extendedRequiredBy:
@@ -105,6 +105,9 @@ data:
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RangeAssignSegmentTree.hpp
+    title: RangeAssignSegmentTree
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -152,22 +155,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/AlienDP.hpp
     title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':heavy_check_mark:'
@@ -482,7 +485,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -763,7 +766,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':heavy_check_mark:'
@@ -865,6 +868,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
     title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
@@ -1201,9 +1207,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/bitop.hpp\"\n\n#include <bits/stdc++.h>\n#line\
@@ -1389,6 +1395,7 @@ data:
   - data-struct/unionfind/PersistentUnionFind.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/unionfind/PartialPersistentUnionFind.hpp
+  - data-struct/segment/RangeAssignSegmentTree.hpp
   - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/NonMergeSegmentTree.hpp
   - data-struct/segment/CumulativeSum.hpp
@@ -1469,7 +1476,7 @@ data:
   - other/template.hpp
   - other/monoid2.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
@@ -1524,6 +1531,7 @@ data:
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/static_range_frequency.test.cpp
+  - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp

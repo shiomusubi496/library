@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
     title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
@@ -706,6 +709,7 @@ data:
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp

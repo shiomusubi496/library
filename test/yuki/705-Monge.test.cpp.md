@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: dp/SMAWK.hpp
     title: SMAWK
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -477,8 +477,8 @@ data:
     \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
     \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
     \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    return smawk_comp(H, W,\n                     [&](int i, int j,\
-    \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
+    \ F&& f) {\n    return smawk_comp(H, W,\n                      [&](int i, int\
+    \ j, int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
     \ docs/dp/SMAWK.md\n */\n#line 5 \"dp/OnlineOfflineDP.hpp\"\n\ntemplate<class\
     \ F>\nstd::vector<typename function_traits<F>::result_type> online_offline_dp(int\
     \ n,\n                                                                       \
@@ -516,7 +516,7 @@ data:
   isVerificationFile: true
   path: test/yuki/705-Monge.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 11:00:10+09:00'
+  timestamp: '2024-04-18 14:58:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/705-Monge.test.cpp

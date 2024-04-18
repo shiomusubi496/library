@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -85,6 +85,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RangeAssignSegmentTree.hpp
+    title: RangeAssignSegmentTree
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
@@ -245,6 +248,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
     title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
+    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/rectangle_sum.test.cpp
     title: test/yosupo/data_structure/rectangle_sum.test.cpp
@@ -930,6 +936,7 @@ data:
   - data-struct/other/AreaofUnionofRectangles.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/segment/RangeAssignSegmentTree.hpp
   - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/NonMergeSegmentTree.hpp
   - data-struct/segment/CumulativeSum.hpp
@@ -978,6 +985,7 @@ data:
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
+  - test/yosupo/data_structure/range_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp

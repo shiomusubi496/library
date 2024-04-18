@@ -108,6 +108,9 @@ data:
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/RangeAssignSegmentTree.hpp
+      title: RangeAssignSegmentTree
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -161,22 +164,22 @@ data:
       title: WaveletMatrixPointAddRectangleSum.hpp
   - name: dp
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/AlienDP.hpp
       title: AlienDP
     - icon: ':heavy_check_mark:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: dp/FibonacciSearch.hpp
       title: FibonacciSearch
     - icon: ':heavy_check_mark:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: dp/SMAWK.hpp
       title: SMAWK
   - name: geometry
@@ -518,7 +521,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -552,28 +555,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -847,7 +850,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/atcoder/abc218_h-AlienDP.test.cpp
       title: test/atcoder/abc218_h-AlienDP.test.cpp
     - icon: ':heavy_check_mark:'
@@ -953,6 +956,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
       title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/range_set_range_composite.test.cpp
+      title: test/yosupo/data_structure/range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/rectangle_sum.test.cpp
       title: test/yosupo/data_structure/rectangle_sum.test.cpp

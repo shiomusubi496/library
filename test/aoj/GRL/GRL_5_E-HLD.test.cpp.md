@@ -13,31 +13,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -582,59 +582,61 @@ data:
     \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
     \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
     \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
-    \ false);\n    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r\
-    \ && r <= ori);\n        if (l == r) return M::id();\n\n        l += n, r += n;\n\
-    \        rreps (i, h) {\n            bool seen = false;\n            if (((l >>\
-    \ i) << i) != l) eval(l >> i, 1 << i), seen = true;\n            if (((r >> i)\
-    \ << i) != r) eval((r - 1) >> i, 1 << i), seen = true;\n            if (!seen)\
-    \ break;\n        }\n\n        T lsm = M::id(), rsm = M::id();\n        while\
-    \ (l != r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n          \
-    \  if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1, r >>= 1;\n  \
-    \      }\n        return M::op(lsm, rsm);\n    }\n    T get(int k) {\n       \
-    \ assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k >>\
-    \ i, 1 << i);\n        return data[k];\n    }\n    T all_prod() const { return\
-    \ data[1]; }\n    template<class Upd> void update(int k, const Upd& upd) {\n \
-    \       assert(0 <= k && k < ori);\n\n        k += n;\n        rreps (i, h) eval(k\
-    \ >> i, 1 << i);\n        data[k] = upd(data[k]);\n        reps (i, h) calc(k\
-    \ >> i);\n    }\n    void set(int k, const T& x) {\n        update(k, [&](const\
-    \ T&) -> T { return x; });\n    }\n    void apply(int k, const U& x) {\n     \
-    \   update(k, [&](const T& a) -> T { return A::op(x, a); });\n    }\n    void\
-    \ apply(int l, int r, const U& x) {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        if (l == r) return;\n\n        l += n, r += n;\n        int lst = h +\
-    \ 1;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l >>\
-    \ i, 1 << i), lst = i;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
-    \ i, 1 << i), lst = i;\n            if (lst != i) break;\n        }\n\n      \
-    \  for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>= 1, r2 >>= 1, d <<= 1) {\n\
-    \            if (l2 & 1) all_apply(l2++, x, d);\n            if (r2 & 1) all_apply(--r2,\
-    \ x, d);\n        }\n\n        rep (i, lst, h + 1) {\n            if (((l >> i)\
-    \ << i) != l) calc(l >> i);\n            if (((r >> i) << i) != r) calc((r - 1)\
-    \ >> i);\n        }\n    }\n    template<class C> int max_right(int l, const C&\
-    \ cond) {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n\n        l += n;\n        rreps (i, h) {\n\
-    \            if (((l >> i) << i) != l) eval(l >> i, 1 << i);\n            else\
-    \ break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n        do\
-    \ {\n            while ((l & 1) == 0) l >>= 1, d <<= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    eval(l, d);\n\
-    \                    l <<= 1;\n                    d >>= 1;\n                \
-    \    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n              \
-    \  }\n                return l - n;\n            }\n            sm = M::op(sm,\
-    \ data[l++]);\n        } while ((l & -l) != l);\n        return ori;\n    }\n\
-    \    template<class C> int min_left(int r, const C& cond) {\n        assert(0\
-    \ <= r && r <= ori);\n        assert(cond(M::id()));\n        if (r == 0) return\
-    \ 0;\n\n        r += n;\n        rreps (i, h) {\n            if (((r >> i) <<\
-    \ i) != r) eval((r - 1) >> i, 1 << i);\n            else break;\n        }\n\n\
-    \        T sm = M::id();\n        int d = 1;\n        do {\n            --r;\n\
-    \            while ((r & 1) && r > 1) r >>= 1, d <<= 1;\n            if (!cond(M::op(data[r],\
-    \ sm))) {\n                while (r < n) {\n                    eval(r, d);\n\
-    \                    r = r << 1 ^ 1;\n                    d >>= 1;\n         \
-    \           if (cond(M::op(data[r], sm))) sm = M::op(data[r--], sm);\n       \
-    \         }\n                return r + 1 - n;\n            }\n            sm\
-    \ = M::op(data[r], sm);\n        } while ((r & -r) != r);\n        return 0;\n\
-    \    }\n};\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMinimumQuery\
-    \ =\n    LazySegmentTree<Monoid::AssignMin<T, id>>;\n\ntemplate<class T, int id\
-    \ = -1>\nusing RangeUpdateQueryRangeMaximumQuery =\n    LazySegmentTree<Monoid::AssignMax<T,\
-    \ id>>;\n\ntemplate<class T>\nusing RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\
-    \ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
+    \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
+    \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
+    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
+    \ r) return M::id();\n\n        l += n, r += n;\n        rreps (i, h) {\n    \
+    \        bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i,\
+    \ 1 << i), seen = true;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
+    \ i, 1 << i), seen = true;\n            if (!seen) break;\n        }\n\n     \
+    \   T lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if\
+    \ (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
+    \ rsm);\n            l >>= 1, r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
+    \ n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        return data[k];\n  \
+    \  }\n    T all_prod() const { return data[1]; }\n    template<class Upd> void\
+    \ update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n    \
+    \    k += n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        data[k] = upd(data[k]);\n\
+    \        reps (i, h) calc(k >> i);\n    }\n    void set(int k, const T& x) {\n\
+    \        update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(int\
+    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
+    \ });\n    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <=\
+    \ l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n, r\
+    \ += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
+    \ >> i) << i) != l) eval(l >> i, 1 << i), lst = i;\n            if (((r >> i)\
+    \ << i) != r) eval((r - 1) >> i, 1 << i), lst = i;\n            if (lst != i)\
+    \ break;\n        }\n\n        for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>=\
+    \ 1, r2 >>= 1, d <<= 1) {\n            if (l2 & 1) all_apply(l2++, x, d);\n  \
+    \          if (r2 & 1) all_apply(--r2, x, d);\n        }\n\n        rep (i, lst,\
+    \ h + 1) {\n            if (((l >> i) << i) != l) calc(l >> i);\n            if\
+    \ (((r >> i) << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class\
+    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
+    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
+    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
+    \ >> i, 1 << i);\n            else break;\n        }\n\n        T sm = M::id();\n\
+    \        int d = 1;\n        do {\n            while ((l & 1) == 0) l >>= 1, d\
+    \ <<= 1;\n            if (!cond(M::op(sm, data[l]))) {\n                while\
+    \ (l < n) {\n                    eval(l, d);\n                    l <<= 1;\n \
+    \                   d >>= 1;\n                    if (cond(M::op(sm, data[l])))\
+    \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
+    \            }\n            sm = M::op(sm, data[l++]);\n        } while ((l &\
+    \ -l) != l);\n        return ori;\n    }\n    template<class C> int min_left(int\
+    \ r, const C& cond) {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n\n        r += n;\n        rreps (i, h) {\n  \
+    \          if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i);\n           \
+    \ else break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n    \
+    \    do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1, d <<=\
+    \ 1;\n            if (!cond(M::op(data[r], sm))) {\n                while (r <\
+    \ n) {\n                    eval(r, d);\n                    r = r << 1 ^ 1;\n\
+    \                    d >>= 1;\n                    if (cond(M::op(data[r], sm)))\
+    \ sm = M::op(data[r--], sm);\n                }\n                return r + 1\
+    \ - n;\n            }\n            sm = M::op(data[r], sm);\n        } while ((r\
+    \ & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class T, int id = -1>\n\
+    using RangeUpdateQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::AssignMin<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMaximumQuery\
+    \ =\n    LazySegmentTree<Monoid::AssignMax<T, id>>;\n\ntemplate<class T>\nusing\
+    \ RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\ntemplate<class\
+    \ T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
     \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMaximumQuery\
     \ = LazySegmentTree<Monoid::AddMax<T, id>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery\
     \ = LazySegmentTree<Monoid::AddSum<T>>;\n\ntemplate<class T, int id = -1>\nusing\
@@ -779,7 +781,7 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-18 15:05:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL/GRL_5_E-HLD.test.cpp
