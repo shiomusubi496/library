@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
   - icon: ':question:'
@@ -36,9 +36,9 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/705
@@ -477,7 +477,7 @@ data:
     \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
     \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
     \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ F&& f) {\n    return smawk_comp(H, W,\n                     [&](int i, int j,\
     \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
     \ docs/dp/SMAWK.md\n */\n#line 5 \"dp/OnlineOfflineDP.hpp\"\n\ntemplate<class\
     \ F>\nstd::vector<typename function_traits<F>::result_type> online_offline_dp(int\
@@ -516,8 +516,8 @@ data:
   isVerificationFile: true
   path: test/yuki/705-Monge.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 10:49:50+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-18 11:00:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yuki/705-Monge.test.cpp
 layout: document

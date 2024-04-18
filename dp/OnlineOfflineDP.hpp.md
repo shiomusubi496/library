@@ -39,12 +39,12 @@ data:
   - icon: ':x:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yuki/705-Monge.test.cpp
     title: test/yuki/705-Monge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     _deprecated_at_docs: docs/dp/OnlineOfflineDP.md
     document_title: Online Offline DP
@@ -480,7 +480,7 @@ data:
     \    res[i] = ncol[j];\n            while (ncol[j] < last) {\n               \
     \ ++j;\n                if (cmp(row[i], ncol[j], res[i])) res[i] = ncol[j];\n\
     \            }\n        }\n        return res;\n    })(row, col);\n}\n\ntemplate<class\
-    \ F> std::vector<int> smawk(int H, int W, F&& f) {\n    return smawk_cmp(H, W,\n\
+    \ F> std::vector<int> smawk(int H, int W, F&& f) {\n    return smawk_comp(H, W,\n\
     \                     [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n\
     }\n\n/**\n * @brief SMAWK\n * @docs docs/dp/SMAWK.md\n */\n#line 5 \"dp/OnlineOfflineDP.hpp\"\
     \n\ntemplate<class F>\nstd::vector<typename function_traits<F>::result_type> online_offline_dp(int\
@@ -519,8 +519,8 @@ data:
   path: dp/OnlineOfflineDP.hpp
   requiredBy:
   - dp/AlienDP.hpp
-  timestamp: '2024-04-18 10:49:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-18 11:00:10+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yuki/705-Monge.test.cpp
   - test/atcoder/abc218_h-AlienDP.test.cpp

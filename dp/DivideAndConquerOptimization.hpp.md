@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
   - icon: ':question:'
@@ -36,12 +36,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/other/2603-SMAWK.test.cpp
     title: test/aoj/other/2603-SMAWK.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/dp/DivideAndConquerOptimization.md
     document_title: Divide and Conquer Optimization
@@ -461,17 +461,17 @@ data:
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"dp/MonotoneMinima.hpp\"\n\n#line 4 \"dp/MonotoneMinima.hpp\"\n\n\
-    template<class F> std::vector<int> monotone_minima_cmp(int H, int W, F&& cmp)\
+    template<class F> std::vector<int> monotone_minima_comp(int H, int W, F&& cmp)\
     \ {\n    std::vector<int> res(H);\n    int x = 1;\n    while (x <= H) x <<= 1;\n\
     \    while (x >>= 1) {\n        rep (i, x - 1, H, x << 1) {\n            const\
     \ int l = i - x < 0 ? 0 : res[i - x];\n            const int r = i + x >= H ?\
     \ W : res[i + x] + 1;\n            res[i] = l;\n            for (int j = l + 1;\
     \ j < r; ++j) {\n                if (cmp(i, j, res[i])) res[i] = j;\n        \
     \    }\n        }\n    }\n    return res;\n}\n\ntemplate<class F> std::vector<int>\
-    \ monotone_minima(int H, int W, F&& f) {\n    return monotone_minima_cmp(\n  \
-    \      H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n\
-    \ * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n#line 2 \"\
-    dp/SMAWK.hpp\"\n\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int>\
+    \ monotone_minima(int H, int W, F&& f) {\n    return monotone_minima_comp(\n \
+    \       H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });\n}\n\n\
+    /**\n * @brief MonotoneMinima\n * @docs docs/dp/MonotoneMinima.md\n */\n#line\
+    \ 2 \"dp/SMAWK.hpp\"\n\n#line 4 \"dp/SMAWK.hpp\"\n\ntemplate<class F> std::vector<int>\
     \ smawk_comp(int H, int W, F&& cmp) {\n    std::vector<int> row(H), col(W);\n\
     \    std::iota(all(row), 0);\n    std::iota(all(col), 0);\n    return rec_lambda([&](auto&&\
     \ self, const std::vector<int>& row,\n                          const std::vector<int>&\
@@ -488,7 +488,7 @@ data:
     \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
     \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
     \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ F&& f) {\n    return smawk_comp(H, W,\n                     [&](int i, int j,\
     \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
     \ docs/dp/SMAWK.md\n */\n#line 6 \"dp/DivideAndConquerOptimization.hpp\"\n\ntemplate<class\
     \ F>\nstd::vector<std::vector<typename function_traits<F>::result_type>>\ndivide_and_conquer_optimization(int\
@@ -540,8 +540,8 @@ data:
   isVerificationFile: false
   path: dp/DivideAndConquerOptimization.hpp
   requiredBy: []
-  timestamp: '2024-04-18 10:49:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-18 11:00:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/other/2603-SMAWK.test.cpp
 documentation_of: dp/DivideAndConquerOptimization.hpp

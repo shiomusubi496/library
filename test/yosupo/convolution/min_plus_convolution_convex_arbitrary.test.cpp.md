@@ -478,7 +478,7 @@ data:
     \ (ncol[j] < last) {\n                ++j;\n                if (cmp(row[i], ncol[j],\
     \ res[i])) res[i] = ncol[j];\n            }\n        }\n        return res;\n\
     \    })(row, col);\n}\n\ntemplate<class F> std::vector<int> smawk(int H, int W,\
-    \ F&& f) {\n    return smawk_cmp(H, W,\n                     [&](int i, int j,\
+    \ F&& f) {\n    return smawk_comp(H, W,\n                     [&](int i, int j,\
     \ int k) { return f(i, j) < f(i, k); });\n}\n\n/**\n * @brief SMAWK\n * @docs\
     \ docs/dp/SMAWK.md\n */\n#line 5 \"math/convolution/MinPlusConvolution.hpp\"\n\
     \ntemplate<class T>\nstd::vector<T> min_plus_convolution(const std::vector<T>\
@@ -512,7 +512,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 10:49:50+09:00'
+  timestamp: '2024-04-18 11:00:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp

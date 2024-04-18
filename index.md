@@ -164,16 +164,16 @@ data:
     - icon: ':x:'
       path: dp/AlienDP.hpp
       title: AlienDP
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
     - icon: ':x:'
       path: dp/FibonacciSearch.hpp
       title: FibonacciSearch
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
-    - icon: ':x:'
+    - icon: ':question:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
     - icon: ':question:'
@@ -830,7 +830,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/other/1208-SternBrocotTree.test.cpp
       title: test/aoj/other/1208-SternBrocotTree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/other/2603-SMAWK.test.cpp
       title: test/aoj/other/2603-SMAWK.test.cpp
     - icon: ':heavy_check_mark:'
@@ -1297,7 +1297,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yuki/448-Garner.test.cpp
       title: test/yuki/448-Garner.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yuki/705-Monge.test.cpp
       title: test/yuki/705-Monge.test.cpp
     - icon: ':heavy_check_mark:'
