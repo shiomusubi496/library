@@ -149,22 +149,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/AlienDP.hpp
     title: AlienDP
   - icon: ':heavy_check_mark:'
     path: dp/DivideAndConquerOptimization.hpp
     title: Divide and Conquer Optimization
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: dp/FibonacciSearch.hpp
     title: FibonacciSearch
   - icon: ':heavy_check_mark:'
     path: dp/MonotoneMinima.hpp
     title: MonotoneMinima
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/OnlineOfflineDP.hpp
     title: Online Offline DP
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: dp/SMAWK.hpp
     title: SMAWK
   - icon: ':heavy_check_mark:'
@@ -479,7 +479,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid2.hpp
     title: other/monoid2.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -507,19 +507,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedVerifiedWith:
@@ -775,7 +775,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/atcoder/abc176_f-DefaultMap.test.cpp
     title: test/atcoder/abc176_f-DefaultMap.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/atcoder/abc218_h-AlienDP.test.cpp
     title: test/atcoder/abc218_h-AlienDP.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1216,9 +1216,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yuki/855_DynamicSegTree.test.cpp
     title: test/yuki/855_DynamicSegTree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"template/alias.hpp\"\n\n#include <bits/stdc++.h>\n\nusing\
@@ -1421,7 +1421,7 @@ data:
   - other/template.hpp
   - other/monoid2.hpp
   timestamp: '2023-12-29 01:31:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/bitwise_and_convolution.test.cpp
   - test/yosupo/convolution/lcm_convolution.test.cpp
