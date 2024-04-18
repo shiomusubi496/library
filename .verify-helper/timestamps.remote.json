@@ -176,6 +176,7 @@
 "test/yosupo/math/stirling_number_of_the_second_kind.test.cpp": "2024-03-31 16:12:22 +0900",
 "test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp": "2024-03-31 20:15:44 +0900",
 "test/yosupo/math/sum_of_floor_of_linear.test.cpp": "2024-01-20 14:55:31 +0900",
+"test/yosupo/math/tetration_mod.test.cpp": "2024-04-18 12:31:40 +0900",
 "test/yosupo/math/two_sat.test.cpp": "2024-01-20 14:55:31 +0900",
 "test/yosupo/matrix/inverse_matrix.test.cpp": "2024-03-31 18:06:42 +0900",
 "test/yosupo/matrix/matrix_det.test.cpp": "2024-03-31 18:06:42 +0900",
