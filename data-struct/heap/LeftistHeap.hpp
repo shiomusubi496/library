@@ -80,7 +80,8 @@ private:
 
 public:
     LeftistHeap() : root(nullptr), sz(0) {}
-    LeftistHeap(const LeftistHeap& other) : root(copy(other.root)), sz(other.sz) {}
+    LeftistHeap(const LeftistHeap& other)
+        : root(copy(other.root)), sz(other.sz) {}
     LeftistHeap& operator=(const LeftistHeap& other) {
         if (this != &other) {
             clear();

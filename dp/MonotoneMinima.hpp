@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class F> std::vector<int> monotone_minima(int H, int W, F&& f) {
+template<class F> std::vector<int> monotone_minima_cmp(int H, int W, F&& cmp) {
     std::vector<int> res(H);
     int x = 1;
     while (x <= H) x <<= 1;
@@ -12,11 +12,16 @@ template<class F> std::vector<int> monotone_minima(int H, int W, F&& f) {
             const int r = i + x >= H ? W : res[i + x] + 1;
             res[i] = l;
             for (int j = l + 1; j < r; ++j) {
-                if (f(i, res[i]) > f(i, j)) res[i] = j;
+                if (cmp(i, j, res[i])) res[i] = j;
             }
         }
     }
     return res;
+}
+
+template<class F> std::vector<int> monotone_minima(int H, int W, F&& f) {
+    return monotone_minima_cmp(
+        H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });
 }
 
 /**

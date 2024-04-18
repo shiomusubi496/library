@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class F> std::vector<int> smawk(int H, int W, F&& f) {
+template<class F> std::vector<int> smawk_comp(int H, int W, F&& cmp) {
     std::vector<int> row(H), col(W);
     std::iota(all(row), 0);
     std::iota(all(col), 0);
@@ -13,8 +13,7 @@ template<class F> std::vector<int> smawk(int H, int W, F&& f) {
         std::vector<int> ncol;
         ncol.reserve(n);
         for (int i : col) {
-            while (!ncol.empty() && f(row[ncol.size() - 1], ncol.back()) >
-                                        f(row[ncol.size() - 1], i))
+            while (!ncol.empty() && cmp(row[ncol.size() - 1], i, ncol.back()))
                 ncol.pop_back();
             if ((int)ncol.size() < n) ncol.push_back(i);
         }
@@ -30,11 +29,16 @@ template<class F> std::vector<int> smawk(int H, int W, F&& f) {
             res[i] = ncol[j];
             while (ncol[j] < last) {
                 ++j;
-                if (f(row[i], res[i]) > f(row[i], ncol[j])) res[i] = ncol[j];
+                if (cmp(row[i], ncol[j], res[i])) res[i] = ncol[j];
             }
         }
         return res;
     })(row, col);
+}
+
+template<class F> std::vector<int> smawk(int H, int W, F&& f) {
+    return smawk_cmp(H, W,
+                     [&](int i, int j, int k) { return f(i, j) < f(i, k); });
 }
 
 /**
