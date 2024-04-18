@@ -161,22 +161,22 @@ data:
       title: WaveletMatrixPointAddRectangleSum.hpp
   - name: dp
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/AlienDP.hpp
       title: AlienDP
     - icon: ':heavy_check_mark:'
       path: dp/DivideAndConquerOptimization.hpp
       title: Divide and Conquer Optimization
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: dp/FibonacciSearch.hpp
       title: FibonacciSearch
     - icon: ':heavy_check_mark:'
       path: dp/MonotoneMinima.hpp
       title: MonotoneMinima
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/OnlineOfflineDP.hpp
       title: Online Offline DP
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: dp/SMAWK.hpp
       title: SMAWK
   - name: geometry
@@ -515,7 +515,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/monoid2.hpp
       title: other/monoid2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/template.hpp
       title: other/template.hpp
   - name: random
@@ -549,28 +549,28 @@ data:
       title: Z-Algorithm
   - name: template
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/alias.hpp
       title: template/alias.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/bitop.hpp
       title: template/bitop.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/func.hpp
       title: template/func.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/in.hpp
       title: template/in.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/macros.hpp
       title: template/macros.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/out.hpp
       title: template/out.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/type_traits.hpp
       title: template/type_traits.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: template/util.hpp
       title: template/util.hpp
   verificationCategories:
@@ -844,7 +844,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/atcoder/abc176_f-DefaultMap.test.cpp
       title: test/atcoder/abc176_f-DefaultMap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/atcoder/abc218_h-AlienDP.test.cpp
       title: test/atcoder/abc218_h-AlienDP.test.cpp
     - icon: ':heavy_check_mark:'
