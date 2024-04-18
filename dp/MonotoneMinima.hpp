@@ -2,7 +2,7 @@
 
 #include "../other/template.hpp"
 
-template<class F> std::vector<int> monotone_minima_cmp(int H, int W, F&& cmp) {
+template<class F> std::vector<int> monotone_minima_comp(int H, int W, F&& cmp) {
     std::vector<int> res(H);
     int x = 1;
     while (x <= H) x <<= 1;
@@ -20,7 +20,7 @@ template<class F> std::vector<int> monotone_minima_cmp(int H, int W, F&& cmp) {
 }
 
 template<class F> std::vector<int> monotone_minima(int H, int W, F&& f) {
-    return monotone_minima_cmp(
+    return monotone_minima_comp(
         H, W, [&](int i, int j, int k) { return f(i, j) < f(i, k); });
 }
 

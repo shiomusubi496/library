@@ -37,7 +37,7 @@ template<class F> std::vector<int> smawk_comp(int H, int W, F&& cmp) {
 }
 
 template<class F> std::vector<int> smawk(int H, int W, F&& f) {
-    return smawk_cmp(H, W,
+    return smawk_comp(H, W,
                      [&](int i, int j, int k) { return f(i, j) < f(i, k); });
 }
 
