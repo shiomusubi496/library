@@ -399,6 +399,9 @@ data:
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
+  - icon: ':heavy_check_mark:'
     path: math/convolution/BitwiseAndConvolution.hpp
     title: BitwiseAndConvolution
   - icon: ':heavy_check_mark:'
@@ -1043,6 +1046,9 @@ data:
     path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
     title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/tetration_mod.test.cpp
+    title: test/yosupo/math/tetration_mod.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/math/two_sat.test.cpp
     title: test/yosupo/math/two_sat.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1609,6 +1615,7 @@ data:
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/MultipointEvaluation.hpp
+  - math/TetrationMod.hpp
   - math/Rational.hpp
   - math/LinearModMin.hpp
   - math/MontgomeryModInt.hpp
@@ -1742,6 +1749,7 @@ data:
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/gcd_of_gaussian_integers.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/tetration_mod.test.cpp
   - test/yosupo/math/montmort_number_mod.test.cpp
   - test/yosupo/math/stern_brocot_tree.test.cpp
   - test/yosupo/math/min_of_mod_of_linear.test.cpp

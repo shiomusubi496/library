@@ -44,11 +44,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL/NTL_1_D-Phi.test.cpp
     title: test/aoj/NTL/NTL_1_D-Phi.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/tetration_mod.test.cpp
+    title: test/yosupo/math/tetration_mod.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -672,10 +678,12 @@ data:
   - string/RunLength.hpp
   isVerificationFile: false
   path: math/EulerPhi.hpp
-  requiredBy: []
+  requiredBy:
+  - math/TetrationMod.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/math/tetration_mod.test.cpp
   - test/aoj/NTL/NTL_1_D-Phi.test.cpp
 documentation_of: math/EulerPhi.hpp
 layout: document

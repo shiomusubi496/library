@@ -52,6 +52,9 @@ data:
     path: math/SubsetSum.hpp
     title: SubsetSum
   - icon: ':heavy_check_mark:'
+    path: math/TetrationMod.hpp
+    title: TetrationMod
+  - icon: ':heavy_check_mark:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
   - icon: ':heavy_check_mark:'
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
     title: test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/math/tetration_mod.test.cpp
+    title: test/yosupo/math/tetration_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
     title: test/yosupo/polynomial/composition_of_formal_power_series.test.cpp
@@ -657,6 +663,7 @@ data:
   - math/poly/FormalPowerSeries.hpp
   - math/poly/SamplingPointsShift.hpp
   - math/poly/MultipointEvaluation.hpp
+  - math/TetrationMod.hpp
   - math/PollardRho.hpp
   - math/StirlingNumber.hpp
   - math/EulerPhi.hpp
@@ -675,6 +682,7 @@ data:
   - test/yosupo/math/factorial.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind_fixed_k.test.cpp
   - test/yosupo/math/sharp_p_subset_sum.test.cpp
+  - test/yosupo/math/tetration_mod.test.cpp
   - test/yosupo/math/bernoulli_number.test.cpp
   - test/yosupo/math/stirling_number_of_the_second_kind.test.cpp
   - test/yosupo/math/stirling_number_of_the_first_kind.test.cpp

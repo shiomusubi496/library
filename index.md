@@ -423,6 +423,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/SubsetSum.hpp
       title: SubsetSum
+    - icon: ':heavy_check_mark:'
+      path: math/TetrationMod.hpp
+      title: TetrationMod
   - name: math/convolution
     pages:
     - icon: ':heavy_check_mark:'
@@ -1133,6 +1136,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/sum_of_floor_of_linear.test.cpp
       title: test/yosupo/math/sum_of_floor_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/math/tetration_mod.test.cpp
+      title: test/yosupo/math/tetration_mod.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/math/two_sat.test.cpp
       title: test/yosupo/math/two_sat.test.cpp
