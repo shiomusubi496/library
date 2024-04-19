@@ -458,7 +458,7 @@ data:
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
     };\n#line 2 \"string/SuffixArray.hpp\"\n\n#line 4 \"string/SuffixArray.hpp\"\n\
-    \nnamespace internal {\n\ntemplate<class Cont>\nstd::vector<int> sa_is(const Cont&\
+    \nnamespace internal {\n\ntemplate<class Cont> std::vector<int> sa_is(const Cont&\
     \ str, int m) {\n    int n = str.size();\n    if (n == 0) return {};\n    if (n\
     \ == 1) return {0};\n    if (n == 2) {\n        if (str[0] < str[1]) return {0,\
     \ 1};\n        return {1, 0};\n    }\n\n    std::vector<int> sa(n);\n    std::vector<bool>\
@@ -491,20 +491,20 @@ data:
     \            }\n            if (!flag) ++rec_m;\n            rec_s[rlms[lms2[i]]]\
     \ = rec_m;\n        }\n        auto rec_sa = sa_is(rec_s, rec_m);\n        rep\
     \ (i, k) lms2[i] = lms[rec_sa[i]];\n        induce_sort(lms2);\n    }\n    return\
-    \ sa;\n}\n\n}\n\ntemplate<class Cont>\nstd::vector<int> suffix_array(const Cont&\
-    \ str, int m) {\n    return internal::sa_is(str, m + 1);\n}\ntemplate<class Cont>\n\
-    std::vector<int> suffix_array(const Cont& str) {\n    std::vector<typename Cont::value_type>\
-    \ s(all(str));\n    compressor<typename Cont::value_type> cmp(s, true);\n    return\
-    \ internal::sa_is(cmp.pressed(s), cmp.size());\n}\ntemplate<>\nstd::vector<int>\
-    \ suffix_array(const std::string& str) {\n    return internal::sa_is(str, 256);\n\
-    }\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n */\n#line\
-    \ 5 \"string/LCPArray.hpp\"\n\ntemplate<class Cont>\nstd::vector<int> lcp_array(const\
-    \ Cont& str, const std::vector<int>& sa) {\n    int n = str.size();\n    std::vector<int>\
-    \ rank(n);\n    rep (i, n) rank[sa[i]] = i;\n    std::vector<int> lcp(n - 1);\n\
-    \    int h = 0;\n    rep (i, n) {\n        if (rank[i] == 0) continue;\n     \
-    \   int j = sa[rank[i] - 1];\n        while (i + h < n && j + h < n && str[i +\
-    \ h] == str[j + h]) ++h;\n        lcp[rank[i] - 1] = h;\n        chmax(--h, 0);\n\
-    \    }\n    return lcp;\n}\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n\
+    \ sa;\n}\n\n} // namespace internal\n\ntemplate<class Cont> std::vector<int> suffix_array(const\
+    \ Cont& str, int m) {\n    return internal::sa_is(str, m + 1);\n}\ntemplate<class\
+    \ Cont> std::vector<int> suffix_array(const Cont& str) {\n    std::vector<typename\
+    \ Cont::value_type> s(all(str));\n    compressor<typename Cont::value_type> cmp(s,\
+    \ true);\n    return internal::sa_is(cmp.pressed(s), cmp.size());\n}\ntemplate<>\
+    \ std::vector<int> suffix_array(const std::string& str) {\n    return internal::sa_is(str,\
+    \ 256);\n}\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n\
+    \ */\n#line 5 \"string/LCPArray.hpp\"\n\ntemplate<class Cont>\nstd::vector<int>\
+    \ lcp_array(const Cont& str, const std::vector<int>& sa) {\n    int n = str.size();\n\
+    \    std::vector<int> rank(n);\n    rep (i, n) rank[sa[i]] = i;\n    std::vector<int>\
+    \ lcp(n - 1);\n    int h = 0;\n    rep (i, n) {\n        if (rank[i] == 0) continue;\n\
+    \        int j = sa[rank[i] - 1];\n        while (i + h < n && j + h < n && str[i\
+    \ + h] == str[j + h]) ++h;\n        lcp[rank[i] - 1] = h;\n        chmax(--h,\
+    \ 0);\n    }\n    return lcp;\n}\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"SuffixArray.hpp\"\
     \n\ntemplate<class Cont>\nstd::vector<int> lcp_array(const Cont& str, const std::vector<int>&\
@@ -528,7 +528,7 @@ data:
   isVerificationFile: false
   path: string/LCPArray.hpp
   requiredBy: []
-  timestamp: '2024-04-19 14:01:04+09:00'
+  timestamp: '2024-04-19 14:40:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/string/number_of_substrings.test.cpp

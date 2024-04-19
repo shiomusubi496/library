@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -455,48 +458,146 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"data-struct/unionfind/WeightedUnionFind.hpp\"\n\n\ntemplate<class\
-    \ T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
+    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
+    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
+    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
+    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
+    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
+    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
+    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
+    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
+    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
+    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
+    \                   is_semigroup<typename T::E>::value &&\n                  \
+    \                         (has_op<T>::value ||\n                             \
+    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
+    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
+    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
+    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
+    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
+    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
+    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
+    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
+    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
+    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
+    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
+    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
+    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
+    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
+    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
+    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
+    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
+    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
+    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
+    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
+    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
+    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
+    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
+    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
+    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
+    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
+    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
+    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
+    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
+    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
+    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
+    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
+    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
+    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
+    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
+    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
+    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
+    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
+    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
+    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
+    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
+    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
+    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
+    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
+    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
+    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
+    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
+    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
+    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
+    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
+    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
+    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
+    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
+    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
+    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
+    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
+    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
+    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/unionfind/WeightedUnionFind.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<int>\
     \ par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
-    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n) {}\n    int find(int\
-    \ x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0) return x;\n\
-    \        int r = find(par[x]);\n        wei[x] += wei[par[x]];\n        return\
-    \ par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x]; }\n    T diff(int\
-    \ x, int y) {\n        assert(find(x) == find(y));\n        return wei[y] - wei[x];\n\
-    \    }\n    std::pair<int, int> merge(int x, int y, T w) {\n        w += weight(x);\n\
-    \        w -= weight(y);\n        x = find(x);\n        y = find(y);\n       \
-    \ if (x == y) {\n            if (w == 0) return {x, -1};\n            else return\
-    \ {x, -2};\n        }\n        if (par[x] > par[y]) std::swap(x, y), w = -w;\n\
-    \        par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n       \
-    \ return {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y);\
-    \ }\n    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n, M::id()) {}\n  \
+    \  int find(int x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0)\
+    \ return x;\n        int r = find(par[x]);\n        wei[x] = M::op(wei[x], wei[par[x]]);\n\
+    \        return par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x];\
+    \ }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n       \
+    \ return M::inv(wei[y], wei[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y, T w) {\n        w = M::inv(M::op(weight(x), w), weight(y));\n       \
+    \ x = find(x);\n        y = find(y);\n        if (x == y) {\n            if (w\
+    \ == M::id()) return {x, -1};\n            else return {x, -2};\n        }\n \
+    \       if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n        par[x]\
+    \ += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return {x, y};\n\
+    \    }\n    bool same(int x, int y) { return find(x) == find(y); }\n    int size(int\
+    \ x) { return -par[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n\
+    \        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(all(res),\n                      [](const\
+    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
+    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
+    \ x && x < n);\n        return par[x] < 0;\n    }\n};\n\ntemplate<class T>\nclass\
+    \ WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>> {\nprivate:\n\
+    \    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n\
     };\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
     \ */\n"
-  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\n\ntemplate<class\
-    \ T = ll> class WeightedUnionFind {\nprivate:\n    int n;\n    std::vector<int>\
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<int>\
     \ par;\n    std::vector<T> wei;\n\npublic:\n    WeightedUnionFind() : WeightedUnionFind(0)\
-    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n) {}\n    int find(int\
-    \ x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0) return x;\n\
-    \        int r = find(par[x]);\n        wei[x] += wei[par[x]];\n        return\
-    \ par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x]; }\n    T diff(int\
-    \ x, int y) {\n        assert(find(x) == find(y));\n        return wei[y] - wei[x];\n\
-    \    }\n    std::pair<int, int> merge(int x, int y, T w) {\n        w += weight(x);\n\
-    \        w -= weight(y);\n        x = find(x);\n        y = find(y);\n       \
-    \ if (x == y) {\n            if (w == 0) return {x, -1};\n            else return\
-    \ {x, -2};\n        }\n        if (par[x] > par[y]) std::swap(x, y), w = -w;\n\
-    \        par[x] += par[y];\n        par[y] = x;\n        wei[y] = w;\n       \
-    \ return {x, y};\n    }\n    bool same(int x, int y) { return find(x) == find(y);\
-    \ }\n    int size(int x) { return -par[find(x)]; }\n    std::vector<std::vector<int>>\
-    \ groups() {\n        std::vector<std::vector<int>> res(n);\n        rep (i, n)\
-    \ res[find(i)].push_back(i);\n        res.erase(\n            remove_if(all(res),\n\
-    \                      [](const std::vector<int>& v) { return v.empty(); }),\n\
-    \            res.end());\n        return res;\n    }\n    bool is_root(int x)\
-    \ const {\n        assert(0 <= x && x < n);\n        return par[x] < 0;\n    }\n\
+    \ {}\n    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n, M::id()) {}\n  \
+    \  int find(int x) {\n        assert(0 <= x && x < n);\n        if (par[x] < 0)\
+    \ return x;\n        int r = find(par[x]);\n        wei[x] = M::op(wei[x], wei[par[x]]);\n\
+    \        return par[x] = r;\n    }\n    T weight(int x) { return find(x), wei[x];\
+    \ }\n    T diff(int x, int y) {\n        assert(find(x) == find(y));\n       \
+    \ return M::inv(wei[y], wei[x]);\n    }\n    std::pair<int, int> merge(int x,\
+    \ int y, T w) {\n        w = M::inv(M::op(weight(x), w), weight(y));\n       \
+    \ x = find(x);\n        y = find(y);\n        if (x == y) {\n            if (w\
+    \ == M::id()) return {x, -1};\n            else return {x, -2};\n        }\n \
+    \       if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);\n        par[x]\
+    \ += par[y];\n        par[y] = x;\n        wei[y] = w;\n        return {x, y};\n\
+    \    }\n    bool same(int x, int y) { return find(x) == find(y); }\n    int size(int\
+    \ x) { return -par[find(x)]; }\n    std::vector<std::vector<int>> groups() {\n\
+    \        std::vector<std::vector<int>> res(n);\n        rep (i, n) res[find(i)].push_back(i);\n\
+    \        res.erase(\n            remove_if(all(res),\n                      [](const\
+    \ std::vector<int>& v) { return v.empty(); }),\n            res.end());\n    \
+    \    return res;\n    }\n    bool is_root(int x) const {\n        assert(0 <=\
+    \ x && x < n);\n        return par[x] < 0;\n    }\n};\n\ntemplate<class T>\nclass\
+    \ WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>> {\nprivate:\n\
+    \    using Base = WeightedUnionFind<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n\
     };\n\n/**\n * @brief WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)\n * @docs docs/data-struct/unionfind/WeightedUnionFind.md\n\
     \ */\n"
   dependsOn:
@@ -509,10 +610,11 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/unionfind/WeightedUnionFind.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-19 14:52:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp

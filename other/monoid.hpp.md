@@ -104,6 +104,9 @@ data:
     path: data-struct/segment/SqrtDecomposition.hpp
     title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
   - icon: ':heavy_check_mark:'
+    path: data-struct/unionfind/WeightedUnionFind.hpp
+    title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
+  - icon: ':heavy_check_mark:'
     path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
@@ -140,6 +143,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
     title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
+    title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
     title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
@@ -936,6 +942,7 @@ data:
   - data-struct/other/AreaofUnionofRectangles.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/DequeOperateAggregation.hpp
+  - data-struct/unionfind/WeightedUnionFind.hpp
   - data-struct/segment/RangeAssignSegmentTree.hpp
   - data-struct/segment/SqrtDecomposition.hpp
   - data-struct/segment/NonMergeSegmentTree.hpp
@@ -1010,6 +1017,7 @@ data:
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
+  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
   - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
   - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
   - test/aoj/DSL/DSL_2_B-BIT.test.cpp
