@@ -535,6 +535,9 @@ data:
   - name: string
     pages:
     - icon: ':heavy_check_mark:'
+      path: string/LCPArray.hpp
+      title: LCPArray
+    - icon: ':heavy_check_mark:'
       path: string/LongestIncreasingSubsequence.hpp
       title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\
         \u5217)"
@@ -1260,6 +1263,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/lyndon_factorization.test.cpp
       title: test/yosupo/string/lyndon_factorization.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/string/number_of_substrings.test.cpp
+      title: test/yosupo/string/number_of_substrings.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/suffixarray.test.cpp
       title: test/yosupo/string/suffixarray.test.cpp

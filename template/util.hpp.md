@@ -495,6 +495,9 @@ data:
     path: random/Timer.hpp
     title: Timer
   - icon: ':heavy_check_mark:'
+    path: string/LCPArray.hpp
+    title: LCPArray
+  - icon: ':heavy_check_mark:'
     path: string/LongestIncreasingSubsequence.hpp
     title: "LongestIncreasingSubsequence(LIS,\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217\
       )"
@@ -1157,6 +1160,9 @@ data:
     path: test/yosupo/string/lyndon_factorization.test.cpp
     title: test/yosupo/string/lyndon_factorization.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/number_of_substrings.test.cpp
+    title: test/yosupo/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/suffixarray.test.cpp
     title: test/yosupo/string/suffixarray.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1416,6 +1422,7 @@ data:
   - graph/tree/TreeCentroid.hpp
   - graph/tree/ReRooting.hpp
   - graph/tree/EulerTourSubtree.hpp
+  - string/LCPArray.hpp
   - string/LyndonFactorization.hpp
   - string/ZAlgorithm.hpp
   - string/RunLength.hpp
@@ -1608,6 +1615,7 @@ data:
   - test/yosupo/matrix/matrix_rank.test.cpp
   - test/yosupo/matrix/system_of_linear_equations.test.cpp
   - test/yosupo/matrix/pow_of_matrix.test.cpp
+  - test/yosupo/string/number_of_substrings.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/lyndon_factorization.test.cpp
   - test/yosupo/string/suffixarray.test.cpp

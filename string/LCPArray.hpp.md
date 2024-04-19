@@ -5,6 +5,9 @@ data:
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
+    path: string/SuffixArray.hpp
+    title: SuffixArray
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
   - icon: ':heavy_check_mark:'
@@ -28,26 +31,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: string/LCPArray.hpp
-    title: LCPArray
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/string/number_of_substrings.test.cpp
     title: test/yosupo/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/string/suffixarray.test.cpp
-    title: test/yosupo/string/suffixarray.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/string/SuffixArray.md
-    document_title: SuffixArray
+    _deprecated_at_docs: docs/string/LCPArray.md
+    document_title: LCPArray
     links: []
-  bundledCode: "#line 2 \"string/SuffixArray.hpp\"\n\n#line 2 \"other/template.hpp\"\
-    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+  bundledCode: "#line 2 \"string/LCPArray.hpp\"\n\n#line 2 \"other/template.hpp\"\n\
+    \n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -460,57 +457,16 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"string/SuffixArray.hpp\"\n\nnamespace internal {\n\ntemplate<class\
-    \ Cont>\nstd::vector<int> sa_is(const Cont& str, int m) {\n    int n = str.size();\n\
-    \    if (n == 0) return {};\n    if (n == 1) return {0};\n    if (n == 2) {\n\
-    \        if (str[0] < str[1]) return {0, 1};\n        return {1, 0};\n    }\n\n\
-    \    std::vector<int> sa(n);\n    std::vector<bool> ls(n);\n    ls[n - 1] = 0;\n\
-    \    rrep (i, n - 1) {\n        if (str[i] < str[i + 1]) ls[i] = 1;\n        else\
-    \ if (str[i] > str[i + 1]) ls[i] = 0;\n        else ls[i] = ls[i + 1];\n    }\n\
-    \n    std::vector<int> sml(m + 1), sms(m + 1);\n    rep (i, n) {\n        if (ls[i])\
-    \ ++sml[str[i] + 1];\n        else ++sms[str[i]];\n    }\n    rep (i, m + 1) {\n\
-    \        sms[i] += sml[i];\n        if (i < m) sml[i + 1] += sms[i];\n    }\n\
-    \    auto induce_sort = [&](const std::vector<int>& lms) {\n        std::fill(all(sa),\
-    \ -1);\n        std::vector<int> buf = sms;\n        for (auto d : lms) {\n  \
-    \          if (d == n) continue;\n            sa[buf[str[d]]++] = d;\n       \
-    \ }\n        buf = sml;\n        sa[buf[str[n - 1]]++] = n - 1;\n        rep (i,\
-    \ n) {\n            int t = sa[i];\n            if (t >= 1 && !ls[t - 1]) sa[buf[str[t\
-    \ - 1]]++] = t - 1;\n        }\n        buf = sml;\n        rrep (i, n) {\n  \
-    \          int t = sa[i];\n            if (t >= 1 && ls[t - 1]) sa[--buf[str[t\
-    \ - 1] + 1]] = t - 1;\n        }\n    };\n    std::vector<int> rlms(n + 1, -1);\n\
-    \    int k = 0;\n    rep (i, 1, n) {\n        if (!ls[i - 1] && ls[i]) rlms[i]\
-    \ = k++;\n    }\n    std::vector<int> lms;\n    lms.reserve(k);\n    rep (i, 1,\
-    \ n) {\n        if (!ls[i - 1] && ls[i]) lms.push_back(i);\n    }\n    induce_sort(lms);\n\
-    \n    if (k) {\n        std::vector<int> lms2;\n        lms2.reserve(k);\n   \
-    \     for (auto d : sa) {\n            if (rlms[d] != -1) lms2.push_back(d);\n\
-    \        }\n        std::vector<int> rec_s(k);\n        int rec_m = 0;\n     \
-    \   rec_s[rlms[lms2[0]]] = 0;\n        rep (i, 1, k) {\n            int l = lms2[i\
-    \ - 1], r = lms2[i];\n            int l2 = (rlms[l] + 1 < k) ? lms[rlms[l] + 1]\
-    \ : n;\n            int r2 = (rlms[r] + 1 < k) ? lms[rlms[r] + 1] : n;\n     \
-    \       bool flag = true;\n            if (l2 - l != r2 - r) flag = false;\n \
-    \           else {\n                while (l < l2) {\n                    if (str[l]\
-    \ != str[r]) break;\n                    ++l, ++r;\n                }\n      \
-    \          if (l == n || str[l] != str[r]) flag = false;\n            }\n    \
-    \        if (!flag) ++rec_m;\n            rec_s[rlms[lms2[i]]] = rec_m;\n    \
-    \    }\n        auto rec_sa = sa_is(rec_s, rec_m);\n        rep (i, k) lms2[i]\
-    \ = lms[rec_sa[i]];\n        induce_sort(lms2);\n    }\n    return sa;\n}\n\n\
-    }\n\ntemplate<class Cont>\nstd::vector<int> suffix_array(const Cont& str, int\
-    \ m) {\n    return internal::sa_is(str, m + 1);\n}\ntemplate<class Cont>\nstd::vector<int>\
-    \ suffix_array(const Cont& str) {\n    std::vector<typename Cont::value_type>\
-    \ s(all(str));\n    compressor<typename Cont::value_type> cmp(s, true);\n    return\
-    \ internal::sa_is(cmp.pressed(s), cmp.size());\n}\ntemplate<>\nstd::vector<int>\
-    \ suffix_array(const std::string& str) {\n    return internal::sa_is(str, 256);\n\
-    }\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n */\n"
-  code: "#pragma once\n\n#include \"../other/template.hpp\"\n\nnamespace internal\
-    \ {\n\ntemplate<class Cont>\nstd::vector<int> sa_is(const Cont& str, int m) {\n\
-    \    int n = str.size();\n    if (n == 0) return {};\n    if (n == 1) return {0};\n\
-    \    if (n == 2) {\n        if (str[0] < str[1]) return {0, 1};\n        return\
-    \ {1, 0};\n    }\n\n    std::vector<int> sa(n);\n    std::vector<bool> ls(n);\n\
-    \    ls[n - 1] = 0;\n    rrep (i, n - 1) {\n        if (str[i] < str[i + 1]) ls[i]\
-    \ = 1;\n        else if (str[i] > str[i + 1]) ls[i] = 0;\n        else ls[i] =\
-    \ ls[i + 1];\n    }\n\n    std::vector<int> sml(m + 1), sms(m + 1);\n    rep (i,\
-    \ n) {\n        if (ls[i]) ++sml[str[i] + 1];\n        else ++sms[str[i]];\n \
-    \   }\n    rep (i, m + 1) {\n        sms[i] += sml[i];\n        if (i < m) sml[i\
+    };\n#line 2 \"string/SuffixArray.hpp\"\n\n#line 4 \"string/SuffixArray.hpp\"\n\
+    \nnamespace internal {\n\ntemplate<class Cont>\nstd::vector<int> sa_is(const Cont&\
+    \ str, int m) {\n    int n = str.size();\n    if (n == 0) return {};\n    if (n\
+    \ == 1) return {0};\n    if (n == 2) {\n        if (str[0] < str[1]) return {0,\
+    \ 1};\n        return {1, 0};\n    }\n\n    std::vector<int> sa(n);\n    std::vector<bool>\
+    \ ls(n);\n    ls[n - 1] = 0;\n    rrep (i, n - 1) {\n        if (str[i] < str[i\
+    \ + 1]) ls[i] = 1;\n        else if (str[i] > str[i + 1]) ls[i] = 0;\n       \
+    \ else ls[i] = ls[i + 1];\n    }\n\n    std::vector<int> sml(m + 1), sms(m + 1);\n\
+    \    rep (i, n) {\n        if (ls[i]) ++sml[str[i] + 1];\n        else ++sms[str[i]];\n\
+    \    }\n    rep (i, m + 1) {\n        sms[i] += sml[i];\n        if (i < m) sml[i\
     \ + 1] += sms[i];\n    }\n    auto induce_sort = [&](const std::vector<int>& lms)\
     \ {\n        std::fill(all(sa), -1);\n        std::vector<int> buf = sms;\n  \
     \      for (auto d : lms) {\n            if (d == n) continue;\n            sa[buf[str[d]]++]\
@@ -541,7 +497,23 @@ data:
     \ s(all(str));\n    compressor<typename Cont::value_type> cmp(s, true);\n    return\
     \ internal::sa_is(cmp.pressed(s), cmp.size());\n}\ntemplate<>\nstd::vector<int>\
     \ suffix_array(const std::string& str) {\n    return internal::sa_is(str, 256);\n\
-    }\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n */\n"
+    }\n\n/**\n * @brief SuffixArray\n * @docs docs/string/SuffixArray.md\n */\n#line\
+    \ 5 \"string/LCPArray.hpp\"\n\ntemplate<class Cont>\nstd::vector<int> lcp_array(const\
+    \ Cont& str, const std::vector<int>& sa) {\n    int n = str.size();\n    std::vector<int>\
+    \ rank(n);\n    rep (i, n) rank[sa[i]] = i;\n    std::vector<int> lcp(n - 1);\n\
+    \    int h = 0;\n    rep (i, n) {\n        if (rank[i] == 0) continue;\n     \
+    \   int j = sa[rank[i] - 1];\n        while (i + h < n && j + h < n && str[i +\
+    \ h] == str[j + h]) ++h;\n        lcp[rank[i] - 1] = h;\n        chmax(--h, 0);\n\
+    \    }\n    return lcp;\n}\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n\
+    \ */\n"
+  code: "#pragma once\n\n#include \"../other/template.hpp\"\n#include \"SuffixArray.hpp\"\
+    \n\ntemplate<class Cont>\nstd::vector<int> lcp_array(const Cont& str, const std::vector<int>&\
+    \ sa) {\n    int n = str.size();\n    std::vector<int> rank(n);\n    rep (i, n)\
+    \ rank[sa[i]] = i;\n    std::vector<int> lcp(n - 1);\n    int h = 0;\n    rep\
+    \ (i, n) {\n        if (rank[i] == 0) continue;\n        int j = sa[rank[i] -\
+    \ 1];\n        while (i + h < n && j + h < n && str[i + h] == str[j + h]) ++h;\n\
+    \        lcp[rank[i] - 1] = h;\n        chmax(--h, 0);\n    }\n    return lcp;\n\
+    }\n\n/**\n * @brief LCPArray\n * @docs docs/string/LCPArray.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -552,26 +524,25 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - string/SuffixArray.hpp
   isVerificationFile: false
-  path: string/SuffixArray.hpp
-  requiredBy:
-  - string/LCPArray.hpp
-  timestamp: '2024-04-19 13:15:51+09:00'
+  path: string/LCPArray.hpp
+  requiredBy: []
+  timestamp: '2024-04-19 14:01:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/string/number_of_substrings.test.cpp
-  - test/yosupo/string/suffixarray.test.cpp
-documentation_of: string/SuffixArray.hpp
+documentation_of: string/LCPArray.hpp
 layout: document
 redirect_from:
-- /library/string/SuffixArray.hpp
-- /library/string/SuffixArray.hpp.html
-title: SuffixArray
+- /library/string/LCPArray.hpp
+- /library/string/LCPArray.hpp.html
+title: LCPArray
 ---
 ## 概要
 
-`s[a[0]:] < s[a[1]:] < ... < s[a[n-1]:]` なる `a` を suffix array と呼ぶ。SA-IS という手法により線形時間で求めることができる。ダブリングが準線形で実装が楽なので JOI はそれが良いかも。(蟻本参照)
+SA 上で隣接する二つの suffix の Longest Common Prefix `lcp(s[sa[i]], s[sa[i + 1]])` をそれぞれ求める。
 
-- `vector<int> suffix_array(Container cont)` : suffix array を求める。座圧をするので $\Theta(n \log n)$ 。
-- `vector<int> suffix_array(Container cont, int m)` : 全ての要素が $m$ 以下であるときに用いる。 $\Theta(n + m)$ 。
-- `vector<int> suffix_array(string str)` : $m=256$ として呼び出す。
+例えば Range Minimum Query に載せることで任意の二つの suffix の lcp を求めることができる。
+
+- `vector<int> lcp_array(string s, vector<int> sa)` : `s` とその SA が与えられたときに lcp を求める。 $\Theta(\log n)$ 。
