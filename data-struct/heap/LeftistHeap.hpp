@@ -137,6 +137,9 @@ public:
         other.sz = 0;
         return *this;
     }
+    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&& b) {
+        return std::move(a.meld(std::move(b)));
+    }
 };
 
 /**

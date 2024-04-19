@@ -33,6 +33,7 @@ private:
         return A::mul_op(a, c, b);
     }
 
+    SplayTree(node_ptr ptr) : root(ptr) {}
 
     void all_apply(node_ptr& ptr, U x) {
         if (ptr == nullptr) return;
@@ -276,5 +277,26 @@ public:
         node_ptr ptr = get_range(l, r);
         all_reverse(ptr);
         splay(ptr);
+    }
+    SplayTree& merge(SplayTree&& other) {
+        kth_element(size() - 1);
+        root->r = other.root;
+        if (other.root) other.root->p = root;
+        calc(root);
+        return *this;
+    }
+    friend SplayTree merge(SplayTree&& a, SplayTree&& b) {
+        return std::move(a.merge(std::move(b)));
+    }
+    std::pair<SplayTree, SplayTree> split(int k) && {
+        assert(0 <= k && k <= size());
+        if (k == 0) return {SplayTree(), std::move(*this)};
+        if (k == size()) return {std::move(*this), SplayTree()};
+        node_ptr ptr = kth_element(k);
+        node_ptr l = ptr->l;
+        ptr->l = nullptr;
+        if (l) l->p = nullptr;
+        calc(ptr);
+        return {SplayTree(l), SplayTree(ptr)};
     }
 };

@@ -134,6 +134,9 @@ public:
         other.sz = 0;
         return *this;
     }
+    friend SkewHeap meld(SkewHeap&& a, SkewHeap&& b) {
+        return std::move(a.meld(std::move(b)));
+    }
 };
 
 /**
