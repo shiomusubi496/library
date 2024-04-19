@@ -551,6 +551,9 @@ data:
       path: string/RunLength.hpp
       title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
     - icon: ':heavy_check_mark:'
+      path: string/SuffixArray.hpp
+      title: SuffixArray
+    - icon: ':heavy_check_mark:'
       path: string/ZAlgorithm.hpp
       title: Z-Algorithm
   - name: template
@@ -1257,6 +1260,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/lyndon_factorization.test.cpp
       title: test/yosupo/string/lyndon_factorization.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/string/suffixarray.test.cpp
+      title: test/yosupo/string/suffixarray.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/string/zalgorithm.test.cpp
       title: test/yosupo/string/zalgorithm.test.cpp

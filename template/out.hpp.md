@@ -514,6 +514,9 @@ data:
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
   - icon: ':heavy_check_mark:'
+    path: string/SuffixArray.hpp
+    title: SuffixArray
+  - icon: ':heavy_check_mark:'
     path: string/ZAlgorithm.hpp
     title: Z-Algorithm
   _extendedVerifiedWith:
@@ -1157,6 +1160,9 @@ data:
     path: test/yosupo/string/lyndon_factorization.test.cpp
     title: test/yosupo/string/lyndon_factorization.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/string/suffixarray.test.cpp
+    title: test/yosupo/string/suffixarray.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/string/zalgorithm.test.cpp
     title: test/yosupo/string/zalgorithm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1614,6 +1620,7 @@ data:
   - string/LyndonFactorization.hpp
   - string/ZAlgorithm.hpp
   - string/RunLength.hpp
+  - string/SuffixArray.hpp
   - string/RollingHash.hpp
   - string/Manacher.hpp
   - string/LongestIncreasingSubsequence.hpp
@@ -1804,6 +1811,7 @@ data:
   - test/yosupo/matrix/pow_of_matrix.test.cpp
   - test/yosupo/string/zalgorithm.test.cpp
   - test/yosupo/string/lyndon_factorization.test.cpp
+  - test/yosupo/string/suffixarray.test.cpp
   - test/yosupo/string/enumerate_palindromes.test.cpp
   - test/yosupo/math/two_sat.test.cpp
   - test/yosupo/math/discrete_logarithm_mod.test.cpp
