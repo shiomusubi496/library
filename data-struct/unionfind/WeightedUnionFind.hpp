@@ -1,39 +1,39 @@
 #pragma once
 
 #include "../../other/template.hpp"
+#include "../../other/monoid.hpp"
 
-
-template<class T = ll> class WeightedUnionFind {
+template<class M, bool = Monoid::is_monoid<M>::value> class WeightedUnionFind {
 private:
+    using T = typename M::value_type;
     int n;
     std::vector<int> par;
     std::vector<T> wei;
 
 public:
     WeightedUnionFind() : WeightedUnionFind(0) {}
-    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n) {}
+    WeightedUnionFind(int n) : n(n), par(n, -1), wei(n, M::id()) {}
     int find(int x) {
         assert(0 <= x && x < n);
         if (par[x] < 0) return x;
         int r = find(par[x]);
-        wei[x] += wei[par[x]];
+        wei[x] = M::op(wei[x], wei[par[x]]);
         return par[x] = r;
     }
     T weight(int x) { return find(x), wei[x]; }
     T diff(int x, int y) {
         assert(find(x) == find(y));
-        return wei[y] - wei[x];
+        return M::inv(wei[y], wei[x]);
     }
     std::pair<int, int> merge(int x, int y, T w) {
-        w += weight(x);
-        w -= weight(y);
+        w = M::inv(M::op(weight(x), w), weight(y));
         x = find(x);
         y = find(y);
         if (x == y) {
-            if (w == 0) return {x, -1};
+            if (w == M::id()) return {x, -1};
             else return {x, -2};
         }
-        if (par[x] > par[y]) std::swap(x, y), w = -w;
+        if (par[x] > par[y]) std::swap(x, y), w = M::get_inv(w);
         par[x] += par[y];
         par[y] = x;
         wei[y] = w;
@@ -54,6 +54,15 @@ public:
         assert(0 <= x && x < n);
         return par[x] < 0;
     }
+};
+
+template<class T>
+class WeightedUnionFind<T, false> : public WeightedUnionFind<Monoid::Sum<T>> {
+private:
+    using Base = WeightedUnionFind<Monoid::Sum<T>>;
+
+public:
+    using Base::Base;
 };
 
 /**
