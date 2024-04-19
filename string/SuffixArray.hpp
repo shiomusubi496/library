@@ -4,8 +4,7 @@
 
 namespace internal {
 
-template<class Cont>
-std::vector<int> sa_is(const Cont& str, int m) {
+template<class Cont> std::vector<int> sa_is(const Cont& str, int m) {
     int n = str.size();
     if (n == 0) return {};
     if (n == 1) return {0};
@@ -95,20 +94,17 @@ std::vector<int> sa_is(const Cont& str, int m) {
     return sa;
 }
 
-}
+} // namespace internal
 
-template<class Cont>
-std::vector<int> suffix_array(const Cont& str, int m) {
+template<class Cont> std::vector<int> suffix_array(const Cont& str, int m) {
     return internal::sa_is(str, m + 1);
 }
-template<class Cont>
-std::vector<int> suffix_array(const Cont& str) {
+template<class Cont> std::vector<int> suffix_array(const Cont& str) {
     std::vector<typename Cont::value_type> s(all(str));
     compressor<typename Cont::value_type> cmp(s, true);
     return internal::sa_is(cmp.pressed(s), cmp.size());
 }
-template<>
-std::vector<int> suffix_array(const std::string& str) {
+template<> std::vector<int> suffix_array(const std::string& str) {
     return internal::sa_is(str, 256);
 }
 
