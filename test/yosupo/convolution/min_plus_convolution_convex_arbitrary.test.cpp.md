@@ -490,7 +490,7 @@ data:
     \               std::max(k - i - 1, i - k - m);\n        }\n        return a[j]\
     \ + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T> res(n + m - 1);\n\
     \    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n    return res;\n\
-    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/convolution/MinPlusConvolution.md\n\
+    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n\
     \ */\n#line 4 \"test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int n, m; scan >> n >> m;\n    vector<int>\
     \ a(n), b(m); scan >> a >> b;\n    prints(min_plus_convolution(b, a));\n}\n"
@@ -513,7 +513,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 14:58:23+09:00'
+  timestamp: '2024-04-21 15:19:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp

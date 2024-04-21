@@ -43,7 +43,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/RangeAssignSegmentTree.
+    _deprecated_at_docs: docs/data-struct/segment/RangeAssignSegmentTree.md
     document_title: RangeAssignSegmentTree
     links:
     - https://noshi91.hatenablog.com/entry/2019/10/05/203704
@@ -667,7 +667,7 @@ data:
     \ }\n    T all_prod() { return seg.all_prod(); }\n    template<class F> int max_right(int\
     \ l, F f) { return seg.max_right(l, f); }\n    template<class F> int min_left(int\
     \ r, F f) { return seg.min_left(r, f); }\n};\n\n/**\n * @brief RangeAssignSegmentTree\n\
-    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
+    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.md\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n#include \"LazySegmentTree.hpp\"\n\ntemplate<class M_> class RangeAssignSegmentTree\
@@ -692,7 +692,7 @@ data:
     \ }\n    T all_prod() { return seg.all_prod(); }\n    template<class F> int max_right(int\
     \ l, F f) { return seg.max_right(l, f); }\n    template<class F> int min_left(int\
     \ r, F f) { return seg.min_left(r, f); }\n};\n\n/**\n * @brief RangeAssignSegmentTree\n\
-    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
+    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.md\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -709,7 +709,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/RangeAssignSegmentTree.hpp
   requiredBy: []
-  timestamp: '2024-04-18 15:05:11+09:00'
+  timestamp: '2024-04-21 15:19:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
@@ -720,3 +720,10 @@ redirect_from:
 - /library/data-struct/segment/RangeAssignSegmentTree.hpp.html
 title: RangeAssignSegmentTree
 ---
+## 概要
+
+区間代入のできるセグ木。通常の操作は最悪だが、代入が償却計算量であることに注意。
+
+できることは通常のセグ木とほぼ同じ。
+
+- `void set(int l, int r, T x)` : `[l, r)` に `x` を代入する。償却 $\Theta(\log n)$ 。

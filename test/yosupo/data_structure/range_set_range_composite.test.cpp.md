@@ -824,7 +824,7 @@ data:
     \ }\n    T all_prod() { return seg.all_prod(); }\n    template<class F> int max_right(int\
     \ l, F f) { return seg.max_right(l, f); }\n    template<class F> int min_left(int\
     \ r, F f) { return seg.min_left(r, f); }\n};\n\n/**\n * @brief RangeAssignSegmentTree\n\
-    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
+    \ * @docs docs/data-struct/segment/RangeAssignSegmentTree.md\n * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704\n\
     \ */\n#line 6 \"test/yosupo/data_structure/range_set_range_composite.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
     \ q; scan >> n >> q;\n    vector<pair<mint, mint>> a(n); scan >> a;\n    RangeAssignSegmentTree<Monoid::Composite<mint>>\
@@ -861,7 +861,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-04-18 15:05:11+09:00'
+  timestamp: '2024-04-21 15:19:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/range_set_range_composite.test.cpp

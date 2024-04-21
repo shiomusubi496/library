@@ -40,7 +40,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/convolution/MinPlusConvolution.md
+    _deprecated_at_docs: docs/math/convolution/MinPlusConvolution.md
     document_title: Min Plus Convolution
     links: []
   bundledCode: "#line 2 \"math/convolution/MinPlusConvolution.hpp\"\n\n#line 2 \"\
@@ -487,7 +487,7 @@ data:
     \               std::max(k - i - 1, i - k - m);\n        }\n        return a[j]\
     \ + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T> res(n + m - 1);\n\
     \    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n    return res;\n\
-    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/convolution/MinPlusConvolution.md\n\
+    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../dp/SMAWK.hpp\"\
     \n\ntemplate<class T>\nstd::vector<T> min_plus_convolution(const std::vector<T>&\
@@ -499,7 +499,7 @@ data:
     \               std::max(k - i - 1, i - k - m);\n        }\n        return a[j]\
     \ + b[i - j] < a[k] + b[i - k];\n    });\n    std::vector<T> res(n + m - 1);\n\
     \    rep (i, n + m - 1) res[i] = a[idx[i]] + b[i - idx[i]];\n    return res;\n\
-    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/convolution/MinPlusConvolution.md\n\
+    }\n\n/**\n * @brief Min Plus Convolution\n * @docs docs/math/convolution/MinPlusConvolution.md\n\
     \ */\n"
   dependsOn:
   - other/template.hpp
@@ -515,7 +515,7 @@ data:
   isVerificationFile: false
   path: math/convolution/MinPlusConvolution.hpp
   requiredBy: []
-  timestamp: '2024-04-18 14:58:23+09:00'
+  timestamp: '2024-04-21 15:19:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
@@ -526,3 +526,10 @@ redirect_from:
 - /library/math/convolution/MinPlusConvolution.hpp.html
 title: Min Plus Convolution
 ---
+## 概要
+
+長さ $n$ の列 $a$ 、長さ $m$ の列 $b$ で $b$ が下に凸なものについて、 $c_k \displaystyle\min_{i+j=k} a_i b_j$ で定められる長さ $n+m-1$ の列 $c$ を求める。
+
+$X_{i,j}=A_j+B_{i-j}$ で定めると $X$ が monge になることより SMAWK により求まる。
+
+- `vector<T> max_plus_convolution(vector<T> a, vector<T> b)` : 上記の計算をする。 $\Theta(n+m)$ 。
