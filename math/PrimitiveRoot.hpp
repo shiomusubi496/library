@@ -28,18 +28,6 @@ template<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {
     }
 }
 
-CONSTEXPR ull primitive_root_for_convolution(ull p) {
-    if (p == 2) return 1;
-    if (p == 998244353) return 3;
-    if (p == 469762049) return 3;
-    if (p == 1811939329) return 11;
-    if (p == 2013265921) return 11;
-    rep (g, 2, p) {
-        if (mod_pow(g, (p - 1) >> 1, p) != 1) return g;
-    }
-    return -1;
-}
-
 /**
  * @brief PrimitiveRoot(原始根)
  * @docs docs/math/PrimitiveRoot.md

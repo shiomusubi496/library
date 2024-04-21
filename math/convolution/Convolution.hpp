@@ -2,7 +2,18 @@
 
 #include "../../other/template.hpp"
 #include "../ModInt.hpp"
-#include "../PrimitiveRoot.hpp"
+
+CONSTEXPR ull primitive_root_for_convolution(ull p) {
+    if (p == 2) return 1;
+    if (p == 998244353) return 3;
+    if (p == 469762049) return 3;
+    if (p == 1811939329) return 11;
+    if (p == 2013265921) return 11;
+    rep (g, 2, p) {
+        if (mod_pow(g, (p - 1) >> 1, p) != 1) return g;
+    }
+    return -1;
+}
 
 namespace internal {
 
