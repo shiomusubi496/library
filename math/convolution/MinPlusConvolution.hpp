@@ -23,5 +23,5 @@ std::vector<T> min_plus_convolution(const std::vector<T>& a,
 
 /**
  * @brief Min Plus Convolution
- * @docs docs/convolution/MinPlusConvolution.md
+ * @docs docs/math/convolution/MinPlusConvolution.md
  */

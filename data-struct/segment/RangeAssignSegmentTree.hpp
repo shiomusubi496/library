@@ -56,6 +56,6 @@ public:
 
 /**
  * @brief RangeAssignSegmentTree
- * @docs docs/data-struct/segment/RangeAssignSegmentTree.
+ * @docs docs/data-struct/segment/RangeAssignSegmentTree.md
  * @see https://noshi91.hatenablog.com/entry/2019/10/05/203704
  */
