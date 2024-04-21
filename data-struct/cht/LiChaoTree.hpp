@@ -58,8 +58,7 @@ public:
         n = 1 << bitop::ceil_log2(ori);
         xs.reserve(n);
         rep (i, xs_.size(), n) xs.push_back(xs_[i] + 1);
-        lns.assign(n << 1,
-                   Line{0, is_max ? infinity<T>::min : infinity<T>::max, -1});
+        lns.assign(n << 1, Line{0, infinity<T>::max, -1});
     }
     int add_segment(int l, int r, T x, T y) {
         assert(0 <= l && l <= r && r <= ori);
@@ -76,9 +75,9 @@ public:
         T res = lns[x].get(xs[k]);
         while (x >>= 1) {
             const T y = lns[x].get(xs[k]);
-            chmin(res, is_max ? -y : y);
+            chmin(res, y);
         }
-        return res;
+        return is_max ? -res : res;
     }
     struct line {
         T a, b;
@@ -90,7 +89,7 @@ public:
         Line res = lns[x];
         while (x >>= 1) {
             const T y = lns[x].get(xs[k]);
-            if (chmin(mn, is_max ? -y : y)) res = lns[x];
+            if (chmin(mn, y)) res = lns[x];
         }
         return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};
     }
