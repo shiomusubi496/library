@@ -5,10 +5,10 @@ data:
     path: math/MillerRabin.hpp
     title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
       )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/PrimitiveRoot.hpp
     title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -26,28 +26,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -758,12 +758,8 @@ data:
     \ (1) {\n        ull g = rand64.uniform(2ull, p - 1);\n        bool ok = true;\n\
     \        each_const (x : pf) {\n            if (T(g).pow(x) == one) {\n      \
     \          ok = false;\n                break;\n            }\n        }\n   \
-    \     if (ok) return g;\n    }\n}\n\nCONSTEXPR ull primitive_root_for_convolution(ull\
-    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
-    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
-    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
-    \ 1) return g;\n    }\n    return -1;\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\
-    \u59CB\u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n#line 4 \"test/yosupo/math/primitive_root.test.cpp\"\
+    \     if (ok) return g;\n    }\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\u59CB\
+    \u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n#line 4 \"test/yosupo/math/primitive_root.test.cpp\"\
     \nusing namespace std;\nint main() {\n    int q; scan >> q;\n    rep (q) {\n \
     \       ull p; scan >> p;\n        prints(primitive_root(p));\n    }\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/primitive_root\"\n#include\
@@ -790,7 +786,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/math/primitive_root.test.cpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-21 15:04:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/math/primitive_root.test.cpp

@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -561,47 +561,47 @@ data:
     \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n\n    void all_apply(node_ptr& ptr, U x) {\n        if (ptr\
-    \ == nullptr) return;\n        ptr->v = Aop(x, ptr->v, 1);\n        ptr->val =\
-    \ Aop(x, ptr->val, ptr->cnt);\n        ptr->rval = Aop(x, ptr->rval, ptr->cnt);\n\
-    \        if (ptr->l || ptr->r) {\n            if (ptr->lazyflag) {\n         \
-    \       ptr->lazy = E::op(ptr->lazy, x);\n            }\n            else {\n\
-    \                ptr->lazy = x;\n                ptr->lazyflag = true;\n     \
-    \       }\n        }\n    }\n    void all_reverse(node_ptr& ptr) {\n        if\
-    \ (ptr == nullptr) return;\n        std::swap(ptr->l, ptr->r);\n        std::swap(ptr->val,\
-    \ ptr->rval);\n        ptr->rev = !ptr->rev;\n    }\n    void eval(node_ptr& ptr)\
-    \ {\n        if (ptr->rev) {\n            all_reverse(ptr->l);\n            all_reverse(ptr->r);\n\
-    \            ptr->rev = false;\n        }\n        if (ptr->lazyflag) {\n    \
-    \        all_apply(ptr->l, ptr->lazy);\n            all_apply(ptr->r, ptr->lazy);\n\
-    \            ptr->lazyflag = false;\n        }\n    }\n    void calc(node_ptr&\
-    \ ptr) {\n        ptr->val = M::op(ptr->l ? ptr->l->val : M::id(),\n         \
-    \                M::op(ptr->v, ptr->r ? ptr->r->val : M::id()));\n        ptr->rval\
-    \ = M::op(ptr->r ? ptr->r->rval : M::id(),\n                          M::op(ptr->v,\
-    \ ptr->l ? ptr->l->rval : M::id()));\n        ptr->cnt = (ptr->l ? ptr->l->cnt\
-    \ : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;\n    }\n    node_ptr& parentchild(node_ptr&\
-    \ ptr) {\n        if (ptr == root) return root;\n        return ptr->p->l == ptr\
-    \ ? ptr->p->l : ptr->p->r;\n    }\n\n    void rotateL(node_ptr& p) {\n       \
-    \ node_ptr c = p->r;\n        assert(c != nullptr);\n        parentchild(p) =\
-    \ c;\n        c->p = p->p;\n        p->p = c;\n        p->r = c->l;\n        c->l\
-    \ = p;\n        if (p->r) p->r->p = p;\n    }\n    void rotateR(node_ptr& p) {\n\
-    \        node_ptr c = p->l;\n        assert(c != nullptr);\n        parentchild(p)\
-    \ = c;\n        c->p = p->p;\n        p->p = c;\n        p->l = c->r;\n      \
-    \  c->r = p;\n        if (p->l) p->l->p = p;\n    }\n    void splay(node_ptr&\
-    \ ptr) {\n        eval(ptr);\n        while (ptr != root) {\n            node_ptr\
-    \ p = ptr->p;\n            if (p == root) {\n                if (p->l == ptr)\
-    \ rotateR(p);\n                else rotateL(p);\n                calc(p);\n  \
-    \              calc(ptr);\n            }\n            else {\n               \
-    \ node_ptr gp = p->p;\n                if (gp->l == p) {\n                   \
-    \ if (p->l == ptr) {\n                        rotateR(gp);\n                 \
-    \       rotateR(p);\n                    }\n                    else {\n     \
-    \                   rotateL(p);\n                        rotateR(gp);\n      \
-    \              }\n                }\n                else {\n                \
-    \    if (p->l == ptr) {\n                        rotateR(p);\n               \
-    \         rotateL(gp);\n                    }\n                    else {\n  \
-    \                      rotateL(gp);\n                        rotateL(p);\n   \
-    \                 }\n                }\n                calc(gp);\n          \
-    \      calc(p);\n                calc(ptr);\n            }\n        }\n      \
-    \  calc(ptr);\n    }\n\npublic:\n    SplayTree() : root(nullptr) {}\n    SplayTree(const\
+    \ c, b);\n    }\n\n    SplayTree(node_ptr ptr) : root(ptr) {}\n\n    void all_apply(node_ptr&\
+    \ ptr, U x) {\n        if (ptr == nullptr) return;\n        ptr->v = Aop(x, ptr->v,\
+    \ 1);\n        ptr->val = Aop(x, ptr->val, ptr->cnt);\n        ptr->rval = Aop(x,\
+    \ ptr->rval, ptr->cnt);\n        if (ptr->l || ptr->r) {\n            if (ptr->lazyflag)\
+    \ {\n                ptr->lazy = E::op(ptr->lazy, x);\n            }\n       \
+    \     else {\n                ptr->lazy = x;\n                ptr->lazyflag =\
+    \ true;\n            }\n        }\n    }\n    void all_reverse(node_ptr& ptr)\
+    \ {\n        if (ptr == nullptr) return;\n        std::swap(ptr->l, ptr->r);\n\
+    \        std::swap(ptr->val, ptr->rval);\n        ptr->rev = !ptr->rev;\n    }\n\
+    \    void eval(node_ptr& ptr) {\n        if (ptr->rev) {\n            all_reverse(ptr->l);\n\
+    \            all_reverse(ptr->r);\n            ptr->rev = false;\n        }\n\
+    \        if (ptr->lazyflag) {\n            all_apply(ptr->l, ptr->lazy);\n   \
+    \         all_apply(ptr->r, ptr->lazy);\n            ptr->lazyflag = false;\n\
+    \        }\n    }\n    void calc(node_ptr& ptr) {\n        ptr->val = M::op(ptr->l\
+    \ ? ptr->l->val : M::id(),\n                         M::op(ptr->v, ptr->r ? ptr->r->val\
+    \ : M::id()));\n        ptr->rval = M::op(ptr->r ? ptr->r->rval : M::id(),\n \
+    \                         M::op(ptr->v, ptr->l ? ptr->l->rval : M::id()));\n \
+    \       ptr->cnt = (ptr->l ? ptr->l->cnt : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;\n\
+    \    }\n    node_ptr& parentchild(node_ptr& ptr) {\n        if (ptr == root) return\
+    \ root;\n        return ptr->p->l == ptr ? ptr->p->l : ptr->p->r;\n    }\n\n \
+    \   void rotateL(node_ptr& p) {\n        node_ptr c = p->r;\n        assert(c\
+    \ != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n        p->p\
+    \ = c;\n        p->r = c->l;\n        c->l = p;\n        if (p->r) p->r->p = p;\n\
+    \    }\n    void rotateR(node_ptr& p) {\n        node_ptr c = p->l;\n        assert(c\
+    \ != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n        p->p\
+    \ = c;\n        p->l = c->r;\n        c->r = p;\n        if (p->l) p->l->p = p;\n\
+    \    }\n    void splay(node_ptr& ptr) {\n        eval(ptr);\n        while (ptr\
+    \ != root) {\n            node_ptr p = ptr->p;\n            if (p == root) {\n\
+    \                if (p->l == ptr) rotateR(p);\n                else rotateL(p);\n\
+    \                calc(p);\n                calc(ptr);\n            }\n       \
+    \     else {\n                node_ptr gp = p->p;\n                if (gp->l ==\
+    \ p) {\n                    if (p->l == ptr) {\n                        rotateR(gp);\n\
+    \                        rotateR(p);\n                    }\n                \
+    \    else {\n                        rotateL(p);\n                        rotateR(gp);\n\
+    \                    }\n                }\n                else {\n          \
+    \          if (p->l == ptr) {\n                        rotateR(p);\n         \
+    \               rotateL(gp);\n                    }\n                    else\
+    \ {\n                        rotateL(gp);\n                        rotateL(p);\n\
+    \                    }\n                }\n                calc(gp);\n       \
+    \         calc(p);\n                calc(ptr);\n            }\n        }\n   \
+    \     calc(ptr);\n    }\n\npublic:\n    SplayTree() : root(nullptr) {}\n    SplayTree(const\
     \ std::vector<T>& v) : root(nullptr) {\n        for (auto x : v) insert(size(),\
     \ x);\n    }\n\n    int size() const { return root ? root->cnt : 0; }\n\n    node_ptr\
     \ kth_element(int k) {\n        assert(0 <= k && k < size());\n        node_ptr\
@@ -649,7 +649,17 @@ data:
     \     node_ptr ptr = kth_element(k);\n        ptr->v = upd(ptr->v);\n        calc(ptr);\n\
     \    }\n    void reverse(int l, int r) {\n        assert(0 <= l && l <= r && r\
     \ <= size());\n        if (l + 1 >= r) return;\n        node_ptr ptr = get_range(l,\
-    \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n};\n"
+    \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n    SplayTree& merge(SplayTree&&\
+    \ other) {\n        kth_element(size() - 1);\n        root->r = other.root;\n\
+    \        if (other.root) other.root->p = root;\n        calc(root);\n        return\
+    \ *this;\n    }\n    friend SplayTree merge(SplayTree&& a, SplayTree&& b) {\n\
+    \        return std::move(a.merge(std::move(b)));\n    }\n    std::pair<SplayTree,\
+    \ SplayTree> split(int k) && {\n        assert(0 <= k && k <= size());\n     \
+    \   if (k == 0) return {SplayTree(), std::move(*this)};\n        if (k == size())\
+    \ return {std::move(*this), SplayTree()};\n        node_ptr ptr = kth_element(k);\n\
+    \        node_ptr l = ptr->l;\n        ptr->l = nullptr;\n        if (l) l->p\
+    \ = nullptr;\n        calc(ptr);\n        return {SplayTree(l), SplayTree(ptr)};\n\
+    \    }\n};\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class A> class SplayTree {\nprivate:\n    using M = typename A::M;\n\
     \    using E = typename A::E;\n    using T = typename M::value_type;\n    using\
@@ -663,47 +673,47 @@ data:
     \ b);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
     \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n\n    void all_apply(node_ptr& ptr, U x) {\n        if (ptr\
-    \ == nullptr) return;\n        ptr->v = Aop(x, ptr->v, 1);\n        ptr->val =\
-    \ Aop(x, ptr->val, ptr->cnt);\n        ptr->rval = Aop(x, ptr->rval, ptr->cnt);\n\
-    \        if (ptr->l || ptr->r) {\n            if (ptr->lazyflag) {\n         \
-    \       ptr->lazy = E::op(ptr->lazy, x);\n            }\n            else {\n\
-    \                ptr->lazy = x;\n                ptr->lazyflag = true;\n     \
-    \       }\n        }\n    }\n    void all_reverse(node_ptr& ptr) {\n        if\
-    \ (ptr == nullptr) return;\n        std::swap(ptr->l, ptr->r);\n        std::swap(ptr->val,\
-    \ ptr->rval);\n        ptr->rev = !ptr->rev;\n    }\n    void eval(node_ptr& ptr)\
-    \ {\n        if (ptr->rev) {\n            all_reverse(ptr->l);\n            all_reverse(ptr->r);\n\
-    \            ptr->rev = false;\n        }\n        if (ptr->lazyflag) {\n    \
-    \        all_apply(ptr->l, ptr->lazy);\n            all_apply(ptr->r, ptr->lazy);\n\
-    \            ptr->lazyflag = false;\n        }\n    }\n    void calc(node_ptr&\
-    \ ptr) {\n        ptr->val = M::op(ptr->l ? ptr->l->val : M::id(),\n         \
-    \                M::op(ptr->v, ptr->r ? ptr->r->val : M::id()));\n        ptr->rval\
-    \ = M::op(ptr->r ? ptr->r->rval : M::id(),\n                          M::op(ptr->v,\
-    \ ptr->l ? ptr->l->rval : M::id()));\n        ptr->cnt = (ptr->l ? ptr->l->cnt\
-    \ : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;\n    }\n    node_ptr& parentchild(node_ptr&\
-    \ ptr) {\n        if (ptr == root) return root;\n        return ptr->p->l == ptr\
-    \ ? ptr->p->l : ptr->p->r;\n    }\n\n    void rotateL(node_ptr& p) {\n       \
-    \ node_ptr c = p->r;\n        assert(c != nullptr);\n        parentchild(p) =\
-    \ c;\n        c->p = p->p;\n        p->p = c;\n        p->r = c->l;\n        c->l\
-    \ = p;\n        if (p->r) p->r->p = p;\n    }\n    void rotateR(node_ptr& p) {\n\
-    \        node_ptr c = p->l;\n        assert(c != nullptr);\n        parentchild(p)\
-    \ = c;\n        c->p = p->p;\n        p->p = c;\n        p->l = c->r;\n      \
-    \  c->r = p;\n        if (p->l) p->l->p = p;\n    }\n    void splay(node_ptr&\
-    \ ptr) {\n        eval(ptr);\n        while (ptr != root) {\n            node_ptr\
-    \ p = ptr->p;\n            if (p == root) {\n                if (p->l == ptr)\
-    \ rotateR(p);\n                else rotateL(p);\n                calc(p);\n  \
-    \              calc(ptr);\n            }\n            else {\n               \
-    \ node_ptr gp = p->p;\n                if (gp->l == p) {\n                   \
-    \ if (p->l == ptr) {\n                        rotateR(gp);\n                 \
-    \       rotateR(p);\n                    }\n                    else {\n     \
-    \                   rotateL(p);\n                        rotateR(gp);\n      \
-    \              }\n                }\n                else {\n                \
-    \    if (p->l == ptr) {\n                        rotateR(p);\n               \
-    \         rotateL(gp);\n                    }\n                    else {\n  \
-    \                      rotateL(gp);\n                        rotateL(p);\n   \
-    \                 }\n                }\n                calc(gp);\n          \
-    \      calc(p);\n                calc(ptr);\n            }\n        }\n      \
-    \  calc(ptr);\n    }\n\npublic:\n    SplayTree() : root(nullptr) {}\n    SplayTree(const\
+    \ c, b);\n    }\n\n    SplayTree(node_ptr ptr) : root(ptr) {}\n\n    void all_apply(node_ptr&\
+    \ ptr, U x) {\n        if (ptr == nullptr) return;\n        ptr->v = Aop(x, ptr->v,\
+    \ 1);\n        ptr->val = Aop(x, ptr->val, ptr->cnt);\n        ptr->rval = Aop(x,\
+    \ ptr->rval, ptr->cnt);\n        if (ptr->l || ptr->r) {\n            if (ptr->lazyflag)\
+    \ {\n                ptr->lazy = E::op(ptr->lazy, x);\n            }\n       \
+    \     else {\n                ptr->lazy = x;\n                ptr->lazyflag =\
+    \ true;\n            }\n        }\n    }\n    void all_reverse(node_ptr& ptr)\
+    \ {\n        if (ptr == nullptr) return;\n        std::swap(ptr->l, ptr->r);\n\
+    \        std::swap(ptr->val, ptr->rval);\n        ptr->rev = !ptr->rev;\n    }\n\
+    \    void eval(node_ptr& ptr) {\n        if (ptr->rev) {\n            all_reverse(ptr->l);\n\
+    \            all_reverse(ptr->r);\n            ptr->rev = false;\n        }\n\
+    \        if (ptr->lazyflag) {\n            all_apply(ptr->l, ptr->lazy);\n   \
+    \         all_apply(ptr->r, ptr->lazy);\n            ptr->lazyflag = false;\n\
+    \        }\n    }\n    void calc(node_ptr& ptr) {\n        ptr->val = M::op(ptr->l\
+    \ ? ptr->l->val : M::id(),\n                         M::op(ptr->v, ptr->r ? ptr->r->val\
+    \ : M::id()));\n        ptr->rval = M::op(ptr->r ? ptr->r->rval : M::id(),\n \
+    \                         M::op(ptr->v, ptr->l ? ptr->l->rval : M::id()));\n \
+    \       ptr->cnt = (ptr->l ? ptr->l->cnt : 0) + (ptr->r ? ptr->r->cnt : 0) + 1;\n\
+    \    }\n    node_ptr& parentchild(node_ptr& ptr) {\n        if (ptr == root) return\
+    \ root;\n        return ptr->p->l == ptr ? ptr->p->l : ptr->p->r;\n    }\n\n \
+    \   void rotateL(node_ptr& p) {\n        node_ptr c = p->r;\n        assert(c\
+    \ != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n        p->p\
+    \ = c;\n        p->r = c->l;\n        c->l = p;\n        if (p->r) p->r->p = p;\n\
+    \    }\n    void rotateR(node_ptr& p) {\n        node_ptr c = p->l;\n        assert(c\
+    \ != nullptr);\n        parentchild(p) = c;\n        c->p = p->p;\n        p->p\
+    \ = c;\n        p->l = c->r;\n        c->r = p;\n        if (p->l) p->l->p = p;\n\
+    \    }\n    void splay(node_ptr& ptr) {\n        eval(ptr);\n        while (ptr\
+    \ != root) {\n            node_ptr p = ptr->p;\n            if (p == root) {\n\
+    \                if (p->l == ptr) rotateR(p);\n                else rotateL(p);\n\
+    \                calc(p);\n                calc(ptr);\n            }\n       \
+    \     else {\n                node_ptr gp = p->p;\n                if (gp->l ==\
+    \ p) {\n                    if (p->l == ptr) {\n                        rotateR(gp);\n\
+    \                        rotateR(p);\n                    }\n                \
+    \    else {\n                        rotateL(p);\n                        rotateR(gp);\n\
+    \                    }\n                }\n                else {\n          \
+    \          if (p->l == ptr) {\n                        rotateR(p);\n         \
+    \               rotateL(gp);\n                    }\n                    else\
+    \ {\n                        rotateL(gp);\n                        rotateL(p);\n\
+    \                    }\n                }\n                calc(gp);\n       \
+    \         calc(p);\n                calc(ptr);\n            }\n        }\n   \
+    \     calc(ptr);\n    }\n\npublic:\n    SplayTree() : root(nullptr) {}\n    SplayTree(const\
     \ std::vector<T>& v) : root(nullptr) {\n        for (auto x : v) insert(size(),\
     \ x);\n    }\n\n    int size() const { return root ? root->cnt : 0; }\n\n    node_ptr\
     \ kth_element(int k) {\n        assert(0 <= k && k < size());\n        node_ptr\
@@ -751,7 +761,17 @@ data:
     \     node_ptr ptr = kth_element(k);\n        ptr->v = upd(ptr->v);\n        calc(ptr);\n\
     \    }\n    void reverse(int l, int r) {\n        assert(0 <= l && l <= r && r\
     \ <= size());\n        if (l + 1 >= r) return;\n        node_ptr ptr = get_range(l,\
-    \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n};\n"
+    \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n    SplayTree& merge(SplayTree&&\
+    \ other) {\n        kth_element(size() - 1);\n        root->r = other.root;\n\
+    \        if (other.root) other.root->p = root;\n        calc(root);\n        return\
+    \ *this;\n    }\n    friend SplayTree merge(SplayTree&& a, SplayTree&& b) {\n\
+    \        return std::move(a.merge(std::move(b)));\n    }\n    std::pair<SplayTree,\
+    \ SplayTree> split(int k) && {\n        assert(0 <= k && k <= size());\n     \
+    \   if (k == 0) return {SplayTree(), std::move(*this)};\n        if (k == size())\
+    \ return {std::move(*this), SplayTree()};\n        node_ptr ptr = kth_element(k);\n\
+    \        node_ptr l = ptr->l;\n        ptr->l = nullptr;\n        if (l) l->p\
+    \ = nullptr;\n        calc(ptr);\n        return {SplayTree(l), SplayTree(ptr)};\n\
+    \    }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -766,7 +786,7 @@ data:
   isVerificationFile: false
   path: data-struct/bst/SplayTree.hpp
   requiredBy: []
-  timestamp: '2024-03-31 18:06:42+09:00'
+  timestamp: '2024-04-19 17:18:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/range_reverse_range_sum.test.cpp

@@ -1,65 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/Combinatorics.hpp
     title: Combinatorics
-  - icon: ':heavy_check_mark:'
-    path: math/MillerRabin.hpp
-    title: "MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\u6570\u5224\u5B9A\
-      )"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/ModInt.hpp
     title: ModInt
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/MontgomeryModInt.hpp
     title: "MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\u7B97)"
-  - icon: ':heavy_check_mark:'
-    path: math/PollardRho.hpp
-    title: "PollardRho(\u7D20\u56E0\u6570\u5206\u89E3)"
-  - icon: ':heavy_check_mark:'
-    path: math/PrimitiveRoot.hpp
-    title: "PrimitiveRoot(\u539F\u59CB\u6839)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/SqrtMod.hpp
     title: "SqrtMod(\u5E73\u65B9\u5270\u4F59)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/convolution/Convolution.hpp
     title: "Convolution(\u7573\u307F\u8FBC\u307F)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/poly/FormalPowerSeries.hpp
     title: "FormalPowerSeries(\u5F62\u5F0F\u7684\u51AA\u7D1A\u6570)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
-    path: random/Random.hpp
-    title: Random
-  - icon: ':heavy_check_mark:'
     path: string/RunLength.hpp
     title: "RunLength(\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -640,38 +627,108 @@ data:
     \ = std::vector<T>(1, 1);\ntemplate<class T>\nstd::vector<T> Combinatorics<T>::factinv\
     \ = std::vector<T>(1, 1);\n\n/**\n * @brief Combinatorics\n * @docs docs/math/Combinatorics.md\n\
     \ */\n#line 2 \"math/poly/FormalPowerSeries.hpp\"\n\n#line 2 \"math/convolution/Convolution.hpp\"\
-    \n\n#line 2 \"math/PrimitiveRoot.hpp\"\n\n#line 2 \"random/Random.hpp\"\n\n#line\
-    \ 4 \"random/Random.hpp\"\n\ntemplate<class Engine> class Random {\nprivate:\n\
-    \    Engine rnd;\n\npublic:\n    using result_type = typename Engine::result_type;\n\
-    \    Random() : Random(std::random_device{}()) {}\n    Random(result_type seed)\
-    \ : rnd(seed) {}\n    result_type operator()() { return rnd(); }\n    template<class\
-    \ IntType = ll> IntType uniform(IntType l, IntType r) {\n        static_assert(std::is_integral<IntType>::value,\n\
-    \                      \"template argument must be an integral type\");\n    \
-    \    assert(l <= r);\n        return std::uniform_int_distribution<IntType>{l,\
-    \ r}(rnd);\n    }\n    template<class RealType = double>\n    RealType uniform_real(RealType\
-    \ l, RealType r) {\n        static_assert(std::is_floating_point<RealType>::value,\n\
-    \                      \"template argument must be an floating point type\");\n\
-    \        assert(l <= r);\n        return std::uniform_real_distribution<RealType>{l,\
-    \ r}(rnd);\n    }\n    bool uniform_bool() { return uniform<int>(0, 1) == 1; }\n\
-    \    template<class T = ll> std::pair<T, T> uniform_pair(T l, T r) {\n       \
-    \ assert(l < r);\n        T a, b;\n        do {\n            a = uniform<T>(l,\
-    \ r);\n            b = uniform<T>(l, r);\n        } while (a == b);\n        if\
-    \ (a > b) swap(a, b);\n        return {a, b};\n    }\n    template<class T = ll>\
-    \ std::vector<T> choice(int n, T l, T r) {\n        assert(l <= r);\n        assert(T(n)\
-    \ <= (r - l + 1));\n        std::set<T> res;\n        while ((int)res.size() <\
-    \ n) res.insert(uniform<T>(l, r));\n        return {res.begin(), res.end()};\n\
-    \    }\n    template<class Iter> void shuffle(const Iter& first, const Iter& last)\
-    \ {\n        std::shuffle(first, last, rnd);\n    }\n    template<class T> std::vector<T>\
-    \ permutation(T n) {\n        std::vector<T> res(n);\n        rep (i, n) res[i]\
-    \ = i;\n        shuffle(all(res));\n        return res;\n    }\n    template<class\
-    \ T = ll>\n    std::vector<T> choice_shuffle(int n, T l, T r, bool sorted = true)\
-    \ {\n        assert(l <= r);\n        assert(T(n) <= (r - l + 1));\n        std::vector<T>\
-    \ res(r - l + 1);\n        rep (i, l, r + 1) res[i - l] = i;\n        shuffle(all(res));\n\
-    \        res.erase(res.begin() + n, res.end());\n        if (sorted) sort(all(res));\n\
-    \        return res;\n    }\n};\n\nusing Random32 = Random<std::mt19937>;\nRandom32\
-    \ rand32;\nusing Random64 = Random<std::mt19937_64>;\nRandom64 rand64;\n\n/**\n\
-    \ * @brief Random\n * @docs docs/random/Random.md\n */\n#line 2 \"math/MontgomeryModInt.hpp\"\
-    \n\n#line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
+    \n\n#line 5 \"math/convolution/Convolution.hpp\"\n\nCONSTEXPR ull primitive_root_for_convolution(ull\
+    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
+    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
+    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
+    \ 1) return g;\n    }\n    return -1;\n}\n\nnamespace internal {\n\ntemplate<unsigned\
+    \ int p> class NthRoot {\nprivate:\n    static constexpr unsigned int lg = bitop::msb((p\
+    \ - 1) & (1 - p));\n    unsigned int root[lg + 1];\n    unsigned int inv_root[lg\
+    \ + 1];\n    unsigned int rate[lg + 1];\n    unsigned int inv_rate[lg + 1];\n\n\
+    public:\n    constexpr NthRoot() : root{}, inv_root{}, rate{}, inv_rate{} {\n\
+    \        root[lg] = mod_pow(primitive_root_for_convolution(p), (p - 1) >> lg,\
+    \ p);\n        inv_root[lg] = mod_pow(root[lg], p - 2, p);\n        rrep (i, lg)\
+    \ {\n            root[i] = (ull)root[i + 1] * root[i + 1] % p;\n            inv_root[i]\
+    \ = (ull)inv_root[i + 1] * inv_root[i + 1] % p;\n        }\n        ull r = 1;\n\
+    \        rep (i, 2, lg + 1) {\n            rate[i - 2] = r * root[i] % p;\n  \
+    \          r = r * inv_root[i] % p;\n        }\n        r = 1;\n        rep (i,\
+    \ 2, lg + 1) {\n            inv_rate[i - 2] = r * inv_root[i] % p;\n         \
+    \   r = r * root[i] % p;\n        }\n    }\n    static constexpr unsigned int\
+    \ get_lg() { return lg; }\n    constexpr unsigned int get(int n) const { return\
+    \ root[n]; }\n    constexpr unsigned int inv(int n) const { return inv_root[n];\
+    \ }\n    constexpr unsigned int get_rate(int n) const { return rate[n]; }\n  \
+    \  constexpr unsigned int get_inv_rate(int n) const { return inv_rate[n]; }\n\
+    };\n\ntemplate<unsigned int p> constexpr NthRoot<p> nth_root;\n\ntemplate<class\
+    \ T> void number_theoretic_transform(std::vector<T>& a) {\n    int n = a.size();\n\
+    \    int lg = bitop::msb(n - 1) + 1;\n    rrep (i, lg) {\n        T z = T(1);\n\
+    \        rep (j, 1 << (lg - i - 1)) {\n            int offset = j << (i + 1);\n\
+    \            rep (k, 1 << i) {\n                T x = a[offset + k];\n       \
+    \         T y = a[offset + k + (1 << i)] * z;\n                a[offset + k] =\
+    \ x + y;\n                a[offset + k + (1 << i)] = x - y;\n            }\n \
+    \           if (j != (1 << (lg - i - 1)) - 1) {\n                z *= nth_root<T::get_mod()>.get_rate(popcnt(j\
+    \ & ~(j + 1)));\n            }\n        }\n    }\n}\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
+    \ a) {\n    int n = a.size();\n    int lg = bitop::msb(n - 1) + 1;\n    rep (i,\
+    \ lg) {\n        T z = T(1);\n        rep (j, 1 << (lg - i - 1)) {\n         \
+    \   int offset = j << (i + 1);\n            rep (k, 1 << i) {\n              \
+    \  T x = a[offset + k];\n                T y = a[offset + k + (1 << i)];\n   \
+    \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
+    \ = (x - y) * z;\n            }\n            if (j != (1 << (lg - i - 1)) - 1)\
+    \ {\n                z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j & ~(j +\
+    \ 1)));\n            }\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for\
+    \ (x : a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
+    \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
+    \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
+    \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
+    \ntemplate<class T> std::vector<T> convolution_pow2(std::vector<T> a) {\n    int\
+    \ n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n    if (n - (1 <<\
+    \ (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() - (1 << (lg - 1));\n\
+    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
+    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
+    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
+    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
+    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
+    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
+    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::ceil_log2(n);\n\
+    \    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n  \
+    \      if (a.size() < b.size()) std::swap(a, b);\n        int m = n - (1 << lg);\n\
+    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
+    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
+    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
+    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
+    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
+    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
+    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::inverse_number_theoretic_transform;\n\
+    using internal::number_theoretic_transform;\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
+    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
+    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
+    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
+    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
+    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    if (n ==\
+    \ m && a == b) return internal::convolution_pow2(a);\n    return internal::convolution(a,\
+    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
+    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
+    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
+    \ b2);\n    std::vector<ll> c(n + m - 1);\n    rep (i, n + m - 1) c[i] = c2[i].get();\n\
+    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
+    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
+    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
+    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
+    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
+    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
+    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
+    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
+    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
+    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
+    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<static_modint<p>>\
+    \ res(n + m - 1);\n    rep (i, n + m - 1) {\n        ll t1 = c1[i];\n        ll\
+    \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
+    \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
+    \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
+    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
+    \ T> void ntt_doubling_(std::vector<T>& a) {\n    int n = a.size();\n    auto\
+    \ b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n)\
+    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
+    \    }\n    number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
+    }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
+    template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
+    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
+    \ */\n#line 2 \"math/SqrtMod.hpp\"\n\n#line 2 \"math/MontgomeryModInt.hpp\"\n\n\
+    #line 4 \"math/MontgomeryModInt.hpp\"\n\ntemplate<class T> class MontgomeryReduction\
     \ {\n    static_assert(std::is_integral<T>::value, \"T must be integral\");\n\
     \    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\");\n\nprivate:\n\
     \    using large_t = typename double_size_uint<T>::type;\n    static constexpr\
@@ -743,268 +800,112 @@ data:
     };\n\ntemplate<class T, int id>\nMontgomeryReduction<T>\n    MontgomeryModInt<T,\
     \ id>::mont = MontgomeryReduction<T>(998244353);\n\nusing mmodint = MontgomeryModInt<unsigned\
     \ int, -1>;\n\n/**\n * @brief MontgomeryModInt(\u30E2\u30F3\u30B4\u30E1\u30EA\u4E57\
-    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 2 \"math/MillerRabin.hpp\"\
-    \n\n#line 5 \"math/MillerRabin.hpp\"\n\nconstexpr ull base_miller_rabin_int[3]\
-    \ = {2, 7, 61};\nconstexpr ull base_miller_rabin_ll[7] = {2,      325,     9375,\
-    \      28178,\n                                         450775, 9780504, 1795265022};\n\
-    \ntemplate<class T> CONSTEXPR bool miller_rabin(ull n, const ull base[], int s)\
-    \ {\n    if (T::get_mod() != n) T::set_mod(n);\n    ull d = n - 1;\n    while\
-    \ (~d & 1) d >>= 1;\n    T e{1}, re{n - 1};\n    rep (i, s) {\n        ull a =\
-    \ base[i];\n        if (a >= n) return true;\n        ull t = d;\n        T y\
-    \ = T(a).pow(t);\n        while (t != n - 1 && y != e && y != re) {\n        \
-    \    y *= y;\n            t <<= 1;\n        }\n        if (y != re && !(t & 1))\
-    \ return false;\n    }\n    return true;\n}\n\nCONSTEXPR bool is_prime_mr(ll n)\
-    \ {\n    if (n == 2) return true;\n    if (n < 2 || n % 2 == 0) return false;\n\
-    \    if (n < (1u << 31))\n        return miller_rabin<MontgomeryModInt<unsigned\
-    \ int, -2>>(\n            n, base_miller_rabin_int, 3);\n    return miller_rabin<MontgomeryModInt<ull,\
-    \ -2>>(n, base_miller_rabin_ll, 7);\n}\n\n#if __cpp_variable_templates >= 201304L\
-    \ && __cpp_constexpr >= 201304L\ntemplate<ull n> constexpr bool is_prime_v = is_prime_mr(n);\n\
-    #endif\n\n/**\n * @brief MillerRabin(\u30DF\u30E9\u30FC\u30E9\u30D3\u30F3\u7D20\
-    \u6570\u5224\u5B9A)\n * @docs docs/math/MillerRabin.md\n */\n#line 2 \"math/PollardRho.hpp\"\
-    \n\n#line 8 \"math/PollardRho.hpp\"\n\ntemplate<class T, class Rnd> ull pollard_rho(ull\
-    \ n, Rnd& rnd) {\n    if (~n & 1) return 2;\n    if (T::get_mod() != n) T::set_mod(n);\n\
-    \    T c, one = 1;\n    auto f = [&](T x) -> T { return x * x + c; };\n    constexpr\
-    \ int M = 128;\n    while (1) {\n        c = rnd.uniform(1ull, n - 1);\n     \
-    \   T x = rnd.uniform(2ull, n - 1), y = x;\n        ull g = 1;\n        while\
-    \ (g == 1) {\n            T p = one, tx = x, ty = y;\n            rep (M) {\n\
-    \                x = f(x);\n                y = f(f(y));\n                p *=\
-    \ x - y;\n            }\n            g = gcd(p.get(), n);\n            if (g ==\
-    \ 1) continue;\n            rep (M) {\n                tx = f(tx);\n         \
-    \       ty = f(f(ty));\n                g = gcd((tx - ty).get(), n);\n       \
-    \         if (g != 1) {\n                    if (g != n) return g;\n         \
-    \           break;\n                }\n            }\n        }\n    }\n    return\
-    \ -1;\n}\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\n\
-    std::vector<ull> factorize(ull n, Rnd& rnd = rand64) {\n    if (n == 1) return\
-    \ {};\n    std::vector<ull> res;\n    std::vector<ull> st = {n};\n    while (!st.empty())\
-    \ {\n        ull t = st.back();\n        st.pop_back();\n        if (t == 1) continue;\n\
-    \        if (is_prime_mr(t)) {\n            res.push_back(t);\n            continue;\n\
-    \        }\n        ull f = pollard_rho<T>(t, rnd);\n        st.push_back(f);\n\
-    \        st.push_back(t / f);\n    }\n    std::sort(all(res));\n    return res;\n\
-    }\n\ntemplate<class T = MontgomeryModInt<ull, -3>, class Rnd = Random64>\nstd::vector<std::pair<ull,\
-    \ int>> expfactorize(ull n, Rnd& rnd = rand64) {\n    auto f = factorize<T, Rnd>(n,\
-    \ rnd);\n    return RunLength(f);\n}\n\nstd::vector<ll> divisors_pr(ll n) {\n\
-    \    std::vector<ll> res;\n    auto r = expfactorize(n);\n    int m = r.size();\n\
-    \    rec_lambda([&](auto&& self, int k, ll d) -> void {\n        if (k == m) {\n\
-    \            res.push_back(d);\n            return;\n        }\n        ll t =\
-    \ d;\n        rep (r[k].second) {\n            self(k + 1, d);\n            d\
-    \ *= r[k].first;\n        }\n        self(k + 1, d);\n        d = t;\n    })(0,\
-    \ 1);\n    std::sort(all(res));\n    return res;\n}\n\n/**\n * @brief PollardRho(\u7D20\
-    \u56E0\u6570\u5206\u89E3)\n * @docs docs/math/PollardRho.md\n */\n#line 9 \"math/PrimitiveRoot.hpp\"\
-    \n\ntemplate<class T = MontgomeryModInt<ull, -4>> ull primitive_root(ull p) {\n\
-    \    assert(is_prime_mr(p));\n    if (p == 2) return 1;\n    if (T::get_mod()\
-    \ != p) T::set_mod(p);\n    auto pf = factorize(p - 1);\n    pf.erase(std::unique(all(pf)),\
-    \ pf.end());\n    each_for (x : pf) x = (p - 1) / x;\n    T one = 1;\n    while\
-    \ (1) {\n        ull g = rand64.uniform(2ull, p - 1);\n        bool ok = true;\n\
-    \        each_const (x : pf) {\n            if (T(g).pow(x) == one) {\n      \
-    \          ok = false;\n                break;\n            }\n        }\n   \
-    \     if (ok) return g;\n    }\n}\n\nCONSTEXPR ull primitive_root_for_convolution(ull\
-    \ p) {\n    if (p == 2) return 1;\n    if (p == 998244353) return 3;\n    if (p\
-    \ == 469762049) return 3;\n    if (p == 1811939329) return 11;\n    if (p == 2013265921)\
-    \ return 11;\n    rep (g, 2, p) {\n        if (mod_pow(g, (p - 1) >> 1, p) !=\
-    \ 1) return g;\n    }\n    return -1;\n}\n\n/**\n * @brief PrimitiveRoot(\u539F\
-    \u59CB\u6839)\n * @docs docs/math/PrimitiveRoot.md\n */\n#line 6 \"math/convolution/Convolution.hpp\"\
-    \n\nnamespace internal {\n\ntemplate<unsigned int p> class NthRoot {\nprivate:\n\
-    \    static constexpr unsigned int lg = bitop::msb((p - 1) & (1 - p));\n    unsigned\
-    \ int root[lg + 1];\n    unsigned int inv_root[lg + 1];\n    unsigned int rate[lg\
-    \ + 1];\n    unsigned int inv_rate[lg + 1];\n\npublic:\n    constexpr NthRoot()\
-    \ : root{}, inv_root{}, rate{}, inv_rate{} {\n        root[lg] = mod_pow(primitive_root_for_convolution(p),\
-    \ (p - 1) >> lg, p);\n        inv_root[lg] = mod_pow(root[lg], p - 2, p);\n  \
-    \      rrep (i, lg) {\n            root[i] = (ull)root[i + 1] * root[i + 1] %\
-    \ p;\n            inv_root[i] = (ull)inv_root[i + 1] * inv_root[i + 1] % p;\n\
-    \        }\n        ull r = 1;\n        rep (i, 2, lg + 1) {\n            rate[i\
-    \ - 2] = r * root[i] % p;\n            r = r * inv_root[i] % p;\n        }\n \
-    \       r = 1;\n        rep (i, 2, lg + 1) {\n            inv_rate[i - 2] = r\
-    \ * inv_root[i] % p;\n            r = r * root[i] % p;\n        }\n    }\n   \
-    \ static constexpr unsigned int get_lg() { return lg; }\n    constexpr unsigned\
-    \ int get(int n) const { return root[n]; }\n    constexpr unsigned int inv(int\
-    \ n) const { return inv_root[n]; }\n    constexpr unsigned int get_rate(int n)\
-    \ const { return rate[n]; }\n    constexpr unsigned int get_inv_rate(int n) const\
-    \ { return inv_rate[n]; }\n};\n\ntemplate<unsigned int p> constexpr NthRoot<p>\
-    \ nth_root;\n\ntemplate<class T> void number_theoretic_transform(std::vector<T>&\
-    \ a) {\n    int n = a.size();\n    int lg = bitop::msb(n - 1) + 1;\n    rrep (i,\
-    \ lg) {\n        T z = T(1);\n        rep (j, 1 << (lg - i - 1)) {\n         \
-    \   int offset = j << (i + 1);\n            rep (k, 1 << i) {\n              \
-    \  T x = a[offset + k];\n                T y = a[offset + k + (1 << i)] * z;\n\
-    \                a[offset + k] = x + y;\n                a[offset + k + (1 <<\
-    \ i)] = x - y;\n            }\n            if (j != (1 << (lg - i - 1)) - 1) {\n\
-    \                z *= nth_root<T::get_mod()>.get_rate(popcnt(j & ~(j + 1)));\n\
-    \            }\n        }\n    }\n}\ntemplate<class T> void inverse_number_theoretic_transform(std::vector<T>&\
-    \ a) {\n    int n = a.size();\n    int lg = bitop::msb(n - 1) + 1;\n    rep (i,\
-    \ lg) {\n        T z = T(1);\n        rep (j, 1 << (lg - i - 1)) {\n         \
-    \   int offset = j << (i + 1);\n            rep (k, 1 << i) {\n              \
-    \  T x = a[offset + k];\n                T y = a[offset + k + (1 << i)];\n   \
-    \             a[offset + k] = x + y;\n                a[offset + k + (1 << i)]\
-    \ = (x - y) * z;\n            }\n            if (j != (1 << (lg - i - 1)) - 1)\
-    \ {\n                z *= nth_root<T::get_mod()>.get_inv_rate(popcnt(j & ~(j +\
-    \ 1)));\n            }\n        }\n    }\n    T inv_n = T(1) / n;\n    each_for\
-    \ (x : a) x *= inv_n;\n}\n\ntemplate<class T>\nstd::vector<T> convolution_naive(const\
-    \ std::vector<T>& a,\n                                 const std::vector<T>& b)\
-    \ {\n    int n = a.size(), m = b.size();\n    std::vector<T> c(n + m - 1);\n \
-    \   rep (i, n)\n        rep (j, m) c[i + j] += a[i] * b[j];\n    return c;\n}\n\
-    \ntemplate<class T> std::vector<T> convolution_pow2(std::vector<T> a) {\n    int\
-    \ n = a.size() * 2 - 1;\n    int lg = bitop::msb(n - 1) + 1;\n    if (n - (1 <<\
-    \ (lg - 1)) <= 5) {\n        --lg;\n        int m = a.size() - (1 << (lg - 1));\n\
-    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
-    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
-    \ a1);\n        std::vector<T> c2 = convolution_naive(a1, a2);\n        std::vector<T>\
-    \ c3 = convolution_pow2(a2);\n        rep (i, c1.size()) c[i] += c1[i];\n    \
-    \    rep (i, c2.size()) c[i + m] += c2[i] * 2;\n        rep (i, c3.size()) c[i\
-    \ + m * 2] += c3[i];\n        return c;\n    }\n    int m = 1 << lg;\n    a.resize(m);\n\
-    \    number_theoretic_transform(a);\n    rep (i, m) a[i] *= a[i];\n    inverse_number_theoretic_transform(a);\n\
-    \    a.resize(n);\n    return a;\n}\n\ntemplate<class T>\nstd::vector<T> convolution(std::vector<T>\
-    \ a, std::vector<T> b) {\n    int n = a.size() + b.size() - 1;\n    int lg = bitop::ceil_log2(n);\n\
-    \    int m = 1 << lg;\n    if (n - (1 << (lg - 1)) <= 5) {\n        --lg;\n  \
-    \      if (a.size() < b.size()) std::swap(a, b);\n        int m = n - (1 << lg);\n\
-    \        std::vector<T> a1(a.begin(), a.begin() + m), a2(a.begin() + m, a.end());\n\
-    \        std::vector<T> c(n);\n        std::vector<T> c1 = convolution_naive(a1,\
-    \ b);\n        std::vector<T> c2 = convolution(a2, b);\n        rep (i, c1.size())\
-    \ c[i] += c1[i];\n        rep (i, c2.size()) c[i + m] += c2[i];\n        return\
-    \ c;\n    }\n    a.resize(m);\n    b.resize(m);\n    number_theoretic_transform(a);\n\
-    \    number_theoretic_transform(b);\n    rep (i, m) a[i] *= b[i];\n    inverse_number_theoretic_transform(a);\n\
-    \    a.resize(n);\n    return a;\n}\n\n} // namespace internal\n\nusing internal::inverse_number_theoretic_transform;\n\
-    using internal::number_theoretic_transform;\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b);\n\ntemplate<unsigned int\
-    \ p>\nstd::vector<static_modint<p>>\nconvolution(const std::vector<static_modint<p>>&\
-    \ a,\n            const std::vector<static_modint<p>>& b) {\n    unsigned int\
-    \ n = a.size(), m = b.size();\n    if (n == 0 || m == 0) return {};\n    if (n\
-    \ <= 60 || m <= 60) return internal::convolution_naive(a, b);\n    if (n + m -\
-    \ 1 > ((1 - p) & (p - 1))) return convolution_for_any_mod(a, b);\n    if (n ==\
-    \ m && a == b) return internal::convolution_pow2(a);\n    return internal::convolution(a,\
-    \ b);\n}\n\ntemplate<unsigned int p>\nstd::vector<ll> convolution(const std::vector<ll>&\
-    \ a,\n                            const std::vector<ll>& b) {\n    int n = a.size(),\
-    \ m = b.size();\n    std::vector<static_modint<p>> a2(n), b2(m);\n    rep (i,\
-    \ n) a2[i] = a[i];\n    rep (i, m) b2[i] = b[i];\n    auto c2 = convolution(a2,\
-    \ b2);\n    std::vector<ll> c(n + m - 1);\n    rep (i, n + m - 1) c[i] = c2[i].get();\n\
-    \    return c;\n}\n\ntemplate<unsigned int p>\nstd::vector<static_modint<p>>\n\
-    convolution_for_any_mod(const std::vector<static_modint<p>>& a,\n            \
-    \            const std::vector<static_modint<p>>& b) {\n    int n = a.size(),\
-    \ m = b.size();\n    assert(n + m - 1 <= (1 << 26));\n    std::vector<ll> a2(n),\
-    \ b2(m);\n    rep (i, n) a2[i] = a[i].get();\n    rep (i, m) b2[i] = b[i].get();\n\
-    \    static constexpr ll MOD1 = 469762049;\n    static constexpr ll MOD2 = 1811939329;\n\
-    \    static constexpr ll MOD3 = 2013265921;\n    static constexpr ll INV1_2 =\
-    \ mod_pow(MOD1, MOD2 - 2, MOD2);\n    static constexpr ll INV1_3 = mod_pow(MOD1,\
-    \ MOD3 - 2, MOD3);\n    static constexpr ll INV2_3 = mod_pow(MOD2, MOD3 - 2, MOD3);\n\
-    \    auto c1 = convolution<MOD1>(a2, b2);\n    auto c2 = convolution<MOD2>(a2,\
-    \ b2);\n    auto c3 = convolution<MOD3>(a2, b2);\n    std::vector<static_modint<p>>\
-    \ res(n + m - 1);\n    rep (i, n + m - 1) {\n        ll t1 = c1[i];\n        ll\
-    \ t2 = (c2[i] - t1 + MOD2) * INV1_2 % MOD2;\n        if (t2 < 0) t2 += MOD2;\n\
-    \        ll t3 =\n            ((c3[i] - t1 + MOD3) * INV1_3 % MOD3 - t2 + MOD3)\
-    \ * INV2_3 % MOD3;\n        if (t3 < 0) t3 += MOD3;\n        res[i] = static_modint<p>(t1\
-    \ + (t2 + t3 * MOD2) % p * MOD1);\n    }\n    return res;\n}\n\ntemplate<class\
-    \ T> void ntt_doubling_(std::vector<T>& a) {\n    int n = a.size();\n    auto\
-    \ b = a;\n    inverse_number_theoretic_transform(b);\n    const T z = internal::nth_root<T::get_mod()>.get(bitop::msb(n)\
-    \ + 1);\n    T r = 1;\n    rep (i, n) {\n        b[i] *= r;\n        r *= z;\n\
-    \    }\n    number_theoretic_transform(b);\n    std::copy(all(b), std::back_inserter(a));\n\
-    }\n\ntemplate<unsigned int p> struct is_ntt_friendly : std::false_type {};\n\n\
-    template<> struct is_ntt_friendly<998244353> : std::true_type {};\n\n/**\n * @brief\
-    \ Convolution(\u7573\u307F\u8FBC\u307F)\n * @docs docs/math/convolution/Convolution.md\n\
-    \ */\n#line 2 \"math/SqrtMod.hpp\"\n\n#line 5 \"math/SqrtMod.hpp\"\n\ntemplate<class\
-    \ T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n    if (p == 2) return\
-    \ a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1) >> 1) != 1) return -1;\n\
-    \    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1) ++b;\n    ll s = 0, t =\
-    \ p - 1;\n    while ((t & 1) == 0) t >>= 1, ++s;\n    T x = T{a}.pow((t + 1) >>\
-    \ 1);\n    T w = T{a}.pow(t);\n    T v = T{b}.pow(t);\n    while (w != 1) {\n\
-    \        ll k = 0;\n        T y = w;\n        while (y != 1) {\n            y\
-    \ *= y;\n            ++k;\n        }\n        T z = v;\n        rep (s - k - 1)\
-    \ z *= z;\n        x *= z;\n        w *= z * z;\n    }\n    return std::min<ll>(x.get(),\
-    \ p - x.get());\n}\n\nll sqrt_mod(ll a, ll p) {\n    if (p == 2) return a;\n \
-    \   using mint = MontgomeryModInt<unsigned int, 493174342>;\n    mint::set_mod(p);\n\
-    \    return sqrt_mod<mint>(a);\n}\n\n/**\n * @brief SqrtMod(\u5E73\u65B9\u5270\
-    \u4F59)\n * @docs docs/math/SqrtMod.md\n * @see https://37zigen.com/tonelli-shanks-algorithm/\n\
-    \ */\n#line 7 \"math/poly/FormalPowerSeries.hpp\"\n\ntemplate<class T> class FormalPowerSeries\
-    \ : public std::vector<T> {\nprivate:\n    using Base = std::vector<T>;\n    using\
-    \ Comb = Combinatorics<T>;\n\npublic:\n    using Base::Base;\n    FormalPowerSeries(const\
-    \ Base& v) : Base(v) {}\n    FormalPowerSeries(Base&& v) : Base(std::move(v))\
-    \ {}\n\n    FormalPowerSeries& shrink() {\n        while (!this->empty() && this->back()\
-    \ == T{0}) this->pop_back();\n        return *this;\n    }\n\n    T eval(T x)\
-    \ const {\n        T res = 0;\n        rrep (i, this->size()) {\n            res\
-    \ *= x;\n            res += (*this)[i];\n        }\n        return res;\n    }\n\
-    \n    FormalPowerSeries prefix(int deg) const {\n        assert(0 <= deg);\n \
-    \       if (deg < (int)this->size()) {\n            return FormalPowerSeries(this->begin(),\
-    \ this->begin() + deg);\n        }\n        FormalPowerSeries res(*this);\n  \
-    \      res.resize(deg);\n        return res;\n    }\n\n    FormalPowerSeries operator+()\
-    \ const { return *this; }\n    FormalPowerSeries operator-() const {\n       \
-    \ FormalPowerSeries res(this->size());\n        rep (i, this->size()) res[i] =\
-    \ -(*this)[i];\n        return res;\n    }\n    FormalPowerSeries& operator<<=(int\
-    \ n) {\n        this->insert(this->begin(), n, T{0});\n        return *this;\n\
-    \    }\n    FormalPowerSeries& operator>>=(int n) {\n        this->erase(this->begin(),\n\
-    \                    this->begin() + std::min(n, (int)this->size()));\n      \
-    \  return *this;\n    }\n    friend FormalPowerSeries operator<<(const FormalPowerSeries&\
-    \ lhs, int rhs) {\n        return FormalPowerSeries(lhs) <<= rhs;\n    }\n   \
-    \ friend FormalPowerSeries operator>>(const FormalPowerSeries& lhs, int rhs) {\n\
-    \        return FormalPowerSeries(lhs) >>= rhs;\n    }\n    FormalPowerSeries&\
-    \ operator+=(const FormalPowerSeries& rhs) {\n        if (this->size() < rhs.size())\
-    \ this->resize(rhs.size());\n        rep (i, rhs.size()) (*this)[i] += rhs[i];\n\
-    \        return *this;\n    }\n    FormalPowerSeries& operator-=(const FormalPowerSeries&\
-    \ rhs) {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n \
-    \       rep (i, rhs.size()) (*this)[i] -= rhs[i];\n        return *this;\n   \
-    \ }\n    friend FormalPowerSeries operator+(const FormalPowerSeries& lhs,\n  \
-    \                                     const FormalPowerSeries& rhs) {\n      \
-    \  return FormalPowerSeries(lhs) += rhs;\n    }\n    friend FormalPowerSeries\
-    \ operator-(const FormalPowerSeries& lhs,\n                                  \
-    \     const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(lhs) -=\
-    \ rhs;\n    }\n    friend FormalPowerSeries operator*(const FormalPowerSeries&\
+    \u7B97)\n * @docs docs/math/MontgomeryModInt.md\n */\n#line 5 \"math/SqrtMod.hpp\"\
+    \n\ntemplate<class T> ll sqrt_mod(ll a) {\n    const ll p = T::get_mod();\n  \
+    \  if (p == 2) return a;\n    if (a == 0) return 0;\n    if (T{a}.pow((p - 1)\
+    \ >> 1) != 1) return -1;\n    T b = 2;\n    while (T{b}.pow((p - 1) >> 1) == 1)\
+    \ ++b;\n    ll s = 0, t = p - 1;\n    while ((t & 1) == 0) t >>= 1, ++s;\n   \
+    \ T x = T{a}.pow((t + 1) >> 1);\n    T w = T{a}.pow(t);\n    T v = T{b}.pow(t);\n\
+    \    while (w != 1) {\n        ll k = 0;\n        T y = w;\n        while (y !=\
+    \ 1) {\n            y *= y;\n            ++k;\n        }\n        T z = v;\n \
+    \       rep (s - k - 1) z *= z;\n        x *= z;\n        w *= z * z;\n    }\n\
+    \    return std::min<ll>(x.get(), p - x.get());\n}\n\nll sqrt_mod(ll a, ll p)\
+    \ {\n    if (p == 2) return a;\n    using mint = MontgomeryModInt<unsigned int,\
+    \ 493174342>;\n    mint::set_mod(p);\n    return sqrt_mod<mint>(a);\n}\n\n/**\n\
+    \ * @brief SqrtMod(\u5E73\u65B9\u5270\u4F59)\n * @docs docs/math/SqrtMod.md\n\
+    \ * @see https://37zigen.com/tonelli-shanks-algorithm/\n */\n#line 7 \"math/poly/FormalPowerSeries.hpp\"\
+    \n\ntemplate<class T> class FormalPowerSeries : public std::vector<T> {\nprivate:\n\
+    \    using Base = std::vector<T>;\n    using Comb = Combinatorics<T>;\n\npublic:\n\
+    \    using Base::Base;\n    FormalPowerSeries(const Base& v) : Base(v) {}\n  \
+    \  FormalPowerSeries(Base&& v) : Base(std::move(v)) {}\n\n    FormalPowerSeries&\
+    \ shrink() {\n        while (!this->empty() && this->back() == T{0}) this->pop_back();\n\
+    \        return *this;\n    }\n\n    T eval(T x) const {\n        T res = 0;\n\
+    \        rrep (i, this->size()) {\n            res *= x;\n            res += (*this)[i];\n\
+    \        }\n        return res;\n    }\n\n    FormalPowerSeries prefix(int deg)\
+    \ const {\n        assert(0 <= deg);\n        if (deg < (int)this->size()) {\n\
+    \            return FormalPowerSeries(this->begin(), this->begin() + deg);\n \
+    \       }\n        FormalPowerSeries res(*this);\n        res.resize(deg);\n \
+    \       return res;\n    }\n\n    FormalPowerSeries operator+() const { return\
+    \ *this; }\n    FormalPowerSeries operator-() const {\n        FormalPowerSeries\
+    \ res(this->size());\n        rep (i, this->size()) res[i] = -(*this)[i];\n  \
+    \      return res;\n    }\n    FormalPowerSeries& operator<<=(int n) {\n     \
+    \   this->insert(this->begin(), n, T{0});\n        return *this;\n    }\n    FormalPowerSeries&\
+    \ operator>>=(int n) {\n        this->erase(this->begin(),\n                 \
+    \   this->begin() + std::min(n, (int)this->size()));\n        return *this;\n\
+    \    }\n    friend FormalPowerSeries operator<<(const FormalPowerSeries& lhs,\
+    \ int rhs) {\n        return FormalPowerSeries(lhs) <<= rhs;\n    }\n    friend\
+    \ FormalPowerSeries operator>>(const FormalPowerSeries& lhs, int rhs) {\n    \
+    \    return FormalPowerSeries(lhs) >>= rhs;\n    }\n    FormalPowerSeries& operator+=(const\
+    \ FormalPowerSeries& rhs) {\n        if (this->size() < rhs.size()) this->resize(rhs.size());\n\
+    \        rep (i, rhs.size()) (*this)[i] += rhs[i];\n        return *this;\n  \
+    \  }\n    FormalPowerSeries& operator-=(const FormalPowerSeries& rhs) {\n    \
+    \    if (this->size() < rhs.size()) this->resize(rhs.size());\n        rep (i,\
+    \ rhs.size()) (*this)[i] -= rhs[i];\n        return *this;\n    }\n    friend\
+    \ FormalPowerSeries operator+(const FormalPowerSeries& lhs,\n                \
+    \                       const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(lhs)\
+    \ += rhs;\n    }\n    friend FormalPowerSeries operator-(const FormalPowerSeries&\
     \ lhs,\n                                       const FormalPowerSeries& rhs) {\n\
-    \        return FormalPowerSeries(convolution(lhs, rhs));\n    }\n    FormalPowerSeries&\
-    \ operator*=(const FormalPowerSeries& rhs) {\n        return *this = *this * rhs;\n\
-    \    }\n    FormalPowerSeries& operator*=(const T& rhs) {\n        rep (i, this->size())\
-    \ (*this)[i] *= rhs;\n        return *this;\n    }\n    friend FormalPowerSeries\
+    \        return FormalPowerSeries(lhs) -= rhs;\n    }\n    friend FormalPowerSeries\
     \ operator*(const FormalPowerSeries& lhs,\n                                  \
-    \     const T& rhs) {\n        return FormalPowerSeries(lhs) *= rhs;\n    }\n\
-    \    friend FormalPowerSeries operator*(const T& lhs,\n                      \
-    \                 const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(rhs)\
-    \ *= lhs;\n    }\n    FormalPowerSeries& operator/=(const T& rhs) {\n        rep\
-    \ (i, this->size()) (*this)[i] /= rhs;\n        return *this;\n    }\n    friend\
-    \ FormalPowerSeries operator/(const FormalPowerSeries& lhs,\n                \
-    \                       const T& rhs) {\n        return FormalPowerSeries(lhs)\
-    \ /= rhs;\n    }\n\n    FormalPowerSeries rev() const {\n        FormalPowerSeries\
-    \ res(*this);\n        std::reverse(all(res));\n        return res;\n    }\n\n\
-    \    friend FormalPowerSeries div(FormalPowerSeries lhs, FormalPowerSeries rhs)\
-    \ {\n        lhs.shrink();\n        rhs.shrink();\n        if (lhs.size() < rhs.size())\
-    \ {\n            return FormalPowerSeries{};\n        }\n        int n = lhs.size()\
-    \ - rhs.size() + 1;\n        if (rhs.size() <= 32) {\n            FormalPowerSeries\
-    \ res(n);\n            T iv = rhs.back().inv();\n            rrep (i, n) {\n \
-    \               T d = lhs[i + rhs.size() - 1] * iv;\n                res[i] =\
-    \ d;\n                rep (j, rhs.size()) lhs[i + j] -= d * rhs[j];\n        \
-    \    }\n            return res;\n        }\n        return (lhs.rev().prefix(n)\
-    \ * rhs.rev().inv(n)).prefix(n).rev();\n    }\n    friend FormalPowerSeries operator%(FormalPowerSeries\
-    \ lhs,\n                                       FormalPowerSeries rhs) {\n    \
-    \    lhs.shrink();\n        rhs.shrink();\n        if (lhs.size() < rhs.size())\
-    \ {\n            return lhs;\n        }\n        int n = lhs.size() - rhs.size()\
-    \ + 1;\n        if (rhs.size() <= 32) {\n            T iv = rhs.back().inv();\n\
+    \     const FormalPowerSeries& rhs) {\n        return FormalPowerSeries(convolution(lhs,\
+    \ rhs));\n    }\n    FormalPowerSeries& operator*=(const FormalPowerSeries& rhs)\
+    \ {\n        return *this = *this * rhs;\n    }\n    FormalPowerSeries& operator*=(const\
+    \ T& rhs) {\n        rep (i, this->size()) (*this)[i] *= rhs;\n        return\
+    \ *this;\n    }\n    friend FormalPowerSeries operator*(const FormalPowerSeries&\
+    \ lhs,\n                                       const T& rhs) {\n        return\
+    \ FormalPowerSeries(lhs) *= rhs;\n    }\n    friend FormalPowerSeries operator*(const\
+    \ T& lhs,\n                                       const FormalPowerSeries& rhs)\
+    \ {\n        return FormalPowerSeries(rhs) *= lhs;\n    }\n    FormalPowerSeries&\
+    \ operator/=(const T& rhs) {\n        rep (i, this->size()) (*this)[i] /= rhs;\n\
+    \        return *this;\n    }\n    friend FormalPowerSeries operator/(const FormalPowerSeries&\
+    \ lhs,\n                                       const T& rhs) {\n        return\
+    \ FormalPowerSeries(lhs) /= rhs;\n    }\n\n    FormalPowerSeries rev() const {\n\
+    \        FormalPowerSeries res(*this);\n        std::reverse(all(res));\n    \
+    \    return res;\n    }\n\n    friend FormalPowerSeries div(FormalPowerSeries\
+    \ lhs, FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
+    \        if (lhs.size() < rhs.size()) {\n            return FormalPowerSeries{};\n\
+    \        }\n        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size()\
+    \ <= 32) {\n            FormalPowerSeries res(n);\n            T iv = rhs.back().inv();\n\
     \            rrep (i, n) {\n                T d = lhs[i + rhs.size() - 1] * iv;\n\
-    \                rep (j, rhs.size()) lhs[i + j] -= d * rhs[j];\n            }\n\
-    \            return lhs.shrink();\n        }\n        return (lhs - div(lhs, rhs)\
-    \ * rhs).shrink();\n    }\n    friend std::pair<FormalPowerSeries, FormalPowerSeries>\n\
-    \    divmod(FormalPowerSeries lhs, FormalPowerSeries rhs) {\n        lhs.shrink();\n\
-    \        rhs.shrink();\n        if (lhs.size() < rhs.size()) {\n            return\
-    \ {FormalPowerSeries{}, lhs};\n        }\n        int n = lhs.size() - rhs.size()\
-    \ + 1;\n        if (rhs.size() <= 32) {\n            FormalPowerSeries res(n);\n\
+    \                res[i] = d;\n                rep (j, rhs.size()) lhs[i + j] -=\
+    \ d * rhs[j];\n            }\n            return res;\n        }\n        return\
+    \ (lhs.rev().prefix(n) * rhs.rev().inv(n)).prefix(n).rev();\n    }\n    friend\
+    \ FormalPowerSeries operator%(FormalPowerSeries lhs,\n                       \
+    \                FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
+    \        if (lhs.size() < rhs.size()) {\n            return lhs;\n        }\n\
+    \        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size() <= 32) {\n\
     \            T iv = rhs.back().inv();\n            rrep (i, n) {\n           \
-    \     T d = lhs[i + rhs.size() - 1] * iv;\n                res[i] = d;\n     \
-    \           rep (j, rhs.size()) lhs[i + j] -= d * rhs[j];\n            }\n   \
-    \         return {res, lhs.shrink()};\n        }\n        FormalPowerSeries q\
-    \ = div(lhs, rhs);\n        return {q, (lhs - q * rhs).shrink()};\n    }\n   \
-    \ FormalPowerSeries& operator%=(const FormalPowerSeries& rhs) {\n        return\
-    \ *this = *this % rhs;\n    }\n\n    FormalPowerSeries diff() const {\n      \
-    \  if (this->empty()) return {};\n        FormalPowerSeries res(this->size() -\
-    \ 1);\n        rep (i, res.size()) res[i] = (*this)[i + 1] * (i + 1);\n      \
-    \  return res;\n    }\n    FormalPowerSeries integral() const {\n        FormalPowerSeries\
-    \ res(this->size() + 1);\n        res[0] = 0;\n        Comb::init(this->size());\n\
-    \        rep (i, this->size()) res[i + 1] = (*this)[i] * Comb::inv(i + 1);\n \
-    \       return res;\n    }\n\n    template<bool AlwaysTrue = true,\n         \
-    \    typename std::enable_if<\n                 AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type*\
-    \ =\n                 nullptr>\n    FormalPowerSeries inv(int deg = -1) const\
-    \ {\n        assert(this->size() > 0 && (*this)[0] != 0);\n        if (deg ==\
-    \ -1) deg = this->size();\n        FormalPowerSeries res(1, (*this)[0].inv());\n\
-    \        for (int m = 1; m < deg; m <<= 1) {\n            FormalPowerSeries f(2\
-    \ * m);\n            for (int i = 0; i < std::min(2 * m, (int)this->size()); i++)\n\
-    \                f[i] = (*this)[i];\n            res.resize(2 * m);\n        \
-    \    FormalPowerSeries dft = res;\n            number_theoretic_transform(f);\n\
-    \            number_theoretic_transform(dft);\n            rep (i, 2 * m) f[i]\
-    \ *= dft[i];\n            inverse_number_theoretic_transform(f);\n           \
-    \ std::fill(f.begin(), f.begin() + m, T{0});\n            number_theoretic_transform(f);\n\
+    \     T d = lhs[i + rhs.size() - 1] * iv;\n                rep (j, rhs.size())\
+    \ lhs[i + j] -= d * rhs[j];\n            }\n            return lhs.shrink();\n\
+    \        }\n        return (lhs - div(lhs, rhs) * rhs).shrink();\n    }\n    friend\
+    \ std::pair<FormalPowerSeries, FormalPowerSeries>\n    divmod(FormalPowerSeries\
+    \ lhs, FormalPowerSeries rhs) {\n        lhs.shrink();\n        rhs.shrink();\n\
+    \        if (lhs.size() < rhs.size()) {\n            return {FormalPowerSeries{},\
+    \ lhs};\n        }\n        int n = lhs.size() - rhs.size() + 1;\n        if (rhs.size()\
+    \ <= 32) {\n            FormalPowerSeries res(n);\n            T iv = rhs.back().inv();\n\
+    \            rrep (i, n) {\n                T d = lhs[i + rhs.size() - 1] * iv;\n\
+    \                res[i] = d;\n                rep (j, rhs.size()) lhs[i + j] -=\
+    \ d * rhs[j];\n            }\n            return {res, lhs.shrink()};\n      \
+    \  }\n        FormalPowerSeries q = div(lhs, rhs);\n        return {q, (lhs -\
+    \ q * rhs).shrink()};\n    }\n    FormalPowerSeries& operator%=(const FormalPowerSeries&\
+    \ rhs) {\n        return *this = *this % rhs;\n    }\n\n    FormalPowerSeries\
+    \ diff() const {\n        if (this->empty()) return {};\n        FormalPowerSeries\
+    \ res(this->size() - 1);\n        rep (i, res.size()) res[i] = (*this)[i + 1]\
+    \ * (i + 1);\n        return res;\n    }\n    FormalPowerSeries integral() const\
+    \ {\n        FormalPowerSeries res(this->size() + 1);\n        res[0] = 0;\n \
+    \       Comb::init(this->size());\n        rep (i, this->size()) res[i + 1] =\
+    \ (*this)[i] * Comb::inv(i + 1);\n        return res;\n    }\n\n    template<bool\
+    \ AlwaysTrue = true,\n             typename std::enable_if<\n                \
+    \ AlwaysTrue && is_ntt_friendly<T::get_mod()>::value>::type* =\n             \
+    \    nullptr>\n    FormalPowerSeries inv(int deg = -1) const {\n        assert(this->size()\
+    \ > 0 && (*this)[0] != 0);\n        if (deg == -1) deg = this->size();\n     \
+    \   FormalPowerSeries res(1, (*this)[0].inv());\n        for (int m = 1; m < deg;\
+    \ m <<= 1) {\n            FormalPowerSeries f(2 * m);\n            for (int i\
+    \ = 0; i < std::min(2 * m, (int)this->size()); i++)\n                f[i] = (*this)[i];\n\
+    \            res.resize(2 * m);\n            FormalPowerSeries dft = res;\n  \
+    \          number_theoretic_transform(f);\n            number_theoretic_transform(dft);\n\
+    \            rep (i, 2 * m) f[i] *= dft[i];\n            inverse_number_theoretic_transform(f);\n\
+    \            std::fill(f.begin(), f.begin() + m, T{0});\n            number_theoretic_transform(f);\n\
     \            rep (i, 2 * m) dft[i] *= f[i];\n            inverse_number_theoretic_transform(dft);\n\
     \            rep (i, m, 2 * m) res[i] = -dft[i];\n        }\n        return res.prefix(deg);\n\
     \    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<\n\
@@ -1169,16 +1070,12 @@ data:
   - math/ModInt.hpp
   - math/poly/FormalPowerSeries.hpp
   - math/convolution/Convolution.hpp
-  - math/PrimitiveRoot.hpp
-  - random/Random.hpp
-  - math/MontgomeryModInt.hpp
-  - math/MillerRabin.hpp
-  - math/PollardRho.hpp
   - math/SqrtMod.hpp
+  - math/MontgomeryModInt.hpp
   isVerificationFile: false
   path: math/SubsetSum.hpp
   requiredBy: []
-  timestamp: '2024-03-31 16:12:22+09:00'
+  timestamp: '2024-04-21 15:04:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/math/sharp_p_subset_sum.test.cpp

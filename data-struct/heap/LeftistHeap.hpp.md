@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -592,8 +592,9 @@ data:
     \ top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n    LeftistHeap&\
     \ meld(LeftistHeap&& other) {\n        root = meld(root, other.root);\n      \
     \  sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n   \
-    \     return *this;\n    }\n};\n\n/**\n * @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n\
-    \ */\n"
+    \     return *this;\n    }\n    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&&\
+    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
+    \ @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>, class A = Monoid::AddMin<T>>\n\
     class LeftistHeap {\nprivate:\n    using M = typename A::M;\n    using E = typename\
@@ -642,8 +643,9 @@ data:
     \ top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n    LeftistHeap&\
     \ meld(LeftistHeap&& other) {\n        root = meld(root, other.root);\n      \
     \  sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n   \
-    \     return *this;\n    }\n};\n\n/**\n * @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n\
-    \ */\n"
+    \     return *this;\n    }\n    friend LeftistHeap meld(LeftistHeap&& a, LeftisHeap&&\
+    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
+    \ @brief LeftistHeap\n * @docs docs/data-struct/heap/LeftistHeap.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -658,7 +660,7 @@ data:
   isVerificationFile: false
   path: data-struct/heap/LeftistHeap.hpp
   requiredBy: []
-  timestamp: '2024-04-18 10:49:50+09:00'
+  timestamp: '2024-04-19 17:18:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data-struct/heap/LeftistHeap.hpp

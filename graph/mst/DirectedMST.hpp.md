@@ -7,37 +7,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -658,17 +658,19 @@ data:
     \ top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n    SkewHeap&\
     \ meld(SkewHeap&& other) {\n        root = meld(root, other.root);\n        sz\
     \ += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n       \
-    \ return *this;\n    }\n};\n\n/**\n * @brief SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n\
-    \ */\n#line 8 \"graph/mst/DirectedMST.hpp\"\n\ntemplate<class T> class DirectedMST\
-    \ {\nprivate:\n    struct Act {\n        struct M {\n            using value_type\
-    \ = edge<T>;\n        };\n        using E = Monoid::Sum<T>;\n        static edge<T>\
-    \ op(const T& x, const edge<T>& y) {\n            return {y.from, y.to, x + y.cost,\
-    \ y.idx};\n        }\n    };\n    using heap = SkewHeap<edge<T>, std::greater<edge<T>>,\
-    \ Act>;\n\n    T res;\n    bool exist;\n    Edges<T> edges_;\n\npublic:\n    DirectedMST(int\
-    \ n, const Edges<T>& es, int root) {\n        std::vector<heap> heaps(n);\n  \
-    \      for (const auto& e : es) heaps[e.to].push(e);\n        UnionFind uf(n);\n\
-    \        res = 0;\n        exist = true;\n        std::vector<int> seen(n, -1);\n\
-    \        seen[root] = root;\n        std::vector<int> par_e(es.size(), -1), memo(es.size(),\
+    \ return *this;\n    }\n    friend SkewHeap meld(SkewHeap&& a, SkewHeap&& b) {\n\
+    \        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n * @brief\
+    \ SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n */\n#line 8 \"graph/mst/DirectedMST.hpp\"\
+    \n\ntemplate<class T> class DirectedMST {\nprivate:\n    struct Act {\n      \
+    \  struct M {\n            using value_type = edge<T>;\n        };\n        using\
+    \ E = Monoid::Sum<T>;\n        static edge<T> op(const T& x, const edge<T>& y)\
+    \ {\n            return {y.from, y.to, x + y.cost, y.idx};\n        }\n    };\n\
+    \    using heap = SkewHeap<edge<T>, std::greater<edge<T>>, Act>;\n\n    T res;\n\
+    \    bool exist;\n    Edges<T> edges_;\n\npublic:\n    DirectedMST(int n, const\
+    \ Edges<T>& es, int root) {\n        std::vector<heap> heaps(n);\n        for\
+    \ (const auto& e : es) heaps[e.to].push(e);\n        UnionFind uf(n);\n      \
+    \  res = 0;\n        exist = true;\n        std::vector<int> seen(n, -1);\n  \
+    \      seen[root] = root;\n        std::vector<int> par_e(es.size(), -1), memo(es.size(),\
     \ -1);\n        std::vector<edge<T>> par(n);\n        std::vector<int> idx;\n\
     \        std::vector<int> st;\n        int sz = 0;\n        st.reserve(n);\n \
     \       rep (s, n) {\n            if (seen[s] != -1) continue;\n            int\
@@ -758,7 +760,7 @@ data:
   isVerificationFile: false
   path: graph/mst/DirectedMST.hpp
   requiredBy: []
-  timestamp: '2024-04-17 13:36:50+09:00'
+  timestamp: '2024-04-19 17:18:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/directedmst.test.cpp

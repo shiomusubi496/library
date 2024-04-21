@@ -4,31 +4,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
@@ -596,8 +596,9 @@ data:
     \        return top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n\
     \    SkewHeap& meld(SkewHeap&& other) {\n        root = meld(root, other.root);\n\
     \        sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n\
-    \        return *this;\n    }\n};\n\n/**\n * @brief SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n\
-    \ */\n"
+    \        return *this;\n    }\n    friend SkewHeap meld(SkewHeap&& a, SkewHeap&&\
+    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
+    \ @brief SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
     \n\ntemplate<class T, class Comp = std::less<T>, class A = Monoid::AddMin<T>>\n\
     class SkewHeap {\nprivate:\n    using M = typename A::M;\n    using E = typename\
@@ -644,8 +645,9 @@ data:
     \        return top(root);\n    }\n    void apply(U x) { apply_all(root, x); }\n\
     \    SkewHeap& meld(SkewHeap&& other) {\n        root = meld(root, other.root);\n\
     \        sz += other.sz;\n        other.root = nullptr;\n        other.sz = 0;\n\
-    \        return *this;\n    }\n};\n\n/**\n * @brief SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n\
-    \ */\n"
+    \        return *this;\n    }\n    friend SkewHeap meld(SkewHeap&& a, SkewHeap&&\
+    \ b) {\n        return std::move(a.meld(std::move(b)));\n    }\n};\n\n/**\n *\
+    \ @brief SkewHeap\n * @docs docs/data-struct/heap/SkewHeap.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -661,7 +663,7 @@ data:
   path: data-struct/heap/SkewHeap.hpp
   requiredBy:
   - graph/mst/DirectedMST.hpp
-  timestamp: '2024-04-17 13:36:50+09:00'
+  timestamp: '2024-04-19 17:18:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/graph/directedmst.test.cpp
