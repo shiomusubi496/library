@@ -4,37 +4,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/unionfind/UnionFind.hpp
     title: UnionFind
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/Graph.hpp
     title: Graph-template
   - icon: ':heavy_check_mark:'
     path: graph/mst/Kruskal.hpp
     title: "Kruskal(\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -597,7 +597,7 @@ title: Manhattan Minimum Spanning Tree
 ---
 ## 概要
 
-二次元平面上の $N$ 点 $(x_1, y_1), \ldots, (x_N, y_N)$ について、頂点 $i$ と頂点 $j$ の距離がマンハッタン距離 ($|x_i - x_j| + |y_i - y_j|$) で与えられるときの最小全域木を求める。
+二次元平面上の $N$ 点 $(x_1, y_1), \ldots, (x_N, y_N)$ について、頂点 $i$ と頂点 $j$ の距離がマンハッタン距離 ($\lvert x_i - x_j \rvert + \lvert y_i - y_j \rvert$) で与えられるときの最小全域木を求める。
 
 - `ManhattanMST(vector<pair<T, T>> ps)` : 計算する。 $\Theta(N \log N)$ 。
 - `T cost()` : 全域木の辺のコストの合計を返す。 $\Theta(1)$ 。

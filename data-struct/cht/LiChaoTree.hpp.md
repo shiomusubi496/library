@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/alias.hpp
     title: template/alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/bitop.hpp
     title: template/bitop.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/func.hpp
     title: template/func.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/in.hpp
     title: template/in.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/macros.hpp
     title: template/macros.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/out.hpp
     title: template/out.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/type_traits.hpp
     title: template/type_traits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy: []
@@ -479,21 +479,20 @@ data:
     \ std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0} : xs_;\n\
     \        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n        xs.reserve(n);\n\
     \        rep (i, xs_.size(), n) xs.push_back(xs_[i] + 1);\n        lns.assign(n\
-    \ << 1,\n                   Line{0, is_max ? infinity<T>::min : infinity<T>::max,\
-    \ -1});\n    }\n    int add_segment(int l, int r, T x, T y) {\n        assert(0\
-    \ <= l && l <= r && r <= ori);\n        add_segment(1, 0, n, l, r,\n         \
-    \           Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return\
-    \ line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1, 0, n,\
-    \ Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
+    \ << 1, Line{0, infinity<T>::max, -1});\n    }\n    int add_segment(int l, int\
+    \ r, T x, T y) {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1,\
+    \ 0, n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
+    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
+    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
     \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
     \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
-    \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
-    \  }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
-    \ k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n    \
-    \    Line res = lns[x];\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
-    \            if (chmin(mn, is_max ? -y : y)) res = lns[x];\n        }\n      \
-    \  return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n \
-    \   }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
+    \            chmin(res, y);\n        }\n        return is_max ? -res : res;\n\
+    \    }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line\
+    \ get_min_line(int k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n\
+    \        Line res = lns[x];\n        while (x >>= 1) {\n            const T y\
+    \ = lns[x].get(xs[k]);\n            if (chmin(mn, y)) res = lns[x];\n        }\n\
+    \        return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n\
+    \    }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
     \ */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n\ntemplate<class T\
     \ = ll, bool is_max = false> class LiChaoTree {\nprivate:\n    struct Line {\n\
@@ -520,22 +519,21 @@ data:
     \ }\n    void init(const std::vector<T>& xs_) {\n        xs = xs_.empty() ? std::vector<T>{0}\
     \ : xs_;\n        ori = xs.size();\n        n = 1 << bitop::ceil_log2(ori);\n\
     \        xs.reserve(n);\n        rep (i, xs_.size(), n) xs.push_back(xs_[i] +\
-    \ 1);\n        lns.assign(n << 1,\n                   Line{0, is_max ? infinity<T>::min\
-    \ : infinity<T>::max, -1});\n    }\n    int add_segment(int l, int r, T x, T y)\
-    \ {\n        assert(0 <= l && l <= r && r <= ori);\n        add_segment(1, 0,\
-    \ n, l, r,\n                    Line{is_max ? -x : x, is_max ? -y : y, line_count});\n\
-    \        return line_count++;\n    }\n    int add_line(T x, T y) {\n        add_line(1,\
-    \ 0, n, Line{is_max ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n\
-    \    }\n    T get_min(int k) const {\n        int x = k + n;\n        T res =\
-    \ lns[x].get(xs[k]);\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
-    \            chmin(res, is_max ? -y : y);\n        }\n        return res;\n  \
-    \  }\n    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
+    \ 1);\n        lns.assign(n << 1, Line{0, infinity<T>::max, -1});\n    }\n   \
+    \ int add_segment(int l, int r, T x, T y) {\n        assert(0 <= l && l <= r &&\
+    \ r <= ori);\n        add_segment(1, 0, n, l, r,\n                    Line{is_max\
+    \ ? -x : x, is_max ? -y : y, line_count});\n        return line_count++;\n   \
+    \ }\n    int add_line(T x, T y) {\n        add_line(1, 0, n, Line{is_max ? -x\
+    \ : x, is_max ? -y : y, line_count});\n        return line_count++;\n    }\n \
+    \   T get_min(int k) const {\n        int x = k + n;\n        T res = lns[x].get(xs[k]);\n\
+    \        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n     \
+    \       chmin(res, y);\n        }\n        return is_max ? -res : res;\n    }\n\
+    \    struct line {\n        T a, b;\n        int idx;\n    };\n    line get_min_line(int\
     \ k) const {\n        int x = k + n;\n        T mn = lns[x].get(xs[k]);\n    \
     \    Line res = lns[x];\n        while (x >>= 1) {\n            const T y = lns[x].get(xs[k]);\n\
-    \            if (chmin(mn, is_max ? -y : y)) res = lns[x];\n        }\n      \
-    \  return line{is_max ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n \
-    \   }\n};\n\n/**\n * @brief LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n\
-    \ */\n"
+    \            if (chmin(mn, y)) res = lns[x];\n        }\n        return line{is_max\
+    \ ? -res.a : res.a, is_max ? -res.b : res.b, res.idx};\n    }\n};\n\n/**\n * @brief\
+    \ LiChaoTree\n * @docs docs/data-struct/cht/LiChaoTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -549,7 +547,7 @@ data:
   isVerificationFile: false
   path: data-struct/cht/LiChaoTree.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-21 15:35:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/segment_add_get_min.test.cpp
