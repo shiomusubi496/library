@@ -20,12 +20,12 @@ private:
         node(const T& v, const U& x)
             : val(v), lazy(x), lazyflag(true), l(nullptr), r(nullptr) {}
     };
-    node_ptr& get_l(const node_ptr& nd, ll l, ll r, int t) const {
-        if (nd->l == nullptr) nd->l = std::make_unique<node>(get_init(l, r, t));
+    node_ptr& get_l(const node_ptr& nd) const {
+        if (nd->l == nullptr) nd->l = std::make_unique<node>(M::id());
         return nd->l;
     }
-    node_ptr& get_r(const node_ptr& nd, ll l, ll r, int t) const {
-        if (nd->r == nullptr) nd->r = std::make_unique<node>(get_init(l, r, t));
+    node_ptr& get_r(const node_ptr& nd) const {
+        if (nd->r == nullptr) nd->r = std::make_unique<node>(M::id());
         return nd->r;
     }
 
@@ -57,8 +57,8 @@ private:
     void eval(node_ptr& nd, ll a, ll b, int t) {
         if (nd->lazyflag) {
             ll m = (a + b) >> 1;
-            all_apply(get_l(nd, a, m, t - 1), t - 1, nd->lazy, m - a);
-            all_apply(get_r(nd, m, b, t - 1), t - 1, nd->lazy, b - m);
+            all_apply(get_l(nd), t - 1, nd->lazy, m - a);
+            all_apply(get_r(nd), t - 1, nd->lazy, b - m);
             nd->lazyflag = false;
         }
     }
@@ -73,21 +73,18 @@ private:
         }
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        if (k < m) update(get_l(nd, a, m, t - 1), a, m, t - 1, k, upd);
-        else update(get_r(nd, m, b, t - 1), m, b, t - 1, k, upd);
-        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
-                        nd->r ? nd->r->val : get_init(m, b, t - 1));
+        if (k < m) update(get_l(nd), a, m, t - 1, k, upd);
+        else update(get_r(nd), m, b, t - 1, k, upd);
+        nd->val =
+            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());
     }
     T prod(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
+        if (nd == nullptr) return M::id();
         if (r <= a || b <= l) return M::id();
         if (l <= a && b <= r) return nd->val;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        return M::op(
-            r > a && m > l ? prod(get_l(nd, a, m, t - 1), a, m, t - 1, l, r)
-                           : M::id(),
-            r > m && b > l ? prod(get_r(nd, m, b, t - 1), m, b, t - 1, l, r)
-                           : M::id());
+        return M::op(prod(nd->l, a, m, t - 1, l, r), prod(nd->r, m, b, t - 1, l, r));
     }
     void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r, const U& x) {
         if (r <= a || b <= l) return;
@@ -97,15 +94,15 @@ private:
         }
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        apply(get_l(nd, a, m, t - 1), a, m, t - 1, l, r, x);
-        apply(get_r(nd, m, b, t - 1), m, b, t - 1, l, r, x);
-        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
-                        nd->r ? nd->r->val : get_init(m, b, t - 1));
+        apply(get_l(nd), a, m, t - 1, l, r, x);
+        apply(get_r(nd), m, b, t - 1, l, r, x);
+        nd->val =
+            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());
     }
     template<class Cond>
     ll max_right(node_ptr& nd, ll a, ll b, int t, ll l, const Cond& cond,
                  T& sm) {
-        if (b <= l) return n;
+        if (b <= l || nd == nullptr) return n;
         if (l <= a && cond(M::op(sm, nd->val))) {
             sm = M::op(sm, nd->val);
             return n;
@@ -113,14 +110,14 @@ private:
         if (a + 1 == b) return a;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        ll res = max_right(get_l(nd, a, m, t - 1), a, m, t - 1, l, cond, sm);
+        ll res = max_right(nd->l, a, m, t - 1, l, cond, sm);
         if (res != n) return res;
-        return max_right(get_r(nd, m, b, t - 1), m, b, t - 1, l, cond, sm);
+        return max_right(nd->r, m, b, t - 1, l, cond, sm);
     }
     template<class Cond>
     ll min_left(node_ptr& nd, ll a, ll b, int t, ll r, const Cond& cond,
                 T& sm) {
-        if (r <= a) return 0;
+        if (r <= a || nd == nullptr) return 0;
         if (b <= r && cond(M::op(nd->val, sm))) {
             sm = M::op(nd->val, sm);
             return 0;
@@ -128,23 +125,66 @@ private:
         if (a + 1 == b) return b;
         eval(nd, a, b, t);
         ll m = (a + b) >> 1;
-        ll res = min_left(get_r(nd, m, b, t - 1), m, b, t - 1, r, cond, sm);
+        ll res = min_left(nd->r, m, b, t - 1, r, cond, sm);
         if (res != 0) return res;
-        return min_left(get_l(nd, a, m, t - 1), a, m, t - 1, r, cond, sm);
+        return min_left(nd->l, a, m, t - 1, r, cond, sm);
     }
     void reset(node_ptr& nd, ll a, ll b, int t, ll l, ll r) {
         if (nd == nullptr) return;
         if (r <= a || b <= l) return;
         if (l <= a && b <= r) {
-            if (nd == root) nd = std::make_unique<node>(get_init(0, n, h));
+            if (nd == root) nd = std::make_unique<node>(M::id());
             else nd.reset();
             return;
         }
         ll m = (a + b) >> 1;
         reset(nd->l, a, m, t - 1, l, r);
         reset(nd->r, m, b, t - 1, l, r);
-        nd->val = M::op(nd->l ? nd->l->val : get_init(a, m, t - 1),
-                        nd->r ? nd->r->val : get_init(m, b, t - 1));
+        nd->val =
+            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());
+    }
+    void merge(node_ptr& nd, ll a, ll b, int t, node_ptr& other) {
+        if (nd == nullptr) {
+            nd = std::move(other);
+            return;
+        }
+        if (other == nullptr) return;
+        if (nd->l == nullptr && nd->r == nullptr) {
+            nd->val = M::op(nd->val, other->val);
+            return;
+        }
+        eval(nd, a, b, t);
+        eval(other, a, b, t);
+        ll m = (a + b) >> 1;
+        merge(nd->l, a, m, t - 1, other->l);
+        merge(nd->r, m, b, t - 1, other->r);
+        nd->val =
+            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());
+    }
+    void split(node_ptr& nd, ll a, ll b, int t, node_ptr& other, ll k) {
+        if (nd == nullptr) return;
+        if (a >= k) {
+            other = std::move(nd);
+            nd = nullptr;
+            return;
+        }
+        if (b <= k) return;
+        other = std::make_unique<node>(M::id());
+        eval(nd, a, b, t);
+        eval(other, a, b, t);
+        ll m = (a + b) >> 1;
+        split(nd->l, a, m, t - 1, other->l, k);
+        split(nd->r, m, b, t - 1, other->r, k);
+        if (nd->l == nullptr && nd->r == nullptr) nd = nullptr;
+        else {
+            nd->val = M::op(nd->l ? nd->l->val : M::id(),
+                            nd->r ? nd->r->val : M::id());
+        }
+        if (other->l == nullptr && other->r == nullptr) other = nullptr;
+        else {
+            other->val = M::op(other->l ? other->l->val : M::id(),
+                               other->r ? other->r->val : M::id());
+        }
     }
     void init_copy(node_ptr& nd, const node_ptr& src) {
         if (src == nullptr) return;
@@ -153,40 +193,11 @@ private:
         init_copy(nd->l, src->l);
         init_copy(nd->r, src->r);
     }
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<!Monoid::has_init<M>::value &&
-                                     AlwaysTrue>::type* = nullptr>
-    void init_iv(const T& v) {
-        iv.reserve(this->h + 1);
-        iv.push_back(v);
-        rep (this->h) iv.push_back(M::op(iv.back(), iv.back()));
-        iv2.assign(this->h + 1, M::id());
-        rep (i, this->h) {
-            if ((this->ori >> i) & 1) iv2[i + 1] = M::op(iv2[i], iv[i]);
-            else iv2[i + 1] = iv2[i];
-        }
-    }
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<!Monoid::has_init<M>::value &&
-                                     AlwaysTrue>::type* = nullptr>
-    T get_init(ll, ll r, int t) const {
-        return r <= this->ori ? iv[t] : iv2[t];
-    }
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<Monoid::has_init<M>::value &&
-                                     AlwaysTrue>::type* = nullptr>
-    void init_iv(const T&) {}
-    template<bool AlwaysTrue = true,
-             typename std::enable_if<Monoid::has_init<M>::value &&
-                                     AlwaysTrue>::type* = nullptr>
-    T get_init(ll l, ll r, int) const {
-        return M::init(l, std::min(r, this->ori));
-    }
 
 public:
     DynamicLazySegmentTree() : DynamicLazySegmentTree(inf) {}
     DynamicLazySegmentTree(ll n_) { init(n_); }
-    DynamicLazySegmentTree(ll n_, const T& v) { init(n_, v); }
+    DynamicLazySegmentTree(ll n_, const T& v) { init(n_); }
     DynamicLazySegmentTree(const DynamicLazySegmentTree& other)
         : n(other.n), h(other.h), ori(other.ori), iv(other.iv), iv2(other.iv2),
           root(std::make_unique<node>(other.root->val)) {
@@ -198,12 +209,11 @@ public:
         return (*this) = DynamicLazySegmentTree(other);
     }
     DynamicLazySegmentTree& operator=(DynamicLazySegmentTree&& other) = default;
-    void init(ll n_, const T& v = M::id()) {
+    void init(ll n_) {
         ori = n_;
         h = bitop::ceil_log2(ori);
         n = 1ull << h;
-        init_iv(v);
-        root = std::make_unique<node>(get_init(0, n, h));
+        root = std::make_unique<node>(M::id());
     }
     template<class Upd> void update(ll k, const Upd& upd) {
         assert(0 <= k && k < ori);
@@ -242,6 +252,23 @@ public:
     }
     void reset(ll l, ll r) { reset(root, 0, n, h, l, r); }
     void reset(ll k) { reset(root, 0, n, h, k, k + 1); }
+    DynamicLazySegmentTree& merge(DynamicLazySegmentTree&& other) {
+        assert(ori == other.ori);
+        merge(root, 0, n, h, other.root);
+        other.root = std::make_unique<node>(M::id());
+        return *this;
+    }
+    friend DynamicLazySegmentTree merge(DynamicLazySegmentTree&& a,
+                                        DynamicLazySegmentTree&& b) {
+        return std::move(a.merge(std::move(b)));
+    }
+    friend std::pair<DynamicLazySegmentTree, DynamicLazySegmentTree>
+    split(DynamicLazySegmentTree&& a, ll k) {
+        assert(0 <= k && k <= a.ori);
+        DynamicLazySegmentTree b(a.ori);
+        a.split(a.root, 0, a.n, a.h, b.root, k);
+        return {std::move(a), std::move(b)};
+    }
 };
 
 /**

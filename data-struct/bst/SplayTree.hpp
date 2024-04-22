@@ -279,6 +279,12 @@ public:
         splay(ptr);
     }
     SplayTree& merge(SplayTree&& other) {
+        if (root == nullptr) {
+            root = other.root;
+            other.root = nullptr;
+            return *this;
+        }
+        if (other.root == nullptr) return *this;
         kth_element(size() - 1);
         root->r = other.root;
         if (other.root) other.root->p = root;
