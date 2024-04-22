@@ -808,16 +808,18 @@ data:
     \    }\n    void reverse(int l, int r) {\n        assert(0 <= l && l <= r && r\
     \ <= size());\n        if (l + 1 >= r) return;\n        node_ptr ptr = get_range(l,\
     \ r);\n        all_reverse(ptr);\n        splay(ptr);\n    }\n    SplayTree& merge(SplayTree&&\
-    \ other) {\n        kth_element(size() - 1);\n        root->r = other.root;\n\
-    \        if (other.root) other.root->p = root;\n        calc(root);\n        return\
-    \ *this;\n    }\n    friend SplayTree merge(SplayTree&& a, SplayTree&& b) {\n\
-    \        return std::move(a.merge(std::move(b)));\n    }\n    std::pair<SplayTree,\
-    \ SplayTree> split(int k) && {\n        assert(0 <= k && k <= size());\n     \
-    \   if (k == 0) return {SplayTree(), std::move(*this)};\n        if (k == size())\
-    \ return {std::move(*this), SplayTree()};\n        node_ptr ptr = kth_element(k);\n\
-    \        node_ptr l = ptr->l;\n        ptr->l = nullptr;\n        if (l) l->p\
-    \ = nullptr;\n        calc(ptr);\n        return {SplayTree(l), SplayTree(ptr)};\n\
-    \    }\n};\n#line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp\"\
+    \ other) {\n        if (root == nullptr) {\n            root = other.root;\n \
+    \           other.root = nullptr;\n            return *this;\n        }\n    \
+    \    if (other.root == nullptr) return *this;\n        kth_element(size() - 1);\n\
+    \        root->r = other.root;\n        if (other.root) other.root->p = root;\n\
+    \        calc(root);\n        return *this;\n    }\n    friend SplayTree merge(SplayTree&&\
+    \ a, SplayTree&& b) {\n        return std::move(a.merge(std::move(b)));\n    }\n\
+    \    std::pair<SplayTree, SplayTree> split(int k) && {\n        assert(0 <= k\
+    \ && k <= size());\n        if (k == 0) return {SplayTree(), std::move(*this)};\n\
+    \        if (k == size()) return {std::move(*this), SplayTree()};\n        node_ptr\
+    \ ptr = kth_element(k);\n        node_ptr l = ptr->l;\n        ptr->l = nullptr;\n\
+    \        if (l) l->p = nullptr;\n        calc(ptr);\n        return {SplayTree(l),\
+    \ SplayTree(ptr)};\n    }\n};\n#line 6 \"test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp\"\
     \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
     \ Q; scan >> N >> Q;\n    vector<mint> A(N); scan >> A;\n    SplayTree<Monoid::AffineSum<mint>>\
     \ st(A);\n    rep (Q) {\n        int t; scan >> t;\n        if (t == 0) {\n  \
@@ -860,7 +862,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 17:18:51+09:00'
+  timestamp: '2024-04-22 13:25:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp

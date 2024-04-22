@@ -2,6 +2,8 @@
 
 初期値以外の値を持っている要素だけ持つセグメント木。座標圧縮して通常のセグメント木を使うのでもいいが、オンラインでもできることに利点がある。あと楽。
 
+merge と split も使える。これは償却であることに注意。
+
 - コンストラクタ
   - `DynamicSegmentTree()` : 長さ $inf$ に SegmentTree を初期化する。 $\Theta(\log n)$ 。
   - `DynamicSegmentTree(ll n)` : 長さ `n` の SegmentTree を作成する。初期値は `e` 。 $\Theta(\log n)$ 。

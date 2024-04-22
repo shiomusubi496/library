@@ -2,6 +2,15 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/DynamicSegmentTree.hpp
+    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/SegmentTree.hpp
+    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+  - icon: ':heavy_check_mark:'
+    path: other/monoid.hpp
+    title: other/monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
   - icon: ':heavy_check_mark:'
@@ -28,308 +37,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: data-struct/bst/SplayTree.hpp
-    title: data-struct/bst/SplayTree.hpp
-  - icon: ':warning:'
-    path: data-struct/heap/LeftistHeap.hpp
-    title: LeftistHeap
-  - icon: ':heavy_check_mark:'
-    path: data-struct/heap/SkewHeap.hpp
-    title: SkewHeap
-  - icon: ':heavy_check_mark:'
-    path: data-struct/other/AreaofUnionofRectangles.hpp
-    title: data-struct/other/AreaofUnionofRectangles.hpp
-  - icon: ':heavy_check_mark:'
-    path: data-struct/other/DequeOperateAggregation.hpp
-    title: DequeOperateAggregation
-  - icon: ':warning:'
-    path: data-struct/other/SkipList.hpp
-    title: SkipList
-  - icon: ':heavy_check_mark:'
-    path: data-struct/other/SlidingWindowAggregation.hpp
-    title: SlidingWindowAggregation(SWAG)
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/BinaryIndexedTree.hpp
-    title: BinaryIndexedTree(FenwickTree, BIT)
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/CumulativeSum.hpp
-    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DisjointSparseTable.hpp
-    title: DisjointSparseTable
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DualSegmentTree.hpp
-    title: "DualSegmentTree(\u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DynamicLazySegmentTree.hpp
-    title: "DynamicLazySegmentTree(\u52D5\u7684\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\
-      \u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DynamicSegmentTree.hpp
-    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LCARMQ.hpp
-    title: LCARMQ
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LazySegmentTree.hpp
-    title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/LinearRMQ.hpp
-    title: "LinearRMQ(\u524D\u8A08\u7B97$\\Theta(N)$\u30AF\u30A8\u30EA\u6BCE$\\Theta(1)$\u306E\
-      RMQ)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/NonMergeSegmentTree.hpp
-    title: NonMergeSegmentTree
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/PlusMinusOneRMQ.hpp
-    title: PlusMinusOneRMQ($\pm1$RMQ)
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RangeAssignSegmentTree.hpp
-    title: RangeAssignSegmentTree
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RangeSortQuery.hpp
-    title: RangeSortQuery
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree2D.hpp
-    title: SegmentTree2D
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTreeBeats.hpp
-    title: SegmentTreeBeats!
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SparseTable.hpp
-    title: SparseTable
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SqrtDecomposition.hpp
-    title: "SqrtDecomposition(\u5E73\u65B9\u5206\u5272)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/unionfind/WeightedUnionFind.hpp
-    title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-    title: WaveletMatrixPointAddRectangleSum.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/mst/DirectedMST.hpp
-    title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/EulerTour.hpp
-    title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/PMORMQLCA.hpp
-    title: "PMORMQLCA($\\pm1$RMQ\u306B\u3088\u308BLCA)"
-  - icon: ':heavy_check_mark:'
-    path: graph/tree/ReRooting.hpp
-    title: "ReRooting(\u5168\u65B9\u4F4D\u6728DP)"
-  - icon: ':heavy_check_mark:'
-    path: math/DiscreteLogarithm.hpp
-    title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseAndConvolution.hpp
-    title: BitwiseAndConvolution
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseOrConvolution.hpp
-    title: BitwiseOrConvolution
-  - icon: ':heavy_check_mark:'
-    path: math/convolution/BitwiseXorConvolution.hpp
-    title: BitwiseXorConvolution
-  - icon: ':heavy_check_mark:'
-    path: other/monoid2.hpp
-    title: other/monoid2.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/RollingHash.hpp
-    title: "RollingHash(\u30ED\u30EA\u30CF)"
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-    title: test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-    title: test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-    title: test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-    title: test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-    title: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-    title: test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-    title: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-    title: test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-    title: test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-    title: test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-    title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-    title: test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/gcd_convolution.test.cpp
-    title: test/yosupo/convolution/gcd_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/convolution/lcm_convolution.test.cpp
-    title: test/yosupo/convolution/lcm_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-    title: test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-    title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_point_get.test.cpp
-    title: test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-    title: test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-    title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-    title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-    title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-    title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-    title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-    title: test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-    title: test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-    title: test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-    title: test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/graph/directedmst.test.cpp
-    title: test/yosupo/graph/directedmst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/math/discrete_logarithm_mod.test.cpp
-    title: test/yosupo/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/tree/tree_path_composite_sum.test.cpp
-    title: test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-    title: test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/1435_SegTree-BinarySearch.test.cpp
-    title: test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yuki/855_DynamicSegTree.test.cpp
-    title: test/yuki/855_DynamicSegTree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    _deprecated_at_docs: RangeSortQuery.md
+    document_title: RangeSortQuery
     links: []
-  bundledCode: "#line 2 \"other/monoid.hpp\"\n\n#line 2 \"other/template.hpp\"\n\n\
-    #include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+  bundledCode: "#line 2 \"data-struct/segment/RangeSortQuery.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
     \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
     \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
     \                                                           \\\n    for (ll REP_COUNTER_##c\
@@ -742,7 +463,8 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
+    };\n#line 2 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n#line 2 \"other/monoid.hpp\"\
+    \n\n#line 4 \"other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class\
     \ = void>\nclass has_value_type : public std::false_type {};\ntemplate<class M>\n\
     class has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
     \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
@@ -831,97 +553,301 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n"
-  code: "#pragma once\n\n#include \"template.hpp\"\n\nnamespace Monoid {\n\ntemplate<class\
-    \ M, class = void>\nclass has_value_type : public std::false_type {};\ntemplate<class\
-    \ M>\nclass has_value_type<M, decltype((void)std::declval<typename M::value_type>())>\n\
-    \    : public std::true_type {};\n\ntemplate<class M, class = void> class has_op\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_id\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_get_inv\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)>\
-    \ : public std::true_type {};\n\ntemplate<class M, class = void> class has_init\
-    \ : public std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
-    \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
-    \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
-    \ {};\n\ntemplate<class T, class = void> class is_monoid : public std::false_type\
-    \ {};\n\ntemplate<class T>\nclass is_monoid<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                            (void)T::id)> :\
-    \ public std::true_type {};\n\ntemplate<class T, class = void> class is_group\
-    \ : public std::false_type {};\n\ntemplate<class T>\nclass is_group<T, decltype(std::declval<typename\
-    \ T::value_type>(), (void)T::op,\n                           (void)T::id, (void)T::get_inv)>\n\
-    \    : public std::true_type {};\n\ntemplate<class T, class = void> class is_action\
-    \ : public std::false_type {};\ntemplate<class T>\nclass is_action<T, typename\
-    \ std::enable_if<is_monoid<typename T::M>::value &&\n                        \
-    \                   is_semigroup<typename T::E>::value &&\n                  \
-    \                         (has_op<T>::value ||\n                             \
-    \               has_mul_op<T>::value)>::type>\n    : public std::true_type {};\n\
-    \ntemplate<class T, class = void>\nclass is_distributable_action : public std::false_type\
-    \ {};\ntemplate<class T>\nclass is_distributable_action<\n    T,\n    typename\
-    \ std::enable_if<is_action<T>::value && !has_mul_op<T>::value>::type>\n    : public\
-    \ std::true_type {};\n\ntemplate<class T> struct Sum {\n    using value_type =\
-    \ T;\n    static constexpr T op(const T& a, const T& b) { return a + b; }\n  \
-    \  static constexpr T id() { return T{0}; }\n    static constexpr T inv(const\
-    \ T& a, const T& b) { return a - b; }\n    static constexpr T get_inv(const T&\
-    \ a) { return -a; }\n};\n\ntemplate<class T, int i = -1> struct Min {\n    using\
-    \ value_type = T;\n    static T max_value;\n    static T op(const T& a, const\
-    \ T& b) { return a < b ? a : b; }\n    static T id() { return max_value; }\n};\n\
-    template<class T> struct Min<T, -1> {\n    using value_type = T;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return a < b ? a : b; }\n    static constexpr\
-    \ T id() { return infinity<T>::value; }\n};\ntemplate<class T> struct Min<T, -2>\
-    \ {\n    using value_type = T;\n    static constexpr T op(const T& a, const T&\
-    \ b) { return a < b ? a : b; }\n    static constexpr T id() { return infinity<T>::max;\
-    \ }\n};\ntemplate<class T, int id> T Min<T, id>::max_value;\n\ntemplate<class\
-    \ T, int i = -1> struct Max {\n    using value_type = T;\n    static T min_value;\n\
-    \    static T op(const T& a, const T& b) { return a > b ? a : b; }\n    static\
-    \ T id() { return min_value; }\n};\ntemplate<class T> struct Max<T, -1> {\n  \
-    \  using value_type = T;\n    static constexpr T op(const T& a, const T& b) {\
-    \ return a > b ? a : b; }\n    static constexpr T id() { return infinity<T>::mvalue;\
-    \ }\n};\ntemplate<class T> struct Max<T, -2> {\n    using value_type = T;\n  \
-    \  static constexpr T op(const T& a, const T& b) { return a > b ? a : b; }\n \
-    \   static constexpr T id() { return infinity<T>::min; }\n};\n\ntemplate<class\
-    \ T> struct Assign {\n    using value_type = T;\n    static constexpr T op(const\
-    \ T&, const T& b) { return b; }\n};\n\n\ntemplate<class T, int id = -1> struct\
-    \ AssignMin {\n    using M = Min<T, id>;\n    using E = Assign<T>;\n    static\
-    \ constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class T,\
-    \ int id = -1> struct AssignMax {\n    using M = Max<T, id>;\n    using E = Assign<T>;\n\
-    \    static constexpr T op(const T& a, const T&) { return a; }\n};\n\ntemplate<class\
-    \ T> struct AssignSum {\n    using M = Sum<T>;\n    using E = Assign<T>;\n   \
-    \ static constexpr T mul_op(const T& a, int b, const T&) { return a * b; }\n};\n\
-    \ntemplate<class T, int id = -1> struct AddMin {\n    using M = Min<T, id>;\n\
-    \    using E = Sum<T>;\n    static constexpr T op(const T& a, const T& b) { return\
-    \ b + a; }\n};\n\ntemplate<class T, int id = -1> struct AddMax {\n    using M\
-    \ = Max<T, id>;\n    using E = Sum<T>;\n    static constexpr T op(const T& a,\
-    \ const T& b) { return b + a; }\n};\n\ntemplate<class T> struct AddSum {\n   \
-    \ using M = Sum<T>;\n    using E = Sum<T>;\n    static constexpr T mul_op(const\
-    \ T& a, int b, const T& c) {\n        return c + a * b;\n    }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChminMin {\n    using M = Min<T, id>;\n    using E =\
-    \ Min<T>;\n    static constexpr T op(const T& a, const T& b) { return std::min(b,\
-    \ a); }\n};\n\ntemplate<class T, int id = -1> struct ChminMax {\n    using M =\
-    \ Max<T, id>;\n    using E = Min<T>;\n    static constexpr T op(const T& a, const\
-    \ T& b) { return std::min(b, a); }\n};\n\ntemplate<class T, int id = -1> struct\
-    \ ChmaxMin {\n    using M = Min<T, id>;\n    using E = Max<T>;\n    static constexpr\
-    \ T op(const T& a, const T& b) { return std::max(b, a); }\n};\n\ntemplate<class\
-    \ T, int id = -1> struct ChmaxMax {\n    using M = Max<T, id>;\n    using E =\
-    \ Max<T>;\n    static constexpr T op(const T& a, const T& b) { return std::max(b,\
-    \ a); }\n};\n\n\ntemplate<class M> struct ReverseMonoid {\n    using value_type\
-    \ = typename M::value_type;\n    static value_type op(const value_type& a, const\
-    \ value_type& b) {\n        return M::op(b, a);\n    }\n    static value_type\
-    \ id() {\n        static_assert(has_id<M>::value, \"id is not defined\");\n  \
-    \      return M::id();\n    }\n    static value_type inv(const value_type& a,\
-    \ const value_type& b) {\n        static_assert(has_inv<M>::value, \"inv is not\
-    \ defined\");\n        return M::inv(b, a);\n    }\n    static value_type get_inv(const\
-    \ value_type& a) {\n        static_assert(has_get_inv<M>::value, \"get_inv is\
-    \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
-    \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
-    \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n"
+    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/DynamicSegmentTree.hpp\"\
+    \n\ntemplate<class M> class DynamicSegmentTree {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    struct node;\n    using node_ptr = std::unique_ptr<node>;\n\
+    \    struct node {\n        T val;\n        node_ptr l, r;\n        node(const\
+    \ T& v) : val(v), l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const\
+    \ node_ptr& nd) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(M::id());\n\
+    \        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd) const {\n\
+    \        if (nd->r == nullptr) nd->r = std::make_unique<node>(M::id());\n    \
+    \    return nd->r;\n    }\n    ll ori, n;\n    node_ptr root;\n    template<class\
+    \ Upd>\n    void update(node_ptr& nd, ll a, ll b, ll k, const Upd& upd) {\n  \
+    \      if (a + 1 == b) {\n            nd->val = upd(nd->val);\n            return;\n\
+    \        }\n        ll m = (a + b) >> 1;\n        if (k < m) update(get_l(nd),\
+    \ a, m, k, upd);\n        else update(get_r(nd), m, b, k, upd);\n        nd->val\
+    \ =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
+    \    }\n    T prod(const node_ptr& nd, ll a, ll b, ll l, ll r) const {\n     \
+    \   if (nd == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
+    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
+    \        return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n   \
+    \ }\n    template<class Cond>\n    ll max_right(const node_ptr& nd, ll a, ll b,\
+    \ ll l, const Cond& cond,\n                 T& sm) const {\n        if (b <= l\
+    \ || nd == nullptr) return n;\n        if (l <= a && cond(M::op(sm, nd->val)))\
+    \ {\n            sm = M::op(sm, nd->val);\n            return n;\n        }\n\
+    \        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res\
+    \ = max_right(nd->l, a, m, l, cond, sm);\n        if (res != n) return res;\n\
+    \        return max_right(nd->r, m, b, l, cond, sm);\n    }\n    template<class\
+    \ Cond>\n    ll min_left(const node_ptr& nd, ll a, ll b, ll r, const Cond& cond,\n\
+    \                T& sm) const {\n        if (r <= a || nd == nullptr) return 0;\n\
+    \        if (b <= r && cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val,\
+    \ sm);\n            return 0;\n        }\n        if (a + 1 == b) return b;\n\
+    \        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r, m, b, r, cond,\
+    \ sm);\n        if (res != 0) return res;\n        return min_left(nd->l, a, m,\
+    \ r, cond, sm);\n    }\n    void reset(node_ptr& nd, ll a, ll b, ll l, ll r) {\n\
+    \        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n \
+    \       if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(M::id());\n\
+    \            else nd.reset();\n            return;\n        }\n        ll m =\
+    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
+    \ l, r);\n        nd->val =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r\
+    \ ? nd->r->val : M::id());\n    }\n    void merge(node_ptr& nd, ll a, ll b, node_ptr&\
+    \ other) {\n        if (other == nullptr) return;\n        if (nd == nullptr)\
+    \ {\n            nd = std::move(other);\n            return;\n        }\n    \
+    \    if (a + 1 == b) {\n            nd->val = M::op(nd->val, other->val);\n  \
+    \          return;\n        }\n        ll m = (a + b) >> 1;\n        merge(nd->l,\
+    \ a, m, other->l);\n        merge(nd->r, m, b, other->r);\n        nd->val =\n\
+    \            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
+    \    }\n    void split(node_ptr& nd, ll a, ll b, node_ptr& other, ll k) {\n  \
+    \      if (nd == nullptr) return;\n        if (a >= k) {\n            other =\
+    \ std::move(nd);\n            nd = nullptr;\n            return;\n        }\n\
+    \        if (b <= k) return;\n        other = std::make_unique<node>(M::id());\n\
+    \        ll m = (a + b) >> 1;\n        split(nd->l, a, m, other->l, k);\n    \
+    \    split(nd->r, m, b, other->r, k);\n        if (nd->l == nullptr && nd->r ==\
+    \ nullptr) nd = nullptr;\n        else {\n            nd->val = M::op(nd->l ?\
+    \ nd->l->val : M::id(),\n                            nd->r ? nd->r->val : M::id());\n\
+    \        }\n        if (other->l == nullptr && other->r == nullptr) other = nullptr;\n\
+    \        else {\n            other->val = M::op(other->l ? other->l->val : M::id(),\n\
+    \                               other->r ? other->r->val : M::id());\n       \
+    \ }\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n        if\
+    \ (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n \
+    \       init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\n\
+    public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
+    \ n_) { init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
+    \        : ori(other.ori), n(other.n),\n          root(std::make_unique<node>(other.root->val))\
+    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&\
+    \ other) = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree&\
+    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
+    \ = DynamicSegmentTree(other);\n    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&\
+    \ other) = default;\n    void init(ll n_) {\n        ori = n_;\n        n = 1ull\
+    \ << bitop::ceil_log2(ori);\n        root = std::make_unique<node>(M::id());\n\
+    \    }\n    template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
+    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
+    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
+    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
+    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
+    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
+    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
+    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
+    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
+    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
+    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
+    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
+    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
+    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n    void reset()\
+    \ { root = std::make_unique<node>(M::id()); }\n    DynamicSegmentTree& merge(DynamicSegmentTree&&\
+    \ other) {\n        assert(ori == other.ori);\n        merge(root, 0, n, other.root);\n\
+    \        other.root = std::make_unique<node>(M::id());\n        return *this;\n\
+    \    }\n    friend DynamicSegmentTree merge(DynamicSegmentTree&& a,\n        \
+    \                            DynamicSegmentTree&& b) {\n        return std::move(a.merge(std::move(b)));\n\
+    \    }\n    friend std::pair<DynamicSegmentTree, DynamicSegmentTree>\n    split(DynamicSegmentTree&&\
+    \ a, ll k) {\n        assert(0 <= k && k <= a.ori);\n        DynamicSegmentTree\
+    \ b(a.ori);\n        if (k == 0) return {std::move(b), std::move(a)};\n      \
+    \  if (k == a.ori) return {std::move(a), std::move(b)};\n        a.split(a.root,\
+    \ 0, a.n, b.root, k);\n        return {std::move(a), std::move(b)};\n    }\n};\n\
+    \n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
+    \u6728)\n * @docs docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 2\
+    \ \"data-struct/segment/SegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
+    \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
+    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
+    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
+    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
+    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
+    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
+    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
+    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
+    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
+    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
+    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
+    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
+    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
+    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
+    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
+    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
+    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
+    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
+    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
+    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
+    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
+    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
+    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
+    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
+    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
+    \                }\n                return l - n;\n            }\n           \
+    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
+    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
+    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
+    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
+    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
+    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
+    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
+    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
+    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
+    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
+    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
+    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
+    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
+    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
+    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
+    \ */\n#line 6 \"data-struct/segment/RangeSortQuery.hpp\"\n\ntemplate<class M>\
+    \ class RangeSortQuery {\nprivate:\n    using T = typename M::value_type;\n  \
+    \  class M2 {\n    public:\n        using value_type = std::pair<std::array<T,\
+    \ 2>, int>;\n        static value_type id() { return {{M::id(), M::id()}, 0};\
+    \ }\n        static value_type op(const value_type& a, const value_type& b) {\n\
+    \            return {{M::op(a.first[0], b.first[0]), M::op(b.first[1], a.first[1])},\
+    \ a.second + b.second};\n        }\n    };\n    int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>>\
+    \ seg;\n    std::vector<bool> flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int>\
+    \ bit;\n\n    void split_l(int k) {\n        if (k == n) return;\n        int\
+    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        if (l ==\
+    \ k) return;\n        if (!flag[l]) {\n            ll t = seg[l].max_right(0,\
+    \ [&](const auto& x) { return x.second <= k - l; });\n            std::tie(seg[l],\
+    \ seg[k]) = split(std::move(seg[l]), t);\n        }\n        else {\n        \
+    \    ll t = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l;\
+    \ });\n            std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t);\n \
+    \       }\n        bit.apply(k, 1);\n        flag[k] = flag[l];\n        dat.set(l,\
+    \ seg[l].all_prod().first[flag[l]]);\n        dat.set(k, seg[k].all_prod().first[flag[k]]);\n\
+    \    }\n\npublic:\n    RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int\
+    \ n, ll mx = inf)\n        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n,\
+    \ 0),\n                         mx) {}\n    RangeSortQuery(const std::vector<T>&\
+    \ v, const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
+    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)), flag(n, false), dat(n), bit(n,\
+    \ 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i] <= mx);\n\
+    \            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i, v[i]);\n\
+    \        }\n    }\n    void set(int k, ll key, const T& val) {\n        assert(0\
+    \ <= k && k < n);\n        assert(0 <= key && key <= mx);\n        int l = bit.min_left(k\
+    \ + 1, [&](int x) { return x == 0; }) - 1;\n        int r = bit.max_right(k +\
+    \ 1, [&](int x) { return x == 0; });\n        if (!flag[l]) {\n            ll\
+    \ t = seg[l].max_right(0, [&](const auto& x) { return x.second <= k - l; });\n\
+    \            if (l != k) {\n                std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
+    \ t);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
+    \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
+    \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
+    \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
+    \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= k - l; }) - 1;\n            if (l !=\
+    \ k) {\n                std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t\
+    \ + 1);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
+    \ {\n                std::tie(seg[k + 1], seg[k]) = split(std::move(seg[k]), t);\n\
+    \                bit.apply(k + 1, 1);\n                dat.set(k + 1, seg[k +\
+    \ 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n   \
+    \         }\n        }\n        seg[k].reset();\n        seg[k].set(key, {{val,\
+    \ val}, 1});\n        dat.set(k, val);\n    }\n    void sort(int l, int r, bool\
+    \ reverse = false) {\n        assert(0 <= l && l <= r && r <= n);\n        split_l(l);\n\
+    \        split_l(r);\n        ll t = l;\n        while (t < r) {\n           \
+    \ if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n          \
+    \      bit.apply(t, -1);\n                dat.set(t, M::id());\n            }\n\
+    \            t = bit.max_right(t + 1, [&](int x) { return x == 0; });\n      \
+    \  }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
+    \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
+    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
+    \        if (!flag[l]) {\n            t = seg[l].max_right(0, [&](const auto&\
+    \ x) { return x.second <= k - l; });\n        }\n        else {\n            t\
+    \ = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l; }) - 1;\n\
+    \        }\n        return seg[l].get(t).first[0];\n    }\n    T prod(int l, int\
+    \ r) {\n        assert(0 <= l && l <= r && r <= n);\n        T res = M::id();\n\
+    \        int l2 = bit.min_left(l + 1, [&](int x) { return x == 0; }) - 1;\n  \
+    \      int r2 = bit.min_left(r, [&](int x) { return x == 0; }) - 1;\n        if\
+    \ (l2 == r2) {\n            if (!flag[l2]) {\n                ll tl = seg[l2].max_right(0,\
+    \ [&](const auto& x) { return x.second <= l - l2; });\n                ll tr =\
+    \ seg[l2].max_right(0, [&](const auto& x) { return x.second <= r - l2; });\n \
+    \               return seg[l2].prod(tl, tr).first[0];\n            }\n       \
+    \     else {\n                ll tl = seg[l2].min_left(mx, [&](const auto& x)\
+    \ { return x.second <= l - l2; });\n                ll tr = seg[l2].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= r - l2; });\n                return\
+    \ seg[l2].prod(tr, tl).first[1];\n            }\n        }\n        if (!flag[l2])\
+    \ {\n            ll t = seg[l2].max_right(0, [&](const auto& x) { return x.second\
+    \ <= l - l2; });\n            res = seg[l2].prod(t, mx + 1).first[0];\n      \
+    \  }\n        else {\n            ll t = seg[l2].min_left(mx, [&](const auto&\
+    \ x) { return x.second <= l - l2; }) - 1;\n            res = seg[l2].prod(0, t\
+    \ + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
+    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(0, [&](const auto&\
+    \ x) { return x.second <= r - r2; });\n            res = M::op(res, seg[r2].prod(0,\
+    \ t).first[0]);\n        }\n        else {\n            ll t = seg[r2].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= r - r2; }) - 1;\n            res = M::op(res,\
+    \ seg[r2].prod(t + 1, mx + 1).first[1]);\n        }\n        return res;\n   \
+    \ }\n};\n\n/**\n * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
+  code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"DynamicSegmentTree.hpp\"\
+    \n#include \"SegmentTree.hpp\"\n\ntemplate<class M> class RangeSortQuery {\nprivate:\n\
+    \    using T = typename M::value_type;\n    class M2 {\n    public:\n        using\
+    \ value_type = std::pair<std::array<T, 2>, int>;\n        static value_type id()\
+    \ { return {{M::id(), M::id()}, 0}; }\n        static value_type op(const value_type&\
+    \ a, const value_type& b) {\n            return {{M::op(a.first[0], b.first[0]),\
+    \ M::op(b.first[1], a.first[1])}, a.second + b.second};\n        }\n    };\n \
+    \   int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>> seg;\n    std::vector<bool>\
+    \ flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int> bit;\n\n    void split_l(int\
+    \ k) {\n        if (k == n) return;\n        int l = bit.min_left(k + 1, [&](int\
+    \ x) { return x == 0; }) - 1;\n        if (l == k) return;\n        if (!flag[l])\
+    \ {\n            ll t = seg[l].max_right(0, [&](const auto& x) { return x.second\
+    \ <= k - l; });\n            std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
+    \ t);\n        }\n        else {\n            ll t = seg[l].min_left(mx, [&](const\
+    \ auto& x) { return x.second <= k - l; });\n            std::tie(seg[k], seg[l])\
+    \ = split(std::move(seg[l]), t);\n        }\n        bit.apply(k, 1);\n      \
+    \  flag[k] = flag[l];\n        dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \        dat.set(k, seg[k].all_prod().first[flag[k]]);\n    }\n\npublic:\n   \
+    \ RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int n, ll mx = inf)\n\
+    \        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n, 0),\n\
+    \                         mx) {}\n    RangeSortQuery(const std::vector<T>& v,\
+    \ const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
+    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)), flag(n, false), dat(n), bit(n,\
+    \ 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i] <= mx);\n\
+    \            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i, v[i]);\n\
+    \        }\n    }\n    void set(int k, ll key, const T& val) {\n        assert(0\
+    \ <= k && k < n);\n        assert(0 <= key && key <= mx);\n        int l = bit.min_left(k\
+    \ + 1, [&](int x) { return x == 0; }) - 1;\n        int r = bit.max_right(k +\
+    \ 1, [&](int x) { return x == 0; });\n        if (!flag[l]) {\n            ll\
+    \ t = seg[l].max_right(0, [&](const auto& x) { return x.second <= k - l; });\n\
+    \            if (l != k) {\n                std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
+    \ t);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
+    \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
+    \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
+    \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
+    \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= k - l; }) - 1;\n            if (l !=\
+    \ k) {\n                std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t\
+    \ + 1);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
+    \ {\n                std::tie(seg[k + 1], seg[k]) = split(std::move(seg[k]), t);\n\
+    \                bit.apply(k + 1, 1);\n                dat.set(k + 1, seg[k +\
+    \ 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n   \
+    \         }\n        }\n        seg[k].reset();\n        seg[k].set(key, {{val,\
+    \ val}, 1});\n        dat.set(k, val);\n    }\n    void sort(int l, int r, bool\
+    \ reverse = false) {\n        assert(0 <= l && l <= r && r <= n);\n        split_l(l);\n\
+    \        split_l(r);\n        ll t = l;\n        while (t < r) {\n           \
+    \ if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n          \
+    \      bit.apply(t, -1);\n                dat.set(t, M::id());\n            }\n\
+    \            t = bit.max_right(t + 1, [&](int x) { return x == 0; });\n      \
+    \  }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
+    \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
+    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
+    \        if (!flag[l]) {\n            t = seg[l].max_right(0, [&](const auto&\
+    \ x) { return x.second <= k - l; });\n        }\n        else {\n            t\
+    \ = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l; }) - 1;\n\
+    \        }\n        return seg[l].get(t).first[0];\n    }\n    T prod(int l, int\
+    \ r) {\n        assert(0 <= l && l <= r && r <= n);\n        T res = M::id();\n\
+    \        int l2 = bit.min_left(l + 1, [&](int x) { return x == 0; }) - 1;\n  \
+    \      int r2 = bit.min_left(r, [&](int x) { return x == 0; }) - 1;\n        if\
+    \ (l2 == r2) {\n            if (!flag[l2]) {\n                ll tl = seg[l2].max_right(0,\
+    \ [&](const auto& x) { return x.second <= l - l2; });\n                ll tr =\
+    \ seg[l2].max_right(0, [&](const auto& x) { return x.second <= r - l2; });\n \
+    \               return seg[l2].prod(tl, tr).first[0];\n            }\n       \
+    \     else {\n                ll tl = seg[l2].min_left(mx, [&](const auto& x)\
+    \ { return x.second <= l - l2; });\n                ll tr = seg[l2].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= r - l2; });\n                return\
+    \ seg[l2].prod(tr, tl).first[1];\n            }\n        }\n        if (!flag[l2])\
+    \ {\n            ll t = seg[l2].max_right(0, [&](const auto& x) { return x.second\
+    \ <= l - l2; });\n            res = seg[l2].prod(t, mx + 1).first[0];\n      \
+    \  }\n        else {\n            ll t = seg[l2].min_left(mx, [&](const auto&\
+    \ x) { return x.second <= l - l2; }) - 1;\n            res = seg[l2].prod(0, t\
+    \ + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
+    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(0, [&](const auto&\
+    \ x) { return x.second <= r - r2; });\n            res = M::op(res, seg[r2].prod(0,\
+    \ t).first[0]);\n        }\n        else {\n            ll t = seg[r2].min_left(mx,\
+    \ [&](const auto& x) { return x.second <= r - r2; }) - 1;\n            res = M::op(res,\
+    \ seg[r2].prod(t + 1, mx + 1).first[1]);\n        }\n        return res;\n   \
+    \ }\n};\n\n/**\n * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -932,113 +858,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  isVerificationFile: false
-  path: other/monoid.hpp
-  requiredBy:
-  - graph/mst/DirectedMST.hpp
-  - graph/tree/PMORMQLCA.hpp
-  - graph/tree/EulerTour.hpp
-  - graph/tree/ReRooting.hpp
-  - string/RollingHash.hpp
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-  - data-struct/bst/SplayTree.hpp
-  - data-struct/heap/SkewHeap.hpp
-  - data-struct/heap/LeftistHeap.hpp
-  - data-struct/other/SlidingWindowAggregation.hpp
-  - data-struct/other/AreaofUnionofRectangles.hpp
-  - data-struct/other/SkipList.hpp
-  - data-struct/other/DequeOperateAggregation.hpp
-  - data-struct/unionfind/WeightedUnionFind.hpp
-  - data-struct/segment/RangeAssignSegmentTree.hpp
-  - data-struct/segment/SqrtDecomposition.hpp
-  - data-struct/segment/NonMergeSegmentTree.hpp
-  - data-struct/segment/CumulativeSum.hpp
-  - data-struct/segment/LinearRMQ.hpp
-  - data-struct/segment/PlusMinusOneRMQ.hpp
-  - data-struct/segment/DynamicLazySegmentTree.hpp
-  - data-struct/segment/SegmentTreeBeats.hpp
   - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/DisjointSparseTable.hpp
-  - data-struct/segment/BinaryIndexedTree.hpp
-  - data-struct/segment/LazySegmentTree.hpp
-  - data-struct/segment/RangeSortQuery.hpp
-  - data-struct/segment/DualSegmentTree.hpp
-  - data-struct/segment/SparseTable.hpp
-  - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/SegmentTree2D.hpp
+  - other/monoid.hpp
   - data-struct/segment/SegmentTree.hpp
-  - math/convolution/BitwiseXorConvolution.hpp
-  - math/convolution/BitwiseOrConvolution.hpp
-  - math/convolution/BitwiseAndConvolution.hpp
-  - math/DiscreteLogarithm.hpp
-  - other/monoid2.hpp
-  timestamp: '2024-01-20 14:55:31+09:00'
+  isVerificationFile: false
+  path: data-struct/segment/RangeSortQuery.hpp
+  requiredBy: []
+  timestamp: '2024-04-22 13:25:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/convolution/bitwise_and_convolution.test.cpp
-  - test/yosupo/convolution/lcm_convolution.test.cpp
-  - test/yosupo/convolution/bitwise_and_convolution-or.test.cpp
-  - test/yosupo/convolution/bitwise_xor_convolution.test.cpp
-  - test/yosupo/convolution/gcd_convolution.test.cpp
-  - test/yosupo/graph/directedmst.test.cpp
-  - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/point_set_range_composite.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
-  - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - test/yosupo/data_structure/range_affine_point_get.test.cpp
-  - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
-  - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
-  - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
-  - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/static_range_inversions_query.test.cpp
-  - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
-  - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
-  - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-  - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-  - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
-  - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
-  - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
-  - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
-  - test/yosupo/data_structure/queue_operate_all_composite.test.cpp
-  - test/yosupo/data_structure/staticrmq-LinearRMQ.test.cpp
-  - test/yosupo/math/discrete_logarithm_mod.test.cpp
-  - test/yosupo/tree/tree_path_composite_sum.test.cpp
-  - test/yuki/1435_SegTree-BinarySearch.test.cpp
-  - test/yuki/855_DynamicSegTree.test.cpp
-  - test/yuki/1435_DynamicSegTree-BinarySearch.test.cpp
-  - test/aoj/ALDS1/ALDS1_14_B-RollingHash.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
-  - test/aoj/DSL/DSL_2_B-RSQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-RMQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
-  - test/aoj/DSL/DSL_2_A-DynamicSegTree.test.cpp
-  - test/aoj/DSL/DSL_2_E-RAQ.test.cpp
-  - test/aoj/DSL/DSL_1_B-WeightedUF.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_B-BIT.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ-DynamicLazySeg.test.cpp
-  - test/aoj/GRL/GRL_5_B-ReRooting.test.cpp
-  - test/aoj/GRL/GRL_5_C-PMORMQLCA.test.cpp
-  - test/aoj/GRL/GRL_5_C-EulerTourLCA.test.cpp
-  - test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-documentation_of: other/monoid.hpp
+documentation_of: data-struct/segment/RangeSortQuery.hpp
 layout: document
 redirect_from:
-- /library/other/monoid.hpp
-- /library/other/monoid.hpp.html
-title: other/monoid.hpp
+- /library/data-struct/segment/RangeSortQuery.hpp
+- /library/data-struct/segment/RangeSortQuery.hpp.html
+title: RangeSortQuery
 ---

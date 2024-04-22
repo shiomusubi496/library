@@ -111,6 +111,9 @@ data:
       path: data-struct/segment/RangeAssignSegmentTree.hpp
       title: RangeAssignSegmentTree
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/RangeSortQuery.hpp
+      title: RangeSortQuery
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
     - icon: ':heavy_check_mark:'
@@ -935,6 +938,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+      title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
       title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp

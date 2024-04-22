@@ -2,6 +2,8 @@
 
 初期値以外の値を持っているか、作用素がかかっている要素だけ持つセグメント木。座標圧縮して通常の遅延セグメント木を使うのでもいいが、オンラインでもできることに利点がある。あと楽。
 
+また、 merge や split も実装したが未 verify。
+
 - コンストラクタ
   - `DynamicLazySegmentTree()` : 長さ $inf$ に初期化する。 $\Theta(\log n)$ 。
   - `DynamicLazySegmentTree(ll n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(\log n)$ 。

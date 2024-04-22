@@ -108,6 +108,9 @@ data:
     path: data-struct/segment/RangeAssignSegmentTree.hpp
     title: RangeAssignSegmentTree
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RangeSortQuery.hpp
+    title: RangeSortQuery
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
   - icon: ':heavy_check_mark:'
@@ -848,6 +851,9 @@ data:
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+    title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1425,6 +1431,7 @@ data:
   - data-struct/segment/DisjointSparseTable.hpp
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/LazySegmentTree.hpp
+  - data-struct/segment/RangeSortQuery.hpp
   - data-struct/segment/StaticRangeFrequency.hpp
   - data-struct/segment/StaticRangeMode.hpp
   - data-struct/segment/DualSegmentTree.hpp
@@ -1525,6 +1532,7 @@ data:
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/segment_add_get_min.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
