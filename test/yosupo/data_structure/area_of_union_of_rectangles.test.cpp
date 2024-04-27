@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/area_of_union_of_rectangles"
 #include "../../../other/template.hpp"
-#include "../../../data-struct/other/AreaofUnionofRectangles.hpp"
+#include "../../../data-struct/2D/AreaofUnionofRectangles.hpp"
 using namespace std;
 int main() {
     int N; scan >> N;

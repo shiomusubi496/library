@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_rectangle_sum"
 #include "../../../other/template.hpp"
 #include "../../../other/monoid.hpp"
-#include "../../../data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp"
+#include "../../../data-struct/wavelet/SegmentTreeWM.hpp"
 using namespace std;
 int main() {
     int N, Q; scan >> N >> Q;
@@ -12,13 +12,16 @@ int main() {
         if (a == 0) scan >> b >> c >> d;
         else scan >> b >> c >> d >> e;
     }
-    WaveletMatrixPointAddRectangleSum<ll, Monoid::Sum<ll>> wm;
-    rep (i, N) wm.add_point(A[i][0], A[i][1]);
+    vector<ll> xs(N), ys(N), zs(N);
+    rep (i, N) xs[i] = A[i][0], ys[i] = A[i][1], zs[i] = A[i][2];
     rep (i, Q) {
-        if (B[i][0] == 0) wm.add_point(B[i][1], B[i][2]);
+        if (B[i][0] == 0) {
+            xs.push_back(B[i][1]);
+            ys.push_back(B[i][2]);
+            zs.push_back(0);
+        }
     }
-    wm.build();
-    rep (i, N) wm.apply(A[i][0], A[i][1], A[i][2]);
+    SegmentTreeWM<Monoid::Sum<ll>> wm(xs, ys, zs);
     each_const ([a, b, c, d, e] : B) {
         if (a == 0) wm.apply(b, c, d);
         else print << wm.prod(b, d, c, e) << endl;
