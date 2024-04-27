@@ -587,16 +587,16 @@ data:
     \ nd, ll a, ll b, int t, ll l, ll r) {\n        if (nd == nullptr) return M::id();\n\
     \        if (r <= a || b <= l) return M::id();\n        if (l <= a && b <= r)\
     \ return nd->val;\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n\
-    \        return M::op(prod(nd->l, a, m, t - 1, l, r), prod(nd->r, m, b, t - 1,\
-    \ l, r));\n    }\n    void apply(node_ptr& nd, ll a, ll b, int t, ll l, ll r,\
-    \ const U& x) {\n        if (r <= a || b <= l) return;\n        if (l <= a &&\
-    \ b <= r) {\n            all_apply(nd, t, x, b - a);\n            return;\n  \
-    \      }\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n        apply(get_l(nd),\
-    \ a, m, t - 1, l, r, x);\n        apply(get_r(nd), m, b, t - 1, l, r, x);\n  \
-    \      nd->val =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val\
-    \ : M::id());\n    }\n    template<class Cond>\n    ll max_right(node_ptr& nd,\
-    \ ll a, ll b, int t, ll l, const Cond& cond,\n                 T& sm) {\n    \
-    \    if (b <= l || nd == nullptr) return n;\n        if (l <= a && cond(M::op(sm,\
+    \        return M::op(prod(nd->l, a, m, t - 1, l, r),\n                     prod(nd->r,\
+    \ m, b, t - 1, l, r));\n    }\n    void apply(node_ptr& nd, ll a, ll b, int t,\
+    \ ll l, ll r, const U& x) {\n        if (r <= a || b <= l) return;\n        if\
+    \ (l <= a && b <= r) {\n            all_apply(nd, t, x, b - a);\n            return;\n\
+    \        }\n        eval(nd, a, b, t);\n        ll m = (a + b) >> 1;\n       \
+    \ apply(get_l(nd), a, m, t - 1, l, r, x);\n        apply(get_r(nd), m, b, t -\
+    \ 1, l, r, x);\n        nd->val =\n            M::op(nd->l ? nd->l->val : M::id(),\
+    \ nd->r ? nd->r->val : M::id());\n    }\n    template<class Cond>\n    ll max_right(node_ptr&\
+    \ nd, ll a, ll b, int t, ll l, const Cond& cond,\n                 T& sm) {\n\
+    \        if (b <= l || nd == nullptr) return n;\n        if (l <= a && cond(M::op(sm,\
     \ nd->val))) {\n            sm = M::op(sm, nd->val);\n            return n;\n\
     \        }\n        if (a + 1 == b) return a;\n        eval(nd, a, b, t);\n  \
     \      ll m = (a + b) >> 1;\n        ll res = max_right(nd->l, a, m, t - 1, l,\
@@ -705,7 +705,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp
   requiredBy: []
-  timestamp: '2024-04-22 13:25:19+09:00'
+  timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL/DSL_2_F-RUQRMQ-DynamicLazySeg.test.cpp

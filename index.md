@@ -1,6 +1,26 @@
 ---
 data:
   libraryCategories:
+  - name: data-struct/2D
+    pages:
+    - icon: ':warning:'
+      path: data-struct/2D/AreaofUnionofRectangles.hpp
+      title: data-struct/2D/AreaofUnionofRectangles.hpp
+    - icon: ':heavy_check_mark:'
+      path: data-struct/2D/CumulativeSum2D.hpp
+      title: data-struct/2D/CumulativeSum2D.hpp
+    - icon: ':heavy_check_mark:'
+      path: data-struct/2D/DualSegmentTree2D.hpp
+      title: data-struct/2D/DualSegmentTree2D.hpp
+    - icon: ':heavy_check_mark:'
+      path: data-struct/2D/SegmentTree2D.hpp
+      title: SegmentTree2D
+    - icon: ':heavy_check_mark:'
+      path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+      title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    - icon: ':heavy_check_mark:'
+      path: data-struct/2D/Struct2D.hpp
+      title: data-struct/2D/Struct2D.hpp
   - name: data-struct/bst
     pages:
     - icon: ':heavy_check_mark:'
@@ -33,9 +53,6 @@ data:
       title: SkewHeap
   - name: data-struct/other
     pages:
-    - icon: ':heavy_check_mark:'
-      path: data-struct/other/AreaofUnionofRectangles.hpp
-      title: data-struct/other/AreaofUnionofRectangles.hpp
     - icon: ':heavy_check_mark:'
       path: data-struct/other/BinaryTrie.hpp
       title: BinaryTrie
@@ -108,6 +125,9 @@ data:
       path: data-struct/segment/PlusMinusOneRMQ.hpp
       title: PlusMinusOneRMQ($\pm1$RMQ)
     - icon: ':heavy_check_mark:'
+      path: data-struct/segment/RAQBIT.hpp
+      title: BinaryIndexedTree(FenwickTree, BIT)
+    - icon: ':heavy_check_mark:'
       path: data-struct/segment/RangeAssignSegmentTree.hpp
       title: RangeAssignSegmentTree
     - icon: ':heavy_check_mark:'
@@ -116,9 +136,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTree.hpp
       title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-    - icon: ':heavy_check_mark:'
-      path: data-struct/segment/SegmentTree2D.hpp
-      title: SegmentTree2D
     - icon: ':heavy_check_mark:'
       path: data-struct/segment/SegmentTreeBeats.hpp
       title: SegmentTreeBeats!
@@ -157,14 +174,17 @@ data:
   - name: data-struct/wavelet
     pages:
     - icon: ':heavy_check_mark:'
+      path: data-struct/wavelet/CumulativeSumWM.hpp
+      title: WaveletMatrixPointAddRectangleSum.hpp
+    - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/FullyIndexableDictionary.hpp
       title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
     - icon: ':heavy_check_mark:'
       path: data-struct/wavelet/WaveletMatrix.hpp
       title: WaveletMatrix
     - icon: ':heavy_check_mark:'
-      path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-      title: WaveletMatrixPointAddRectangleSum.hpp
+      path: data-struct/wavelet/WaveletMatrixStruct.hpp
+      title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - name: dp
     pages:
     - icon: ':heavy_check_mark:'
@@ -905,7 +925,7 @@ data:
       title: test/yosupo/convolution/min_plus_convolution_convex_arbitrary.test.cpp
   - name: test/yosupo/data_structure
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
       title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -933,8 +953,11 @@ data:
       path: test/yosupo/data_structure/point_add_range_sum.test.cpp
       title: test/yosupo/data_structure/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-      title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+      path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+      title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+      title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/point_set_range_composite.test.cpp
       title: test/yosupo/data_structure/point_set_range_composite.test.cpp
@@ -972,8 +995,14 @@ data:
       path: test/yosupo/data_structure/range_set_range_composite.test.cpp
       title: test/yosupo/data_structure/range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo/data_structure/rectangle_sum.test.cpp
-      title: test/yosupo/data_structure/rectangle_sum.test.cpp
+      path: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+      title: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+      title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+      title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/segment_add_get_min.test.cpp
       title: test/yosupo/data_structure/segment_add_get_min.test.cpp
@@ -995,6 +1024,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
       title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+      title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
       title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp

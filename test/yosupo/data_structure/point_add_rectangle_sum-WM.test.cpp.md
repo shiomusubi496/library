@@ -17,23 +17,31 @@ data:
     \                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n \
     \ File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 260, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
-    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../data-struct/other/AreaofUnionofRectangles.hpp:\
+    )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: ../../../data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp:\
     \ line -1: no such header\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/area_of_union_of_rectangles\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../data-struct/other/AreaofUnionofRectangles.hpp\"\
-    \nusing namespace std;\nint main() {\n    int N; scan >> N;\n    vector<array<ll,\
-    \ 4>> A(N); scan >> A;\n    prints(area_of_union_of_rectangles(A));\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\
+    \n#include \"../../../data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<array<ll,\
+    \ 3>> A(N); scan >> A;\n    vector<array<ll, 5>> B(Q);\n    each_for ([a, b, c,\
+    \ d, e] : B) {\n        scan >> a;\n        if (a == 0) scan >> b >> c >> d;\n\
+    \        else scan >> b >> c >> d >> e;\n    }\n    WaveletMatrixPointAddRectangleSum<ll,\
+    \ Monoid::Sum<ll>> wm;\n    rep (i, N) wm.add_point(A[i][0], A[i][1]);\n    rep\
+    \ (i, Q) {\n        if (B[i][0] == 0) wm.add_point(B[i][1], B[i][2]);\n    }\n\
+    \    wm.build();\n    rep (i, N) wm.apply(A[i][0], A[i][1], A[i][2]);\n    each_const\
+    \ ([a, b, c, d, e] : B) {\n        if (a == 0) wm.apply(b, c, d);\n        else\
+    \ print << wm.prod(b, d, c, e) << endl;\n    }\n}\n"
   dependsOn: []
   isVerificationFile: true
-  path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+  path: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+documentation_of: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-- /verify/test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp.html
-title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+- /verify/test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
+- /verify/test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp.html
+title: test/yosupo/data_structure/point_add_rectangle_sum-WM.test.cpp
 ---

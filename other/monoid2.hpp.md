@@ -32,9 +32,12 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/2D/AreaofUnionofRectangles.hpp
+    title: data-struct/2D/AreaofUnionofRectangles.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/other/AreaofUnionofRectangles.hpp
-    title: data-struct/other/AreaofUnionofRectangles.hpp
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
     path: math/DiscreteLogarithm.hpp
     title: "Discrete Logarithm(\u96E2\u6563\u5BFE\u6570)"
@@ -64,9 +67,6 @@ data:
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_set_range_composite.test.cpp
     title: test/yosupo/data_structure/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
     title: test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
@@ -693,7 +696,8 @@ data:
   isVerificationFile: false
   path: other/monoid2.hpp
   requiredBy:
-  - data-struct/other/AreaofUnionofRectangles.hpp
+  - data-struct/2D/AreaofUnionofRectangles.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
   - math/convolution/BitwiseAndConvolution.hpp
@@ -708,8 +712,8 @@ data:
   - test/yosupo/convolution/gcd_convolution.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp

@@ -33,6 +33,12 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RAQBIT.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
     path: string/RollingHash.hpp
     title: "RollingHash(\u30ED\u30EA\u30CF)"
   _extendedVerifiedWith:
@@ -51,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
     title: test/yosupo/data_structure/vertex_add_path_sum.test.cpp
@@ -634,9 +643,12 @@ data:
   path: data-struct/segment/BinaryIndexedTree.hpp
   requiredBy:
   - string/RollingHash.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/segment/RAQBIT.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp

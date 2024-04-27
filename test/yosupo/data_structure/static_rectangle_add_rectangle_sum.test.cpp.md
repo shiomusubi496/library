@@ -2,14 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DynamicSegmentTree.hpp
-    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RangeSortQuery.hpp
-    title: RangeSortQuery
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RAQBIT.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
   - icon: ':heavy_check_mark:'
     path: math/ModInt.hpp
     title: ModInt
@@ -53,11 +56,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
-  bundledCode: "#line 1 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
+    - https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum
+  bundledCode: "#line 1 \"test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
     \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
@@ -472,7 +475,124 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
+    };\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\n\ntemplate<class\
+    \ T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
+    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
+    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
+    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
+    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
+    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
+    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
+    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
+    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
+    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
+    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
+    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
+    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
+    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
+    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
+    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
+    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
+    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
+    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
+    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
+    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
+    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
+    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
+    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
+    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
+    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
+    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
+    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
+    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
+    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
+    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
+    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
+    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
+    \ operator+(const StaticModInt& lhs,\n                                  const\
+    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
+    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
+    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
+    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
+    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
+    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
+    \                                  const StaticModInt& rhs) {\n        return\
+    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
+    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
+    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
+    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
+    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
+    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
+    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
+    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
+    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
+    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
+    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
+    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
+    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
+    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
+    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
+    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
+    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
+    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
+    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
+    \    }\n    template<class U, typename std::enable_if<\n                     \
+    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
+    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
+    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
+    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
+    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
+    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
+    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
+    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
+    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
+    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
+    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
+    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
+    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
+    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
+    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
+    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
+    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
+    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
+    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
+    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
+    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
+    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
+    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
+    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
+    \ operator*(const DynamicModInt& lhs,\n                                   const\
+    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
+    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
+    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
+    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
+    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
+    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
+    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
+    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
+    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
+    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
+    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
+    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
+    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
+    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
+    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
+    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
+    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/2D/StaticRectangleAddRectangleSum.hpp\"\
+    \n\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
     other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\n\
     class has_value_type : public std::false_type {};\ntemplate<class M>\nclass has_value_type<M,\
     \ decltype((void)std::declval<typename M::value_type>())>\n    : public std::true_type\
@@ -595,370 +715,101 @@ data:
     \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
     \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
     \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
-    };\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
-    \n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
-    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
-    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
-    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/RangeSortQuery.hpp\"\
-    \n\n#line 2 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/DynamicSegmentTree.hpp\"\
-    \n\ntemplate<class M> class DynamicSegmentTree {\nprivate:\n    using T = typename\
-    \ M::value_type;\n    struct node;\n    using node_ptr = std::unique_ptr<node>;\n\
-    \    struct node {\n        T val;\n        node_ptr l, r;\n        node(const\
-    \ T& v) : val(v), l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const\
-    \ node_ptr& nd) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(M::id());\n\
-    \        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd) const {\n\
-    \        if (nd->r == nullptr) nd->r = std::make_unique<node>(M::id());\n    \
-    \    return nd->r;\n    }\n    ll ori, n;\n    node_ptr root;\n    template<class\
-    \ Upd>\n    void update(node_ptr& nd, ll a, ll b, ll k, const Upd& upd) {\n  \
-    \      if (a + 1 == b) {\n            nd->val = upd(nd->val);\n            return;\n\
-    \        }\n        ll m = (a + b) >> 1;\n        if (k < m) update(get_l(nd),\
-    \ a, m, k, upd);\n        else update(get_r(nd), m, b, k, upd);\n        nd->val\
-    \ =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
-    \    }\n    T prod(const node_ptr& nd, ll a, ll b, ll l, ll r) const {\n     \
-    \   if (nd == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
-    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
-    \        return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n   \
-    \ }\n    template<class Cond>\n    ll max_right(const node_ptr& nd, ll a, ll b,\
-    \ ll l, const Cond& cond,\n                 T& sm) const {\n        if (b <= l\
-    \ || nd == nullptr) return n;\n        if (l <= a && cond(M::op(sm, nd->val)))\
-    \ {\n            sm = M::op(sm, nd->val);\n            return n;\n        }\n\
-    \        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res\
-    \ = max_right(nd->l, a, m, l, cond, sm);\n        if (res != n) return res;\n\
-    \        return max_right(nd->r, m, b, l, cond, sm);\n    }\n    template<class\
-    \ Cond>\n    ll min_left(const node_ptr& nd, ll a, ll b, ll r, const Cond& cond,\n\
-    \                T& sm) const {\n        if (r <= a || nd == nullptr) return 0;\n\
-    \        if (b <= r && cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val,\
-    \ sm);\n            return 0;\n        }\n        if (a + 1 == b) return b;\n\
-    \        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r, m, b, r, cond,\
-    \ sm);\n        if (res != 0) return res;\n        return min_left(nd->l, a, m,\
-    \ r, cond, sm);\n    }\n    void reset(node_ptr& nd, ll a, ll b, ll l, ll r) {\n\
-    \        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n \
-    \       if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(M::id());\n\
-    \            else nd.reset();\n            return;\n        }\n        ll m =\
-    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
-    \ l, r);\n        nd->val =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r\
-    \ ? nd->r->val : M::id());\n    }\n    void merge(node_ptr& nd, ll a, ll b, node_ptr&\
-    \ other) {\n        if (other == nullptr) return;\n        if (nd == nullptr)\
-    \ {\n            nd = std::move(other);\n            return;\n        }\n    \
-    \    if (a + 1 == b) {\n            nd->val = M::op(nd->val, other->val);\n  \
-    \          return;\n        }\n        ll m = (a + b) >> 1;\n        merge(nd->l,\
-    \ a, m, other->l);\n        merge(nd->r, m, b, other->r);\n        nd->val =\n\
-    \            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
-    \    }\n    void split(node_ptr& nd, ll a, ll b, node_ptr& other, ll k) {\n  \
-    \      if (nd == nullptr) return;\n        if (a >= k) {\n            other =\
-    \ std::move(nd);\n            nd = nullptr;\n            return;\n        }\n\
-    \        if (b <= k) return;\n        other = std::make_unique<node>(M::id());\n\
-    \        ll m = (a + b) >> 1;\n        split(nd->l, a, m, other->l, k);\n    \
-    \    split(nd->r, m, b, other->r, k);\n        if (nd->l == nullptr && nd->r ==\
-    \ nullptr) nd = nullptr;\n        else {\n            nd->val = M::op(nd->l ?\
-    \ nd->l->val : M::id(),\n                            nd->r ? nd->r->val : M::id());\n\
-    \        }\n        if (other->l == nullptr && other->r == nullptr) other = nullptr;\n\
-    \        else {\n            other->val = M::op(other->l ? other->l->val : M::id(),\n\
-    \                               other->r ? other->r->val : M::id());\n       \
-    \ }\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n        if\
-    \ (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n \
-    \       init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\n\
-    public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) { init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
-    \        : ori(other.ori), n(other.n),\n          root(std::make_unique<node>(other.root->val))\
-    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&\
-    \ other) = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicSegmentTree(other);\n    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&\
-    \ other) = default;\n    void init(ll n_) {\n        ori = n_;\n        n = 1ull\
-    \ << bitop::ceil_log2(ori);\n        root = std::make_unique<node>(M::id());\n\
-    \    }\n    template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
-    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
-    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
-    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
-    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
-    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
-    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
-    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
-    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
-    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
-    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n    void reset()\
-    \ { root = std::make_unique<node>(M::id()); }\n    DynamicSegmentTree& merge(DynamicSegmentTree&&\
-    \ other) {\n        assert(ori == other.ori);\n        merge(root, 0, n, other.root);\n\
-    \        other.root = std::make_unique<node>(M::id());\n        return *this;\n\
-    \    }\n    friend DynamicSegmentTree merge(DynamicSegmentTree&& a,\n        \
-    \                            DynamicSegmentTree&& b) {\n        return std::move(a.merge(std::move(b)));\n\
-    \    }\n    friend std::pair<DynamicSegmentTree, DynamicSegmentTree>\n    split(DynamicSegmentTree&&\
-    \ a, ll k) {\n        assert(0 <= k && k <= a.ori);\n        DynamicSegmentTree\
-    \ b(a.ori);\n        if (k == 0) return {std::move(b), std::move(a)};\n      \
-    \  if (k == a.ori) return {std::move(a), std::move(b)};\n        a.split(a.root,\
-    \ 0, a.n, b.root, k);\n        return {std::move(a), std::move(b)};\n    }\n};\n\
-    \n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 2\
-    \ \"data-struct/segment/SegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
-    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
-    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
-    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
-    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
-    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
-    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
-    \ */\n#line 6 \"data-struct/segment/RangeSortQuery.hpp\"\n\ntemplate<class M>\
-    \ class RangeSortQuery {\nprivate:\n    using T = typename M::value_type;\n  \
-    \  class M2 {\n    public:\n        using value_type = std::pair<std::array<T,\
-    \ 2>, int>;\n        static value_type id() { return {{M::id(), M::id()}, 0};\
-    \ }\n        static value_type op(const value_type& a, const value_type& b) {\n\
-    \            return {\n                {M::op(a.first[0], b.first[0]), M::op(b.first[1],\
-    \ a.first[1])},\n                a.second + b.second};\n        }\n    };\n  \
-    \  int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>> seg;\n    std::vector<bool>\
-    \ flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int> bit;\n\n    void split_l(int\
-    \ k) {\n        if (k == n) return;\n        int l = bit.min_left(k + 1, [&](int\
-    \ x) { return x == 0; }) - 1;\n        if (l == k) return;\n        if (!flag[l])\
-    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n            std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
-    \ t);\n        }\n        else {\n            ll t = seg[l].min_left(\n      \
-    \          mx, [&](const auto& x) { return x.second <= k - l; });\n          \
-    \  std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t);\n        }\n      \
-    \  bit.apply(k, 1);\n        flag[k] = flag[l];\n        dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \        dat.set(k, seg[k].all_prod().first[flag[k]]);\n    }\n\npublic:\n   \
-    \ RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int n, ll mx = inf)\n\
-    \        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n, 0),\n\
-    \                         mx) {}\n    RangeSortQuery(const std::vector<T>& v,\
-    \ const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
-    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)),\n          flag(n, false), dat(n),\
-    \ bit(n, 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i]\
-    \ <= mx);\n            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i,\
-    \ v[i]);\n        }\n    }\n    void set(int k, ll key, const T& val) {\n    \
-    \    assert(0 <= k && k < n);\n        assert(0 <= key && key <= mx);\n      \
-    \  int l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        int\
-    \ r = bit.max_right(k + 1, [&](int x) { return x == 0; });\n        if (!flag[l])\
-    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n            if (l != k) {\n            \
-    \    std::tie(seg[l], seg[k]) = split(std::move(seg[l]), t);\n               \
-    \ bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
-    \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
-    \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
-    \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
-    \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
-    \ [&](const auto& x) {\n                return x.second <= k - l;\n          \
-    \  }) - 1;\n            if (l != k) {\n                std::tie(seg[k], seg[l])\
-    \ = split(std::move(seg[l]), t + 1);\n                bit.apply(k, 1);\n     \
-    \           dat.set(l, seg[l].all_prod().first[flag[l]]);\n                flag[k]\
-    \ = flag[l];\n            }\n            if (k != r - 1) {\n                std::tie(seg[k\
-    \ + 1], seg[k]) = split(std::move(seg[k]), t);\n                bit.apply(k +\
-    \ 1, 1);\n                dat.set(k + 1, seg[k + 1].all_prod().first[flag[k]]);\n\
-    \                flag[k + 1] = flag[k];\n            }\n        }\n        seg[k].reset();\n\
-    \        seg[k].set(key, {{val, val}, 1});\n        dat.set(k, val);\n    }\n\
-    \    void sort(int l, int r, bool reverse = false) {\n        assert(0 <= l &&\
-    \ l <= r && r <= n);\n        split_l(l);\n        split_l(r);\n        ll t =\
-    \ l;\n        while (t < r) {\n            if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n\
-    \                bit.apply(t, -1);\n                dat.set(t, M::id());\n   \
-    \         }\n            t = bit.max_right(t + 1, [&](int x) { return x == 0;\
-    \ });\n        }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
-    \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
-    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
-    \        if (!flag[l]) {\n            t = seg[l].max_right(\n                0,\
-    \ [&](const auto& x) { return x.second <= k - l; });\n        }\n        else\
-    \ {\n            t = seg[l].min_left(mx, [&](const auto& x) {\n              \
-    \  return x.second <= k - l;\n            }) - 1;\n        }\n        return seg[l].get(t).first[0];\n\
-    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        T res = M::id();\n        int l2 = bit.min_left(l + 1, [&](int x) { return\
-    \ x == 0; }) - 1;\n        int r2 = bit.min_left(r, [&](int x) { return x == 0;\
-    \ }) - 1;\n        if (l2 == r2) {\n            if (!flag[l2]) {\n           \
-    \     ll tl = seg[l2].max_right(\n                    0, [&](const auto& x) {\
-    \ return x.second <= l - l2; });\n                ll tr = seg[l2].max_right(\n\
-    \                    0, [&](const auto& x) { return x.second <= r - l2; });\n\
-    \                return seg[l2].prod(tl, tr).first[0];\n            }\n      \
-    \      else {\n                ll tl = seg[l2].min_left(\n                   \
-    \ mx, [&](const auto& x) { return x.second <= l - l2; });\n                ll\
-    \ tr = seg[l2].min_left(\n                    mx, [&](const auto& x) { return\
-    \ x.second <= r - l2; });\n                return seg[l2].prod(tr, tl).first[1];\n\
-    \            }\n        }\n        if (!flag[l2]) {\n            ll t = seg[l2].max_right(\n\
-    \                0, [&](const auto& x) { return x.second <= l - l2; });\n    \
-    \        res = seg[l2].prod(t, mx + 1).first[0];\n        }\n        else {\n\
-    \            ll t = seg[l2].min_left(mx, [&](const auto& x) {\n              \
-    \  return x.second <= l - l2;\n            }) - 1;\n            res = seg[l2].prod(0,\
-    \ t + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
-    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(\n           \
-    \     0, [&](const auto& x) { return x.second <= r - r2; });\n            res\
-    \ = M::op(res, seg[r2].prod(0, t).first[0]);\n        }\n        else {\n    \
-    \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
-    \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
-    \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
-    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n#line 6 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
-    \ q; scan >> n >> q;\n    vector<ll> p(n);\n    vector<pair<mint, mint>> a(n);\n\
-    \    rep (i, n) scan >> p[i] >> a[i];\n    RangeSortQuery<Monoid::Composite<mint>>\
-    \ seg(a, p, 1e9);\n    rep (q) {\n        int t; scan >> t;\n        if (t ==\
-    \ 0) {\n            int i, p; scan >> i >> p;\n            mint a, b; scan >>\
-    \ a >> b;\n            seg.set(i, p, {a, b});\n        }\n        else if (t ==\
-    \ 1) {\n            int l, r; scan >> l >> r;\n            mint x; scan >> x;\n\
-    \            auto [a, b] = seg.prod(l, r);\n            prints(a * x + b);\n \
-    \       }\n        else if (t == 2) {\n            int l, r; scan >> l >> r;\n\
-    \            seg.sort(l, r);\n        }\n        else {\n            int l, r;\
-    \ scan >> l >> r;\n            seg.sort(l, r, true);\n        }\n        // seg.debug();\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid2.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\n#include \"../../../data-struct/segment/RangeSortQuery.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
-    \ q; scan >> n >> q;\n    vector<ll> p(n);\n    vector<pair<mint, mint>> a(n);\n\
-    \    rep (i, n) scan >> p[i] >> a[i];\n    RangeSortQuery<Monoid::Composite<mint>>\
-    \ seg(a, p, 1e9);\n    rep (q) {\n        int t; scan >> t;\n        if (t ==\
-    \ 0) {\n            int i, p; scan >> i >> p;\n            mint a, b; scan >>\
-    \ a >> b;\n            seg.set(i, p, {a, b});\n        }\n        else if (t ==\
-    \ 1) {\n            int l, r; scan >> l >> r;\n            mint x; scan >> x;\n\
-    \            auto [a, b] = seg.prod(l, r);\n            prints(a * x + b);\n \
-    \       }\n        else if (t == 2) {\n            int l, r; scan >> l >> r;\n\
-    \            seg.sort(l, r);\n        }\n        else {\n            int l, r;\
-    \ scan >> l >> r;\n            seg.sort(l, r, true);\n        }\n        // seg.debug();\n\
-    \    }\n}\n"
+    };\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/RAQBIT.hpp\"\n\n#line\
+    \ 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
+    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
+    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
+    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
+    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
+    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
+    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
+    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
+    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
+    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
+    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
+    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
+    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
+    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
+    \ */\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n#line 7 \"data-struct/segment/RAQBIT.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class RAQBIT {\nprivate:\n\
+    \    using T = typename M::value_type;\n    int n;\n    BinaryIndexedTree<M> bit;\n\
+    \npublic:\n    RAQBIT(int n_) : n(n_), bit(n_) {}\n    void apply(int l, int r,\
+    \ T x) {\n        assert(0 <= l && l <= r && r <= n);\n        bit.apply(l, x);\n\
+    \        if (r != n) bit.apply(r, M::get_inv(x));\n    }\n    void apply(int k,\
+    \ T x) { apply(k, k + 1, x); }\n    T get(int k) const { return bit.prod(k); }\n\
+    \    void set(int k, T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class\
+    \ T> class RAQBIT<T, false> : public RAQBIT<Monoid::Sum<T>> {\nprivate:\n    using\
+    \ Base = RAQBIT<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n    void add(int\
+    \ l, int r, T x) { this->apply(l, r, x); }\n    void add(int k, T x) { this->apply(k,\
+    \ x); }\n    T sum(int k) const { return this->get(k); }\n};\n\n\ntemplate<class\
+    \ T> class RAQRSQBIT {\nprivate:\n    int n;\n    BinaryIndexedTree<T> bit1, bit2;\n\
+    \    CumulativeSum<T> cs;\n\npublic:\n    RAQRSQBIT(int n_) : n(n_), bit1(n),\
+    \ bit2(n), cs(std::vector<T>(n, 1)) {}\n    RAQRSQBIT(const std::vector<T>& v)\
+    \ : n(v.size()), bit1(n), bit2(n), cs(v) {}\n    void apply(int l, int r, T x)\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        bit1.apply(l, x);\n\
+    \        bit2.apply(l, -x * cs.prod(0, l));\n        if (r != n) {\n         \
+    \   bit1.apply(r, -x);\n            bit2.apply(r, x * cs.prod(0, r));\n      \
+    \  }\n    }\n    void apply(int k, T x) { apply(k, k + 1, x); }\n    T prod(int\
+    \ k) const { return bit1.prod(k) * cs.prod(0, k) + bit2.prod(k); }\n    T prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
+    \ prod(r) - prod(l);\n    }\n    T get(int k) const { return prod(k, k + 1); }\n\
+    \    void set(int k, T x) { apply(k, x - get(k)); }\n\n    void add(int l, int\
+    \ r, T x) { apply(l, r, x); }\n    void add(int k, T x) { apply(k, x); }\n   \
+    \ T sum(int k) const { return get(k); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n */\n#line 6 \"\
+    data-struct/2D/StaticRectangleAddRectangleSum.hpp\"\n\ntemplate<class T>\nstd::vector<T>\
+    \ static_rectangle_add_rectangle_sum(\n    const std::vector<std::pair<std::array<ll,\
+    \ 4>, T>>& A,\n    const std::vector<std::array<ll, 4>>& B) {\n    int N = A.size(),\
+    \ M = B.size();\n    if (N == 0 || M == 0) return std::vector<T>(M, 0);\n    compressor<ll>\
+    \ ps;\n    ps.reserve(2 * N + 2 * M);\n    rep (i, N) {\n        ps.push_back(A[i].first[0]);\n\
+    \        ps.push_back(A[i].first[2]);\n    }\n    rep (i, M) {\n        ps.push_back(B[i][0]);\n\
+    \        ps.push_back(B[i][2]);\n    }\n    ps.build();\n    std::vector<std::tuple<ll,\
+    \ ll, ll, ll, T>> C(2 * N + 2 * M);\n    rep (i, N) {\n        ll l = ps.get(A[i].first[0]),\
+    \ r = ps.get(A[i].first[2]);\n        C[2 * i] = {A[i].first[1], M, l, r, A[i].second};\n\
+    \        C[2 * i + 1] = {A[i].first[3], M, l, r, -A[i].second};\n    }\n    rep\
+    \ (i, M) {\n        ll l = ps.get(B[i][0]), r = ps.get(B[i][2]);\n        C[2\
+    \ * N + 2 * i] = {B[i][1], i, l, r, -1};\n        C[2 * N + 2 * i + 1] = {B[i][3],\
+    \ i, l, r, 1};\n    }\n    std::sort(all(C), [&](const auto& a, const auto& b)\
+    \ {\n        if (std::get<0>(a) != std::get<0>(b))\n            return std::get<0>(a)\
+    \ < std::get<0>(b);\n        return std::get<1>(a) < std::get<1>(b);\n    });\n\
+    \    std::vector<T> xs(ps.size() - 1);\n    rep (i, ps.size() - 1) xs[i] = ps[i\
+    \ + 1] - ps[i];\n    RAQRSQBIT<T> bit1(xs), bit2(xs);\n    std::vector<T> ans(M);\n\
+    \    for (const auto& [x, i, l, r, v] : C) {\n        if (i == M) {\n        \
+    \    bit1.add(l, r, v);\n            bit2.add(l, r, -v * x);\n        }\n    \
+    \    else {\n            ans[i] += (bit1.prod(l, r) * x + bit2.prod(l, r)) * v;\n\
+    \        }\n    }\n    return ans;\n}\n#line 5 \"test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp\"\
+    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int N,\
+    \ Q; scan >> N >> Q;\n    vector<pair<array<ll, 4>, mint>> A(N); scan >> A;\n\
+    \    vector<array<ll, 4>> B(Q); scan >> B;\n    auto ans = static_rectangle_add_rectangle_sum(A,\
+    \ B);\n    for (auto x : ans) prints(x);\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_rectangle_add_rectangle_sum\"\
+    \n#include \"../../../other/template.hpp\"\n#include \"../../../math/ModInt.hpp\"\
+    \n#include \"../../../data-struct/2D/StaticRectangleAddRectangleSum.hpp\"\nusing\
+    \ namespace std;\nusing mint = modint998244353;\nint main() {\n    int N, Q; scan\
+    \ >> N >> Q;\n    vector<pair<array<ll, 4>, mint>> A(N); scan >> A;\n    vector<array<ll,\
+    \ 4>> B(Q); scan >> B;\n    auto ans = static_rectangle_add_rectangle_sum(A, B);\n\
+    \    for (auto x : ans) prints(x);\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -969,22 +820,23 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
+  - math/ModInt.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
   - other/monoid2.hpp
   - other/monoid.hpp
-  - math/ModInt.hpp
-  - data-struct/segment/RangeSortQuery.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/SegmentTree.hpp
+  - data-struct/segment/RAQBIT.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/CumulativeSum.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   requiredBy: []
   timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+documentation_of: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-- /verify/test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp.html
-title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+- /verify/test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+- /verify/test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp.html
+title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
 ---

@@ -2,23 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/DynamicSegmentTree.hpp
-    title: "DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/2D/CumulativeSum2D.hpp
+    title: data-struct/2D/CumulativeSum2D.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RangeSortQuery.hpp
-    title: RangeSortQuery
+    path: data-struct/2D/Struct2D.hpp
+    title: data-struct/2D/Struct2D.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: math/ModInt.hpp
-    title: ModInt
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/monoid2.hpp
-    title: other/monoid2.hpp
   - icon: ':heavy_check_mark:'
     path: other/template.hpp
     title: other/template.hpp
@@ -53,12 +47,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
-  bundledCode: "#line 1 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
-    \n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
+    - https://judge.yosupo.jp/problem/rectangle_sum
+  bundledCode: "#line 1 \"test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n#line 2 \"\
+    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
     \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
     \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
     \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
@@ -472,22 +466,22 @@ data:
     \        return res;\n    }\n    void press(std::vector<T>& vec) const {\n   \
     \     assert(sorted);\n        each_for (i : vec) i = get(i);\n    }\n    int\
     \ size() const {\n        assert(sorted);\n        return dat.size();\n    }\n\
-    };\n#line 2 \"other/monoid2.hpp\"\n\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"\
-    other/monoid.hpp\"\n\nnamespace Monoid {\n\ntemplate<class M, class = void>\n\
-    class has_value_type : public std::false_type {};\ntemplate<class M>\nclass has_value_type<M,\
-    \ decltype((void)std::declval<typename M::value_type>())>\n    : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_op : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_op<M, decltype((void)M::op)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_id : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_id<M, decltype((void)M::id)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type\
-    \ {};\n\ntemplate<class M, class = void> class has_get_inv : public std::false_type\
-    \ {};\ntemplate<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public\
-    \ std::true_type {};\n\ntemplate<class M, class = void> class has_init : public\
-    \ std::false_type {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0,\
-    \ 0))> : public std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op\
-    \ : public std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
+    };\n#line 2 \"other/monoid.hpp\"\n\n#line 4 \"other/monoid.hpp\"\n\nnamespace\
+    \ Monoid {\n\ntemplate<class M, class = void>\nclass has_value_type : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_value_type<M, decltype((void)std::declval<typename\
+    \ M::value_type>())>\n    : public std::true_type {};\n\ntemplate<class M, class\
+    \ = void> class has_op : public std::false_type {};\ntemplate<class M>\nclass\
+    \ has_op<M, decltype((void)M::op)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_id : public std::false_type {};\ntemplate<class M>\n\
+    class has_id<M, decltype((void)M::id)> : public std::true_type {};\n\ntemplate<class\
+    \ M, class = void> class has_inv : public std::false_type {};\ntemplate<class\
+    \ M>\nclass has_inv<M, decltype((void)M::inv)> : public std::true_type {};\n\n\
+    template<class M, class = void> class has_get_inv : public std::false_type {};\n\
+    template<class M>\nclass has_get_inv<M, decltype((void)M::get_inv)> : public std::true_type\
+    \ {};\n\ntemplate<class M, class = void> class has_init : public std::false_type\
+    \ {};\ntemplate<class M>\nclass has_init<M, decltype((void)M::init(0, 0))> : public\
+    \ std::true_type {};\n\ntemplate<class A, class = void> class has_mul_op : public\
+    \ std::false_type {};\ntemplate<class A>\nclass has_mul_op<A, decltype((void)A::mul_op)>\
     \ : public std::true_type {};\n\ntemplate<class T, class = void> class is_semigroup\
     \ : public std::false_type {};\ntemplate<class T>\nclass is_semigroup<T, decltype(std::declval<typename\
     \ T::value_type>(),\n                               (void)T::op)> : public std::true_type\
@@ -562,403 +556,112 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"other/monoid2.hpp\"\n\nnamespace\
-    \ Monoid {\n\ntemplate<class T> struct Product {\n    using value_type = T;\n\
-    \    static T op(const T& a, const T& b) { return a * b; }\n    static T id()\
-    \ { return T{1}; }\n    static T inv(const T& a, const T& b) { return a / b; }\n\
-    \    static T get_inv(const T& a) { return T{1} / a; }\n};\n\ntemplate<class T>\
-    \ struct Composite {\n    using value_type = std::pair<T, T>;\n    static value_type\
-    \ op(const value_type& a, const value_type& b) {\n        return {b.first * a.first,\
-    \ b.first * a.second + b.second};\n    }\n    static value_type id() { return\
-    \ {T{1}, T{0}}; }\n    static value_type get_inv(const value_type& a) {\n    \
-    \    return {T{1} / a.first, -a.second / a.first};\n    }\n    static value_type\
-    \ inv(const value_type& a, const value_type& b) {\n        return op(a, get_inv(b));\n\
-    \    }\n};\n\ntemplate<class T> struct GCD {\n    using value_type = T;\n    static\
-    \ T op(T a, T b) { return gcd(a, b); }\n    static T id() { return 0; }\n};\n\
-    template<class T> struct LCM {\n    using value_type = T;\n    static T op(T a,\
-    \ T b) { return lcm(a, b); }\n    static T id() { return 1; }\n};\n\ntemplate<class\
-    \ T> struct AddAssign {\n    using value_type = std::pair<bool, T>; // false:\
-    \ add, true: assign\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (b.first) return b;\n        return {a.first, a.second + b.second};\n\
-    \    }\n    static value_type id() { return {false, T{0}}; }\n};\n\ntemplate<class\
-    \ T, T max_value = infinity<T>::max> struct MinCount {\n    using value_type =\
-    \ std::pair<T, ll>;\n    static value_type op(const value_type& a, const value_type&\
-    \ b) {\n        if (a.first < b.first) return a;\n        if (a.first > b.first)\
-    \ return b;\n        return {a.first, a.second + b.second};\n    }\n    static\
-    \ value_type id() { return {max_value, 0}; }\n};\n\n\ntemplate<class T> struct\
-    \ AffineSum {\n    using M = Sum<T>;\n    using E = Composite<T>;\n    using U\
-    \ = typename E::value_type;\n    static T mul_op(const U& a, int b, const T& c)\
-    \ {\n        return a.first * c + a.second * b;\n    }\n};\n\ntemplate<class T>\
-    \ struct AddAssignSum {\n    using M = Sum<T>;\n    using E = AddAssign<T>;\n\
-    \    using U = typename E::value_type;\n    static T mul_op(const U& a, int b,\
-    \ const T& c) {\n        if (a.first) return a.second * b;\n        return c +\
-    \ a.second * b;\n    }\n};\n\ntemplate<class T> struct AddMinCount {\n    using\
-    \ M = MinCount<T>;\n    using E = Sum<T>;\n    using U = typename M::value_type;\n\
-    \    static U op(const T& a, const U& b) { return {a + b.first, b.second}; }\n\
-    };\n\n} // namespace Monoid\n#line 2 \"math/ModInt.hpp\"\n\n#line 4 \"math/ModInt.hpp\"\
-    \n\ntemplate<class T, T mod> class StaticModInt {\n    static_assert(std::is_integral<T>::value,\
-    \ \"T must be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T\
-    \ must be unsigned\");\n    static_assert(mod > 0, \"mod must be positive\");\n\
-    \    static_assert(mod <= std::numeric_limits<T>::max() / 2,\n               \
-    \   \"mod * 2 must be less than or equal to T::max()\");\n\nprivate:\n    using\
-    \ large_t = typename double_size_uint<T>::type;\n    using signed_t = typename\
-    \ std::make_signed<T>::type;\n    T val;\n    static constexpr unsigned int inv1000000007[]\
-    \ = {\n        0,         1,         500000004, 333333336, 250000002, 400000003,\n\
-    \        166666668, 142857144, 125000001, 111111112, 700000005};\n    static constexpr\
-    \ unsigned int inv998244353[] = {\n        0,         1,         499122177, 332748118,\
-    \ 748683265, 598946612,\n        166374059, 855638017, 873463809, 443664157, 299473306};\n\
-    \npublic:\n    constexpr StaticModInt() : val(0) {}\n    template<class U,\n \
-    \            typename std::enable_if<std::is_integral<U>::value &&\n         \
-    \                            std::is_signed<U>::value>::type* = nullptr>\n   \
-    \ constexpr StaticModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr StaticModInt(U v) : val(v % mod) {}\n    T get() const\
-    \ { return val; }\n    static constexpr T get_mod() { return mod; }\n    static\
-    \ StaticModInt raw(T v) {\n        StaticModInt res;\n        res.val = v;\n \
-    \       return res;\n    }\n    StaticModInt inv() const {\n        if IF_CONSTEXPR\
-    \ (mod == 1000000007) {\n            if (val <= 10) return inv1000000007[val];\n\
-    \        }\n        else if IF_CONSTEXPR (mod == 998244353) {\n            if\
-    \ (val <= 10) return inv998244353[val];\n        }\n        return mod_inv(val,\
-    \ mod);\n    }\n    StaticModInt& operator++() {\n        ++val;\n        if (val\
-    \ == mod) val = 0;\n        return *this;\n    }\n    StaticModInt operator++(int)\
-    \ {\n        StaticModInt res = *this;\n        ++*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator--() {\n        if (val == 0) val = mod;\n \
-    \       --val;\n        return *this;\n    }\n    StaticModInt operator--(int)\
-    \ {\n        StaticModInt res = *this;\n        --*this;\n        return res;\n\
-    \    }\n    StaticModInt& operator+=(const StaticModInt& other) {\n        val\
-    \ += other.val;\n        if (val >= mod) val -= mod;\n        return *this;\n\
-    \    }\n    StaticModInt& operator-=(const StaticModInt& other) {\n        if\
-    \ (val < other.val) val += mod;\n        val -= other.val;\n        return *this;\n\
-    \    }\n    StaticModInt& operator*=(const StaticModInt& other) {\n        large_t\
-    \ a = val;\n        a *= other.val;\n        a %= mod;\n        val = a;\n   \
-    \     return *this;\n    }\n    StaticModInt& operator/=(const StaticModInt& other)\
-    \ {\n        *this *= other.inv();\n        return *this;\n    }\n    friend StaticModInt\
-    \ operator+(const StaticModInt& lhs,\n                                  const\
-    \ StaticModInt& rhs) {\n        return StaticModInt(lhs) += rhs;\n    }\n    friend\
-    \ StaticModInt operator-(const StaticModInt& lhs,\n                          \
-    \        const StaticModInt& rhs) {\n        return StaticModInt(lhs) -= rhs;\n\
-    \    }\n    friend StaticModInt operator*(const StaticModInt& lhs,\n         \
-    \                         const StaticModInt& rhs) {\n        return StaticModInt(lhs)\
-    \ *= rhs;\n    }\n    friend StaticModInt operator/(const StaticModInt& lhs,\n\
-    \                                  const StaticModInt& rhs) {\n        return\
-    \ StaticModInt(lhs) /= rhs;\n    }\n    StaticModInt operator+() const { return\
-    \ StaticModInt(*this); }\n    StaticModInt operator-() const { return StaticModInt()\
-    \ - *this; }\n    friend bool operator==(const StaticModInt& lhs, const StaticModInt&\
-    \ rhs) {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ StaticModInt& lhs, const StaticModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    StaticModInt pow(ll a) const {\n        StaticModInt v = *this, res\
-    \ = 1;\n        while (a) {\n            if (a & 1) res *= v;\n            a >>=\
-    \ 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\n#if __cplusplus\
-    \ < 201703L\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv1000000007[];\ntemplate<class T, T mod>\nconstexpr unsigned int StaticModInt<T,\
-    \ mod>::inv998244353[];\n#endif\n\ntemplate<unsigned int p> using static_modint\
-    \ = StaticModInt<unsigned int, p>;\nusing modint1000000007 = static_modint<1000000007>;\n\
-    using modint998244353 = static_modint<998244353>;\n\ntemplate<class T, int id>\
-    \ class DynamicModInt {\n    static_assert(std::is_integral<T>::value, \"T must\
-    \ be integral\");\n    static_assert(std::is_unsigned<T>::value, \"T must be unsigned\"\
-    );\n\nprivate:\n    using large_t = typename double_size_uint<T>::type;\n    using\
-    \ signed_t = typename std::make_signed<T>::type;\n    T val;\n    static T mod;\n\
-    \npublic:\n    constexpr DynamicModInt() : val(0) {}\n    template<class U,\n\
-    \             typename std::enable_if<std::is_integral<U>::value &&\n        \
-    \                             std::is_signed<U>::value>::type* = nullptr>\n  \
-    \  constexpr DynamicModInt(U v) : val{} {\n        v %= static_cast<signed_t>(mod);\n\
-    \        if (v < 0) v += static_cast<signed_t>(mod);\n        val = static_cast<T>(v);\n\
-    \    }\n    template<class U, typename std::enable_if<\n                     \
-    \     std::is_integral<U>::value &&\n                          std::is_unsigned<U>::value>::type*\
-    \ = nullptr>\n    constexpr DynamicModInt(U v) : val(v % mod) {}\n    T get()\
-    \ const { return val; }\n    static T get_mod() { return mod; }\n    static void\
-    \ set_mod(T v) {\n        assert(v > 0);\n        assert(v <= std::numeric_limits<T>::max()\
-    \ / 2);\n        mod = v;\n    }\n    static DynamicModInt raw(T v) {\n      \
-    \  DynamicModInt res;\n        res.val = v;\n        return res;\n    }\n    DynamicModInt\
-    \ inv() const { return mod_inv(val, mod); }\n    DynamicModInt& operator++() {\n\
-    \        ++val;\n        if (val == mod) val = 0;\n        return *this;\n   \
-    \ }\n    DynamicModInt operator++(int) {\n        DynamicModInt res = *this;\n\
-    \        ++*this;\n        return res;\n    }\n    DynamicModInt& operator--()\
-    \ {\n        if (val == 0) val = mod;\n        --val;\n        return *this;\n\
-    \    }\n    DynamicModInt operator--(int) {\n        DynamicModInt res = *this;\n\
-    \        --*this;\n        return res;\n    }\n    DynamicModInt& operator+=(const\
-    \ DynamicModInt& other) {\n        val += other.val;\n        if (val >= mod)\
-    \ val -= mod;\n        return *this;\n    }\n    DynamicModInt& operator-=(const\
-    \ DynamicModInt& other) {\n        if (val < other.val) val += mod;\n        val\
-    \ -= other.val;\n        return *this;\n    }\n    DynamicModInt& operator*=(const\
-    \ DynamicModInt& other) {\n        large_t a = val;\n        a *= other.val;\n\
-    \        a %= mod;\n        val = a;\n        return *this;\n    }\n    DynamicModInt&\
-    \ operator/=(const DynamicModInt& other) {\n        *this *= other.inv();\n  \
-    \      return *this;\n    }\n    friend DynamicModInt operator+(const DynamicModInt&\
-    \ lhs,\n                                   const DynamicModInt& rhs) {\n     \
-    \   return DynamicModInt(lhs) += rhs;\n    }\n    friend DynamicModInt operator-(const\
-    \ DynamicModInt& lhs,\n                                   const DynamicModInt&\
-    \ rhs) {\n        return DynamicModInt(lhs) -= rhs;\n    }\n    friend DynamicModInt\
-    \ operator*(const DynamicModInt& lhs,\n                                   const\
-    \ DynamicModInt& rhs) {\n        return DynamicModInt(lhs) *= rhs;\n    }\n  \
-    \  friend DynamicModInt operator/(const DynamicModInt& lhs,\n                \
-    \                   const DynamicModInt& rhs) {\n        return DynamicModInt(lhs)\
-    \ /= rhs;\n    }\n    DynamicModInt operator+() const { return DynamicModInt(*this);\
-    \ }\n    DynamicModInt operator-() const { return DynamicModInt() - *this; }\n\
-    \    friend bool operator==(const DynamicModInt& lhs, const DynamicModInt& rhs)\
-    \ {\n        return lhs.val == rhs.val;\n    }\n    friend bool operator!=(const\
-    \ DynamicModInt& lhs, const DynamicModInt& rhs) {\n        return lhs.val != rhs.val;\n\
-    \    }\n    DynamicModInt pow(ll a) const {\n        DynamicModInt v = *this,\
-    \ res = 1;\n        while (a) {\n            if (a & 1) res *= v;\n          \
-    \  a >>= 1;\n            v *= v;\n        }\n        return res;\n    }\n    template<class\
-    \ Pr> void print(Pr& a) const { a.print(val); }\n    template<class Pr> void debug(Pr&\
-    \ a) const { a.print(val); }\n    template<class Sc> void scan(Sc& a) {\n    \
-    \    ll v;\n        a.scan(v);\n        *this = v;\n    }\n};\n\ntemplate<class\
-    \ T, int id> T DynamicModInt<T, id>::mod = 998244353;\n\ntemplate<int id> using\
-    \ dynamic_modint = DynamicModInt<unsigned int, id>;\nusing modint = dynamic_modint<-1>;\n\
-    \n/**\n * @brief ModInt\n * @docs docs/math/ModInt.md\n */\n#line 2 \"data-struct/segment/RangeSortQuery.hpp\"\
-    \n\n#line 2 \"data-struct/segment/DynamicSegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/DynamicSegmentTree.hpp\"\
-    \n\ntemplate<class M> class DynamicSegmentTree {\nprivate:\n    using T = typename\
-    \ M::value_type;\n    struct node;\n    using node_ptr = std::unique_ptr<node>;\n\
-    \    struct node {\n        T val;\n        node_ptr l, r;\n        node(const\
-    \ T& v) : val(v), l(nullptr), r(nullptr) {}\n    };\n    node_ptr& get_l(const\
-    \ node_ptr& nd) const {\n        if (nd->l == nullptr) nd->l = std::make_unique<node>(M::id());\n\
-    \        return nd->l;\n    }\n    node_ptr& get_r(const node_ptr& nd) const {\n\
-    \        if (nd->r == nullptr) nd->r = std::make_unique<node>(M::id());\n    \
-    \    return nd->r;\n    }\n    ll ori, n;\n    node_ptr root;\n    template<class\
-    \ Upd>\n    void update(node_ptr& nd, ll a, ll b, ll k, const Upd& upd) {\n  \
-    \      if (a + 1 == b) {\n            nd->val = upd(nd->val);\n            return;\n\
-    \        }\n        ll m = (a + b) >> 1;\n        if (k < m) update(get_l(nd),\
-    \ a, m, k, upd);\n        else update(get_r(nd), m, b, k, upd);\n        nd->val\
-    \ =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
-    \    }\n    T prod(const node_ptr& nd, ll a, ll b, ll l, ll r) const {\n     \
-    \   if (nd == nullptr) return M::id();\n        if (l <= a && b <= r) return nd->val;\n\
-    \        if (r <= a || b <= l) return M::id();\n        ll m = (a + b) >> 1;\n\
-    \        return M::op(prod(nd->l, a, m, l, r), prod(nd->r, m, b, l, r));\n   \
-    \ }\n    template<class Cond>\n    ll max_right(const node_ptr& nd, ll a, ll b,\
-    \ ll l, const Cond& cond,\n                 T& sm) const {\n        if (b <= l\
-    \ || nd == nullptr) return n;\n        if (l <= a && cond(M::op(sm, nd->val)))\
-    \ {\n            sm = M::op(sm, nd->val);\n            return n;\n        }\n\
-    \        if (a + 1 == b) return a;\n        ll m = (a + b) >> 1;\n        ll res\
-    \ = max_right(nd->l, a, m, l, cond, sm);\n        if (res != n) return res;\n\
-    \        return max_right(nd->r, m, b, l, cond, sm);\n    }\n    template<class\
-    \ Cond>\n    ll min_left(const node_ptr& nd, ll a, ll b, ll r, const Cond& cond,\n\
-    \                T& sm) const {\n        if (r <= a || nd == nullptr) return 0;\n\
-    \        if (b <= r && cond(M::op(nd->val, sm))) {\n            sm = M::op(nd->val,\
-    \ sm);\n            return 0;\n        }\n        if (a + 1 == b) return b;\n\
-    \        ll m = (a + b) >> 1;\n        ll res = min_left(nd->r, m, b, r, cond,\
-    \ sm);\n        if (res != 0) return res;\n        return min_left(nd->l, a, m,\
-    \ r, cond, sm);\n    }\n    void reset(node_ptr& nd, ll a, ll b, ll l, ll r) {\n\
-    \        if (nd == nullptr) return;\n        if (r <= a || b <= l) return;\n \
-    \       if (l <= a && b <= r) {\n            if (nd == root) nd = std::make_unique<node>(M::id());\n\
-    \            else nd.reset();\n            return;\n        }\n        ll m =\
-    \ (a + b) >> 1;\n        reset(nd->l, a, m, l, r);\n        reset(nd->r, m, b,\
-    \ l, r);\n        nd->val =\n            M::op(nd->l ? nd->l->val : M::id(), nd->r\
-    \ ? nd->r->val : M::id());\n    }\n    void merge(node_ptr& nd, ll a, ll b, node_ptr&\
-    \ other) {\n        if (other == nullptr) return;\n        if (nd == nullptr)\
-    \ {\n            nd = std::move(other);\n            return;\n        }\n    \
-    \    if (a + 1 == b) {\n            nd->val = M::op(nd->val, other->val);\n  \
-    \          return;\n        }\n        ll m = (a + b) >> 1;\n        merge(nd->l,\
-    \ a, m, other->l);\n        merge(nd->r, m, b, other->r);\n        nd->val =\n\
-    \            M::op(nd->l ? nd->l->val : M::id(), nd->r ? nd->r->val : M::id());\n\
-    \    }\n    void split(node_ptr& nd, ll a, ll b, node_ptr& other, ll k) {\n  \
-    \      if (nd == nullptr) return;\n        if (a >= k) {\n            other =\
-    \ std::move(nd);\n            nd = nullptr;\n            return;\n        }\n\
-    \        if (b <= k) return;\n        other = std::make_unique<node>(M::id());\n\
-    \        ll m = (a + b) >> 1;\n        split(nd->l, a, m, other->l, k);\n    \
-    \    split(nd->r, m, b, other->r, k);\n        if (nd->l == nullptr && nd->r ==\
-    \ nullptr) nd = nullptr;\n        else {\n            nd->val = M::op(nd->l ?\
-    \ nd->l->val : M::id(),\n                            nd->r ? nd->r->val : M::id());\n\
-    \        }\n        if (other->l == nullptr && other->r == nullptr) other = nullptr;\n\
-    \        else {\n            other->val = M::op(other->l ? other->l->val : M::id(),\n\
-    \                               other->r ? other->r->val : M::id());\n       \
-    \ }\n    }\n    void init_copy(node_ptr& nd, const node_ptr& src) {\n        if\
-    \ (src == nullptr) return;\n        nd = std::make_unique<node>(src->val);\n \
-    \       init_copy(nd->l, src->l);\n        init_copy(nd->r, src->r);\n    }\n\n\
-    public:\n    DynamicSegmentTree() : DynamicSegmentTree(inf) {}\n    DynamicSegmentTree(ll\
-    \ n_) { init(n_); }\n    DynamicSegmentTree(const DynamicSegmentTree& other)\n\
-    \        : ori(other.ori), n(other.n),\n          root(std::make_unique<node>(other.root->val))\
-    \ {\n        init_copy(root, other.root);\n    }\n    DynamicSegmentTree(DynamicSegmentTree&&\
-    \ other) = default;\n    DynamicSegmentTree& operator=(const DynamicSegmentTree&\
-    \ other) {\n        if (this == &other) return *this;\n        return (*this)\
-    \ = DynamicSegmentTree(other);\n    }\n    DynamicSegmentTree& operator=(DynamicSegmentTree&&\
-    \ other) = default;\n    void init(ll n_) {\n        ori = n_;\n        n = 1ull\
-    \ << bitop::ceil_log2(ori);\n        root = std::make_unique<node>(M::id());\n\
-    \    }\n    template<class Upd> void update(ll k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        update(root, 0, n, k, upd);\n    }\n    void set(ll\
-    \ k, T x) {\n        update(k, [&](T) -> T { return x; });\n    }\n    void apply(ll\
-    \ k, T x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n\
-    \    T prod(ll l, ll r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        return prod(root, 0, n, l, r);\n    }\n    T all_prod() const { return\
-    \ root->val; }\n    T get(ll k) const { return prod(k, k + 1); }\n    template<class\
-    \ Cond> ll max_right(ll l, const Cond& cond) const {\n        assert(0 <= l &&\
-    \ l <= ori);\n        if (l == n) return n;\n        T sm = M::id();\n       \
-    \ assert(cond(sm));\n        return std::min(max_right(root, 0, n, l, cond, sm),\
-    \ ori);\n    }\n    template<class Cond> ll min_left(ll r, const Cond& cond) const\
-    \ {\n        assert(0 <= r && r <= ori);\n        if (0 == r) return 0;\n    \
-    \    T sm = M::id();\n        assert(cond(sm));\n        return min_left(root,\
-    \ 0, n, r, cond, sm);\n    }\n    void reset(ll l, ll r) { reset(root, 0, n, l,\
-    \ r); }\n    void reset(ll k) { reset(root, 0, n, k, k + 1); }\n    void reset()\
-    \ { root = std::make_unique<node>(M::id()); }\n    DynamicSegmentTree& merge(DynamicSegmentTree&&\
-    \ other) {\n        assert(ori == other.ori);\n        merge(root, 0, n, other.root);\n\
-    \        other.root = std::make_unique<node>(M::id());\n        return *this;\n\
-    \    }\n    friend DynamicSegmentTree merge(DynamicSegmentTree&& a,\n        \
-    \                            DynamicSegmentTree&& b) {\n        return std::move(a.merge(std::move(b)));\n\
-    \    }\n    friend std::pair<DynamicSegmentTree, DynamicSegmentTree>\n    split(DynamicSegmentTree&&\
-    \ a, ll k) {\n        assert(0 <= k && k <= a.ori);\n        DynamicSegmentTree\
-    \ b(a.ori);\n        if (k == 0) return {std::move(b), std::move(a)};\n      \
-    \  if (k == a.ori) return {std::move(a), std::move(b)};\n        a.split(a.root,\
-    \ 0, a.n, b.root, k);\n        return {std::move(a), std::move(b)};\n    }\n};\n\
-    \n/**\n * @brief DynamicSegmentTree(\u52D5\u7684\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728)\n * @docs docs/data-struct/segment/DynamicSegmentTree.md\n */\n#line 2\
-    \ \"data-struct/segment/SegmentTree.hpp\"\n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\ntemplate<class M> class SegmentTree {\nprivate:\n    using T = typename M::value_type;\n\
-    \    int n, ori;\n    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0)\
-    \ {}\n    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n  \
-    \  SegmentTree(int n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n   \
-    \ SegmentTree(const std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>&\
-    \ v) {\n        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n   \
-    \     data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n\
-    \        rrep (i, n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n   \
-    \ }\n    template<class Upd> void update(int k, const Upd& upd) {\n        assert(0\
-    \ <= k && k < ori);\n        k += n;\n        data[k] = upd(data[k]);\n      \
-    \  while (k >>= 1) data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n \
-    \   void set(int k, T x) {\n        update(k, [&](T) -> T { return x; });\n  \
-    \  }\n    void apply(int k, T x) {\n        update(k, [&](T a) -> T { return M::op(a,\
-    \ x); });\n    }\n    T prod(int l, int r) const {\n        assert(0 <= l && l\
-    \ <= r && r <= ori);\n        l += n;\n        r += n;\n        T lsm = M::id(),\
-    \ rsm = M::id();\n        while (l < r) {\n            if (l & 1) lsm = M::op(lsm,\
-    \ data[l++]);\n            if (r & 1) rsm = M::op(data[--r], rsm);\n         \
-    \   l >>= 1;\n            r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T all_prod() const { return data[1]; }\n    T get(int k) const { return\
-    \ data[k + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond)\
-    \ const {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n\
-    \        if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n\
-    \        do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
-    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
-    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
-    \ */\n#line 6 \"data-struct/segment/RangeSortQuery.hpp\"\n\ntemplate<class M>\
-    \ class RangeSortQuery {\nprivate:\n    using T = typename M::value_type;\n  \
-    \  class M2 {\n    public:\n        using value_type = std::pair<std::array<T,\
-    \ 2>, int>;\n        static value_type id() { return {{M::id(), M::id()}, 0};\
-    \ }\n        static value_type op(const value_type& a, const value_type& b) {\n\
-    \            return {\n                {M::op(a.first[0], b.first[0]), M::op(b.first[1],\
-    \ a.first[1])},\n                a.second + b.second};\n        }\n    };\n  \
-    \  int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>> seg;\n    std::vector<bool>\
-    \ flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int> bit;\n\n    void split_l(int\
-    \ k) {\n        if (k == n) return;\n        int l = bit.min_left(k + 1, [&](int\
-    \ x) { return x == 0; }) - 1;\n        if (l == k) return;\n        if (!flag[l])\
-    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n            std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
-    \ t);\n        }\n        else {\n            ll t = seg[l].min_left(\n      \
-    \          mx, [&](const auto& x) { return x.second <= k - l; });\n          \
-    \  std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t);\n        }\n      \
-    \  bit.apply(k, 1);\n        flag[k] = flag[l];\n        dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \        dat.set(k, seg[k].all_prod().first[flag[k]]);\n    }\n\npublic:\n   \
-    \ RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int n, ll mx = inf)\n\
-    \        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n, 0),\n\
-    \                         mx) {}\n    RangeSortQuery(const std::vector<T>& v,\
-    \ const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
-    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)),\n          flag(n, false), dat(n),\
-    \ bit(n, 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i]\
-    \ <= mx);\n            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i,\
-    \ v[i]);\n        }\n    }\n    void set(int k, ll key, const T& val) {\n    \
-    \    assert(0 <= k && k < n);\n        assert(0 <= key && key <= mx);\n      \
-    \  int l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        int\
-    \ r = bit.max_right(k + 1, [&](int x) { return x == 0; });\n        if (!flag[l])\
-    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n            if (l != k) {\n            \
-    \    std::tie(seg[l], seg[k]) = split(std::move(seg[l]), t);\n               \
-    \ bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
-    \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
-    \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
-    \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
-    \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
-    \ [&](const auto& x) {\n                return x.second <= k - l;\n          \
-    \  }) - 1;\n            if (l != k) {\n                std::tie(seg[k], seg[l])\
-    \ = split(std::move(seg[l]), t + 1);\n                bit.apply(k, 1);\n     \
-    \           dat.set(l, seg[l].all_prod().first[flag[l]]);\n                flag[k]\
-    \ = flag[l];\n            }\n            if (k != r - 1) {\n                std::tie(seg[k\
-    \ + 1], seg[k]) = split(std::move(seg[k]), t);\n                bit.apply(k +\
-    \ 1, 1);\n                dat.set(k + 1, seg[k + 1].all_prod().first[flag[k]]);\n\
-    \                flag[k + 1] = flag[k];\n            }\n        }\n        seg[k].reset();\n\
-    \        seg[k].set(key, {{val, val}, 1});\n        dat.set(k, val);\n    }\n\
-    \    void sort(int l, int r, bool reverse = false) {\n        assert(0 <= l &&\
-    \ l <= r && r <= n);\n        split_l(l);\n        split_l(r);\n        ll t =\
-    \ l;\n        while (t < r) {\n            if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n\
-    \                bit.apply(t, -1);\n                dat.set(t, M::id());\n   \
-    \         }\n            t = bit.max_right(t + 1, [&](int x) { return x == 0;\
-    \ });\n        }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
-    \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
-    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
-    \        if (!flag[l]) {\n            t = seg[l].max_right(\n                0,\
-    \ [&](const auto& x) { return x.second <= k - l; });\n        }\n        else\
-    \ {\n            t = seg[l].min_left(mx, [&](const auto& x) {\n              \
-    \  return x.second <= k - l;\n            }) - 1;\n        }\n        return seg[l].get(t).first[0];\n\
-    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
-    \        T res = M::id();\n        int l2 = bit.min_left(l + 1, [&](int x) { return\
-    \ x == 0; }) - 1;\n        int r2 = bit.min_left(r, [&](int x) { return x == 0;\
-    \ }) - 1;\n        if (l2 == r2) {\n            if (!flag[l2]) {\n           \
-    \     ll tl = seg[l2].max_right(\n                    0, [&](const auto& x) {\
-    \ return x.second <= l - l2; });\n                ll tr = seg[l2].max_right(\n\
-    \                    0, [&](const auto& x) { return x.second <= r - l2; });\n\
-    \                return seg[l2].prod(tl, tr).first[0];\n            }\n      \
-    \      else {\n                ll tl = seg[l2].min_left(\n                   \
-    \ mx, [&](const auto& x) { return x.second <= l - l2; });\n                ll\
-    \ tr = seg[l2].min_left(\n                    mx, [&](const auto& x) { return\
-    \ x.second <= r - l2; });\n                return seg[l2].prod(tr, tl).first[1];\n\
-    \            }\n        }\n        if (!flag[l2]) {\n            ll t = seg[l2].max_right(\n\
-    \                0, [&](const auto& x) { return x.second <= l - l2; });\n    \
-    \        res = seg[l2].prod(t, mx + 1).first[0];\n        }\n        else {\n\
-    \            ll t = seg[l2].min_left(mx, [&](const auto& x) {\n              \
-    \  return x.second <= l - l2;\n            }) - 1;\n            res = seg[l2].prod(0,\
-    \ t + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
-    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(\n           \
-    \     0, [&](const auto& x) { return x.second <= r - r2; });\n            res\
-    \ = M::op(res, seg[r2].prod(0, t).first[0]);\n        }\n        else {\n    \
-    \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
-    \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
-    \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
-    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n#line 6 \"test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
-    \ q; scan >> n >> q;\n    vector<ll> p(n);\n    vector<pair<mint, mint>> a(n);\n\
-    \    rep (i, n) scan >> p[i] >> a[i];\n    RangeSortQuery<Monoid::Composite<mint>>\
-    \ seg(a, p, 1e9);\n    rep (q) {\n        int t; scan >> t;\n        if (t ==\
-    \ 0) {\n            int i, p; scan >> i >> p;\n            mint a, b; scan >>\
-    \ a >> b;\n            seg.set(i, p, {a, b});\n        }\n        else if (t ==\
-    \ 1) {\n            int l, r; scan >> l >> r;\n            mint x; scan >> x;\n\
-    \            auto [a, b] = seg.prod(l, r);\n            prints(a * x + b);\n \
-    \       }\n        else if (t == 2) {\n            int l, r; scan >> l >> r;\n\
-    \            seg.sort(l, r);\n        }\n        else {\n            int l, r;\
-    \ scan >> l >> r;\n            seg.sort(l, r, true);\n        }\n        // seg.debug();\n\
-    \    }\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
-    \n#include \"../../../other/template.hpp\"\n#include \"../../../other/monoid2.hpp\"\
-    \n#include \"../../../math/ModInt.hpp\"\n#include \"../../../data-struct/segment/RangeSortQuery.hpp\"\
-    \nusing namespace std;\nusing mint = modint998244353;\nint main() {\n    int n,\
-    \ q; scan >> n >> q;\n    vector<ll> p(n);\n    vector<pair<mint, mint>> a(n);\n\
-    \    rep (i, n) scan >> p[i] >> a[i];\n    RangeSortQuery<Monoid::Composite<mint>>\
-    \ seg(a, p, 1e9);\n    rep (q) {\n        int t; scan >> t;\n        if (t ==\
-    \ 0) {\n            int i, p; scan >> i >> p;\n            mint a, b; scan >>\
-    \ a >> b;\n            seg.set(i, p, {a, b});\n        }\n        else if (t ==\
-    \ 1) {\n            int l, r; scan >> l >> r;\n            mint x; scan >> x;\n\
-    \            auto [a, b] = seg.prod(l, r);\n            prints(a * x + b);\n \
-    \       }\n        else if (t == 2) {\n            int l, r; scan >> l >> r;\n\
-    \            seg.sort(l, r);\n        }\n        else {\n            int l, r;\
-    \ scan >> l >> r;\n            seg.sort(l, r, true);\n        }\n        // seg.debug();\n\
-    \    }\n}\n"
+    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/2D/CumulativeSum2D.hpp\"\
+    \n\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n#line 2 \"data-struct/2D/Struct2D.hpp\"\
+    \n\n#line 5 \"data-struct/2D/Struct2D.hpp\"\n\nclass Struct2D {\nprivate:\n  \
+    \  int ori, n, h;\n    compressor<ll> psx;\n    std::vector<std::vector<ll>> idx;\n\
+    \npublic:\n    template<class F> void init(F&& f, std::vector<ll> xs, std::vector<ll>\
+    \ ys) {\n        psx.push(xs);\n        psx.build();\n        psx.press(xs);\n\
+    \        ori = psx.size();\n        h = bitop::ceil_log2(ori);\n        n = 1\
+    \ << h;\n        idx.resize(n << 1);\n        rep (i, xs.size()) idx[xs[i] + n].push_back(ys[i]);\n\
+    \        rep (i, ori) {\n            std::sort(all(idx[i + n]));\n           \
+    \ idx[i + n].erase(std::unique(all(idx[i + n])), idx[i + n].end());\n        }\n\
+    \        rrep (i, n, 1) {\n            std::merge(all(idx[i << 1]), all(idx[i\
+    \ << 1 | 1]),\n                       std::back_inserter(idx[i]));\n         \
+    \   idx[i].erase(std::unique(all(idx[i])), idx[i].end());\n        }\n       \
+    \ std::vector<int> sz(n << 1);\n        rep (i, n << 1) sz[i] = idx[i].size();\n\
+    \        f(sz);\n    }\n    template<class F, class M>\n    void init(F&& f, std::vector<ll>\
+    \ xs, std::vector<ll> ys,\n              std::vector<typename M::value_type> v)\
+    \ {\n        psx.push(xs);\n        psx.build();\n        psx.press(xs);\n   \
+    \     ori = psx.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        std::vector<std::vector<std::pair<ll, typename M::value_type>>>\
+    \ tmp(\n            n << 1);\n        rep (i, xs.size()) tmp[xs[i] + n].emplace_back(ys[i],\
+    \ v[i]);\n        rep (i, ori) {\n            std::stable_sort(all(tmp[i + n]),\
+    \ [](const auto& a, const auto& b) {\n                return a.first < b.first;\n\
+    \            });\n            int k = 0;\n            rep (j, 1, tmp[i + n].size())\
+    \ {\n                if (tmp[i + n][k].first == tmp[i + n][j].first) {\n     \
+    \               tmp[i + n][k].second =\n                        M::op(tmp[i +\
+    \ n][k].second, tmp[i + n][j].second);\n                }\n                else\
+    \ {\n                    tmp[i + n][++k] = tmp[i + n][j];\n                }\n\
+    \            }\n            tmp[i + n].resize(k + 1);\n        }\n        rrep\
+    \ (i, n, 1) {\n            tmp[i].reserve(tmp[i << 1].size() + tmp[i << 1 | 1].size());\n\
+    \            std::merge(\n                all(tmp[i << 1]), all(tmp[i << 1 | 1]),\n\
+    \                std::back_inserter(tmp[i]),\n                [](const auto& a,\
+    \ const auto& b) { return a.first < b.first; });\n            int k = 0;\n   \
+    \         rep (j, 1, tmp[i].size()) {\n                if (tmp[i][k].first ==\
+    \ tmp[i][j].first) {\n                    tmp[i][k].second =\n               \
+    \         M::op(tmp[i][k].second, tmp[i][j].second);\n                }\n    \
+    \            else {\n                    tmp[i][++k] = tmp[i][j];\n          \
+    \      }\n            }\n            tmp[i].resize(k + 1);\n        }\n      \
+    \  idx.resize(n << 1);\n        std::vector<std::vector<typename M::value_type>>\
+    \ dat(n << 1);\n        rep (i, n << 1) {\n            idx[i].resize(tmp[i].size());\n\
+    \            dat[i].resize(tmp[i].size());\n            rep (j, tmp[i].size())\
+    \ {\n                idx[i][j] = tmp[i][j].first;\n                dat[i][j] =\
+    \ tmp[i][j].second;\n            }\n        }\n        f(dat);\n    }\n    template<class\
+    \ Upd> void apply(ll x, ll y, Upd&& upd) const {\n        int k = psx.get(x) +\
+    \ n;\n        auto itr = std::lower_bound(all(idx[k]), y);\n        assert(itr\
+    \ != idx[k].end() && *itr == y);\n        upd(k, itr - idx[k].begin());\n    \
+    \    while (k > 1) {\n            k >>= 1;\n            upd(k, std::lower_bound(all(idx[k]),\
+    \ y) - idx[k].begin());\n        }\n    }\n    template<class Upd, class Upd2,\
+    \ class Mrg>\n    void update(ll x, ll y, Upd&& upd, Upd2&& upd2, Mrg&& mrg) const\
+    \ {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
+    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        upd(k, itr -\
+    \ idx[k].begin());\n        while (k > 1) {\n            int l = k ^ 1;\n    \
+    \        auto itr2 = std::lower_bound(all(idx[l]), y);\n            if (itr2 !=\
+    \ idx[l].end() && *itr2 == y) {\n                if (k < l) mrg(l, itr2 - idx[l].begin(),\
+    \ false);\n                else mrg(l, itr2 - idx[l].begin(), true);\n       \
+    \     }\n            k >>= 1;\n            upd2(k, std::lower_bound(all(idx[k]),\
+    \ y) - idx[k].begin());\n        }\n    }\n    template<class Mrg> void prod(ll\
+    \ l, ll r, ll u, ll d, Mrg&& mrg) const {\n        assert(l <= r && u <= d);\n\
+    \        l = psx.lower_bound(l) + n;\n        r = psx.lower_bound(r) + n;\n  \
+    \      while (l != r) {\n            if (l & 1) {\n                int a = std::lower_bound(all(idx[l]),\
+    \ u) - idx[l].begin();\n                int b = std::lower_bound(all(idx[l]),\
+    \ d) - idx[l].begin();\n                mrg(l, a, b, true);\n                ++l;\n\
+    \            }\n            if (r & 1) {\n                --r;\n             \
+    \   int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n             \
+    \   int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n             \
+    \   mrg(r, a, b, false);\n            }\n            l >>= 1;\n            r >>=\
+    \ 1;\n        }\n    }\n    template<class Mrg> void get(ll x, ll y, Mrg&& mrg)\
+    \ const {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
+    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        mrg(k, itr -\
+    \ idx[k].begin());\n    }\n};\n#line 7 \"data-struct/2D/CumulativeSum2D.hpp\"\n\
+    \ntemplate<class M> class CumulativeSum2D {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    int n;\n    std::vector<CumulativeSum<M>> seg;\n    Struct2D\
+    \ str;\n\npublic:\n    CumulativeSum2D(const std::vector<ll>& xs, const std::vector<ll>&\
+    \ ys,\n                    const std::vector<T>& v) {\n        auto f = [&](const\
+    \ auto& dat) {\n            n = dat.size() >> 1;\n            seg.resize(n <<\
+    \ 1);\n            rep (i, 1, n << 1) seg[i] = CumulativeSum<M>(dat[i]);\n   \
+    \     };\n        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T prod(ll\
+    \ l, ll r, ll u, ll d) {\n        T res = M::id();\n        str.prod(l, r, u,\
+    \ d, [&](int k, int a, int b, bool) {\n            res = M::op(res, seg[k].prod(a,\
+    \ b));\n        });\n        return res;\n    }\n\n    T get(ll x, ll y) {\n \
+    \       T res = M::id();\n        str.get(x, y, [&](int k, int a) { res = M::op(res,\
+    \ seg[k].get(a)); });\n        return res;\n    }\n};\n#line 5 \"test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp\"\
+    \nusing namespace std;\nint main() {\n    int N, Q; scan >> N >> Q;\n    vector<ll>\
+    \ A(N), B(N), C(N);\n    rep (i, N) scan >> A[i] >> B[i] >> C[i];\n    CumulativeSum2D<Monoid::Sum<ll>>\
+    \ seg(A, B, C);\n    rep (Q) {\n        ll a, b, c, d; scan >> a >> b >> c >>\
+    \ d;\n        print << seg.prod(a, c, b, d) << endl;\n    }\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n#include\
+    \ \"../../../other/template.hpp\"\n#include \"../../../other/monoid.hpp\"\n#include\
+    \ \"../../../data-struct/2D/CumulativeSum2D.hpp\"\nusing namespace std;\nint main()\
+    \ {\n    int N, Q; scan >> N >> Q;\n    vector<ll> A(N), B(N), C(N);\n    rep\
+    \ (i, N) scan >> A[i] >> B[i] >> C[i];\n    CumulativeSum2D<Monoid::Sum<ll>> seg(A,\
+    \ B, C);\n    rep (Q) {\n        ll a, b, c, d; scan >> a >> b >> c >> d;\n  \
+    \      print << seg.prod(a, c, b, d) << endl;\n    }\n}\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -969,22 +672,20 @@ data:
   - template/bitop.hpp
   - template/func.hpp
   - template/util.hpp
-  - other/monoid2.hpp
   - other/monoid.hpp
-  - math/ModInt.hpp
-  - data-struct/segment/RangeSortQuery.hpp
-  - data-struct/segment/DynamicSegmentTree.hpp
-  - data-struct/segment/SegmentTree.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/2D/Struct2D.hpp
   isVerificationFile: true
-  path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+  path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   requiredBy: []
   timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+documentation_of: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-- /verify/test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp.html
-title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
+- /verify/test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+- /verify/test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp.html
+title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
 ---

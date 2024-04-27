@@ -31,7 +31,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/DualSegmentTree2D.hpp
+    title: data-struct/2D/DualSegmentTree2D.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL/DSL_2_D-RUQ.test.cpp
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/range_affine_point_get.test.cpp
     title: test/yosupo/data_structure/range_affine_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+    title: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -672,10 +678,12 @@ data:
   - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/DualSegmentTree.hpp
-  requiredBy: []
+  requiredBy:
+  - data-struct/2D/DualSegmentTree2D.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/aoj/DSL/DSL_2_D-RUQ.test.cpp
   - test/aoj/DSL/DSL_2_E-RAQ.test.cpp

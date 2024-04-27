@@ -694,94 +694,100 @@ data:
     \  class M2 {\n    public:\n        using value_type = std::pair<std::array<T,\
     \ 2>, int>;\n        static value_type id() { return {{M::id(), M::id()}, 0};\
     \ }\n        static value_type op(const value_type& a, const value_type& b) {\n\
-    \            return {{M::op(a.first[0], b.first[0]), M::op(b.first[1], a.first[1])},\
-    \ a.second + b.second};\n        }\n    };\n    int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>>\
-    \ seg;\n    std::vector<bool> flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int>\
-    \ bit;\n\n    void split_l(int k) {\n        if (k == n) return;\n        int\
-    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        if (l ==\
-    \ k) return;\n        if (!flag[l]) {\n            ll t = seg[l].max_right(0,\
-    \ [&](const auto& x) { return x.second <= k - l; });\n            std::tie(seg[l],\
-    \ seg[k]) = split(std::move(seg[l]), t);\n        }\n        else {\n        \
-    \    ll t = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l;\
-    \ });\n            std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t);\n \
-    \       }\n        bit.apply(k, 1);\n        flag[k] = flag[l];\n        dat.set(l,\
-    \ seg[l].all_prod().first[flag[l]]);\n        dat.set(k, seg[k].all_prod().first[flag[k]]);\n\
-    \    }\n\npublic:\n    RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int\
-    \ n, ll mx = inf)\n        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n,\
-    \ 0),\n                         mx) {}\n    RangeSortQuery(const std::vector<T>&\
-    \ v, const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
-    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)), flag(n, false), dat(n), bit(n,\
-    \ 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i] <= mx);\n\
-    \            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i, v[i]);\n\
-    \        }\n    }\n    void set(int k, ll key, const T& val) {\n        assert(0\
-    \ <= k && k < n);\n        assert(0 <= key && key <= mx);\n        int l = bit.min_left(k\
-    \ + 1, [&](int x) { return x == 0; }) - 1;\n        int r = bit.max_right(k +\
-    \ 1, [&](int x) { return x == 0; });\n        if (!flag[l]) {\n            ll\
-    \ t = seg[l].max_right(0, [&](const auto& x) { return x.second <= k - l; });\n\
-    \            if (l != k) {\n                std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
-    \ t);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \            return {\n                {M::op(a.first[0], b.first[0]), M::op(b.first[1],\
+    \ a.first[1])},\n                a.second + b.second};\n        }\n    };\n  \
+    \  int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>> seg;\n    std::vector<bool>\
+    \ flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int> bit;\n\n    void split_l(int\
+    \ k) {\n        if (k == n) return;\n        int l = bit.min_left(k + 1, [&](int\
+    \ x) { return x == 0; }) - 1;\n        if (l == k) return;\n        if (!flag[l])\
+    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
+    \ x) { return x.second <= k - l; });\n            std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
+    \ t);\n        }\n        else {\n            ll t = seg[l].min_left(\n      \
+    \          mx, [&](const auto& x) { return x.second <= k - l; });\n          \
+    \  std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t);\n        }\n      \
+    \  bit.apply(k, 1);\n        flag[k] = flag[l];\n        dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \        dat.set(k, seg[k].all_prod().first[flag[k]]);\n    }\n\npublic:\n   \
+    \ RangeSortQuery() : RangeSortQuery(0) {}\n    RangeSortQuery(int n, ll mx = inf)\n\
+    \        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n, 0),\n\
+    \                         mx) {}\n    RangeSortQuery(const std::vector<T>& v,\
+    \ const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
+    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)),\n          flag(n, false), dat(n),\
+    \ bit(n, 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i]\
+    \ <= mx);\n            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i,\
+    \ v[i]);\n        }\n    }\n    void set(int k, ll key, const T& val) {\n    \
+    \    assert(0 <= k && k < n);\n        assert(0 <= key && key <= mx);\n      \
+    \  int l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        int\
+    \ r = bit.max_right(k + 1, [&](int x) { return x == 0; });\n        if (!flag[l])\
+    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
+    \ x) { return x.second <= k - l; });\n            if (l != k) {\n            \
+    \    std::tie(seg[l], seg[k]) = split(std::move(seg[l]), t);\n               \
+    \ bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
     \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
     \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
     \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
     \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
     \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= k - l; }) - 1;\n            if (l !=\
-    \ k) {\n                std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t\
-    \ + 1);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
-    \ {\n                std::tie(seg[k + 1], seg[k]) = split(std::move(seg[k]), t);\n\
-    \                bit.apply(k + 1, 1);\n                dat.set(k + 1, seg[k +\
-    \ 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n   \
-    \         }\n        }\n        seg[k].reset();\n        seg[k].set(key, {{val,\
-    \ val}, 1});\n        dat.set(k, val);\n    }\n    void sort(int l, int r, bool\
-    \ reverse = false) {\n        assert(0 <= l && l <= r && r <= n);\n        split_l(l);\n\
-    \        split_l(r);\n        ll t = l;\n        while (t < r) {\n           \
-    \ if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n          \
-    \      bit.apply(t, -1);\n                dat.set(t, M::id());\n            }\n\
-    \            t = bit.max_right(t + 1, [&](int x) { return x == 0; });\n      \
-    \  }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
+    \ [&](const auto& x) {\n                return x.second <= k - l;\n          \
+    \  }) - 1;\n            if (l != k) {\n                std::tie(seg[k], seg[l])\
+    \ = split(std::move(seg[l]), t + 1);\n                bit.apply(k, 1);\n     \
+    \           dat.set(l, seg[l].all_prod().first[flag[l]]);\n                flag[k]\
+    \ = flag[l];\n            }\n            if (k != r - 1) {\n                std::tie(seg[k\
+    \ + 1], seg[k]) = split(std::move(seg[k]), t);\n                bit.apply(k +\
+    \ 1, 1);\n                dat.set(k + 1, seg[k + 1].all_prod().first[flag[k]]);\n\
+    \                flag[k + 1] = flag[k];\n            }\n        }\n        seg[k].reset();\n\
+    \        seg[k].set(key, {{val, val}, 1});\n        dat.set(k, val);\n    }\n\
+    \    void sort(int l, int r, bool reverse = false) {\n        assert(0 <= l &&\
+    \ l <= r && r <= n);\n        split_l(l);\n        split_l(r);\n        ll t =\
+    \ l;\n        while (t < r) {\n            if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n\
+    \                bit.apply(t, -1);\n                dat.set(t, M::id());\n   \
+    \         }\n            t = bit.max_right(t + 1, [&](int x) { return x == 0;\
+    \ });\n        }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
     \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
     \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
-    \        if (!flag[l]) {\n            t = seg[l].max_right(0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n        }\n        else {\n            t\
-    \ = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l; }) - 1;\n\
-    \        }\n        return seg[l].get(t).first[0];\n    }\n    T prod(int l, int\
-    \ r) {\n        assert(0 <= l && l <= r && r <= n);\n        T res = M::id();\n\
-    \        int l2 = bit.min_left(l + 1, [&](int x) { return x == 0; }) - 1;\n  \
-    \      int r2 = bit.min_left(r, [&](int x) { return x == 0; }) - 1;\n        if\
-    \ (l2 == r2) {\n            if (!flag[l2]) {\n                ll tl = seg[l2].max_right(0,\
-    \ [&](const auto& x) { return x.second <= l - l2; });\n                ll tr =\
-    \ seg[l2].max_right(0, [&](const auto& x) { return x.second <= r - l2; });\n \
-    \               return seg[l2].prod(tl, tr).first[0];\n            }\n       \
-    \     else {\n                ll tl = seg[l2].min_left(mx, [&](const auto& x)\
-    \ { return x.second <= l - l2; });\n                ll tr = seg[l2].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= r - l2; });\n                return\
-    \ seg[l2].prod(tr, tl).first[1];\n            }\n        }\n        if (!flag[l2])\
-    \ {\n            ll t = seg[l2].max_right(0, [&](const auto& x) { return x.second\
-    \ <= l - l2; });\n            res = seg[l2].prod(t, mx + 1).first[0];\n      \
-    \  }\n        else {\n            ll t = seg[l2].min_left(mx, [&](const auto&\
-    \ x) { return x.second <= l - l2; }) - 1;\n            res = seg[l2].prod(0, t\
-    \ + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
-    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(0, [&](const auto&\
-    \ x) { return x.second <= r - r2; });\n            res = M::op(res, seg[r2].prod(0,\
-    \ t).first[0]);\n        }\n        else {\n            ll t = seg[r2].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= r - r2; }) - 1;\n            res = M::op(res,\
-    \ seg[r2].prod(t + 1, mx + 1).first[1]);\n        }\n        return res;\n   \
-    \ }\n};\n\n/**\n * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
+    \        if (!flag[l]) {\n            t = seg[l].max_right(\n                0,\
+    \ [&](const auto& x) { return x.second <= k - l; });\n        }\n        else\
+    \ {\n            t = seg[l].min_left(mx, [&](const auto& x) {\n              \
+    \  return x.second <= k - l;\n            }) - 1;\n        }\n        return seg[l].get(t).first[0];\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        T res = M::id();\n        int l2 = bit.min_left(l + 1, [&](int x) { return\
+    \ x == 0; }) - 1;\n        int r2 = bit.min_left(r, [&](int x) { return x == 0;\
+    \ }) - 1;\n        if (l2 == r2) {\n            if (!flag[l2]) {\n           \
+    \     ll tl = seg[l2].max_right(\n                    0, [&](const auto& x) {\
+    \ return x.second <= l - l2; });\n                ll tr = seg[l2].max_right(\n\
+    \                    0, [&](const auto& x) { return x.second <= r - l2; });\n\
+    \                return seg[l2].prod(tl, tr).first[0];\n            }\n      \
+    \      else {\n                ll tl = seg[l2].min_left(\n                   \
+    \ mx, [&](const auto& x) { return x.second <= l - l2; });\n                ll\
+    \ tr = seg[l2].min_left(\n                    mx, [&](const auto& x) { return\
+    \ x.second <= r - l2; });\n                return seg[l2].prod(tr, tl).first[1];\n\
+    \            }\n        }\n        if (!flag[l2]) {\n            ll t = seg[l2].max_right(\n\
+    \                0, [&](const auto& x) { return x.second <= l - l2; });\n    \
+    \        res = seg[l2].prod(t, mx + 1).first[0];\n        }\n        else {\n\
+    \            ll t = seg[l2].min_left(mx, [&](const auto& x) {\n              \
+    \  return x.second <= l - l2;\n            }) - 1;\n            res = seg[l2].prod(0,\
+    \ t + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
+    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(\n           \
+    \     0, [&](const auto& x) { return x.second <= r - r2; });\n            res\
+    \ = M::op(res, seg[r2].prod(0, t).first[0]);\n        }\n        else {\n    \
+    \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
+    \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
+    \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
+    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"DynamicSegmentTree.hpp\"\
     \n#include \"SegmentTree.hpp\"\n\ntemplate<class M> class RangeSortQuery {\nprivate:\n\
     \    using T = typename M::value_type;\n    class M2 {\n    public:\n        using\
     \ value_type = std::pair<std::array<T, 2>, int>;\n        static value_type id()\
     \ { return {{M::id(), M::id()}, 0}; }\n        static value_type op(const value_type&\
-    \ a, const value_type& b) {\n            return {{M::op(a.first[0], b.first[0]),\
-    \ M::op(b.first[1], a.first[1])}, a.second + b.second};\n        }\n    };\n \
-    \   int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>> seg;\n    std::vector<bool>\
-    \ flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int> bit;\n\n    void split_l(int\
-    \ k) {\n        if (k == n) return;\n        int l = bit.min_left(k + 1, [&](int\
-    \ x) { return x == 0; }) - 1;\n        if (l == k) return;\n        if (!flag[l])\
-    \ {\n            ll t = seg[l].max_right(0, [&](const auto& x) { return x.second\
-    \ <= k - l; });\n            std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
-    \ t);\n        }\n        else {\n            ll t = seg[l].min_left(mx, [&](const\
+    \ a, const value_type& b) {\n            return {\n                {M::op(a.first[0],\
+    \ b.first[0]), M::op(b.first[1], a.first[1])},\n                a.second + b.second};\n\
+    \        }\n    };\n    int n;\n    ll mx;\n    std::vector<DynamicSegmentTree<M2>>\
+    \ seg;\n    std::vector<bool> flag;\n    SegmentTree<M> dat;\n    RangeSumQuery<int>\
+    \ bit;\n\n    void split_l(int k) {\n        if (k == n) return;\n        int\
+    \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        if (l ==\
+    \ k) return;\n        if (!flag[l]) {\n            ll t = seg[l].max_right(\n\
+    \                0, [&](const auto& x) { return x.second <= k - l; });\n     \
+    \       std::tie(seg[l], seg[k]) = split(std::move(seg[l]), t);\n        }\n \
+    \       else {\n            ll t = seg[l].min_left(\n                mx, [&](const\
     \ auto& x) { return x.second <= k - l; });\n            std::tie(seg[k], seg[l])\
     \ = split(std::move(seg[l]), t);\n        }\n        bit.apply(k, 1);\n      \
     \  flag[k] = flag[l];\n        dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
@@ -790,64 +796,68 @@ data:
     \        : RangeSortQuery(std::vector<T>(n, M::id()), std::vector<ll>(n, 0),\n\
     \                         mx) {}\n    RangeSortQuery(const std::vector<T>& v,\
     \ const std::vector<ll>& key,\n                   ll mx = inf)\n        : n(v.size()),\
-    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)), flag(n, false), dat(n), bit(n,\
-    \ 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i] <= mx);\n\
-    \            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i, v[i]);\n\
-    \        }\n    }\n    void set(int k, ll key, const T& val) {\n        assert(0\
-    \ <= k && k < n);\n        assert(0 <= key && key <= mx);\n        int l = bit.min_left(k\
-    \ + 1, [&](int x) { return x == 0; }) - 1;\n        int r = bit.max_right(k +\
-    \ 1, [&](int x) { return x == 0; });\n        if (!flag[l]) {\n            ll\
-    \ t = seg[l].max_right(0, [&](const auto& x) { return x.second <= k - l; });\n\
-    \            if (l != k) {\n                std::tie(seg[l], seg[k]) = split(std::move(seg[l]),\
-    \ t);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
+    \ mx(mx), seg(n, DynamicSegmentTree<M2>(mx + 1)),\n          flag(n, false), dat(n),\
+    \ bit(n, 1) {\n        rep (i, n) {\n            assert(0 <= key[i] && key[i]\
+    \ <= mx);\n            seg[i].set(key[i], {{v[i], v[i]}, 1});\n            dat.set(i,\
+    \ v[i]);\n        }\n    }\n    void set(int k, ll key, const T& val) {\n    \
+    \    assert(0 <= k && k < n);\n        assert(0 <= key && key <= mx);\n      \
+    \  int l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        int\
+    \ r = bit.max_right(k + 1, [&](int x) { return x == 0; });\n        if (!flag[l])\
+    \ {\n            ll t = seg[l].max_right(\n                0, [&](const auto&\
+    \ x) { return x.second <= k - l; });\n            if (l != k) {\n            \
+    \    std::tie(seg[l], seg[k]) = split(std::move(seg[l]), t);\n               \
+    \ bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
     \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
     \ {\n                std::tie(seg[k], seg[k + 1]) = split(std::move(seg[k]), t\
     \ + 1);\n                bit.apply(k + 1, 1);\n                dat.set(k + 1,\
     \ seg[k + 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n\
     \            }\n        }\n        else {\n            ll t = seg[l].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= k - l; }) - 1;\n            if (l !=\
-    \ k) {\n                std::tie(seg[k], seg[l]) = split(std::move(seg[l]), t\
-    \ + 1);\n                bit.apply(k, 1);\n                dat.set(l, seg[l].all_prod().first[flag[l]]);\n\
-    \                flag[k] = flag[l];\n            }\n            if (k != r - 1)\
-    \ {\n                std::tie(seg[k + 1], seg[k]) = split(std::move(seg[k]), t);\n\
-    \                bit.apply(k + 1, 1);\n                dat.set(k + 1, seg[k +\
-    \ 1].all_prod().first[flag[k]]);\n                flag[k + 1] = flag[k];\n   \
-    \         }\n        }\n        seg[k].reset();\n        seg[k].set(key, {{val,\
-    \ val}, 1});\n        dat.set(k, val);\n    }\n    void sort(int l, int r, bool\
-    \ reverse = false) {\n        assert(0 <= l && l <= r && r <= n);\n        split_l(l);\n\
-    \        split_l(r);\n        ll t = l;\n        while (t < r) {\n           \
-    \ if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n          \
-    \      bit.apply(t, -1);\n                dat.set(t, M::id());\n            }\n\
-    \            t = bit.max_right(t + 1, [&](int x) { return x == 0; });\n      \
-    \  }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
+    \ [&](const auto& x) {\n                return x.second <= k - l;\n          \
+    \  }) - 1;\n            if (l != k) {\n                std::tie(seg[k], seg[l])\
+    \ = split(std::move(seg[l]), t + 1);\n                bit.apply(k, 1);\n     \
+    \           dat.set(l, seg[l].all_prod().first[flag[l]]);\n                flag[k]\
+    \ = flag[l];\n            }\n            if (k != r - 1) {\n                std::tie(seg[k\
+    \ + 1], seg[k]) = split(std::move(seg[k]), t);\n                bit.apply(k +\
+    \ 1, 1);\n                dat.set(k + 1, seg[k + 1].all_prod().first[flag[k]]);\n\
+    \                flag[k + 1] = flag[k];\n            }\n        }\n        seg[k].reset();\n\
+    \        seg[k].set(key, {{val, val}, 1});\n        dat.set(k, val);\n    }\n\
+    \    void sort(int l, int r, bool reverse = false) {\n        assert(0 <= l &&\
+    \ l <= r && r <= n);\n        split_l(l);\n        split_l(r);\n        ll t =\
+    \ l;\n        while (t < r) {\n            if (t != l) {\n                seg[l].merge(std::move(seg[t]));\n\
+    \                bit.apply(t, -1);\n                dat.set(t, M::id());\n   \
+    \         }\n            t = bit.max_right(t + 1, [&](int x) { return x == 0;\
+    \ });\n        }\n        flag[l] = reverse;\n        dat.set(l, seg[l].all_prod().first[reverse]);\n\
     \    }\n    T get(int k) const {\n        assert(0 <= k && k < n);\n        int\
     \ l = bit.min_left(k + 1, [&](int x) { return x == 0; }) - 1;\n        ll t;\n\
-    \        if (!flag[l]) {\n            t = seg[l].max_right(0, [&](const auto&\
-    \ x) { return x.second <= k - l; });\n        }\n        else {\n            t\
-    \ = seg[l].min_left(mx, [&](const auto& x) { return x.second <= k - l; }) - 1;\n\
-    \        }\n        return seg[l].get(t).first[0];\n    }\n    T prod(int l, int\
-    \ r) {\n        assert(0 <= l && l <= r && r <= n);\n        T res = M::id();\n\
-    \        int l2 = bit.min_left(l + 1, [&](int x) { return x == 0; }) - 1;\n  \
-    \      int r2 = bit.min_left(r, [&](int x) { return x == 0; }) - 1;\n        if\
-    \ (l2 == r2) {\n            if (!flag[l2]) {\n                ll tl = seg[l2].max_right(0,\
-    \ [&](const auto& x) { return x.second <= l - l2; });\n                ll tr =\
-    \ seg[l2].max_right(0, [&](const auto& x) { return x.second <= r - l2; });\n \
-    \               return seg[l2].prod(tl, tr).first[0];\n            }\n       \
-    \     else {\n                ll tl = seg[l2].min_left(mx, [&](const auto& x)\
-    \ { return x.second <= l - l2; });\n                ll tr = seg[l2].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= r - l2; });\n                return\
-    \ seg[l2].prod(tr, tl).first[1];\n            }\n        }\n        if (!flag[l2])\
-    \ {\n            ll t = seg[l2].max_right(0, [&](const auto& x) { return x.second\
-    \ <= l - l2; });\n            res = seg[l2].prod(t, mx + 1).first[0];\n      \
-    \  }\n        else {\n            ll t = seg[l2].min_left(mx, [&](const auto&\
-    \ x) { return x.second <= l - l2; }) - 1;\n            res = seg[l2].prod(0, t\
-    \ + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
-    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(0, [&](const auto&\
-    \ x) { return x.second <= r - r2; });\n            res = M::op(res, seg[r2].prod(0,\
-    \ t).first[0]);\n        }\n        else {\n            ll t = seg[r2].min_left(mx,\
-    \ [&](const auto& x) { return x.second <= r - r2; }) - 1;\n            res = M::op(res,\
-    \ seg[r2].prod(t + 1, mx + 1).first[1]);\n        }\n        return res;\n   \
-    \ }\n};\n\n/**\n * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
+    \        if (!flag[l]) {\n            t = seg[l].max_right(\n                0,\
+    \ [&](const auto& x) { return x.second <= k - l; });\n        }\n        else\
+    \ {\n            t = seg[l].min_left(mx, [&](const auto& x) {\n              \
+    \  return x.second <= k - l;\n            }) - 1;\n        }\n        return seg[l].get(t).first[0];\n\
+    \    }\n    T prod(int l, int r) {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        T res = M::id();\n        int l2 = bit.min_left(l + 1, [&](int x) { return\
+    \ x == 0; }) - 1;\n        int r2 = bit.min_left(r, [&](int x) { return x == 0;\
+    \ }) - 1;\n        if (l2 == r2) {\n            if (!flag[l2]) {\n           \
+    \     ll tl = seg[l2].max_right(\n                    0, [&](const auto& x) {\
+    \ return x.second <= l - l2; });\n                ll tr = seg[l2].max_right(\n\
+    \                    0, [&](const auto& x) { return x.second <= r - l2; });\n\
+    \                return seg[l2].prod(tl, tr).first[0];\n            }\n      \
+    \      else {\n                ll tl = seg[l2].min_left(\n                   \
+    \ mx, [&](const auto& x) { return x.second <= l - l2; });\n                ll\
+    \ tr = seg[l2].min_left(\n                    mx, [&](const auto& x) { return\
+    \ x.second <= r - l2; });\n                return seg[l2].prod(tr, tl).first[1];\n\
+    \            }\n        }\n        if (!flag[l2]) {\n            ll t = seg[l2].max_right(\n\
+    \                0, [&](const auto& x) { return x.second <= l - l2; });\n    \
+    \        res = seg[l2].prod(t, mx + 1).first[0];\n        }\n        else {\n\
+    \            ll t = seg[l2].min_left(mx, [&](const auto& x) {\n              \
+    \  return x.second <= l - l2;\n            }) - 1;\n            res = seg[l2].prod(0,\
+    \ t + 1).first[1];\n        }\n        res = M::op(res, dat.prod(l2 + 1, r2));\n\
+    \        if (!flag[r2]) {\n            ll t = seg[r2].max_right(\n           \
+    \     0, [&](const auto& x) { return x.second <= r - r2; });\n            res\
+    \ = M::op(res, seg[r2].prod(0, t).first[0]);\n        }\n        else {\n    \
+    \        ll t = seg[r2].min_left(mx, [&](const auto& x) {\n                return\
+    \ x.second <= r - r2;\n            }) - 1;\n            res = M::op(res, seg[r2].prod(t\
+    \ + 1, mx + 1).first[1]);\n        }\n        return res;\n    }\n};\n\n/**\n\
+    \ * @brief RangeSortQuery\n * @docs RangeSortQuery.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -864,7 +874,7 @@ data:
   isVerificationFile: false
   path: data-struct/segment/RangeSortQuery.hpp
   requiredBy: []
-  timestamp: '2024-04-22 13:25:19+09:00'
+  timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp

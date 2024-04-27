@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree.hpp
-    title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+    path: data-struct/2D/Struct2D.hpp
+    title: data-struct/2D/Struct2D.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/FullyIndexableDictionary.hpp
-    title: "FullyIndexableDictionary(\u5B8C\u5099\u8F9E\u66F8)"
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
   - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
@@ -40,60 +40,57 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+    path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+    title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md
-    document_title: WaveletMatrixPointAddRectangleSum.hpp
     links: []
-  bundledCode: "#line 2 \"data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\
-    \n\n#line 2 \"other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
-    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
-    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
-    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
-    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
-    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+  bundledCode: "#line 2 \"data-struct/2D/CumulativeSum2D.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -554,145 +551,115 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/SegmentTree.hpp\"\
-    \n\n#line 5 \"data-struct/segment/SegmentTree.hpp\"\n\ntemplate<class M> class\
-    \ SegmentTree {\nprivate:\n    using T = typename M::value_type;\n    int n, ori;\n\
-    \    std::vector<T> data;\n\npublic:\n    SegmentTree() : SegmentTree(0) {}\n\
-    \    SegmentTree(int n) : SegmentTree(std::vector<T>(n, M::id())) {}\n    SegmentTree(int\
-    \ n, const T& v) : SegmentTree(std::vector<T>(n, v)) {}\n    SegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        n = 1 << bitop::ceil_log2(ori);\n        data.assign(n\
-    \ << 1, M::id());\n        rep (i, ori) data[n + i] = v[i];\n        rrep (i,\
-    \ n, 1) data[i] = M::op(data[i << 1], data[i << 1 ^ 1]);\n    }\n    template<class\
-    \ Upd> void update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\
-    \        k += n;\n        data[k] = upd(data[k]);\n        while (k >>= 1) data[k]\
-    \ = M::op(data[k << 1], data[k << 1 ^ 1]);\n    }\n    void set(int k, T x) {\n\
-    \        update(k, [&](T) -> T { return x; });\n    }\n    void apply(int k, T\
-    \ x) {\n        update(k, [&](T a) -> T { return M::op(a, x); });\n    }\n   \
-    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= ori);\n\
-    \        l += n;\n        r += n;\n        T lsm = M::id(), rsm = M::id();\n \
-    \       while (l < r) {\n            if (l & 1) lsm = M::op(lsm, data[l++]);\n\
-    \            if (r & 1) rsm = M::op(data[--r], rsm);\n            l >>= 1;\n \
-    \           r >>= 1;\n        }\n        return M::op(lsm, rsm);\n    }\n    T\
-    \ all_prod() const { return data[1]; }\n    T get(int k) const { return data[k\
-    \ + n]; }\n    template<class Cond> int max_right(int l, const Cond& cond) const\
-    \ {\n        assert(0 <= l && l <= ori);\n        assert(cond(M::id()));\n   \
-    \     if (l == ori) return ori;\n        l += n;\n        T sm = M::id();\n  \
-    \      do {\n            while ((l & 1) == 0) l >>= 1;\n            if (!cond(M::op(sm,\
-    \ data[l]))) {\n                while (l < n) {\n                    l <<= 1;\n\
-    \                    if (cond(M::op(sm, data[l]))) sm = M::op(sm, data[l++]);\n\
-    \                }\n                return l - n;\n            }\n           \
-    \ sm = M::op(sm, data[l++]);\n        } while ((l & -l) != l);\n        return\
-    \ ori;\n    }\n    template<class Cond> int min_left(int r, const Cond& cond)\
-    \ const {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n        r += n;\n        T sm = M::id();\n   \
-    \     do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1;\n\
-    \            if (!cond(M::op(data[r], sm))) {\n                while (r < n) {\n\
-    \                    r = r << 1 ^ 1;\n                    if (cond(M::op(data[r],\
-    \ sm))) sm = M::op(data[r--], sm);\n                }\n                return\
-    \ r + 1 - n;\n            }\n            sm = M::op(data[r], sm);\n        } while\
-    \ ((r & -r) != r);\n        return 0;\n    }\n};\n\n// verified with test/aoj/DSL/DSL_2_A-RMQ.test.cpp\n\
-    template<class T, int id = -1>\nusing RangeMinimumQuery = SegmentTree<Monoid::Min<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeMaximumQuery = SegmentTree<Monoid::Max<T,\
-    \ id>>;\n\n// verified with test/aoj/DSL/DSL_2_B-RSQ.test.cpp\ntemplate<class\
-    \ T> using RangeSumQuery = SegmentTree<Monoid::Sum<T>>;\n\n/**\n * @brief SegmentTree(\u30BB\
-    \u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/SegmentTree.md\n\
-    \ */\n#line 2 \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\n#line 4\
-    \ \"data-struct/wavelet/FullyIndexableDictionary.hpp\"\n\nclass FullyIndexableDictionary\
-    \ {\nprivate:\n    int n, b;\n    std::vector<unsigned int> bit, sm;\n\npublic:\n\
-    \    FullyIndexableDictionary() = default;\n    FullyIndexableDictionary(int n)\
-    \ : n(n), b((n >> 5) + 1), bit(b), sm(b) {}\n    void set(int i) { bit[i >> 5]\
-    \ |= 1U << (i & 31); }\n    bool get(int i) const { return (bool)((bit[i >> 5]\
-    \ >> (i & 31)) & 1); }\n    bool operator[](int i) const { return get(i); }\n\
-    \    void build() {\n        rep (i, b - 1) sm[i + 1] = sm[i] + popcnt(bit[i]);\n\
-    \    }\n    int rank(int i) const {\n        return sm[i >> 5] + popcnt(bit[i\
-    \ >> 5] & ((1U << (i & 31)) - 1));\n    }\n    int rank(bool x, int i) const {\
-    \ return x ? rank(i) : i - rank(i); }\n    int select(bool x, int i) const {\n\
-    \        int l = 0, r = n;\n        while (r - l > 1) {\n            int m = (l\
-    \ + r) >> 1;\n            if (rank(x, m) <= i) l = m;\n            else r = m;\n\
-    \        }\n        return l;\n    }\n};\n\n/**\n * @brief FullyIndexableDictionary(\u5B8C\
-    \u5099\u8F9E\u66F8)\n * @docs docs/data-struct/wavelet/FullyIndexableDictionary.md\n\
-    \ */\n#line 7 \"data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp\"\n\n\
-    template<class T, class M = Monoid::Sum<ll>, class BIT = SegmentTree<M>>\nclass\
-    \ WaveletMatrixPointAddRectangleSum {\nprivate:\n    using U = typename M::value_type;\n\
-    \    int n, m, h;\n    compressor<std::pair<T, T>> points;\n    compressor<T>\
-    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<BIT> bit;\n\
-    \    std::vector<int> mid;\n\npublic:\n    WaveletMatrixPointAddRectangleSum()\
-    \ = default;\n    void add_point(const T& x, const T& y) {\n        points.emplace_back(x,\
-    \ y);\n        ps.push_back(y);\n    }\n    void build() {\n        points.build();\n\
-    \        ps.build();\n        n = points.size();\n        m = ps.size();\n   \
-    \     h = bitop::ceil_log2(m);\n        std::vector<int> v(n);\n        rep (i,\
-    \ n) v[i] = ps.get(points[i].second);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
-    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
-    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
-    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
-    \            rv[r++] = v[j];\n                }\n                else {\n    \
-    \                lv[l++] = v[j];\n                }\n            }\n         \
-    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
-    \      rep (j, r) v[l + j] = rv[j];\n        }\n        bit.assign(h, BIT(n));\n\
-    \    }\n    void apply(const T& x, const T& y, const U& z) {\n        int k =\
-    \ points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n        rrep\
-    \ (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n\
-    \            else k = dat[i].rank(false, k);\n            bit[i].apply(k, z);\n\
-    \        }\n    }\n    void set(const T& x, const T& y, const U& z) {\n      \
-    \  int k = points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n  \
-    \      rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) +\
-    \ mid[i];\n            else k = dat[i].rank(false, k);\n            bit[i].set(k,\
-    \ z);\n        }\n    }\n\nprivate:\n    U prod(int l, int r, int upper) const\
-    \ {\n        T res = M::id();\n        rrep (i, h) {\n            const int l0\
-    \ = dat[i].rank(false, l);\n            const int r0 = dat[i].rank(false, r);\n\
-    \            if ((upper >> i) & 1) {\n                res = M::op(res, bit[i].prod(l0,\
-    \ r0));\n                l = l - l0 + mid[i];\n                r = r - r0 + mid[i];\n\
-    \            }\n            else {\n                l = l0;\n                r\
-    \ = r0;\n            }\n        }\n        return res;\n    }\n\npublic:\n   \
-    \ U prod(const T& xl, const T& xr, const T& yl, const T& yr) const {\n       \
-    \ int l = points.lower_bound(std::pair<T, T>(xl, infinity<T>::mvalue));\n    \
-    \    int r = points.lower_bound(std::pair<T, T>(xr, infinity<T>::mvalue));\n \
-    \       int y = ps.lower_bound(yl);\n        int z = ps.lower_bound(yr);\n   \
-    \     return M::inv(prod(l, r, z), prod(l, r, y));\n    }\n};\n\n/**\n * @brief\
-    \ WaveletMatrixPointAddRectangleSum.hpp\n * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n\
-    \ */\n"
+    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\n\ntemplate<class M, bool\
+    \ = Monoid::is_monoid<M>::value> class CumulativeSum {\nprivate:\n    using T\
+    \ = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
+    \    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>& v) {\
+    \ init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n#line 2 \"data-struct/2D/Struct2D.hpp\"\
+    \n\n#line 5 \"data-struct/2D/Struct2D.hpp\"\n\nclass Struct2D {\nprivate:\n  \
+    \  int ori, n, h;\n    compressor<ll> psx;\n    std::vector<std::vector<ll>> idx;\n\
+    \npublic:\n    template<class F> void init(F&& f, std::vector<ll> xs, std::vector<ll>\
+    \ ys) {\n        psx.push(xs);\n        psx.build();\n        psx.press(xs);\n\
+    \        ori = psx.size();\n        h = bitop::ceil_log2(ori);\n        n = 1\
+    \ << h;\n        idx.resize(n << 1);\n        rep (i, xs.size()) idx[xs[i] + n].push_back(ys[i]);\n\
+    \        rep (i, ori) {\n            std::sort(all(idx[i + n]));\n           \
+    \ idx[i + n].erase(std::unique(all(idx[i + n])), idx[i + n].end());\n        }\n\
+    \        rrep (i, n, 1) {\n            std::merge(all(idx[i << 1]), all(idx[i\
+    \ << 1 | 1]),\n                       std::back_inserter(idx[i]));\n         \
+    \   idx[i].erase(std::unique(all(idx[i])), idx[i].end());\n        }\n       \
+    \ std::vector<int> sz(n << 1);\n        rep (i, n << 1) sz[i] = idx[i].size();\n\
+    \        f(sz);\n    }\n    template<class F, class M>\n    void init(F&& f, std::vector<ll>\
+    \ xs, std::vector<ll> ys,\n              std::vector<typename M::value_type> v)\
+    \ {\n        psx.push(xs);\n        psx.build();\n        psx.press(xs);\n   \
+    \     ori = psx.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
+    \ h;\n        std::vector<std::vector<std::pair<ll, typename M::value_type>>>\
+    \ tmp(\n            n << 1);\n        rep (i, xs.size()) tmp[xs[i] + n].emplace_back(ys[i],\
+    \ v[i]);\n        rep (i, ori) {\n            std::stable_sort(all(tmp[i + n]),\
+    \ [](const auto& a, const auto& b) {\n                return a.first < b.first;\n\
+    \            });\n            int k = 0;\n            rep (j, 1, tmp[i + n].size())\
+    \ {\n                if (tmp[i + n][k].first == tmp[i + n][j].first) {\n     \
+    \               tmp[i + n][k].second =\n                        M::op(tmp[i +\
+    \ n][k].second, tmp[i + n][j].second);\n                }\n                else\
+    \ {\n                    tmp[i + n][++k] = tmp[i + n][j];\n                }\n\
+    \            }\n            tmp[i + n].resize(k + 1);\n        }\n        rrep\
+    \ (i, n, 1) {\n            tmp[i].reserve(tmp[i << 1].size() + tmp[i << 1 | 1].size());\n\
+    \            std::merge(\n                all(tmp[i << 1]), all(tmp[i << 1 | 1]),\n\
+    \                std::back_inserter(tmp[i]),\n                [](const auto& a,\
+    \ const auto& b) { return a.first < b.first; });\n            int k = 0;\n   \
+    \         rep (j, 1, tmp[i].size()) {\n                if (tmp[i][k].first ==\
+    \ tmp[i][j].first) {\n                    tmp[i][k].second =\n               \
+    \         M::op(tmp[i][k].second, tmp[i][j].second);\n                }\n    \
+    \            else {\n                    tmp[i][++k] = tmp[i][j];\n          \
+    \      }\n            }\n            tmp[i].resize(k + 1);\n        }\n      \
+    \  idx.resize(n << 1);\n        std::vector<std::vector<typename M::value_type>>\
+    \ dat(n << 1);\n        rep (i, n << 1) {\n            idx[i].resize(tmp[i].size());\n\
+    \            dat[i].resize(tmp[i].size());\n            rep (j, tmp[i].size())\
+    \ {\n                idx[i][j] = tmp[i][j].first;\n                dat[i][j] =\
+    \ tmp[i][j].second;\n            }\n        }\n        f(dat);\n    }\n    template<class\
+    \ Upd> void apply(ll x, ll y, Upd&& upd) const {\n        int k = psx.get(x) +\
+    \ n;\n        auto itr = std::lower_bound(all(idx[k]), y);\n        assert(itr\
+    \ != idx[k].end() && *itr == y);\n        upd(k, itr - idx[k].begin());\n    \
+    \    while (k > 1) {\n            k >>= 1;\n            upd(k, std::lower_bound(all(idx[k]),\
+    \ y) - idx[k].begin());\n        }\n    }\n    template<class Upd, class Upd2,\
+    \ class Mrg>\n    void update(ll x, ll y, Upd&& upd, Upd2&& upd2, Mrg&& mrg) const\
+    \ {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
+    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        upd(k, itr -\
+    \ idx[k].begin());\n        while (k > 1) {\n            int l = k ^ 1;\n    \
+    \        auto itr2 = std::lower_bound(all(idx[l]), y);\n            if (itr2 !=\
+    \ idx[l].end() && *itr2 == y) {\n                if (k < l) mrg(l, itr2 - idx[l].begin(),\
+    \ false);\n                else mrg(l, itr2 - idx[l].begin(), true);\n       \
+    \     }\n            k >>= 1;\n            upd2(k, std::lower_bound(all(idx[k]),\
+    \ y) - idx[k].begin());\n        }\n    }\n    template<class Mrg> void prod(ll\
+    \ l, ll r, ll u, ll d, Mrg&& mrg) const {\n        assert(l <= r && u <= d);\n\
+    \        l = psx.lower_bound(l) + n;\n        r = psx.lower_bound(r) + n;\n  \
+    \      while (l != r) {\n            if (l & 1) {\n                int a = std::lower_bound(all(idx[l]),\
+    \ u) - idx[l].begin();\n                int b = std::lower_bound(all(idx[l]),\
+    \ d) - idx[l].begin();\n                mrg(l, a, b, true);\n                ++l;\n\
+    \            }\n            if (r & 1) {\n                --r;\n             \
+    \   int a = std::lower_bound(all(idx[r]), u) - idx[r].begin();\n             \
+    \   int b = std::lower_bound(all(idx[r]), d) - idx[r].begin();\n             \
+    \   mrg(r, a, b, false);\n            }\n            l >>= 1;\n            r >>=\
+    \ 1;\n        }\n    }\n    template<class Mrg> void get(ll x, ll y, Mrg&& mrg)\
+    \ const {\n        int k = psx.get(x) + n;\n        auto itr = std::lower_bound(all(idx[k]),\
+    \ y);\n        assert(itr != idx[k].end() && *itr == y);\n        mrg(k, itr -\
+    \ idx[k].begin());\n    }\n};\n#line 7 \"data-struct/2D/CumulativeSum2D.hpp\"\n\
+    \ntemplate<class M> class CumulativeSum2D {\nprivate:\n    using T = typename\
+    \ M::value_type;\n    int n;\n    std::vector<CumulativeSum<M>> seg;\n    Struct2D\
+    \ str;\n\npublic:\n    CumulativeSum2D(const std::vector<ll>& xs, const std::vector<ll>&\
+    \ ys,\n                    const std::vector<T>& v) {\n        auto f = [&](const\
+    \ auto& dat) {\n            n = dat.size() >> 1;\n            seg.resize(n <<\
+    \ 1);\n            rep (i, 1, n << 1) seg[i] = CumulativeSum<M>(dat[i]);\n   \
+    \     };\n        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T prod(ll\
+    \ l, ll r, ll u, ll d) {\n        T res = M::id();\n        str.prod(l, r, u,\
+    \ d, [&](int k, int a, int b, bool) {\n            res = M::op(res, seg[k].prod(a,\
+    \ b));\n        });\n        return res;\n    }\n\n    T get(ll x, ll y) {\n \
+    \       T res = M::id();\n        str.get(x, y, [&](int k, int a) { res = M::op(res,\
+    \ seg[k].get(a)); });\n        return res;\n    }\n};\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n#include \"../segment/SegmentTree.hpp\"\n#include \"FullyIndexableDictionary.hpp\"\
-    \n\ntemplate<class T, class M = Monoid::Sum<ll>, class BIT = SegmentTree<M>>\n\
-    class WaveletMatrixPointAddRectangleSum {\nprivate:\n    using U = typename M::value_type;\n\
-    \    int n, m, h;\n    compressor<std::pair<T, T>> points;\n    compressor<T>\
-    \ ps;\n    std::vector<FullyIndexableDictionary> dat;\n    std::vector<BIT> bit;\n\
-    \    std::vector<int> mid;\n\npublic:\n    WaveletMatrixPointAddRectangleSum()\
-    \ = default;\n    void add_point(const T& x, const T& y) {\n        points.emplace_back(x,\
-    \ y);\n        ps.push_back(y);\n    }\n    void build() {\n        points.build();\n\
-    \        ps.build();\n        n = points.size();\n        m = ps.size();\n   \
-    \     h = bitop::ceil_log2(m);\n        std::vector<int> v(n);\n        rep (i,\
-    \ n) v[i] = ps.get(points[i].second);\n        dat.assign(h, FullyIndexableDictionary(n));\n\
-    \        mid.resize(h);\n        std::vector<int> lv(n), rv(n);\n        rrep\
-    \ (i, h) {\n            int l = 0, r = 0;\n            rep (j, n) {\n        \
-    \        if ((v[j] >> i) & 1) {\n                    dat[i].set(j);\n        \
-    \            rv[r++] = v[j];\n                }\n                else {\n    \
-    \                lv[l++] = v[j];\n                }\n            }\n         \
-    \   dat[i].build();\n            mid[i] = l;\n            v.swap(lv);\n      \
-    \      rep (j, r) v[l + j] = rv[j];\n        }\n        bit.assign(h, BIT(n));\n\
-    \    }\n    void apply(const T& x, const T& y, const U& z) {\n        int k =\
-    \ points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n        rrep\
-    \ (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) + mid[i];\n\
-    \            else k = dat[i].rank(false, k);\n            bit[i].apply(k, z);\n\
-    \        }\n    }\n    void set(const T& x, const T& y, const U& z) {\n      \
-    \  int k = points.get(std::pair<T, T>(x, y));\n        int v = ps.get(y);\n  \
-    \      rrep (i, h) {\n            if ((v >> i) & 1) k = dat[i].rank(true, k) +\
-    \ mid[i];\n            else k = dat[i].rank(false, k);\n            bit[i].set(k,\
-    \ z);\n        }\n    }\n\nprivate:\n    U prod(int l, int r, int upper) const\
-    \ {\n        T res = M::id();\n        rrep (i, h) {\n            const int l0\
-    \ = dat[i].rank(false, l);\n            const int r0 = dat[i].rank(false, r);\n\
-    \            if ((upper >> i) & 1) {\n                res = M::op(res, bit[i].prod(l0,\
-    \ r0));\n                l = l - l0 + mid[i];\n                r = r - r0 + mid[i];\n\
-    \            }\n            else {\n                l = l0;\n                r\
-    \ = r0;\n            }\n        }\n        return res;\n    }\n\npublic:\n   \
-    \ U prod(const T& xl, const T& xr, const T& yl, const T& yr) const {\n       \
-    \ int l = points.lower_bound(std::pair<T, T>(xl, infinity<T>::mvalue));\n    \
-    \    int r = points.lower_bound(std::pair<T, T>(xr, infinity<T>::mvalue));\n \
-    \       int y = ps.lower_bound(yl);\n        int z = ps.lower_bound(yr);\n   \
-    \     return M::inv(prod(l, r, z), prod(l, r, y));\n    }\n};\n\n/**\n * @brief\
-    \ WaveletMatrixPointAddRectangleSum.hpp\n * @docs docs/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.md\n\
-    \ */\n"
+    \n#include \"../segment/CumulativeSum.hpp\"\n#include \"Struct2D.hpp\"\n\ntemplate<class\
+    \ M> class CumulativeSum2D {\nprivate:\n    using T = typename M::value_type;\n\
+    \    int n;\n    std::vector<CumulativeSum<M>> seg;\n    Struct2D str;\n\npublic:\n\
+    \    CumulativeSum2D(const std::vector<ll>& xs, const std::vector<ll>& ys,\n \
+    \                   const std::vector<T>& v) {\n        auto f = [&](const auto&\
+    \ dat) {\n            n = dat.size() >> 1;\n            seg.resize(n << 1);\n\
+    \            rep (i, 1, n << 1) seg[i] = CumulativeSum<M>(dat[i]);\n        };\n\
+    \        str.init<decltype((f)), M>(f, xs, ys, v);\n    }\n\n    T prod(ll l,\
+    \ ll r, ll u, ll d) {\n        T res = M::id();\n        str.prod(l, r, u, d,\
+    \ [&](int k, int a, int b, bool) {\n            res = M::op(res, seg[k].prod(a,\
+    \ b));\n        });\n        return res;\n    }\n\n    T get(ll x, ll y) {\n \
+    \       T res = M::id();\n        str.get(x, y, [&](int k, int a) { res = M::op(res,\
+    \ seg[k].get(a)); });\n        return res;\n    }\n};\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -704,28 +671,19 @@ data:
   - template/func.hpp
   - template/util.hpp
   - other/monoid.hpp
-  - data-struct/segment/SegmentTree.hpp
-  - data-struct/wavelet/FullyIndexableDictionary.hpp
+  - data-struct/segment/CumulativeSum.hpp
+  - data-struct/2D/Struct2D.hpp
   isVerificationFile: false
-  path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  path: data-struct/2D/CumulativeSum2D.hpp
   requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-documentation_of: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+documentation_of: data-struct/2D/CumulativeSum2D.hpp
 layout: document
 redirect_from:
-- /library/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-- /library/data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp.html
-title: WaveletMatrixPointAddRectangleSum.hpp
+- /library/data-struct/2D/CumulativeSum2D.hpp
+- /library/data-struct/2D/CumulativeSum2D.hpp.html
+title: data-struct/2D/CumulativeSum2D.hpp
 ---
-## 概要
-
-二次元平面上の一点加算矩形取得クエリを扱える。ただし加算する点はあらかじめ決めとかないと動かない。
-
-- `WaveletMatrixPointAddRectangleSum()` : コンストラクタ。 $\Theta(1)$
-- `void add_point(T x, T y)` : 点 $(x, y)$ を追加する。 $\Theta(1)$
-- `void build()` : 構築する。以降 `add_point` を呼び出してはいけない。 $\Theta(n \log n)$
-- `void apply(T x, T y, U z)` : 点 $(x, y)$ に $z$ を加算する。 $\Theta(\log n \log m)$
-- `U prod(T xl, T xr, T yl, T yr)` : $\sum_{xl \leq x < xr \land yl \leq y < yr} (x, y)$ を求める。 $\Theta(\log n \log m)$

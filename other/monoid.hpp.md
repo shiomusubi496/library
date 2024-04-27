@@ -29,6 +29,24 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: data-struct/2D/AreaofUnionofRectangles.hpp
+    title: data-struct/2D/AreaofUnionofRectangles.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/CumulativeSum2D.hpp
+    title: data-struct/2D/CumulativeSum2D.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/DualSegmentTree2D.hpp
+    title: data-struct/2D/DualSegmentTree2D.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/SegmentTree2D.hpp
+    title: SegmentTree2D
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/Struct2D.hpp
+    title: data-struct/2D/Struct2D.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/bst/SplayTree.hpp
     title: data-struct/bst/SplayTree.hpp
@@ -38,9 +56,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/heap/SkewHeap.hpp
     title: SkewHeap
-  - icon: ':heavy_check_mark:'
-    path: data-struct/other/AreaofUnionofRectangles.hpp
-    title: data-struct/other/AreaofUnionofRectangles.hpp
   - icon: ':heavy_check_mark:'
     path: data-struct/other/DequeOperateAggregation.hpp
     title: DequeOperateAggregation
@@ -86,6 +101,9 @@ data:
     path: data-struct/segment/PlusMinusOneRMQ.hpp
     title: PlusMinusOneRMQ($\pm1$RMQ)
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RAQBIT.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeAssignSegmentTree.hpp
     title: RangeAssignSegmentTree
   - icon: ':heavy_check_mark:'
@@ -94,9 +112,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTree.hpp
     title: "SegmentTree(\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree2D.hpp
-    title: SegmentTree2D
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/SegmentTreeBeats.hpp
     title: SegmentTreeBeats!
@@ -110,8 +125,11 @@ data:
     path: data-struct/unionfind/WeightedUnionFind.hpp
     title: "WeightedUnionFind(\u91CD\u307F\u4ED8\u304DUF)"
   - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+    path: data-struct/wavelet/CumulativeSumWM.hpp
     title: WaveletMatrixPointAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/WaveletMatrixStruct.hpp
+    title: data-struct/wavelet/WaveletMatrixStruct.hpp
   - icon: ':heavy_check_mark:'
     path: graph/mst/DirectedMST.hpp
     title: "DirectedMST(\u6700\u5C0F\u6709\u5411\u5168\u57DF\u6728)"
@@ -216,9 +234,6 @@ data:
     path: test/yosupo/convolution/lcm_convolution.test.cpp
     title: test/yosupo/convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-    title: test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
     title: test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,8 +243,8 @@ data:
     path: test/yosupo/data_structure/point_add_range_sum.test.cpp
     title: test/yosupo/data_structure/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+    path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
@@ -264,8 +279,14 @@ data:
     path: test/yosupo/data_structure/range_set_range_composite.test.cpp
     title: test/yosupo/data_structure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/rectangle_sum.test.cpp
+    path: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+    title: test/yosupo/data_structure/rectangle_add_point_get.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+    title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_inversions_query.test.cpp
     title: test/yosupo/data_structure/static_range_inversions_query.test.cpp
@@ -275,6 +296,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
     title: test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
@@ -940,12 +964,18 @@ data:
   - graph/tree/EulerTour.hpp
   - graph/tree/ReRooting.hpp
   - string/RollingHash.hpp
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  - data-struct/wavelet/WaveletMatrixStruct.hpp
+  - data-struct/wavelet/CumulativeSumWM.hpp
   - data-struct/bst/SplayTree.hpp
+  - data-struct/2D/DualSegmentTree2D.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
+  - data-struct/2D/AreaofUnionofRectangles.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/2D/Struct2D.hpp
+  - data-struct/2D/SegmentTree2D.hpp
   - data-struct/heap/SkewHeap.hpp
   - data-struct/heap/LeftistHeap.hpp
   - data-struct/other/SlidingWindowAggregation.hpp
-  - data-struct/other/AreaofUnionofRectangles.hpp
   - data-struct/other/SkipList.hpp
   - data-struct/other/DequeOperateAggregation.hpp
   - data-struct/unionfind/WeightedUnionFind.hpp
@@ -962,10 +992,10 @@ data:
   - data-struct/segment/BinaryIndexedTree.hpp
   - data-struct/segment/LazySegmentTree.hpp
   - data-struct/segment/RangeSortQuery.hpp
+  - data-struct/segment/RAQBIT.hpp
   - data-struct/segment/DualSegmentTree.hpp
   - data-struct/segment/SparseTable.hpp
   - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/SegmentTree2D.hpp
   - data-struct/segment/SegmentTree.hpp
   - math/convolution/BitwiseXorConvolution.hpp
   - math/convolution/BitwiseOrConvolution.hpp
@@ -984,10 +1014,11 @@ data:
   - test/yosupo/data_structure/static_range_sum-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_composite.test.cpp
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-2.test.cpp
   - test/yosupo/data_structure/point_add_range_sum.test.cpp
-  - test/yosupo/data_structure/area_of_union_of_rectangles.test.cpp
+  - test/yosupo/data_structure/rectangle_add_point_get.test.cpp
   - test/yosupo/data_structure/range_affine_point_get.test.cpp
   - test/yosupo/data_structure/staticrmq-SparseTable.test.cpp
   - test/yosupo/data_structure/range_reverse_range_sum.test.cpp
@@ -995,18 +1026,19 @@ data:
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-sqrt.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
   - test/yosupo/data_structure/static_range_inversions_query.test.cpp
   - test/yosupo/data_structure/staticrmq-DisjointSparseTable.test.cpp
   - test/yosupo/data_structure/range_kth_smallest-seg.test.cpp
   - test/yosupo/data_structure/range_chmin_chmax_add_range_sum.test.cpp
   - test/yosupo/data_structure/deque_operate_all_composite.test.cpp
   - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum-HLD.test.cpp
   - test/yosupo/data_structure/range_affine_range_sum-sqrt.test.cpp
   - test/yosupo/data_structure/dynamic_sequence_range_affine_range_sum-SplayTree.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yosupo/data_structure/queue_operate_all_composite.test.cpp

@@ -31,11 +31,32 @@ data:
   - icon: ':heavy_check_mark:'
     path: template/util.hpp
     title: template/util.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/CumulativeSum2D.hpp
+    title: data-struct/2D/CumulativeSum2D.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/RAQBIT.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
+    path: data-struct/wavelet/CumulativeSumWM.hpp
+    title: WaveletMatrixPointAddRectangleSum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+    title: test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
+    title: test/yosupo/data_structure/rectangle_sum-WM.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
     title: test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -548,35 +569,35 @@ data:
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
     \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\nprivate:\n    using T\
-    \ = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
-    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<Monoid::has_inv<M>::value &&\n\
-    \                                     AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
-    \ M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data() const&\
-    \ { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
-    \ }\n};\n\ntemplate<class T>\nusing CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/data-struct/segment/CumulativeSum.md\n\
-    \ */\n"
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class M> class CumulativeSumAnyOperation {\nprivate:\n    using T\
-    \ = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\npublic:\n\
-    \    CumulativeSumAnyOperation() = default;\n    CumulativeSumAnyOperation(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        n = v.size();\n        data.assign(n + 1, M::id());\n        rep (i,\
-    \ n) data[i + 1] = M::op(data[i], v[i]);\n    }\n    template<bool AlwaysTrue\
-    \ = true,\n             typename std::enable_if<Monoid::has_inv<M>::value &&\n\
-    \                                     AlwaysTrue>::type* = nullptr>\n    T prod(int\
-    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
-    \ M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data() const&\
-    \ { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
-    \ }\n};\n\ntemplate<class T>\nusing CumulativeSum = CumulativeSumAnyOperation<Monoid::Sum<T>>;\n\
-    \n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n * @docs docs/data-struct/segment/CumulativeSum.md\n\
-    \ */\n"
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
+    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -590,11 +611,18 @@ data:
   - other/monoid.hpp
   isVerificationFile: false
   path: data-struct/segment/CumulativeSum.hpp
-  requiredBy: []
-  timestamp: '2024-01-20 14:55:31+09:00'
+  requiredBy:
+  - data-struct/wavelet/CumulativeSumWM.hpp
+  - data-struct/2D/CumulativeSum2D.hpp
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  - data-struct/segment/RAQBIT.hpp
+  timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/static_range_sum-CumulativeSum.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-2DCum.test.cpp
+  - test/yosupo/data_structure/rectangle_sum-WM.test.cpp
 documentation_of: data-struct/segment/CumulativeSum.hpp
 layout: document
 redirect_from:

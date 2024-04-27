@@ -33,17 +33,14 @@ data:
     title: template/util.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: data-struct/2D/SegmentTree2D.hpp
+    title: SegmentTree2D
+  - icon: ':heavy_check_mark:'
     path: data-struct/segment/LCARMQ.hpp
     title: LCARMQ
   - icon: ':heavy_check_mark:'
     path: data-struct/segment/RangeSortQuery.hpp
     title: RangeSortQuery
-  - icon: ':heavy_check_mark:'
-    path: data-struct/segment/SegmentTree2D.hpp
-    title: SegmentTree2D
-  - icon: ':heavy_check_mark:'
-    path: data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
-    title: WaveletMatrixPointAddRectangleSum.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree/EulerTour.hpp
     title: "EulerTour(\u30AA\u30A4\u30E9\u30FC\u30C4\u30A2\u30FC)"
@@ -67,17 +64,14 @@ data:
     path: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
     title: test/aoj/GRL/GRL_5_D-EulerTour.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
+    path: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
+    title: test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
     title: test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/rectangle_sum.test.cpp
-    title: test/yosupo/data_structure/rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
     title: test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
@@ -709,10 +703,9 @@ data:
   requiredBy:
   - graph/tree/PMORMQLCA.hpp
   - graph/tree/EulerTour.hpp
-  - data-struct/wavelet/WaveletMatrixPointAddRectangleSum.hpp
+  - data-struct/2D/SegmentTree2D.hpp
   - data-struct/segment/RangeSortQuery.hpp
   - data-struct/segment/LCARMQ.hpp
-  - data-struct/segment/SegmentTree2D.hpp
   timestamp: '2024-01-20 14:55:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -720,9 +713,8 @@ data:
   - test/yosupo/data_structure/point_set_range_sort_range_composite.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite.test.cpp
   - test/yosupo/data_structure/staticrmq-LCARMQ.test.cpp
-  - test/yosupo/data_structure/point_add_rectangle_sum.test.cpp
   - test/yosupo/data_structure/vertex_set_path_composite-HLD.test.cpp
-  - test/yosupo/data_structure/rectangle_sum.test.cpp
+  - test/yosupo/data_structure/point_add_rectangle_sum-2DSegTree.test.cpp
   - test/yosupo/data_structure/vertex_add_subtree_sum.test.cpp
   - test/yosupo/data_structure/vertex_add_path_sum.test.cpp
   - test/yuki/1435_SegTree-BinarySearch.test.cpp

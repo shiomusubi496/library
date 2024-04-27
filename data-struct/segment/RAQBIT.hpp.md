@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: data-struct/segment/BinaryIndexedTree.hpp
+    title: BinaryIndexedTree(FenwickTree, BIT)
+  - icon: ':heavy_check_mark:'
+    path: data-struct/segment/CumulativeSum.hpp
+    title: "CumulativeSum(\u7D2F\u7A4D\u548C)"
+  - icon: ':heavy_check_mark:'
     path: other/monoid.hpp
     title: other/monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -32,87 +38,64 @@ data:
     path: template/util.hpp
     title: template/util.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: data-struct/2D/AreaofUnionofRectangles.hpp
-    title: data-struct/2D/AreaofUnionofRectangles.hpp
   - icon: ':heavy_check_mark:'
-    path: data-struct/segment/RangeAssignSegmentTree.hpp
-    title: RangeAssignSegmentTree
+    path: data-struct/2D/StaticRectangleAddRectangleSum.hpp
+    title: data-struct/2D/StaticRectangleAddRectangleSum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-    title: test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-    title: test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-    title: test/aoj/GRL/GRL_5_E-HLD.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-    title: test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yosupo/data_structure/range_set_range_composite.test.cpp
-    title: test/yosupo/data_structure/range_set_range_composite.test.cpp
+    path: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    _deprecated_at_docs: docs/data-struct/segment/LazySegmentTree.md
-    document_title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
-      )"
+    _deprecated_at_docs: docs/data-struct/segment/BinaryIndexedTree.md
+    document_title: BinaryIndexedTree(FenwickTree, BIT)
     links: []
-  bundledCode: "#line 2 \"data-struct/segment/LazySegmentTree.hpp\"\n\n#line 2 \"\
-    other/template.hpp\"\n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\
-    \n\n#line 4 \"template/macros.hpp\"\n\n#ifndef __COUNTER__\n#define __COUNTER__\
-    \ __LINE__\n#endif\n\n#define OVERLOAD5(a, b, c, d, e, ...) e\n#define REP1_0(b,\
-    \ c) REP1_1(b, c)\n#define REP1_1(b, c)                                      \
-    \                     \\\n    for (ll REP_COUNTER_##c = 0; REP_COUNTER_##c < (ll)(b);\
-    \ ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b, __COUNTER__)\n#define REP2(i,\
-    \ b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i, a, b) for (ll i = (ll)(a);\
-    \ i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll i = (ll)(a); i < (ll)(b);\
-    \ i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__, REP4, REP3, REP2, REP1)(__VA_ARGS__)\n\
-    #define RREP2(i, a) for (ll i = (ll)(a)-1; i >= 0; --i)\n#define RREP3(i, a, b)\
-    \ for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n#define RREP4(i, a, b, c) for (ll\
-    \ i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n#define rrep(...) OVERLOAD5(__VA_ARGS__,\
-    \ RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define REPS2(i, b) for (ll i = 1; i <= (ll)(b);\
-    \ ++i)\n#define REPS3(i, a, b) for (ll i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define\
-    \ REPS4(i, a, b, c) for (ll i = (ll)(a) + 1; i <= (ll)(b); i += (ll)(c))\n#define\
-    \ reps(...) OVERLOAD5(__VA_ARGS__, REPS4, REPS3, REPS2)(__VA_ARGS__)\n#define\
-    \ RREPS2(i, a) for (ll i = (ll)(a); i > 0; --i)\n#define RREPS3(i, a, b) for (ll\
-    \ i = (ll)(a); i > (ll)(b); --i)\n#define RREPS4(i, a, b, c) for (ll i = (ll)(a);\
-    \ i > (ll)(b); i -= (ll)(c))\n#define rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4,\
-    \ RREPS3, RREPS2)(__VA_ARGS__)\n\n#define each_for(...) for (auto&& __VA_ARGS__)\n\
-    #define each_const(...) for (const auto& __VA_ARGS__)\n\n#define all(v) std::begin(v),\
-    \ std::end(v)\n#if __cplusplus >= 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n\
-    #else\n#define rall(v) v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >=\
-    \ 201304L\n#define CONSTEXPR constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if\
-    \ __cpp_if_constexpr >= 201606L\n#define IF_CONSTEXPR constexpr\n#else\n#define\
-    \ IF_CONSTEXPR\n#endif\n\n#define IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\
-    \n\n#line 4 \"template/alias.hpp\"\n\nusing ll = long long;\nusing uint = unsigned\
-    \ int;\nusing ull = unsigned long long;\nusing i128 = __int128_t;\nusing u128\
-    \ = __uint128_t;\nusing ld = long double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class\
-    \ T>\nusing prique = std::priority_queue<T, std::vector<T>, std::greater<T>>;\n\
-    \ntemplate<class T> struct infinity {\n    static constexpr T value = std::numeric_limits<T>::max()\
-    \ / 2;\n    static constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n\
-    \    static constexpr T max = std::numeric_limits<T>::max();\n    static constexpr\
-    \ T min = std::numeric_limits<T>::lowest();\n};\n\n#if __cplusplus <= 201402L\n\
-    template<class T> constexpr T infinity<T>::value;\ntemplate<class T> constexpr\
-    \ T infinity<T>::mvalue;\ntemplate<class T> constexpr T infinity<T>::max;\ntemplate<class\
-    \ T> constexpr T infinity<T>::min;\n#endif\n\n#if __cpp_variable_templates >=\
-    \ 201304L\ntemplate<class T> constexpr T INF = infinity<T>::value;\n#endif\n\n\
-    constexpr ll inf = infinity<ll>::value;\nconstexpr ld EPS = 1e-8;\nconstexpr ld\
-    \ PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\n\n#line\
-    \ 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct function_traits_impl\
-    \ {\n    using result_type = T;\n    template<std::size_t idx>\n    using argument_type\
-    \ =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n  \
-    \  using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
+  bundledCode: "#line 2 \"data-struct/segment/RAQBIT.hpp\"\n\n#line 2 \"other/template.hpp\"\
+    \n\n#include <bits/stdc++.h>\n#line 2 \"template/macros.hpp\"\n\n#line 4 \"template/macros.hpp\"\
+    \n\n#ifndef __COUNTER__\n#define __COUNTER__ __LINE__\n#endif\n\n#define OVERLOAD5(a,\
+    \ b, c, d, e, ...) e\n#define REP1_0(b, c) REP1_1(b, c)\n#define REP1_1(b, c)\
+    \                                                           \\\n    for (ll REP_COUNTER_##c\
+    \ = 0; REP_COUNTER_##c < (ll)(b); ++REP_COUNTER_##c)\n#define REP1(b) REP1_0(b,\
+    \ __COUNTER__)\n#define REP2(i, b) for (ll i = 0; i < (ll)(b); ++i)\n#define REP3(i,\
+    \ a, b) for (ll i = (ll)(a); i < (ll)(b); ++i)\n#define REP4(i, a, b, c) for (ll\
+    \ i = (ll)(a); i < (ll)(b); i += (ll)(c))\n#define rep(...) OVERLOAD5(__VA_ARGS__,\
+    \ REP4, REP3, REP2, REP1)(__VA_ARGS__)\n#define RREP2(i, a) for (ll i = (ll)(a)-1;\
+    \ i >= 0; --i)\n#define RREP3(i, a, b) for (ll i = (ll)(a)-1; i >= (ll)(b); --i)\n\
+    #define RREP4(i, a, b, c) for (ll i = (ll)(a)-1; i >= (ll)(b); i -= (ll)(c))\n\
+    #define rrep(...) OVERLOAD5(__VA_ARGS__, RREP4, RREP3, RREP2)(__VA_ARGS__)\n#define\
+    \ REPS2(i, b) for (ll i = 1; i <= (ll)(b); ++i)\n#define REPS3(i, a, b) for (ll\
+    \ i = (ll)(a) + 1; i <= (ll)(b); ++i)\n#define REPS4(i, a, b, c) for (ll i = (ll)(a)\
+    \ + 1; i <= (ll)(b); i += (ll)(c))\n#define reps(...) OVERLOAD5(__VA_ARGS__, REPS4,\
+    \ REPS3, REPS2)(__VA_ARGS__)\n#define RREPS2(i, a) for (ll i = (ll)(a); i > 0;\
+    \ --i)\n#define RREPS3(i, a, b) for (ll i = (ll)(a); i > (ll)(b); --i)\n#define\
+    \ RREPS4(i, a, b, c) for (ll i = (ll)(a); i > (ll)(b); i -= (ll)(c))\n#define\
+    \ rreps(...) OVERLOAD5(__VA_ARGS__, RREPS4, RREPS3, RREPS2)(__VA_ARGS__)\n\n#define\
+    \ each_for(...) for (auto&& __VA_ARGS__)\n#define each_const(...) for (const auto&\
+    \ __VA_ARGS__)\n\n#define all(v) std::begin(v), std::end(v)\n#if __cplusplus >=\
+    \ 201402L\n#define rall(v) std::rbegin(v), std::rend(v)\n#else\n#define rall(v)\
+    \ v.rbegin(), v.rend()\n#endif\n\n#if __cpp_constexpr >= 201304L\n#define CONSTEXPR\
+    \ constexpr\n#else\n#define CONSTEXPR\n#endif\n\n#if __cpp_if_constexpr >= 201606L\n\
+    #define IF_CONSTEXPR constexpr\n#else\n#define IF_CONSTEXPR\n#endif\n\n#define\
+    \ IO_BUFFER_SIZE 2048\n#line 2 \"template/alias.hpp\"\n\n#line 4 \"template/alias.hpp\"\
+    \n\nusing ll = long long;\nusing uint = unsigned int;\nusing ull = unsigned long\
+    \ long;\nusing i128 = __int128_t;\nusing u128 = __uint128_t;\nusing ld = long\
+    \ double;\nusing PLL = std::pair<ll, ll>;\ntemplate<class T>\nusing prique = std::priority_queue<T,\
+    \ std::vector<T>, std::greater<T>>;\n\ntemplate<class T> struct infinity {\n \
+    \   static constexpr T value = std::numeric_limits<T>::max() / 2;\n    static\
+    \ constexpr T mvalue = std::numeric_limits<T>::lowest() / 2;\n    static constexpr\
+    \ T max = std::numeric_limits<T>::max();\n    static constexpr T min = std::numeric_limits<T>::lowest();\n\
+    };\n\n#if __cplusplus <= 201402L\ntemplate<class T> constexpr T infinity<T>::value;\n\
+    template<class T> constexpr T infinity<T>::mvalue;\ntemplate<class T> constexpr\
+    \ T infinity<T>::max;\ntemplate<class T> constexpr T infinity<T>::min;\n#endif\n\
+    \n#if __cpp_variable_templates >= 201304L\ntemplate<class T> constexpr T INF =\
+    \ infinity<T>::value;\n#endif\n\nconstexpr ll inf = infinity<ll>::value;\nconstexpr\
+    \ ld EPS = 1e-8;\nconstexpr ld PI = 3.1415926535897932384626;\n#line 2 \"template/type_traits.hpp\"\
+    \n\n#line 5 \"template/type_traits.hpp\"\n\ntemplate<class T, class... Args> struct\
+    \ function_traits_impl {\n    using result_type = T;\n    template<std::size_t\
+    \ idx>\n    using argument_type =\n        typename std::tuple_element<idx, std::tuple<Args...>>::type;\n\
+    \    using argument_tuple = std::tuple<Args...>;\n    static constexpr std::size_t\
     \ arg_size() { return sizeof...(Args); }\n};\n\ntemplate<class> struct function_traits_helper;\n\
     \ntemplate<class Res, class Tp, class... Args>\nstruct function_traits_helper<Res\
     \ (Tp::*)(Args...)> {\n    using type = function_traits_impl<Res, Args...>;\n\
@@ -573,192 +556,97 @@ data:
     \ not defined\");\n        return M::get_inv(a);\n    }\n};\n\ntemplate<class\
     \ E_> struct MakeAction {\n    using M = E_;\n    using E = E_;\n    using T =\
     \ typename E_::value_type;\n    static T op(const T& a, const T& b) { return E_::op(b,\
-    \ a); }\n};\n\n} // namespace Monoid\n#line 5 \"data-struct/segment/LazySegmentTree.hpp\"\
-    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
-    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
-    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
-    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
-    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
-    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
+    \ a); }\n};\n\n} // namespace Monoid\n#line 2 \"data-struct/segment/BinaryIndexedTree.hpp\"\
+    \n\n#line 5 \"data-struct/segment/BinaryIndexedTree.hpp\"\n\ntemplate<class M,\
+    \ bool = Monoid::is_monoid<M>::value> class BinaryIndexedTree {\nprivate:\n  \
+    \  using T = typename M::value_type;\n    int n;\n    std::vector<T> data;\n\n\
+    public:\n    BinaryIndexedTree() : BinaryIndexedTree(0) {}\n    BinaryIndexedTree(int\
+    \ n_) { init(n_); }\n    void init(int n_) {\n        n = n_;\n        data.assign(n\
+    \ + 1, M::id());\n    }\n    void apply(int k, T x) {\n        assert(0 <= k &&\
+    \ k < n);\n        ++k;\n        while (k <= n) {\n            data[k] = M::op(data[k],\
+    \ x);\n            k += k & -k;\n        }\n    }\n    T prod(int k) const {\n\
+    \        assert(0 <= k && k <= n);\n        T res = M::id();\n        while (k)\
+    \ {\n            res = M::op(res, data[k]);\n            k -= k & -k;\n      \
+    \  }\n        return res;\n    }\n    template<bool AlwaysTrue = true,\n     \
+    \        typename std::enable_if<Monoid::has_inv<M>::value &&\n              \
+    \                       AlwaysTrue>::type* = nullptr>\n    T prod(int l, int r)\
+    \ const {\n        assert(l <= r);\n        return M::inv(prod(r), prod(l));\n\
+    \    }\n    T get(int k) const { return prod(k, k + 1); }\n    void set(int k,\
+    \ T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class T>\nclass BinaryIndexedTree<T,\
+    \ false> : public BinaryIndexedTree<Monoid::Sum<T>> {\nprivate:\n    using Base\
+    \ = BinaryIndexedTree<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n   \
+    \ void add(int k, T x) { this->apply(k, x); }\n    T sum(int k) const { return\
+    \ this->prod(k); }\n    T sum(int l, int r) const { return this->prod(l, r); }\n\
+    };\n\n/**\n * @brief BinaryIndexedTree(FenwickTree, BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n\
+    \ */\n#line 2 \"data-struct/segment/CumulativeSum.hpp\"\n\n#line 5 \"data-struct/segment/CumulativeSum.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class CumulativeSum\
+    \ {\nprivate:\n    using T = typename M::value_type;\n    int n;\n    std::vector<T>\
+    \ data;\n\npublic:\n    CumulativeSum() = default;\n    CumulativeSum(const std::vector<T>&\
+    \ v) { init(v); }\n    void init(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        data.assign(n + 1, M::id());\n        rep (i, n) data[i + 1] = M::op(data[i],\
+    \ v[i]);\n    }\n    template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_inv<M>::value\
     \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
-    \ = Aop(x, data[k], d);\n        if (k < n) {\n            if (lazyflag[k]) {\n\
-    \                lazy[k] = E::op(lazy[k], x);\n            }\n            else\
-    \ {\n                lazy[k] = x;\n                lazyflag[k] = true;\n     \
-    \       }\n        }\n    }\n    void eval(int k, int d) {\n        if (lazyflag[k])\
-    \ {\n            all_apply(k << 1, lazy[k], d >> 1);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k], d >> 1);\n            lazyflag[k] = false;\n        }\n \
-    \   }\n    void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\
-    \ }\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
-    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    LazySegmentTree(int\
-    \ n, const T& v)\n        : LazySegmentTree(std::vector<T>(n, v)) {}\n    LazySegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
-    \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
-    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
-    \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
-    \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
-    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
-    \ r) return M::id();\n\n        l += n, r += n;\n        rreps (i, h) {\n    \
-    \        bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i,\
-    \ 1 << i), seen = true;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
-    \ i, 1 << i), seen = true;\n            if (!seen) break;\n        }\n\n     \
-    \   T lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if\
-    \ (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
-    \ rsm);\n            l >>= 1, r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
-    \ n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        return data[k];\n  \
-    \  }\n    T all_prod() const { return data[1]; }\n    template<class Upd> void\
-    \ update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n    \
-    \    k += n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        data[k] = upd(data[k]);\n\
-    \        reps (i, h) calc(k >> i);\n    }\n    void set(int k, const T& x) {\n\
-    \        update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(int\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
-    \ });\n    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <=\
-    \ l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n, r\
-    \ += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
-    \ >> i) << i) != l) eval(l >> i, 1 << i), lst = i;\n            if (((r >> i)\
-    \ << i) != r) eval((r - 1) >> i, 1 << i), lst = i;\n            if (lst != i)\
-    \ break;\n        }\n\n        for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>=\
-    \ 1, r2 >>= 1, d <<= 1) {\n            if (l2 & 1) all_apply(l2++, x, d);\n  \
-    \          if (r2 & 1) all_apply(--r2, x, d);\n        }\n\n        rep (i, lst,\
-    \ h + 1) {\n            if (((l >> i) << i) != l) calc(l >> i);\n            if\
-    \ (((r >> i) << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class\
-    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
-    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
-    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
-    \ >> i, 1 << i);\n            else break;\n        }\n\n        T sm = M::id();\n\
-    \        int d = 1;\n        do {\n            while ((l & 1) == 0) l >>= 1, d\
-    \ <<= 1;\n            if (!cond(M::op(sm, data[l]))) {\n                while\
-    \ (l < n) {\n                    eval(l, d);\n                    l <<= 1;\n \
-    \                   d >>= 1;\n                    if (cond(M::op(sm, data[l])))\
-    \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
-    \            }\n            sm = M::op(sm, data[l++]);\n        } while ((l &\
-    \ -l) != l);\n        return ori;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n\n        r += n;\n        rreps (i, h) {\n  \
-    \          if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i);\n           \
-    \ else break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n    \
-    \    do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1, d <<=\
-    \ 1;\n            if (!cond(M::op(data[r], sm))) {\n                while (r <\
-    \ n) {\n                    eval(r, d);\n                    r = r << 1 ^ 1;\n\
-    \                    d >>= 1;\n                    if (cond(M::op(data[r], sm)))\
-    \ sm = M::op(data[r--], sm);\n                }\n                return r + 1\
-    \ - n;\n            }\n            sm = M::op(data[r], sm);\n        } while ((r\
-    \ & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class T, int id = -1>\n\
-    using RangeUpdateQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::AssignMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::AssignMax<T, id>>;\n\ntemplate<class T>\nusing\
-    \ RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\ntemplate<class\
-    \ T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMaximumQuery\
-    \ = LazySegmentTree<Monoid::AddMax<T, id>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery\
-    \ = LazySegmentTree<Monoid::AddSum<T>>;\n\ntemplate<class T, int id = -1>\nusing\
-    \ RangeChminQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChminMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChminQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChminMax<T, id>>;\n\ntemplate<class T, int id\
-    \ = -1>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChmaxQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, id>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
-    \ */\n"
+    \ T prod(int l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n\
+    \        return M::inv(data[r], data[l]);\n    }\n    const std::vector<T>& get_data()\
+    \ const& { return data; }\n    std::vector<T> get_data() && { return std::move(data);\
+    \ }\n};\n\ntemplate<class T>\nclass CumulativeSum<T, false> : public CumulativeSum<Monoid::Sum<T>>\
+    \ {\nprivate:\n    using Base = CumulativeSum<Monoid::Sum<T>>;\n\npublic:\n  \
+    \  using Base::Base;\n};\n\n/**\n * @brief CumulativeSum(\u7D2F\u7A4D\u548C)\n\
+    \ * @docs docs/data-struct/segment/CumulativeSum.md\n */\n#line 7 \"data-struct/segment/RAQBIT.hpp\"\
+    \n\ntemplate<class M, bool = Monoid::is_monoid<M>::value> class RAQBIT {\nprivate:\n\
+    \    using T = typename M::value_type;\n    int n;\n    BinaryIndexedTree<M> bit;\n\
+    \npublic:\n    RAQBIT(int n_) : n(n_), bit(n_) {}\n    void apply(int l, int r,\
+    \ T x) {\n        assert(0 <= l && l <= r && r <= n);\n        bit.apply(l, x);\n\
+    \        if (r != n) bit.apply(r, M::get_inv(x));\n    }\n    void apply(int k,\
+    \ T x) { apply(k, k + 1, x); }\n    T get(int k) const { return bit.prod(k); }\n\
+    \    void set(int k, T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class\
+    \ T> class RAQBIT<T, false> : public RAQBIT<Monoid::Sum<T>> {\nprivate:\n    using\
+    \ Base = RAQBIT<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n    void add(int\
+    \ l, int r, T x) { this->apply(l, r, x); }\n    void add(int k, T x) { this->apply(k,\
+    \ x); }\n    T sum(int k) const { return this->get(k); }\n};\n\n\ntemplate<class\
+    \ T> class RAQRSQBIT {\nprivate:\n    int n;\n    BinaryIndexedTree<T> bit1, bit2;\n\
+    \    CumulativeSum<T> cs;\n\npublic:\n    RAQRSQBIT(int n_) : n(n_), bit1(n),\
+    \ bit2(n), cs(std::vector<T>(n, 1)) {}\n    RAQRSQBIT(const std::vector<T>& v)\
+    \ : n(v.size()), bit1(n), bit2(n), cs(v) {}\n    void apply(int l, int r, T x)\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        bit1.apply(l, x);\n\
+    \        bit2.apply(l, -x * cs.prod(0, l));\n        if (r != n) {\n         \
+    \   bit1.apply(r, -x);\n            bit2.apply(r, x * cs.prod(0, r));\n      \
+    \  }\n    }\n    void apply(int k, T x) { apply(k, k + 1, x); }\n    T prod(int\
+    \ k) const { return bit1.prod(k) * cs.prod(0, k) + bit2.prod(k); }\n    T prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
+    \ prod(r) - prod(l);\n    }\n    T get(int k) const { return prod(k, k + 1); }\n\
+    \    void set(int k, T x) { apply(k, x - get(k)); }\n\n    void add(int l, int\
+    \ r, T x) { apply(l, r, x); }\n    void add(int k, T x) { apply(k, x); }\n   \
+    \ T sum(int k) const { return get(k); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n */\n"
   code: "#pragma once\n\n#include \"../../other/template.hpp\"\n#include \"../../other/monoid.hpp\"\
-    \n\ntemplate<class A> class LazySegmentTree {\n    static_assert(Monoid::is_action<A>::value,\
-    \ \"A must be action\");\n\nprivate:\n    using M = typename A::M;\n    using\
-    \ E = typename A::E;\n    using T = typename M::value_type;\n    using U = typename\
-    \ E::value_type;\n    int h, n, ori;\n    std::vector<T> data;\n    std::vector<U>\
-    \ lazy;\n    std::vector<bool> lazyflag;\n\n    template<bool AlwaysTrue = true,\n\
-    \             typename std::enable_if<!Monoid::has_mul_op<A>::value &&\n     \
-    \                                AlwaysTrue>::type* = nullptr>\n    static inline\
-    \ T Aop(const U& a, const T& b, int) {\n        return A::op(a, b);\n    }\n \
-    \   template<bool AlwaysTrue = true,\n             typename std::enable_if<Monoid::has_mul_op<A>::value\
-    \ &&\n                                     AlwaysTrue>::type* = nullptr>\n   \
-    \ static inline T Aop(const U& a, const T& b, int c) {\n        return A::mul_op(a,\
-    \ c, b);\n    }\n\n    void all_apply(int k, const U& x, int d) {\n        data[k]\
-    \ = Aop(x, data[k], d);\n        if (k < n) {\n            if (lazyflag[k]) {\n\
-    \                lazy[k] = E::op(lazy[k], x);\n            }\n            else\
-    \ {\n                lazy[k] = x;\n                lazyflag[k] = true;\n     \
-    \       }\n        }\n    }\n    void eval(int k, int d) {\n        if (lazyflag[k])\
-    \ {\n            all_apply(k << 1, lazy[k], d >> 1);\n            all_apply(k\
-    \ << 1 ^ 1, lazy[k], d >> 1);\n            lazyflag[k] = false;\n        }\n \
-    \   }\n    void calc(int k) { data[k] = M::op(data[k << 1], data[k << 1 ^ 1]);\
-    \ }\n\npublic:\n    LazySegmentTree() : LazySegmentTree(0) {}\n    LazySegmentTree(int\
-    \ n) : LazySegmentTree(std::vector<T>(n, M::id())) {}\n    LazySegmentTree(int\
-    \ n, const T& v)\n        : LazySegmentTree(std::vector<T>(n, v)) {}\n    LazySegmentTree(const\
-    \ std::vector<T>& v) { init(v); }\n    void init(const std::vector<T>& v) {\n\
-    \        ori = v.size();\n        h = bitop::ceil_log2(ori);\n        n = 1 <<\
-    \ h;\n        data.assign(n << 1, M::id());\n        rep (i, ori) data[n + i]\
-    \ = v[i];\n        rrep (i, n, 1) calc(i);\n        lazy.resize(n);\n        lazyflag.assign(n,\
-    \ false);\n    }\n    void eval_all() {\n        rep (i, h) {\n            rep\
-    \ (j, 1 << i) eval((1 << i) + j, 1 << (h - i));\n        }\n    }\n    T prod(int\
-    \ l, int r) {\n        assert(0 <= l && l <= r && r <= ori);\n        if (l ==\
-    \ r) return M::id();\n\n        l += n, r += n;\n        rreps (i, h) {\n    \
-    \        bool seen = false;\n            if (((l >> i) << i) != l) eval(l >> i,\
-    \ 1 << i), seen = true;\n            if (((r >> i) << i) != r) eval((r - 1) >>\
-    \ i, 1 << i), seen = true;\n            if (!seen) break;\n        }\n\n     \
-    \   T lsm = M::id(), rsm = M::id();\n        while (l != r) {\n            if\
-    \ (l & 1) lsm = M::op(lsm, data[l++]);\n            if (r & 1) rsm = M::op(data[--r],\
-    \ rsm);\n            l >>= 1, r >>= 1;\n        }\n        return M::op(lsm, rsm);\n\
-    \    }\n    T get(int k) {\n        assert(0 <= k && k < ori);\n\n        k +=\
-    \ n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        return data[k];\n  \
-    \  }\n    T all_prod() const { return data[1]; }\n    template<class Upd> void\
-    \ update(int k, const Upd& upd) {\n        assert(0 <= k && k < ori);\n\n    \
-    \    k += n;\n        rreps (i, h) eval(k >> i, 1 << i);\n        data[k] = upd(data[k]);\n\
-    \        reps (i, h) calc(k >> i);\n    }\n    void set(int k, const T& x) {\n\
-    \        update(k, [&](const T&) -> T { return x; });\n    }\n    void apply(int\
-    \ k, const U& x) {\n        update(k, [&](const T& a) -> T { return A::op(x, a);\
-    \ });\n    }\n    void apply(int l, int r, const U& x) {\n        assert(0 <=\
-    \ l && l <= r && r <= ori);\n        if (l == r) return;\n\n        l += n, r\
-    \ += n;\n        int lst = h + 1;\n        rreps (i, h) {\n            if (((l\
-    \ >> i) << i) != l) eval(l >> i, 1 << i), lst = i;\n            if (((r >> i)\
-    \ << i) != r) eval((r - 1) >> i, 1 << i), lst = i;\n            if (lst != i)\
-    \ break;\n        }\n\n        for (int l2 = l, r2 = r, d = 1; l2 != r2; l2 >>=\
-    \ 1, r2 >>= 1, d <<= 1) {\n            if (l2 & 1) all_apply(l2++, x, d);\n  \
-    \          if (r2 & 1) all_apply(--r2, x, d);\n        }\n\n        rep (i, lst,\
-    \ h + 1) {\n            if (((l >> i) << i) != l) calc(l >> i);\n            if\
-    \ (((r >> i) << i) != r) calc((r - 1) >> i);\n        }\n    }\n    template<class\
-    \ C> int max_right(int l, const C& cond) {\n        assert(0 <= l && l <= ori);\n\
-    \        assert(cond(M::id()));\n        if (l == ori) return ori;\n\n       \
-    \ l += n;\n        rreps (i, h) {\n            if (((l >> i) << i) != l) eval(l\
-    \ >> i, 1 << i);\n            else break;\n        }\n\n        T sm = M::id();\n\
-    \        int d = 1;\n        do {\n            while ((l & 1) == 0) l >>= 1, d\
-    \ <<= 1;\n            if (!cond(M::op(sm, data[l]))) {\n                while\
-    \ (l < n) {\n                    eval(l, d);\n                    l <<= 1;\n \
-    \                   d >>= 1;\n                    if (cond(M::op(sm, data[l])))\
-    \ sm = M::op(sm, data[l++]);\n                }\n                return l - n;\n\
-    \            }\n            sm = M::op(sm, data[l++]);\n        } while ((l &\
-    \ -l) != l);\n        return ori;\n    }\n    template<class C> int min_left(int\
-    \ r, const C& cond) {\n        assert(0 <= r && r <= ori);\n        assert(cond(M::id()));\n\
-    \        if (r == 0) return 0;\n\n        r += n;\n        rreps (i, h) {\n  \
-    \          if (((r >> i) << i) != r) eval((r - 1) >> i, 1 << i);\n           \
-    \ else break;\n        }\n\n        T sm = M::id();\n        int d = 1;\n    \
-    \    do {\n            --r;\n            while ((r & 1) && r > 1) r >>= 1, d <<=\
-    \ 1;\n            if (!cond(M::op(data[r], sm))) {\n                while (r <\
-    \ n) {\n                    eval(r, d);\n                    r = r << 1 ^ 1;\n\
-    \                    d >>= 1;\n                    if (cond(M::op(data[r], sm)))\
-    \ sm = M::op(data[r--], sm);\n                }\n                return r + 1\
-    \ - n;\n            }\n            sm = M::op(data[r], sm);\n        } while ((r\
-    \ & -r) != r);\n        return 0;\n    }\n};\n\ntemplate<class T, int id = -1>\n\
-    using RangeUpdateQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::AssignMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeUpdateQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::AssignMax<T, id>>;\n\ntemplate<class T>\nusing\
-    \ RangeUpdateQueryRangeSumQuery = LazySegmentTree<Monoid::AssignSum<T>>;\n\ntemplate<class\
-    \ T, int id = -1>\nusing RangeAddQueryRangeMinimumQuery = LazySegmentTree<Monoid::AddMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeAddQueryRangeMaximumQuery\
-    \ = LazySegmentTree<Monoid::AddMax<T, id>>;\n\ntemplate<class T>\nusing RangeAddQueryRangeSumQuery\
-    \ = LazySegmentTree<Monoid::AddSum<T>>;\n\ntemplate<class T, int id = -1>\nusing\
-    \ RangeChminQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChminMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChminQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChminMax<T, id>>;\n\ntemplate<class T, int id\
-    \ = -1>\nusing RangeChmaxQueryRangeMinimumQuery =\n    LazySegmentTree<Monoid::ChmaxMin<T,\
-    \ id>>;\n\ntemplate<class T, int id = -1>\nusing RangeChmaxQueryRangeMaximumQuery\
-    \ =\n    LazySegmentTree<Monoid::ChmaxMax<T, id>>;\n\n/**\n * @brief LazySegmentTree(\u9045\
-    \u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)\n * @docs docs/data-struct/segment/LazySegmentTree.md\n\
-    \ */\n"
+    \n#include \"BinaryIndexedTree.hpp\"\n#include \"CumulativeSum.hpp\"\n\ntemplate<class\
+    \ M, bool = Monoid::is_monoid<M>::value> class RAQBIT {\nprivate:\n    using T\
+    \ = typename M::value_type;\n    int n;\n    BinaryIndexedTree<M> bit;\n\npublic:\n\
+    \    RAQBIT(int n_) : n(n_), bit(n_) {}\n    void apply(int l, int r, T x) {\n\
+    \        assert(0 <= l && l <= r && r <= n);\n        bit.apply(l, x);\n     \
+    \   if (r != n) bit.apply(r, M::get_inv(x));\n    }\n    void apply(int k, T x)\
+    \ { apply(k, k + 1, x); }\n    T get(int k) const { return bit.prod(k); }\n  \
+    \  void set(int k, T x) { apply(k, M::inv(x, get(k))); }\n};\n\ntemplate<class\
+    \ T> class RAQBIT<T, false> : public RAQBIT<Monoid::Sum<T>> {\nprivate:\n    using\
+    \ Base = RAQBIT<Monoid::Sum<T>>;\n\npublic:\n    using Base::Base;\n    void add(int\
+    \ l, int r, T x) { this->apply(l, r, x); }\n    void add(int k, T x) { this->apply(k,\
+    \ x); }\n    T sum(int k) const { return this->get(k); }\n};\n\n\ntemplate<class\
+    \ T> class RAQRSQBIT {\nprivate:\n    int n;\n    BinaryIndexedTree<T> bit1, bit2;\n\
+    \    CumulativeSum<T> cs;\n\npublic:\n    RAQRSQBIT(int n_) : n(n_), bit1(n),\
+    \ bit2(n), cs(std::vector<T>(n, 1)) {}\n    RAQRSQBIT(const std::vector<T>& v)\
+    \ : n(v.size()), bit1(n), bit2(n), cs(v) {}\n    void apply(int l, int r, T x)\
+    \ {\n        assert(0 <= l && l <= r && r <= n);\n        bit1.apply(l, x);\n\
+    \        bit2.apply(l, -x * cs.prod(0, l));\n        if (r != n) {\n         \
+    \   bit1.apply(r, -x);\n            bit2.apply(r, x * cs.prod(0, r));\n      \
+    \  }\n    }\n    void apply(int k, T x) { apply(k, k + 1, x); }\n    T prod(int\
+    \ k) const { return bit1.prod(k) * cs.prod(0, k) + bit2.prod(k); }\n    T prod(int\
+    \ l, int r) const {\n        assert(0 <= l && l <= r && r <= n);\n        return\
+    \ prod(r) - prod(l);\n    }\n    T get(int k) const { return prod(k, k + 1); }\n\
+    \    void set(int k, T x) { apply(k, x - get(k)); }\n\n    void add(int l, int\
+    \ r, T x) { apply(l, r, x); }\n    void add(int k, T x) { apply(k, x); }\n   \
+    \ T sum(int k) const { return get(k); }\n};\n\n/**\n * @brief BinaryIndexedTree(FenwickTree,\
+    \ BIT)\n * @docs docs/data-struct/segment/BinaryIndexedTree.md\n */\n"
   dependsOn:
   - other/template.hpp
   - template/macros.hpp
@@ -770,69 +658,34 @@ data:
   - template/func.hpp
   - template/util.hpp
   - other/monoid.hpp
+  - data-struct/segment/BinaryIndexedTree.hpp
+  - data-struct/segment/CumulativeSum.hpp
   isVerificationFile: false
-  path: data-struct/segment/LazySegmentTree.hpp
+  path: data-struct/segment/RAQBIT.hpp
   requiredBy:
-  - data-struct/2D/AreaofUnionofRectangles.hpp
-  - data-struct/segment/RangeAssignSegmentTree.hpp
-  timestamp: '2024-04-18 15:05:11+09:00'
+  - data-struct/2D/StaticRectangleAddRectangleSum.hpp
+  timestamp: '2024-04-27 18:04:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo/data_structure/range_affine_range_sum.test.cpp
-  - test/yosupo/data_structure/range_set_range_composite.test.cpp
-  - test/aoj/DSL/DSL_2_H-RAQRMQ.test.cpp
-  - test/aoj/DSL/DSL_2_I-RUQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_G-RAQRSQ.test.cpp
-  - test/aoj/DSL/DSL_2_F-RUQRMQ.test.cpp
-  - test/aoj/GRL/GRL_5_E-HLD.test.cpp
-documentation_of: data-struct/segment/LazySegmentTree.hpp
+  - test/yosupo/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+documentation_of: data-struct/segment/RAQBIT.hpp
 layout: document
 redirect_from:
-- /library/data-struct/segment/LazySegmentTree.hpp
-- /library/data-struct/segment/LazySegmentTree.hpp.html
-title: "LazySegmentTree(\u9045\u5EF6\u30BB\u30B0\u30E1\u30F3\u30C8\u6728)"
+- /library/data-struct/segment/RAQBIT.hpp
+- /library/data-struct/segment/RAQBIT.hpp.html
+title: BinaryIndexedTree(FenwickTree, BIT)
 ---
 ## 概要
 
-準同型な作用付きモノイドを扱える。
+可換モノイドを扱う。 min/max などが扱える。
 
-分配則は成り立たないが、任意の $f \in U$ と $k \in \mathbb N$ に対して、ある $g_{f, k} \in U$ が存在して、どのような $x_1, x_2, \ldots, x_k \in T$ に対しても $g_{f, k}(x_1 \cdot x_2 \cdot \cdots \cdot x_k) = f(x_1) \cdot f(x_2) \cdot \cdots \cdot f(x_k)$ となり、かつ $f, k$ から $g_{f, k}$ を効率よく計算できるときは、 `mul_op` を定義することで使える。
+- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
+- `void add(int k, T x)` : `a[k]` に `op(a[k], x)` を代入する。 $\Theta(\log n)$ 。
+- `T sum(int k)` : `op(a[0], a[1], ..., a[k-1])` を返す。 $\Theta(\log n)$ 。
 
-- コンストラクタ
-  - `LazySegmentTree()` : 長さ $0$ に初期化する。 $\Theta(N)$ 。
-  - `LazySegmentTree(int n)` : 長さ `n` で初期化する。初期値は `e` 。 $\Theta(N)$ 。
-  - `LazySegmentTree(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
-  - `void init(vector<T> v)` : 列 `v` で初期化する。 $\Theta(N)$ 。
-- 取得クエリ
-  - `T prod(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log N)$ 。
-  - `T get(int k)` : `a[k]` を返す。 $\Theta(\log N)$ 。
-  - `T all_prod()` : `op(a[0], a[1], ..., a[N-1])` を返す。 $\Theta(1)$ 。
-- 更新クエリ
-  - `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int k, U f)` : `a[k]` に `mp(f, a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void update(int k, T upd(T))` : `a[k]` に `upd(a[k])` を代入する。 $\Theta(\log N)$ 。
-  - `void apply(int l, int r, U f)` : `a[l], a[l+1], ..., a[r-1]` に `mp(f, a[l]), mp(f, a[l+1]), ..., mp(f, a[r-1])` を代入する。 $\Theta(\log N)$ 。
-- セグメント木上の二分探索
-  - `int max_right(int l, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最大の `r` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `r` (のうち1つ)を返す。  
-    - `r = l` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `r = n` または `f(op(a[l], a[l+1], ..., a[r])) = false`
-  - `int min_left(int r, bool f(T))` :  
-`[l, r)` に対して `f` が `true` を返すような最小の `l` を返す。`f(e) = true` である必要がある。 $\Theta(\log N)$ 。  
-厳密には、以下の条件を共に満たす `l` (のうち1つ)を返す。  
-    - `l = r` または `f(op(a[l], a[l+1], ..., a[r-1])) = true`
-    - `l = 0` または `f(op(a[l-1], a[l], ..., a[r-1])) = false`
+また、逆演算が存在する場合、以下も使える。足し算や bitwise xor などはこれを満たす。
 
-また、以下のクエリに対する遅延セグメント木が `LazySegmentTree` のエイリアスとして作られている。
-
-- `RangeUpdateQueryRangeSumQuery` : 区間代入クエリと区間和クエリを扱える。
-- `RangeUpdateQueryRangeMinimumQuery` : 区間代入クエリと区間最小値クエリを扱える。
-- `RangeUpdateQueryRangeMaximumQuery` : 区間代入クエリと区間最大値クエリを扱える。
-- `RangeAddQueryRangeSumQuery` : 区間加算クエリと区間和クエリを扱える。
-- `RangeAddQueryRangeMinimumQuery` : 区間加算クエリと区間最小値クエリを扱える。
-- `RangeAddQueryRangeMaximumQuery` : 区間加算クエリと区間最大値クエリを扱える。
-- `RangeChminQueryRangeMinimumQuery` : 区間chminクエリと区間最小値クエリを扱える。
-- `RangeChminQueryRangeMaximumQuery` : 区間chminクエリと区間最大値クエリを扱える。
-- `RangeChmaxQueryRangeMinimumQuery` : 区間chmaxクエリと区間最小値クエリを扱える。
-- `RangeChmaxQueryRangeMaximumQuery` : 区間chmaxクエリと区間最大値クエリを扱える。
+- `BinaryIndexedTree(int n)` : サイズ `n` の BIT を作成する。 $\Theta(n)$ 。
+- `T sum(int l, int r)` : `op(a[l], a[l+1], ..., a[r-1])` を返す。 $\Theta(\log n)$ 。
+- `T get(int k)` : `a[k]` を返す。 $\Theta(\log n)$ 。
+- `void set(int k, T x)` : `a[k]` に `x` を代入する。 $\Theta(\log n)$ 。
